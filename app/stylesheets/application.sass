@@ -1,0 +1,296 @@
+@import partials/base.sass
+
+!table_even = #EBEBEB
+!table_odd = #DBE7FF
+!border_lightblue = 1px "solid" #DFE2FF
+!grey_lightest = #EFEFEF
+!grey_light = #DFDFDF
+!orange_light = #FFCA6F
+!orange = #FF981F
+!green_lightest = #DFFFE0
+!green_light = #A4EFA7
+!green_dark = #158F00
+!yellow_lightest = #FFFBCF
+!yellow_light = #FFF79F
+!blue_lightest = #DFE2FF
+!blue_light = #AFB6FF
+
+
+!header_border_lightblue = 1px "solid" #DFE2FF
+!h2_border_width = 1px 0 1px 0
+!h2_font_size= 1.4em
+
+#wrapper
+  +linear-gradient(color-stops(#dfdfdf, #ffffff))
+
+#container
+  +container
+  :background-color #fff
+  +box-shadow()
+  :border= 1px "solid" !grey_light 
+  :border-width 0 1px
+
+#header 
+  position: relative
+  :border-bottom= 1px solid !green_lightest
+  :margin-bottom 22px
+  h2
+    :margin 10px  
+    +replace-text("logo01.jpg")
+    :height 50px
+    :width 187px
+  #login
+    :position absolute
+    :top 20px
+    :right 10px
+
+#content
+  +clearfix
+  +prepend(1)
+  :margin-bottom 40px
+  
+#content table
+  +alternating-rows-and-columns(!table_even, !table_odd,#222)
+
+hr.break
+  :visibility hidden
+  :margin 0
+  
+//+sticky-footer(72px, "#container", "#layout_footer", "#footer")    
+
+#footer
+  :margin 25px
+  :border-top= 1px solid !grey_light
+  span
+    :display block
+    :margin-top 25px
+    +prepend(12)
+
+
+
+.section
+  +clearfix
+
+.icon-container
+  +clearfix
+  
+.icon
+  :float left
+  :padding 3px 3px 3px 22px
+  :background-color= !blue_light
+  :border= 2px solid !blue_lightest
+  :color #333
+  :text-decoration none
+  :font-weight bold
+ 
+.add-user
+  :background url('../img/icons/16x16/userplus32.png') 3px 3px no-repeat
+// =============== FORMS =======================
+div.form
+  +column(11)
+  
+label
+  :font-weight bold
+  :color #666
+
+fieldset h2
+  :font-size 1.3em
+  :font-weight bold
+  :display block
+  :border-bottom= 1px "solid" !grey_lightest 
+
+.field
+  :margin-left 7px
+  :padding-top 2px
+  :padding-bottom 3px
+  +clearfix
+
+.field label
+  +column(3)
+  
+.inp-txt span:nth-child(3n+0)
+  +prepend(3)
+  
+.inp-txt input
+  +span(6)
+
+.inp-rdo span
+  :display block
+
+.inp-btn  
+  :margin-top 15px
+  +prepend(9)
+
+.field span
+  :margin-bottom 2px
+
+form .icon-container
+
+form .icon
+
+.frm-toggle
+  :display none
+
+// ------ register spouse ------- 
+
+
+
+.family-registration .form
+  +prepend(4)
+  
+.reg-member
+  :border= 2px solid !green_light
+  :background-color= !green_lightest
+  :margin-top 10px
+
+.reg-member .inp-btn
+  :margin-left 0
+  :border-top= 1px solid !green_light
+  :background-color #F0FFEF
+  :padding 7px 0
+  +prepend(7)
+
+.added-member
+  :display none
+  :position relative
+  :margin 8px 0 3px 7px
+  :border= 2px solid !yellow_light
+  :background-color= !yellow_lightest
+  +clearfix
+
+.added-member p
+  :font-weight bold
+  :color= !green_dark
+  :margin 7px
+
+.added-member span
+  :position absolute
+  :top 4px
+  :right 4px
+  
+.added-member a.button
+  :margin-left .5em
+
+.added-member div
+  :background-color #fff
+  :position absolute  
+  :width 100%
+  :top 0
+  :bottom 0
+  :padding-left 150px
+  :padding-top 7px
+  +opacity(0.7)
+
+.reg-member div a
+  :margin-left 10px
+  :cursor pointer
+
+// =============== FAMILY OVERVIEW ==============
+.family-overview div.section 
+  :padding-bottom 1em 
+
+.family-overview h1:first-child + div
+  :display block
+
+.family-overview h1
+  :border= !border_lightblue
+  :background-color= !grey_lightest
+  :font-size 1.7em
+  :padding .1em 0 .1em .9em
+ 
+.family-overview h2
+  :border= !header_border_lightblue
+  :border-width= !h2_border_width
+  :font-size= !h2_font_size
+
+.family-overview .section > ul
+  :position relative
+  +column(10)
+  //+append(3)
+
+.family-overview .section ul
+  +no-bullets
+
+.family-overview .section li:nth-child(even)
+  :background-color #efefef
+
+.family-overview .section li:nth-child(odd)
+  :background-color #dfdfdf
+
+.family-overview .section > ul li:nth-child(1)
+  :background-color #ffffff
+
+.family-overview .section li
+  :position relative
+  :background-color #efefef
+  :border-bottom 1px solid #cfcfcf
+  
+.family-overview .section li span
+  :position absolute
+  :left 90px
+  :top 0
+
+.family-overview .section ul b
+  :display block
+  :padding 0 2px
+  :width 80px
+  
+.family-overview .section ul input
+  :position absolute
+  :z-index 4
+
+.family-overview .ui-tabs-panel
+  :padding-top 8px
+
+.family-overview .spouse-info
+  +column(10)
+   
+.family-overview .section table
+  +inner-table-borders(1px, #7a98c6)
+  +outer-table-borders(1px)
+
+.family-overview .icon
+  :display block
+  :padding-left 22px
+  :position absolute
+  :top 8px
+  :right -22px
+  :text-indent -99999px
+  +span(1)
+
+#dialog
+  :display none
+  
+  
+// =============== FAMILY REGISTRATION ==============
+
+.family-registration ul
+  +horizontal-list(0)
+  :margin-bottom 30px
+
+.family-registration li
+  :border= !border_lightblue
+  :text-align center
+  :margin-right 18px
+
+
+.family-registration li.active
+  :background-color= !grey_lightest
+  b
+    :background-color= !orange_light
+
+.family-registration ul b
+  :display block
+  :font-size 1.2em
+  :border-bottom= !border_lightblue
+  +span(3)
+  
+.family-registration ul i
+  :display block
+
+  
+
+  
+
+
+
