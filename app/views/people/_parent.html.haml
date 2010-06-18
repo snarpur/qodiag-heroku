@@ -1,0 +1,41 @@
+%h1= "Register #{@current_step}"
+= form_for @person do |f|
+ 
+  
+  .field.inp-txt
+    = f.label :firstname
+    %span
+      = f.text_field :firstname
+  .field.inp-txt
+    = f.label :lastname
+    %span
+      = f.text_field :lastname
+  
+  
+  =f.fields_for :relationships do |relationship_form|
+    =relationship_form.hidden_field :relation_id, :value => @patient.id
+    =relationship_form.hidden_field :name, :value => "parent"
+  
+  - opposite_parent = get_opposite_parent(@patient, @current_step)
+  -if opposite_parent
+    =f.fields_for :relationships do |relationship_form|
+      %p= "#{opposite_parent.firstname} #{opposite_parent.lastname}"
+      =relationship_form.hidden_field :relation_id, :value => opposite_parent.id
+      .field.inp-rdo
+        %span
+          = relationship_form.radio_button(:name, "current-spouse")
+          = relationship_form.label(:name_current, "Current spouse") 
+        %span
+          = relationship_form.radio_button(:name, "ex-spouse") 
+          = relationship_form.label(:name_ex, "Ex-spouse")
+     
+    
+   
+
+  
+  %input{:type => "hidden", :name => "next_step", :value  => next_step(@current_step)}
+  
+  =f.hidden_field :sex, :value  => set_parent_gender(@current_step)
+  =f.hidden_field :ispatient, :value  => 0
+  .actions
+    = f.submit

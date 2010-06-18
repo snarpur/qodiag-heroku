@@ -1,6 +1,5 @@
 class PeopleController < ApplicationController
   # GET /people
-  # GET /people.xml
   def index
     @people = Person.all
 
@@ -10,7 +9,6 @@ class PeopleController < ApplicationController
   end
 
   # GET /people/1
-  # GET /people/1.xml
   def show
     @person = Person.find(params[:id])
 
@@ -20,13 +18,17 @@ class PeopleController < ApplicationController
   end
 
   # GET /people/new
-  # GET /people/new.xml
   def new
-    session[:patient] ||= {}
-    session[:current_step] = params[:current_step] == nil ? "patient" : params[:current_step]
-    @patient = Person.find_by_id(session[:patient])
+    
+    @current_step = params[:current_step] == nil ? "patient" : params[:current_step]
+    session[:patient] = nil if @current_step == "patient" 
+    logger.debug "xx session[:patient] is: #{session[:patient]}"
+    @patient = Person.find(session[:patient]) if session[:patient] != nil
+      
+  
+    
     @person = Person.new
-    @person.relations.build
+    @person.relationships.build
 
     respond_to do |format|
       format.html 
@@ -38,23 +40,19 @@ class PeopleController < ApplicationController
     @person = Person.find(params[:id])
   end
 
-  # POST /people
-  # POST /people.xml
+  # POST /people  
   def create
-    @person = Person.new(params[:person])
-    session[:current_step] = params[:next_step] 
+    @person = Person.new(params[:person]) 
     
       
     respond_to do |format|
       if @person.save
         if @person.ispatient
           session[:patient] = @person.id
-          @patient = @person
         end
-        redirect_to url_for "people#new"
-        
+        format.html {redirect_to url_for_next_step(params[:next_step])}
       else
-        format.html { render :action => "new" }
+        format.html { render :action => "index" }
         
       end
     end
@@ -87,4 +85,15 @@ class PeopleController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  private 
+  
+  def url_for_next_step(next_step)
+    if next_step != "finnish"
+      url_for :controller => "people", :action => "new", :current_step => next_step
+    else
+      url_for :controller => "people", :action => "show", :id => session[:patient]
+    end
+  end
+  
 end
