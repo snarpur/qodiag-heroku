@@ -1,0 +1,5 @@
+%h4= "has opposite parent#{opposite_parent}"
+=f.fields_for :relationships do |relationship_form|
+  %p= "#{opposite_parent.firstname} #{opposite_parent.lastname} er:"
+  =relationship_form.text_field :relation_id, :value => opposite_parent.id
+  =relationship_form.text_field :name, :value => "spouse"

@@ -22,4 +22,15 @@ module PeopleHelper
   def get_opposite_parent(patient,current_parent)
     patient.send(get_opposite_parent_type(current_parent)).first
   end
+  
+  def new_or_edit_link(patient,step_no,step_name)
+    RAILS_DEFAULT_LOGGER.debug "xx - patient in helper #{patient}"
+    person = patient.send(step_name) if patient != nil
+    
+    if !person.exists?
+      link_to step_name, :controller => "people", :action => "new", :step => step_no
+    else
+      link_to step_name, :controller => "people", :id => person.first.id, :action => "edit", :step => step_no
+    end
+  end
 end

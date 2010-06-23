@@ -19,16 +19,15 @@ class PeopleController < ApplicationController
 
   # GET /people/new
   def new
+    session[:wizard] = Wizard.new if Integer(params[:step]) == 1
     
-    @current_step = params[:current_step] == nil ? "patient" : params[:current_step]
-    session[:patient] = nil if @current_step == "patient" 
-    logger.debug "xx session[:patient] is: #{session[:patient]}"
-    @patient = Person.find(session[:patient]) if session[:patient] != nil
-      
-  
-    
+    @wizard = session[:wizard]
+    @wizard.step(Integer(params[:step]))
+    @patient = get_patient
     @person = Person.new
     @person.relationships.build
+    
+   
 
     respond_to do |format|
       format.html 
@@ -38,19 +37,26 @@ class PeopleController < ApplicationController
   # GET /people/1/edit
   def edit
     @person = Person.find(params[:id])
+    @wizard = session[:wizard]
+    @wizard.step(Integer(params[:step]))
+    @patient = get_patient
   end
 
   # POST /people  
   def create
     @person = Person.new(params[:person]) 
     
-      
     respond_to do |format|
       if @person.save
         if @person.ispatient
-          session[:patient] = @person.id
+          session[:wizard] = Wizard.new(@person.id)
         end
-        format.html {redirect_to url_for_next_step(params[:next_step])}
+        if session[:wizard]
+          #format.html {redirect_to url_for_next_step(params[:next_step])}
+          format.html {redirect_to url_for_next_step }
+        else
+          format.html { redirect_to(@person, :notice => 'Relationship was successfully created.') }
+        end
       else
         format.html { render :action => "index" }
         
@@ -88,12 +94,16 @@ class PeopleController < ApplicationController
   
   private 
   
-  def url_for_next_step(next_step)
-    if next_step != "finnish"
-      url_for :controller => "people", :action => "new", :current_step => next_step
+  def url_for_next_step
+    if session[:wizard].next_is_last? 
+      url_for :controller => "people", :action => "show", :id => session[:wizard].patient_id
     else
-      url_for :controller => "people", :action => "show", :id => session[:patient]
+      url_for :controller => "people", :action => "new", :step => session[:wizard].next_step_no
     end
+  end
+  
+  def get_patient
+    patient = @wizard.patient_id == nil ? Person.new : Person.find(@wizard.patient_id)
   end
   
 end
