@@ -1,26 +1,7 @@
 %div.family-registration
-  %ul
-    %li.active
-      %b 1
-      %i  
-        "patient"
-    %li
-      %b 2
-      %i 
-        =new_or_edit_link(@patient,2,"mother")
-    %li
-      %b 3
-      %i  
-        =new_or_edit_link(@patient,3,"father")
-    %li
-      %b 4
-      %i Sistkyni
-    %li
-      %b 5
-      %i Forræðishafar
-=" CURRENT STEP #{@wizard.current_step}"
-- if @wizard.current_step == "patient"
-  = render 'patient'
-- else 
-  = render "parent"
-= link_to 'Back', people_path
+  =render "shared/wizard_navigation"
+  - if @wizard.current_step == "patient"
+    = render 'patient'
+  - else 
+    = render "parent"
+  = link_to 'Back', people_path

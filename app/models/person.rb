@@ -8,6 +8,9 @@ class Person < ActiveRecord::Base
               find(:all, :conditions => "name = 'spouse'")
             end
             
+            def spouse_as_parent(id)
+              find(:all, :conditions => "relation = 'spouse'")
+            end
           end          
   has_many  :relations, :through => :relationships 
   has_many :inverse_relationships, :class_name => "Relationship", :foreign_key => "relation_id" do
@@ -43,4 +46,32 @@ class Person < ActiveRecord::Base
   def parents
     self.inverse_relations.parents
   end
+  
+  def is_person_parent(person)
+    self.parents.include?(person)
+  end
+  
+  def opposite_parent(parent)
+    parents = self.parents
+    if parents.size == 1 && !is_person_parent(parent) 
+      parents
+    elsif parents.size == 2 && is_person_parent(parent)
+      parents = parents.select {|v| v != parent}
+    end
+    
+  
+  end
+  
+  def parents_relationship
+    parents = self.parents
+    all_relationships, parents_relationship = []
+    parents.each{ |p|
+      all_temp = all_relationships
+      all_relationships = p.relationships + p.inverse_relationships
+      parents_relationship = all_temp & all_relationships
+    }
+    parents_relationship
+  end
+  
+  
 end

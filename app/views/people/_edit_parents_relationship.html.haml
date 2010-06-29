@@ -1,4 +1,5 @@
 %p= "#{@patient.opposite_parent(@person).first.firstname} #{@patient.opposite_parent(@person).first.lastname} er:"
-=f.hidden_field :relation_id, :value => @patient.opposite_parent(@person).first.id
-=f.hidden_field :name, :value => "spouse"
+=f.hidden_field :person_id
+=f.hidden_field :relation_id
+=f.hidden_field :name
 =f.date_select :end, :include_blank => true, :discard_day => true

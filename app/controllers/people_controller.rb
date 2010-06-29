@@ -10,8 +10,11 @@ class PeopleController < ApplicationController
 
   # GET /people/1
   def show
-    @person = Person.find(params[:id])
 
+    @wizard ||= session[:wizard]
+    id = get_patient(@wizard).new_record?  ? params[:id] : @wizard.patient_id
+    @person = Person.find(id)
+    
     respond_to do |format|
       format.html 
     end
@@ -23,7 +26,7 @@ class PeopleController < ApplicationController
     
     @wizard = session[:wizard]
     @wizard.step(Integer(params[:step]))
-    @patient = get_patient
+    @patient = get_patient(@wizard)
     @person = Person.new
     @person.relationships.build
     
@@ -39,7 +42,7 @@ class PeopleController < ApplicationController
     @person = Person.find(params[:id])
     @wizard = session[:wizard]
     @wizard.step(Integer(params[:step]))
-    @patient = get_patient
+    @patient = get_patient(@wizard)
   end
 
   # POST /people  
@@ -102,8 +105,8 @@ class PeopleController < ApplicationController
     end
   end
   
-  def get_patient
-    patient = @wizard.patient_id == nil ? Person.new : Person.find(@wizard.patient_id)
+  def get_patient(wizard)
+    patient = wizard.patient_id == nil ? Person.new : Person.find(wizard.patient_id)
   end
   
 end

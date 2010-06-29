@@ -1,3 +1,6 @@
+
+-mother = @person.mother.first
+-father = @person.father.first
 %p#notice= notice
 %p
   %b Firstname:
@@ -8,6 +11,21 @@
 %p
   %b Sex:
   = @person.sex
+%h1 Mother
+%p
+  %b Mother
+  = mother.firstname
+%p
+  %b Lastname:
+  = mother.lastname
+%h1 Father
+%p
+  %b Mother
+  = father.firstname
+%p
+  %b Lastname:
+  = father.lastname
+
 = link_to 'Edit', edit_person_path(@person)
 |
 \#{link_to 'Back', people_path}
