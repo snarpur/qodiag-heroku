@@ -26,13 +26,17 @@ class Person < ActiveRecord::Base
       end
     end      
 
-
+  attr_accessor :relationship_name
   accepts_nested_attributes_for :relations, :allow_destroy => true
   accepts_nested_attributes_for :relationships, :allow_destroy => true, :reject_if => proc { |attributes| attributes.any? {|k,v| v.blank?} }
   accepts_nested_attributes_for :inverse_relationships, :allow_destroy => true, :reject_if => proc { |attributes| attributes.any? {|k,v| v.blank?} }
   
-  attr_accessible :firstname, :lastname, :sex, :ispatient, 
+  attr_accessible :firstname, :lastname, :sex, :ispatient, :relation_attributes,
                   :relations_attributes, :relationships_attributes, :inverse_relationships_attributes
+  
+  
+  after_save :set_relationships_name
+  
   
   
   def mother
@@ -71,6 +75,15 @@ class Person < ActiveRecord::Base
       parents_relationship = all_temp & all_relationships
     }
     parents_relationship
+  end
+  
+  protected
+  def set_relationships_name
+    logger.debug "------------------ new save---------------------"
+    logger.debug_variables(binding)
+    logger.debug "------------------ save end ---------------------"
+  
+  
   end
   
   

@@ -20,7 +20,7 @@ module PeopleHelper
   end
   
   def new_or_edit_link(patient,step_no,step_name)
-    RAILS_DEFAULT_LOGGER.debug "xx - #{step_name}"
+
     if patient.new_record?
       link_to step_name, :controller => "people", :action => "new", :step => step_no
     else
@@ -43,7 +43,7 @@ module PeopleHelper
   
   def parent_relationship_type(patient, person)
     relationship = patient.parents_relationship
-    
+     RAILS_DEFAULT_LOGGER.debug "xx - relationship[0] #{patient.parents_relationship}"
     if person.id == relationship[0].person_id
       :relationships
     else

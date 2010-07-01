@@ -10,7 +10,6 @@ class PeopleController < ApplicationController
 
   # GET /people/1
   def show
-
     @wizard ||= session[:wizard]
     id = get_patient(@wizard).new_record?  ? params[:id] : @wizard.patient_id
     @person = Person.find(id)
