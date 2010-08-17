@@ -1199,7 +1199,7 @@ form.inline p {
 
 /* line 8, ../../../../../../../../../../usr/local/lib/ruby/gems/1.8/gems/compass-0.10.2/frameworks/blueprint/stylesheets/blueprint/_debug.scss */
 .showgrid {
-  background: url('/images/grid.png?1276691265');
+  background: url('/images/grid.png?1264086745');
 }
 
 /* line 4, ../../../../../../../../../../usr/local/lib/ruby/gems/1.8/gems/compass-0.10.2/frameworks/blueprint/stylesheets/blueprint/_interaction.scss */
@@ -1266,7 +1266,7 @@ form.inline p {
   color: white;
 }
 
-/* line 38, ../../../app/stylesheets/partials/_base.sass */
+/* line 40, ../../../app/stylesheets/partials/_base.sass */
 .clear {
   overflow: hidden;
   display: inline-block;
@@ -1615,7 +1615,7 @@ body.bp .bottom {
 }
 /* line 8, ../../../../../../../../../../usr/local/lib/ruby/gems/1.8/gems/compass-0.10.2/frameworks/blueprint/stylesheets/blueprint/_debug.scss */
 body.bp .showgrid {
-  background: url('/images/grid.png?1276691265');
+  background: url('/images/grid.png?1264086745');
 }
 /* line 4, ../../../../../../../../../../usr/local/lib/ruby/gems/1.8/gems/compass-0.10.2/frameworks/blueprint/stylesheets/blueprint/_interaction.scss */
 body.bp .error {

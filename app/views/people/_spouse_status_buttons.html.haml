@@ -1,0 +1,13 @@
+/- f = locals[:form_builder_local]
+- suffix = locals[:suffix]
+- level = locals[:level] == nil ? "" : "_lvl2"
+- item = locals[:item]
+.field.inp-rdo
+  %span
+    =radio_button_tag  "spouse-status#{suffix}", 'current', nil, :class => "remove_nested_item {item: '#{item}'}"
+    =label_tag 'spouse-status_current', t("terms.current_spouse")
+  %span
+    =radio_button_tag "spouse-status#{suffix}", 'ex', nil , :class => "add_nested_item#{level} {item: '#{item}'}"
+    =label_tag 'spouse-status_ex', t("terms.ex_spouse")
+
+.relationship-period

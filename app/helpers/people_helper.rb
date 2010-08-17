@@ -1,7 +1,24 @@
 module PeopleHelper
   # STEPS = ["patient", "mother", "father", "finnish"]
   
- 
+  #RAILS_DEFAULT_LOGGER.debug "xx - relationship[0] #{patient.parents_relationship}"
+  
+  def ssn(person)
+   day = pad_with_zero(person.dateofbirth.mday) 
+   month = pad_with_zero(person.dateofbirth.month)
+   year = pad_with_zero(person.dateofbirth.year)
+   last = person.cpr
+   RAILS_DEFAULT_LOGGER.debug "xx - #{day}-#{last}"
+   ssn = "#{day}#{month}#{year}-#{last}"
+  end
+  
+  def pad_with_zero(item)
+    if(item > 12)
+      item = item.to_s[-2..-1].to_i
+    end
+    item = item < 10 ? "0#{item}" : item
+  end
+  
   def set_parent_gender(parent)
     gender = parent == "mother"? "female" : "male"
   end
@@ -43,7 +60,6 @@ module PeopleHelper
   
   def parent_relationship_type(patient, person)
     relationship = patient.parents_relationship
-     RAILS_DEFAULT_LOGGER.debug "xx - relationship[0] #{patient.parents_relationship}"
     if person.id == relationship[0].person_id
       :relationships
     else

@@ -11,7 +11,7 @@ class Wizard
   end
 
   def steps
-    %w[patient mother father finnish]
+    %w[child mother father finnish]
   end
   
   def step(step_no)

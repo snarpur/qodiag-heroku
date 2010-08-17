@@ -23,6 +23,12 @@
 {
  top: 1px;
 }
+.x-small.button, 
+.x-small.button:visited
+{
+ font-size: 9px;
+ padding: 3px 6px 3px;
+}
 .small.button, 
 .small.button:visited
 {
@@ -44,6 +50,15 @@
  font-size: 14px;
  padding: 8px 14px 9px;
 }
+.black.button, .black.button:visited
+{
+ background-color: #222;
+}
+.black.button:hover
+{
+ background-color: #111;
+}
+
 .green.button, .green.button:visited
 {
  background-color: #91bd09;

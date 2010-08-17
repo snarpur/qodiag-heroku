@@ -1,30 +1,56 @@
-
 -mother = @person.mother.first
 -father = @person.father.first
-%p#notice= notice
-%p
-  %b Firstname:
-  = @person.firstname
-%p
-  %b Lastname:
-  = @person.lastname
-%p
-  %b Sex:
-  = @person.sex
-%h1 Mother
-%p
-  %b Mother
-  = mother.firstname
-%p
-  %b Lastname:
-  = mother.lastname
-%h1 Father
-%p
-  %b Mother
-  = father.firstname
-%p
-  %b Lastname:
-  = father.lastname
+%div.family-overview  
+  %h1= t("terms.mother")
+  %div.section
+    %ul
+      %li
+        %h2
+          = "#{mother.firstname} #{mother.lastname}" 
+      %li
+        %b= t('person.cpr')
+        %span= ssn(mother)
+      %li  
+        %b= t('person.occupation')
+        %span= mother.occupation
+      %li  
+        %b= t('person.workplace')
+        %span= mother.workplace
+      %li  
+        %b= t('address.street_1')
+        %span= mother.address.street_1
+        %span= mother.address.street_2
+      %li  
+        %b= t('address.town')
+        %span= mother.address.zip_code
+        %span= mother.address.town
+      %li  
+        %b= t('address.home_phone')
+        %span= mother.address.phone
+      %li  
+        %b= t('person.mobilephone')
+        %span= mother.mobilephone
+      %li  
+        %b= t('person.workphone')
+        %span= mother.workphone
+        
+    - spouses = mother.relationships.spouse
+    %div.tabbed.spouse-info
+      %ul
+        - spouses.each_index do |i|
+          - spouse = spouses[i]
+          %li
+            %a{:href=> "#m-tabbed-#{[i]}"} #{spouse.relation.firstname} #{spouse.relation.lastname}
+      - spouses.each_index do |i|
+        - spouse = spouses[i]          
+        %div{:id => "m-tabbed-#{[i]}"}
+          %div= "#{spouse.relation.firstname} #{spouse.relation.lastname}"
+              
+
+  %hr.break
+
+
+
 
 = link_to 'Edit', edit_person_path(@person)
 |

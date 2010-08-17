@@ -1,0 +1,11 @@
+- item = locals[:item]
+- level = locals[:level] == nil ? "" : "_lvl2"
+- suffix = locals[:suffix]
+.field.inp-rdo
+  %span
+    =radio_button_tag "guardian-status#{suffix}", 'guardian', nil, :class => "add_nested_item#{level} {item: '#{item}'}" 
+    =label_tag 'is-guardian', t("relationship.is_guardian")
+  %span
+    =radio_button_tag "guardian-status#{suffix}", 'not-guardian', nil, :class => "remove_nested_item {item: '#{item}'}"
+    =label_tag 'not-guardian', t("relationship.not_guardian")
+  .guardianship

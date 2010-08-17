@@ -1,0 +1,43 @@
+-f = locals[:form_builder]
+.frm-section
+  %h4= t('terms.personal_information')
+  .field.inp-txt
+    = f.label :firstname, t('person.firstname')
+    %span
+      = f.text_field :firstname
+  .field.inp-txt
+    = f.label :lastname , t('person.lastname')
+    %span
+      = f.text_field :lastname
+  .field.txt
+    = f.label :full_date, t('person.cpr')
+    %span
+    =f.text_field :full_date
+    %b -
+    = f.text_field :cpr
+.frm-section
+  %h4= t('terms.occupational_information')
+  .field.inp-txt
+    = f.label :occupation , t('person.occupation')
+    %span
+      = f.text_field :occupation
+  .field.inp-txt
+    = f.label :workplace , t('person.workplace')
+    %span
+      = f.text_field :workplace
+
+
+#address.frm-section.toggle
+  %h4= t('terms.contact_information')
+  - address = @person.build_address
+  =f.fields_for :address, address do |address_form|
+    =render "addresses/address", :f => address_form
+    
+  .field.inp-txt
+    = f.label :workphone , t('person.workphone')
+    %span
+      = f.text_field :workphone
+  .field.inp-txt
+    = f.label :workphone , t('person.mobilephone')
+    %span
+      = f.text_field :mobilephone

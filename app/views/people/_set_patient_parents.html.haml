@@ -1,18 +1,14 @@
 
+- content_for :jstemplates do
+  != "var parents_relationship_period = '#{escape_javascript render 'spouse_status', :locals => {:form_builder => f, :suffix => 'NEW_RECORD', :level => 2}}';"
 
-=label_tag "Patient #{get_opposite_parent_type(@wizard.current_step)}"
-%p= "#{@patient.opposite_parent(@person).first.firstname} #{@patient.opposite_parent(@person).first.lastname} is current spouse:"
-.field.inp-rdo
-  %span
-    =label_tag "Current"
-    =radio_button_tag 'spouse-status', 'current'
-  %span
-    =label_tag "Ex"
-    =radio_button_tag 'spouse-status', 'ex'
-.field.inp-sel
-  =f.label :end, "Relationship ended"
-  %span
-=f.date_select :end, :include_blank => true
-=f.hidden_field :relation_id, :value => @patient.opposite_parent(@person).first.id
-=f.hidden_field :name, :value => "spouse"
+.frm-section.nested-context
+  - other_parent = t("terms.#{get_opposite_parent_type(@wizard.current_step)}")
+  %h4= "#{other_parent} barns"
+  %p= "#{@patient.opposite_parent(@person).first.firstname} #{@patient.opposite_parent(@person).first.lastname} er:"
+  =f.hidden_field :relation_id, :value => @patient.opposite_parent(@person).first.id
+  =f.hidden_field :name, :value => "spouse"
+  =render "spouse_status_buttons", :locals => {:form_builder => f, :item => "parents_relationship_period" }
+
+
 

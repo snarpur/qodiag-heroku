@@ -1,8 +1,9 @@
-%ul
+%ul.wizard-nav
   - @wizard.steps.each_index do |i|
     -status = @wizard.current_step == @wizard.steps[i] ? "active" : ""
     - j = i+1
     %li{:class => status}
       %b= j
-      %i= new_or_edit_link(@patient, j ,@wizard.steps[i]) 
+      -step_translation = t("terms.#{@wizard.steps[i]}")
+      %i= new_or_edit_link(@patient, j ,step_translation) 
 

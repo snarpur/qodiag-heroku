@@ -1,0 +1,44 @@
+
+-if patient_has_one_parent_and_person_is_not_parent(@patient,@person)
+  =" address #{@patient.parents[0].address == nil}"
+  -existing_address = @patient.parents[0].address != nil ? @patient.parents[0].address : @person.build_address
+  .existing_address.toggle.off
+    .field.inp-txt
+      %label= t('address.street_1')
+      %span
+        =text_field_tag 'street_1', existing_address.street_1, :disabled => true
+      %span
+        =text_field_tag 'street_2', existing_address.street_2, :disabled => true
+    .field.inp-txt
+      %label= t('address.zip_code')
+      %span
+        =text_field_tag 'address', existing_address.zip_code, :disabled => true
+    .field.inp-txt
+      %label= t('address.town')
+      %span
+        =text_field_tag 'address', existing_address.town, :disabled => true
+    .field.inp-txt
+      %label= t('address.home_phone')
+      %span
+        =text_field_tag 'phone', existing_address.phone, :disabled => true
+
+.new_address 
+  .field.inp-txt
+    =f.label :street_1, t('address.street_1')
+    %span
+      =f.text_field :street_1
+    %span     
+      =f.text_field :street_2
+  .field.inp-txt
+    =f.label :zip_code, t('address.zip_code')
+    %span
+      =f.text_field :zip_code
+  .field.inp-txt
+    =f.label :town, t('address.town')
+    %span
+      =f.text_field :town
+
+  .field.inp-txt
+    =f.label :phone, t('address.home_phone')
+    %span
+      =f.text_field :phone

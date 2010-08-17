@@ -1,6 +1,6 @@
 %div.family-registration
   =render "shared/wizard_navigation"
-  - if @wizard.current_step == "patient"
+  - if @wizard.current_step == "child"
     = render 'patient'
   - else 
     = render "parent"

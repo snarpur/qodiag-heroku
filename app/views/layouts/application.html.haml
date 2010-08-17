@@ -2,23 +2,24 @@
 %html{ "xml:lang" => "en", :lang => "en", :xmlns => "http://www.w3.org/1999/xhtml" }
   %head
     %meta{ :content => "text/html;charset=UTF-8", "http-equiv" => "content-type" }
-    = stylesheet_link_tag "compiled/application.css"
-    / = stylesheet_link_tag "/javascripts/jquery-ui-1.8.1/development-bundle/themes/smoothness/jquery.ui.core.css"
-    / = stylesheet_link_tag "/javascripts/jquery-ui-1.8.1/development-bundle/themes/smoothness/jquery.ui.theme.css"
-    / = stylesheet_link_tag "/javascripts/jquery-ui-1.8.1/development-bundle/themes/smoothness/jquery.ui.tabs.css"
-    / = stylesheet_link_tag "/javascripts/jquery-ui-1.8.1/development-bundle/themes/smoothness/jquery.ui.dialog.css"
-    / = stylesheet_link_tag "buttons.css"
     = yield(:head) 
+    
+    = stylesheet_link_tag "compiled/application.css"
+    = stylesheet_link_tag "../javascripts/jquery-ui/css/smoothness/jquery-ui-1.8.2.custom.css"
+    = stylesheet_link_tag "buttons.css"
 
+
+    =javascript_include_tag 'jquery'
+    = javascript_include_tag "jquery-ui/development-bundle/ui/jquery-ui-1.8.2.custom.js"
+    = javascript_include_tag "jquery.metadata/jquery.metadata.js"
+    =javascript_include_tag 'application'
     =javascript_tag do
       = yield(:jstemplates) 
 
 
-    / = javascript_include_tag "jquery-ui-1.8.1/development-bundle/jquery-1.4.2.js"
-    / = javascript_include_tag "jquery-ui-1.8.1/development-bundle/ui/jquery-ui-1.8.1.custom.js"
-    / = javascript_include_tag "plugins/metadata/jquery.metadata.js"
-    / = javascript_include_tag "plugins/editable/jquery.editable-1.3.3.js"
-    / = javascript_include_tag "main.js"
+
+
+
     
     
     

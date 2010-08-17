@@ -1,22 +1,31 @@
-%h1 New Patient
+- step_translation = t("terms.#{@wizard.current_step}")
+%h3="Skrá #{step_translation}"
 = form_for @person do |f|
-  .field.inp-txt
-    = f.label :firstname
-    %span
-      = f.text_field :firstname
-  .field.inp-txt
-    = f.label :lastname
-    %span
-      = f.text_field :lastname
   .field.inp-rdo
     %span
       = f.radio_button(:sex, "male")
-      = f.label(:sex_male, "Karl") 
+      = f.label(:sex_male, t(:'terms.boy')) 
     %span
       = f.radio_button(:sex, "female") 
-      = f.label(:sex_female, "Kona") 
+      = f.label(:sex_female, t('terms.girl'))
+  .field.inp-txt
+    = f.label :firstname , t('person.firstname')
+    %span
+      = f.text_field :firstname
+  .field.inp-txt
+    = f.label :lastname, t('person.lastname')
+    %span
+      = f.text_field :lastname
+  .field.inp-txt
+    = f.label :dateofbirth, t('person.cpr')
+    %span
+    =f.text_field :full_date
+    %b -
+    = f.text_field :cpr
+
     
   %input{:type => "hidden", :name => "next_step", :value  => "#{@wizard.next_step_no}"}
   =f.hidden_field :ispatient, :value  => 1
-  .actions
-    = f.submit
+  .field.inp-btn
+    %span
+      = f.submit :value => t('actions.save'), :class => 'button green'

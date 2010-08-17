@@ -1,10 +1,18 @@
 @import partials/base.sass
 
+
+// =============== Constants =======================
 !table_even = #EBEBEB
 !table_odd = #DBE7FF
 !border_lightblue = 1px "solid" #DFE2FF
-!grey_lightest = #EFEFEF
+!grey_ultralightest = #fcfcfc
+!grey_ultralight = #f9f9f9
+!grey_lightest = #f4f4f4
+!grey_lighter = #eaeaea
 !grey_light = #DFDFDF
+!grey = #bcbcba
+!grey_dark = #7c7c7c 
+!grey_darker = #636362
 !orange_light = #FFCA6F
 !orange = #FF981F
 !green_lightest = #DFFFE0
@@ -14,12 +22,16 @@
 !yellow_light = #FFF79F
 !blue_lightest = #DFE2FF
 !blue_light = #AFB6FF
+!blue_dark = #3b4991
+f9f9f9
 
 
 !header_border_lightblue = 1px "solid" #DFE2FF
 !h2_border_width = 1px 0 1px 0
 !h2_font_size= 1.4em
 
+
+// =============== General =======================
 #wrapper
   +linear-gradient(color-stops(#dfdfdf, #ffffff))
 
@@ -66,8 +78,6 @@ hr.break
     :margin-top 25px
     +prepend(12)
 
-
-
 .section
   +clearfix
 
@@ -85,10 +95,22 @@ hr.break
  
 .add-user
   :background url('../img/icons/16x16/userplus32.png') 3px 3px no-repeat
+ 
+
 // =============== FORMS =======================
-div.form
-  +column(11)
-  
+.family-registration
+  +clearfix
+  form
+    +column(18)
+  h3
+    :color= !grey_darker
+    :padding 5px
+    :background-color= !blue_lightest
+    :border= !blue_light 1px solid
+  p
+    :margin 0
+    :font-weight bold
+
 label
   :font-weight bold
   :color #666
@@ -99,56 +121,106 @@ fieldset h2
   :display block
   :border-bottom= 1px "solid" !grey_lightest 
 
+.frm-section
+  :padding-top 2px
+  :margin-bottom 20px
+  :position relative
+  h4
+    :padding 2px 5px
+    :color= !blue_dark
+    :background-color= !grey_lightest
+    :border-right 5px solid #fff
+
+
 .field
   :margin-left 7px
   :padding-top 2px
   :padding-bottom 3px
+  +prepend(1)
   +clearfix
+  .field
+    +prepend(3)
+  span
+    :margin-bottom 2px
+  label
+    +column(3)
 
-.field label
-  +column(3)
+   
+.inp-rdo 
+  label
+    :float none
+  span
+    :display block
+  input
+    :margin 0
   
-.inp-txt span:nth-child(3n+0)
-  +prepend(3)
-  
-.inp-txt input
-  +span(6)
-
-.inp-rdo span
-  :display block
-
+.inp-txt 
+  span:nth-child(3n+0)
+    +prepend(3)
+    display: block
+    margin-top: 2px
+  input
+    +span(6)
+    
 .inp-btn  
   :margin-top 15px
-  +prepend(9)
+  :margin-left 5px
+  :padding-top 10px
+  :border-top= 1px !grey_light solid
+  span
+    :float right
 
-.field span
-  :margin-bottom 2px
-
-form .icon-container
-
-form .icon
-
-.frm-toggle
-  :display none
-
-// ------ register spouse ------- 
-
-
-
-.family-registration .form
-  +prepend(4)
+input[type='submit']
+  :border-width 0
+    
+#person_full_date
+  :width 140px
+#person_cpr
+  :width 73px
   
-.reg-member
+//------ register spouse ------- 
+.added-spouse
   :border= 2px solid !green_light
   :background-color= !green_lightest
   :margin-top 10px
+  :position relative
+  +span(13)
+  .inp-btn
+    :margin-left 0
+    :border-top= 1px solid !green_light
+    :background-color #F0FFEF
+    :padding 7px 10px 7px 0
+  .mask
+    :background-color #fff
+    :position absolute  
+    :top 0
+    :bottom 0
+    :width 100%
+    +opacity(0.9)
+    b
+      :font-size 1.6em
+    a
+      :margin-left 4px
+    p
+      :margin 11px 0 0 18px
+  em
+    :position absolute
+    :top 5px
+    :left 12px
 
-.reg-member .inp-btn
-  :margin-left 0
-  :border-top= 1px solid !green_light
-  :background-color #F0FFEF
-  :padding 7px 0
-  +prepend(7)
+.added-spouse.status-closed
+  a.close-spouse
+    :display none
+  .inp-btn 
+    :border none
+    :margin 0
+
+  
+.added-spouse.status-open
+  a.edit-spouse
+    :display none
+  em
+    :display none
 
 .added-member
   :display none
@@ -171,15 +243,7 @@ form .icon
 .added-member a.button
   :margin-left .5em
 
-.added-member div
-  :background-color #fff
-  :position absolute  
-  :width 100%
-  :top 0
-  :bottom 0
-  :padding-left 150px
-  :padding-top 7px
-  +opacity(0.7)
+
 
 .reg-member div a
   :margin-left 10px
@@ -193,47 +257,41 @@ form .icon
   :display block
 
 .family-overview h1
-  :border= !border_lightblue
   :background-color= !grey_lightest
   :font-size 1.7em
   :padding .1em 0 .1em .9em
  
 .family-overview h2
-  :border= !header_border_lightblue
   :border-width= !h2_border_width
   :font-size= !h2_font_size
+  :margin-bottom 0
 
 .family-overview .section > ul
   :position relative
   +column(10)
-  //+append(3)
 
 .family-overview .section ul
   +no-bullets
 
+.family-overview .section li
+  :padding 1px 0
+  :border-bottom= solid 1px !grey_lighter
+  
 .family-overview .section li:nth-child(even)
-  :background-color #efefef
+  :background-color= !grey_ultralightest
 
 .family-overview .section li:nth-child(odd)
-  :background-color #dfdfdf
+  :background-color= !grey_ultralight
 
 .family-overview .section > ul li:nth-child(1)
   :background-color #ffffff
 
-.family-overview .section li
-  :position relative
-  :background-color #efefef
-  :border-bottom 1px solid #cfcfcf
-  
-.family-overview .section li span
-  :position absolute
-  :left 90px
-  :top 0
+
+
 
 .family-overview .section ul b
-  :display block
+  +column(2)
   :padding 0 2px
-  :width 80px
   
 .family-overview .section ul input
   :position absolute
@@ -261,34 +319,51 @@ form .icon
 #dialog
   :display none
   
-  
 // =============== FAMILY REGISTRATION ==============
 
-.family-registration ul
+ul.wizard-nav 
   +horizontal-list(0)
   :margin-bottom 30px
-
-.family-registration li
-  :border= !border_lightblue
-  :text-align center
-  :margin-right 18px
-
-
-.family-registration li.active
-  :background-color= !grey_lightest
+  li
+    :border= !border_lightblue
+    :text-align center
+    :margin-right 18px
+  li.active
+    :background-color= !grey_lightest
   b
+    :display block
+    :font-size 1.2em
+    :border-bottom= !border_lightblue
     :background-color= !orange_light
+    +span(3)
+  i
+    :display block
 
-.family-registration ul b
+// =============== Toggle classes ==============
+.hidden, .off
+  :display none
+.on
   :display block
-  :font-size 1.2em
-  :border-bottom= !border_lightblue
-  +span(3)
   
-.family-registration ul i
+#address.on
   :display block
+  .new_address
+    :display block
+  .existing_address
+    :display none 
+#address.off
+  :display block
+  .new_address
+    :display none
+  .existing_address
+    :display block
 
-  
+
+
+
+
+
+
 
   
 

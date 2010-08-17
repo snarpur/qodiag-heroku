@@ -1,0 +1,34 @@
+
+.added-spouse.hidden.nested-context
+  = f.hidden_field :name, :value => 'spouse' 
+  - spouse = f.object.build_relation
+  .spouse-info
+  .spouseform
+    = f.fields_for :relation, spouse do |spouse_form|
+      .field.inp-txt
+        =spouse_form.label :firstname, t('person.firstname')
+        %span
+          =spouse_form.text_field :firstname
+      .field.inp-txt
+        =spouse_form.label :lastname, t('person.lastname')
+        %span
+          =spouse_form.text_field :lastname
+      .field
+        - content_for :jstemplates do
+          -guardian_options = {:partial => "guardian_relationship" }
+          != "var guardian_spouse_relationship ='#{generate_template(spouse_form, :relationships, guardian_options)}';"
+          -options = {:partial => "spouse_status", :object => f.object}
+          /!= "var added_spouse_relationship_period ='#{generate_template(f, :relationships, options)}'"
+          != "var added_spouse_relationship_period = '#{escape_javascript render 'spouse_status', :locals => {:form_builder => f, :suffix => 'NEW_RECORD', :level => 2}}'"
+          
+    
+      =render "guardian_relationship_buttons" , :locals => {:item => "guardian_spouse_relationship" ,:level => 2, :suffix => 'NEW_RECORD'}
+      =render "spouse_status_buttons", :locals => {:form_builder_local => f, :item => 'added_spouse_relationship_period',:suffix => 'NEW_RECORD', :level => 2}
+
+  .field.inp-btn
+    %span
+      != remove_link_unless_new_record(f) 
+      %a.button.small.yellow.close-spouse
+        Loka
+      %a.button.small.yellow.edit-spouse
+        Breyta
