@@ -1,4 +1,4 @@
-var co = console.log
+var co = console.info
 
 
 
@@ -10,164 +10,383 @@ action_params = {
 
 var snarpur = {
   
-  nested_input : {
+  nested_input: 
+  {
     
-    init : function(){
-      snarpur.nested_input.add_nested_item.init();
-      snarpur.nested_input.remove_nested_item.init();
+    init : function()
+    {
+       snarpur.nested_input.add_item(null)
+       //snarpur.nested_input.add_nested_item(".action_element, .add_nested_item")
+       snarpur.nested_input.add_nested_item_lvl2(null)
+       //snarpur.nested_input.remove_nested_item(".action_element, .remove_nested_item");
+       snarpur.nested_input.action_elements.init();
     },
     
-    add_nested_item : {
-      
-      init : function(){
-        var obj = this
-        $(".add_item").live('click',function() {
-          data = obj.process_item(this);
-          template = obj.replace_ids(data.template);
-          obj.append_item(data,template);
-          obj.run_callback(data);
-
+    action_elements:
+    {
+      init: function()
+      {
+        var obj = snarpur.nested_input;
+        var actions = [];
+        
+        $(".action_element").each(function()
+        {
+           var data = {}
+           var element = this
+           data = $.metadata.get(element);
+           $.each(snarpur.nested_input.config.action_elements[data.name].actions,function(k,v)
+           {
+             if($.inArray(k,actions) == -1)
+             {
+               co("adding action %s --- for --- %s ", k,v)
+               actions.push(k)
+               
+             }
+              
+           });
         });
         
-        $(".add_nested_item").live('click',function() {
-          data = obj.process_item(this);
-          template = obj.replace_ids(data.template);
-          obj.append_item(data,template);
-          obj.run_callback(data);
-
-        });          
-      
-        $('.add_nested_item_lvl2').live('click', function(){
-          data = obj.process_item(this);  
-          parent_object_id = $(this).parents(".nested-context").first().find('input:first').attr("name").match(/.*\[(\d+)\]/)[1]  
-          co($(this).parents(".nested-context").first().find('input:first'))
-          co(parent_object_id)
-
-          template = obj.replace_nested_ids.replace(data.template, parent_object_id);
-          obj.append_item(data,template);
-          
+        $.each(actions,function(i,v)
+        {
+          snarpur.nested_input[v].call(snarpur.nested_input, ".action_element")
         });
-      },
-      
-      replace_ids : function(s,id) {
-        var new_id = arguments.length == 1 ? new Date().getTime(): id;
-        return s.replace(/NEW_RECORD/g, new_id)
-      },
-      
-      replace_null : function(s) {
-        
-        return s.replace(/NEW_RECORD/g, 0)
-      },
-      
-      process_item : function(element){
-          var data = {}
-          data = $.metadata.get(element);
-          $.extend(data,snarpur.nested_input.config[data.item]);
-          
-          data.template = eval(data.item);
-          data.container =  $(element).parents('.nested-context').first().find("."+data.container);
-          return data;
-      },
-      
-      replace_nested_ids: {
-        
-        replace: function(template, parent_id){
-          var obj = this;
-          template = $(template);
-          return obj.replace_parent_ids(template, parent_id)
-        },
-        
-        replace_parent_ids: function(template, parent_id){
-          var obj = this;
-          var add_nested_obj = snarpur.nested_input.add_nested_item
-          $("input,select,textarea,label",template).each(function(){
-              obj.replace_attributes($(this),parent_id)
-            });
-          return template
-        },
-        
-        replace_attributes : function(element,parent_id){
-          var obj = this;
-          var add_nested_obj = snarpur.nested_input.add_nested_item
-          if(element[0].nodeName != "LABEL"){         
-            element.attr("id",obj.replace_first_id(element.attr("id"), parent_id));
-            element.attr("id",add_nested_obj.replace_ids(element.attr("id"),0));
-            element.attr("name",obj.replace_first_id(element.attr("name"), parent_id));
-            element.attr("name",add_nested_obj.replace_ids(element.attr("name"),0));
-          }
-          else{
-            element.attr("for",obj.replace_first_id(element.attr("for"), parent_id));
-            element.attr("for",add_nested_obj.replace_ids(element.attr("for"),0));
-          }
-          
-        },
-        replace_first_id : function(str, parent_id){
-          return str.replace(/NEW_RECORD/, parent_id)
-        }
-      },
-      
-      
-      append_item : function(data,template){
-        var obj = this;
-        co("adding item: ", data)
-        if(data.multiple == false)
-          obj.append_if_empty(data.container, template)
-        else
-          data.container.append(template)
-        
-      },
-      
-      append_if_empty : function(container,template){
-        var obj = this
-        if(container.children().size() == 0)
-          container.append(template)
-      },
-      
-      run_callback: function(data){
-        co("running callback")
-        var obj = this;
-        var container = $("#"+data.item);
-        var callback = data.item
-        if(obj.callbacks[callback] != undefined)
-          obj.callbacks[callback].call(this,container)
-      },
-      
-      callbacks : {
-        
-        spouse_relationship : function(container){
-          container = arguments[0][0];
-          $(".added-spouse:last", container).show("slow", function(){
-            $(this).addClass("status-open");
-          });
-
-        }
-
       }
     },
-    remove_nested_item: {
+
+    add_item: function(element)
+    {
+      var obj = snarpur.nested_input;
+      var element = element == null ? ".add_item" : element
+      $(element).live('click',function() {
+
+        var processed_items = obj.process_item(this,"add_item");
+        template = obj.replace_ids(data.template);
+        obj.append_item(data,template);
+        obj.run_callback(data, "add");
+
+      }); 
+    },
+    
+    add_nested_item: function(element)
+    {
+      var obj = snarpur.nested_input;
+      var element = element == null ? ".add_nested_item" : element
       
-      init: function(){
+      $(element).live('click',function()
+      {
+        var processed_items = obj.process_item(this, "add_nested_item");
+
+        $.each(processed_items, function(i,v)
+        {
+          template = obj.replace_ids(v.template);
+          obj.append_item(v,template);
+          //obj.run_callback(v, "add");
+        });
+      }); 
+    },
+    
+    add_nested_item_lvl2: function(element)
+    {
+      var obj = snarpur.nested_input;
+      var element = element == null ? ".add_nested_item_lvl2" : element
+      $(element).live('click',function() {
+        var processed_items = obj.process_item(this,"add_nested_item_lvl2");  
+        parent_object_id = $(this).parents(".nested-context").first().find('input:first').attr("name").match(/.*\[(\d+)\]/)[1]  
+        co($(this).parents(".nested-context").first().find('input:first'))
+        co(parent_object_id)
+
+        template = obj.replace_nested_ids.replace(data.template, parent_object_id);
+        obj.append_item(data,template);
+        
+      }); 
+    },
+    
+    remove_nested_item: function(element)
+    {
+      var obj = this
+      var element = element == null ? ".remove_nested_item" : element
+      
+      $(element).live('click', function() 
+      {
+        co("clicking in removed")
+        var processed_items = obj.process_item(this, "remove_nested_item");
+        $.each(processed_items, function(index,data)
+         {
+           obj.remove_item(this, data)
+           obj.run_callback(data, "remove");
+         });
+      });
+    },
+    replace_ids : function(s,id) 
+    {
+      var new_id = arguments.length == 1 ? new Date().getTime(): id;
+      return s.replace(/NEW_RECORD/g, new_id)
+    },
+    
+    replace_null : function(s) 
+    {  
+      return s.replace(/NEW_RECORD/g, 0)
+    },
+    
+    process_item : function(element,action)
+    {
+        co(action)
         var obj = this
-        $(".remove_nested_item").live('click', function() {
-          var data = $.metadata.get(this);
-          $.extend(data,snarpur.nested_input.config[data.item]);
-          var container = $(this).parents('.nested-context').first().find("."+data.container);
-          var callback = data.item;
-          container.find(".nested-item:last").remove();
-          if(obj.callbacks[callback] != undefined)
-            obj.callbacks[callback].call(this,container)
+        var items = obj.process_if_action_element(element,action)
+        var processed_items = []
+        co(items)
+        $.each(items, function(i,v)
+        {
+          var data = {}
+          data = $.extend({},$.metadata.get(element) ,snarpur.nested_input.config.items[v]);
+          data.template = eval(data.item);
+          processed_items.push(data)
 
         });
+        
+        return processed_items;
+    },
+    
+    process_if_action_element: function(element,action)
+    {
+      var data = {}
+      var obj = this
+      var item = []
+      data = $.metadata.get(element);
+      
+      if(obj.config.action_elements[data.name])
+      {
+        item = obj.config.action_elements[data.name].actions[action]
+      }
+      else
+      {
+        item = [data.item]
+      }
+
+      return item
+    },
+    
+    replace_nested_ids: 
+    {
+      
+      replace: function(template, parent_id)
+      {
+        var obj = this;
+        template = $(template);
+        return obj.replace_parent_ids(template, parent_id)
       },
-      callbacks: {}
+      
+      replace_parent_ids: function(template, parent_id)
+      {
+        var obj = this;
+        var add_nested_obj = snarpur.nested_input
+        $("input,select,textarea,label",template).each(function(){
+            obj.replace_attributes($(this),parent_id)
+          });
+        return template
+      },
+      
+      replace_attributes : function(element,parent_id)
+      {
+        var obj = this;
+        var add_nested_obj = snarpur.nested_input
+        if(element[0].nodeName != "LABEL"){         
+          element.attr("id",obj.replace_first_id(element.attr("id"), parent_id));
+          element.attr("id",add_nested_obj.replace_ids(element.attr("id"),0));
+          element.attr("name",obj.replace_first_id(element.attr("name"), parent_id));
+          element.attr("name",add_nested_obj.replace_ids(element.attr("name"),0));
+        }
+        else{
+          element.attr("for",obj.replace_first_id(element.attr("for"), parent_id));
+          element.attr("for",add_nested_obj.replace_ids(element.attr("for"),0));
+        }
+        
+      },
+      replace_first_id : function(str, parent_id)
+      {
+        return str.replace(/NEW_RECORD/, parent_id)
+      }
+    },
+
+    append_item : function(data,template)
+    {
+      var obj = this;
+      if(data.multiple == false)
+        obj.append_if_empty($(data.container), template)
+      else
+        $(data.container).append(template)
+      
+    },
+    
+    append_if_empty : function(container,template)
+    {
+      var obj = this
+      co("container :: ", container)
+      if(container.children().size() == 0)
+        container.append(template)
+    },
+    
+    remove_item: function(element,data)
+    {
+      co("in remove")
+      var obj = this;
+      var nested_context = obj.get_nested_context(element,data);
+      obj.get_nested_item(nested_context, data).remove();
+    },
+    
+    get_nested_context: function(element, data)
+    {
+      var nested_context;
+      if(data.nested_context == true)
+        nested_context = $(element).parents(".nested-context:first");
+        
+      return nested_context;
+    },
+    
+    get_nested_item: function(nested_context, data)
+    {
+      var nested_item;
+      co("nested_context :: ", nested_context)
+      co(" $(data.container:last, nested_context):: ",$(data.container+":last", nested_context))
+      co(" $(data.container+ > .nested-item):: ", $(data.container+" > .nested-item"))
+      if(data.multiple == true)
+        nested_item = $(data.container+":last", nested_context);
+      else
+        nested_item = $(data.container+" > .nested-item");
+      
+      return nested_item; 
+    },
+    
+    run_callback: function(data, add_remove)
+    {
+      var obj = this;
+      var container = $("#"+data.item);
+      var callback = data.item
+      if(obj.callbacks[callback] != undefined)
+        obj.callbacks[add_remove].call(this,container)
+    },
+    
+    callbacks : 
+    {
+      add:
+      {
+        spouse_relationship : function(container)
+        {
+          container = arguments[0][0];
+          $(".added-spouse:last", container).show("slow", function()
+          {
+            $(this).addClass("status-open");
+          });
+        }
+      },
+      remove:
+      {
+        
+        
+      }
     },
     
     config : {
-      guardian_relationship : {container: "guardianship", multiple : false},
-      spouse_relationship : {container: "spouse", multiple : true},
-      guardian_spouse_relationship : {container: "guardianship", multiple : false},
-      added_spouse_relationship_period : {container: "relationship-period", multiple : false},
-      parents_relationship_period : {container: "relationship-period", multiple : false}
+      items:
+      {
+        guardian_relationship:
+        {
+          item: "guardian_relationship",
+          nested_context: false, 
+          container: ".guardianship", 
+          multiple : false
+        },
+        spouse_relationship:
+        {
+          item: "spouse_relationship",
+          nested_context: true, 
+          container: ".spouse", 
+          multiple : true
+        },
+        guardian_spouse_relationship:
+        {
+          item: "guardian_spouse_relationship",
+          nested_context: true, 
+          container: ".guardianship", 
+          multiple : false
+        },
+        added_spouse_relationship_period_start:
+        {
+          item: "added_spouse_relationship_period_start",
+          nested_context: true, 
+          container: ".added_spouse_relationship_period .start", 
+          multiple : false
+        },
+        added_spouse_relationship_period_end:
+         {
+           item: "added_spouse_relationship_period_end",
+           nested_context: true, 
+           container: ".added_spouse_relationship_period .end", 
+           multiple : false
+         },
+        parents_relationship_period:
+        {
+          item: "parents_relationship_period",
+          nested_context: false, 
+          container: ".parents_relationship_period",
+          multiple : false
+         },
+        address:
+        {
+          item: "address",
+          nested_context: false, 
+          container: ".address", 
+          multiple: false
+        },
+        existing_parent_address:
+        {
+          item: "existing_parent_address", 
+          nested_context: false,
+          container: ".existing_parent_address", 
+          multiple: false
+        }
+      },
+      action_elements:
+      {
+        parents_status_on:
+        {  
+          actions:
+          {
+            remove_nested_item:["parents_relationship_period", "address"],
+            add_nested_item:["existing_parent_address"]
+          }
+        },
+        parents_status_off:
+        {  
+          actions:
+          {
+            add_nested_item:["parents_relationship_period","address"],
+            remove_nested_item:["existing_parent_address"]
+          }
+        },
+        spouse_status_on:
+        {  
+          actions:
+          {
+            add_nested_item:["added_spouse_relationship_period_start"],
+            remove_nested_item:["added_spouse_relationship_period_end"]
+          }
+        },
+        spouse_status_off:
+        {  
+          actions:
+          {
+            add_nested_item:["added_spouse_relationship_period_start","added_spouse_relationship_period_end"]
+          }
+        },
+        add_spouse_relationship:
+        {  
+          actions:
+          {
+            add_nested_item:["spouse_relationship"]
+          }
+        }
+      }
     }  
   },
   spouse_status_switch : {
@@ -207,7 +426,7 @@ $(document).ready(function() {
   
   snarpur.nested_input.init();
   snarpur.spouse_status_switch.init();
-  $(".tabbed").tabs();
+  $(".accordion").accordion();
   
   $(".close-spouse").live('click',function(){
     var added_spouse = $(this).parents('div.added-spouse')

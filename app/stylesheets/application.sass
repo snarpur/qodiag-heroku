@@ -15,6 +15,7 @@
 !grey_darker = #636362
 !orange_light = #FFCA6F
 !orange = #FF981F
+!green_ultralight = #deffdd
 !green_lightest = #DFFFE0
 !green_light = #A4EFA7
 !green_dark = #158F00
@@ -59,6 +60,7 @@ f9f9f9
 #content
   +clearfix
   +prepend(1)
+  +append(1)
   :margin-bottom 40px
   
 #content table
@@ -77,7 +79,10 @@ hr.break
     :display block
     :margin-top 25px
     +prepend(12)
-
+ul
+  +no-bullets
+  :padding-left 0
+  
 .section
   +clearfix
 
@@ -251,58 +256,52 @@ input[type='submit']
 
 // =============== FAMILY OVERVIEW ==============
 .family-overview div.section 
-  :padding-bottom 1em 
+  :padding 1em
+  
+
+
 
 .family-overview h1:first-child + div
   :display block
 
 .family-overview h1
-  :background-color= !grey_lightest
+  :background-color= !grey_ultralight
+  :border= 1px solid !grey_lightest
   :font-size 1.7em
-  :padding .1em 0 .1em .9em
+  :padding .4em 0 .4em .9em
  
-.family-overview h2
-  :border-width= !h2_border_width
-  :font-size= !h2_font_size
-  :margin-bottom 0
-
-.family-overview .section > ul
+.family-overview 
+  h2
+    :border-bottom= 1px solid !grey_lightest
+    :font-size= !h2_font_size
+    :margin-bottom 5px
+  h3
+    :font-size 14px
+    :color! !grey_dark 
+    :margin-bottom 3px
+    
+    
+.family-overview .section .parent-info 
   :position relative
   +column(10)
+  li
+    :padding 1px 0
+    :border-bottom= solid 1px !grey_lighter
+  li:nth-child(even)
+    :background-color= !grey_ultralightest
+  li:nth-child(odd)
+    :background-color= !grey_ultralight
+  b
+    +column(2)
+    :padding 0 2px
 
-.family-overview .section ul
-  +no-bullets
-
-.family-overview .section li
-  :padding 1px 0
-  :border-bottom= solid 1px !grey_lighter
-  
-.family-overview .section li:nth-child(even)
-  :background-color= !grey_ultralightest
-
-.family-overview .section li:nth-child(odd)
-  :background-color= !grey_ultralight
-
-.family-overview .section > ul li:nth-child(1)
-  :background-color #ffffff
-
-
-
-
-.family-overview .section ul b
-  +column(2)
-  :padding 0 2px
-  
-.family-overview .section ul input
-  :position absolute
-  :z-index 4
-
-.family-overview .ui-tabs-panel
-  :padding-top 8px
-
-.family-overview .spouse-info
+.family-overview .section .spouse-info 
   +column(10)
-   
+  li
+    :border= !green_lightest solid 1px
+    :margin-bottom 2px
+    :background-color= !green_ultralight
+ 
 .family-overview .section table
   +inner-table-borders(1px, #7a98c6)
   +outer-table-borders(1px)

@@ -4,16 +4,36 @@
       %h2
         = pluralize(@relationship.errors.count, "error")
         prohibited this relationship from being saved:
-      %ul
+        %ul
         - @relationship.errors.full_messages.each do |msg|
-        %li= msg
-.field
-  = f.label :person_id
-  %br/
-  = f.text_field :person_id
-.field
-  = f.label :name
-  %br/
-  = f.text_field :name
-.actions
-  = f.submit
+          %li= msg
+  .field
+    = f.label :person_id
+    %br
+    = f.text_field :person_id
+  .field
+    = f.label :relation_id
+    %br
+    = f.text_field :relation_id
+  .field
+    = f.label :name
+    %br
+    = f.text_field :name
+  .field
+    = f.label :role
+    %br
+    = f.radio_button :role, "guardian"
+   
+    %span Guardian
+    %br
+    = f.radio_button :role, "not_guardian", :checked => set_checked_status(@relationship,"guardian")
+  %span NOT Guardian
+  %br
+  %h4 @relationship
+  = debug @relationship
+  %h4 New record:
+  = debug @relationship.new_record?
+  %h4 set_checked
+  = set_checked_status(@relationship,"guardian")
+  .actions
+    = f.submit

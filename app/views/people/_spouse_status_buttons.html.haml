@@ -1,13 +1,30 @@
-/- f = locals[:form_builder_local]
-- suffix = locals[:suffix]
-- level = locals[:level] == nil ? "" : "_lvl2"
-- item = locals[:item]
-.field.inp-rdo
+-f = locals[:form_builder]
+-suffix = locals[:suffix]
+-level = locals[:level] == nil ? "" : "_lvl2"
+-actions_names = locals[:actions][:names].nil? ? [] : locals[:actions][:names]
+-item = locals[:actions][:item]
+= debug actions_names
+= debug item
+.field.inp-rdo.nested-context
   %span
-    =radio_button_tag  "spouse-status#{suffix}", 'current', nil, :class => "remove_nested_item {item: '#{item}'}"
+    =f.radio_button :status, "1" ,:class => set_actions_element(actions_names.at(1))
     =label_tag 'spouse-status_current', t("terms.current_spouse")
   %span
-    =radio_button_tag "spouse-status#{suffix}", 'ex', nil , :class => "add_nested_item#{level} {item: '#{item}'}"
+    =f.radio_button :status, "0", :class => set_actions_element(actions_names.at(0))
     =label_tag 'spouse-status_ex', t("terms.ex_spouse")
+ 
+  %div{:class => item}
+  
+    -if item.eql?("parents_relationship_period")
+      -if f.object.status == 0
+      
+        =render "spouse_relatinship_period_end", :locals => {:form_builder => f}
 
-.relationship-period
+    -if item.eql?("added_spouse_relationship_period")
+      .start
+      -if f.object.status
+        =render "spouse_relatinship_period_start", :locals => {:form_builder => f}
+      .end
+      -if f.object.status == 0
+        =render "spouse_relatinship_period_end", :locals => {:form_builder => f}
+  

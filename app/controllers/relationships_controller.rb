@@ -25,7 +25,7 @@ class RelationshipsController < ApplicationController
   # GET /relationships/new.xml
   def new
     @relationship = Relationship.new
-
+    logger.debug "xx - #{@relationship.errors}"
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @relationship }

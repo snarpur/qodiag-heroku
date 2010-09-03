@@ -1,4 +1,17 @@
 class Person < ActiveRecord::Base
+  
+  #validates_presence_of :firstname, :lastname, :sex, :full_date
+  #validate :presence_of_cpr
+  #validates_numericality_of :cpr, :full_date
+  #validates_length_of :full_date, :is => 6
+  #validates_length_of :cpr, :is => 4
+  #validate :presence_of_parent_occupation
+  #after_save :set_parents_address
+
+
+
+  
+  
   has_many  :relationships, :dependent => :destroy do
             def child
               find(:all, :conditions => "name = 'parent'")
@@ -8,10 +21,17 @@ class Person < ActiveRecord::Base
               find(:all, :conditions => "name = 'spouse'")
             end
             
+            def guardian(id)
+              find(:all, :conditions => "name = 'guardian' AND relation_id = #{id}")
+            end
+            
             def spouse_as_parent(id)
               find(:all, :conditions => "relation = 'spouse'")
             end
-          end          
+          end 
+  
+       
+  
   has_many  :relations, :through => :relationships 
   
   has_many :inverse_relationships, :class_name => "Relationship", :foreign_key => "relation_id" do
@@ -25,29 +45,80 @@ class Person < ActiveRecord::Base
       def parents
         find(:all,:conditions => "relationships.name = 'parent'" )
       end
+      
+      def mother
+        find(:all,:conditions => "relationships.name = 'parent' AND sex = 'female'" )
+      end
+
+      def father
+        find(:all,:conditions => "relationships.name = 'parent' AND sex = 'male'" )
+      end
     end  
   
   belongs_to :address    
 
-  attr_accessor :relationship_name
   
   accepts_nested_attributes_for :relations, :allow_destroy => true
-  accepts_nested_attributes_for :relationships, :allow_destroy => true
+  accepts_nested_attributes_for :relationships, :allow_destroy => true #,  :reject_if => proc {|attributes| attributes['person_id'].blank?}
   accepts_nested_attributes_for :inverse_relationships, :allow_destroy => true
-  accepts_nested_attributes_for :address, :allow_destroy => true, :reject_if => proc { |attributes| attributes.all? {|k,v| v.blank?} }
-  
+  accepts_nested_attributes_for :address, :allow_destroy => true
+
   attr_accessible :firstname, :lastname, :sex, :ispatient, :dateofbirth, :cpr, :workphone, :mobilephone, :occupation, :workplace, :full_date,
                   :relations_attributes, :relationships_attributes, :inverse_relationships_attributes, :address_attributes, :inverse_relationships
   
+  validates_associated :relationships, :address 
+  
+  
+  # def set_parents_address
+  #     Rails.logger.debug "xx- debug_variables #{logger.debug_variables(binding)}"
+  #     Rails.logger.debug "xx -  address #{address}"
+  #     current_spouse = relationships.select{|i| i['name'] == 'spouse' || i['status'] == '1'}.first
+  #     Rails.logger.debug "xx -  current_spouse #{current_spouse}"
+  #   
+  #     unless current_spouse.nil?
+  #       address = nil
+  #       Rails.logger.debug "xx - self #{self}"
+  #       Rails.logger.debug "xx - spouse relation #{current_spouse.relation}"
+  #       Rails.logger.debug "xx - spouse address #{current_spouse.relation.address}"
+  #       Rails.logger.debug "xx - spouse address.inspect #{current_spouse.relation.address.inspect}"
+  #   
+  #       spouse_address = current_spouse.relation.address
+  #       Rails.logger.debug "xx - spouse_address.people #{spouse_address.people}"
+  #       Rails.logger.debug "xx - spouse_address.class #{spouse_address.people.class}"
+  #       self.address= spouse_address
+  #     end
+   
+  #end
+  
+  def presence_of_cpr
+    errors.add(:cpr, "má ekki vera autt") if
+      ispatient == true and cpr.nil?
+  end
+  
+  def presence_of_parent_occupation
+    #logger.debug_variables(binding)
+    errors.add(:occupation, "má ekki vera autt") if
+      !relationships.select{|v|v.name == "guardian" || "parent"}.empty? and occupation.try("empty?")
+  end
   
   def full_date
-    self.dateofbirth
+    unless self.dateofbirth.nil?
+      date = self.dateofbirth
+      day = "%02d" % date.mday 
+      month = "%02d" % date.month
+      year =  date.year.to_s[-2..-1].to_i
+      self.full_date = "#{day}#{month}#{year}"
+    end
   end 
   
   def full_date=(date)
-    day = date[0..1]
-    month = date[2..3]
-    year = date[4..5].to_i > 10 ? "19" << date[4..5] : "20" << date[4..5]
+
+    unless date.empty?
+      day = date[0..1]
+      month = date[2..3]
+      year = date[4..5].to_i > 10 ? "19" << date[4..5] : "20" << date[4..5]
+      self.dateofbirth = Date.civil(year.to_i,month.to_i,day.to_i)
+    end
     self.dateofbirth = Date.civil(year.to_i,month.to_i,day.to_i)
   end
   
@@ -63,29 +134,35 @@ class Person < ActiveRecord::Base
     self.inverse_relations.parents
   end
   
+  def spouses
+    self.relationships.spouse + self.inverse_relationships.spouse
+  end
+  
   def is_person_parent(person)
     self.parents.include?(person)
   end
   
+  
+  
   def opposite_parent(parent)
-    parents = self.parents
-    if parents.size == 1 && !is_person_parent(parent) 
-      parents
-    elsif parents.size == 2 && is_person_parent(parent)
-      parents = parents.select {|v| v != parent}
-    end
+      self.parents.select{|i| i != parent}.first  
   end
   
   def parents_relationship
     parents = self.parents
-    all_relationships, parents_relationship = []
-    parents.each{ |p|
-      all_temp = all_relationships
-      all_relationships = p.relationships + p.inverse_relationships
-      parents_relationship = all_temp & all_relationships
-    }
-    parents_relationship
+    parents_relationship = []
+    
+    parents.each do |p|
+      regular = p.relationships.spouse
+      inverse = p.inverse_relationships.spouse
+      
+      parents_relationship << regular unless parents_relationship.include?(regular) || regular.empty?
+      parents_relationship << inverse unless parents_relationship.include?(inverse) || inverse.empty?
+    end
+     parents_relationship.first
   end
+  
+ 
   
   
   

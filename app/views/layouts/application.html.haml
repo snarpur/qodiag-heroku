@@ -5,13 +5,13 @@
     = yield(:head) 
     
     = stylesheet_link_tag "compiled/application.css"
-    = stylesheet_link_tag "../javascripts/jquery-ui/css/smoothness/jquery-ui-1.8.2.custom.css"
+    /= stylesheet_link_tag "../javascripts/jquery-ui/css/smoothness/jquery-ui-1.8.2.custom.css"
     = stylesheet_link_tag "buttons.css"
 
 
     =javascript_include_tag 'jquery'
-    = javascript_include_tag "jquery-ui/development-bundle/ui/jquery-ui-1.8.2.custom.js"
-    = javascript_include_tag "jquery.metadata/jquery.metadata.js"
+    =javascript_include_tag "jquery-ui/development-bundle/ui/jquery-ui-1.8.2.custom.js"
+    =javascript_include_tag "jquery.metadata/jquery.metadata.js"
     =javascript_include_tag 'application'
     =javascript_tag do
       = yield(:jstemplates) 

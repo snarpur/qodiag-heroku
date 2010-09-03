@@ -1,5 +1,5 @@
 
-.added-spouse.hidden.nested-context
+.added-spouse.nested-item.nested-context
   = f.hidden_field :name, :value => 'spouse' 
   - spouse = f.object.build_relation
   .spouse-info
@@ -15,15 +15,15 @@
           =spouse_form.text_field :lastname
       .field
         - content_for :jstemplates do
-          -guardian_options = {:partial => "guardian_relationship" }
-          != "var guardian_spouse_relationship ='#{generate_template(spouse_form, :relationships, guardian_options)}';"
-          -options = {:partial => "spouse_status", :object => f.object}
-          /!= "var added_spouse_relationship_period ='#{generate_template(f, :relationships, options)}'"
-          != "var added_spouse_relationship_period = '#{escape_javascript render 'spouse_status', :locals => {:form_builder => f, :suffix => 'NEW_RECORD', :level => 2}}'"
+          / -guardian_options = {:partial => "guardian_relationship" }
+          / != "var guardian_spouse_relationship ='#{generate_template(spouse_form, :relationships, guardian_options)}';"
+          /-options = {:partial => "spouse_status", :object => f.object}
+          != "var added_spouse_relationship_period_start = '#{escape_javascript render 'spouse_relationship_period_start', :locals => {:form_builder => f, :suffix => 'NEW_RECORD', :level => 2}}'"
+          != "var added_spouse_relationship_period_end = '#{escape_javascript render 'spouse_relationship_period_end', :locals => {:form_builder => f, :suffix => 'NEW_RECORD', :level => 2}}'"
           
     
-      =render "guardian_relationship_buttons" , :locals => {:item => "guardian_spouse_relationship" ,:level => 2, :suffix => 'NEW_RECORD'}
-      =render "spouse_status_buttons", :locals => {:form_builder_local => f, :item => 'added_spouse_relationship_period',:suffix => 'NEW_RECORD', :level => 2}
+      -actions = {:item => "added_spouse_relationship_period", :names => ["spouse_status_off","spouse_status_on"]}
+      =render "spouse_status_buttons", :locals => {:form_builder => f, :actions => actions, :suffix => 'NEW_RECORD', :level => 2}
 
   .field.inp-btn
     %span

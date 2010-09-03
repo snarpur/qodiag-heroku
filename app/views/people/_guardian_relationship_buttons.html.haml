@@ -1,11 +1,18 @@
-- item = locals[:item]
+- f = locals[:form_builder] 
 - level = locals[:level] == nil ? "" : "_lvl2"
 - suffix = locals[:suffix]
+- item = locals[:item]
+
+- content_for :jstemplates do
+  != "var guardian_relationship = '#{escape_javascript render 'guardian_relationship', :locals => {:form_builder => f, :suffix => 'NEW_RECORD', :level => 1}}'"
+
 .field.inp-rdo
   %span
-    =radio_button_tag "guardian-status#{suffix}", 'guardian', nil, :class => "add_nested_item#{level} {item: '#{item}'}" 
-    =label_tag 'is-guardian', t("relationship.is_guardian")
+    =f.radio_button :status, '1', :class => "add_nested_item#{level} {item: '#{item}'}"
+    =f.label :status, t("relationship.is_guardian")
   %span
-    =radio_button_tag "guardian-status#{suffix}", 'not-guardian', nil, :class => "remove_nested_item {item: '#{item}'}"
-    =label_tag 'not-guardian', t("relationship.not_guardian")
+    =f.radio_button :status, '0', :class => "remove_nested_item {item: '#{item}'}"
+    =f.label :status, t("relationship.not_guardian")
   .guardianship
+    =render "guardian_relationship", :locals => {:form_builder => f}
+  

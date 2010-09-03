@@ -34,6 +34,7 @@ is:
     spouses: "Makar"
     ex_spouse: "Fyrrverandi maki"
     current_spouse: "Núverandi maki"
+    relationship_start: "Samband hófst"
     relationship_end: "Sambandi lauk"
     guardianship: "Forræði"
     register:
@@ -182,7 +183,7 @@ is:
         confirmation: "er ekki jafngilt staðfestingunni"
         accepted: "þarf að vera tekið gilt"
         empty: "má ekki vera tómt"
-        blank: "má ekki innihalda auða stafi"
+        blank: "má ekki vera autt"
         too_long: "er of langt (má mest vera {{count}} stafir)"
         too_short: "er of stutt (má minnst vera {{count}} stafir)"
         wrong_length: "er af rangri lengd (má mest vera {{count}} stafir)"

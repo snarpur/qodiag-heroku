@@ -1,4 +1,10 @@
 module ApplicationHelper
+  
+  def set_checked_status(record,role)
+    if record.role != role || record.new_record? : status = true end
+    if record.role.nil? : status = false end  
+  end
+  
   def javascript(*args)
     args = args.map { |arg| arg == :defaults ? arg : arg.to_s }
     content_for(:head) { javascript_include_tag(*args) }
@@ -29,7 +35,6 @@ module ApplicationHelper
     options[:object] ||= form_builder.object.class.reflect_on_association(method).klass.new
     options[:partial] ||= method.to_s.singularize
     options[:form_builder_local] ||= :f  
-
     form_builder.fields_for(method, options[:object], :child_index => 'NEW_RECORD') do |f|
       render(:partial => options[:partial], :locals => { options[:form_builder_local] => f })
     end
@@ -37,6 +42,11 @@ module ApplicationHelper
 
   def generate_template(form_builder, method, options = {})
     escape_javascript generate_html(form_builder, method, options)
+  end
+  
+  def call_nil(obj, method)
+    result = obj.try(method)
+    result = result == nil ?  "" : result
   end
   
 end
