@@ -1,29 +1,4 @@
 module PeopleHelper
-  # STEPS = ["patient", "mother", "father", "finnish"]
-  
-  #RAILS_DEFAULT_LOGGER.debug "xx - relationship[0] #{patient.parents_relationship}"
-  
-  def ssn(person)
-   day = pad_with_zero(person.dateofbirth.mday) 
-   month = pad_with_zero(person.dateofbirth.month)
-   year = pad_with_zero(person.dateofbirth.year)
-   last = person.cpr
-   ssn = "#{day}#{month}#{year}-#{last}"
-  end
-  
-  def date_of_birth_format(date)
-    day = pad_with_zero(date.mday) 
-    month = pad_with_zero(date.month)
-    year = pad_with_zero(date.year)
-    dob_string = "#{day}#{month}#{year}"
-  end
-  
-  def pad_with_zero(item)
-    if(item > 12)
-      item = item.to_s[-2..-1].to_i
-    end
-    item = item < 10 ? "0#{item}" : item
-  end
   
   def set_parent_gender(parent)
     gender = parent == "mother"? "female" : "male"
@@ -51,18 +26,52 @@ module PeopleHelper
     end
   end
   
-  def guardian_is_checked(relationship, param)
-    !relationship.name.nil?
-  end
-  
-  def guardian_is_unchecked(relationship,param)
-    param['action'] != 'new' && relationship.name.nil?
-  end
-  
   def get_opposite_parent_type(parent)
     opposite = parent == "mother"? "father" : "mother"
   end
-
+  
+  def get_spouses_exclude_patient_parent(person, patient)
+    Rails.logger.debug "xx - person.relationships -- #{person.relationships}"
+    spouses = person.relationships.select{|i| i[:name] == "spouse"}
+    Rails.logger.debug "xx - spouses -- #{spouses.inspect}"
+    Rails.logger.debug "xx pateint parents -- #{patient.parents.empty?}"
+    unless patient.parents.empty?
+      opposite_parent_id = patient.opposite_parent(person).id
+      spouses =  spouses.select{|i| i[:relation_id] != opposite_parent_id }
+    end
+    spouses
+  end
+   
+  def get_patient(patient_id)
+    patient = patient_id.nil? ? Person.new : Person.find(patient_id)  
+  end
+  
+  def patient_has_one_parent_and_person_is_not_parent(patient,person)
+    @patient.opposite_parent(@person) && !@patient.is_person_parent(@person)
+  end
+  
+  def get_or_create_parents_relationship(patient,person)
+    opposite_parent = patient.opposite_parent(person)
+    relationship = person.relationships.select{|attributes| attributes['person_id'] == opposite_parent.id || attributes['relation_id'] == opposite_parent.id}
+    relationship = relationship.empty? ? person.relationships.build : relationship.first 
+  end
+  
+  def set_actions_element(action)
+    action = "action_element {name: '#{action}'}" unless action.nil?
+  end
+  
+  def parent_relationship_direction(patient, person)
+    relationship = patient.parents_relationship
+    Rails.logger.debug "xx - relationship #{relationship.inspect}"
+    if relationship.nil?
+      :relationships
+    elsif person.id == relationship[0].person_id
+      :relationships
+    else
+      :inverse_relationships
+    end
+  end
+  
   def new_or_edit_link(patient,step_no,step_name)
 
     if patient.new_record?
@@ -83,37 +92,6 @@ module PeopleHelper
     
     end
   
-  end
-  
-  def get_patient(patient_id)
-    patient = patient_id.nil? ? Person.new : Person.find(patient_id)  
-  end
-  
-  def patient_has_one_parent_and_person_is_not_parent(patient,person)
-    @patient.opposite_parent(@person) && !@patient.is_person_parent(@person)
-  end
-  
-  def get_or_create_parents_relationship(patient,person)
-    opposite_parent = patient.opposite_parent(person)
-    relationship = person.relationships.select{|attributes| attributes['person_id'] == opposite_parent.id || attributes['relation_id'] == opposite_parent.id}
-    relationship = relationship.empty? ? person.relationships.build : relationship.first 
-  end
-  
-  def set_actions_element(action)
-    Rails.logger.debug "xx - action :: #{action} is :: #{action.nil?}"
-    action = "action_element {name: '#{action}'}" unless action.nil?
-  end
-  
-  def parent_relationship_direction(patient, person)
-    relationship = patient.parents_relationship
-    if relationship.nil?
-      :relationships
-    elsif person.id == relationship[0].person_id
-      :relationships
-    else
-      :inverse_relationships
-    end
-  end
-  
+  end 
   
 end

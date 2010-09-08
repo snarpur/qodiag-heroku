@@ -1,6 +1,6 @@
 class Person < ActiveRecord::Base
   
-  #validates_presence_of :firstname, :lastname, :sex, :full_date
+  validates_presence_of :firstname  #, :lastname, :sex, :full_date
   #validate :presence_of_cpr
   #validates_numericality_of :cpr, :full_date
   #validates_length_of :full_date, :is => 6
@@ -63,32 +63,11 @@ class Person < ActiveRecord::Base
   accepts_nested_attributes_for :inverse_relationships, :allow_destroy => true
   accepts_nested_attributes_for :address, :allow_destroy => true
 
-  attr_accessible :firstname, :lastname, :sex, :ispatient, :dateofbirth, :cpr, :workphone, :mobilephone, :occupation, :workplace, :full_date,
+  attr_accessible :firstname, :lastname, :sex, :ispatient, :dateofbirth, :cpr, :workphone, :mobilephone, :occupation, :workplace, :full_date, :address_id,
                   :relations_attributes, :relationships_attributes, :inverse_relationships_attributes, :address_attributes, :inverse_relationships
   
   validates_associated :relationships, :address 
   
-  
-  # def set_parents_address
-  #     Rails.logger.debug "xx- debug_variables #{logger.debug_variables(binding)}"
-  #     Rails.logger.debug "xx -  address #{address}"
-  #     current_spouse = relationships.select{|i| i['name'] == 'spouse' || i['status'] == '1'}.first
-  #     Rails.logger.debug "xx -  current_spouse #{current_spouse}"
-  #   
-  #     unless current_spouse.nil?
-  #       address = nil
-  #       Rails.logger.debug "xx - self #{self}"
-  #       Rails.logger.debug "xx - spouse relation #{current_spouse.relation}"
-  #       Rails.logger.debug "xx - spouse address #{current_spouse.relation.address}"
-  #       Rails.logger.debug "xx - spouse address.inspect #{current_spouse.relation.address.inspect}"
-  #   
-  #       spouse_address = current_spouse.relation.address
-  #       Rails.logger.debug "xx - spouse_address.people #{spouse_address.people}"
-  #       Rails.logger.debug "xx - spouse_address.class #{spouse_address.people.class}"
-  #       self.address= spouse_address
-  #     end
-   
-  #end
   
   def presence_of_cpr
     errors.add(:cpr, "má ekki vera autt") if
@@ -119,7 +98,7 @@ class Person < ActiveRecord::Base
       year = date[4..5].to_i > 10 ? "19" << date[4..5] : "20" << date[4..5]
       self.dateofbirth = Date.civil(year.to_i,month.to_i,day.to_i)
     end
-    self.dateofbirth = Date.civil(year.to_i,month.to_i,day.to_i)
+    self.dateofbirth = Date.new
   end
   
   def mother
@@ -141,25 +120,18 @@ class Person < ActiveRecord::Base
   def is_person_parent(person)
     self.parents.include?(person)
   end
-  
-  
-  
+
   def opposite_parent(parent)
       self.parents.select{|i| i != parent}.first  
   end
-  
+
   def parents_relationship
-    parents = self.parents
-    parents_relationship = []
-    
-    parents.each do |p|
-      regular = p.relationships.spouse
-      inverse = p.inverse_relationships.spouse
-      
-      parents_relationship << regular unless parents_relationship.include?(regular) || regular.empty?
-      parents_relationship << inverse unless parents_relationship.include?(inverse) || inverse.empty?
+    parents = self.parents   
+    if parents.size <= 1
+      nil
+    else
+       parents[0].spouses & parents[1].spouses 
     end
-     parents_relationship.first
   end
   
  

@@ -1,9 +1,10 @@
--mother = locals[:parent]
-- spouses = mother.relationships.spouse
-%h3= t("terms.spouses")
-%ul.spouse-info
-  - spouses.each_index do |i|
-    - spouse = spouses[i]
-    %li 
-      %span #{call_nil(spouse.start, "year")} - #{call_nil(spouse.end, "year")} 
-      #{spouse.relation.firstname} #{spouse.relation.lastname}
+-parent = locals[:parent]
+-spouses = get_spouses_exclude_patient_parent(parent, @person)
+-unless spouses.empty?
+  %h3= t("terms.spouses")
+  %ul.spouse-info
+    - spouses.each_index do |i|
+      - spouse = spouses[i]
+      %li 
+        %span #{call_nil(spouse.start, "year")} - #{call_nil(spouse.end, "year")} 
+        #{spouse.relation.firstname} #{spouse.relation.lastname}

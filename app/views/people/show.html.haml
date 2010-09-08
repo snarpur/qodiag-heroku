@@ -11,7 +11,8 @@
         %ul
           %li
             %b= t('person.cpr')
-            %span= ssn(mother)
+            %span= p.full_date
+            %span= p.cpr
           %li  
             %b= t('person.occupation')
             %span= p.occupation

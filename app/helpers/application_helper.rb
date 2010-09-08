@@ -35,6 +35,7 @@ module ApplicationHelper
     options[:object] ||= form_builder.object.class.reflect_on_association(method).klass.new
     options[:partial] ||= method.to_s.singularize
     options[:form_builder_local] ||= :f  
+
     form_builder.fields_for(method, options[:object], :child_index => 'NEW_RECORD') do |f|
       render(:partial => options[:partial], :locals => { options[:form_builder_local] => f })
     end

@@ -1,7 +1,7 @@
-
+-f ||= locals[:form_builder]
 .added-spouse.nested-item.nested-context
   = f.hidden_field :name, :value => 'spouse' 
-  - spouse = f.object.build_relation
+  - spouse = f.object.relation.nil? ? f.object.build_relation : f.object.relation
   .spouse-info
   .spouseform
     = f.fields_for :relation, spouse do |spouse_form|
@@ -15,11 +15,9 @@
           =spouse_form.text_field :lastname
       .field
         - content_for :jstemplates do
-          / -guardian_options = {:partial => "guardian_relationship" }
-          / != "var guardian_spouse_relationship ='#{generate_template(spouse_form, :relationships, guardian_options)}';"
-          /-options = {:partial => "spouse_status", :object => f.object}
-          != "var added_spouse_relationship_period_start = '#{escape_javascript render 'spouse_relationship_period_start', :locals => {:form_builder => f, :suffix => 'NEW_RECORD', :level => 2}}'"
-          != "var added_spouse_relationship_period_end = '#{escape_javascript render 'spouse_relationship_period_end', :locals => {:form_builder => f, :suffix => 'NEW_RECORD', :level => 2}}'"
+          -options = {:form_builder => f, :suffix => 'NEW_RECORD', :level => 2}
+          != "var added_spouse_relationship_period_start = '#{escape_javascript render 'spouse_relationship_period_start', :locals => options}'"
+          != "var added_spouse_relationship_period_end = '#{escape_javascript render 'spouse_relationship_period_end', :locals => options}'"
           
     
       -actions = {:item => "added_spouse_relationship_period", :names => ["spouse_status_off","spouse_status_on"]}

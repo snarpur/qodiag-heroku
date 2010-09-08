@@ -1,7 +1,7 @@
 -opposite_parent_address = @opposite_parent.address
 -f = locals[:form_builder]
 .nested-item
-  =f.hidden_field :address_id, :value => opposite_parent_address.id ,:disabled => true
+  =f.hidden_field :address_id, :value => opposite_parent_address.id
   .field.inp-txt
     %label= t('address.street_1')
     %span
