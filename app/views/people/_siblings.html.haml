@@ -1,0 +1,26 @@
+-@parents = @patient.parents
+-@mother= @parents.select{|i| i[:sex] == "female"}.first
+-@father = @parents.select{|i| i[:sex] == "male"}.first
+= form_for @patient do |f|
+  ="#{@patient.firstname} #{@patient.lastname}"
+  -content_for :jstemplates do
+    -options = {:form_builder => f }
+    != "var sibling = '#{escape_javascript render 'siblings_base', :locals => options.merge({:sibling_type, 'sibling'})}'"
+    != "var half_sibling ='#{escape_javascript render 'siblings_base', :locals => options.merge({:sibling_type, 'half_sibling'})}'"
+    != "var foster_sibling = '#{escape_javascript render 'siblings_base',:locals => options.merge({:sibling_type, 'foster_sibling'})}'"
+    -half_sibling_options = {:partial => "sibling_first_parent"}
+    != "var spouses_father = '#{generate_template(f, :relationships, half_sibling_options.merge(:locals => {:parent => @mother}))}'"
+    != "var spouses_mother = '#{generate_template(f, :relationships, half_sibling_options.merge(:locals => {:parent => @father}))}'"
+  
+  
+  
+  -add = t('actions.add')
+  .nested-context
+    = link_to "#{add} #{t('terms.sibling')}", '#added_sibling', :class => "action_element {name: 'add_sibling'} button small blue"
+    = link_to "#{add} #{t('terms.half_sibling')}", '#added_half_sibling', :class => "action_element {name: 'add_half_sibling'} button small blue"
+    = link_to "#{add} #{t('terms.foster_sibling')}", '#added_half_sibling', :class => "action_element {name: 'add_foster_sibling'} button small blue"
+    .added_siblings
+    .field.inp-btn
+      %span
+        = f.submit :value => t('actions.save'),  :class => 'button green'  
+

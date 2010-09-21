@@ -1,0 +1,14 @@
+-f ||= locals[:form_builder]
+.field.inp-rdo
+  %span
+    = f.radio_button(:sex, "male")
+    = f.label(:sex_male, t(:'terms.boy')) 
+  %span
+    = f.radio_button(:sex, "female") 
+    = f.label(:sex_female, t('terms.girl'))
+.field.inp-txt
+  = f.label :firstname , t('person.firstname')
+  %span
+    = f.text_field :firstname
+
+      

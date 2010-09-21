@@ -31,10 +31,7 @@ module PeopleHelper
   end
   
   def get_spouses_exclude_patient_parent(person, patient)
-    Rails.logger.debug "xx - person.relationships -- #{person.relationships}"
     spouses = person.relationships.select{|i| i[:name] == "spouse"}
-    Rails.logger.debug "xx - spouses -- #{spouses.inspect}"
-    Rails.logger.debug "xx pateint parents -- #{patient.parents.empty?}"
     unless patient.parents.empty?
       opposite_parent_id = patient.opposite_parent(person).id
       spouses =  spouses.select{|i| i[:relation_id] != opposite_parent_id }
@@ -62,7 +59,6 @@ module PeopleHelper
   
   def parent_relationship_direction(patient, person)
     relationship = patient.parents_relationship
-    Rails.logger.debug "xx - relationship #{relationship.inspect}"
     if relationship.nil?
       :relationships
     elsif person.id == relationship[0].person_id

@@ -61,12 +61,13 @@ class Person < ActiveRecord::Base
   accepts_nested_attributes_for :relations, :allow_destroy => true
   accepts_nested_attributes_for :relationships, :allow_destroy => true #,  :reject_if => proc {|attributes| attributes['person_id'].blank?}
   accepts_nested_attributes_for :inverse_relationships, :allow_destroy => true
+  accepts_nested_attributes_for :inverse_relations, :allow_destroy => true
   accepts_nested_attributes_for :address, :allow_destroy => true
 
   attr_accessible :firstname, :lastname, :sex, :ispatient, :dateofbirth, :cpr, :workphone, :mobilephone, :occupation, :workplace, :full_date, :address_id,
-                  :relations_attributes, :relationships_attributes, :inverse_relationships_attributes, :address_attributes, :inverse_relationships
+                  :relations_attributes, :inverse_relations_attributes, :relationships_attributes, :inverse_relationships_attributes, :address_attributes
   
-  validates_associated :relationships, :address 
+  validates_associated :relationships, :address
   
   
   def presence_of_cpr

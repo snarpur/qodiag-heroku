@@ -50,6 +50,8 @@ snarpur["action_items"] =
   },
   get_nested_item: function(item)
   {
+      co("css query for nested item :: ", item.nested_item+":last")
+      co("in container :: ", item.elements.container)
       return $(item.nested_item+":last", item.elements.container);   
   },
   
@@ -72,10 +74,7 @@ snarpur["action_items"] =
    {
      container: ".added_spouse_relationship_period .end" 
    },
-  parents_relationship_period_end:
-  {
-
-   },
+  parents_relationship_period_end:{},
   address:
   {
     nested_context: "",
@@ -86,6 +85,11 @@ snarpur["action_items"] =
   {
     nested_context: "",
     container: "#existing_parent_address" 
-    //multiple: false
-  }
+    //multiple: fal
+  },
+  sibling:{container: ".added_siblings", multiple: true },
+  half_sibling:{container: ".added_siblings", multiple: true},
+  foster_sibling:{container: ".added_siblings", multiple: true},
+  spouses_mother:{},
+  spouses_father:{}
 }

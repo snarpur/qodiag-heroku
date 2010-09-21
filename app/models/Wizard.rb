@@ -12,11 +12,19 @@ class Wizard
   
 
   def steps
-    %w[child mother father finnish]
+    %w[child mother father siblings finnish]
+  end
+  
+  def partials
+    %w[patient parents parents siblings finnish]
   end
   
   def step(step_no)
     self.current_step = steps[step_no - 1]
+  end
+
+  def partial
+     partials[current_step_no - 1]
   end
   
   def next_step

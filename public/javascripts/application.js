@@ -27,32 +27,39 @@ var snarpur = {
         
         $(".action_element").live("click",function()
         {
+          
            var data = {}
            var element = this
            data = $.metadata.get(element);
-           $.each(snarpur.action_elements[data.name].actions,function(k,v){
-             snarpur.nested_input[k].call(snarpur.nested_input,element);
-           });
+           if(snarpur.action_elements[data.name] == undefined && data.name.substring(0,3) == "add")
+           {
+             snarpur.action_elements[data.name] = {actions: {add_nested_item : [data.name]}}
+             snarpur.action_items[data.name] = {container: ".second_parent"}
+             obj.add_nested_item(element)
+           }
+           else
+           {
+             $.each(snarpur.action_elements[data.name].actions,function(k,v){
+
+               snarpur.nested_input[k].call(snarpur.nested_input,element);
+             }); 
+           }
         });
       }
     },
 
     add_item: function(element)
     {
-      var obj = snarpur.nested_input;
-      var element = element == null ? ".add_item" : element
-      $(element).live('click',function() {
 
         var processed_items = obj.process_item(this,"add_item");
         template = obj.replace_ids(data.template);
         obj.append_item(data,template);
         obj.run_callback(data, "add");
 
-      }); 
     },
     
     add_nested_item: function(element)
-    {
+    { 
       var obj = snarpur.nested_input;
       var processed_items = obj.process_item(element, "add_nested_item");
       $.each(processed_items, function(i,v)
@@ -174,12 +181,13 @@ var snarpur = {
 
     append_item : function(data)
     {
+      co("in append ::", data)
       var obj = this;
       if(data.multiple == false)
         obj.append_if_empty(data)
       else
        data.elements.container.append(data.template)
-      
+            
     },
     
     append_if_empty : function(data)
@@ -230,6 +238,7 @@ $(document).ready(function() {
   
   snarpur.nested_input.init();
   $(".accordion").accordion();
+
   
   $(".close-spouse").live('click',function(){
     var added_spouse = $(this).parents('div.added-spouse')

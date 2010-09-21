@@ -37,6 +37,10 @@ is:
     relationship_start: "Samband hófst"
     relationship_end: "Sambandi lauk"
     guardianship: "Forræði"
+    siblings: "Systkin"
+    sibling : "Systkin"
+    half_sibling : "Hálfsystkin"
+    foster_sibling: "Fóstursyskin"
     register:
       mother: "Skrá móður"
       father: "Skrá föður"
@@ -48,6 +52,7 @@ is:
     save: "Vista"
     add_spouse: "Skrá maka"
     remove: "Eyða"
+    add: "Skrá"
 
 
 

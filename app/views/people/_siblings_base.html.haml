@@ -1,0 +1,18 @@
+
+-f ||= locals[:form_builder]
+-type = locals[:sibling_type]
+
+-if type == "sibling"
+  -options = {:partial => "sibling_first_parent"}
+  != "#{generate_html(f, :relationships, options)}"
+-elsif type == "half_sibling"
+  .nested-context.nested_item
+    .field.inp-rdo
+      %span
+        =label_tag @mother.firstname
+        =radio_button_tag "half_sibling", "mother", "", :class => "action_element {name: 'spouses_mother'}"
+      %span
+        =label_tag @father.firstname
+        =radio_button_tag "half_sibling", "father", "", :class => "action_element {name: 'spouses_father'}"
+    .spouses_mother.nested_context
+    .spouses_father.nested_context

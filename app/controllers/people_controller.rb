@@ -25,8 +25,7 @@ class PeopleController < ApplicationController
   # GET /people/new
   def new
     @person = Person.new
-    @parameters = params
-    @guardianship = @person.relationships.build
+    @patient = get_patient(@wizard)
     respond_to do |format|
       format.html 
     end
@@ -56,7 +55,6 @@ class PeopleController < ApplicationController
           format.html { redirect_to(@person, :notice => 'Relationship was successfully created.') }
         end
       else
-       @parameters = params
         format.html { render :action => "new", :step => session[:wizard].current_step_no}
 
         format.xml  { render :xml => @person.errors, :status => :unprocessable_entity }
@@ -100,16 +98,7 @@ class PeopleController < ApplicationController
     @wizard.step(Integer(params[:step])) unless params[:step].nil?
     @patient =  get_patient(@wizard)
   end
-  
-  # def set_parent_spouse_status(person)
-  #   if !params.to_s.match("relationships_attributes").nil?
-  #     @parent_spouse = params[:person][:relationships_attributes].select{|k,v| v['spouse_status'] == 'current' }
-  #   end
-  #   Rails.logger.debug "xx - params #{@parent_spouse}   type params #{@parent_spouse.type}"
-  #   
-  #   Rails.logger.debug "xx - #{person.relationships.inspect}"
-  #   
-  # end
+
   
   def url_for_next_step
     if session[:wizard].next_is_last? 

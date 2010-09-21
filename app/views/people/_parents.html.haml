@@ -1,0 +1,60 @@
+= form_for @person do |f|
+  -@opposite_parent = @patient.opposite_parent(@person)
+  -@main_builder = f
+  - if @person.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@person.errors.count, "error")
+        prohibited this relationship from being saved:
+        %ul
+        - @person.errors.full_messages.each do |msg|
+          %li= msg
+  
+  %input{:type => "hidden", :name => "next_step", :value  => @wizard.next_step_no}
+  -child_parent_relationship = get_or_create_child_parent_relationship(@patient, @wizard.current_step, @person)
+  =f.fields_for :relationships, child_parent_relationship do |relationship_form|
+    =relationship_form.text_field :relation_id, :value => @patient.id
+    =relationship_form.text_field :name, :value => "parent"
+    =f.hidden_field :sex, :value  => set_parent_gender(@wizard.current_step)
+    =f.hidden_field :ispatient, :value  => 0
+
+
+  - content_for :jstemplates do
+    -spouse_partial = {:partial => "spouse_relationship"}
+    != "var spouse_relationship ='#{generate_template(f, :relationships, spouse_partial)}'"
+
+
+  %h3= t("terms.register.#{@wizard.current_step}")
+  .frm-section.nested-context
+    %h4= t('terms.guardianship')
+    -guardianship = get_or_create_guardian_relationship(@person,@patient)
+    =f.fields_for :relationships, guardianship  do |guardian_relationship|
+      =render "guardian_relationship_buttons", :locals => {:item => "guardian_relationship", :form_builder => guardian_relationship }
+
+  
+
+ 
+  -if @patient.opposite_parent(@person)
+    -parents_relationship = get_or_create_parents_relationship(@patient,@person)
+    =f.fields_for parent_relationship_direction(@patient, @person), parents_relationship do |relationship_form|
+      =render "set_patient_parents", :locals => {:form_builder => relationship_form}
+
+
+  = render "person_information", :locals => {:form_builder => f}
+  
+
+  .frm-section.nested-context
+    %h4= t('terms.spouses')
+    .spouse
+    %hr.break
+    -spouses = get_spouses_exclude_patient_parent(@person,@patient)
+    -unless spouses.empty?
+      =f.fields_for :relationships, spouses do |spouse_form|
+        = render "spouse_relationship", :collection => spouses, :locals => {:form_builder => spouse_form} 
+    = link_to t('actions.add_spouse'), '#spouse_relationship', :class => "action_element {name : 'add_spouse_relationship'} button small blue"
+
+
+  .field.inp-btn
+    %span
+      = f.submit :value => t('actions.save'),  :class => 'button green'
+      

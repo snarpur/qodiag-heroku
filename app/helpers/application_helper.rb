@@ -31,13 +31,16 @@ module ApplicationHelper
   #       <% end %>
   #     </div>
   #   <% end -%>
+
+    
   def generate_html(form_builder, method, options = {})
     options[:object] ||= form_builder.object.class.reflect_on_association(method).klass.new
     options[:partial] ||= method.to_s.singularize
-    options[:form_builder_local] ||= :f  
-
+    options[:form_builder] ||= :f  
+    options[:locals] ||= {}
     form_builder.fields_for(method, options[:object], :child_index => 'NEW_RECORD') do |f|
-      render(:partial => options[:partial], :locals => { options[:form_builder_local] => f })
+      form_locals = {options[:form_builder] => f}.merge(options[:locals])
+      render(:partial => options[:partial], :locals => form_locals)
     end
   end
 
