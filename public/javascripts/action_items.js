@@ -8,7 +8,8 @@ snarpur["action_items"] =
     item: "",
     //multiple false allows only one nested item for current association
     //multiple false allows many nested items for current association
-    multiple: false
+    multiple: false,
+    replace: false
   },
   init: function(element, item)
   {
@@ -37,7 +38,9 @@ snarpur["action_items"] =
       container = $(item.container,item.elements.nested_context)
     else
       container = $(item.container);
-    
+    co("container class ::", item.container)
+    co("nested context ::", item.elements.nested_context)
+    co("container :: ", $(item.container,item.elements.nested_context))
     return container;
   },
   get_nested_context: function(item)
@@ -50,8 +53,6 @@ snarpur["action_items"] =
   },
   get_nested_item: function(item)
   {
-      co("css query for nested item :: ", item.nested_item+":last")
-      co("in container :: ", item.elements.container)
       return $(item.nested_item+":last", item.elements.container);   
   },
   
@@ -87,9 +88,9 @@ snarpur["action_items"] =
     container: "#existing_parent_address" 
     //multiple: fal
   },
-  sibling:{container: ".added_siblings", multiple: true },
-  half_sibling:{container: ".added_siblings", multiple: true},
-  foster_sibling:{container: ".added_siblings", multiple: true},
-  spouses_mother:{},
-  spouses_father:{}
+  add_full_sibling:{container: ".added_siblings"},
+  add_mother:{container: ".half_sibling_first_parent", replace: true},
+  add_father:{container: ".half_sibling_first_parent", replace: true},
+  add_parent_select:{container: ".added_siblings"}
+
 }

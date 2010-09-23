@@ -1,0 +1,22 @@
+-@parents = @patient.parents
+-@mother= @parents.select{|i| i[:sex] == "female"}.first
+-@father = @parents.select{|i| i[:sex] == "male"}.first
+= form_for @patient do |f|
+  ="#{@patient.firstname} #{@patient.lastname}"
+  / -content_for :jstemplates do
+  /   
+  /   -options = {:form_builder => f }
+  /   != "var add_full_sibling = '#{escape_javascript render sibling_partial('siblings_base'), :locals => options.merge({:sibling_type => 'full_sibling', :parent => @mother})}'"
+  /   != "var add_parent_select = '#{escape_javascript render sibling_partial('siblings_base'), :locals => options.merge({:sibling_type => 'half_sibling'})}'"
+  
+  
+  -add = t('actions.add')
+  .nested-context
+    = link_to "#{add} #{t('terms.sibling')}", '#added_sibling', :class => "action_element {name: 'add_full_sibling'} button small blue"
+    = link_to "#{add} #{t('terms.half_sibling')}", '#added_half_sibling', :class => "action_element {name: 'add_parent_select'} button small blue"
+    = link_to "#{add} #{t('terms.foster_sibling')}", '#added_half_sibling', :class => "action_element {name: 'add_foster_sibling'} button small blue"
+    .added_siblings
+    .field.inp-btn
+      %span
+        = f.submit :value => t('actions.save'),  :class => 'button green'  
+

@@ -1,0 +1,12 @@
+-f ||= locals[:form_builder]
+-parent = locals[:parent]
+-child_relationship = parent.relationships.build
+.nested_item
+  =f.fields_for :inverse_relations, parent do |first_parent_form| 
+    =first_parent_form.fields_for :relationships, child_relationship, :child_index => 'NEW_RECORD' do |child_relationship_form|
+      =child_relationship_form.text_field :name, :value => "parent"
+
+      -child = child_relationship.build_relation
+      =child_relationship_form.fields_for :relation, child, :child_index => 'NEW_RECORD' do |child_form|
+        =render sibling_partial("siblings_core"), :locals => {:form_builder => child_form}
+        /=render sibling_partial("siblings_second_parent"), :locals =>{:form_builder => child_form , :parent_id => @parents[1].id}

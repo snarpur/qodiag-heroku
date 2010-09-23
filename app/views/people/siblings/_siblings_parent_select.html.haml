@@ -1,0 +1,20 @@
+-f ||= locals[:form_builder]
+-half_sibling_options = {:partial => sibling_partial("sibling_first_parent")}
+=f.fields_for :inverse_relations, @father do |first_parent_form| 
+  -content_for :jstemplates do
+    != "var add_father = '#{generate_template(f, :relationships, half_sibling_options.merge(:locals => {:parent => @father}))}'"
+=f.fields_for :inverse_relations, @mother do |first_parent_form| 
+  -content_for :jstemplates do
+    != "var add_mother = '#{generate_template(f, :relationships, half_sibling_options.merge(:locals => {:parent => @mother}))}'"
+
+.nested-context.nested-item
+  .field.inp-rdo
+    %span
+      =label_tag @mother.firstname
+      =radio_button_tag "half_sibling", "mother", "", :class => "action_element {name: 'add-lvl2_mother'}"
+    %span
+      =label_tag @father.firstname
+      =radio_button_tag "half_sibling", "father", "", :class => "action_element {name: 'add-lvl2_father'}"
+  .half_sibling_first_parent
+
+  

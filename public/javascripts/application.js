@@ -31,10 +31,19 @@ var snarpur = {
            var data = {}
            var element = this
            data = $.metadata.get(element);
-           if(snarpur.action_elements[data.name] == undefined && data.name.substring(0,3) == "add")
+           var action_name_arr = data.name.split("_");
+
+           if(snarpur.action_elements[data.name] == undefined && action_name_arr[0] == "add")
            {
              snarpur.action_elements[data.name] = {actions: {add_nested_item : [data.name]}}
-             snarpur.action_items[data.name] = {container: ".second_parent"}
+             action_name_arr.shift();
+             var container = action_name_arr.join("_");
+             var item_config = {container: "."+container}
+             if(snarpur.action_items[data.name] != undefined)
+             {
+               item_config = $.extend({},item_config, snarpur.action_items[data.name]);
+             }
+             snarpur.action_items[data.name] = item_config;
              obj.add_nested_item(element)
            }
            else
@@ -181,9 +190,12 @@ var snarpur = {
 
     append_item : function(data)
     {
-      co("in append ::", data)
+
       var obj = this;
-      if(data.multiple == false)
+      
+      if(data.replace == true)
+          obj.replace_and_append(data);
+      else if(data.multiple == false)
         obj.append_if_empty(data)
       else
        data.elements.container.append(data.template)
@@ -195,6 +207,13 @@ var snarpur = {
       var obj = this
       if(data.elements.container.children().size() == 0)
         data.elements.container.append(data.template)
+    },
+    
+    replace_and_append: function(data)
+    {
+      co("replacing shit")
+      data.elements.container.empty()
+      data.elements.container.append(data.template)
     },
     
     remove_item: function(data)

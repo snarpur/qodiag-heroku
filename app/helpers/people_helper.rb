@@ -38,7 +38,9 @@ module PeopleHelper
     end
     spouses
   end
-   
+  def sibling_partial(partial)
+    "people/siblings/#{partial}"
+  end
   def get_patient(patient_id)
     patient = patient_id.nil? ? Person.new : Person.find(patient_id)  
   end
