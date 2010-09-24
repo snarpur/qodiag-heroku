@@ -1,12 +1,30 @@
--f ||= locals[:form_builder]
--parent = locals[:parent]
--child_relationship = parent.relationships.build
-.nested_item
-  =f.fields_for :inverse_relations, parent do |first_parent_form| 
-    =first_parent_form.fields_for :relationships, child_relationship, :child_index => 'NEW_RECORD' do |child_relationship_form|
-      =child_relationship_form.text_field :name, :value => "parent"
+-first_parent_relationship = locals[:parent].relationships.build
+= form_for first_parent_relationship, :remote => true do |f|  
+  =f.text_field :person_id
+  =f.text_field :name, :value => "parent"
+  -child = first_parent_relationship.build_relation
+  =f.fields_for :relation, child do |child_form|
+    -spouses = locals[:parent].spouses
+    -spouses.delete(@patient.opposite_parent(locals[:parent]))
+    .field.inp-rdo
+      -spouses.each do |spouse|
+        %span
+          =label_tag spouse.firstname
+          =radio_button_tag "second_parent", spouse.id, "", :class => "action_element {name: 'add_second_parent', id:'#{spouse.id}'}"
+          -locals = {:form_builder => child_form, :parent_id => spouse.id}
+          -content_for :jstemplates do
+            != "add_second_parent[#{spouse.id}] = '#{escape_javascript render sibling_partial('siblings_second_parent'), :locals => locals}';"
+    
+    .second_parent
+    =child_form.label :firstname
+    =child_form.text_field :firstname
+    
 
-      -child = child_relationship.build_relation
-      =child_relationship_form.fields_for :relation, child, :child_index => 'NEW_RECORD' do |child_form|
-        =render sibling_partial("siblings_core"), :locals => {:form_builder => child_form}
-        /=render sibling_partial("siblings_second_parent"), :locals =>{:form_builder => child_form , :parent_id => @parents[1].id}
+    / -second_parent_relationship = child.inverse_relationships.build
+    / =child_form.fields_for :inverse_relationships, second_parent_relationship do |fr_form|
+    /   =fr_form.text_field :name, :value => "parent"
+    /   =fr_form.text_field :person_id, :value => @father.id
+  
+  .field.inp-btn
+    %span
+      = f.submit :value => t('actions.save'),  :class => 'button green'  

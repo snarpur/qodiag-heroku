@@ -42,7 +42,7 @@ class PeopleController < ApplicationController
   # POST /people  
   def create
     @person = Person.new(params[:person]) 
-
+    flash[:notice] = "Thanks for commenting!"
     respond_to do |format|
       if @person.save
         if @person.ispatient
@@ -56,10 +56,9 @@ class PeopleController < ApplicationController
         end
       else
         format.html { render :action => "new", :step => session[:wizard].current_step_no}
-
         format.xml  { render :xml => @person.errors, :status => :unprocessable_entity }
-        
       end
+      format.js
     end
   end
 

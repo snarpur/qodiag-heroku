@@ -15,7 +15,9 @@ snarpur["action_items"] =
   {
     var data = $.extend({}, snarpur.action_items.item_config(item), $.metadata.get(element));
     data.elements = {};
-    data.template = eval(data.item);
+    var template = data.id == undefined ? data.item : data.item+"["+data.id+"]"
+    data.template = eval(template);
+
     data.elements.trigger = element;
     data.elements.nested_context = snarpur.action_items.get_nested_context(data);
     data.elements.container = snarpur.action_items.get_container(data);
@@ -91,6 +93,7 @@ snarpur["action_items"] =
   add_full_sibling:{container: ".added_siblings"},
   add_mother:{container: ".half_sibling_first_parent", replace: true},
   add_father:{container: ".half_sibling_first_parent", replace: true},
+  add_second_parent:{replace: true},
   add_parent_select:{container: ".added_siblings"}
 
 }

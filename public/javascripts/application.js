@@ -35,6 +35,7 @@ var snarpur = {
 
            if(snarpur.action_elements[data.name] == undefined && action_name_arr[0] == "add")
            {
+             co("INIT data ::", data.name)
              snarpur.action_elements[data.name] = {actions: {add_nested_item : [data.name]}}
              action_name_arr.shift();
              var container = action_name_arr.join("_");
@@ -54,7 +55,14 @@ var snarpur = {
              }); 
            }
         });
-      }
+      },
+      
+      add_named_action_items: function()
+      {
+        //unimplemented for add_nested_item-lvl2
+      },
+      
+      
     },
 
     add_item: function(element)
@@ -190,9 +198,7 @@ var snarpur = {
 
     append_item : function(data)
     {
-
-      var obj = this;
-      
+      var obj = this; 
       if(data.replace == true)
           obj.replace_and_append(data);
       else if(data.multiple == false)
@@ -211,7 +217,6 @@ var snarpur = {
     
     replace_and_append: function(data)
     {
-      co("replacing shit")
       data.elements.container.empty()
       data.elements.container.append(data.template)
     },

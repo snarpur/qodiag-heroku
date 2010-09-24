@@ -13,47 +13,56 @@ class Person < ActiveRecord::Base
   
   
   has_many  :relationships, :dependent => :destroy do
-            def child
-              find(:all, :conditions => "name = 'parent'")
-            end
-            
-            def spouse
-              find(:all, :conditions => "name = 'spouse'")
-            end
-            
-            def guardian(id)
-              find(:all, :conditions => "name = 'guardian' AND relation_id = #{id}")
-            end
-            
-            def spouse_as_parent(id)
-              find(:all, :conditions => "relation = 'spouse'")
-            end
-          end 
+    def child
+      find(:all, :conditions => "name = 'parent'")
+    end
   
-       
+    def spouse
+      find(:all, :conditions => "name = 'spouse'")
+    end
   
-  has_many  :relations, :through => :relationships 
+    def guardian(id)
+      find(:all, :conditions => "name = 'guardian' AND relation_id = #{id}")
+    end
+  
+    def spouse_as_parent(id)
+      find(:all, :conditions => "relation = 'spouse'")
+    end
+  end 
   
   has_many :inverse_relationships, :class_name => "Relationship", :foreign_key => "relation_id" do
-              def spouse
-                find(:all, :conditions => "name = 'spouse'")
-              end
-
-            end
+    def spouse
+     find(:all, :conditions => "name = 'spouse'")
+    end
+  end
+  
+  has_many  :relations, :through => :relationships do
+    def children
+      find(:all, :conditions => "name = 'parent'")
+    end
+    
+    def spouse
+      find(:all, :conditions => "name = 'spouse'")
+    end
+  end
             
   has_many :inverse_relations, :through => :inverse_relationships, :source => :person do
-      def parents
-        find(:all,:conditions => "relationships.name = 'parent'" )
-      end
-      
-      def mother
-        find(:all,:conditions => "relationships.name = 'parent' AND sex = 'female'" )
-      end
+    def parents
+      find(:all,:conditions => "relationships.name = 'parent'" )
+    end
+  
+    def mother
+      find(:all,:conditions => "relationships.name = 'parent' AND sex = 'female'" )
+    end
 
-      def father
-        find(:all,:conditions => "relationships.name = 'parent' AND sex = 'male'" )
-      end
-    end  
+    def father
+      find(:all,:conditions => "relationships.name = 'parent' AND sex = 'male'" )
+    end
+    
+    def spouse
+      find(:all, :conditions => "name = 'spouse'")
+    end
+  end  
   
   belongs_to :address    
 
@@ -103,21 +112,48 @@ class Person < ActiveRecord::Base
   end
   
   def mother
-    Person.joins(:relationships).where(:sex => "female", "relationships.relation_id" => self.id )
+    self.inverse_relations.mother.first
   end
   
   def father
-    Person.joins(:relationships).where(:sex => "male", "relationships.relation_id" => self.id )
+    self.inverse_relations.father.first
   end
   
   def parents
     self.inverse_relations.parents
   end
   
-  def spouses
+  def spouse_relationships
     self.relationships.spouse + self.inverse_relationships.spouse
   end
   
+  def spouses
+    self.relations.spouse + self.inverse_relations.spouse
+  end
+  
+  def full_siblings
+    self.mother.relations.children & self.father.relations.children
+  end
+  
+  def half_siblings(parent)
+    parent.relations.children - self.opposite_parent(parent).relations.children
+  end
+  
+  def foster_siblings
+    spouses = self.mother.spouses + self.mother.spouses
+    spouses.delete(self.father)
+    spouses.delete(self.mother)
+    foster_siblings = []
+    spouses.each do |i|
+     foster_siblings << i.relations.children
+    end
+    #get mother spouses
+    #get father spouses
+    #get mother spouses children exclude common children
+    #get father spouses children exclude common children
+    
+  end
+
   def is_person_parent(person)
     self.parents.include?(person)
   end
@@ -131,12 +167,7 @@ class Person < ActiveRecord::Base
     if parents.size <= 1
       nil
     else
-       parents[0].spouses & parents[1].spouses 
+       parents[0].spouse_relationships & parents[1].spouse_relationships 
     end
   end
-  
- 
-  
-  
-  
 end

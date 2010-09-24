@@ -13,17 +13,3 @@
   .field.inp-btn
     %span
       = f.submit :value => t('actions.save'),  :class => 'button green'  
-
-
-  / .field.inp-rdo
-  / -spouses.each_index do |i|
-  /   -spouse = spouses[i]
-  /   =f.fields_for :relation, child do |child_form|
-  /     -content_for :jstemplates do
-  /       -locals = {:form_builder => child_form, :parent_id => spouse.id}
-  /       != "var add_second_parent_#{spouse.id} = '#{escape_javascript render 'siblings_second_parent', :locals => locals}'"
-  /   %span
-  /     =label_tag spouse.relation[:firstname]
-  /     =radio_button_tag "parent", spouse.relation[:firstname], "", :class => "action_element {name: 'add_second_parent_#{spouse.id}'}"
- 
-
