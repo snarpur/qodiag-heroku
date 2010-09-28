@@ -1,0 +1,23 @@
+-parent = locals[:parent]
+-first_parent_relationship = parent.relationships.build
+-child = first_parent_relationship.build_relation
+= form_for child, :remote => true do |f|  
+  
+  =f.fields_for :inverse_relationships, first_parent_relationship do |first_parent|
+    =first_parent.hidden_field :person_id
+    =first_parent.hidden_field :name, :value => "parent"
+
+
+  -if locals[:type] == "full_sibling"
+    =render "people/siblings/second_parent_form", :locals => {:form_builder => f, :parent_id => @father.id}
+  -elsif locals[:type] == "half_sibling"
+    =render "people/siblings/second_parent_select", :locals => {:form_builder => f, :parent => parent}
+  
+  .frm-section-hrz
+    %h4 Systkin
+    =render "people/siblings/sibling_data", :locals => {:form_builder => f}
+   
+  %hr.clear
+  .field.inp-btn
+    %span
+      = f.submit :value => t('actions.save'),  :class => 'button green'  

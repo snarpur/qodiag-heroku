@@ -1,19 +1,29 @@
--content_for :jstemplates do
-  != "var add_second_parent = {};"
-  
+#sibling_notice.ajax_notice
+
 -@parents = @patient.parents
 -@mother= @parents.select{|i| i[:sex] == "female"}.first
 -@father = @parents.select{|i| i[:sex] == "male"}.first
 
-=render sibling_partial("siblings_list")
-/=render sibling_partial("full_sibling")
-=render sibling_partial("siblings_parent_select")
 
+-content_for :jstemplates do
+  != "var add_second_parent = {};"
+
+-content_for :jstemplates do
+  != "var add_full_sibling = '#{escape_javascript render 'people/siblings/add_sibling', :locals => {:type => 'full_sibling'}}';"
+  != "var add_half_sibling = '#{escape_javascript render 'people/siblings/add_sibling', :locals => {:type => 'half_sibling'}}';"
+  != "var add_foster_sibling = '#{escape_javascript render 'people/siblings/add_sibling', :locals => {:type => 'foster_sibling'}}';"
   
+
+
 -add = t('actions.add')
-.nested-context
-  = link_to "#{add} #{t('terms.sibling')}", '#added_sibling', :class => "action_element {name: 'add_full_sibling'} button small blue"
-  = link_to "#{add} #{t('terms.half_sibling')}", '#added_half_sibling', :class => "action_element {name: 'add_parent_select'} button small blue"
-  = link_to "#{add} #{t('terms.foster_sibling')}", '#added_half_sibling', :class => "action_element {name: 'add_foster_sibling'} button small blue"
-  .added_siblings
+.sibling_select.nested-context.family-registration
+  
+  =render 'people/siblings/siblings_list'
+  
+  .select-sibling
+    = link_to "#{add} #{t('terms.sibling')}", '#added_sibling', :class => "action_element {name: 'add_full_sibling'} button small blue"
+    = link_to "#{add} #{t('terms.half_sibling')}", '#added_half_sibling', :class => "action_element {name: 'add_half_sibling'} button small blue"
+    = link_to "#{add} #{t('terms.foster_sibling')}", '#added_half_sibling', :class => "action_element {name: 'add_foster_sibling'} button small blue"
+  .added_sibling
+  
 

@@ -1,0 +1,16 @@
+-f = locals[:form_builder]
+
+- content_for :jstemplates do
+  != "var parents_relationship_period_end = '#{escape_javascript render 'people/parents/spouse_relationship_period_end', :locals => {:form_builder => f, :suffix => 'NEW_RECORD', :level => 2}}';"
+
+.frm-section.nested-context
+  - other_parent = t("terms.#{get_opposite_parent_type(@wizard.current_step)}")
+  %h4= "#{other_parent} barns"
+  %p= "#{@patient.opposite_parent(@person).firstname} #{@patient.opposite_parent(@person).lastname} er:"
+  =f.hidden_field :relation_id, :value => @patient.opposite_parent(@person).id
+  =f.hidden_field :name, :value => "spouse"
+  -actions = {:item => "parents_relationship_period_end", :names => ["parents_status_off", "parents_status_on"]}
+  =render "people/parents/spouse_status_buttons", :locals => {:form_builder => f, :actions => actions  }
+
+
+

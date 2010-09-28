@@ -1,4 +1,22 @@
-#full_siblings
-  -@patient.full_siblings.each do |full_sibling|
-    %p= full_sibling.firstname
+.siblings_list
+  %h3 Systkin
+  %ul#full_sibling_list
+    %li 
+      %h4 Allsystkin
+    =list_siblings(@patient.full_siblings)
+
+  %ul#half_sibling_mother_list
+    %li
+      %h4 Hálfsystkin (sammæðra)
+    =list_siblings(@patient.half_siblings(@mother))
+
+  %ul#half_sibling_father_list
+    %li
+      %h4 Hálfsystkin (samfeðra)
+    =list_siblings(@patient.half_siblings(@father))
   
+
+  %ul#foster_sibling_list
+    %li
+      %h4 Fóstursystkin
+    =list_siblings(@patient.half_siblings(@father))

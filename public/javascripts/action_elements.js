@@ -38,26 +38,6 @@ snarpur["action_elements"] =
       add_nested_item:["spouse_relationship"]
     }
   },
-  add_sibling:{
-    actions:
-    {
-      add_nested_item:["sibling"]
-    }
-  },
-  add_half_sibling:
-  {
-    actions:
-    {
-      add_nested_item:["half_sibling"]
-    }
-  },
-  add_foster_sibling:
-  {
-    actions:
-    {
-      add_nested_item:["foster_sibling"]
-    }
-  },
   spouses_father:
   {
     actions:

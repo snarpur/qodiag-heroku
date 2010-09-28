@@ -132,7 +132,9 @@ class Person < ActiveRecord::Base
   end
   
   def full_siblings
-    self.mother.relations.children & self.father.relations.children
+    full_siblings = self.mother.relations.children & self.father.relations.children
+    full_siblings.delete(self)
+    full_siblings
   end
   
   def half_siblings(parent)
@@ -147,11 +149,6 @@ class Person < ActiveRecord::Base
     spouses.each do |i|
      foster_siblings << i.relations.children
     end
-    #get mother spouses
-    #get father spouses
-    #get mother spouses children exclude common children
-    #get father spouses children exclude common children
-    
   end
 
   def is_person_parent(person)

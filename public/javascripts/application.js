@@ -262,7 +262,7 @@ $(document).ready(function() {
   
   snarpur.nested_input.init();
   $(".accordion").accordion();
-
+  
   
   $(".close-spouse").live('click',function(){
     var added_spouse = $(this).parents('div.added-spouse')

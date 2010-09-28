@@ -41,6 +41,11 @@ module PeopleHelper
   def sibling_partial(partial)
     "people/siblings/#{partial}"
   end
+  
+  def partial(group, partial)
+    "people/#{group}/#{partial}"
+  end
+  
   def get_patient(patient_id)
     patient = patient_id.nil? ? Person.new : Person.find(patient_id)  
   end
@@ -77,8 +82,8 @@ module PeopleHelper
     else
       person = case
        when step_no == 1 : patient
-       when step_no == 2 : patient.mother.first
-       when step_no == 3 : patient.father.first
+       when step_no == 2 : patient.mother
+       when step_no == 3 : patient.father
        when step_no == 4 : patient
       end
     
@@ -91,5 +96,21 @@ module PeopleHelper
     end
   
   end 
+  
+  def list_siblings(siblings)
+
+      render :partial => "people/siblings/sibling", :collection => siblings
+
+  end
+  
+  def sibling_relation(person, sibling)
+    relation = case
+      when person.full_siblings.include?(sibling) : "full_sibling"
+      when person.half_siblings(person.father).include?(sibling) : "half_sibling_father"
+      when person.half_siblings(person.mother).include?(sibling) : "half_sibling_mother"
+      when person.foster_siblings.include?(sibling) : "foster_sibling"
+      else "none"
+    end
+  end
   
 end

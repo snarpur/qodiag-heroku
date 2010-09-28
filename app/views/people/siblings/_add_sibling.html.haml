@@ -1,0 +1,7 @@
+-type = locals[:type]
+-if type == "full_sibling"
+    =render sibling_partial("first_parent_form"), :locals => {:parent => @mother, :type => 'full_sibling'}
+-elsif type == "half_sibling"
+    =render sibling_partial("first_parent_select")
+
+  

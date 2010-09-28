@@ -12,6 +12,7 @@ is:
     workphone: "Sími vinna"
     occupation: "Starfsheiti"
     workplace: "Vinnustaður"
+    yearofbirth: "Fæðingarár"
   relationship:
     is_guardian: "Er forræðishafi"
     not_guardian: "Er ekki forræðishafi"
