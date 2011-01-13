@@ -3,7 +3,8 @@
     -status = @wizard.current_step == @wizard.steps[i] ? "active" : ""
     - j = i+1
     %li{:class => status}
-      %b= j
-      -step_translation = t("terms.#{@wizard.steps[i]}")
-      %i= new_or_edit_link(@patient, j ,step_translation) 
+      %p
+        %b= j
+        -step_translation = t("terms.#{@wizard.steps[i]}")
+        = new_or_edit_link(@patient, j ,step_translation) 
 

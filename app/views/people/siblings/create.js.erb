@@ -1,0 +1,21 @@
+var notice = $("#sibling_notice")
+notice.html("<span>Búið að vista</span>")
+notice.fadeIn(1000).delay(2000).fadeOut(1000, function()
+  {
+    $(this).empty();
+  });
+
+
+//append sibling
+$("#dialog").dialog('close');
+$("#<%=sibling_relation(@patient, @person)%>_list li:last").before("<%= escape_javascript(render('people/siblings/sibling', :locals => {:sibling => @person})) %>");
+
+//empty the form
+$(".added_sibling").fadeOut(500,function()
+  {
+    $(this).empty();
+    $(this).removeAttr("style");
+  });
+  
+//Highlight new sibling
+$("#sibling_<%=@person.id%>").effect("highlight",1000)

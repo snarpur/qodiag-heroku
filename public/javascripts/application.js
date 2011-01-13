@@ -1,18 +1,10 @@
-var co = console.info
-
-
-
-action_params = {
-  toggleClass: "active",
-  hide: "slow",
-  show: "slow"
-  }
-
 var snarpur = {
   
   nested_input: 
   {
-    
+    config: {
+      dialog: "#dialog"  
+    },
     init : function()
     {
        snarpur.nested_input.action_elements.init();
@@ -28,43 +20,46 @@ var snarpur = {
         $(".action_element").live("click",function()
         {
           
-           var data = {}
-           var element = this
-           data = $.metadata.get(element);
-           var action_name_arr = data.name.split("_");
-
-           if(snarpur.action_elements[data.name] == undefined && action_name_arr[0] == "add")
+           var data = {},
+               element = this
+               data = $.metadata.get(element),
+               action = data.name.match(/add|remove/) == null ? false : data.name.match(/add|remove/)[0],
+               action_name_arr = data.name.split("_");
+           if(snarpur.action_elements[data.name] == undefined && action)
            {
-             co("INIT data ::", data.name)
-             snarpur.action_elements[data.name] = {actions: {add_nested_item : [data.name]}}
-             action_name_arr.shift();
-             var container = action_name_arr.join("_");
-             var item_config = {container: "."+container}
-             if(snarpur.action_items[data.name] != undefined)
-             {
-               item_config = $.extend({},item_config, snarpur.action_items[data.name]);
-             }
-             snarpur.action_items[data.name] = item_config;
-             obj.add_nested_item(element)
+             var full_action = action+'_nested_item';
+             obj.add_to_action_elements(data, full_action);
+             obj.add_to_action_items(data);
+             obj[full_action].call(obj,element);
+             //obj.add_nested_item(element)
            }
            else
            {
-             $.each(snarpur.action_elements[data.name].actions,function(k,v){
-
+             $.each(snarpur.action_elements[data.name].actions,function(k,v)
+             {
                snarpur.nested_input[k].call(snarpur.nested_input,element);
              }); 
            }
         });
       },
-      
-      add_named_action_items: function()
-      {
-        //unimplemented for add_nested_item-lvl2
-      },
-      
-      
     },
+    add_to_action_elements: function(data,full_action)
+    {
+        var action_config = {};
+        action_config[full_action] = [data.name];
+        snarpur.action_elements[data.name] = {actions : action_config}
+    },
+    add_to_action_items: function(data)
+    {
 
+        var template = _.rest(data.name.split("_"),1).join("_"),
+            item_config = {container: "."+template, item: template};
+        if(snarpur.action_items[data.name] != undefined)
+        {
+            item_config = $.extend({},item_config, snarpur.action_items[data.name]);
+        }
+        snarpur.action_items[data.name] = item_config;    
+    },
     add_item: function(element)
     {
 
@@ -90,8 +85,8 @@ var snarpur = {
     
     add_nested_item_lvl2: function(element)
     {
-      var obj = snarpur.nested_input;
-      var processed_items = obj.process_item(element,"add_nested_item_lvl2");   
+      var obj = snarpur.nested_input,
+          processed_items = obj.process_item(element,"add_nested_item_lvl2");   
       $.each(processed_items, function(i,v)
       {
         parent_object_id = $("input:first",v.elements.nested_context).attr("name").match(/.*\[(\d+)\]/)[1]  
@@ -103,11 +98,11 @@ var snarpur = {
     
     remove_nested_item: function(element)
     {
-      var obj = this
-      var processed_items = obj.process_item(element, "remove_nested_item");
+      var obj = this,
+          processed_items = obj.process_item(element, "remove_nested_item");
       $.each(processed_items, function(index,data)
        {
-         obj.remove_item(data)
+         obj.remove_item(data);
          obj.run_callback(data, "remove");
        });
     },
@@ -138,11 +133,10 @@ var snarpur = {
     
     process_if_action_element: function(element,action)
     {
-      var data = {}
-      var obj = this
-      var item = []
-      data = $.metadata.get(element);
-
+      var data = {},
+          obj = this,
+          item = [],
+          data = $.metadata.get(element);
       if(snarpur.action_elements[data.name])
       {
         item = snarpur.action_elements[data.name].actions[action]
@@ -203,9 +197,10 @@ var snarpur = {
           obj.replace_and_append(data);
       else if(data.multiple == false)
         obj.append_if_empty(data)
+      else if(data.container === snarpur.nested_input.config.dialog)
+        obj.append_and_open_dialog(data);
       else
-       data.elements.container.append(data.template)
-            
+       data.elements.container.append(data.template)   
     },
     
     append_if_empty : function(data)
@@ -220,7 +215,17 @@ var snarpur = {
       data.elements.container.empty()
       data.elements.container.append(data.template)
     },
-    
+    append_and_open_dialog: function(data){
+        var dialog = $(snarpur.nested_input.config.dialog);
+        dialog.append(data.template);
+        $("#dialog").dialog({
+            modal: true,
+            close: function(){$(this).empty()},
+            width: 600,
+            resizable:false
+        });
+        return false;
+    },
     remove_item: function(data)
     {
       snarpur.action_items.get_nested_item(data).remove();
@@ -250,73 +255,41 @@ var snarpur = {
       },
       remove:
       {
-        
-        
+
       }
     }
   }
-
 }
 
-$(document).ready(function() {
-  
-  snarpur.nested_input.init();
-  $(".accordion").accordion();
-  
-  
-  $(".close-spouse").live('click',function(){
-    var added_spouse = $(this).parents('div.added-spouse')
-    var firstname = $("input[id $= firstname]", added_spouse).attr("value");
-    var lastname = $("input[id $= lastname]", added_spouse).attr("value");
-    added_spouse.remove("em");
-    $(".spouse-form", added_spouse).slideToggle("slow");
-    added_spouse.prepend("<em>"+firstname+" "+lastname+"</em>");
-    added_spouse.addClass("status-closed");
-    added_spouse.removeClass("status-open");
-  });
-  
-  $(".edit-spouse").live('click', function(){
-    var added_spouse = $(this).parents('div.added-spouse');
-    $(".spouse-form", added_spouse).slideToggle("slow");
-    added_spouse.addClass("open");
-    added_spouse.removeClass("closed");
-    
-    
-  });
-  
-  $(".remove-spouse").live('click',function(){
-    var added_spouse = $(this).parents("div.added-spouse");
-    var txt = "<b>Eyða ? &nbsp;</b>";
-    var ok = "<a class='confirm button x-small black'>Já</a>";
-    var cancel = "<a class='cancel button x-small black'>Hætta við</a>";
-    $("<div class='mask'><p>"+txt+ok+cancel+"</p></div>").appendTo(added_spouse); 
-  });
-  
-  $(".mask .confirm").live("click",function(){
-    $(this).parents("div.added-spouse").fadeOut("slow",function(){$(this).remove()})
-  });
-  
-  $(".mask .cancel").live("click",function(){
-    var added_spouse = $(this).parents("div.added-spouse");
-    $(".mask", added_spouse).fadeOut("slow",function(){$(this).remove()})
-  });
-  
-  
-  
-  
-  $(".collapser").click(function(e){
-    if(e.currentTarget.nodeName == "A")
-      e.preventDefault();
-    
-    var data = $(this).metadata({type:'attr',name:'actions'});
+$('.added-spouse .delete').live('click',function(){
+    var trash = $(this),
+        container = trash.closest('.added-spouse');
 
-    $.each(data, function(i,v){
-      co("v.action ", v.action)
-      co("v.target ", v.target)
-      co("action_params[v.action] ",action_params[v.action])
-      co(eval("$('"+v.target+"')."+v.action+"('"+action_params[v.action]+"')"))
-      
-    })
-    
-  });
+    container.effect('blind',null,400,function(){
+        container.remove();
+    });
 });
+
+$('#dialog .cancel').live('click', function(){
+    $('#dialog').dialog('close');
+});
+
+$('.parent-guardianship input:radio').live('click',function(){
+    var elem = $(this),
+        section = elem.closest('.frm-section'),
+        select = section.find('select'),
+        div = section.find('.inp-sel');
+   console.info(elem.is(':checked'))
+   if(elem.attr('value') == 1){
+     select.attr('disabled','disabled');
+     div.addClass("disabled")
+   }
+   else{
+     select.removeAttr('disabled');
+     div.removeClass('disabled');  
+   }
+});
+
+
+
+

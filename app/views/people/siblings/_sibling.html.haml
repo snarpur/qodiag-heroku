@@ -1,4 +1,6 @@
 -sibling ||= locals[:sibling]
 %li{:id =>"sibling_#{sibling.id}"}
-  %span="#{sibling.firstname} #{sibling.lastname}" 
+  %p
+    ="#{sibling.firstname} #{sibling.lastname}" 
+    %em=sibling.dateofbirth.year()
   

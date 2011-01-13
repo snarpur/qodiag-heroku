@@ -37,7 +37,10 @@ is:
     current_spouse: "Núverandi maki"
     relationship_start: "Samband hófst"
     relationship_end: "Sambandi lauk"
+    guardianship_start: "Forræði hófst"
+    guardianship_end: "Forræði lauk"
     guardianship: "Forræði"
+    guardian: "Forræðishafi"
     siblings: "Systkin"
     sibling : "Systkin"
     half_sibling : "Hálfsystkin"
@@ -52,8 +55,10 @@ is:
   actions:
     save: "Vista"
     add_spouse: "Skrá maka"
+    add_guardian: "Skrá forræðishafa"
     remove: "Eyða"
     add: "Skrá"
+    cancel: "Hætta við"
 
 
 

@@ -1,7 +1,60 @@
+-parents = locals[:parents]
 -type = locals[:type]
--if type == "full_sibling"
-    =render sibling_partial("first_parent_form"), :locals => {:parent => @mother, :type => 'full_sibling'}
--elsif type == "half_sibling"
-    =render sibling_partial("first_parent_select")
+-if parents.kind_of?(Array)
+  -first_parent_relationship = parents[0].relationships.build
+-else
+  -first_parent_relationship = parents.relationships.build
+
+
+-if type != 'foster_sibling'
+  -child = first_parent_relationship.build_relation
+-else
+  -child = Person.new
+  
+  
+= form_for child, :remote => true do |f|  
+  -if type != 'foster_sibling'
+    =f.fields_for :inverse_relationships, first_parent_relationship do |first_parent|
+      =first_parent.hidden_field :person_id
+      =first_parent.hidden_field :name, :value => "parent"
+
+    -if type == 'full_sibling'
+      =render "people/siblings/second_parent_form", :locals => {:form_builder => f, :parent_id => parents[1].id}
+    -elsif type == 'half_sibling'
+      =render "people/siblings/second_parent_select", :locals => {:form_builder => f, :parents => parents[0].spouses - @patient.parents}
+  -else 
+    =render "people/siblings/second_parent_select", :locals => {:form_builder => f, :parents => parents}
+
+  .frm-section
+    %h4 Systkin
+    =render "people/siblings/sibling_data", :locals => {:form_builder => f}
+  
+  %hr.clear
+  .field.inp-btn
+    %ul
+      %li
+        %button.x-small.red.button.cancel
+          ="#{t('actions.cancel')}"  
+      %li
+        = f.submit :value => t('actions.save'),  :class => 'button green x-small'
+
+
+
+  
+
+   
+
+
+
+
+/ -type = locals[:type]
+/ -if type == "full_sibling"
+/=render sibling_partial("first_parent_form"), :locals => {:parents => [@mother,@father]}
+/ -elsif type == "half_sibling_mother"
+/     =render sibling_partial("first_parent_select"), :locals => {:parent => [@mother], :type => 'half_sibling_mother'}
+/ -elsif type == "half_sibling_father"
+/     =render sibling_partial("first_parent_select"), :locals => {:parent => [@father], :type => 'half_sibling_father'}
+/ -elsif type == "foster_sibling"
+/     =render sibling_partial("first_parent_select")
 
   

@@ -1,23 +1,30 @@
--parent = locals[:parent]
--first_parent_relationship = parent.relationships.build
--child = first_parent_relationship.build_relation
-= form_for child, :remote => true do |f|  
-  
-  =f.fields_for :inverse_relationships, first_parent_relationship do |first_parent|
-    =first_parent.hidden_field :person_id
-    =first_parent.hidden_field :name, :value => "parent"
 
+  -if locals[:parent].kind_of?(Array)
+    -first_parent_relationship = parents[0].relationships.build
+  -else
+    -first_parent_relationship = parents.relationships.build
 
-  -if locals[:type] == "full_sibling"
-    =render "people/siblings/second_parent_form", :locals => {:form_builder => f, :parent_id => @father.id}
-  -elsif locals[:type] == "half_sibling"
-    =render "people/siblings/second_parent_select", :locals => {:form_builder => f, :parent => parent}
+  -child = first_parent_relationship.build_relation
+
+  / -parent = locals[:parent]
+  / -first_parent_relationship = parent.relationships.build
+  /-child = first_parent_relationship.build_relation
+  = form_for child, :remote => true do |f|  
   
-  .frm-section-hrz
-    %h4 Systkin
-    =render "people/siblings/sibling_data", :locals => {:form_builder => f}
+    =f.fields_for :inverse_relationships, first_parent_relationship do |first_parent|
+      =first_parent.hidden_field :person_id
+      =first_parent.hidden_field :name, :value => "parent"
+
+    -if parents.size == 2
+      =render "people/siblings/second_parent_form", :locals => {:form_builder => f, :parent_id => parents[1].id}
+    -elsif parents.size == 1
+      =render "people/siblings/second_parent_select", :locals => {:form_builder => f, :parent => parent}
+  
+    .frm-section-hrz
+      %h4 Systkin
+      =render "people/siblings/sibling_data", :locals => {:form_builder => f}
    
-  %hr.clear
-  .field.inp-btn
-    %span
-      = f.submit :value => t('actions.save'),  :class => 'button green'  
+    %hr.clear
+    .field.inp-btn
+      %span
+        = f.submit :value => t('actions.save'),  :class => 'button green'  

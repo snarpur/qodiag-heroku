@@ -32,24 +32,58 @@
 
 
 +blueprint-grid
-+blueprint-typography
-+blueprint-scaffolding
 +blueprint-debug
 +blueprint-interaction
 
-.clear
-  +clearfix
+// =============== Constants =======================
+!table_even = #EBEBEB
+!table_odd = #DBE7FF
+!border_lightblue = 1px "solid" #DFE2FF
+!grey_ultralightest = #fcfcfc
+!grey_ultralight = #f9f9f9
+!grey_lightest = #f4f4f4
+!grey_lighter = #eaeaea
+!grey_light = #DFDFDF
+!grey = #bcbcba
+!grey_dark = #7c7c7c 
+!grey_darker = #636362
+!orange_light = #FFCA6F
+!orange = #FF981F
+!green_ultralight = #deffdd
+!green_lightest = #DFFFE0
+!green_light = #A4EFA7
+!green_dark = #158F00
+!yellow_lightest = #FFFBCF
+!yellow_light = #FFF79F
+!blue_lightest = #DFE2FF
+!blue_light = #AFB6FF
+!blue_dark = #3b4991
+
+!china1 = #141936
+!china2 = #003A85
+!china3 = #BCBFD6
+!china4 = #E4DCE7
+!china5 = #F9F8F9
+
+!header_border_lightblue = 1px "solid" #DFE2FF
+!h2_border_width = 1px 0 1px 0
+!h2_font_size= 1.4em
 
 
-
-//+blueprint-buttons
-//+blueprint-form
-//+blueprint-form-layout
 =debug(!color = "red")
   :border= !color 1px solid
 
-    
-
+=sn-btn(!bg-color,!color)
+  +border-radius(11px)
+  :background= !bg-color url('/images/add-grey-12.png') 7px 6px no-repeat
+  :padding 5px 14px 5px 24px
+  :margin-left 10px
+  :color= !color
+  :text-decoration none
+  :border= solid 1px !color
+  :color #333
+  &:hover
+    background-color= !bg-color *2  
 
 
 

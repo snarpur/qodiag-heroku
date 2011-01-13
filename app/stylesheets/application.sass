@@ -1,61 +1,30 @@
 @import partials/base.sass
+@import partials/icons.sass
+@import partials/form.sass
 
-
-// =============== Constants =======================
-!table_even = #EBEBEB
-!table_odd = #DBE7FF
-!border_lightblue = 1px "solid" #DFE2FF
-!grey_ultralightest = #fcfcfc
-!grey_ultralight = #f9f9f9
-!grey_lightest = #f4f4f4
-!grey_lighter = #eaeaea
-!grey_light = #DFDFDF
-!grey = #bcbcba
-!grey_dark = #7c7c7c 
-!grey_darker = #636362
-!orange_light = #FFCA6F
-!orange = #FF981F
-!green_ultralight = #deffdd
-!green_lightest = #DFFFE0
-!green_light = #A4EFA7
-!green_dark = #158F00
-!yellow_lightest = #FFFBCF
-!yellow_light = #FFF79F
-!blue_lightest = #DFE2FF
-!blue_light = #AFB6FF
-!blue_dark = #3b4991
-f9f9f9
-
-
-!header_border_lightblue = 1px "solid" #DFE2FF
-!h2_border_width = 1px 0 1px 0
-!h2_font_size= 1.4em
 
 
 // =============== General =======================
-#wrapper
-  +linear-gradient(color-stops(#dfdfdf, #ffffff))
-
-#container
-  +container
-  :background-color #fff
-  +box-shadow()
-  :border= 1px "solid" !grey_light 
-  :border-width 0 1px
+body
+  :font-family 'Droid Sans', arial, serif
+  :font-size 12px
 
 #header 
   position: relative
   :border-bottom= 1px solid !green_lightest
-  :margin-bottom 22px
+  :height 30px
+  :background-color #000
   h2
-    :margin 10px  
-    +replace-text("logo01.jpg")
-    :height 50px
-    :width 187px
-  #login
-    :position absolute
-    :top 20px
-    :right 10px
+    +replace-text("logo02.png")
+    :width 45px
+    :height 29px
+
+#container
+  +container
+  :margin 0 50px
+  :background-color #fff
+
+  :border-width 0 1px
 
 #content
   +clearfix
@@ -63,8 +32,8 @@ f9f9f9
   +append(1)
   :margin-bottom 40px
   
-#content table
-  +alternating-rows-and-columns(!table_even, !table_odd,#222)
+//#content table
+//  +alternating-rows-and-columns(!table_even, !table_odd,#222)
 
 hr.break
   :visibility hidden
@@ -99,202 +68,89 @@ ul
     +prepend(14)
 
 
-.icon-container
-  +clearfix
-  
-.icon
-  :float left
-  :padding 3px 3px 3px 22px
-  :background-color= !blue_light
-  :border= 2px solid !blue_lightest
-  :color #333
-  :text-decoration none
-  :font-weight bold
- 
-.add-user
-  :background url('../img/icons/16x16/userplus32.png') 3px 3px no-repeat
- 
+
 .clear
   +clearfix
   :visibility hidden
-// =============== FORMS =======================
-.family-registration
-  +clearfix
-  h3
-    :color= !grey_darker
-    :padding 5px
-    :background-color= !blue_lightest
-    :border= !blue_light 1px solid
-  p
-    :margin 0
-    :font-weight bold
 
-label
-  :font-weight bold
-  :color #666
-
-fieldset h2
-  :font-size 1.3em
-  :font-weight bold
-  :display block
-  :border-bottom= 1px "solid" !grey_lightest 
-
-.frm-section-hrz
-  :float left
-  :margin-right 6px
-  h4
-    :padding 2px 5px
-    :color= !blue_dark
-    :background-color= !grey_lightest
-    :border-right 5px solid #fff
-
-.frm-section
-  :padding-top 2px
-  :margin-bottom 20px
-  :position relative
-  h4
-    :padding 2px 5px
-    :color= !blue_dark
-    :background-color= !grey_lightest
-    :border-right 5px solid #fff
-
-
-.field
-  :margin-left 7px
-  :padding-top 2px
-  :padding-bottom 3px
-  +clearfix
-  .field
-    +prepend(3)
-  span
-    :margin-bottom 2px
-  label
-    +column(3)
-
-   
-.inp-rdo 
-  label
-    :float none
-  span
-    :display block
-  input
-    :margin 0
-  
-.inp-txt 
-  span:nth-child(3n+0)
-    +prepend(3)
-    display: block
-    margin-top: 2px
-  input
-    +span(6)
-    
-.inp-btn  
-  :margin-top 15px
-  :margin-left 5px
-  :padding-top 10px
-  :border-top= 1px !grey_light solid
-  span
-    //:float right
-
-input[type='submit']
-  :border-width 0
-    
-#person_full_date
-  :width 140px
-#person_cpr
-  :width 73px
   
 //------ register spouse ------- 
+.spouse
+  :margin 0 2em 
 .added-spouse
-  :border= 2px solid !green_light
-  :background-color= !green_lightest
-  :margin-top 10px
   :position relative
-  +span(13)
-  .inp-btn
-    :margin-left 0
-    :border-top= 1px solid !green_light
-    :background-color #F0FFEF
-    :padding 7px 10px 7px 0
-  .mask
-    :background-color #fff
-    :position absolute  
-    :top 0
-    :bottom 0
-    :width 100%
-    +opacity(0.9)
-    b
-      :font-size 1.6em
-    a
-      :margin-left 4px
-    p
-      :margin 11px 0 0 18px
-  em
-    :position absolute
-    :top 5px
-    :left 12px
+  :margin 1em 0
+  :padding .5em 0
+  :border-bottom 1px dashed #999
+  > div
+    :margin 0 2em
 
-.added-spouse.status-closed
-  a.close-spouse
-    :display none
-  .inp-btn 
-    :border none
-    :margin 0
-
-  
-.added-spouse.status-open
-  a.edit-spouse
-    :display none
-  em
-    :display none
-
-.added-member
-  :display none
-  :position relative
-  :margin 8px 0 3px 7px
-  :border= 2px solid !yellow_light
-  :background-color= !yellow_lightest
-  +clearfix
-
-.added-member p
-  :font-weight bold
-  :color= !green_dark
-  :margin 7px
-
-.added-member span
-  :position absolute
-  :top 4px
-  :right 4px
-  
-.added-member a.button
-  :margin-left .5em
-
-
-
-.reg-member div a
-  :margin-left 10px
-  :cursor pointer
+.added-spouse:first-child
+  :border-top 1px dashed #999
 
 //------ register sibling ------- 
 .siblings_list
   +clearfix
   :margin-bottom 4px
   ul
-    +column(4)
+    +column(5)
+    :border= 1px solid !china5
+    :border-width 0 1px 0 1px
   h4
     :margin-bottom 2px
-    :border-bottom= !grey_lightest solid 1px
-    :font-size 1.1em
-    :background-color= !grey_light
-    :padding 2px
+    :padding 6px 0 12px 28px
+    :color= !china2
   li
-    span
-      :display block
-      :padding-left 3px
-      :border-bottom= !grey_light dotted 1px
-  
+    :color #333
+    p
+      :margin 0 3px 2px 3px
+      :padding-bottom 2px
+      :border-bottom= !china5 1px solid
+    em
+      :float right
+  a
+    +sn-btn(!china1,!china3)
+
+.siblings_list ul li:first-child
+  :background-color= !china5
+  :margin-bottom 20px
+
+.siblings_list li:last-child
+  :padding 20px 0 8px 10px
+
+
+#full_sibling_list h4
+  :background url('/images/fullsibling-16.png') 5px 5px no-repeat
+#half_sibling_mother_list h4
+  :background url('/images/halfsibling-16.png') 5px 5px no-repeat
+#half_sibling_father_list h4
+  :background url('/images/halfsibling-16.png') 5px 5px no-repeat
+#foster_sibling_list h4
+  :background url('/images/fostersibling-16.png') 5px 5px no-repeat
 .select-sibling
   :margin-bottom 10px
+
+// =============== GUARDIAN ==============
+.guardians
+  .notice
+    p 
+      :margin-left 20px
+    a
+      +sn-btn(!china5,!china3)
+
+table
+  :width 100%
+  th 
+  th, td
+    :padding 2px 2px 2px 8px
+  th
+    :color= !china1
+    :border-bottom= 1px solid !grey_light
+  td
+    :color= !grey_dark
+  td:nth-child(1n+3)
+    :float right
+    :margin-left 11px
 
 
 // =============== FAMILY OVERVIEW ==============
@@ -365,22 +221,44 @@ input[type='submit']
 // =============== FAMILY REGISTRATION ==============
 
 ul.wizard-nav 
+  :font-weight normal
   +horizontal-list(0)
+  :margin-top 20px
   :margin-bottom 30px
   li
-    :border= !border_lightblue
-    :text-align center
-    :margin-right 18px
-  li.active
-    :background-color= !grey_lightest
+    :padding 0 10px 0 24px
+    :margin-left -31px
+    :width 140px
+  li:first-child
+    :margin-left 0
+  p
+    :position relative
+    :background url('/images/wizard-bg-left.png') no-repeat
+    :padding 8px 8px 6px 23px
+  b,a
+    :color #fff
+    :display block
   b
-    :display block
-    :font-size 1.2em
-    :border-bottom= !border_lightblue
-    :background-color= !orange_light
-    +span(3)
-  i
-    :display block
+    +border-radius(12px)
+    :line-height 8px
+    :text-align center
+    :font-size .8em
+    :padding 3px
+    :height 8px
+    :width 8px
+    :border solid 1px #fff
+  a 
+    :position absolute
+    :right -15px
+    :top 0
+    :width 85px
+    :padding 8px 15px 7px 0
+    :background url('/images/wizard-bg-right.png') 100% 0 no-repeat
+    :text-decoration none
+  li.active a
+    :background-position 100% -35px
+  li.active p
+    :background-position 0 -35px
 
 // =============== Toggle classes ==============
 .hidden, .off

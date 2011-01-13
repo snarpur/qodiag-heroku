@@ -3,47 +3,35 @@
   %head
     %meta{ :content => "text/html;charset=UTF-8", "http-equiv" => "content-type" }
     = yield(:head) 
-    
-    = stylesheet_link_tag "compiled/application.css"
-    /= stylesheet_link_tag "../javascripts/jquery-ui/css/smoothness/jquery-ui-1.8.2.custom.css"
+    = csrf_meta_tag
+    = stylesheet_link_tag "../javascripts/jquery-ui/css/smoothness/jquery-ui-1.8.2.custom.css"
     = stylesheet_link_tag "buttons.css"
+    = stylesheet_link_tag "compiled/application.css"
+    = stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Droid+Sans:regular,bold'
+
 
 
     =javascript_include_tag :defaults
     =javascript_include_tag 'action_items'
     =javascript_include_tag 'action_elements'
+    =javascript_include_tag 'jquery.create.js','init.js'
+    =javascript_include_tag 'InFieldLabels/src/jquery.infieldlabel.js'
+    =javascript_include_tag 'pixelmatrix/jquery.uniform.js'
     =javascript_tag do
       = yield(:jstemplates) 
 
-
-
-
-
-    
-    
-    
-    
-    
     %title
       Patients:
       = controller.action_name
+
   %body
     %div#wrapper
+      %div#header
+        %h2 Snarpur í vinnslu
       %div#container
-        %div#header
-          %h2 Snarpur í vinnslu
-          /- if !flash.empty?
-          %span= flash[:notice]
-            
-          / %div#login
-          /   - if user_signed_in?
-          /     %p=  "you are now logged in as: #{current_user.email}"
-          /     = link_to 'Sign out', destroy_user_session_path, :class => "button small green"
-          /   - else
-          /     = link_to 'Sign up as User', new_user_registration_path, :class => "button small green" 
-          /     = link_to 'Sign in as User', new_user_session_path, :class => "button small green" 
         %div#content
           = yield
       %div#footer
         %span 
           Snarpur 2010 | Fallegt virkar betur
+    %div#dialog

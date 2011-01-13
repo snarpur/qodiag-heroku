@@ -1,15 +1,18 @@
+-if locals[:parents].kind_of?(Array)
+  -parents = locals[:parents]
+-else
+  -parents = [locals[:parents]]
+ 
 -f = locals[:form_builder]
--parent = locals[:parent]
--spouses = parent.spouses
--spouses.delete(@patient.opposite_parent(locals[:parent]))
-.frm-section-hrz.nested-item.nested-context
+/ -spouses.delete(@patient.opposite_parent(locals[:parent]))
+.frm-section.nested-item.nested-context
   %h4 Foreldri
   .field.inp-rdo
-    -spouses.each do |spouse|
+    -parents.each do |parent|
       %span
-        =radio_button_tag "second_parent", spouse.id, false, :class => "action_element {name: 'add_second_parent', id:'#{spouse.id}'}"
-        =label_tag "#{spouse.firstname} #{spouse.lastname}"
-        -locals = {:form_builder => f, :parent_id => spouse.id}
+        =radio_button_tag "second_parent", parent.id, false, :class => "action_element {name: 'add_second_parent', id:'#{parent.id}'}"
+        =label_tag "#{parent.firstname} #{parent.lastname}"
+        -locals = {:form_builder => f, :parent_id => parent.id}
         -content_for :jstemplates do
-          != "add_second_parent[#{spouse.id}] = '#{escape_javascript render 'people/siblings/second_parent_form', :locals => locals}';"
+          != "add_second_parent[#{parent.id}] = '#{escape_javascript render 'people/siblings/second_parent_form', :locals => locals}';"
     .second_parent

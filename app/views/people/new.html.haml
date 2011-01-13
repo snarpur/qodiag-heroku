@@ -1,4 +1,4 @@
-%div.family-registration
+%div{:class => "family-registration #{@wizard.partial}"}
   =render "shared/wizard_navigation"
   =render "people/#{@wizard.partial}/#{@wizard.partial}"
 

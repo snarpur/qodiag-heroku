@@ -5,8 +5,11 @@
 
 .frm-section.nested-context
   - other_parent = t("terms.#{get_opposite_parent_type(@wizard.current_step)}")
-  %h4= "#{other_parent} barns"
-  %p= "#{@patient.opposite_parent(@person).firstname} #{@patient.opposite_parent(@person).lastname} er:"
+  - other_parent_name = "#{@patient.opposite_parent(@person).firstname} #{@patient.opposite_parent(@person).lastname}"
+  %h4 
+    ="#{other_parent} barns"
+  %i
+    =other_parent_name
   =f.hidden_field :relation_id, :value => @patient.opposite_parent(@person).id
   =f.hidden_field :name, :value => "spouse"
   -actions = {:item => "parents_relationship_period_end", :names => ["parents_status_off", "parents_status_on"]}

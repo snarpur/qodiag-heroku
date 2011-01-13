@@ -62,6 +62,9 @@ class Person < ActiveRecord::Base
     def spouse
       find(:all, :conditions => "name = 'spouse'")
     end
+    def guardians
+     find(:all, :conditions => "name = 'guardian'")
+    end
   end  
   
   belongs_to :address    
@@ -73,7 +76,7 @@ class Person < ActiveRecord::Base
   accepts_nested_attributes_for :inverse_relations, :allow_destroy => true
   accepts_nested_attributes_for :address, :allow_destroy => true
 
-  attr_accessible :firstname, :lastname, :sex, :ispatient, :dateofbirth, :cpr, :workphone, :mobilephone, :occupation, :workplace, :full_date, :address_id,
+  attr_accessible :firstname, :lastname, :sex, :ispatient, :dateofbirth, :cpr, :workphone, :mobilephone, :occupation, :workplace, :full_cpr, :address_id,
                   :relations_attributes, :inverse_relations_attributes, :relationships_attributes, :inverse_relationships_attributes, :address_attributes
   
   validates_associated :relationships, :address
@@ -90,25 +93,24 @@ class Person < ActiveRecord::Base
       !relationships.select{|v|v.name == "guardian" || "parent"}.empty? and occupation.try("empty?")
   end
   
-  def full_date
+  def full_cpr
     unless self.dateofbirth.nil?
       date = self.dateofbirth
       day = "%02d" % date.mday 
       month = "%02d" % date.month
       year =  date.year.to_s[-2..-1].to_i
-      self.full_date = "#{day}#{month}#{year}"
+      self.full_cpr = "#{day}#{month}#{year}#{self.cpr}"
     end
   end 
   
-  def full_date=(date)
-
-    unless date.empty?
-      day = date[0..1]
-      month = date[2..3]
-      year = date[4..5].to_i > 10 ? "19" << date[4..5] : "20" << date[4..5]
+  def full_cpr=(cpr)
+    unless cpr.empty?
+      day = cpr[0..1]
+      month = cpr[2..3]
+      year = cpr[4..5].to_i > 10 ? "19" << cpr[4..5] : "20" << cpr[4..5]
       self.dateofbirth = Date.civil(year.to_i,month.to_i,day.to_i)
+      self.cpr = cpr[6..9]
     end
-    self.dateofbirth = Date.new
   end
   
   def mother
@@ -137,18 +139,18 @@ class Person < ActiveRecord::Base
     full_siblings
   end
   
+  def non_parent_guardians
+    self.inverse_relations.guardians - self.parents
+  end
+  
   def half_siblings(parent)
     parent.relations.children - self.opposite_parent(parent).relations.children
   end
   
   def foster_siblings
-    spouses = self.mother.spouses + self.mother.spouses
-    spouses.delete(self.father)
-    spouses.delete(self.mother)
-    foster_siblings = []
-    spouses.each do |i|
-     foster_siblings << i.relations.children
-    end
+    blood_related = self.parents.map {|i| i.relations.children}.flatten
+    all = (self.mother.spouses + self.father.spouses).map {|i| i.relations.children}.flatten
+    all - blood_related
   end
 
   def is_person_parent(person)

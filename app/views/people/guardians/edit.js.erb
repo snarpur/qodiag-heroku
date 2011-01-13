@@ -1,0 +1,7 @@
+$("#dialog").append("<%=escape_javascript(render('people/guardians/guardian_form'))%>")
+$("#dialog").dialog({
+    modal: true,
+    close: function(){$(this).empty()},
+    width: 600,
+    resizable:false
+});

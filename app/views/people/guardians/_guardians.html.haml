@@ -1,0 +1,19 @@
+- content_for :jstemplates do
+  != "var add_guardian = '#{escape_javascript render 'people/guardians/guardian_form'}';" 
+  
+- guardians = @patient.non_parent_guardians
+.notice
+  %p 
+    Ef aðrir en foreldrar eru með forræði skal skrá það hér
+    = link_to t('actions.add_guardian'), '#add_guardian', :class => "action_element {name : 'add_guardian'}"
+%h3 Forræðishafar
+%table
+  %thead
+    %tr
+      %th Nafn
+      %th Tók við forræði dags.
+      %th{:colspan => 2}
+  %tbody
+    =render :partial => "people/guardians/guardian", :collection => guardians
+     
+

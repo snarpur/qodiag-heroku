@@ -1,0 +1,11 @@
+-guardian ||= locals[:guardian]
+-guardianship = guardian.relationships.guardian(@patient.id).first
+%tr{:id => "guardian-#{guardian.id}"}
+  %td 
+    ="#{guardian.firstname} #{guardian.lastname}"
+  %td
+    = guardianship.start.strftime('%B %Y') unless guardianship.start.nil?
+  %td
+    =link_to 'Destroy', guardian, :method => :delete, :remote => true, :class => 'icon-12-c2 delete'
+  %td
+    =link_to 'Edit', edit_person_path(guardian), :remote => true, :class => 'icon-12-c2 edit' 

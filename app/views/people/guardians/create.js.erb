@@ -1,0 +1,4 @@
+$("#dialog").dialog('close');
+$(".guardians table").append("<%=escape_javascript(render('people/guardians/guardian', :locals => {:guardian => @person}))%>");
+//Highlight new sibling
+$("table tr:last").effect("highlight",1000)

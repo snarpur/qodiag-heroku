@@ -1,6 +1,7 @@
 .button, .button:visited
 {
  background: #222 url(img/buttons/overlay-button.png) repeat-x;
+ border-width:0;
  border-bottom: 1px solid rgba(0,0,0,0.25);
  color: #fff;
  cursor: pointer;
@@ -108,3 +109,42 @@
 {
  background-color: #fc9200;
 }
+/* CHINA PALETTE*/
+.china1.button, .yellow.button:visited
+{
+ background-color: #141936;
+}
+.china1.button:hover
+{
+ background-color: #141936;
+}
+.china2.button, .yellow.button:visited
+{
+ background-color: #003a85;
+}
+.china2.button:hover
+{
+ background-color: #003a85;
+}
+.china3.button:hover
+{
+ background-color: #bcbfb6;
+}
+.china4.button:hover
+{
+ background-color: #e4dce7;
+}
+.china4.button:hover
+{
+ background-color: #e4dce7;
+}
+.china5.button:hover
+{
+ background-color: #faf8f9;
+}
+.china5.button:hover
+{
+ background-color: #faf8f9;
+}
+
+

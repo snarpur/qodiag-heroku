@@ -1,7 +1,7 @@
 -half_sibling_options = {:partial => sibling_partial("first_parent_form")}
 -content_for :jstemplates do
-  != "var add_father = '#{escape_javascript render 'people/siblings/first_parent_form', :locals => {:parent => @father, :type => 'half_sibling'}}';"
-  != "var add_mother = '#{escape_javascript render 'people/siblings/first_parent_form', :locals => {:parent => @mother, :type => 'half_sibling'}}';"
+  != "var add_father = '#{escape_javascript render 'people/siblings/add_sibling', :locals => {:parents => [@father]}}';"
+  != "var add_mother = '#{escape_javascript render 'people/siblings/add_sibling', :locals => {:parents => [@mother]}}';"
 
 
 .nested-context.nested-item

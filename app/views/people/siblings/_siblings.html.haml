@@ -3,27 +3,23 @@
 -@parents = @patient.parents
 -@mother= @parents.select{|i| i[:sex] == "female"}.first
 -@father = @parents.select{|i| i[:sex] == "male"}.first
+-spouses = @parents.map {|p| p.spouses}.flatten - @parents
 
 
 -content_for :jstemplates do
   != "var add_second_parent = {};"
 
 -content_for :jstemplates do
-  != "var add_full_sibling = '#{escape_javascript render 'people/siblings/add_sibling', :locals => {:type => 'full_sibling'}}';"
-  != "var add_half_sibling = '#{escape_javascript render 'people/siblings/add_sibling', :locals => {:type => 'half_sibling'}}';"
-  != "var add_foster_sibling = '#{escape_javascript render 'people/siblings/add_sibling', :locals => {:type => 'foster_sibling'}}';"
+  != "var add_full_sibling = '#{escape_javascript render 'people/siblings/add_sibling', :locals => {:parents => [@mother,@father], :type => 'full_sibling'}}';"
+  -unless spouses.empty?
+    != "var add_half_sibling_mother = '#{escape_javascript render 'people/siblings/add_sibling', :locals => {:parents => [@mother], :type => 'half_sibling'}}';"
+    != "var add_half_sibling_father = '#{escape_javascript render 'people/siblings/add_sibling', :locals => {:parents => [@father],:type => 'half_sibling'}}';"
+    != "var add_foster_sibling = '#{escape_javascript render 'people/siblings/add_sibling', :locals => {:parents => spouses, :type => 'foster_sibling'}}';"
   
 
 
--add = t('actions.add')
 .sibling_select.nested-context.family-registration
-  
-  =render 'people/siblings/siblings_list'
-  
-  .select-sibling
-    = link_to "#{add} #{t('terms.sibling')}", '#added_sibling', :class => "action_element {name: 'add_full_sibling'} button small blue"
-    = link_to "#{add} #{t('terms.half_sibling')}", '#added_half_sibling', :class => "action_element {name: 'add_half_sibling'} button small blue"
-    = link_to "#{add} #{t('terms.foster_sibling')}", '#added_half_sibling', :class => "action_element {name: 'add_foster_sibling'} button small blue"
+  =render 'people/siblings/siblings_list',  :locals => {:render_one => spouses.empty?}
   .added_sibling
   
 

@@ -1,0 +1,26 @@
+= form_for @person, :remote => true do |f|  
+ 
+  .frm-section.nested-context
+    %h4= t('terms.guardianship')
+    -guardianship = get_or_create_guardian_relationship(@person,@patient)
+    = guardianship.inspect
+    =f.fields_for :relationships, guardianship  do |guardian_relationship|
+      =guardian_relationship.text_field :status, :value => 1
+      =render "people/parents/guardian_relationship", :locals => {:form_builder => guardian_relationship }
+      =render "people/parents/guardian_relationship_period", :locals => {:form_builder => guardian_relationship }
+
+  =render "people/basic_person_information", :f => f
+  .frm-section
+    -address = @person.address.nil? ? @person.build_address : @person.address
+    %h4= t('terms.contact_information')
+    =f.fields_for :address, address do |address_form|
+      =render "addresses/address", :f => address_form
+      =render "people/phone_information", :f => f
+  %hr.clear
+  .field.inp-btn
+    %ul
+      %li
+        %button.x-small.red.button.cancel
+          ="#{t('actions.cancel')}"  
+      %li
+        = f.submit :value => t('actions.save'),  :class => 'button green x-small'

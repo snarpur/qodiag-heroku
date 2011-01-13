@@ -6,13 +6,14 @@
 - content_for :jstemplates do
   != "var guardian_relationship = '#{escape_javascript render 'people/parents/guardian_relationship', :locals => {:form_builder => f, :suffix => 'NEW_RECORD', :level => 1}}'"
 
-.field.inp-rdo
+.field.inp-rdo.parent-guardianship
   %span
-    =f.radio_button :status, '1', :class => "add_nested_item#{level} {item: '#{item}'}"
+    =f.radio_button :status, '1'
     =f.label :status, t("relationship.is_guardian")
   %span
-    =f.radio_button :status, '0', :class => "remove_nested_item {item: '#{item}'}"
+    =f.radio_button :status, '0'
     =f.label :status, t("relationship.not_guardian")
-  .guardianship
-    =render "people/parents/guardian_relationship", :locals => {:form_builder => f}
+
+= render 'people/parents/guardian_relationship', :locals => {:form_builder => f}
+= render 'people/parents/guardian_relationship_period_end', :locals => {:form_builder => f}
   

@@ -1,12 +1,12 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.0.beta4'
+gem 'rails', '3.0.3'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 
-gem "haml", "3.0.4"
+gem "haml", "3.0.25"
 gem "compass", ">= 0.10.2"
 gem 'mysql', '2.8.1'
 

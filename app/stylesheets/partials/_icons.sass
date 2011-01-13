@@ -1,0 +1,47 @@
+!icon-16-c2 = '/images/16/color2/'
+!icon-12-c2 = '/images/12/color2/'
+
+=icon(!size,!color,!action = true)
+  :display block
+  :width !size+px
+  :height !size+px
+  :padding 1px
+  :text-indent -99999px
+  @if !action == true
+    :cursor pointer
+    :opacity 0.8
+    &:hover 
+      :opacity 1 
+  
+=icon-image(!type,!name) 
+  :background url(!type+!name+'.png') 0 0 no-repeat
+ 
+.icon-16-c2
+  +icon(16,'color2')
+  &.delete
+    +icon-image(!icon-16-c2,'trash')
+  &.edit
+    +icon-image(!icon-16-c2,'edit')
+
+
+.icon-12-c2
+  +icon(12,'color2')
+  &.delete
+    +icon-image(!icon-12-c2,'trash')
+  &.edit
+    +icon-image(!icon-12-c2,'edit')
+
+.icon.partner
+  :background url('/images/partner.png') no-repeat
+  :padding-left 45px
+
+.icon.delete
+  :padding 6px 0 4px 20px
+  :background url('/images/trash.png') 3px 3px no-repeat
+  :color #bcbfd6
+  :opacity 0.7
+  :font-size .9em
+  :cursor pointer
+  
+.icon.delete:hover
+  :opacity 1

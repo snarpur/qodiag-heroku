@@ -35,8 +35,11 @@ class PeopleController < ApplicationController
   def edit
     @person = Person.find(params[:id])
     @wizard = session[:wizard]
-    @wizard.step(Integer(params[:step]))
     @patient = get_patient(@wizard)
+    respond_to do |format|
+      format.html 
+      format.js {render serve_js('edit')}
+    end
   end
 
   # POST /people  
@@ -45,17 +48,13 @@ class PeopleController < ApplicationController
     flash[:notice] = "Thanks for commenting!"
     respond_to do |format|
       if @person.save
-
         if @person.ispatient
           session[:wizard] = Wizard.new(@person.id)
         end
         if session[:wizard]
-          Rails.logger.debug "xx - in if session[wizard]"
-          #format.html {redirect_to url_for_next_step(params[:next_step])}
           format.html {redirect_to url_for_next_step }
-          format.js
+          format.js {render serve_js('create')}
         else
-           Rails.logger.debug "xx - in else session[wizard]"
           format.html { redirect_to(@person, :notice => 'Relationship was successfully created.') }
         end
       else
@@ -63,7 +62,6 @@ class PeopleController < ApplicationController
         format.html { render :action => "new", :step => session[:wizard].current_step_no}
         format.xml  { render :xml => @person.errors, :status => :unprocessable_entity }
       end
-
     end
   end
 
@@ -71,11 +69,12 @@ class PeopleController < ApplicationController
   # PUT /people/1.xml
   def update
     @person = Person.find(params[:id])
-
+    logger.debug "xx - params #{params[:person].inspect}"
     respond_to do |format|
       if @person.update_attributes(params[:person])
-        format.html { redirect_to(@person, :notice => 'Person was successfully updated.') }
+        format.html { redirect_to(edit_person_path(@person), :notice => 'Person was successfully updated.') }
         format.xml  { head :ok }
+        format.js {render serve_js('update')}
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @person.errors, :status => :unprocessable_entity }
@@ -92,6 +91,7 @@ class PeopleController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(people_url) }
       format.xml  { head :ok }
+      format.js {render serve_js('delete')}
     end
   end
   
@@ -118,6 +118,14 @@ class PeopleController < ApplicationController
   
   def get_patient(wizard)
     patient = wizard.patient_id == nil ? Person.new : Person.find(wizard.patient_id)
+  end
+  
+  def serve_js(action)
+    if session[:wizard]
+      "people/#{session[:wizard].partial}/#{action}.js.erb"
+    else
+      "create.js.erb"
+    end
   end
   
 end

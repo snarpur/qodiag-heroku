@@ -1,6 +1,3 @@
-
-- step_translation = t("terms.#{@wizard.current_step}")
-%h3="Skrá #{step_translation}"
 = form_for @person do |f|
   / - if @person.errors.any?
   /    #error_explanation
@@ -25,11 +22,11 @@
     %span
       = f.text_field :lastname
   .field.inp-txt
-    = f.label :dateofbirth, t('person.cpr')
+    = f.label :full_date, t('person.cpr')
     %span
-    =f.text_field :full_date
-    %b -
-    = f.text_field :cpr
+      =f.text_field :full_cpr
+    / %b -
+    / = f.text_field :cpr
 
     
   %input{:type => "hidden", :name => "next_step", :value  => "#{@wizard.next_step_no}"}

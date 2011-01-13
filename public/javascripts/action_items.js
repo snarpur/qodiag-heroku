@@ -7,7 +7,7 @@ snarpur["action_items"] =
     container: "",
     item: "",
     //multiple false allows only one nested item for current association
-    //multiple false allows many nested items for current association
+    //multiple true allows many nested items for current association
     multiple: false,
     replace: false
   },
@@ -16,9 +16,7 @@ snarpur["action_items"] =
     var data = $.extend({}, snarpur.action_items.item_config(item), $.metadata.get(element));
     data.elements = {};
     var template = data.id == undefined ? data.item : data.item+"["+data.id+"]"
-    co("data :: ", data)
     data.template = eval(template);
-      
     data.elements.trigger = element;
     data.elements.nested_context = snarpur.action_items.get_nested_context(data);
     data.elements.container = snarpur.action_items.get_container(data);
@@ -56,11 +54,6 @@ snarpur["action_items"] =
       return $(item.nested_item+":last", item.elements.container);   
   },
   
-  guardian_relationship:
-  {
-    nested_context: false, 
-    container: ".guardianship"
-  },
   spouse_relationship:
   {
     container: ".spouse", 
@@ -86,14 +79,14 @@ snarpur["action_items"] =
   {
     nested_context: "",
     container: "#existing_parent_address" 
-    //multiple: fal
   },
-  add_full_sibling:{container: ".added_sibling", replace: true},
-  add_half_sibling:{container: ".added_sibling", replace: true},
-  add_foster_sibling:{container: ".added_siblings", replace: true},
+  add_full_sibling:{container: "#dialog", multiple: true},
+  add_half_sibling_mother:{container: "#dialog", multiple: true},
+  add_half_sibling_father:{container: "#dialog", multiple: true},
+  add_foster_sibling:{container: "#dialog", multiple: true},
   add_mother:{container: "#second_parent_select", replace: true},
   add_father:{container: "#second_parent_select", replace: true},
   add_second_parent:{replace: true},
-  add_parent_select:{container: ".added_siblings", replace: true}
+  add_guardian:{container:'#dialog', multiple: true}
 
 }

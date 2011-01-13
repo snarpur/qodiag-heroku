@@ -18,11 +18,11 @@ module PeopleHelper
   end
   
   def get_or_create_guardian_relationship(person,patient)
-    guardianship = person.relationships.select{|i| i['name'] == 'guardian' && i['relation_id'] == patient.id}
+    guardianship = person.relationships.guardian(patient.id)
     if guardianship.empty? 
-      person.relationships.build
+      person.relationships.build(:relation_id => patient.id, :name => 'guardian')
     else
-      guardianship
+      guardianship.first
     end
   end
   
@@ -38,6 +38,7 @@ module PeopleHelper
     end
     spouses
   end
+  
   def sibling_partial(partial)
     "people/siblings/#{partial}"
   end
@@ -56,7 +57,8 @@ module PeopleHelper
   
   def get_or_create_parents_relationship(patient,person)
     opposite_parent = patient.opposite_parent(person)
-    relationship = person.relationships.select{|attributes| attributes['person_id'] == opposite_parent.id || attributes['relation_id'] == opposite_parent.id}
+     logger.debug "xx - opposite parent #{opposite_parent.inspect}"
+    relationship = person.spouse_relationships{|attributes| attributes['person_id'] == opposite_parent.id || attributes['relation_id'] == opposite_parent.id}
     relationship = relationship.empty? ? person.relationships.build : relationship.first 
   end
   

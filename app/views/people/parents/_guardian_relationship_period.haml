@@ -1,0 +1,5 @@
+- f ||= locals[:form_builder]
+.field.inp-sel
+  =f.label :start, t('terms.guardianship_start')
+  %span
+    =f.date_select :start, :include_blank => true, :discard_day => true

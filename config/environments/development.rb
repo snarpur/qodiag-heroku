@@ -18,4 +18,5 @@ Snarpur::Application.configure do
   config.action_mailer.raise_delivery_errors = false
   
   config.active_record.colorize_logging = true
+  config.active_support.deprecation = :log
 end
