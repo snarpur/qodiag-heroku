@@ -25,9 +25,6 @@ class Person < ActiveRecord::Base
       find(:all, :conditions => "name = 'guardian' AND relation_id = #{id}")
     end
   
-    def spouse_as_parent(id)
-      find(:all, :conditions => "relation = 'spouse'")
-    end
   end 
   
   has_many :inverse_relationships, :class_name => "Relationship", :foreign_key => "relation_id" do
@@ -63,7 +60,7 @@ class Person < ActiveRecord::Base
       find(:all, :conditions => "name = 'spouse'")
     end
     def guardians
-     find(:all, :conditions => "name = 'guardian'")
+     find(:all, :conditions => "name = 'guardian' AND end IS NULL")
     end
   end  
   
@@ -88,7 +85,6 @@ class Person < ActiveRecord::Base
   end
   
   def presence_of_parent_occupation
-    #logger.debug_variables(binding)
     errors.add(:occupation, "má ekki vera autt") if
       !relationships.select{|v|v.name == "guardian" || "parent"}.empty? and occupation.try("empty?")
   end

@@ -1,8 +1,7 @@
 -f ||= locals[:form_builder]
-.added-spouse.nested-item.nested-context
-  %span.icon.delete 
-    Eyða
-  = f.hidden_field :name, :value => 'spouse' 
+=f.object.inspect
+= f.object.relation.inspect
+.added-spouse.nested-item
   - spouse = f.object.relation.nil? ? f.object.build_relation : f.object.relation
   .spouseform
     = f.fields_for :relation, spouse do |spouse_form|
@@ -14,12 +13,6 @@
         =spouse_form.label :lastname, t('person.lastname')
         %span
           =spouse_form.text_field :lastname
-      .field
-        - content_for :jstemplates do
-          -options = {:form_builder => f, :suffix => 'NEW_RECORD', :level => 2}
-          != "var added_spouse_relationship_period_start = '#{escape_javascript render 'people/parents/spouse_relationship_period_start', :locals => options}'"
-          != "var added_spouse_relationship_period_end = '#{escape_javascript render 'people/parents/spouse_relationship_period_end', :locals => options}'"
-          
-    
-      -actions = {:item => "added_spouse_relationship_period", :names => ["spouse_status_off","spouse_status_on"]}
-      =render "people/parents/spouse_status_buttons", :locals => {:form_builder => f, :actions => actions, :suffix => 'NEW_RECORD', :level => 2}
+    =render "people/parents/relationship_status", :locals => {:form_builder => f}
+    =render "people/parents/relationship_start", :locals => {:form_builder => f}
+    =render "people/parents/relationship_end", :locals => {:form_builder => f}

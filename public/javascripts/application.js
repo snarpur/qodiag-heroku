@@ -19,7 +19,6 @@ var snarpur = {
         
         $(".action_element").live("click",function()
         {
-          
            var data = {},
                element = this
                data = $.metadata.get(element),
@@ -31,7 +30,6 @@ var snarpur = {
              obj.add_to_action_elements(data, full_action);
              obj.add_to_action_items(data);
              obj[full_action].call(obj,element);
-             //obj.add_nested_item(element)
            }
            else
            {
@@ -40,6 +38,7 @@ var snarpur = {
                snarpur.nested_input[k].call(snarpur.nested_input,element);
              }); 
            }
+           console.info(data)
         });
       },
     },
@@ -51,7 +50,6 @@ var snarpur = {
     },
     add_to_action_items: function(data)
     {
-
         var template = _.rest(data.name.split("_"),1).join("_"),
             item_config = {container: "."+template, item: template};
         if(snarpur.action_items[data.name] != undefined)
@@ -80,7 +78,6 @@ var snarpur = {
         obj.append_item(v);
         obj.run_callback(v, "add");
       });
-
     },
     
     add_nested_item_lvl2: function(element)
@@ -108,6 +105,7 @@ var snarpur = {
     },
     replace_ids : function(s,id) 
     {
+      console.info("in replacing ids")
       var new_id = arguments.length == 1 ? new Date().getTime(): id;
       return s.replace(/NEW_RECORD/g, new_id)
     },
@@ -274,20 +272,21 @@ $('#dialog .cancel').live('click', function(){
     $('#dialog').dialog('close');
 });
 
-$('.parent-guardianship input:radio').live('click',function(){
+$(".disabler input[@type='radio']").live('click',function(){
     var elem = $(this),
-        section = elem.closest('.frm-section'),
-        select = section.find('select'),
-        div = section.find('.inp-sel');
-   console.info(elem.is(':checked'))
-   if(elem.attr('value') == 1){
-     select.attr('disabled','disabled');
-     div.addClass("disabled")
-   }
-   else{
-     select.removeAttr('disabled');
-     div.removeClass('disabled');  
-   }
+        parent = elem.closest('.field'),
+        data = parent.metadata(),
+        targetDiv = parent.siblings(data.target),
+        targetInput = targetDiv.find('select, input');
+
+    if(data.condition == elem.attr('value')){
+        targetDiv.addClass('disabled');
+        targetInput.attr('disabled','disabled');
+    }
+    else{
+        targetDiv.removeClass('disabled');
+        targetInput.removeAttr('disabled'); 
+    }
 });
 
 

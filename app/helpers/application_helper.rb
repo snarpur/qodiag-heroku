@@ -33,8 +33,8 @@ module ApplicationHelper
   #   <% end -%>
 
     
-  def generate_html(form_builder, method, options = {})
-    options[:object] ||= form_builder.object.class.reflect_on_association(method).klass.new
+  def generate_html(form_builder, method, options = {}, attributes = {})
+    options[:object] ||= form_builder.object.class.reflect_on_association(method).klass.new(attributes)
     options[:partial] ||= method.to_s.singularize
     options[:form_builder] ||= :f  
     options[:locals] ||= {}
@@ -44,8 +44,8 @@ module ApplicationHelper
     end
   end
 
-  def generate_template(form_builder, method, options = {})
-    escape_javascript generate_html(form_builder, method, options)
+  def generate_template(form_builder, method, options = {}, attributes = {})
+    escape_javascript generate_html(form_builder, method, options, attributes)
   end
   
   def call_nil(obj, method)

@@ -1,13 +1,12 @@
+-if @person.eql?(@patient) : @person = Person.new
 = form_for @person, :remote => true do |f|  
  
   .frm-section.nested-context
     %h4= t('terms.guardianship')
-    -guardianship = get_or_create_guardian_relationship(@person,@patient)
-    = guardianship.inspect
+    -guardianship = get_relationship(@person,@patient, 'guardian')
     =f.fields_for :relationships, guardianship  do |guardian_relationship|
-      =guardian_relationship.text_field :status, :value => 1
-      =render "people/parents/guardian_relationship", :locals => {:form_builder => guardian_relationship }
-      =render "people/parents/guardian_relationship_period", :locals => {:form_builder => guardian_relationship }
+      =render "people/parents/relationship_status", :locals => {:form_builder => guardian_relationship, :status => 1}
+      =render "people/parents/relationship_start", :locals => {:form_builder => guardian_relationship }
 
   =render "people/basic_person_information", :f => f
   .frm-section

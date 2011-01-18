@@ -24,7 +24,7 @@
   .field.inp-txt
     = f.label :full_date, t('person.cpr')
     %span
-      =f.text_field :full_cpr
+      =f.text_field :full_cpr, :value => '1212121212'
     / %b -
     / = f.text_field :cpr
 

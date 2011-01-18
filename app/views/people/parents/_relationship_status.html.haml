@@ -1,0 +1,14 @@
+- f = locals[:form_builder] 
+=f.hidden_field :relation_id
+=f.hidden_field :name
+
+-if locals[:status]
+  =f.hidden_field :status, :value => locals[:status]
+-else
+  %div{:class => "field inp-rdo disabler {target: '.conditional', condition: 'true'}"}
+    %span
+      =f.radio_button :status, true
+      =f.label :status, t("relationship.is_#{f.object.name}")
+    %span
+      =f.radio_button :status, false
+      =f.label :status, t("relationship.not_#{f.object.name}")

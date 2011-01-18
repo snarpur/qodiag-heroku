@@ -7,22 +7,22 @@ module PeopleHelper
   def mother_or_father(parent)
     parent = parent.sex == "female" ? "mother": "father"
   end
-
-  def get_or_create_child_parent_relationship(child, parent, person)
-    parent = child.inverse_relations.send(parent)
-    if parent.empty?
-      parent_relationship = person.relationships.build
-    else  
-      parent_relationship = parent
+  
+  def get_relationship_inverse_relationship(person, opposit, name)
+    relationship = person.relationships.select{|i| i.name == name && (i.relation_id == opposit.id || i.person_id == opposit.id)}
+    if relationship.empty?
+      person.relationships.build(:relation_id => opposit.id, :name => name)
+    else
+      relationship.first
     end
   end
   
-  def get_or_create_guardian_relationship(person,patient)
-    guardianship = person.relationships.guardian(patient.id)
-    if guardianship.empty? 
-      person.relationships.build(:relation_id => patient.id, :name => 'guardian')
+  def get_relationship(person,patient,name)
+    relationship = person.relationships.select {|i| i.name == name && i.relation_id == patient.id}
+    if relationship.empty?
+      person.relationships.build(:relation_id => patient.id, :name => name)
     else
-      guardianship.first
+      relationship.first
     end
   end
   
@@ -37,33 +37,18 @@ module PeopleHelper
       spouses =  spouses.select{|i| i[:relation_id] != opposite_parent_id }
     end
     spouses
-  end
-  
-  def sibling_partial(partial)
-    "people/siblings/#{partial}"
-  end
-  
-  def partial(group, partial)
-    "people/#{group}/#{partial}"
-  end
-  
-  def get_patient(patient_id)
-    patient = patient_id.nil? ? Person.new : Person.find(patient_id)  
+    # if person.nil?
+    #      []
+    #    elsif patient.opposite_parent(person).nil?
+    #       person.spouse_relationships
+    #    else
+    #      parent_id = patient.opposite_parent(person).id
+    #      person.spouse_relationships.select{|i| i.person_id != parent_id && i.relation_id != parent_id}
+    #    end
   end
   
   def patient_has_one_parent_and_person_is_not_parent(patient,person)
     @patient.opposite_parent(@person) && !@patient.is_person_parent(@person)
-  end
-  
-  def get_or_create_parents_relationship(patient,person)
-    opposite_parent = patient.opposite_parent(person)
-     logger.debug "xx - opposite parent #{opposite_parent.inspect}"
-    relationship = person.spouse_relationships{|attributes| attributes['person_id'] == opposite_parent.id || attributes['relation_id'] == opposite_parent.id}
-    relationship = relationship.empty? ? person.relationships.build : relationship.first 
-  end
-  
-  def set_actions_element(action)
-    action = "action_element {name: '#{action}'}" unless action.nil?
   end
   
   def parent_relationship_direction(patient, person)
@@ -115,4 +100,11 @@ module PeopleHelper
     end
   end
   
+  def is_disabled(relationship)
+    if relationship.status.nil? || relationship.status == true
+      'disabled'
+    else
+      nil
+    end
+  end
 end

@@ -10,7 +10,6 @@ class Wizard
     @current_step || steps.first
   end
   
-
   def steps
     %w[child mother father guardian siblings finnish]
   end
@@ -28,13 +27,12 @@ class Wizard
   end
   
   def next_step
-    self.current_step = steps[steps.index(current_step)+1]
+    steps[steps.index(current_step)+2]
   end
 
   def previous_step
-    self.current_step = steps[steps.index(current_step)-1]
+    steps[steps.index(current_step)-1]
   end
-  
   
   def current_step_no
     steps.index(current_step)+1
@@ -58,7 +56,6 @@ class Wizard
   
   def next_is_last?
     next_step_no  == steps.size
-    
   end
   
  

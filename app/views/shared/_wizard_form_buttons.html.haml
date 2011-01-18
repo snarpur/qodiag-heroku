@@ -1,0 +1,15 @@
+-f = locals[:form_builder]
+-buttons ||= locals[:buttons]
+-previous_no = @wizard.previous_step_no
+-next_no = @wizard.next_step_no
+.field.inp-btn.wizard
+  -if buttons.nil? || buttons.include?('back')
+    %span.back
+      = new_or_edit_link(@patient,previous_no ,t("terms.#{@wizard.previous_step}"))
+  -if buttons.nil? || buttons.include?('forward')
+    %span.forward
+      = new_or_edit_link(@patient,next_no ,t("terms.#{@wizard.next_step}"))
+  -if buttons.nil? || buttons.include?('save')
+    %span.save
+      = f.submit :value => t('actions.save'),  :class => 'button green'
+      

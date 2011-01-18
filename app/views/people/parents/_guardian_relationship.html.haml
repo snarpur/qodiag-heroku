@@ -1,4 +1,3 @@
 - f = locals[:form_builder]
-.field.inp-txt.nested-item
-  =f.hidden_field :relation_id
-  =f.hidden_field :name
+= render "people/parents/relationship_status", :locals => {:form_builder => f}
+= render "people/parents/relationship_end", :locals => {:form_builder => f}

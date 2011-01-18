@@ -1,39 +1,46 @@
 -add = t('actions.add')
-.siblings_list
-  %ul#full_sibling_list
-    %li 
-      %h4 Allsystkin
-    =list_siblings(@patient.full_siblings)
-    %li
-      = link_to "#{add} #{t('terms.sibling')}", '#added_sibling', :class => "action_element {name: 'add_full_sibling'}"
+-if (!@mother.nil? && !@father.nil?) && @spouses.empty?
+  .notice.large
+    Vinsamlegast athugið að nauðsynleger að skrá fyrst a.m.k 1 foreldri ásamt maka áður en hægt er að skrá systkin
 
-  -if @mother.spouses.size > 1
-    %ul#half_sibling_mother_list
-      %li
-        %h4 
-          Hálfsystkin 
-          %i 
-            (sammæðra)
-      =list_siblings(@patient.half_siblings(@mother))
-      %li
-        = link_to "#{add} #{t('terms.half_sibling')}", '#added_half_sibling', :class => "action_element {name: 'add_half_sibling_mother'}"
+
+-else
+  .siblings_list
+    -if !@mother.nil? && !@father.nil?
+      %ul#full_sibling_list
+        %li 
+          %h4 Allsystkin
+        =list_siblings(@patient.full_siblings)
+        %li
+          = link_to "#{add} #{t('terms.sibling')}", '#added_sibling', :class => "action_element {name: 'add_full_sibling'}"
+
+    -if !get_spouses_exclude_patient_parent(@mother,@patient).empty?
+      %ul#half_sibling_mother_list
+        %li
+          %h4 
+            Hálfsystkin 
+            %i 
+              (sammæðra)
+        =list_siblings(@patient.half_siblings(@mother))
+        %li
+          = link_to "#{add} #{t('terms.half_sibling')}", '#added_half_sibling', :class => "action_element {name: 'add_half_sibling_mother'}"
   
-  -if @father.spouses.size > 1
-    %ul#half_sibling_father_list
-      %li
-        %h4 
-          Hálfsystkin 
-          %i
-            (samfeðra)
-      =list_siblings(@patient.half_siblings(@father))
-      %li
-        = link_to "#{add} #{t('terms.half_sibling')}", '#added_half_sibling', :class => "action_element {name: 'add_half_sibling_father'}"
+    -if !get_spouses_exclude_patient_parent(@father,@patient).empty?
+      %ul#half_sibling_father_list
+        %li
+          %h4 
+            Hálfsystkin 
+            %i
+              (samfeðra)
+        =list_siblings(@patient.half_siblings(@father))
+        %li
+          = link_to "#{add} #{t('terms.half_sibling')}", '#added_half_sibling', :class => "action_element {name: 'add_half_sibling_father'}"
   
-  -if @father.spouses.size > 1 || @mother.spouses.size > 1
-    %ul#foster_sibling_list
-      %li
-        %h4 Fóstursystkin
-      =list_siblings(@patient.foster_siblings)
-      %li
-        = link_to "#{add} #{t('terms.foster_sibling')}", '#added_half_sibling', :class => "action_element {name: 'add_foster_sibling'}"
+    -if !get_spouses_exclude_patient_parent(@father,@patient).empty? || !get_spouses_exclude_patient_parent(@father,@patient).empty?
+      %ul#foster_sibling_list
+        %li
+          %h4 Fóstursystkin
+        =list_siblings(@patient.foster_siblings)
+        %li
+          = link_to "#{add} #{t('terms.foster_sibling')}", '#added_half_sibling', :class => "action_element {name: 'add_foster_sibling'}"
       

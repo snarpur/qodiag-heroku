@@ -1,0 +1,15 @@
+-f = locals[:form_builder]
+
+.frm-section.nested-context
+  - other_parent = t("terms.#{get_opposite_parent_type(@wizard.current_step)}")
+  - other_parent_name = "#{@patient.opposite_parent(@person).firstname} #{@patient.opposite_parent(@person).lastname}"
+  %h4 
+    ="#{other_parent} barns"
+  %i
+    =other_parent_name
+
+  =render "people/parents/relationship_status", :locals => {:form_builder => f}
+  =render "people/parents/relationship_end", :locals => {:form_builder => f}
+
+
+

@@ -20,6 +20,7 @@ snarpur["action_items"] =
     data.elements.trigger = element;
     data.elements.nested_context = snarpur.action_items.get_nested_context(data);
     data.elements.container = snarpur.action_items.get_container(data);
+    console.info(data)
     return data;
   },
   item_config: function(item)

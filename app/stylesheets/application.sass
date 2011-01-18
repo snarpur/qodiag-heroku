@@ -1,6 +1,7 @@
 @import partials/base.sass
 @import partials/icons.sass
 @import partials/form.sass
+@import partials/wizard.sass
 
 
 
@@ -67,7 +68,12 @@ ul
     :padding-bottom 10px
     +prepend(14)
 
-
+.notice.large
+  :margin 15px 0
+  :padding 30px 40px 30px 100px
+  :background-image url('/images/notice/notice.png')
+  :background-repeat no-repeat
+  :background-position 10px 50%
 
 .clear
   +clearfix
@@ -82,6 +88,8 @@ ul
   :margin 1em 0
   :padding .5em 0
   :border-bottom 1px dashed #999
+  &:last-child
+    :border-bottom-width 0
   > div
     :margin 0 2em
 
@@ -109,7 +117,7 @@ ul
     em
       :float right
   a
-    +sn-btn(!china1,!china3)
+    +sn-btn(!china5,!china3)
 
 .siblings_list ul li:first-child
   :background-color= !china5
@@ -219,46 +227,6 @@ table
   :display none
   
 // =============== FAMILY REGISTRATION ==============
-
-ul.wizard-nav 
-  :font-weight normal
-  +horizontal-list(0)
-  :margin-top 20px
-  :margin-bottom 30px
-  li
-    :padding 0 10px 0 24px
-    :margin-left -31px
-    :width 140px
-  li:first-child
-    :margin-left 0
-  p
-    :position relative
-    :background url('/images/wizard-bg-left.png') no-repeat
-    :padding 8px 8px 6px 23px
-  b,a
-    :color #fff
-    :display block
-  b
-    +border-radius(12px)
-    :line-height 8px
-    :text-align center
-    :font-size .8em
-    :padding 3px
-    :height 8px
-    :width 8px
-    :border solid 1px #fff
-  a 
-    :position absolute
-    :right -15px
-    :top 0
-    :width 85px
-    :padding 8px 15px 7px 0
-    :background url('/images/wizard-bg-right.png') 100% 0 no-repeat
-    :text-decoration none
-  li.active a
-    :background-position 100% -35px
-  li.active p
-    :background-position 0 -35px
 
 // =============== Toggle classes ==============
 .hidden, .off

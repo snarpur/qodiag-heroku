@@ -16,6 +16,12 @@ is:
   relationship:
     is_guardian: "Er forræðishafi"
     not_guardian: "Er ekki forræðishafi"
+    not_spouse: "Fyrrverandi maki"
+    is_spouse: "Núverandi maki"
+    spouse_start: "Samband hófst"
+    spouse_end: "Sambandi lauk"
+    guardian_start: "Tók við forræði"
+    guardian_end: "Forræði lauk"
   address:
     street_1: "Heimilisfang"
     street_2: "Heimlilsfang"

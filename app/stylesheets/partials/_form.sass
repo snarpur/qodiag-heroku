@@ -27,6 +27,8 @@ fieldset h2
   :padding 0 0 .6em 0
   :margin-bottom .4em
   :background-color= !china5
+  &:last-child
+    :margin-bottom 0
   h4,i
     :color= !china2
     :margin-bottom= -1em
@@ -44,7 +46,8 @@ fieldset h2
   &.disabled label
     :color= !grey
 
-.field.inp-txt, .field.inp-rdo, .field.inp-sel
+.field
+  .inp-txt, .inp-rdo, .inp-sel, .inp-aux
   +prepend(5)
   :padding-top 2px
   :padding-bottom 3px
@@ -85,13 +88,13 @@ fieldset h2
     :color #333
     
 
-.inp-btn  
-  :margin-top 15px
-  :margin-left 5px
-  :padding-top 10px
-  :border-top= 1px !grey_light solid
+.inp-btn
+  :padding 4px
+  :border= !grey_light solid
+  :border-width 1px 0 
   ul
     +horizontal-list()
+    :padding 1px 0
     :float right
 
 input[type='submit']

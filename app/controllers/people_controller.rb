@@ -58,7 +58,6 @@ class PeopleController < ApplicationController
           format.html { redirect_to(@person, :notice => 'Relationship was successfully created.') }
         end
       else
-        Rails.logger.debug "xx - in else person save"
         format.html { render :action => "new", :step => session[:wizard].current_step_no}
         format.xml  { render :xml => @person.errors, :status => :unprocessable_entity }
       end
@@ -69,7 +68,6 @@ class PeopleController < ApplicationController
   # PUT /people/1.xml
   def update
     @person = Person.find(params[:id])
-    logger.debug "xx - params #{params[:person].inspect}"
     respond_to do |format|
       if @person.update_attributes(params[:person])
         format.html { redirect_to(edit_person_path(@person), :notice => 'Person was successfully updated.') }
@@ -97,7 +95,9 @@ class PeopleController < ApplicationController
   
   private 
   def set_wizard
-    session[:wizard]  = Wizard.new if params[:step] == "1"
+    if params[:step].to_i == 1 && request.path_parameters[:action] == 'new'
+      session[:wizard]  = Wizard.new 
+    end
     @wizard = session[:wizard]
     @wizard.step(Integer(params[:step])) unless params[:step].nil?
     @patient =  get_patient(@wizard)
