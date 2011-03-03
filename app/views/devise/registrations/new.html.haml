@@ -1,0 +1,37 @@
+%h2= t('headers.sign_up')
+= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
+  %h2= t("en.activerecord.models.user")
+  .section
+    = render "shared/error_messages", :locals => {:form_builder => f}
+    = f.input :email
+    = f.input :password
+    = f.input :password_confirmation, :required => true
+    -new_role = f.object.roles.empty? ?  f.object.roles.build() :  f.object.roles
+    =f.simple_fields_for :roles, new_role  do |roles_form|
+      = roles_form.input :name, :as => :hidden
+      = roles_form.input :name, :collection => Role::ROLE_TYPES, :as => :radio
+    = f.button :submit
+    
+    / .field.inp-txt
+    /   = f.label :email, t('user.email')
+    /   %span
+    /     = f.text_field :email
+    / .field.inp-txt    
+    /   = f.label :password, t('user.password')
+    /   %span
+    /     = f.password_field :password
+    / .field.inp-txt    
+    /   = f.label :password_confirmation, t('user.password_confirmation')
+    /   %span
+    /     = f.password_field :password_confirmation
+    / .field.inp-rdo
+    /   -new_role = f.object.roles.empty? ?  f.object.roles.build() :  f.object.roles
+    /   =f.fields_for :roles, new_role do |role|
+    /     =role.hidden_field :name, :value => ""
+    /     -Role::ROLE_TYPES.each do |type|
+    /       %span
+    /         =role.radio_button :name, type
+    /         =role.label :name, type    
+    / 
+    / .field.inp-btn= f.submit t('actions.sign_up'), :class => "button green"
+= render :partial => "devise/shared/links"

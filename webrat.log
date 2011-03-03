@@ -1,0 +1,36 @@
+# Logfile created on Wed Jan 26 11:29:05 +0000 2011 by logger.rb/22285
+REQUESTING PAGE: GET / with {} and HTTP headers {}
+REQUESTING PAGE: GET / with {} and HTTP headers {}
+REQUESTING PAGE: GET /users/sign_up with {} and HTTP headers {}
+REQUESTING PAGE: GET /users/sign_up with {} and HTTP headers {}
+REQUESTING PAGE: POST /users with {"commit"=>"Create", "utf8"=>"✓", "user"=>{"password_confirmation"=>"", "password"=>"secret", "email"=>"foo@example.com"}} and HTTP headers {"HTTP_REFERER"=>"/users/sign_up"}
+REQUESTING PAGE: GET /users/sign_up with {} and HTTP headers {}
+REQUESTING PAGE: POST /users with {"commit"=>"Create", "utf8"=>"✓", "user"=>{"password_confirmation"=>"", "password"=>"secret", "email"=>"foo@example.com"}} and HTTP headers {"HTTP_REFERER"=>"/users/sign_up"}
+REQUESTING PAGE: GET /users/sign_up with {} and HTTP headers {}
+REQUESTING PAGE: POST /users with {"commit"=>"Create", "utf8"=>"✓", "user"=>{"password_confirmation"=>"", "password"=>"secret", "email"=>"foo@example.com"}} and HTTP headers {"HTTP_REFERER"=>"/users/sign_up"}
+REQUESTING PAGE: GET /users/sign_up with {} and HTTP headers {}
+REQUESTING PAGE: POST /users with {"commit"=>"Create", "utf8"=>"✓", "user"=>{"password_confirmation"=>"", "password"=>"secret", "email"=>"foo@example.com"}} and HTTP headers {"HTTP_REFERER"=>"/users/sign_up"}
+REQUESTING PAGE: GET /users/sign_up with {} and HTTP headers {}
+REQUESTING PAGE: POST /users with {"commit"=>"Create", "utf8"=>"✓", "user"=>{"password_confirmation"=>"", "password"=>"secret", "email"=>"foo@example.com"}} and HTTP headers {"HTTP_REFERER"=>"/users/sign_up"}
+REQUESTING PAGE: GET /users/sign_up with {} and HTTP headers {}
+REQUESTING PAGE: POST /users with {"commit"=>"Create", "utf8"=>"✓", "user"=>{"password_confirmation"=>"", "password"=>"secret", "email"=>"foo@example.com"}} and HTTP headers {"HTTP_REFERER"=>"/users/sign_up"}
+REQUESTING PAGE: GET /users/sign_up with {} and HTTP headers {}
+REQUESTING PAGE: GET /users/sign_up with {} and HTTP headers {}
+REQUESTING PAGE: GET /users/sign_up with {} and HTTP headers {}
+REQUESTING PAGE: GET /users/sign_up with {} and HTTP headers {}
+REQUESTING PAGE: GET /users/sign_up with {} and HTTP headers {}
+REQUESTING PAGE: GET /users/sign_up with {} and HTTP headers {}
+REQUESTING PAGE: GET /users/sign_up with {} and HTTP headers {}
+REQUESTING PAGE: GET /users/sign_up with {} and HTTP headers {}
+REQUESTING PAGE: GET /users/sign_up with {} and HTTP headers {}
+REQUESTING PAGE: POST /users with {"commit"=>"Create", "utf8"=>"✓", "user"=>{"password_confirmation"=>"secret", "password"=>"secret", "email"=>"test"}} and HTTP headers {"HTTP_REFERER"=>"/users/sign_up"}
+REQUESTING PAGE: GET /users/sign_up with {} and HTTP headers {}
+REQUESTING PAGE: POST /users with {"commit"=>"Create", "utf8"=>"✓", "user"=>{"password_confirmation"=>"secret", "password"=>"secret", "email"=>"test@test.is"}} and HTTP headers {"HTTP_REFERER"=>"/users/sign_up"}
+REQUESTING PAGE: GET /users/sign_up with {} and HTTP headers {}
+REQUESTING PAGE: POST /users with {"commit"=>"Create", "utf8"=>"✓", "user"=>{"password_confirmation"=>"secret", "password"=>"secret", "email"=>"test@test.is"}} and HTTP headers {"HTTP_REFERER"=>"/users/sign_up"}
+REQUESTING PAGE: GET /users/sign_up with {} and HTTP headers {}
+REQUESTING PAGE: POST /users with {"commit"=>"Create", "utf8"=>"✓", "user"=>{"password_confirmation"=>"secret", "password"=>"secret", "email"=>"test@test.is"}} and HTTP headers {"HTTP_REFERER"=>"/users/sign_up"}
+REQUESTING PAGE: GET /users/sign_up with {} and HTTP headers {}
+REQUESTING PAGE: POST /users with {"commit"=>"Create", "utf8"=>"✓", "user"=>{"password_confirmation"=>"secret", "password"=>"secret", "email"=>"test@test.is"}} and HTTP headers {"HTTP_REFERER"=>"/users/sign_up"}
+REQUESTING PAGE: GET /users/sign_up with {} and HTTP headers {}
+REQUESTING PAGE: POST /users with {"commit"=>"Create", "utf8"=>"✓", "user"=>{"password_confirmation"=>"secret", "password"=>"secret", "email"=>"test@test.is"}} and HTTP headers {"HTTP_REFERER"=>"/users/sign_up"}

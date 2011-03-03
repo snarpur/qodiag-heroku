@@ -1,0 +1,5 @@
+- f ||= locals[:form_builder]
+%div{:class => "field inp-sel"}
+  =f.label :end, t("relationship.#{f.object.name}_start")
+  %span
+    =f.date_select :start, :include_blank => true, :discard_day => true

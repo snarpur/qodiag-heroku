@@ -13,20 +13,20 @@
   %input{:type => "hidden", :name => "next_step", :value  => @wizard.next_step_no}
   -parenthood = get_relationship(@person,@patient,'parent')
   =f.fields_for :relationships, parenthood do |parent_relationship|
-    = render "people/parents/relationship_status", :locals => {:form_builder => parent_relationship, :status => true}
+    = render "relationships/relationship_status", :locals => {:form_builder => parent_relationship, :status => true}
     =f.hidden_field :sex, :value  => set_parent_gender(@wizard.current_step)
     =f.hidden_field :ispatient, :value  => 0
 
 
   - content_for :jstemplates do
-    -spouse_partial = {:partial => "people/parents/spouse_relationship"}
+    -spouse_partial = {:partial => "relationships/spouse_relationship"}
     != "var spouse_relationship ='#{generate_template(f, :relationships, spouse_partial, {:name => 'spouse'})}'"
 
   .frm-section.nested-context
     %h4= t('terms.guardianship')
     -guardianship = get_relationship(@person,@patient,'guardian')
     =f.fields_for :relationships, guardianship  do |guardian_relationship|
-      =render "people/parents/guardian_relationship", :locals => {:form_builder => guardian_relationship }
+      = render "relationships/guardian_relationship", :locals => {:form_builder => guardian_relationship }
 
   
 
@@ -34,7 +34,7 @@
   -if @opposite_parent
     -parents_relationship = get_relationship_inverse_relationship(@person,@opposite_parent,'spouse')
     =f.fields_for parent_relationship_direction(@patient, @person), parents_relationship do |relationship_form|
-      =render "people/parents/parents_relationship", :locals => {:form_builder => relationship_form}
+      = render "relationships/parents_relationship", :locals => {:form_builder => relationship_form}
 
 
   = render "people/parents/person_information", :locals => {:form_builder => f}

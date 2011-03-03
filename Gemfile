@@ -8,7 +8,11 @@ gem 'rails', '3.0.3'
 
 gem "haml", "3.0.25"
 gem "compass", ">= 0.10.2"
-gem 'mysql', '2.8.1'
+gem "mysql", "2.8.1"
+gem "devise"
+gem "hpricot"
+gem "ruby_parser"
+gem "simple_form"
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -25,8 +29,14 @@ gem 'mysql', '2.8.1'
 # gem 'sqlite3-ruby', :require => 'sqlite3'
 # gem 'aws-s3', :require => 'aws/s3'
 
-# Bundle gems for certain environments:
-# gem 'rspec', :group => :test
-# group :test do
-#   gem 'webrat'
-# end
+#Bundle gems for certain environments:
+group :development, :test do
+  gem "rspec-rails", "~> 2.4"
+  gem "cucumber-rails", ">= 0.3.2"
+  gem "capybara"
+  gem 'database_cleaner'
+  gem "factory_girl_rails", ">= 1.0.1"
+  gem "autotest"
+  gem "ruby-debug"
+  gem "nokogiri" 
+end

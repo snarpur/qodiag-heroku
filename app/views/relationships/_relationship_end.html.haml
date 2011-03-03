@@ -1,0 +1,5 @@
+- f ||= locals[:form_builder]
+%div{:class => "field inp-sel #{is_disabled(f.object)} conditional"}
+  =f.label :end, t("relationship.#{f.object.name}_end")
+  %span
+    =f.date_select :end, :include_blank => true, :discard_day => true, :disabled => is_disabled(f.object)

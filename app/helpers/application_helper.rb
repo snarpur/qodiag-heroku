@@ -1,5 +1,7 @@
 module ApplicationHelper
+
   
+    
   def set_checked_status(record,role)
     if record.role != role || record.new_record? : status = true end
     if record.role.nil? : status = false end  

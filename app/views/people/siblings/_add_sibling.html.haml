@@ -11,10 +11,9 @@
   
 = form_for child, :remote => true do |f|  
   -if type != 'foster_sibling'
-    =parent_relationship.inspect
     =f.fields_for :inverse_relationships, parent_relationship do |parent_form|
-      =parent_form.text_field :person_id
-      =parent_form.text_field :name
+      =parent_form.hidden_field :person_id
+      =parent_form.hidden_field :name
 
     -if type == 'full_sibling' && parents.size == 2
       =render "people/siblings/second_parent_form", :locals => {:form_builder => f, :parent => parents.last}
