@@ -1,5 +1,6 @@
 class Role < ActiveRecord::Base
-  has_and_belongs_to_many :users
+  has_many :role_users
+  has_many :users, :through => :role_users
   accepts_nested_attributes_for :users, :allow_destroy => true
   attr_accessor :users_attributes
   

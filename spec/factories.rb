@@ -1,39 +1,35 @@
-# Factory.define :user do |u|
-#   u.email { "foo@example.com" }
-#   u.password { "foobar" }
-#   u.password_confirmation { |p| p.password }
-#   u.assocciation :role
-# end
-# 
-# Factory.define :role do |r|
-#   r.name { 'fucked-up role' }
-# end
-# # 
-# Factory.define :user_with_role, :parent => :user do |user|
-#   user.after_create { |a| Factory(:role, :user => a) }
-# end
-# 
+require 'factory_girl'
 
-# Factory.define :user do |m|
-#   m.email { "foo@example.com" }
-#   m.password { "foobar" }
-#   m.password_confirmation { |p| p.password }
-#   m.association :role, :factory => :role
-# end
-# 
-# Factory.define :role do |r|
-#   r.name {"name"}
-# end
-
-Factory.define :user do |f|
-  f.email 'someone@somecompany.com'
-  f.password '123456'
+Factory.define :user do |user|
+    user.sequence(:email) {|n| "person#{n}@example.com"}
+    user.password '123456'
+    user.password_confirmation '123456'
+    user.roles {|roles| [roles.association(:role)]} 
+end
+ 
+Factory.define :role do |role|  
+   role.name "snake"
 end
 
-Factory.define :role do |r|
-  r.name 'testrole'
+Factory.define :admin, :class => :user do |user|
+    user.sequence(:email) {|n| "person#{n}@example.com"}
+    user.password '123456'
+    user.password_confirmation '123456'
+    user.roles {|roles| [roles.association(:role, :name => "admin")]} 
 end
+ 
 
 
 
-
+# Factory.define :person do |p|
+#   p.firstname "kalli"
+#   p.lastname "bubbi"
+#   p.dateofbirth "121212"
+#   p.cpr "1212"
+#   #p.address {|address| address.association(:address, :street_1 => 'cobra boulevard') }
+#   p.association :address, :factory => :address
+# end
+# 
+# Factory.define :address do |a|
+#   a.street_1 "Strandgata"
+# end

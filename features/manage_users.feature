@@ -1,57 +1,59 @@
 Feature: Manage users
-
-  In order to use the system
-  As a potential user
-  I want to register
-  
-Background: I am in the right place
-  Given I am on the new user registration page
-  And the following users exists:
-    |email        | password |
-    |tom@mail.com | welcome  |
-
-Scenario: Register new user
-  When I fill in "user_email" with "test@test.is" 
-  And I fill in "user_password" with "secret"
-  And I fill in "user_password_confirmation" with "secret"
-  And I choose a role
-  And I press "actions.sign_up"
-  Then I should see "devise.registrations.signed_up"
-  
-Scenario: Empty form submission
-  When I press "actions.sign_up"
-  Then I should see "activerecord.errors.messages.blank" 
+  As an adminra
+  I want to create users
+  So they can use the system
 
 
-Scenario: Form submission with errors
-  When I fill in "user_email" with "joe@mail.com"
-  And I fill in "user_password" with "welcome"
-  And I fill in "user_password_confirmation" with "welco"
-  And I press "actions.sign_up"
-  And I should see "activerecord.errors.messages.confirmation"
+@focus
+Scenario Outline: Ability to register new user
+  Given the following roles exists:
+    | name  |
+    | admin |
+    | staff |
 
-Scenario: User already exists 
-  When I fill in "user_email" with "tom@mail.com"
-  And I fill in "user_password" with "tommy"
-  And I fill in "user_password_confirmation" with "tommy"
-  And I press "actions.sign_up"
-  Then I should see "activerecord.errors.messages.taken" 
+  And the following user exists:
+    | email        | password | password_confirmation | user_roles   |
+    | tom@mail.com | welcome  | welcome               | name: admin  |
+    | johnny@mail.com | badboy  | badboy              | name: staff  |
 
-  # Scenario: Username already exists
-  # 
-  # Scenario: User email already exists
+  When I go to the sign in page
+  And I log in as "<user_email>" with password "<password>"
+  And I go to the user registration page
+  Then I should be on the <page>
+  And show me the page
 
-#------
-  # Background: Logged in as admin
-  #   Given the following users exist:
-  #     | Email      | Password |
-  #     | foo@foo.is | secret   |
-  #   
-  #   And the following roles exist:
-  #     | Name  | User              |
-  #     | admin | Email: foo@foo.is |
-  #     | admin | Email: Bar        |
-  # 
-  # Scenario:
-  #   When I create a new user with role as staff
-  #   Then the new user has an account    
+  Examples:
+    | user_email      | password | page                   |
+    | tom@mail.com    | welcome  | user registration page |
+    | johnny@mail.com | badboy   | users page              |
+
+
+Scenario Outline: Register new user
+  Given I am on the user registration page
+  And the following user exists:
+    | email        | password | password_confirmation |
+    | tom@mail.com | welcome  | welcome               |
+    | johnny@mail.com | badboy  | badboy              |
+
+  When I fill in "user_email" with "<user_email>"
+  And I fill in "user_password" with "<user_password>"
+  And I fill in "user_password_confirmation" with "<user_password_confirmation>"
+  And I choose a <user_role>
+  And I click create
+  Then I should <see_action>
+
+
+  Examples:
+  | user_email   | user_password | user_password_confirmation | user_role | see_action                                   |
+  | test@test.is | secret        | secret                     | user_role | see the signed_up registration message       |
+  | tom@mail.com | secret        | secret                     | user_role | see the taken error for user email           |
+  | joema        | secret        | secret                     | user_role | see the invalid error for user email         |
+  |              | secret        | secret                     | user_role | see the blank error for user email           |
+  | test@test.is |               | secret                     | user_role | see the blank error for user password        |
+  | test@test.is | secret        | secre                      | user_role | see the confirmation error for user password |
+  | test@test.is | wu            | wu                         | user_role | see the too_short error for user password    |
+  | test@test.is | secret        | secret                     |           | see the blank error for role name            |
+
+
+
+

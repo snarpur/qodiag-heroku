@@ -2,7 +2,7 @@
 %html{ "xml:lang" => "en", :lang => "en", :xmlns => "http://www.w3.org/1999/xhtml" }
   %head
     %meta{ :content => "text/html;charset=UTF-8", "http-equiv" => "content-type" }
-    = yield(:head) 
+    = yield(:head)
     = csrf_meta_tag
     = stylesheet_link_tag "../javascripts/jquery-ui/css/smoothness/jquery-ui-1.8.2.custom.css"
     = stylesheet_link_tag "buttons.css"
@@ -16,15 +16,16 @@
     =javascript_include_tag 'action_elements'
     =javascript_include_tag 'jquery.create.js','init.js'
     =javascript_tag do
-      = yield(:jstemplates) 
+      = yield(:jstemplates)
 
     %title
       Patients:
       = controller.action_name
 
   %body
-    %p.notice= notice
+    %p#flash= notice
     %p.alert= alert
+    %p#error=  flash[:error]
 
     %div#wrapper
       %div#header
@@ -33,6 +34,6 @@
         %div#content
           = yield
       %div#footer
-        %span 
+        %span
           Snarpur 2010 | Fallegt virkar betur
     %div#dialog

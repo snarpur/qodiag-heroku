@@ -13,6 +13,8 @@ require 'cucumber/rails/world'
 require 'cucumber/rails/active_record'
 require 'cucumber/web/tableish'
 
+# require "webrat"
+
 require 'capybara/rails'
 require 'capybara/cucumber'
 require 'capybara/session'
@@ -20,11 +22,14 @@ require 'cucumber/rails/capybara_javascript_emulation'
 
 
 require 'ruby-debug'
-require "factory_girl/step_definitions"
 require "factory_girl"
+#require "factory_girl/step_definitions"
 require "#{Rails.root}/spec/factories"
 
 
+# Webrat.configure do |config|
+#   config.mode = :rails
+# end
 # Lets you click links with onclick javascript handlers without using @culerity or @javascript
 # Capybara defaults to XPath selectors rather than Webrat's default of CSS3. In
 # order to ease the transition to Capybara we set the default here. If you'd
