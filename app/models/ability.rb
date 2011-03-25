@@ -3,11 +3,13 @@ class Ability
 
   def initialize(user)
     user ||= User.new # guest user
-
-    if user.role? :system_admin
-      can :manage, :all
-    elsif user.role? :organization_admin
-      can :manage, [Person,Relationship]
+    if user.role? :super_admin
+       can :manage, :all
+    elsif user.role? :caretaker
+        can :manage, [Person]
+    end
+    #  elsif user.role? :organization_admin
+    #    can :manage, [Person,Relationship]
     # elsif user.role? :product_team
     #    can :read, [Product, Asset]
     #    # manage products, assets he owns
@@ -17,6 +19,6 @@ class Ability
     #    can :manage, Asset do |asset|
     #      asset.assetable.try(:owner) == user
     #    end
-    end
+    #end
   end
 end

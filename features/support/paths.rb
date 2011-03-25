@@ -12,13 +12,11 @@ module NavigationHelpers
     when /sign in page/
       new_user_session_path
     when /user registration page/
-      new_user_registration_path
+      '/users/new/role/2'
     when /users page/
       users_path
-    when /the home\s?page/
+    when /home\s?page/
       '/'
-
-
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

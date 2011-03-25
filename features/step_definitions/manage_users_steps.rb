@@ -7,3 +7,17 @@ When /^I log in as "([^"]*)" with password "([^"]*)"$/ do |user_email , password
   end
 end
 
+Then /^I should see correct login information for user "([^"]*)"$/ do |user_email|
+  translation = I18n.t('actions.sign_out')
+  puts "translation #{translation}"
+  within(".login li:nth-child(2) a") do
+    if page.respond_to? :should
+      page.should have_content(translation)
+    end
+  end
+  within(".login li:nth-child(1) a") do
+    if page.respond_to? :should
+      page.should have_content(user_email)
+    end
+  end
+end

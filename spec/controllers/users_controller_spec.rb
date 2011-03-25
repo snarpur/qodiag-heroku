@@ -3,10 +3,9 @@ require 'spec_helper'
 
 describe UsersController do
   describe "POST create" do
-    login_admin
-    
     it "creates new user" do
-      puts "admin #{@admin}"
+      User.should_receive(:new).with("email" => "bill@bob.com")
+      post :create, :user => {"email" => "bill@bob.com"}
     end
   end
 end

@@ -1,6 +1,7 @@
 @import partials/base.sass
 @import partials/icons.sass
-@import partials/form.sass
+//@import partials/form.sass
+@import partials/simple_form.scss
 @import partials/wizard.sass
 
 
@@ -10,21 +11,53 @@ body
   :font-family 'Droid Sans', arial, serif
   :font-size 12px
 
-#header 
+#header
   position: relative
+  +clearfix
   :border-bottom= 1px solid !green_lightest
-  :height 30px
   :background-color #000
   h2
     +replace-text("logo02.png")
+    :position absolute
     :width 45px
     :height 29px
+  ul
+    +horizontal-list
+    li
+      :padding 7px 2px
+  ul.nav
+    +column(15)
+    +prepend(2)
+    li
+      a
+        :display block
+        :border #666 solid 1px
+        :height 31px
+        :width 31px
+        :background-color #333
+        +border-radius(5px)
+        &:hover
+          :background-color #000
+      &.home
+        a
+          +replace-text("nav/home.png")
+      &.settings
+        a
+          +replace-text("nav/settings.png")
+  ul.login
+    +column(9)
+    li:first-child
+      +append(2)
+    a
+      :color #fff
+
 
 #container
+  +clearfix
   +container
-  :margin 0 50px
+  :min-height 500px
+  :margin 100px 50px
   :background-color #fff
-
   :border-width 0 1px
 
 #content
@@ -32,15 +65,11 @@ body
   +prepend(1)
   +append(1)
   :margin-bottom 40px
-  
-//#content table
-//  +alternating-rows-and-columns(!table_even, !table_odd,#222)
 
-hr.break
-  :visibility hidden
-  :margin 0
-  
-//+sticky-footer(72px, "#container", "#layout_footer", "#footer")    
+#flash div
+  +column(24)
+  :display none
+  :position absolute
 
 #footer
   :margin 25px
@@ -49,10 +78,20 @@ hr.break
     :display block
     :margin-top 25px
     +prepend(12)
+
+.alert
+  +error
 ul
   +no-bullets
   :padding-left 0
-  
+
+hr.break
+  :visibility hidden
+  :margin 0
+
+//#content table
+//  +alternating-rows-and-columns(!table_even, !table_odd,#222)
+
 .section
   +clearfix
 
@@ -79,10 +118,10 @@ ul
   +clearfix
   :visibility hidden
 
-  
-//------ register spouse ------- 
+
+//------ register spouse -------
 .spouse
-  :margin 0 2em 
+  :margin 0 2em
 .added-spouse
   :position relative
   :margin 1em 0
@@ -96,7 +135,7 @@ ul
 .added-spouse:first-child
   :border-top 1px dashed #999
 
-//------ register sibling ------- 
+//------ register sibling -------
 .siblings_list
   +clearfix
   :margin-bottom 4px
@@ -141,14 +180,14 @@ ul
 // =============== GUARDIAN ==============
 .guardians
   .notice
-    p 
+    p
       :margin-left 20px
     a
       +sn-btn(!china5,!china3)
 
 table
   :width 100%
-  th 
+  th
   th, td
     :padding 2px 2px 2px 8px
   th
@@ -162,9 +201,9 @@ table
 
 
 // =============== FAMILY OVERVIEW ==============
-.family-overview div.section 
+.family-overview div.section
   :padding 1em
-  
+
 
 
 
@@ -176,19 +215,19 @@ table
   :border= 1px solid !grey_lightest
   :font-size 1.7em
   :padding .4em 0 .4em .9em
- 
-.family-overview 
+
+.family-overview
   h2
     :border-bottom= 1px solid !grey_lightest
     :font-size= !h2_font_size
     :margin-bottom 5px
   h3
     :font-size 14px
-    :color! !grey_dark 
+    :color! !grey_dark
     :margin-bottom 3px
-    
-    
-.family-overview .section .parent-info 
+
+
+.family-overview .section .parent-info
   :position relative
   +column(10)
   li
@@ -203,13 +242,13 @@ table
     +column(2)
     :padding 0 2px
 
-.family-overview .section .spouse-info 
+.family-overview .section .spouse-info
   +column(10)
   li
     :border= !green_lightest solid 1px
     :margin-bottom 2px
     :background-color= !green_ultralight
- 
+
 .family-overview .section table
   +inner-table-borders(1px, #7a98c6)
   +outer-table-borders(1px)
@@ -225,7 +264,7 @@ table
 
 #dialog
   :display none
-  
+
 // =============== FAMILY REGISTRATION ==============
 
 // =============== Toggle classes ==============
@@ -233,13 +272,13 @@ table
   :display none
 .on
   :display block
-  
+
 #address.on
   :display block
   .new_address
     :display block
   .existing_address
-    :display none 
+    :display none
 #address.off
   :display block
   .new_address
@@ -254,7 +293,7 @@ table
 
 
 
-  
+
 
 
 

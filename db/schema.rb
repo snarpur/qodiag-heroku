@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110310093123) do
+ActiveRecord::Schema.define(:version => 20110322101755) do
 
   create_table "addresses", :force => true do |t|
     t.string   "street_1"
@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(:version => 20110310093123) do
     t.boolean  "status"
   end
 
-  create_table "role_users", :force => true do |t|
+  create_table "rights", :force => true do |t|
     t.integer "role_id"
     t.integer "user_id"
   end

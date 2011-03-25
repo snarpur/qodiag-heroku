@@ -2,7 +2,6 @@ class UsersController < ApplicationController
   before_filter :get_user, :only => [:index,:new,:edit]
   before_filter :accessible_roles, :only => [:new, :edit, :show, :update, :create]
   load_and_authorize_resource :only => [:show,:new,:destroy,:edit,:update]
-
   # GET /users
   # GET /users.xml
   # GET /users.json                                       HTML and AJAX
@@ -10,8 +9,6 @@ class UsersController < ApplicationController
   def index
     @users = User.accessible_by(current_ability, :index).limit(20)
     respond_to do |format|
-      format.json { render :json => @users }
-      format.xml  { render :xml => @users }
       format.html
     end
   end
@@ -21,9 +18,8 @@ class UsersController < ApplicationController
   # GET /users/new.json                                    HTML AND AJAX
   #-------------------------------------------------------------------
   def new
+    @user.role_ids = params[:role_id]
     respond_to do |format|
-      format.json { render :json => @user }
-      format.xml  { render :xml => @user }
       format.html
     end
   end
@@ -34,8 +30,6 @@ class UsersController < ApplicationController
   #-------------------------------------------------------------------
   def show
     respond_to do |format|
-      format.json { render :json => @user }
-      format.xml  { render :xml => @user }
       format.html
     end
 
@@ -49,8 +43,6 @@ class UsersController < ApplicationController
   #-------------------------------------------------------------------
   def edit
     respond_to do |format|
-      format.json { render :json => @user }
-      format.xml  { render :xml => @user }
       format.html
     end
 
@@ -66,8 +58,6 @@ class UsersController < ApplicationController
     @user.destroy!
 
     respond_to do |format|
-      format.json { respond_to_destroy(:ajax) }
-      format.xml  { head :ok }
       format.html { respond_to_destroy(:html) }
     end
 
@@ -81,17 +71,13 @@ class UsersController < ApplicationController
   #-----------------------------------------------------------------
   def create
     @user = User.new(params[:user])
-
     if @user.save
       respond_to do |format|
-        format.json { render :json => @user.to_json, :status => 200 }
-        format.xml  { head :ok }
+        flash[:notice] = I18n.t('devise.registrations.signed_up')
         format.html { redirect_to :action => :index }
       end
     else
       respond_to do |format|
-        format.json { render :text => "Could not create user", :status => :unprocessable_entity } # placeholder
-        format.xml  { head :ok }
         format.html { render :action => :new, :status => :unprocessable_entity }
       end
     end
@@ -110,12 +96,8 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.errors[:base].empty? and @user.update_attributes(params[:user])
         flash[:notice] = "Your account has been updated"
-        format.json { render :json => @user.to_json, :status => 200 }
-        format.xml  { head :ok }
         format.html { render :action => :edit }
       else
-        format.json { render :text => "Could not update user", :status => :unprocessable_entity } #placeholder
-        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
         format.html { render :action => :edit, :status => :unprocessable_entity }
       end
     end
@@ -136,4 +118,5 @@ class UsersController < ApplicationController
   def get_user
     @current_user = current_user
   end
+
 end

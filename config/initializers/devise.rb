@@ -46,7 +46,7 @@ Devise.setup do |config|
   config.encryptor = :bcrypt
 
   # Setup a pepper to generate the encrypted password.
-  config.pepper = "226e692b96f6eff8dadaa51cd02d47c5090b5a2a8cd1311fb7fc7e6d3e8b861d5eadd0edf0e048c01fcc9638f432aeff1e8143e46154201f6ec58bb19714e41e"
+  config.pepper = "850e64d7ba1612d8879a35f1c65e5fe8b35a0304ff64f0747b5dce9395257be9a3891b9cf1ba74f71b3917476b815374fe56ec632c24b796d50aaad2a825bb65"
 
   # ==> Configuration for :confirmable
   # The time you want to give your user to confirm his account. During this time
@@ -69,10 +69,10 @@ Devise.setup do |config|
 
   # ==> Configuration for :validatable
   # Range for password length
-  config.password_length = 6..20
+  # config.password_length = 6..20
 
   # Regex to use to validate the email address
-  # config.email_regexp = /^([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})$/i
+  # config.email_regexp = /\A([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})\z/i
 
   # ==> Configuration for :timeoutable
   # The time you want to timeout the user session without activity. After this

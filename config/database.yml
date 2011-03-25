@@ -44,7 +44,7 @@ production:
   database: snarpur_production
   pool: 5
   username: root
-  password: 
+  password:
   socket: /tmp/mysql.sock
 
 cucumber:

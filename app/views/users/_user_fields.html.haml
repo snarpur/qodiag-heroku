@@ -1,0 +1,6 @@
+%p= f.label :email
+%p= f.text_field :email
+- if can? :read, Role
+  %p= f.label :role
+  %ul.no-pad.no-bullets
+    = habtm_checkboxes(@user, :role_ids, @accessible_roles, :name)

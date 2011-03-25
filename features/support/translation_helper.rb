@@ -1,10 +1,10 @@
 module TranslationHelper
-  
+
   MESSAGES = {
      :registration =>  {:translation => "devise.registrations"},
      :too_short => {:translation => "activerecord.errors.messages", :validator =>"Length", :condition => :minimum}
      }
-  
+
    def get_error_translation(message,model,attribute)
       translation = MESSAGES[message.to_sym]
       if translation.nil?
@@ -16,7 +16,7 @@ module TranslationHelper
          I18n.t("activerecord.errors.messages.#{message}", :count => validator.options[translation[:condition]])
       end
    end
-   
+
    def get_message_translation(message,i18n_name)
      I18n.t("#{MESSAGES[i18n_name.to_sym][:translation]}.#{message}")
    end
@@ -42,16 +42,16 @@ module FactoryGirlStepHelpers
       attribute_hash.merge(key => value)
     end
   end
-  
+
   def process_attributes(factory, human_hash)
     attributes = convert_human_hash_to_attribute_hash(human_hash, factory.associations)
     factory_name = factory.human_name
     attributes.each_key do |o|
-      attribute = o.to_s 
+      attribute = o.to_s
       if attribute.starts_with?("#{factory_name}_") or attribute.ends_with?("_#{factory_name}")
         association_name = association_name(factory_name, attribute)
         association_factory = association_factory(association_name.singularize)
-        if !association_factory.nil? 
+        if !association_factory.nil?
           association_object = convert_association_string_to_instance(association_factory,attributes[o])
         end
         attributes.delete(o)
@@ -60,12 +60,12 @@ module FactoryGirlStepHelpers
     end
     attributes
   end
-  
+
   def association_name(factory_name, association_string)
     regexp = Regexp.new("_?#{factory_name}_?")
     factory = association_string.gsub(regexp,"")
   end
-  
+
   def association_factory(factory_name)
     if !Factory.factories[factory_name.to_sym].nil?
       factory_name
@@ -73,7 +73,7 @@ module FactoryGirlStepHelpers
       nil
     end
   end
-  
+
   def association_argument(name,association_object)
     if name.pluralize.eql?(name)
       {name.to_sym => [association_object]}
@@ -81,7 +81,7 @@ module FactoryGirlStepHelpers
       {name.to_sym => association_object}
     end
   end
-  
+
 end
 
 World(TranslationHelper,FactoryGirlStepHelpers)

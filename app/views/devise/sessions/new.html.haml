@@ -1,7 +1,7 @@
-%h2 Sign in
+%h2= t('headers.sign_in')
 = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
   = render "shared/error_messages", :locals => {:form_builder => f}
   = f.input :email
   = f.input :password
   =f.button :submit, t('actions.sign_in')
-= render :partial => "devise/shared/links"
+

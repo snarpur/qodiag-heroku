@@ -9,8 +9,7 @@ class ApplicationController < ActionController::Base
   end
 
   rescue_from CanCan::AccessDenied do |exception|
-    logger.debug flash[:error]
-    flash[:error] = exception.message
+    flash[:error] = I18n.t("cancan.not_authorized")
     redirect_to root_url
   end
 end

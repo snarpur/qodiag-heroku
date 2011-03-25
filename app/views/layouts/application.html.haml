@@ -23,17 +23,27 @@
       = controller.action_name
 
   %body
-    %p#flash= notice
-    %p.alert= alert
-    %p#error=  flash[:error]
 
-    %div#wrapper
-      %div#header
+
+    #wrapper
+      #header
         %h2 Snarpur í vinnslu
-      %div#container
-        %div#content
+        %ul.nav
+          %li.home
+            %a{:href => "/"}
+              = t('navigation.home')
+          %li.settings
+            %a{:href => "/"}
+              = t('navigation.settings')
+        =render 'shared/log_in_out'
+      #flash
+        -flash.each do |name, msg|
+          %div{:class => name}
+            =msg
+      #container
+        #content
           = yield
-      %div#footer
+      #footer
         %span
           Snarpur 2010 | Fallegt virkar betur
-    %div#dialog
+    #dialog

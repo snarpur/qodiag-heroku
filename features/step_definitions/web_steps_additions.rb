@@ -15,7 +15,7 @@ end
 
 Then /^(?:|I )should see the (.*) error for (.*) (.*)$/ do |error, model, attribute|
   translation =  get_error_translation(error, model, attribute)
-  with_scope(".err-#{attribute}") do
+  within(".err-#{attribute}") do
     if page.respond_to? :should
       page.should have_content(translation)
     else
@@ -26,7 +26,7 @@ end
 
 Then /^(?:|I )should see the (.*) (.*) message$/ do |message, action|
   translation = get_message_translation(message,action)
-  with_scope("#flash") do
+  within("#flash") do
     if page.respond_to? :should
       page.should have_content(translation)
     else
@@ -34,6 +34,7 @@ Then /^(?:|I )should see the (.*) (.*) message$/ do |message, action|
     end
   end
 end
+
 
 When /^I break$/ do
   breakpoint
