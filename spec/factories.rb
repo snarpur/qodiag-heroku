@@ -4,20 +4,20 @@ Factory.define :user do |user|
     user.sequence(:email) {|n| "person#{n}@example.com"}
     user.password '123456'
     user.password_confirmation '123456'
-    user.roles {|roles| [roles.association(:role)]} 
+    user.roles {|roles| [roles.association(:role)]}
 end
- 
-Factory.define :role do |role|  
+
+Factory.define :role do |role|
    role.name "snake"
 end
 
-Factory.define :admin, :class => :user do |user|
+Factory.define :super_admin, :class => :user do |user|
     user.sequence(:email) {|n| "person#{n}@example.com"}
     user.password '123456'
     user.password_confirmation '123456'
-    user.roles {|roles| [roles.association(:role, :name => "admin")]} 
+    user.roles {|roles| [roles.association(:role, :name => "super_admin")]}
 end
- 
+
 
 
 
@@ -29,7 +29,7 @@ end
 #   #p.address {|address| address.association(:address, :street_1 => 'cobra boulevard') }
 #   p.association :address, :factory => :address
 # end
-# 
+#
 # Factory.define :address do |a|
 #   a.street_1 "Strandgata"
 # end

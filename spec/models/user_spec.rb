@@ -1,30 +1,14 @@
 require 'spec_helper'
 
 describe User do
-  it "is valid with valid attributes" do
-    user = User.new(:email => "orri@orri.is", :password => "foobarbaz")
-    role = Role.new(:name => "System administrator")
-    user.roles << role
-    user.should be_valid
-  end
-  it "is without a email" do
-    user = User.new(:email => "", :password => "foobarbaz")
-    role = Role.new(:name => "System administrator")
-    user.roles << role
-    user.should be_invalid
-  end
-  
-  it "is without a password" do
-    user = User.new(:email => "orri@orri.is", :password => "")
-    role = Role.new(:name => "System administrator")
-    user.roles << role
-    user.should be_invalid
-  end
-  
-  it "is without a role" do
-    user = User.new(:email => "orri@orri.is", :password => "foobarbaz")
-    role = Role.new(:name => nil)
-    user.roles << role
-    user.should be_invalid
+
+  context "caretaker should have correct relathionships" do
+    before do
+        Role.create(:name => 'caretaker')
+        @user = User.new(:email => "gulli@kalli.is", :password => "foobarbaz", :role_name => "caretaker")
+    end
+    # it { @user.roles.should_not be_nil}
+    it { @user.person.should_not be_nil}
+    it { @user.role?(:caretaker).should be_true}
   end
 end
