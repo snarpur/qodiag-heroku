@@ -1,0 +1,12 @@
+%h2= "#{t('role.caretaker')} #{t('actions.sign_up').downcase}"
+= simple_form_for @user, :url => invitation_path(:user) do |f|
+  / = render "shared/error_messages", :locals => {:form_builder => f}
+  =f.input :email
+  =f.association :roles, :as => :hidden
+  .section.parent
+    =f.simple_fields_for :person do |p|
+      = p.input :firstname
+      = p.input :lastname
+  =f.submit t('actions.create')
+
+

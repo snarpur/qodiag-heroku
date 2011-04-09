@@ -1,15 +1,22 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   layout 'application'
-
   def index
+    KK.see "hæ hæ mikki mús"
     respond_to do |format|
       format.html # index.html.erb
     end
   end
 
   rescue_from CanCan::AccessDenied do |exception|
-    flash[:error] = I18n.t("cancan.not_authorized")
-    redirect_to root_url
+    error_page("401")
+    warden.custom_failure! if performed?
+  end
+
+  private
+
+  def error_page(error)
+    flash[:alert] = I18n.t("page_errors.error_#{error}")
+    render "pages/error_401", :status => 401
   end
 end

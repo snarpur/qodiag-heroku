@@ -1,0 +1,7 @@
+%h2 Set your password
+= simple_form_for @user, :url => user_confirmation_path, :html => { :method => :put } do |f|
+  = render "shared/error_messages", :locals => {:form_builder => f}
+  = f.input :invitation_token, :as => :hidden
+  = f.input :password
+  = f.input :password_confirmation
+  %p= f.submit I18n.t('actions.register')

@@ -6,14 +6,17 @@ class Ability
     if user.role? :super_admin
        can :manage, :all
     elsif user.role? :caretaker
-        can :manage, [Person]
+        can :manage, User do |u|
+          (u.roles.map{|r|r.name} & ['caretaker','super_admin']).empty?
+        end
+        can :read, Role
     end
     #  elsif user.role? :organization_admin
     #    can :manage, [Person,Relationship]
     # elsif user.role? :product_team
     #    can :read, [Product, Asset]
     #    # manage products, assets he owns
-    #    can :manage, Product do |product|
+    #    can :marage, Product do |product|
     #      product.try(:owner) == user
     #    end
     #    can :manage, Asset do |asset|

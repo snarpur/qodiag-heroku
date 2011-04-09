@@ -46,7 +46,7 @@ Given /^(?:|I )am on (.+)$/ do |page_name|
 end
 
 When /^(?:|I )go to the (.+)$/ do |page_name|
-  visit path_to("#{page_name} page")
+  visit path_to(page_name)
 end
 
 When /^(?:|I )press "([^"]*)"$/ do |button|
@@ -185,7 +185,13 @@ Then /^the "([^"]*)" checkbox(?: within (.*))? should not be checked$/ do |label
 end
 
 Then /^(?:|I )should be on the (.+)$/ do |page_name|
-  current_path = URI.parse(current_url).path
+  parsed_url = URI.parse(current_url)
+  if parsed_url.query.nil?
+    current_path = parsed_url.path
+  else
+    current_path = "#{parsed_url.path}?#{parsed_url.query}"
+  end
+
   if current_path.respond_to? :should
     current_path.should == path_to(page_name)
   else

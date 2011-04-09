@@ -31,6 +31,10 @@ is:
     password_confirmation: "Endurtaka lykilorð"
     sign_in: "Innskráning"
     forgotten_password: "Gleymt lykilorð ?"
+  role:
+    super_admin: "Kerfisstjóri"
+    caretaker: "Starfsmaður"
+    client: "Skjólstæðingur"
   #Common terms -------------------------------------------------------
   terms:
     child: "Barn"
@@ -69,7 +73,7 @@ is:
     create: "Skrá"
     add: "Bæta við"
     cancel: "Hætta við"
-    sign_up: "Skrá"
+    sign_up: "Skráning"
     sign_in: "Skrá mig inn"
     sign_out: "Skrá mig út"
     log_in: "Innskráning"
@@ -77,13 +81,12 @@ is:
   headers:
     sign_up: "Skrá notenda"
     sign_in: "Innskráning"
-  #CANCAN -------------------------------------------------------
-  cancan:
-    not_authorized: "Þú hefur ekki aðgang að þessari síðu"
   #Navigation -------------------------------------------------------
   navigation:
     home: "heim"
     settings: "stillingar"
+  page_errors:
+      error_401: "Þú hefur ekki aðgang að þessari síðu"
 
 
 
@@ -207,6 +210,7 @@ is:
     models:
       user: "notenda"
       role: "hlutverk"
+      person: "persóna"
     attributes:
       user:
         email: "netfang"
@@ -214,6 +218,9 @@ is:
         password_confirmation: "endurtaka lykilorð"
       role:
         name: "hlutverk"
+      person:
+        firstname: "fornafn"
+        lastname: "eftirnafn"
     errors:
       template:
         header:
@@ -224,7 +231,7 @@ is:
         inclusion: "er ekki í listanum"
         exclusion: "er frátekið"
         invalid: "er ógilt"
-        record_invalid: "er ógilt"
+        record_invalid: "er ógilt  %{count}"
         confirmation: "er ekki jafngilt staðfestingunni"
         accepted: "þarf að vera tekið gilt"
         empty: "má ekki vera tómt"

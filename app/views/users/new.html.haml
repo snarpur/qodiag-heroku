@@ -1,13 +1,11 @@
 %h2= t('headers.sign_up')
-= "role_id #{@role_id}"
 = simple_form_for(@user) do |f|
   .section
     = render "shared/error_messages", :locals => {:form_builder => f}
     = f.input :email
-    = f.input :password
-    = f.input :password_confirmation, :required => true
-    -if can? :read, Role
-      =f.association :roles, :as => :hidden
+    =f.association :roles, :as => :hidden
+    =f.simple_fields_for :person do |p|
+      = p.input :firstname
     = f.button :submit, t('actions.create')
 
 

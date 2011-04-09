@@ -10,9 +10,13 @@ module NavigationHelpers
     when /root page/
       root_path
     when /sign in page/
-      new_user_session_path
-    when /user registration page/
-      '/users/new/role/2'
+      '/login'
+    when /client invitation page/
+      '/invitation/new/3'
+    when /caretaker invitation page/
+      '/invitation/new/2'
+    when /confirmation page for (.+)$/i
+     "#{accept_user_invitation_path}?invitation_token=#{User.find_by_email($1).invitation_token}"
     when /users page/
       users_path
     when /home\s?page/

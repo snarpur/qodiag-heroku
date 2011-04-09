@@ -2,6 +2,8 @@ module TranslationHelper
 
   MESSAGES = {
      :registration =>  {:translation => "devise.registrations"},
+     :invitation => {:translation => "devise.invitations"},
+     :page_error => {:translation => "page_errors"},
      :too_short => {:translation => "activerecord.errors.messages", :validator =>"Length", :condition => :minimum}
      }
 

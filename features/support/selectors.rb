@@ -8,15 +8,16 @@ module HtmlSelectorsHelpers
   def selector_for(locator)
     case locator
 
-    when /the page/
-      "html > body"
-
+    when /the child section/
+      "form .section.child"
+    when /the parent section/
+      "form .section.child"
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
     #  when /the (notice|error|info) flash/
     #    ".flash.#{$1}"
-    
+
     # You can also return an array to use a different selector
     # type, like:
     #

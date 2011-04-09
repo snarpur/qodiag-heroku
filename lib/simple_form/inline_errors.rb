@@ -2,9 +2,10 @@ module SimpleForm
   module Components
     module Error
       def error
-        errors = object.errors
-        if has_errors(errors, attribute_name)
-          template.content_tag('span', errors[attribute_name].join(", ") ,:class => "error err-#{attribute_name}")
+        unless object.nil?
+          if has_errors(object, attribute_name)
+            template.content_tag('span', object.errors[attribute_name].join(", ") ,:class => "error err-#{attribute_name}")
+          end
         end
       end
 
@@ -16,8 +17,8 @@ module SimpleForm
         !errors.empty?
       end
 
-      def has_errors(errors, attribute_name)
-        model_has_errors(errors) && attribute_has_errors(errors, attribute_name)
+      def has_errors(object, attribute_name)
+        model_has_errors(object.errors) && attribute_has_errors(object.errors, attribute_name)
       end
 
     end
