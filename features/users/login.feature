@@ -1,4 +1,3 @@
-@login
 Feature: Login
   As a user
   I want to log in

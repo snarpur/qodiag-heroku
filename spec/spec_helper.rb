@@ -29,25 +29,26 @@ Spork.prefork do
     # examples within a transaction, remove the following line or assign false
     # instead of true.
     config.use_transactional_fixtures = true
-
+    #needed for spork
+    ActiveSupport::Dependencies.clear
     #Devise
     config.include Devise::TestHelpers, :type => :controller
     #Controller Macros
     config.extend ControllerMacros, :type => :controller
   end
 
-  
+
 end
 
 Spork.each_run do
-  load "#{Rails.root}/config/routes.rb" 
+  load "#{Rails.root}/config/routes.rb"
   Dir["#{Rails.root}/app/**/*.rb"].each { |f| load f }
 
 end
 
 # --- Instructions ---
-# - Sort through your spec_helper file. Place as much environment loading 
-#   code that you don't normally modify during development in the 
+# - Sort through your spec_helper file. Place as much environment loading
+#   code that you don't normally modify during development in the
 #   Spork.prefork block.
 # - Place the rest under Spork.each_run block
 # - Any code that is left outside of the blocks will be ran during preforking

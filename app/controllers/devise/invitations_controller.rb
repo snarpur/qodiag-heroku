@@ -1,18 +1,22 @@
 class Devise::InvitationsController < ApplicationController
   before_filter :get_user, :only => [:index,:new]
   before_filter :accessible_roles, :only => [:new, :show, :update, :create]
-  before_filter :create_user_with_role, :only => [:new]
   load_resource :user, :parent => false
-  authorize_resource :user, :parent => false, :except => [:edit, :update]
+  authorize_resource :user, :parent => false, :except => [:new, :create, :edit, :update]
+  before_filter :create_user_with_role, :only =>  [:new]
 
   def new
+    KK.see @items.inspect
     respond_to do |format|
       format.html
     end
   end
 
   def create
-    @user = User.invite!(params[:user])
+    #@user = User.invite!(params[:user])
+    @user = User.new(params[:user])
+    @user.save
+    logger.ap @user.errors
     if @user.errors.empty?
       flash[:notice] = I18n.t('devise.invitations.send_instructions',:email => @user.email)
       redirect_to after_sign_in_path_for(User)
@@ -52,6 +56,7 @@ class Devise::InvitationsController < ApplicationController
   end
 
   def create_user_with_role
-    @user = User.new(:role_ids => params[:role_ids])
+    @user.roles << Role.find(params[:role_ids])
+    @items = AssociationFactory.new(:client_as_parent_invitation, {:user => @user, :current_user => @current_user}).items
   end
 end

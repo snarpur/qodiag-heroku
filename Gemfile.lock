@@ -1,7 +1,6 @@
 GEM
   remote: http://rubygems.org/
   specs:
-    ZenTest (4.5.0)
     abstract (1.0.0)
     actionmailer (3.0.3)
       actionpack (= 3.0.3)
@@ -30,8 +29,6 @@ GEM
       activesupport (= 3.0.3)
     activesupport (3.0.3)
     arel (2.0.9)
-    autotest (4.4.6)
-      ZenTest (>= 4.4.1)
     awesome_print (0.3.2)
     bcrypt-ruby (2.1.4)
     builder (2.1.2)
@@ -164,6 +161,7 @@ GEM
     unicode-display_width (0.1.1)
     warden (1.0.3)
       rack (>= 1.0.0)
+    watchr (0.7)
     webrat (0.7.3)
       nokogiri (>= 1.2.0)
       rack (>= 1.0)
@@ -176,7 +174,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  autotest
   awesome_print
   cancan
   capybara
@@ -202,5 +199,6 @@ DEPENDENCIES
   shoulda-matchers
   simple_form
   spork
+  watchr
   webrat
   wirble

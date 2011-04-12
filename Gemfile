@@ -23,7 +23,6 @@ group :development, :test do
   gem "webrat"
   gem 'database_cleaner'
   gem "factory_girl_rails", ">= 1.0.1"
-  gem "autotest"
   gem "ruby-debug"
   gem "nokogiri"
   gem "launchy"
@@ -32,6 +31,7 @@ group :development, :test do
   gem "awesome_print"
   gem 'email_spec'
   gem "spork"
+  gem "watchr"
 end
 
 

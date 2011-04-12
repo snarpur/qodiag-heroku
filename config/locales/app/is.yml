@@ -221,6 +221,9 @@ is:
       person:
         firstname: "fornafn"
         lastname: "eftirnafn"
+      relationship:
+        relation_id: "relation_id"
+        name: "tenging"
     errors:
       template:
         header:

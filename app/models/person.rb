@@ -68,8 +68,8 @@ class Person < ActiveRecord::Base
     end
   end
 
-  belongs_to :address
 
+  belongs_to :address
 
   accepts_nested_attributes_for :relations, :allow_destroy => true
   accepts_nested_attributes_for :relationships, :allow_destroy => true #,  :reject_if => proc {|attributes| attributes['person_id'].blank?}
@@ -78,9 +78,7 @@ class Person < ActiveRecord::Base
   accepts_nested_attributes_for :address, :allow_destroy => true
 
   attr_accessible :firstname, :lastname, :sex, :ispatient, :dateofbirth, :cpr, :workphone, :mobilephone, :occupation, :workplace, :full_cpr, :address_id,
-                  :relations_attributes, :inverse_relations_attributes, :relationships_attributes, :inverse_relationships_attributes, :address_attributes, :factory
-
-
+                  :relations_attributes, :inverse_relations_attributes, :relationships_attributes, :inverse_relationships_attributes,  :address_attributes, :factory
 
 
   def presence_of_cpr
@@ -169,6 +167,12 @@ class Person < ActiveRecord::Base
        parents[0].spouse_relationships & parents[1].spouse_relationships
     end
   end
+
+
+  def get_association(name)
+    self.send(:relationships).map {|r| r.name == name.to_s}
+  end
+
   private
 
   def person_factory
@@ -176,9 +180,9 @@ class Person < ActiveRecord::Base
       case self.factory[:name]
       when :patient
         self.factory[:relation].relationships << self.inverse_relationships.build(:name => "patient")
-      when :parent_and_guardian
-        self.factory[:relation].relationships << self.inverse_relationships.build(:name => "parent")
-        self.factory[:relation].relationships << self.inverse_relationships.build(:name => "guardian")
+      when :child
+       self.factory[:relation].relations << self
+       self.factory[:relation].relationships.build(:name => "parent,guardian").inverse_relation  = self
       end
     end
   end

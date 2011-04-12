@@ -1,4 +1,6 @@
 : :::::::::::::::::::::::::::::::::::::: START :::::::::::::::::::::::::::::::::::::
+% person.rb::173 do not create new assocciation unless you have one
+% hidden relationship fields in new with child as argument
 % invite client user cucumber steps/ rspec => correct associations
 
 : :::::::::::::::::::::::::::::::::::::: DEVELOPMENT::::::::::::::::::::::::::::::::::::::

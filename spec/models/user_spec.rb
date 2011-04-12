@@ -6,7 +6,7 @@ describe User do
         role_id = Role.find_by_name("caretaker").id.to_s
         @user = User.new(:email => "gulli@kalli.is", :password => "foobarbaz", :role_ids => role_id)
     end
-    it { @user.person.should_not be_nil}
+    it { @user.person.should_not be_nil }
     it { @user.role_names.should include("caretaker")}
   end
 

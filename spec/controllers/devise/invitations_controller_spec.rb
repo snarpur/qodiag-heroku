@@ -30,14 +30,15 @@ describe Devise::InvitationsController do
   describe "POST create" do
     login_user(:caretaker)
     before do
-     post :create, :user => {:email => "email@example.com", :role_ids => "3", :person_attributes => {:firstname => "Jimmy", :lastname => "Bean"}}
+     post :create, :user => {:email => "email@example.com", :role_ids => "3",
+                             :person_attributes => {:firstname => "Jimmy", :lastname => "Bean"}}
     end
     it "invited user should recieve and email" do
       ActionMailer::Base.delivery_method = :test
       ActionMailer::Base.perform_deliveries = true
       ActionMailer::Base.deliveries.clear
       @email = ActionMailer::Base.deliveries.first
-      KK.see @email.to
+      KK.see @email
       @email.to.should include("email@example.com")
 
     end

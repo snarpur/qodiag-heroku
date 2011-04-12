@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   has_many :roles, :through => :rights
   belongs_to :person
   attr_accessor :users_attributes
-  after_initialize :set_up_associations, :if => :new_record?
+  #after_initialize :user_factory, :if => :new_record?
 
 
 
@@ -28,8 +28,11 @@ class User < ActiveRecord::Base
   end
 
   private
-  def set_up_associations
-    self.build_person
+  def user_factory
+    if self.factory
+      self.build_person()
+      Person.new(:factory => {:name => :child, :relation => self.person })
+    end
     self.roles << Role.find(self.role_ids)
   end
 end
