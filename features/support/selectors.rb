@@ -11,7 +11,7 @@ module HtmlSelectorsHelpers
     when /the child section/
       "form .section.child"
     when /the parent section/
-      "form .section.child"
+      "form .section.parent"
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

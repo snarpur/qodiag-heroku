@@ -1,0 +1,7 @@
+= f.simple_fields_for :relationships do |parent_relationship|
+  = parent_relationship.simple_fields_for :relation, @child do |child|
+    = child.input :sex, :collection => [[t('terms.boy'),'male'],[t('terms.girl'),'female']],  :as => :radio
+    = child.input :firstname
+    = child.input :lastname
+    = parent_relationship.collection_check_boxes :name,[[t('terms.parent'),'parent'],[t('terms.guardian'),'guardian']],:last,:first, {:disabled => ['guardian'], :checked => 'guardian'}
+    = parent_relationship.input :relation_id, :as => :hidden

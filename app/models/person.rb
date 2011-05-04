@@ -1,16 +1,20 @@
 class Person < ActiveRecord::Base
 
-  validates_presence_of :firstname  #, :lastname, :sex, :full_date
+  validates_presence_of :firstname, :sex  #, :lastname, :sex, :full_date
   #validate :presence_of_cpr
   #validates_numericality_of :cpr, :full_date
   #validates_length_of :full_date, :is => 6
   #validates_length_of :cpr, :is => 4
   #validate :presence_of_parent_occupation
   #after_save :set_parents_address
-  validates_associated :relationships, :address
+
   after_initialize :person_factory, :if => :new_record?
+
   attr_accessor :factory
 
+  has_many :responder_items
+
+  has_many :responder_items_as_subject, :class_name => "RepsonderItem", :foreign_key => "subject_id"
 
   has_many  :relationships, :dependent => :destroy do
     def child
@@ -37,9 +41,14 @@ class Person < ActiveRecord::Base
     def children
       find(:all, :conditions => "name = 'parent'")
     end
-
+    def guardian_of
+      find(:all, :conditions => "name = 'guardian'")
+    end
     def spouse
       find(:all, :conditions => "name = 'spouse'")
+    end
+    def patients
+      find(:all, :conditions => "name = 'patient'")
     end
   end
 
@@ -76,9 +85,23 @@ class Person < ActiveRecord::Base
   accepts_nested_attributes_for :inverse_relationships, :allow_destroy => true
   accepts_nested_attributes_for :inverse_relations, :allow_destroy => true
   accepts_nested_attributes_for :address, :allow_destroy => true
+  accepts_nested_attributes_for :responder_items, :allow_destroy => true
 
-  attr_accessible :firstname, :lastname, :sex, :ispatient, :dateofbirth, :cpr, :workphone, :mobilephone, :occupation, :workplace, :full_cpr, :address_id,
-                  :relations_attributes, :inverse_relations_attributes, :relationships_attributes, :inverse_relationships_attributes,  :address_attributes, :factory
+
+  attr_accessible :firstname, :lastname, :sex, :ispatient, :dateofbirth, :cpr, :workphone, :mobilephone, :occupation, :workplace, :full_cpr,
+                  :address_id,
+                  :relations_attributes, :inverse_relations_attributes, :relationships_attributes, :inverse_relationships_attributes,  :address_attributes, :factory,
+                  :responder_items_attributes
+
+  validates_associated :relationships, :inverse_relationships, :address
+  def user
+    User.where(:person_id => self.id).first
+  end
+
+  def pending_patient_responder_items
+    ResponderItem.joins(:subject => :inverse_relationships).
+    where("relationships.name = 'patient' and relationships.person_id = '#{self.id}'")
+  end
 
 
   def presence_of_cpr
@@ -181,7 +204,6 @@ class Person < ActiveRecord::Base
       when :patient
         self.factory[:relation].relationships << self.inverse_relationships.build(:name => "patient")
       when :child
-       self.factory[:relation].relations << self
        self.factory[:relation].relationships.build(:name => "parent,guardian").inverse_relation  = self
       end
     end

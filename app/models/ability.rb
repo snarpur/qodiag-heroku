@@ -10,7 +10,15 @@ class Ability
           (u.roles.map{|r|r.name} & ['caretaker','super_admin']).empty?
         end
         can :read, Role
+    elsif user.role? :client
+      can :manage, User do |u|
+        u == user
+      end
+      can :manage, ResponderItem do |ri|
+        ri.person == user.person
+      end
     end
+
     #  elsif user.role? :organization_admin
     #    can :manage, [Person,Relationship]
     # elsif user.role? :product_team

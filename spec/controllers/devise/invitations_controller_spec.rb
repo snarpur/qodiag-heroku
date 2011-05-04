@@ -27,27 +27,12 @@ describe Devise::InvitationsController do
     end
   end
 
-  describe "POST create" do
+
+  describe "Invitations" do
     login_user(:caretaker)
+
     before do
-     post :create, :user => {:email => "email@example.com", :role_ids => "3",
-                             :person_attributes => {:firstname => "Jimmy", :lastname => "Bean"}}
-    end
-    it "invited user should recieve and email" do
-      ActionMailer::Base.delivery_method = :test
-      ActionMailer::Base.perform_deliveries = true
       ActionMailer::Base.deliveries.clear
-      @email = ActionMailer::Base.deliveries.first
-      KK.see @email
-      @email.to.should include("email@example.com")
-
-    end
-  end
-
-  describe "GET edit and PUT update" do
-    login_user(:caretaker)
-
-    before do
       post :create, :user => {
           :email => "email@example.com", :role_ids => "3",
           :person_attributes => {
@@ -56,23 +41,36 @@ describe Devise::InvitationsController do
             }
           }
       @new_user = User.find_by_email("email@example.com")
+
     end
 
-    it "invited user should be routed to confirmation page" do
-      get :edit, :invitation_token => @new_user.invitation_token
-      response.should be_success
-    end
-
-    context "invalid invitation token" do
-      before do
-        get :edit, :invitation_token => @new_user.invitation_token << "df"
+    context "POST create" do
+      it "invited user should recieve email" do
+        ActionMailer::Base.delivery_method = :test
+        ActionMailer::Base.perform_deliveries = true
+        @email = ActionMailer::Base.deliveries.first
+        @email.to.should include("email@example.com")
       end
-      it { response.status.should eql(302) }
-      it { response.should redirect_to root_path }
-      it { flash[:alert].should eql I18n.t('devise.invitations.invitation_token_invalid') }
+
+
     end
 
-    context "confirm by updating password" do
+    context "GET edit" do
+
+      it "invited user should be routed to confirmation page" do
+        get :edit, :invitation_token => @new_user.invitation_token
+        response.should be_success
+      end
+
+      it "invalid invitation token" do
+        get :edit, :invitation_token => @new_user.invitation_token << "df"
+        response.status.should eql(302)
+        response.should redirect_to root_path
+        flash[:alert].should eql I18n.t('devise.invitations.invitation_token_invalid')
+      end
+    end
+
+    context "POST update" do
       before do
         put :update, :user => {
           "password" => "verysecret",
@@ -83,6 +81,6 @@ describe Devise::InvitationsController do
       it { response.should redirect_to root_path }
       it { flash[:notice].should eql I18n.t('devise.invitations.updated') }
     end
-  end
+   end
 end
 

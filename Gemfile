@@ -32,6 +32,8 @@ group :development, :test do
   gem 'email_spec'
   gem "spork"
   gem "watchr"
+  gem "populator"
+  gem "faker"
 end
 
 

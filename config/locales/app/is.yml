@@ -40,6 +40,9 @@ is:
     child: "Barn"
     boy: "Drengur"
     girl: "Stúlka"
+    sex:
+      male: "karlkyn"
+      female: "kvennkyn"
     father: "Faðir"
     mother: "Móðir"
     parent: "Foreldri"
@@ -73,7 +76,7 @@ is:
     create: "Skrá"
     add: "Bæta við"
     cancel: "Hætta við"
-    sign_up: "Skráning"
+    sign_up: "Nýskráning"
     sign_in: "Skrá mig inn"
     sign_out: "Skrá mig út"
     log_in: "Innskráning"
@@ -157,7 +160,7 @@ is:
     formats:
       default: "%A %e. %B %Y kl. %H:%M"
       time: "%H:%M"
-      short: "%e. %B kl. %H:%M"
+      short: "%e. %B"
       long: "%A %e. %B %Y kl. %H:%M"
     am: ""
     pm: ""

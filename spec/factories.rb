@@ -15,4 +15,5 @@ end
 
 Factory.define :person do |person|
   person.firstname "John Smith"
+  person.sex "male"
 end

@@ -1,13 +1,13 @@
 class PeopleController < ApplicationController
-  before_filter :set_wizard 
- 
-  
+  before_filter :set_wizard
+
+
   # GET /people
   def index
     @people = Person.all
 
     respond_to do |format|
-      format.html 
+      format.html
     end
   end
 
@@ -16,9 +16,9 @@ class PeopleController < ApplicationController
     #@wizard ||= session[:wizard]
     #id = get_patient(@wizard).new_record?  ? params[:id] : @wizard.patient_id
     @person = Person.find(params[:id])
-    
+
     respond_to do |format|
-      format.html 
+      format.html
     end
   end
 
@@ -27,7 +27,7 @@ class PeopleController < ApplicationController
     @person = Person.new
     @patient = get_patient(@wizard)
     respond_to do |format|
-      format.html 
+      format.html
     end
   end
 
@@ -37,14 +37,14 @@ class PeopleController < ApplicationController
     @wizard = session[:wizard]
     @patient = get_patient(@wizard)
     respond_to do |format|
-      format.html 
+      format.html
       format.js {render serve_js('edit')}
     end
   end
 
-  # POST /people  
+  # POST /people
   def create
-    @person = Person.new(params[:person]) 
+    @person = Person.new(params[:person])
     flash[:notice] = "Thanks for commenting!"
     respond_to do |format|
       if @person.save
@@ -92,34 +92,36 @@ class PeopleController < ApplicationController
       format.js {render serve_js('delete')}
     end
   end
-  
-  private 
+
+  private
   def set_wizard
     if params[:step].to_i == 1 && request.path_parameters[:action] == 'new'
-      session[:wizard]  = Wizard.new 
+      session[:wizard]  = Wizard.new
+    else
+      session[:wizard] ||= Wizard.new(params[:id])
     end
     @wizard = session[:wizard]
     @wizard.step(Integer(params[:step])) unless params[:step].nil?
     @patient =  get_patient(@wizard)
   end
 
-  
+
   def url_for_next_step
-    if session[:wizard].next_is_last? 
+    if session[:wizard].next_is_last?
       url_for :controller => "people", :action => "show", :id => session[:wizard].patient_id
     else
       url_for :controller => "people", :action => "new", :step => session[:wizard].next_step_no
     end
   end
-  
+
   def url_for_current_step
     url_for :controller => "people", :action => "new", :step => session[:wizard].current_step_no
   end
-  
+
   def get_patient(wizard)
     patient = wizard.patient_id == nil ? Person.new : Person.find(wizard.patient_id)
   end
-  
+
   def serve_js(action)
     if session[:wizard]
       "people/#{session[:wizard].partial}/#{action}.js.erb"
@@ -127,5 +129,5 @@ class PeopleController < ApplicationController
       "create.js.erb"
     end
   end
-  
+
 end

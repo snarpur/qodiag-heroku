@@ -33,7 +33,11 @@ en:
     mailer:
       confirmation_instructions:
         subject: 'Confirmation instructions'
+        user_subject: 'Confirmation instructions'
+      invitation_instructions:
+        subject: 'fgfdfds'
+        user_subject: "ewrrewwer"
       reset_password_instructions:
-        subject: 'Reset password instructions'
+        subject: 'Reset password instructions CHANGED'
       unlock_instructions:
         subject: 'Unlock Instructions'

@@ -11,6 +11,8 @@ module NavigationHelpers
       root_path
     when /sign in page/
       '/login'
+    when /pending registrations page/
+      responder_items_path
     when /client invitation page/
       '/invitation/new/3'
     when /caretaker invitation page/

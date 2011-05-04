@@ -4,16 +4,23 @@ class Relationship < ActiveRecord::Base
   belongs_to :relation, :class_name => "Person"
   belongs_to :inverse_relation, :class_name => "Person"
   after_create :split_names
-
+  validate :name_presence
   accepts_nested_attributes_for :person, :relation
   attr_accessible :person_id, :relation_id, :name, :start, :end, :status, :relation_attributes, :inverse_relation_attributes
 
+  def name_presence
+    name.delete("") if name.is_a?(Array)
+    errors.add(:name, I18n.t('activerecord.errors.messages.blank')) if
+      name.is_a?(Array) && name.empty?
 
+  end
   private
+
   def split_names
-    unless self.name =~ /,/.nil?
-      names = self.name.split(",")
-      first = names.pop.split
+    self.name.delete("") if self.name.is_a?(Array)
+    if self.name.is_a?(Array) && !self.name.empty?
+      names = self.name
+      first = names.pop
       names.each do |n|
         copy = self.clone
         copy.name = n.strip

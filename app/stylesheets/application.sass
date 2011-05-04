@@ -1,8 +1,8 @@
 @import partials/base.sass
 @import partials/icons.sass
-//@import partials/form.sass
 @import partials/simple_form.scss
 @import partials/wizard.sass
+@import partials/debug_header.sass
 
 
 
@@ -88,6 +88,18 @@ ul
 hr.break
   :visibility hidden
   :margin 0
+
+
+table
+  :width 100%
+  th
+  th, td
+    :padding 2px 2px 2px 8px
+  th
+    :color= !china1
+    :border-bottom= 1px solid !grey_light
+  td
+    :color= !grey_dark
 
 //#content table
 //  +alternating-rows-and-columns(!table_even, !table_odd,#222)
@@ -184,21 +196,9 @@ hr.break
       :margin-left 20px
     a
       +sn-btn(!china5,!china3)
-
-table
-  :width 100%
-  th
-  th, td
-    :padding 2px 2px 2px 8px
-  th
-    :color= !china1
-    :border-bottom= 1px solid !grey_light
-  td
-    :color= !grey_dark
-  td:nth-child(1n+3)
-    :float right
-    :margin-left 11px
-
+    td:nth-child(1n+3)
+      :float right
+      :margin-left 11px
 
 // =============== FAMILY OVERVIEW ==============
 .family-overview div.section

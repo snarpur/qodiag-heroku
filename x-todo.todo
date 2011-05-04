@@ -1,62 +1,21 @@
 : :::::::::::::::::::::::::::::::::::::: START :::::::::::::::::::::::::::::::::::::
-% person.rb::173 do not create new assocciation unless you have one
-% hidden relationship fields in new with child as argument
-% invite client user cucumber steps/ rspec => correct associations
-
+! lesa backbone.js
 : :::::::::::::::::::::::::::::::::::::: DEVELOPMENT::::::::::::::::::::::::::::::::::::::
-? - ====== Refactor tests ========
-  ! set roles in seeds
-
-? ===== Invitation =====
-  # TEST INVITATION
-    ! mail has been sent with correct content
-    ! confirmation link is working
-    ! invited user is confirmed after completing confirmation form
-
-
-? - ======  Create new user  ======
- ! Ability for caretaker to create a new invitation with role
-    % IF role == client set up pending registration
-    - ==
-
-      % Caretaker should have child as patient
-      % Client should have that child as guardian and and parent
-
-    - ==
-
- ! Pending registrations
-     - User has must have certain valid assocciations before registration is completed
-     - User can submit registration => registration no longer pending
-     - User should be notified if he has pending registration
-
- ! invited_by_id to users
- ! => simple navigation
-
-
-
- ! See completed registrations
- ! See: Create Meaningful Relationships Through Proxies
-
-
-
-
-
-: :::::::: [FUTURE NOTES] :::::::
-  + security check https://github.com/plataformatec/devise/wiki/Extensions
-  + advanced roles check cream gem
+! Finnish cucumber complete_registration scenario
+! Create temporary way to complete registration
+! Scenario for both caretaker and client to see that registration has been completed
+! Simple display page for client with submitted information
+! Set up surveyor
 
 
 : ::::::::::::::::::::::::::::::::::::: CHECK ::::::::::::::::::::::::::::::::::::::
 
 % PRIORITY
-  ! SHOULDA
   ! MOCHA
 
 % ENVIRONMENT
-  ! rake convert erb to haml http://teachmetocode.com/screencasts/creating-a-rake-task-to-convert-erb-to-haml/
   ! command line aliases
   ! log to command line => railscasts console tricks AND rails recipies
-  ! HIRB
 
 % STUDY
   ! HTML 5

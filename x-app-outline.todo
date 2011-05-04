@@ -1,0 +1,33 @@
+: Login
+|
+: Search patient
+|
+: Dashboard
+  |
+  ! --> Registrations (completed, uncompleted, expired)
+  !     New Patient
+  |
+  ! --> Surveys (completed, uncompleted, expired)
+  |
+  : Patient detail page
+    |
+    ! --> Family
+    !     School
+    |
+    ! --> Medical history
+    !     Social status
+    !     Health and development
+    |
+    ! --> Surveys
+        |
+        % --> Overview/list
+        |
+        % --> Create
+            |
+            x --> New survey
+            |
+            x --> Show results
+            |
+            x --> Show status of pending(unfinnished, overdue, finnished and unseen)
+
+

@@ -1,4 +1,5 @@
 require 'cucumber/rails'
+require 'email_spec'
 require 'email_spec/cucumber'
 require "#{Rails.root}/features/support/paths"
 require "#{Rails.root}/features/support/selectors"

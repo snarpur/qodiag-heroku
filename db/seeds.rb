@@ -5,6 +5,13 @@
 #
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
-Role.create(:name => "super_admin")
-Role.create(:name => "caretaker")
-Role.create(:name => "client")
+
+users = ["super_admin", "caretaker", "client"]
+
+users.each do |u|
+  user = User.create(:email => "#{u}@orrigautur.com", :password => "asdfkj", :password_confirmation => "asdfkj")
+  user.roles.create(:name => u)
+  user.create_person(:firstname => "Per #{u}", :lastname => "Mc#{u.capitalize}")
+end
+
+

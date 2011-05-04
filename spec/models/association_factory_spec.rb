@@ -11,7 +11,6 @@ describe AssociationFactory do
       @item = AssociationFactory.new(:client_as_parent_invitation,
                               { :user => @parent_user,
                                 :current_user => @caretaker }).items
-      KK.see @item[:child].inverse_relationships
     end
 
     it "have a caretaker" do

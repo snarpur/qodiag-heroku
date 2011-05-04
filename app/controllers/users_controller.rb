@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :get_user, :only => [:index,:new,:edit]
+  before_filter :get_user, :only => [:index,:new,:edit,:show]
   before_filter :accessible_roles, :only => [:new, :edit, :show, :update, :create]
   before_filter :create_user_with_role, :only => [:new]
   load_and_authorize_resource :only => [:show,:new,:destroy,:edit,:update]
@@ -18,6 +18,9 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+
+  end
 
 
   private

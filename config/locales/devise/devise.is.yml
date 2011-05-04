@@ -34,12 +34,17 @@ is:
     mailer:
       confirmation_instructions:
         subject: 'Confirmation instructions'
+        user_subject: "blabla"
       reset_password_instructions:
-        subject: 'Reset password instructions'
+        subject: 'Reset password instructions breytt'
       unlock_instructions:
-        subject: 'Unlock Instructions'
-      invitations:
-        subject: "Vinsamlegast klárið skráningu"
+        subject: 'Unlock Instructions breytt'
+      invitation:
+        subject: "Snarpur - Nýskráning"
+        body:
+          greeting: "Sæl(l) %{name}"
+          text: "Vinsamlegast klárið nýskráningu með því að fylgja eftirfarandi slóð"
+          regards: "Bestu kveðjur"
     invitations:
       send_instructions: 'Beiðni um að klára skráningur hefur verið sent á %{email}'
       invitation_token_invalid: "Beiðni um skráningu er ekki gild"

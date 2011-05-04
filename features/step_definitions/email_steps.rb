@@ -29,7 +29,7 @@ module EmailHelpers
     # Replace with your a way to find your current email. e.g @current_user.email
     # last_email_address will return the last email address used by email spec to find an email.
     # Note that last_email_address will be reset after each Scenario.
-    last_email_address || "example@example.com"
+    last_email_address || @last_mail
   end
 end
 
@@ -164,7 +164,7 @@ end
 #
 
 When /^(?:I|they) follow "([^"]*?)" in the email$/ do |link|
-  visit_in_email(link)
+  visit_in_email(I18n.t('actions.sign_up'))
 end
 
 When /^(?:I|they) click the first link in the email$/ do
