@@ -35,13 +35,13 @@ end
 When /^I fill in user details with valid input$/ do
   person = "activerecord.attributes.person"
   with_scope("the child section") do
-    fill_in I18n.t("#{person}.firstname"), :with => "Child"
-    fill_in I18n.t("#{person}.lastname"), :with => "Child lastname"
+    fill_in I18n.t("#{person}.firstname"), :with => Faker::Name.first_name
+    fill_in I18n.t("#{person}.lastname"), :with => Faker::Name.last_name
     choose I18n.t("terms.girl")
   end
   with_scope("the parent section") do
-    fill_in I18n.t("#{person}.firstname"), :with => "Parent"
-    fill_in I18n.t("#{person}.lastname"), :with => "Parent Lastname"
+    fill_in I18n.t("#{person}.firstname"), :with => Faker::Name.first_name
+    fill_in I18n.t("#{person}.lastname"), :with => Faker::Name.last_name
     choose I18n.t("terms.father")
   end
 end
@@ -57,3 +57,5 @@ When /^I fill in user details with (.+) (.+) missing$/ do |attr_for, missing_fie
     end
   end
 end
+
+

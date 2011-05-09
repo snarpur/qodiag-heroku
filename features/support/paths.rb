@@ -11,8 +11,6 @@ module NavigationHelpers
       root_path
     when /sign in page/
       '/login'
-    when /pending registrations page/
-      responder_items_path
     when /client invitation page/
       '/invitation/new/3'
     when /caretaker invitation page/
@@ -21,6 +19,8 @@ module NavigationHelpers
      "#{accept_user_invitation_path}?invitation_token=#{User.find_by_email($1).invitation_token}"
     when /users page/
       users_path
+    when /user home page/
+      user_path(@current_user)
     when /home\s?page/
       '/'
     # Add more mappings here.

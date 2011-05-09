@@ -1,13 +1,12 @@
-%h2 Ókláraðuð nýskráning
-%br
-- @current_user.person.responder_items.each do |r|
- %p
-  fyrir
-  = "#{r.subject.firstname} #{r.subject.lastname}"
-  %b= time_ago_in_words(r.deadline)
-  þar til skilafrestur rennur út
-  %i
-   send
-   =l r.created_at :format => :short
-
-   = link_to  "Klára", edit_responder_item_person_path(r.subject,r), :class => 'button x-small green'
+- @current_user.person.uncompleted_registrations.each do |r|
+  %h2 Ókláraðuð nýskráning
+  %br
+  %p.notice.pending_registration
+    fyrir
+    = "#{r.subject.firstname} #{r.subject.lastname}"
+    %b= time_ago_in_words(r.deadline)
+    þar til skilafrestur rennur út
+    %i
+      send
+      =l r.created_at :format => :short
+  = link_to  t('actions.finish'), edit_responder_item_person_path(r,r.subject), :class => 'button x-small green'

@@ -15,7 +15,7 @@
 #
 # * http://benmabey.com/2008/05/19/imperative-vs-declarative-scenarios-in-user-stories.html
 # * http://dannorth.net/2011/01/31/whose-domain-is-it-anyway/
-# * http://elabs.se/blog/15-you-re-cuking-it-wrong 
+# * http://elabs.se/blog/15-you-re-cuking-it-wrong
 #
 
 
@@ -57,6 +57,15 @@ begin
   task :features => :cucumber do
     STDERR.puts "*** The 'features' task is deprecated. See rake -T cucumber ***"
   end
+  task :cucumberhtml do
+       output_path = Dir["#{Rails.root}/html_output.html"]
+       system "bundle exec cucumber -r features -f html -o html_output.html"
+       puts
+       system "open #{output_path} -a 'Google Chrome'"
+       puts ":::: OPENING < #{output_path} > WITH GOOGLE CHROME".foreground(:black).background(:cyan)
+       puts
+  end
+
 
   # In case we don't have ActiveRecord, append a no-op task that we can depend upon.
   task 'db:test:prepare' do

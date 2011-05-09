@@ -2,7 +2,6 @@ class ResponderItemsController < ApplicationController
   load_resource
   authorize_resource
   def index
-    #@registrations = current_user.person.pending_patient_responder_items
   end
 
   def edit

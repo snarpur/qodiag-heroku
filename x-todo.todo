@@ -1,10 +1,14 @@
 : :::::::::::::::::::::::::::::::::::::: START :::::::::::::::::::::::::::::::::::::
-! lesa backbone.js
+! write test for after save on ResponderItem to save subject id
+
+
++ Prófa backbone.js á ResponseItem
++ Fara ígegnum jasmine og cucumber testing with capybara
 : :::::::::::::::::::::::::::::::::::::: DEVELOPMENT::::::::::::::::::::::::::::::::::::::
-! Finnish cucumber complete_registration scenario
-! Create temporary way to complete registration
+
 ! Scenario for both caretaker and client to see that registration has been completed
-! Simple display page for client with submitted information
+  % Simple display page for client with submitted information
+  % Simple display page for caretaker with list of pending, recently completed and deleyed registrations
 ! Set up surveyor
 
 

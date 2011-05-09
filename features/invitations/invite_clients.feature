@@ -20,16 +20,11 @@ Scenario Outline: Invite new client user
   Examples:
   | user_email   | user_details            | see_action                                                        |
   | test@test.is | valid input             | I should see the send_instructions invitation message             |
-  | jim@mail.com | valid input             | the user email field has a taken error                            |
-  | joema        | valid input             | the user email field has an invalid error                         |
-  |              | valid input             | the user email field has a blank error                            |
-  | gulli@ho.is  | child firstname missing | the person firstname field in the child section has a blank error |
+  # | jim@mail.com | valid input             | the user email field has a taken error                            |
+  # | joema        | valid input             | the user email field has an invalid error                         |
+  # |              | valid input             | the user email field has a blank error                            |
+  # | gulli@ho.is  | child firstname missing | the person firstname field in the child section has a blank error |
 
-Scenario: Invited user should have a pending registration
-  Given the user Bob sent an invitation to nonni@kalli.is
-  And  that I sent an invitation to siggi@kalli.is
-  When I go to the pending registrations page
-  Then I should see "siggi@kalli.is"
-  And I should not see "nonni@kalli.is"
+
 
 

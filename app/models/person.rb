@@ -12,9 +12,10 @@ class Person < ActiveRecord::Base
 
   attr_accessor :factory
 
-  has_many :responder_items
 
-  has_many :responder_items_as_subject, :class_name => "RepsonderItem", :foreign_key => "subject_id"
+  has_many :client_responder_items, :class_name => "ResponderItem", :foreign_key => "client_id"
+  has_many :patient_responder_items, :class_name => "ResponderItem", :foreign_key => "subject_id"
+  has_many :caretaker_responder_items, :class_name => "ResponderItem", :foreign_key => "caretaker_id"
 
   has_many  :relationships, :dependent => :destroy do
     def child
@@ -85,22 +86,23 @@ class Person < ActiveRecord::Base
   accepts_nested_attributes_for :inverse_relationships, :allow_destroy => true
   accepts_nested_attributes_for :inverse_relations, :allow_destroy => true
   accepts_nested_attributes_for :address, :allow_destroy => true
-  accepts_nested_attributes_for :responder_items, :allow_destroy => true
+  accepts_nested_attributes_for :client_responder_items, :allow_destroy => true
+  accepts_nested_attributes_for :patient_responder_items, :allow_destroy => true
 
 
   attr_accessible :firstname, :lastname, :sex, :ispatient, :dateofbirth, :cpr, :workphone, :mobilephone, :occupation, :workplace, :full_cpr,
                   :address_id,
                   :relations_attributes, :inverse_relations_attributes, :relationships_attributes, :inverse_relationships_attributes,  :address_attributes, :factory,
-                  :responder_items_attributes
+                  :client_responder_items_attributes, :patient_responder_items_attributes
 
   validates_associated :relationships, :inverse_relationships, :address
   def user
     User.where(:person_id => self.id).first
   end
 
-  def pending_patient_responder_items
-    ResponderItem.joins(:subject => :inverse_relationships).
-    where("relationships.name = 'patient' and relationships.person_id = '#{self.id}'")
+  def uncompleted_registrations
+    role = self.user.roles.first.name
+    self.try("#{role}_responder_items").where(:completed => nil, :registration_identifier => 'client_registration')
   end
 
 

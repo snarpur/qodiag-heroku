@@ -17,3 +17,12 @@ Factory.define :person do |person|
   person.firstname "John Smith"
   person.sex "male"
 end
+
+
+Factory.define :invitation_responder_item, :class => ResponderItem do |item|
+  item.registration_identifier "strange_days"
+  item.caretaker { |caretaker| caretaker.association(:person) }
+  item.client { |client| client.association(:person) }
+  item.subject nil
+  item.deadline Time.zone.now.advance(:weeks => 2)
+end

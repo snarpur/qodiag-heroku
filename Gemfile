@@ -34,6 +34,7 @@ group :development, :test do
   gem "watchr"
   gem "populator"
   gem "faker"
+  gem "syntax"
 end
 
 

@@ -9,6 +9,13 @@ class Ability
         can :manage, User do |u|
           (u.roles.map{|r|r.name} & ['caretaker','super_admin']).empty?
         end
+        can :manage, User do |u|
+          u == user
+        end
+        can :manage, ResponderItem do |ri|
+          KK.see "in ability: #{ri.caretaker}"
+          ri.caretaker == user.person
+        end
         can :read, Role
     elsif user.role? :client
       can :manage, User do |u|

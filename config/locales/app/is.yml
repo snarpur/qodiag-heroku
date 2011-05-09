@@ -80,6 +80,8 @@ is:
     sign_in: "Skrá mig inn"
     sign_out: "Skrá mig út"
     log_in: "Innskráning"
+    register: "Skrá"
+    finish : "Klára"
   #Headers -------------------------------------------------------
   headers:
     sign_up: "Skrá notenda"
@@ -160,7 +162,7 @@ is:
     formats:
       default: "%A %e. %B %Y kl. %H:%M"
       time: "%H:%M"
-      short: "%e. %B"
+      short: "%e. %B %Y"
       long: "%A %e. %B %Y kl. %H:%M"
     am: ""
     pm: ""
@@ -214,6 +216,7 @@ is:
       user: "notenda"
       role: "hlutverk"
       person: "persóna"
+      resopnder_item: "skráning"
     attributes:
       user:
         email: "netfang"
@@ -224,9 +227,12 @@ is:
       person:
         firstname: "fornafn"
         lastname: "eftirnafn"
+        cpr: "kennitala"
       relationship:
         relation_id: "relation_id"
         name: "tenging"
+      responder_item:
+        completed: "klárð"
     errors:
       template:
         header:

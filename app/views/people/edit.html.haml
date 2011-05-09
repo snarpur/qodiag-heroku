@@ -1,5 +1,4 @@
-/ %div{:class => "family-registration #{@wizard.partial}"}
-/   =render "shared/wizard_navigation"
-/   =render "people/#{@wizard.partial}/#{@wizard.partial}"
+- partial = @responder_item.registration_identifier
+=render "people/#{partial}/edit"
 
-= params.inspect
+

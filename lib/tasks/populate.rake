@@ -46,8 +46,9 @@ namespace :db do
               r_patient.name = "patient"
             end
            ResponderItem.populate 1 do |item|
-              item.person_id = parent.id
+              item.client_id = parent.id
               item.subject_id = patient.id
+              item.caretaker_id = caretaker.id
               item.deadline = Date.current.advance(:weeks =>2)
               item.registration_identifier = 'client_registration'
             end

@@ -6,16 +6,16 @@ Feature: Login
 Background:
   Given the following roles exists:
     | name  |
-    | super_admin |
     | caretaker |
     | client |
 
   And the following users exists:
-   | email                | password | password_confirmation | user_roles        |
-   | tom@mail.com         | welcome  | welcome               | name: super_admin |
-   | johnny@mail.com      | welcome  | welcome               | name: caretaker   |
+   | email        | password | password_confirmation | user_roles      |
+   | tom@mail.com | welcome  | welcome               | name: caretaker |
 
 
 Scenario: See correct login information
   And I log in as "tom@mail.com" with password "welcome"
+  And show me the page
   Then I should see correct login information for user "tom@mail.com"
+

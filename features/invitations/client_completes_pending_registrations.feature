@@ -7,10 +7,12 @@ Background:
   Given I have confirmed my invitation as kalli@kalli.is
 
 Scenario: See the if the registration is pending
-          Then show me the page
-          Then I should see a pending registration
+  Then I should see a pending registration
 
-# Scenario: Finnish the registration
-#
-# Scenario: Save and finnish the registration later
+Scenario: Finnish the registration
+    When I click finish
+    And complete a valid client registration
+    Then I should not see a pending registration
+
+
 

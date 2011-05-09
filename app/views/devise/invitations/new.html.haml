@@ -10,6 +10,10 @@
       =render "parent", :f => parent
     .section.child
       = render "child", :f => parent
+    = parent.simple_fields_for :client_responder_items, @responder_item do |item|
+      =item.input :caretaker_id
+      =item.input :registration_identifier
+      =item.input :deadline
 
 
   =f.submit t('actions.create')

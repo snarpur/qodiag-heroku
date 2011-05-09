@@ -15,6 +15,7 @@ Given /^I(?: am (.*) and I)? am logged in as (.*)$/ do |name ,role|
   fill_in "user_email", :with => "#{name}@somedomain.com"
   fill_in "user_password", :with => password
   click_button I18n.t('actions.sign_in')
+  @current_user = user
 end
 
 Then /^I should see correct login information for user "([^"]*)"$/ do |user_email|

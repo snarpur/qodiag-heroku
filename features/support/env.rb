@@ -1,6 +1,7 @@
 require 'cucumber/rails'
 require 'email_spec'
 require 'email_spec/cucumber'
+require 'faker'
 require "#{Rails.root}/features/support/paths"
 require "#{Rails.root}/features/support/selectors"
 # require "#{Rails.root}/features/support/translation_helper"

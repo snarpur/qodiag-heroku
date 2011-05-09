@@ -10,6 +10,11 @@ class Devise::InvitationsController < ApplicationController
   def new
     @parent = @user.build_person
     @child =  Person.new(:factory => {:name => :child, :relation =>  @parent})
+    @patient_relationship = @child.inverse_relationships.build(:name=> "patient", :person_id => @current_user.person.id)
+    @responder_item = @parent.client_responder_items.build(:registration_identifier => "client_registration",
+                                                           :caretaker_id => @current_user.person.id,
+                                                           :deadline => Time.zone.now
+                                                           )
     respond_to do |format|
       format.html
     end
@@ -19,7 +24,9 @@ class Devise::InvitationsController < ApplicationController
     @user = User.new(params[:user].merge!({:invitation => true}))
     @user.valid?
     if @user.errors.empty?
-      @user = User.invite!(params[:user])
+      #@user = User.invite!(params[:user])
+      KK.see "WARNING :::: COMMENT"
+      @user = User.create(params[:user])
       @user.update_attributes(params[:user][:person])
       set_responder_item
       flash[:notice] = I18n.t('devise.invitations.send_instructions',:email => @user.email)
@@ -68,8 +75,13 @@ class Devise::InvitationsController < ApplicationController
   def set_responder_item
     guardian = @user.person
     child = guardian.relations.guardian_of.last
-    child.inverse_relationships.create(:name => "patient", :person_id =>  @current_user.person.id)
-    ResponderItem.create(:person_id => guardian.id, :subject_id => child.id)
+    #child.inverse_relationships.create(:name => "patient", :person_id =>  @current_user.person.id)
+    #ResponderItem.create( :client_id => guardian.id,
+                          # :subject_id => child.id,
+                          # :caretaker_id => @current_user.person.id,
+                          # :deadline => Time.now.advance(:weeks => 2),
+                          # :registration_identifier => 'client_registration'
+                          # )
   end
 
 end
