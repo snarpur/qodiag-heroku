@@ -49,7 +49,8 @@ Then /^(?:|I )should not see the (.*) (.*) message$/ do |message, action|
   end
 end
 
-When /^debug(?: for (.*))?$/ do |param|
- KK.see @last_email
+When /^debug(?: for "([^"]*)")?$/ do |param|
+
+ KK.see  User.find_by_email("gulli@snarpurtest.is")
 
 end

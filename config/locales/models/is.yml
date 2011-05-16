@@ -1,0 +1,9 @@
+is:
+  responder_item:
+    registration: "Skráning"
+    registrations: "Skráningar"
+    items:
+      client_registration: "Nýskráning"
+    status:
+      uncompleted: "eftir að klára"
+      overdue: "skilafrestur runninn út"

@@ -18,7 +18,7 @@ namespace :db do
         caretaker.firstname = Faker::Name.first_name
         caretaker.lastname = Faker::Name.last_name
         user.update_attribute(:person_id, caretaker.id)
-        Person.populate 1 do |patient|
+        Person.populate 6 do |patient|
           patient.firstname = Faker::Name.first_name
           patient.lastname = Faker::Name.last_name
           patient.sex = sex[rand(2)]
@@ -49,7 +49,11 @@ namespace :db do
               item.client_id = parent.id
               item.subject_id = patient.id
               item.caretaker_id = caretaker.id
-              item.deadline = Date.current.advance(:weeks =>2)
+              deadline = rand(2) == 0 ? Time.now.advance(:weeks =>2) : Time.now - rand(10).days
+              item.deadline = deadline
+              if rand(2) == 0
+              item.completed = Time.now - 1.days
+              end
               item.registration_identifier = 'client_registration'
             end
           end

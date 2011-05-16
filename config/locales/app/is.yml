@@ -82,6 +82,11 @@ is:
     log_in: "Innskráning"
     register: "Skrá"
     finish : "Klára"
+  time_to_words:
+    until: "þangað til"
+    ago: "síðan"
+    expires: "rennur út"
+    expired: "rann út"
   #Headers -------------------------------------------------------
   headers:
     sign_up: "Skrá notenda"
@@ -233,6 +238,7 @@ is:
         name: "tenging"
       responder_item:
         completed: "klárð"
+        deadline: "skilafrestur"
     errors:
       template:
         header:

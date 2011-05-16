@@ -16,6 +16,5 @@ Background:
 
 Scenario: See correct login information
   And I log in as "tom@mail.com" with password "welcome"
-  And show me the page
   Then I should see correct login information for user "tom@mail.com"
 

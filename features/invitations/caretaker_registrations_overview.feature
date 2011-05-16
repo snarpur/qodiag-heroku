@@ -7,13 +7,12 @@ Scenario: Invited user should have a pending registration
   Given the user Bob sent an invitation to nonni@kalli.is
   And  that I sent an invitation to siggi@kalli.is
   When I go to the user home page
-  And show me the page
-  Then I see siggi@kalli.is in pending registrations
-  And I do not see nonni@kalli.is in pending registrations
+  Then I see siggi@kalli.is in uncompleted registrations
+  And I do not see nonni@kalli.is in uncompleted registrations
 
-# Scenario: Invited user should have a pending registration
+# Scenario: Invited user should have a uncompleted registration
 #   Given the user Bob sent an invitation to nonni@kalli.is
 #   And  that I sent an invitation to siggi@kalli.is
 #   When I go to the user home page
-#   Then I see siggi@kalli.is in pending_registrations
-#   And I do not see nonni@kalli.is in pending_registrations
+#   Then I see siggi@kalli.is in uncompleted registrations
+#   And I do not see nonni@kalli.is in uncompleted registrations

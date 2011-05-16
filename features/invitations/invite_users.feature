@@ -25,7 +25,3 @@ Scenario Outline: Ability for unregistered users to send user invitations
     | user      |
     | client    |
     | caretaker |
-
-
-
-

@@ -1,9 +1,6 @@
 : :::::::::::::::::::::::::::::::::::::: START :::::::::::::::::::::::::::::::::::::
-! write test for after save on ResponderItem to save subject id
+! fara í gegunum cancan á invitation controller
 
-
-+ Prófa backbone.js á ResponseItem
-+ Fara ígegnum jasmine og cucumber testing with capybara
 : :::::::::::::::::::::::::::::::::::::: DEVELOPMENT::::::::::::::::::::::::::::::::::::::
 
 ! Scenario for both caretaker and client to see that registration has been completed
@@ -20,6 +17,12 @@
 % ENVIRONMENT
   ! command line aliases
   ! log to command line => railscasts console tricks AND rails recipies
+
+
+% URGENT STUDY
+  ! Testing models (testing screencasts)
+  ! Prófa backbone.js á ResponseItem
+  ! Fara ígegnum jasmine og cucumber testing with capybara
 
 % STUDY
   ! HTML 5

@@ -1,0 +1,14 @@
+- registrations = locals[:registrations]
+%table
+  %tr
+    %th Sjúklingur
+    %th Svarandi
+    %th Beiðni send dags.
+    %th Skilafrestur
+    -registrations.each do |r|
+      %tr
+        %td= "#{r.subject.firstname} #{r.subject.lastname}"
+        %td="#{r.client.firstname} #{r.client.lastname}"
+        %td=l r.created_at, :format => :short
+        %td="#{time_ago_in_words(r.deadline)} eftir"
+

@@ -1,17 +1,11 @@
-%h2 Ókláraðuð nýskráning
-%table.pending_registrations
-  %tr
-    %th Sjúklingur
-    %th Svarandi
-    %th Beiðni send á netfang
-    %th Beiðni send dags.
-    %th Skilafrestur
-  - @current_user.person.uncompleted_registrations.each do |r|
-    %tr
-      %td="#{r.subject.firstname} #{r.subject.lastname}"
-      %td="#{r.client.firstname} #{r.client.lastname}"
-      %td= r.client.user.email
-      %td=l r.created_at, :format => :short
-      %td="#{time_ago_in_words(r.deadline)} eftir"
+- registrations = registration_items([:recently_completed,:uncompleted,:overdue],@current_user)
+= registrations.size
+- registrations.each do |r|
+  %h2
+    = t('responder_item.registrations')
+    = t("responder_item.status.#{r[:name]}")
+  %div{:class =>"#{r[:name]} registration"}
+    =render r[:partial], :locals => r[:locals]
+
 
 

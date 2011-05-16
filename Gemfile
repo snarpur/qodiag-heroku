@@ -35,6 +35,7 @@ group :development, :test do
   gem "populator"
   gem "faker"
   gem "syntax"
+  gem "interactive_editor"
 end
 
 

@@ -1,17 +1,7 @@
 require 'spec_helper'
 
 describe Devise::InvitationsController do
-  describe "GET new" do
-    context "When the super_admin is loged in" do
-      login_user(:super_admin)
-
-      it "should display the caretaker invitation page" do
-        get :new, :role_ids => "2"
-        response.should be_success
-      end
-
-    end
-
+  describe "GET new", :focus => true do
     context "When the caretaker is loged in" do
       login_user(:caretaker)
 
@@ -19,11 +9,11 @@ describe Devise::InvitationsController do
         get :new, :role_ids => "2"
         response.status.should eql(401)
       end
-
-      it "should display the client invitation page" do
-        get :new, :role_ids => "3"
-        response.should be_success
+      it "assigns the client object" do
+         get :new, :role_ids => "3"
+         assigns[:user].should_not be_nil
       end
+
     end
   end
 
@@ -83,4 +73,3 @@ describe Devise::InvitationsController do
     end
    end
 end
-

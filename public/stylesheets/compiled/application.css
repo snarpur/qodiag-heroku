@@ -1384,6 +1384,48 @@ body {
 }
 
 /* line 84, ../../../app/stylesheets/application.sass */
+.overdue {
+  padding: 0.8em;
+  margin-bottom: 1em;
+  border: 2px solid #dddddd;
+  background: #fbe3e4;
+  color: #8a1f11;
+  border-color: #fbc2c4;
+}
+/* line 29, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_interaction.scss */
+.overdue a {
+  color: #8a1f11;
+}
+
+/* line 86, ../../../app/stylesheets/application.sass */
+.uncompleted {
+  padding: 0.8em;
+  margin-bottom: 1em;
+  border: 2px solid #dddddd;
+  background: #fff6bf;
+  color: #514721;
+  border-color: #ffd324;
+}
+/* line 37, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_interaction.scss */
+.uncompleted a {
+  color: #514721;
+}
+
+/* line 88, ../../../app/stylesheets/application.sass */
+.recently_completed {
+  padding: 0.8em;
+  margin-bottom: 1em;
+  border: 2px solid #dddddd;
+  background: #e6efc2;
+  color: #264409;
+  border-color: #c6d880;
+}
+/* line 45, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_interaction.scss */
+.recently_completed a {
+  color: #264409;
+}
+
+/* line 91, ../../../app/stylesheets/application.sass */
 ul {
   list-style: none;
   padding-left: 0;
@@ -1395,37 +1437,37 @@ ul li {
   margin-left: 0px;
 }
 
-/* line 88, ../../../app/stylesheets/application.sass */
+/* line 95, ../../../app/stylesheets/application.sass */
 hr.break {
   visibility: hidden;
   margin: 0;
 }
 
-/* line 93, ../../../app/stylesheets/application.sass */
+/* line 100, ../../../app/stylesheets/application.sass */
 table {
   width: 100%;
 }
-/* line 96, ../../../app/stylesheets/application.sass */
+/* line 103, ../../../app/stylesheets/application.sass */
 table th, table td {
   padding: 2px 2px 2px 8px;
 }
-/* line 98, ../../../app/stylesheets/application.sass */
+/* line 105, ../../../app/stylesheets/application.sass */
 table th {
   color: #141936;
   border-bottom: 1px solid #dfdfdf;
 }
-/* line 101, ../../../app/stylesheets/application.sass */
+/* line 108, ../../../app/stylesheets/application.sass */
 table td {
   color: #7c7c7c;
 }
 
-/* line 107, ../../../app/stylesheets/application.sass */
+/* line 114, ../../../app/stylesheets/application.sass */
 .section {
   overflow: hidden;
   *zoom: 1;
 }
 
-/* line 110, ../../../app/stylesheets/application.sass */
+/* line 117, ../../../app/stylesheets/application.sass */
 .ajax_notice {
   position: absolute;
   top: 0;
@@ -1433,7 +1475,7 @@ table td {
   width: 100%;
   background-color: #fff79f;
 }
-/* line 116, ../../../app/stylesheets/application.sass */
+/* line 123, ../../../app/stylesheets/application.sass */
 .ajax_notice span {
   font-size: 1.5em;
   padding-top: 10px;
@@ -1441,7 +1483,7 @@ table td {
   padding-left: 560px;
 }
 
-/* line 122, ../../../app/stylesheets/application.sass */
+/* line 129, ../../../app/stylesheets/application.sass */
 .notice.large {
   margin: 15px 0;
   padding: 30px 40px 30px 100px;
@@ -1450,46 +1492,46 @@ table td {
   background-position: 10px 50%;
 }
 
-/* line 129, ../../../app/stylesheets/application.sass */
+/* line 136, ../../../app/stylesheets/application.sass */
 .clear {
   overflow: hidden;
   *zoom: 1;
   visibility: hidden;
 }
 
-/* line 135, ../../../app/stylesheets/application.sass */
+/* line 142, ../../../app/stylesheets/application.sass */
 .spouse {
   margin: 0 2em;
 }
 
-/* line 137, ../../../app/stylesheets/application.sass */
+/* line 144, ../../../app/stylesheets/application.sass */
 .added-spouse {
   position: relative;
   margin: 1em 0;
   padding: 0.5em 0;
   border-bottom: 1px dashed #999999;
 }
-/* line 142, ../../../app/stylesheets/application.sass */
+/* line 149, ../../../app/stylesheets/application.sass */
 .added-spouse:last-child {
   border-bottom-width: 0;
 }
-/* line 144, ../../../app/stylesheets/application.sass */
+/* line 151, ../../../app/stylesheets/application.sass */
 .added-spouse > div {
   margin: 0 2em;
 }
 
-/* line 147, ../../../app/stylesheets/application.sass */
+/* line 154, ../../../app/stylesheets/application.sass */
 .added-spouse:first-child {
   border-top: 1px dashed #999999;
 }
 
-/* line 151, ../../../app/stylesheets/application.sass */
+/* line 158, ../../../app/stylesheets/application.sass */
 .siblings_list {
   overflow: hidden;
   *zoom: 1;
   margin-bottom: 4px;
 }
-/* line 154, ../../../app/stylesheets/application.sass */
+/* line 161, ../../../app/stylesheets/application.sass */
 .siblings_list ul {
   display: inline;
   float: left;
@@ -1502,27 +1544,27 @@ table td {
 * html .siblings_list ul {
   overflow-x: hidden;
 }
-/* line 158, ../../../app/stylesheets/application.sass */
+/* line 165, ../../../app/stylesheets/application.sass */
 .siblings_list h4 {
   margin-bottom: 2px;
   padding: 6px 0 12px 28px;
   color: #003a85;
 }
-/* line 162, ../../../app/stylesheets/application.sass */
+/* line 169, ../../../app/stylesheets/application.sass */
 .siblings_list li {
   color: #333333;
 }
-/* line 164, ../../../app/stylesheets/application.sass */
+/* line 171, ../../../app/stylesheets/application.sass */
 .siblings_list li p {
   margin: 0 3px 2px 3px;
   padding-bottom: 2px;
   border-bottom: #f9f8f9 1px solid;
 }
-/* line 168, ../../../app/stylesheets/application.sass */
+/* line 175, ../../../app/stylesheets/application.sass */
 .siblings_list li em {
   float: right;
 }
-/* line 170, ../../../app/stylesheets/application.sass */
+/* line 177, ../../../app/stylesheets/application.sass */
 .siblings_list a {
   -moz-border-radius: 11px;
   -webkit-border-radius: 11px;
@@ -1543,47 +1585,47 @@ table td {
   background-color: white;
 }
 
-/* line 173, ../../../app/stylesheets/application.sass */
+/* line 180, ../../../app/stylesheets/application.sass */
 .siblings_list ul li:first-child {
   background-color: #f9f8f9;
   margin-bottom: 20px;
 }
 
-/* line 177, ../../../app/stylesheets/application.sass */
+/* line 184, ../../../app/stylesheets/application.sass */
 .siblings_list li:last-child {
   padding: 20px 0 8px 10px;
 }
 
-/* line 181, ../../../app/stylesheets/application.sass */
+/* line 188, ../../../app/stylesheets/application.sass */
 #full_sibling_list h4 {
   background: url("/images/fullsibling-16.png") 5px 5px no-repeat;
 }
 
-/* line 183, ../../../app/stylesheets/application.sass */
+/* line 190, ../../../app/stylesheets/application.sass */
 #half_sibling_mother_list h4 {
   background: url("/images/halfsibling-16.png") 5px 5px no-repeat;
 }
 
-/* line 185, ../../../app/stylesheets/application.sass */
+/* line 192, ../../../app/stylesheets/application.sass */
 #half_sibling_father_list h4 {
   background: url("/images/halfsibling-16.png") 5px 5px no-repeat;
 }
 
-/* line 187, ../../../app/stylesheets/application.sass */
+/* line 194, ../../../app/stylesheets/application.sass */
 #foster_sibling_list h4 {
   background: url("/images/fostersibling-16.png") 5px 5px no-repeat;
 }
 
-/* line 189, ../../../app/stylesheets/application.sass */
+/* line 196, ../../../app/stylesheets/application.sass */
 .select-sibling {
   margin-bottom: 10px;
 }
 
-/* line 195, ../../../app/stylesheets/application.sass */
+/* line 202, ../../../app/stylesheets/application.sass */
 .guardians .notice p {
   margin-left: 20px;
 }
-/* line 197, ../../../app/stylesheets/application.sass */
+/* line 204, ../../../app/stylesheets/application.sass */
 .guardians .notice a {
   -moz-border-radius: 11px;
   -webkit-border-radius: 11px;
@@ -1603,23 +1645,23 @@ table td {
 .guardians .notice a:hover {
   background-color: white;
 }
-/* line 199, ../../../app/stylesheets/application.sass */
+/* line 206, ../../../app/stylesheets/application.sass */
 .guardians .notice td:nth-child(1n+3) {
   float: right;
   margin-left: 11px;
 }
 
-/* line 204, ../../../app/stylesheets/application.sass */
+/* line 211, ../../../app/stylesheets/application.sass */
 .family-overview div.section {
   padding: 1em;
 }
 
-/* line 210, ../../../app/stylesheets/application.sass */
+/* line 217, ../../../app/stylesheets/application.sass */
 .family-overview h1:first-child + div {
   display: block;
 }
 
-/* line 213, ../../../app/stylesheets/application.sass */
+/* line 220, ../../../app/stylesheets/application.sass */
 .family-overview h1 {
   background-color: #f9f9f9;
   border: 1px solid #f4f4f4;
@@ -1627,20 +1669,20 @@ table td {
   padding: 0.4em 0 0.4em 0.9em;
 }
 
-/* line 220, ../../../app/stylesheets/application.sass */
+/* line 227, ../../../app/stylesheets/application.sass */
 .family-overview h2 {
   border-bottom: 1px solid #f4f4f4;
   font-size: 1.4em;
   margin-bottom: 5px;
 }
-/* line 224, ../../../app/stylesheets/application.sass */
+/* line 231, ../../../app/stylesheets/application.sass */
 .family-overview h3 {
   font-size: 14px;
   color!: #7c7c7c;
   margin-bottom: 3px;
 }
 
-/* line 230, ../../../app/stylesheets/application.sass */
+/* line 237, ../../../app/stylesheets/application.sass */
 .family-overview .section .parent-info {
   position: relative;
   display: inline;
@@ -1652,22 +1694,22 @@ table td {
 * html .family-overview .section .parent-info {
   overflow-x: hidden;
 }
-/* line 233, ../../../app/stylesheets/application.sass */
+/* line 240, ../../../app/stylesheets/application.sass */
 .family-overview .section .parent-info li {
   padding: 1px 0;
   border-bottom: solid 1px #eaeaea;
   overflow: hidden;
   *zoom: 1;
 }
-/* line 237, ../../../app/stylesheets/application.sass */
+/* line 244, ../../../app/stylesheets/application.sass */
 .family-overview .section .parent-info li:nth-child(even) {
   background-color: #fcfcfc;
 }
-/* line 239, ../../../app/stylesheets/application.sass */
+/* line 246, ../../../app/stylesheets/application.sass */
 .family-overview .section .parent-info li:nth-child(odd) {
   background-color: #f9f9f9;
 }
-/* line 241, ../../../app/stylesheets/application.sass */
+/* line 248, ../../../app/stylesheets/application.sass */
 .family-overview .section .parent-info b {
   display: inline;
   float: left;
@@ -1680,7 +1722,7 @@ table td {
   overflow-x: hidden;
 }
 
-/* line 245, ../../../app/stylesheets/application.sass */
+/* line 252, ../../../app/stylesheets/application.sass */
 .family-overview .section .spouse-info {
   display: inline;
   float: left;
@@ -1691,14 +1733,14 @@ table td {
 * html .family-overview .section .spouse-info {
   overflow-x: hidden;
 }
-/* line 247, ../../../app/stylesheets/application.sass */
+/* line 254, ../../../app/stylesheets/application.sass */
 .family-overview .section .spouse-info li {
   border: #dfffe0 solid 1px;
   margin-bottom: 2px;
   background-color: #deffdd;
 }
 
-/* line 252, ../../../app/stylesheets/application.sass */
+/* line 259, ../../../app/stylesheets/application.sass */
 .family-overview .section table {
   border: 1px solid black;
 }
@@ -1732,7 +1774,7 @@ table td {
   border-right: 1px solid black;
 }
 
-/* line 256, ../../../app/stylesheets/application.sass */
+/* line 263, ../../../app/stylesheets/application.sass */
 .family-overview .icon {
   display: block;
   padding-left: 22px;
@@ -1743,43 +1785,43 @@ table td {
   width: 30px;
 }
 
-/* line 265, ../../../app/stylesheets/application.sass */
+/* line 272, ../../../app/stylesheets/application.sass */
 #dialog {
   display: none;
 }
 
-/* line 271, ../../../app/stylesheets/application.sass */
+/* line 278, ../../../app/stylesheets/application.sass */
 .hidden, .off {
   display: none;
 }
 
-/* line 273, ../../../app/stylesheets/application.sass */
+/* line 280, ../../../app/stylesheets/application.sass */
 .on {
   display: block;
 }
 
-/* line 276, ../../../app/stylesheets/application.sass */
+/* line 283, ../../../app/stylesheets/application.sass */
 #address.on {
   display: block;
 }
-/* line 278, ../../../app/stylesheets/application.sass */
+/* line 285, ../../../app/stylesheets/application.sass */
 #address.on .new_address {
   display: block;
 }
-/* line 280, ../../../app/stylesheets/application.sass */
+/* line 287, ../../../app/stylesheets/application.sass */
 #address.on .existing_address {
   display: none;
 }
 
-/* line 282, ../../../app/stylesheets/application.sass */
+/* line 289, ../../../app/stylesheets/application.sass */
 #address.off {
   display: block;
 }
-/* line 284, ../../../app/stylesheets/application.sass */
+/* line 291, ../../../app/stylesheets/application.sass */
 #address.off .new_address {
   display: none;
 }
-/* line 286, ../../../app/stylesheets/application.sass */
+/* line 293, ../../../app/stylesheets/application.sass */
 #address.off .existing_address {
   display: block;
 }

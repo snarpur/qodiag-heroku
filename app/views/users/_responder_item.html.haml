@@ -1,0 +1,10 @@
+- registrations = locals[:registrations]
+-registrations.each do |r|
+  %p{:class => "registrations[:name]"}
+    fyrir
+    = "#{r.subject.firstname} #{r.subject.lastname}"
+    %b= before_or_after_today(r.deadline,'deadline')
+    %i
+      send
+    =l r.created_at :format => :short
+    = link_to  t('actions.finish'), edit_responder_item_person_path(r,r.subject), :class => 'button x-small green'

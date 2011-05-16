@@ -1,9 +1,9 @@
 = f.simple_fields_for :relationships do |parent_relationship|
-  = parent_relationship.simple_fields_for :relation, @child do |child|
+  = parent_relationship.simple_fields_for :relation, @user.person.relations.first do |child|
     = child.input :sex, :collection => [[t('terms.boy'),'male'],[t('terms.girl'),'female']],  :as => :radio
     = child.input :firstname
     = child.input :lastname
-    = child.simple_fields_for :inverse_relationships, @patient_relationship do |patient_relationship|
+    = child.simple_fields_for :inverse_relationships do |patient_relationship|
       = patient_relationship.input :name
       = patient_relationship.input :person_id
   = parent_relationship.collection_check_boxes :name,[[t('terms.parent'),'parent'],[t('terms.guardian'),'guardian']],:last,:first, {:disabled => ['guardian'], :checked => 'guardian'}

@@ -11,25 +11,16 @@ describe User do
 
   context "client should have correct relationships"do
     before do
-      role_id = Role.find_by_name("client").id.to_s
-      @user = User.new(:email => "gulli@kalli.is", :password => "foobarbaz", :role_ids => role_id)
+      @caretaker = Factory(:user, :roles => [Factory(:role, :name => 'caretaker')])
+      @user = User.new_client_as_guardian_by_invitation(Factory.attributes_for(:simple_client, :inviter => @caretaker))
+      @user.save
+
     end
-    it { @user.role_names.should include("client") }
+    it { @user.role_names.should include('client') }
+    it { @user.person.should_not be_nil }
+    it {User.find(@user.invited_by_id) == @caretaker}
   end
 
-  context "should save pending registration on ivitations"  do
-    before do
-      @invited_user = User.create(:email => "gulli@kalli.is", :password => "asdfkjl", :password_confirmation => "asdfkjl", :invitation => true)
-      @registered_user = User.create(:email => "nonni@kalli.is", :password => "asdfkjl", :password_confirmation => "asdfkjl")
-    end
-    it "should have a pending registration" do
-      PendingRegistration.where(:person_id => @invited_user.id).should_not be_nil
-    end
-
-    it "should NOT have a pending registration" do
-      PendingRegistration.where(:person_id => @registered_user.id).should  be_empty
-    end
-  end
 
   context "validates correctly" do
     before do

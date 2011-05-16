@@ -17,9 +17,9 @@ describe ResponderItem do
   context "setting association on subject", :focus => true do
     before do
         @item = ResponderItem.create(:registration_identifier => "strange_days")
-        @item.caretaker = Person.create(:firstname => "Fritz")
-        @item.client = Person.create(:firstname => "John")
-
+        @caretaker = @item.create_caretaker(:firstname => "Fritz")
+        @item.create_client(:firstname => "John")
+        KK.see@caretaker
     end
     it "if no subject id is submitted" do
 

@@ -1,39 +1,29 @@
 require 'spec_helper'
 describe Person do
-  describe "child with one relation as guardiand and parent", :focus => true do
+
+  context "creates new person as guardian with invitation" do
     before do
-      @parent = Person.create(:firstname  => "Mom")
-      @child  = Person.create(:firstname => "Child",
-                                      :factory    => {
-                                        :name     => :child,
-                                        :relation => @parent
-                                      })
+     @caretaker = Factory(:user, :roles => [Factory(:role, :name => 'caretaker')])
+     @person = Person.new_as_guardian_by_invitation(@caretaker.person)
+     @person.save
+    end
+    it "should be guardian of a child" do
+      @person.relationships.should_not be_empty
     end
 
-    it "have the correct parent" do
-      #  @child.inverse_relations.parents.should include(@parent)
+    it "child should be a patient" do
+      @person.relations.should_not be_empty
     end
-    it "have only one parent" do
-       # @child.inverse_relations.parents.should have_exactly(1).items
-    end
-   end
-
-  context "child should be a patient of a specialist" do
-     before do
-       @specialist = Person.create(:firstname  => "specialist")
-       @child      = Person.create(:firstname  => "Child",
-                                     :factory    => {
-                                       :name     => :patient,
-                                       :relation => @specialist
-                                    })
-     end
-     it "child should have one specialist" do
-       @child.inverse_relations.specialists.should include(@specialist)
-     end
-    it "have only one specialist" do
-        @child.inverse_relations.specialists.should have_exactly(1).items
+    #
+    it "has client_registration" do
+      @person.client_responder_items.should_not be_empty
     end
 
+    it "child is patient of" do
+      @person.client_responder_items.should_not be_empty
+    end
 
-   end
+  end
+
+
 end

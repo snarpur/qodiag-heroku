@@ -1,12 +1,7 @@
-- @current_user.person.uncompleted_registrations.each do |r|
-  %h2 Ókláraðuð nýskráning
-  %br
-  %p.notice.pending_registration
-    fyrir
-    = "#{r.subject.firstname} #{r.subject.lastname}"
-    %b= time_ago_in_words(r.deadline)
-    þar til skilafrestur rennur út
-    %i
-      send
-      =l r.created_at :format => :short
-  = link_to  t('actions.finish'), edit_responder_item_person_path(r,r.subject), :class => 'button x-small green'
+- registrations = registration_items([:uncompleted,:overdue],@current_user)
+- registrations.each do |r|
+  %h2
+    = t('responder_item.registrations')
+    = t("responder_item.status.#{r[:name]}")
+  %div{:class =>"#{r[:name]} registration"}
+    =render r[:partial], :locals => r[:locals]

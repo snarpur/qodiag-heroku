@@ -12,7 +12,7 @@ class Person < ActiveRecord::Base
 
   attr_accessor :factory
 
-
+  # has_one :user
   has_many :client_responder_items, :class_name => "ResponderItem", :foreign_key => "client_id"
   has_many :patient_responder_items, :class_name => "ResponderItem", :foreign_key => "subject_id"
   has_many :caretaker_responder_items, :class_name => "ResponderItem", :foreign_key => "caretaker_id"
@@ -93,18 +93,31 @@ class Person < ActiveRecord::Base
   attr_accessible :firstname, :lastname, :sex, :ispatient, :dateofbirth, :cpr, :workphone, :mobilephone, :occupation, :workplace, :full_cpr,
                   :address_id,
                   :relations_attributes, :inverse_relations_attributes, :relationships_attributes, :inverse_relationships_attributes,  :address_attributes, :factory,
-                  :client_responder_items_attributes, :patient_responder_items_attributes
+                  :client_responder_items_attributes, :patient_responder_items_attributes #, :user_attributes
 
-  validates_associated :relationships, :inverse_relationships, :address
-  def user
-    User.where(:person_id => self.id).first
+  validates_associated :relationships, :inverse_relationships, :address #,:user
+
+  def self.new_as_guardian_by_invitation(inviter)
+    person = Person.new
+    child = person.relations.build
+    person.relationships.build(:name => "guardian").inverse_relation  = child
+    registration = person.client_responder_items.build( :registration_identifier => "client_registration",
+                                                        :caretaker_id => inviter.id,
+                                                        :deadline => Time.zone.now.advance(:weeks => 2))
+    child.inverse_relationships.build(:name=> "patient", :person_id => inviter.id)
+    person
   end
 
-  def uncompleted_registrations
-    role = self.user.roles.first.name
-    self.try("#{role}_responder_items").where(:completed => nil, :registration_identifier => 'client_registration')
+
+  def registrations(status)
+    self.send("#{self.role}_responder_items").send(status)
   end
 
+
+  def role
+    role = Role.joins(:users).where(:users =>{:person_id => self.id}).select(:name).first
+    role.name
+  end
 
   def presence_of_cpr
     errors.add(:cpr, "má ekki vera autt") if
@@ -198,6 +211,12 @@ class Person < ActiveRecord::Base
     self.send(:relationships).map {|r| r.name == name.to_s}
   end
 
+  def set_responder_item_subject
+   responder_items = self.client_responder_items
+    unless responder_items.empty?
+      responder_items.last.update_attribute("subject_id", self.relations.guardian_of.last.id)
+    end
+  end
   private
 
   def person_factory
@@ -210,5 +229,8 @@ class Person < ActiveRecord::Base
       end
     end
   end
+
+
+
 
 end
