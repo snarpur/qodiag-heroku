@@ -4,11 +4,10 @@ Feature: Careteaker has overview over uncompleted, completed delayed registratio
   So that I can see the requested information
 
 Scenario: Invited user should have a pending registration
-  Given the user Bob sent an invitation to nonni@kalli.is
-  And  that I sent an invitation to siggi@kalli.is
+  Given  that I sent an invitation to siggi@kalli.is
   When I go to the user home page
+  Then show me the page
   Then I see siggi@kalli.is in uncompleted registrations
-  And I do not see nonni@kalli.is in uncompleted registrations
 
 # Scenario: Invited user should have a uncompleted registration
 #   Given the user Bob sent an invitation to nonni@kalli.is

@@ -5,5 +5,12 @@ is:
     items:
       client_registration: "Nýskráning"
     status:
-      uncompleted: "eftir að klára"
-      overdue: "skilafrestur runninn út"
+      recently_completed:
+        column: "svarað"
+        header: "nýlega klárað"
+      uncompleted:
+        column: "skilafrestur"
+        header: "eftir að klára"
+      overdue:
+        column: "skilafrestur"
+        header: "skilafrestur runninn út"

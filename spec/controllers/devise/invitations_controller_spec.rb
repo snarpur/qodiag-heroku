@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe Devise::InvitationsController do
+
   describe "GET new", :focus => true do
     context "When the caretaker is loged in" do
       login_user(:caretaker)
@@ -11,6 +12,7 @@ describe Devise::InvitationsController do
       end
       it "assigns the client object" do
          get :new, :role_ids => "3"
+
          assigns[:user].should_not be_nil
       end
 

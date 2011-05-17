@@ -6,8 +6,11 @@ class Ability
     if user.role? :super_admin
        can :manage, :all
     elsif user.role? :caretaker
-        can :manage, User do |u|
+        can :create, User do |u|
          (u.role_names & ["caretaker","super_admin"]).empty?
+        end
+        can [:read, :update], User do |u|
+         !(u.role_names & ["caretaker"]).empty? && (user.id == u.invited_by_id || user.id == u.id)
         end
         can :manage, ResponderItem do |ri|
           ri.caretaker == user.person

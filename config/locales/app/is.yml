@@ -87,6 +87,7 @@ is:
     ago: "síðan"
     expires: "rennur út"
     expired: "rann út"
+    submitted: "svarað"
   #Headers -------------------------------------------------------
   headers:
     sign_up: "Skrá notenda"

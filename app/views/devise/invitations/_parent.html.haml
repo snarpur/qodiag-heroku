@@ -2,7 +2,7 @@
 = f.input :firstname
 = f.input :lastname
 = f.simple_fields_for :client_responder_items do |item|
-  =item.input :registration_identifier
-  =item.input :caretaker_id
+  =item.input :registration_identifier, :as => :hidden
+  =item.input :caretaker_id, :as => :hidden
   =item.input :deadline
 

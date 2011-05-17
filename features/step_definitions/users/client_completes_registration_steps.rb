@@ -9,7 +9,7 @@ Given /^I have confirmed my invitation as (.*@.*\..*)$/ do |email|
   }
 end
 Then /^I should see a uncompleted registration$/ do
-  registration = User.find_by_email(@last_email).person.uncompleted_registrations.first
+  registration = User.find_by_email(@last_email).person.registrations(:uncompleted).first
   patient = registration.subject
   within(".uncompleted.registration") do
     page.should have_content("#{patient.firstname} #{patient.lastname}")
@@ -28,7 +28,7 @@ When /^I have a registration that is overdue$/ do
 end
 
 Then /^I should see an overdue registration$/ do
-  registration = User.find_by_email(@last_email).person.registrations(:uncompleted).first
+  registration = User.find_by_email(@last_email).person.registrations(:overdue).first
   patient = registration.subject
   within(".overdue.registration") do
     page.should have_content("#{patient.firstname} #{patient.lastname}")

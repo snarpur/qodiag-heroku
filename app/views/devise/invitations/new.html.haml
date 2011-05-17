@@ -2,8 +2,8 @@
 = simple_form_for @user, :url => invitation_path(:user) do |f|
   = render "shared/error_messages", :locals => {:form_builder => f}
   =f.input :email
-  =f.input :invited_by_id
-  =f.association :roles, :as => :string
+  =f.input :invited_by_id, :as => :hidden
+  =f.association :roles,  :as => :hidden
   =f.simple_fields_for :person do |parent|
     .section.parent
       =render "parent", :f => parent

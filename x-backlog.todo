@@ -1,0 +1,2 @@
+! create AttributeBuildHelper in spec/support/attribute_build_helper.rb  to generate nested attributes in contoller testing
+! List responder_items through responder_items_controller

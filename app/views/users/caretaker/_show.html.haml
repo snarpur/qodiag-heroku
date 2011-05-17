@@ -1,11 +1,15 @@
+=content_for :wrapper_class, 'caretaker_overview'
 - registrations = registration_items([:recently_completed,:uncompleted,:overdue],@current_user)
-= registrations.size
+.box
+  %h1
+    Nýskráningar
+    %span beiðnir um skráningu grunnupplýsinga
+    =link_to "Senda nýja beiðni", new_user_invitation_path(3), :class => 'button green large'
+%hr.clear
 - registrations.each do |r|
-  %h2
-    = t('responder_item.registrations')
-    = t("responder_item.status.#{r[:name]}")
+  %h2= t("responder_item.status.#{r[:name]}.header").capitalize
   %div{:class =>"#{r[:name]} registration"}
-    =render r[:partial], :locals => r[:locals]
+    =render r[:partial], :locals => r[:locals].merge!(:name => r[:name])
 
 
 

@@ -1,0 +1,16 @@
+#debug-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  border: 4px dashed #f9f900;
+  background-color: rgba(255, 255, 0, 0.95); }
+  #debug-header ul {
+    padding: 5px; }
+    #debug-header ul li {
+      padding: 2px; }
+      #debug-header ul li span {
+        color: #5fbf00;
+        font-weight: bold; }
+      #debug-header ul li em {
+        color: #0000bf; }

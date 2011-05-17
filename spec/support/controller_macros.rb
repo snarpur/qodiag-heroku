@@ -5,4 +5,4 @@ module ControllerMacros
       sign_in @current_user
     end
   end
- end
+end

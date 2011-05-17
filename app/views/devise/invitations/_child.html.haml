@@ -4,7 +4,7 @@
     = child.input :firstname
     = child.input :lastname
     = child.simple_fields_for :inverse_relationships do |patient_relationship|
-      = patient_relationship.input :name
-      = patient_relationship.input :person_id
+      = patient_relationship.input :name, :as => :hidden
+      = patient_relationship.input :person_id, :as => :hidden
   = parent_relationship.collection_check_boxes :name,[[t('terms.parent'),'parent'],[t('terms.guardian'),'guardian']],:last,:first, {:disabled => ['guardian'], :checked => 'guardian'}
   = parent_relationship.input :relation_id, :as => :hidden

@@ -42,7 +42,7 @@
           %div{:class => name}
             =msg
       #container
-        #content
+        #content{:class => yield(:wrapper_class)}
           = yield
       #footer
         %span
