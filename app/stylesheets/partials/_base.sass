@@ -1,91 +1,84 @@
 // Here is where you can define your constants for your application and to configure the blueprint framework.
 // Feel free to delete these if you want keep the defaults:
-!blueprint_font_size = 12px
-!blueprint_button_border_color = #dedede
-!blueprint_button_background_color = #f5f5f5
+$blueprint_font_size: 12px;
+$blueprint_button_border_color: #dedede;
+$blueprint_button_background_color: #f5f5f5;
 
-!blueprint_grid_columns = 24
-!blueprint_container_size = 950px
-!blueprint_grid_margin  = 10px
-
-
+$blueprint_grid_columns: 24;
+$blueprint_container_size: 950px;
+$blueprint_grid_margin: 10px;
 
 // Use this to calculate the width based on the total width.
 // Or you can set !blueprint_grid_width to a fixed value and unset !blueprint_container_size -- it will be calculated for you.
-!blueprint_grid_width   = (!blueprint_container_size + !blueprint_grid_margin) / !blueprint_grid_columns - !blueprint_grid_margin
+$blueprint_grid_width: ($blueprint_container_size + $blueprint_grid_margin) / $blueprint_grid_columns - $blueprint_grid_margin;
 
-@import "blueprint"
-@import "blueprint/reset"
-@import "blueprint/scaffolding"
-@import "blueprint/typography"
-@import "blueprint/buttons"
-@import "compass/utilities"
-@import "compass/utilities/tables"
-@import "compass/utilities/tables/borders"
-@import "compass/css3/border-radius"
-@import "compass/utilities/general/clearfix"
-@import "compass/layout"
-@import "compass/css3/opacity"
-@import "compass/css3/gradient"
-@import "compass/css3/box-shadow"
-@import "compass/css3/text-shadow"
+@import "blueprint";
+@import "blueprint/reset";
+@import "blueprint/scaffolding";
+@import "blueprint/typography";
+@import "blueprint/buttons";
+@import "compass/utilities";
+@import "compass/utilities/tables";
+@import "compass/utilities/tables/borders";
+@import "compass/css3/border-radius";
+@import "compass/utilities/general/clearfix";
+@import "compass/layout";
+@import "compass/css3/opacity";
+@import "compass/css3/gradient";
+@import "compass/css3/box-shadow";
+@import "compass/css3/text-shadow";
 
+@include blueprint-grid;
 
-+blueprint-grid
-+blueprint-debug
-+blueprint-interaction
+@include blueprint-debug;
+
+@include blueprint-interaction;
 
 // =============== Constants =======================
-!table_even = #EBEBEB
-!table_odd = #DBE7FF
-!border_lightblue = 1px "solid" #DFE2FF
-!grey_ultralightest = #fcfcfc
-!grey_ultralight = #f9f9f9
-!grey_lightest = #f4f4f4
-!grey_lighter = #eaeaea
-!grey_light = #DFDFDF
-!grey = #bcbcba
-!grey_dark = #7c7c7c
-!grey_darker = #636362
-!orange_light = #FFCA6F
-!orange = #FF981F
-!green_ultralight = #deffdd
-!green_lightest = #DFFFE0
-!green_light = #A4EFA7
-!green_dark = #158F00
-!yellow_lightest = #FFFBCF
-!yellow_light = #FFF79F
-!blue_lightest = #DFE2FF
-!blue_light = #AFB6FF
-!blue_dark = #3b4991
+$table_even: #ebebeb;
+$table_odd: #dbe7ff;
+$border_lightblue: 1px solid #dfe2ff;
+$grey_ultralightest: #fcfcfc;
+$grey_ultralight: #f9f9f9;
+$grey_lightest: #f4f4f4;
+$grey_lighter: #eaeaea;
+$grey_light: #dfdfdf;
+$grey: #bcbcba;
+$grey_dark: #7c7c7c;
+$grey_darker: #636362;
+$orange_light: #ffca6f;
+$orange: #ff981f;
+$green_ultralight: #deffdd;
+$green_lightest: #dfffe0;
+$green_light: #a4efa7;
+$green_dark: #158f00;
+$yellow_lightest: #fffbcf;
+$yellow_light: #fff79f;
+$blue_lightest: #dfe2ff;
+$blue_light: #afb6ff;
+$blue_dark: #3b4991;
 
-!china1 = #141936
-!china2 = #003A85
-!china3 = #BCBFD6
-!china4 = #E4DCE7
-!china5 = #F9F8F9
+$china1: #141936;
+$china2: #003a85;
+$china3: #bcbfd6;
+$china4: #e4dce7;
+$china5: #f9f8f9;
 
-!header_border_lightblue = 1px "solid" #DFE2FF
-!h2_border_width = 1px 0 1px 0
-!h2_font_size= 1.4em
+$header_border_lightblue: 1px solid #dfe2ff;
+$h2_border_width: 1px 0 1px 0;
+$h2_font_size: 1.4em;
 
+@mixin debug($color: red) {
+  border: $color 1px solid; }
 
-=debug(!color = "red")
-  :border= !color 1px solid
-
-=sn-btn(!bg-color,!color)
-  +border-radius(11px)
-  :background= !bg-color url('/images/add-grey-12.png') 7px 6px no-repeat
-  :padding 5px 14px 5px 24px
-  :margin-left 10px
-  :color= !color
-  :text-decoration none
-  :border= solid 1px !color
-  :color #333
-  &:hover
-    background-color= !bg-color *2
-
-
-
-
-
+@mixin sn-btn($bg-color, $color) {
+  @include border-radius(11px);
+  background: $bg-color url("/images/add-grey-12.png") 7px 6px no-repeat;
+  padding: 5px 14px 5px 24px;
+  margin-left: 10px;
+  color: $color;
+  text-decoration: none;
+  border: solid 1px $color;
+  color: #333333;
+  &:hover {
+    background-color: $bg-color * 2; } }
