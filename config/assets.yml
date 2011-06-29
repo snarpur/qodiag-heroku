@@ -1,0 +1,35 @@
+embed_assets: on
+javascript_compressor: yui
+template_extension: html.mustache
+template_function: "Handlebars.compile"
+javascripts:
+  common:
+    - public/javascripts/vendor/jquery/jquery.js
+    - public/javascripts/vendor/jquery/jquery.tmpl.js
+    - public/javascripts/vendor/jquery-ui/development-bundle/ui/jquery-ui-1.8.2.custom.js
+    - public/javascripts/vendor/jquery/jquery.metadata.js
+    - public/javascripts/rails.js
+    - public/javascripts/vendor/underscore/underscore.js
+    - public/javascripts/init.js
+  nested_fields:
+    - public/javascripts/action_items
+    - public/javascripts/action_elements
+
+    # - public/javascripts/vendor/backbone.js
+    # - public/javascripts/vendor/handlebars.js
+    # - public/javascripts/vendor/jquery.datalink.js
+    #
+#   application:
+#     - public/javascripts/app/lib/*
+#     - public/javascripts/app/app.js
+#     - public/javascripts/app/models/*
+#     - app/coffeescripts/templates/**/*
+#     - public/javascripts/app/views/**/*
+#     - public/javascripts/app/controllers/*
+#
+stylesheets:
+  common:
+    - public/javascripts/jquery-ui/css/smoothness/jquery-ui-1.8.2.custom.css
+    - public/stylesheets/buttons.css
+    - public/stylesheets/compiled/application.css
+    - http://fonts.googleapis.com/css?family=Droid+Sans:regular,bold

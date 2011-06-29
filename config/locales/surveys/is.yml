@@ -1,0 +1,11 @@
+is:
+  surveys:
+    adhd-rating-scale: "ADHD Mælikvarði"
+    terms:
+      inattention: "athyglisbrestur"
+      impulsivity_hyperactivity: "ofvirkni/hvatvísi"
+      total: "heildarskor"
+      age: "ára"
+      male: "kk"
+    quiz: "Svefnskráning"
+    hsq-r: "Veikleikar/styrkleikar"

@@ -1,0 +1,6 @@
+adhd_rating_scale_male_4:
+  survey_id: 1
+  sex: male
+  age_start: 4
+  age_end: 4
+  responder: parent

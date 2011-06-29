@@ -17,10 +17,14 @@ module NavigationHelpers
       '/invitation/new/2'
     when /confirmation page for (.+)$/i
      "#{accept_user_invitation_path}?invitation_token=#{User.find_by_email($1).invitation_token}"
+    when /page for a patient/
+        person_path(get_assigned(:user).person.relations.patients.first)
+    when /page for that patient/
+        person_path(get_assigned(:patient))
     when /users page/
       users_path
     when /user home page/
-      user_path(@current_user)
+      user_path(get_assigned(:user))
     when /home\s?page/
       '/'
     # Add more mappings here.

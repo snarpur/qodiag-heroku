@@ -1,0 +1,10 @@
+= simple_form_for @responder_item do |f|
+  =f.simple_fields_for :client do |c|
+    =c.input :sex, :collection => [[t('terms.boy'),'male'],[t('terms.girl'),'female']],  :as => :radio
+    =c.input :firstname
+    =c.input :lastname
+    =c.input :full_cpr, :as => :string
+  =f.input :id, :as => :hidden
+  =f.input :complete_item
+  =f.submit t("actions.save")
+

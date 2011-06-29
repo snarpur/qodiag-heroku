@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe ResponderItem do
+
   context "setting item status to completed" do
     it "should set completed to Time.now if completed attribute is submitted" do
       item = ResponderItem.create(:complete_item => "", :registration_identifier => "some_identifier")
@@ -14,21 +15,48 @@ describe ResponderItem do
     end
   end
 
-  context "setting association on subject", :focus => true do
+  describe "create patient responder item as survey" do
     before do
-        @item = ResponderItem.create(:registration_identifier => "strange_days")
-        @caretaker = @item.create_caretaker(:firstname => "Fritz")
-        @item.create_client(:firstname => "John")
-        KK.see@caretaker
+      @setup = setup_patient
+      @item = ResponderItem.new_patient_item(@setup[:patient],@setup[:caretaker].person)
+      @item.survey = Factory(:survey)
+      @item.save
     end
-    it "if no subject id is submitted" do
+    it "should have a parent" do
+      @item.client.should == @setup[:patient].guardian_client
+    end
+    it "should have a response_set" do
+      @item.response_set.should_not be_nil
+    end
 
-      # item.caretaker = Factory(:person)
-      # item.client = Factory(:person)
-      KK.see @item.inspect
-      # item.subject.should_not be_nil
+  end
+  context "scopes" do
+    it "surveys" do
+      Factory(:survey_item)
+      ResponderItem.surveys.size.should == 1
+    end
+    it "registrations" do
+      Factory(:responder_item)
+      ResponderItem.registrations.size.should == 1
     end
   end
-
-
+  context "validations" do
+    context "has survey or registration identifier" do
+      it "if not survey nor registraion should be invalid" do
+        item = Factory.build(:responder_item_as_nothing)
+        item.valid?
+        item.should be_invalid
+      end
+      it "as survey should be valid" do
+        item = Factory.build(:survey_item)
+        item.valid?
+        item.should be_valid
+      end
+      it "as registration should be valid" do
+        item = Factory.build(:responder_item)
+        item.valid?
+        item.should be_valid
+      end
+    end
+  end
 end

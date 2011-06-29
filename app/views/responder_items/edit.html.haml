@@ -1,2 +1,1 @@
-= simple_form_for @responder_item do |f|
-  =f.input :completed
+= render "responder_items/#{@responder_item.item_type.pluralize}/edit"

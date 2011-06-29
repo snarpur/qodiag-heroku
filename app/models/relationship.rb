@@ -3,6 +3,9 @@ class Relationship < ActiveRecord::Base
   belongs_to :person
   belongs_to :relation, :class_name => "Person"
   belongs_to :inverse_relation, :class_name => "Person"
+
+
+
   after_create :split_names
   validate :name_presence
   accepts_nested_attributes_for :person, :relation
@@ -12,8 +15,8 @@ class Relationship < ActiveRecord::Base
     name.delete("") if name.is_a?(Array)
     errors.add(:name, I18n.t('activerecord.errors.messages.blank')) if
       name.is_a?(Array) && name.empty?
-
   end
+
   private
 
   def split_names

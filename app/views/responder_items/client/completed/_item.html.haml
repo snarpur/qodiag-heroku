@@ -1,0 +1,5 @@
+%tr
+  %td= t("#{item.item_type.pluralize}.#{item.access_code}")
+  %td=l item.created_at, :format => :short
+  %td=deadline_or_completed_date(item)
+  %td= link_to 'Skoða', responder_item_path(item), :class => "button x-small orange"

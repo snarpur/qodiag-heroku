@@ -82,6 +82,8 @@ is:
     log_in: "Innskráning"
     register: "Skrá"
     finish : "Klára"
+    send: "Senda"
+    request_survey: "Senda spurningalista"
   time_to_words:
     until: "þangað til"
     ago: "síðan"

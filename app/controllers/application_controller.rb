@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   layout 'application'
+
   def index
     respond_to do |format|
       format.html # index.html.erb
@@ -13,9 +14,9 @@ class ApplicationController < ActionController::Base
   end
 
   private
-
   def error_page(error)
     flash.now[:alert] = I18n.t("page_errors.error_#{error}")
     render "pages/error_401", :status => 401
   end
+
 end

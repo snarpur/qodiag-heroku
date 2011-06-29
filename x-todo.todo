@@ -1,22 +1,30 @@
 : :::::::::::::::::::::::::::::::::::::: START :::::::::::::::::::::::::::::::::::::
-! fara í gegunum cancan á invitation controller
-
-: :::::::::::::::::::::::::::::::::::::: DEVELOPMENT::::::::::::::::::::::::::::::::::::::
-
-! Scenario for both caretaker and client to see that registration has been completed
-  % Simple display page for client with submitted information
-  % Simple display page for caretaker with list of pending, recently completed and deleyed registrations
-! Set up surveyor
 
 
+! Klára að ganga frá assets file
+! setja upp backbone test
+! bæta fjöldi 2-3sta, +/- meðaltal, (+/- staðalfrávik) inn í label
+! setja upp staðalfrávikstöflu
+! Gera lineChart => hugsa hvernig það mun líta út => setja upp allt á tímalínu ????
+! Setja upp HSQ-r
+
+
+
+! Setja upp https://github.com/mischa/cucumber_rails_debug
+! Rewrite create in SurveyControler#create
+
+: :::::::::::::::::::::::::::::::::::::: DEVELOPMENT ::::::::::::::::::::::::::::::::::::::
+
+
+
+! see results of survey
 : ::::::::::::::::::::::::::::::::::::: CHECK ::::::::::::::::::::::::::::::::::::::
 
 % PRIORITY
   ! MOCHA
 
 % ENVIRONMENT
-  ! command line aliases
-  ! log to command line => railscasts console tricks AND rails recipies
+
 
 
 % URGENT STUDY
@@ -26,5 +34,4 @@
 
 % STUDY
   ! HTML 5
-  ! fireworks mockups
-  ? organize cucumber
+  ! HTML 5 boilerplate

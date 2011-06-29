@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.0.3'
-
+# gem 'rake', '~> 0.8.7'
 
 gem 'sass'
 gem "compass", ">= 0.11.1"
@@ -18,32 +18,34 @@ gem "fancy-buttons"
 gem "surveyor", :git => "git://github.com/breakpointer/surveyor.git", :branch => "rails3"
 gem 'formtastic'
 gem 'ruby_parser'
+gem 'time_diff'
+gem 'jammit'
+gem 'therubyracer', :require => false
+gem 'barista'
+
 
 group :development, :test do
   gem "rspec-rails", "~> 2.4"
   gem "shoulda-matchers"
   gem "cucumber-rails", ">= 0.3.2"
   gem "capybara"
-  gem "webrat"
   gem 'database_cleaner'
-  gem "factory_girl_rails", ">= 1.0.1"
+  gem "factory_girl_rails"
+  gem "pickle"
+  gem 'email_spec'
   gem "ruby-debug"
   gem "nokogiri"
   gem "launchy"
   gem "wirble"
   gem "hirb-unicode"
   gem "awesome_print"
-  gem 'email_spec'
-  gem "spork"
+  gem 'spork', '~> 0.9.0.rc'
   gem "watchr"
   gem "populator"
   gem "faker"
   gem "syntax"
-  gem "interactive_editor"
   gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
-  gem 'guard-rspec'
   gem 'guard-haml'
-  gem 'guard-spork'
   gem 'guard-livereload'
 end
 

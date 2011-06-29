@@ -7,7 +7,6 @@ class Person < ActiveRecord::Base
   #validates_length_of :cpr, :is => 4
   #validate :presence_of_parent_occupation
   #after_save :set_parents_address
-
   after_initialize :person_factory, :if => :new_record?
 
   attr_accessor :factory
@@ -16,71 +15,74 @@ class Person < ActiveRecord::Base
   has_many :client_responder_items, :class_name => "ResponderItem", :foreign_key => "client_id"
   has_many :patient_responder_items, :class_name => "ResponderItem", :foreign_key => "subject_id"
   has_many :caretaker_responder_items, :class_name => "ResponderItem", :foreign_key => "caretaker_id"
-
   has_many  :relationships, :dependent => :destroy do
     def child
-      find(:all, :conditions => "name = 'parent'")
+      where("name = 'parent'")
     end
 
     def spouse
-      find(:all, :conditions => "name = 'spouse'")
+      where("name = 'spouse'")
     end
 
     def guardian(id)
-      find(:all, :conditions => "name = 'guardian' AND relation_id = #{id}")
+      where("name = 'guardian' AND relation_id = #{id}")
     end
 
   end
 
   has_many :inverse_relationships, :class_name => "Relationship", :foreign_key => "relation_id" do
     def spouse
-     find(:all, :conditions => "name = 'spouse'")
+      where("name = 'spouse'")
+    end
+    def parents
+      where("name = 'parent'")
     end
   end
 
   has_many  :relations, :through => :relationships do
     def children
-      find(:all, :conditions => "name = 'parent'")
+      where("relationships.name = 'parent'")
     end
     def guardian_of
-      find(:all, :conditions => "name = 'guardian'")
+      where("relationships.name = 'guardian'")
     end
     def spouse
-      find(:all, :conditions => "name = 'spouse'")
+      where("relationships.name = 'spouse'")
     end
     def patients
-      find(:all, :conditions => "name = 'patient'")
+      where("relationships.name = 'patient'")
     end
   end
 
   has_many :inverse_relations, :through => :inverse_relationships, :source => :person do
-    def parents
-      find(:all,:conditions => "relationships.name = 'parent'" )
-    end
-
-    def specialists
-      find(:all,:conditions => "relationships.name = 'patient'" )
+    def caretaker
+      where("name = 'patient'")
     end
 
     def mother
-      find(:all,:conditions => "relationships.name = 'parent' AND sex = 'female'" )
+      where("name = 'parent' AND people.sex = 'female'" )
     end
 
     def father
-      find(:all,:conditions => "relationships.name = 'parent' AND sex = 'male'" )
+      where("name = 'parent' AND people.sex = 'male'" )
     end
 
     def spouse
-      find(:all, :conditions => "name = 'spouse'")
+      where("name = 'spouse'")
     end
+
+    def parents
+      where("name = 'parent'")
+    end
+
     def guardians
-     find(:all, :conditions => "name = 'guardian' AND end IS NULL")
+     where("name = 'guardian' AND end IS NULL")
     end
   end
 
 
   belongs_to :address
-
+  has_one :user
   accepts_nested_attributes_for :relations, :allow_destroy => true
   accepts_nested_attributes_for :relationships, :allow_destroy => true #,  :reject_if => proc {|attributes| attributes['person_id'].blank?}
   accepts_nested_attributes_for :inverse_relationships, :allow_destroy => true
@@ -95,7 +97,11 @@ class Person < ActiveRecord::Base
                   :relations_attributes, :inverse_relations_attributes, :relationships_attributes, :inverse_relationships_attributes,  :address_attributes, :factory,
                   :client_responder_items_attributes, :patient_responder_items_attributes #, :user_attributes
 
-  validates_associated :relationships, :inverse_relationships, :address #,:user
+  validates_associated :relationships, :inverse_relationships, :address
+
+  delegate :email,
+           :to => :user, :prefix => true
+
 
   def self.new_as_guardian_by_invitation(inviter)
     person = Person.new
@@ -109,14 +115,28 @@ class Person < ActiveRecord::Base
   end
 
 
-  def registrations(status)
-    self.send("#{self.role}_responder_items").send(status)
+  def responder_items(name,status=:all)
+      status = status.is_a?(Array) ? status : [status]
+      items = []
+
+      status.each do |s|
+        if name.eql?(:all)
+          item_group = self.send("#{self.role}_responder_items") & ResponderItem.send(s)
+        else
+          item_group = self.send("#{self.role}_responder_items") & ResponderItem.send(name).send(s)
+        end
+        items << {:name => s, :items => item_group} unless item_group.empty?
+      end
+      items
   end
 
-
   def role
-    role = Role.joins(:users).where(:users =>{:person_id => self.id}).select(:name).first
-    role.name
+    role = Role.joins(:users).where(:users =>{:person_id => self.id}).first
+    role.nil? ? 'patient' : role.name
+  end
+
+  def age
+   Time.diff(Date.current.end_of_day,self.dateofbirth)[:year]
   end
 
   def presence_of_cpr
@@ -148,9 +168,26 @@ class Person < ActiveRecord::Base
       self.cpr = cpr[6..9]
     end
   end
+  def full_name
+    "#{self.firstname} #{self.lastname}"
+  end
+
+  # def user
+  #   User.where(:person_id => self.id).first
+  # end
 
   def mother
-    self.inverse_relations.mother.first
+      self.inverse_relations.mother.first
+    end
+
+  def guardian_client
+      User.joins(:person => :relationships).
+        where("relationships.name = 'guardian' AND relationships.relation_id = #{self.id}").
+        first.person
+  end
+
+  def new_patient_request(patient_id)
+    ResponderItem.new_patient_item(patient_id, self)
   end
 
   def father
@@ -205,7 +242,6 @@ class Person < ActiveRecord::Base
        parents[0].spouse_relationships & parents[1].spouse_relationships
     end
   end
-
 
   def get_association(name)
     self.send(:relationships).map {|r| r.name == name.to_s}

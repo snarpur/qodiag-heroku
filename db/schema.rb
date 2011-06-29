@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110517170453) do
+ActiveRecord::Schema.define(:version => 20110621100846) do
 
   create_table "addresses", :force => true do |t|
     t.string   "street_1"
@@ -67,6 +67,16 @@ ActiveRecord::Schema.define(:version => 20110517170453) do
     t.text     "text_value"
     t.string   "string_value"
     t.string   "response_other"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "norm_references", :force => true do |t|
+    t.integer  "survey_id"
+    t.string   "sex"
+    t.integer  "age_start"
+    t.integer  "age_end"
+    t.string   "responder"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -139,11 +149,12 @@ ActiveRecord::Schema.define(:version => 20110517170453) do
     t.integer  "subject_id"
     t.integer  "survey_id"
     t.string   "registration_identifier"
-    t.date     "deadline"
-    t.date     "completed"
+    t.datetime "deadline"
+    t.datetime "completed"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "caretaker_id"
+    t.integer  "response_set_id"
   end
 
   create_table "response_sets", :force => true do |t|
@@ -184,6 +195,21 @@ ActiveRecord::Schema.define(:version => 20110517170453) do
 
   create_table "roles", :force => true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "scores", :force => true do |t|
+    t.string   "name"
+    t.float    "average"
+    t.float    "standard_deviation"
+    t.float    "abnormal_start"
+    t.float    "abnormal_end"
+    t.float    "borderline_start"
+    t.float    "borderline_end"
+    t.float    "normal_start"
+    t.float    "normal_end"
+    t.integer  "norm_reference_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

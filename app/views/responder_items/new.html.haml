@@ -1,0 +1,8 @@
+= simple_form_for @responder_item, person_responder_items_path(@responder_item.subject) do |f|
+  = render "shared/error_messages", :locals => {:form_builder => f}
+  =f.association :survey, :as => :radio
+  =f.input :caretaker_id, :as => :hidden
+  =f.input :subject_id, :as => :hidden
+  =f.input :client_id, :as => :hidden
+  =f.input :deadline
+  =f.button :submit, t('actions.send')

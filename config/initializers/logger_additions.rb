@@ -8,7 +8,10 @@ end
 
 class CustomOutput
   def see(msg)
-    puts "=>".foreground(:black).background(:green) + "  " + "#{msg}".foreground(:white).background(:blue)
+    puts "<SEE>".foreground(:black).background(:green) + "  " + "#{msg}".foreground(:white).background(:blue)
+  end
+  def log(msg)
+    ActiveRecord::Base.logger.debug "<LOG>".foreground(:yellow).background(:red) + "  " + "#{msg}".foreground(:white).background(:blue)
   end
 end
 

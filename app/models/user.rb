@@ -37,5 +37,9 @@ class User < ActiveRecord::Base
     self.roles.map{|r| r[:name]}
   end
 
+  def role_name
+    self.roles.first.name
+  end
+
 end
 

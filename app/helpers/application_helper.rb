@@ -1,5 +1,12 @@
 module ApplicationHelper
 
+  def role_partial(name, action)
+    partial = @current_user.role_name
+    "#{name}/#{partial}/#{action}"
+  end
+  def role_view
+    "#{@current_user.role_name}-view" unless @current_user.nil?
+  end
 
   def set_checked_status(record,role)
     if record.role != role || record.new_record? : status = true end

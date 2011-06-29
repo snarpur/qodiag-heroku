@@ -1,0 +1,17 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+is:
+  surveyor:
+    take_these_surveys: "Velja spurningalista"
+    take_it: "Take it"
+    completed_survey: "Completed survey"
+    unable_to_find_your_responses: "Unable to find your responses to the survey"
+    unable_to_update_survey: "Unable to update survey"
+    unable_to_find_that_survey: "Unable to find that survey"
+    survey_started_success: "Hér er byrjað að svara spurningu"
+    click_here_to_finish: "Klára"
+    previous_section: "&laquo; Previous section"
+    next_section: "Next section &raquo;"
+    select_one: "Select one ..."
+    sections: "Sections"

@@ -1,100 +1,154 @@
-/*
-Syntax error: Invalid property: ":background-color= !background_color".
-        on line 10 of /Users/orripalsson/Dev/snarpur/app/02/snarpur/public/stylesheets/sass/surveyor.sass
+/* line 9, sass/surveyor.sass */
+body {
+  background-color: #eeeeee;
+}
 
-5: !surveyor_dependent_color = #FFFFDF
-6: !surveyor_menus_active_color = #EBEBCC
-7: !surveyor_menus_border_color = #ccc
-8: 
-9: body
-10:   :background-color= !background_color
-11: #surveyor
-12:   :font-family "Century Gothic"
-13:   :width 960px
-14:   :padding 20px
-15:   :margin 0 auto
-
-Backtrace:
-/Users/orripalsson/Dev/snarpur/app/02/snarpur/public/stylesheets/sass/surveyor.sass:10
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.1/lib/sass/../sass/engine.rb:534:in `parse_line'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.1/lib/sass/../sass/engine.rb:447:in `build_tree'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.1/lib/sass/../sass/engine.rb:466:in `append_children'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.1/lib/sass/../sass/engine.rb:465:in `each'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.1/lib/sass/../sass/engine.rb:465:in `append_children'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.1/lib/sass/../sass/engine.rb:456:in `build_tree'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.1/lib/sass/../sass/engine.rb:449:in `each'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.1/lib/sass/../sass/engine.rb:449:in `build_tree'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.1/lib/sass/../sass/engine.rb:466:in `append_children'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.1/lib/sass/../sass/engine.rb:465:in `each'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.1/lib/sass/../sass/engine.rb:465:in `append_children'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.1/lib/sass/../sass/engine.rb:322:in `_to_tree'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.1/lib/sass/../sass/engine.rb:291:in `_render'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.1/lib/sass/../sass/engine.rb:239:in `render'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.1/lib/sass/../sass/util.rb:298:in `silence_sass_warnings'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.1/lib/sass/../sass/engine.rb:239:in `render'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.1/lib/sass/../sass/plugin/compiler.rb:319:in `update_stylesheet'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.1/lib/sass/../sass/plugin/compiler.rb:181:in `update_stylesheets'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.1/lib/sass/../sass/plugin/compiler.rb:175:in `each'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.1/lib/sass/../sass/plugin/compiler.rb:175:in `update_stylesheets'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.1/lib/sass/../sass/plugin/compiler.rb:173:in `each'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.1/lib/sass/../sass/plugin/compiler.rb:173:in `update_stylesheets'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.1/lib/sass/../sass/plugin.rb:81:in `update_stylesheets'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.1/lib/sass/../sass/plugin.rb:54:in `check_for_updates'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.1/lib/sass/../sass/plugin/rack.rb:51:in `call'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/warden-1.0.3/lib/warden/manager.rb:35:in `call'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/warden-1.0.3/lib/warden/manager.rb:34:in `catch'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/warden-1.0.3/lib/warden/manager.rb:34:in `call'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/actionpack-3.0.3/lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/actionpack-3.0.3/lib/action_dispatch/middleware/head.rb:14:in `call'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/rack-1.2.2/lib/rack/methodoverride.rb:24:in `call'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/actionpack-3.0.3/lib/action_dispatch/middleware/params_parser.rb:21:in `call'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/actionpack-3.0.3/lib/action_dispatch/middleware/flash.rb:182:in `call'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/actionpack-3.0.3/lib/action_dispatch/middleware/session/abstract_store.rb:149:in `call'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/actionpack-3.0.3/lib/action_dispatch/middleware/cookies.rb:295:in `call'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/activerecord-3.0.3/lib/active_record/query_cache.rb:32:in `call'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/activerecord-3.0.3/lib/active_record/connection_adapters/abstract/query_cache.rb:28:in `cache'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/activerecord-3.0.3/lib/active_record/query_cache.rb:12:in `cache'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/activerecord-3.0.3/lib/active_record/query_cache.rb:31:in `call'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/activerecord-3.0.3/lib/active_record/connection_adapters/abstract/connection_pool.rb:353:in `call'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/actionpack-3.0.3/lib/action_dispatch/middleware/callbacks.rb:46:in `call'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/activesupport-3.0.3/lib/active_support/callbacks.rb:415:in `_run_call_callbacks'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/actionpack-3.0.3/lib/action_dispatch/middleware/callbacks.rb:44:in `call'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/rack-1.2.2/lib/rack/sendfile.rb:107:in `call'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/actionpack-3.0.3/lib/action_dispatch/middleware/remote_ip.rb:48:in `call'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/actionpack-3.0.3/lib/action_dispatch/middleware/show_exceptions.rb:46:in `call'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/railties-3.0.3/lib/rails/rack/logger.rb:13:in `call'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/rack-1.2.2/lib/rack/runtime.rb:17:in `call'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/activesupport-3.0.3/lib/active_support/cache/strategy/local_cache.rb:72:in `call'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/rack-1.2.2/lib/rack/lock.rb:11:in `call'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/rack-1.2.2/lib/rack/lock.rb:11:in `synchronize'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/rack-1.2.2/lib/rack/lock.rb:11:in `call'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/actionpack-3.0.3/lib/action_dispatch/middleware/static.rb:30:in `call'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/railties-3.0.3/lib/rails/application.rb:168:in `call'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/railties-3.0.3/lib/rails/application.rb:77:in `send'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/railties-3.0.3/lib/rails/application.rb:77:in `method_missing'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/railties-3.0.3/lib/rails/rack/log_tailer.rb:14:in `call'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/rack-1.2.2/lib/rack/content_length.rb:13:in `call'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/rack-1.2.2/lib/rack/handler/webrick.rb:52:in `service'
-/Users/orripalsson/.rvm/rubies/ruby-1.8.7-p334/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
-/Users/orripalsson/.rvm/rubies/ruby-1.8.7-p334/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
-/Users/orripalsson/.rvm/rubies/ruby-1.8.7-p334/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
-/Users/orripalsson/.rvm/rubies/ruby-1.8.7-p334/lib/ruby/1.8/webrick/server.rb:162:in `start'
-/Users/orripalsson/.rvm/rubies/ruby-1.8.7-p334/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
-/Users/orripalsson/.rvm/rubies/ruby-1.8.7-p334/lib/ruby/1.8/webrick/server.rb:95:in `start'
-/Users/orripalsson/.rvm/rubies/ruby-1.8.7-p334/lib/ruby/1.8/webrick/server.rb:92:in `each'
-/Users/orripalsson/.rvm/rubies/ruby-1.8.7-p334/lib/ruby/1.8/webrick/server.rb:92:in `start'
-/Users/orripalsson/.rvm/rubies/ruby-1.8.7-p334/lib/ruby/1.8/webrick/server.rb:23:in `start'
-/Users/orripalsson/.rvm/rubies/ruby-1.8.7-p334/lib/ruby/1.8/webrick/server.rb:82:in `start'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/rack-1.2.2/lib/rack/handler/webrick.rb:13:in `run'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/rack-1.2.2/lib/rack/server.rb:213:in `start'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/railties-3.0.3/lib/rails/commands/server.rb:65:in `start'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/railties-3.0.3/lib/rails/commands.rb:30
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/railties-3.0.3/lib/rails/commands.rb:27:in `tap'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/railties-3.0.3/lib/rails/commands.rb:27
-script/rails:6:in `require'
-script/rails:6
-*/
-body:before {
-  white-space: pre;
-  font-family: monospace;
-  content: "Syntax error: Invalid property: \":background-color= !background_color\".\A         on line 10 of /Users/orripalsson/Dev/snarpur/app/02/snarpur/public/stylesheets/sass/surveyor.sass\A \A 5: !surveyor_dependent_color = #FFFFDF\A 6: !surveyor_menus_active_color = #EBEBCC\A 7: !surveyor_menus_border_color = #ccc\A 8: \A 9: body\A 10:   :background-color= !background_color\A 11: #surveyor\A 12:   :font-family \"Century Gothic\"\A 13:   :width 960px\A 14:   :padding 20px\A 15:   :margin 0 auto"; }
+/* line 11, sass/surveyor.sass */
+#surveyor {
+  font-family: "Century Gothic";
+  width: 960px;
+  padding: 20px;
+  text-align: left;
+  font-family: Helvetica;
+  font-size: 100%;
+  background-color: #fffff1;
+  color: #333333;
+}
+/* line 21, sass/surveyor.sass */
+#surveyor .surveyor_flash {
+  background-color: #fff1a8;
+  margin: 0 auto;
+  padding: 5px;
+  width: 300px;
+  font-weight: bold;
+  text-align: center;
+}
+/* line 28, sass/surveyor.sass */
+#surveyor .survey_title {
+  font-size: 2em;
+  font-weight: bold;
+  padding: 5px 0;
+}
+/* line 32, sass/surveyor.sass */
+#surveyor .surveyor_menu {
+  float: right;
+}
+/* line 34, sass/surveyor.sass */
+#surveyor .surveyor_menu ul {
+  background-color: #eeeeee;
+  border: 1px solid #cccccc;
+  border-bottom-width: 0;
+  list-style: none;
+}
+/* line 39, sass/surveyor.sass */
+#surveyor .surveyor_menu ul li {
+  border: 0 solid #cccccc;
+  border-bottom-width: 1px;
+}
+/* line 42, sass/surveyor.sass */
+#surveyor .surveyor_menu ul li.active, #surveyor .surveyor_menu ul li.active input[type="submit"] {
+  background-color: #ebebcc;
+}
+/* line 45, sass/surveyor.sass */
+#surveyor .next_section {
+  float: right;
+}
+/* line 48, sass/surveyor.sass */
+#surveyor .survey_section span.title {
+  display: block;
+  padding: 5px 0;
+  font-weight: bold;
+  font-size: 1.5em;
+}
+/* line 55, sass/surveyor.sass */
+#surveyor fieldset.g_inline fieldset {
+  display: inline;
+}
+/* line 58, sass/surveyor.sass */
+#surveyor fieldset.g_grid table {
+  border-collapse: collapse;
+}
+/* line 60, sass/surveyor.sass */
+#surveyor fieldset.g_grid li.surveyor_radio label, #surveyor fieldset.g_grid li.surveyor_check_boxes label {
+  visibility: hidden;
+}
+/* line 62, sass/surveyor.sass */
+#surveyor fieldset.g_grid li.surveyor_radio label input, #surveyor fieldset.g_grid li.surveyor_check_boxes label input {
+  visibility: visible;
+}
+/* line 65, sass/surveyor.sass */
+#surveyor fieldset.g_repeater ol fieldset {
+  display: inline;
+}
+/* line 67, sass/surveyor.sass */
+#surveyor fieldset.g_repeater input[type="submit"].add_row {
+  font-size: 0.7em;
+}
+/* line 71, sass/surveyor.sass */
+#surveyor .survey_section > fieldset > ol {
+  padding-left: 1em;
+}
+/* line 73, sass/surveyor.sass */
+#surveyor fieldset {
+  padding-top: 5px;
+  margin-bottom: 10px;
+}
+/* line 77, sass/surveyor.sass */
+#surveyor fieldset ol fieldset {
+  vertical-align: top;
+}
+/* line 79, sass/surveyor.sass */
+#surveyor fieldset ol li {
+  padding: 1px 0;
+}
+/* line 80, sass/surveyor.sass */
+#surveyor fieldset ol li label, #surveyor fieldset ol li input {
+  vertical-align: top;
+}
+/* line 83, sass/surveyor.sass */
+#surveyor fieldset ol li p.inline-hints {
+  margin: 0;
+  padding: 0;
+  display: inline;
+}
+/* line 87, sass/surveyor.sass */
+#surveyor fieldset ol li.inline {
+  display: inline;
+}
+/* line 90, sass/surveyor.sass */
+#surveyor fieldset ol li.datetime input, #surveyor fieldset ol li.datetime fieldset, #surveyor fieldset ol li.datetime fieldset ol li, #surveyor fieldset ol li.time input, #surveyor fieldset ol li.time fieldset, #surveyor fieldset ol li.time fieldset ol li {
+  display: inline;
+}
+/* line 92, sass/surveyor.sass */
+#surveyor fieldset.q_inline ol li {
+  display: inline;
+}
+/* line 94, sass/surveyor.sass */
+#surveyor fieldset input, #surveyor fieldset textarea, #surveyor fieldset select {
+  margin: 0 3px;
+}
+/* line 96, sass/surveyor.sass */
+#surveyor fieldset input[type="text"], #surveyor fieldset textarea {
+  font-size: 0.8em;
+}
+/* line 99, sass/surveyor.sass */
+#surveyor fieldset.q_hidden {
+  display: none;
+}
+/* line 101, sass/surveyor.sass */
+#surveyor fieldset.q_dependent {
+  background-color: #ffffdf;
+}
+/* line 103, sass/surveyor.sass */
+#surveyor fieldset.q_dependent legend {
+  background-color: #ffffdf;
+  padding: 3px 3px 3px 0;
+}
+/* line 110, sass/surveyor.sass */
+#surveyor input[type="submit"] {
+  font-size: 1em;
+  border: 1px;
+  padding: 5px;
+  cursor: pointer;
+  background-color: #eeeeee;
+}

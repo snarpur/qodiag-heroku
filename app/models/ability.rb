@@ -12,6 +12,9 @@ class Ability
         can [:read, :update], User do |u|
          !(u.role_names & ["caretaker"]).empty? && (user.id == u.invited_by_id || user.id == u.id)
         end
+        can :manage, Person do |p|
+         p.inverse_relations.caretaker.include?(user.person)
+        end
         can :manage, ResponderItem do |ri|
           ri.caretaker == user.person
         end
@@ -20,8 +23,11 @@ class Ability
       can [:read,:update], User do |u|
         u == user
       end
+      can :manage, ResponseSet do |rs|
+        rs.responder.user == user
+      end
       can :manage, ResponderItem do |ri|
-        ri.person == user.person
+        ri.client == user.person
       end
     end
 

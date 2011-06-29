@@ -2,9 +2,16 @@ require 'cucumber/rails'
 require 'email_spec'
 require 'email_spec/cucumber'
 require 'faker'
-require "#{Rails.root}/features/support/paths"
-require "#{Rails.root}/features/support/selectors"
+Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
+# require "#{Rails.root}/spec/support/person_build_helpers.rb"
+# require "#{Rails.root}/features/support/paths"
+# require "#{Rails.root}/features/support/selectors"
+#require "#{Rails.root}/features/support/pickle"
 # require "#{Rails.root}/features/support/translation_helper"
+include(PersonBuildHelpers)
+if Survey.count == 0
+  system "bundle exec rake surveyor FILE=surveys/rating_scale.rb"
+end
 
 # Capybara defaults to XPath selectors rather than Webrat's default of CSS3. In
 # order to ease the transition to Capybara we set the default here. If you'd

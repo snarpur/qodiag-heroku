@@ -1443,31 +1443,27 @@ hr.break {
   margin: 0;
 }
 
-/* line 100, ../../../app/stylesheets/application.sass */
-table {
-  width: 100%;
-}
-/* line 102, ../../../app/stylesheets/application.sass */
+/* line 101, ../../../app/stylesheets/application.sass */
 table th, table td {
   padding: 2px 2px 2px 8px;
 }
-/* line 104, ../../../app/stylesheets/application.sass */
+/* line 103, ../../../app/stylesheets/application.sass */
 table th {
   color: #141936;
   border-bottom: 1px solid #dfdfdf;
 }
-/* line 107, ../../../app/stylesheets/application.sass */
+/* line 106, ../../../app/stylesheets/application.sass */
 table td {
   color: #7c7c7c;
 }
 
-/* line 113, ../../../app/stylesheets/application.sass */
+/* line 112, ../../../app/stylesheets/application.sass */
 .section {
   overflow: hidden;
   *zoom: 1;
 }
 
-/* line 116, ../../../app/stylesheets/application.sass */
+/* line 115, ../../../app/stylesheets/application.sass */
 .ajax_notice {
   position: absolute;
   top: 0;
@@ -1475,7 +1471,7 @@ table td {
   width: 100%;
   background-color: #fff79f;
 }
-/* line 122, ../../../app/stylesheets/application.sass */
+/* line 121, ../../../app/stylesheets/application.sass */
 .ajax_notice span {
   font-size: 1.5em;
   padding-top: 10px;
@@ -1483,7 +1479,7 @@ table td {
   padding-left: 560px;
 }
 
-/* line 128, ../../../app/stylesheets/application.sass */
+/* line 127, ../../../app/stylesheets/application.sass */
 .notice.large {
   margin: 15px 0;
   padding: 30px 40px 30px 100px;
@@ -1492,46 +1488,51 @@ table td {
   background-position: 10px 50%;
 }
 
-/* line 135, ../../../app/stylesheets/application.sass */
+/* line 134, ../../../app/stylesheets/application.sass */
 .clear {
   overflow: hidden;
   *zoom: 1;
   visibility: hidden;
 }
 
-/* line 140, ../../../app/stylesheets/application.sass */
+/* line 139, ../../../app/stylesheets/application.sass */
+#bar-chart {
+  width: 500px;
+}
+
+/* line 142, ../../../app/stylesheets/application.sass */
 .spouse {
   margin: 0 2em;
 }
 
-/* line 143, ../../../app/stylesheets/application.sass */
+/* line 145, ../../../app/stylesheets/application.sass */
 .added-spouse {
   position: relative;
   margin: 1em 0;
   padding: 0.5em 0;
   border-bottom: 1px dashed #999999;
 }
-/* line 148, ../../../app/stylesheets/application.sass */
+/* line 150, ../../../app/stylesheets/application.sass */
 .added-spouse:last-child {
   border-bottom-width: 0;
 }
-/* line 150, ../../../app/stylesheets/application.sass */
+/* line 152, ../../../app/stylesheets/application.sass */
 .added-spouse > div {
   margin: 0 2em;
 }
 
-/* line 153, ../../../app/stylesheets/application.sass */
+/* line 155, ../../../app/stylesheets/application.sass */
 .added-spouse:first-child {
   border-top: 1px dashed #999999;
 }
 
-/* line 157, ../../../app/stylesheets/application.sass */
+/* line 159, ../../../app/stylesheets/application.sass */
 .siblings_list {
   overflow: hidden;
   *zoom: 1;
   margin-bottom: 4px;
 }
-/* line 160, ../../../app/stylesheets/application.sass */
+/* line 162, ../../../app/stylesheets/application.sass */
 .siblings_list ul {
   display: inline;
   float: left;
@@ -1544,27 +1545,27 @@ table td {
 * html .siblings_list ul {
   overflow-x: hidden;
 }
-/* line 164, ../../../app/stylesheets/application.sass */
+/* line 166, ../../../app/stylesheets/application.sass */
 .siblings_list h4 {
   margin-bottom: 2px;
   padding: 6px 0 12px 28px;
   color: #003a85;
 }
-/* line 168, ../../../app/stylesheets/application.sass */
+/* line 170, ../../../app/stylesheets/application.sass */
 .siblings_list li {
   color: #333333;
 }
-/* line 170, ../../../app/stylesheets/application.sass */
+/* line 172, ../../../app/stylesheets/application.sass */
 .siblings_list li p {
   margin: 0 3px 2px 3px;
   padding-bottom: 2px;
   border-bottom: #f9f8f9 1px solid;
 }
-/* line 174, ../../../app/stylesheets/application.sass */
+/* line 176, ../../../app/stylesheets/application.sass */
 .siblings_list li em {
   float: right;
 }
-/* line 176, ../../../app/stylesheets/application.sass */
+/* line 178, ../../../app/stylesheets/application.sass */
 .siblings_list a {
   -moz-border-radius: 11px;
   -webkit-border-radius: 11px;
@@ -1585,47 +1586,47 @@ table td {
   background-color: white;
 }
 
-/* line 179, ../../../app/stylesheets/application.sass */
+/* line 181, ../../../app/stylesheets/application.sass */
 .siblings_list ul li:first-child {
   background-color: #f9f8f9;
   margin-bottom: 20px;
 }
 
-/* line 183, ../../../app/stylesheets/application.sass */
+/* line 185, ../../../app/stylesheets/application.sass */
 .siblings_list li:last-child {
   padding: 20px 0 8px 10px;
 }
 
-/* line 186, ../../../app/stylesheets/application.sass */
+/* line 188, ../../../app/stylesheets/application.sass */
 #full_sibling_list h4 {
   background: url("/images/fullsibling-16.png") 5px 5px no-repeat;
 }
 
-/* line 189, ../../../app/stylesheets/application.sass */
+/* line 191, ../../../app/stylesheets/application.sass */
 #half_sibling_mother_list h4 {
   background: url("/images/halfsibling-16.png") 5px 5px no-repeat;
 }
 
-/* line 192, ../../../app/stylesheets/application.sass */
+/* line 194, ../../../app/stylesheets/application.sass */
 #half_sibling_father_list h4 {
   background: url("/images/halfsibling-16.png") 5px 5px no-repeat;
 }
 
-/* line 195, ../../../app/stylesheets/application.sass */
+/* line 197, ../../../app/stylesheets/application.sass */
 #foster_sibling_list h4 {
   background: url("/images/fostersibling-16.png") 5px 5px no-repeat;
 }
 
-/* line 198, ../../../app/stylesheets/application.sass */
+/* line 200, ../../../app/stylesheets/application.sass */
 .select-sibling {
   margin-bottom: 10px;
 }
 
-/* line 204, ../../../app/stylesheets/application.sass */
+/* line 206, ../../../app/stylesheets/application.sass */
 .guardians .notice p {
   margin-left: 20px;
 }
-/* line 206, ../../../app/stylesheets/application.sass */
+/* line 208, ../../../app/stylesheets/application.sass */
 .guardians .notice a {
   -moz-border-radius: 11px;
   -webkit-border-radius: 11px;
@@ -1645,23 +1646,23 @@ table td {
 .guardians .notice a:hover {
   background-color: white;
 }
-/* line 208, ../../../app/stylesheets/application.sass */
+/* line 210, ../../../app/stylesheets/application.sass */
 .guardians .notice td:nth-child(1n+3) {
   float: right;
   margin-left: 11px;
 }
 
-/* line 213, ../../../app/stylesheets/application.sass */
+/* line 215, ../../../app/stylesheets/application.sass */
 .family-overview div.section {
   padding: 1em;
 }
 
-/* line 216, ../../../app/stylesheets/application.sass */
+/* line 218, ../../../app/stylesheets/application.sass */
 .family-overview h1:first-child + div {
   display: block;
 }
 
-/* line 219, ../../../app/stylesheets/application.sass */
+/* line 221, ../../../app/stylesheets/application.sass */
 .family-overview h1 {
   background-color: #f9f9f9;
   border: 1px solid #f4f4f4;
@@ -1669,20 +1670,20 @@ table td {
   padding: 0.4em 0 0.4em 0.9em;
 }
 
-/* line 226, ../../../app/stylesheets/application.sass */
+/* line 228, ../../../app/stylesheets/application.sass */
 .family-overview h2 {
   border-bottom: 1px solid #f4f4f4;
   font-size: 1.4em;
   margin-bottom: 5px;
 }
-/* line 230, ../../../app/stylesheets/application.sass */
+/* line 232, ../../../app/stylesheets/application.sass */
 .family-overview h3 {
   font-size: 14px;
   color: #7c7c7c;
   margin-bottom: 3px;
 }
 
-/* line 235, ../../../app/stylesheets/application.sass */
+/* line 237, ../../../app/stylesheets/application.sass */
 .family-overview .section .parent-info {
   position: relative;
   display: inline;
@@ -1694,22 +1695,22 @@ table td {
 * html .family-overview .section .parent-info {
   overflow-x: hidden;
 }
-/* line 238, ../../../app/stylesheets/application.sass */
+/* line 240, ../../../app/stylesheets/application.sass */
 .family-overview .section .parent-info li {
   padding: 1px 0;
   border-bottom: solid 1px #eaeaea;
   overflow: hidden;
   *zoom: 1;
 }
-/* line 242, ../../../app/stylesheets/application.sass */
+/* line 244, ../../../app/stylesheets/application.sass */
 .family-overview .section .parent-info li:nth-child(even) {
   background-color: #fcfcfc;
 }
-/* line 244, ../../../app/stylesheets/application.sass */
+/* line 246, ../../../app/stylesheets/application.sass */
 .family-overview .section .parent-info li:nth-child(odd) {
   background-color: #f9f9f9;
 }
-/* line 246, ../../../app/stylesheets/application.sass */
+/* line 248, ../../../app/stylesheets/application.sass */
 .family-overview .section .parent-info b {
   display: inline;
   float: left;
@@ -1722,7 +1723,7 @@ table td {
   overflow-x: hidden;
 }
 
-/* line 250, ../../../app/stylesheets/application.sass */
+/* line 252, ../../../app/stylesheets/application.sass */
 .family-overview .section .spouse-info {
   display: inline;
   float: left;
@@ -1733,14 +1734,14 @@ table td {
 * html .family-overview .section .spouse-info {
   overflow-x: hidden;
 }
-/* line 252, ../../../app/stylesheets/application.sass */
+/* line 254, ../../../app/stylesheets/application.sass */
 .family-overview .section .spouse-info li {
   border: #dfffe0 solid 1px;
   margin-bottom: 2px;
   background-color: #deffdd;
 }
 
-/* line 257, ../../../app/stylesheets/application.sass */
+/* line 259, ../../../app/stylesheets/application.sass */
 .family-overview .section table {
   border: 1px solid black;
 }
@@ -1776,7 +1777,7 @@ table td {
   border-right: 1px solid black;
 }
 
-/* line 261, ../../../app/stylesheets/application.sass */
+/* line 263, ../../../app/stylesheets/application.sass */
 .family-overview .icon {
   display: block;
   padding-left: 22px;
@@ -1786,76 +1787,76 @@ table td {
   text-indent: -99999px;
 }
 
-/* line 269, ../../../app/stylesheets/application.sass */
+/* line 271, ../../../app/stylesheets/application.sass */
 #dialog {
   display: none;
 }
 
-/* line 275, ../../../app/stylesheets/application.sass */
-.caretaker_overview .box {
+/* line 277, ../../../app/stylesheets/application.sass */
+.caretaker-view .box {
   position: relative;
   width: 470px;
   overflow: hidden;
   *zoom: 1;
 }
-/* line 279, ../../../app/stylesheets/application.sass */
-.caretaker_overview .box h1 {
+/* line 281, ../../../app/stylesheets/application.sass */
+.caretaker-view .box h1 {
   font-size: 1.6em;
   margin-bottom: 2em;
 }
-/* line 282, ../../../app/stylesheets/application.sass */
-.caretaker_overview .box h1 span {
+/* line 284, ../../../app/stylesheets/application.sass */
+.caretaker-view .box h1 span {
   display: block;
   font-size: 0.8em;
   color: #777777;
 }
-/* line 287, ../../../app/stylesheets/application.sass */
-.caretaker_overview .box .button {
+/* line 289, ../../../app/stylesheets/application.sass */
+.caretaker-view .box .button {
   position: absolute;
   top: 4px;
   right: 4px;
 }
-/* line 291, ../../../app/stylesheets/application.sass */
-.caretaker_overview .registration {
-  width: 470px;
-}
 /* line 293, ../../../app/stylesheets/application.sass */
-.caretaker_overview h2 {
+.caretaker-view .registration {
+  width: 430px;
+}
+/* line 295, ../../../app/stylesheets/application.sass */
+.caretaker-view h2 {
   font-size: 1.2em;
 }
 
-/* line 307, ../../../app/stylesheets/application.sass */
+/* line 308, ../../../app/stylesheets/application.sass */
 .hidden, .off {
   display: none;
 }
 
-/* line 310, ../../../app/stylesheets/application.sass */
+/* line 311, ../../../app/stylesheets/application.sass */
 .on {
   display: block;
 }
 
-/* line 313, ../../../app/stylesheets/application.sass */
+/* line 314, ../../../app/stylesheets/application.sass */
 #address.on {
   display: block;
 }
-/* line 315, ../../../app/stylesheets/application.sass */
+/* line 316, ../../../app/stylesheets/application.sass */
 #address.on .new_address {
   display: block;
 }
-/* line 317, ../../../app/stylesheets/application.sass */
+/* line 318, ../../../app/stylesheets/application.sass */
 #address.on .existing_address {
   display: none;
 }
 
-/* line 320, ../../../app/stylesheets/application.sass */
+/* line 321, ../../../app/stylesheets/application.sass */
 #address.off {
   display: block;
 }
-/* line 322, ../../../app/stylesheets/application.sass */
+/* line 323, ../../../app/stylesheets/application.sass */
 #address.off .new_address {
   display: none;
 }
-/* line 324, ../../../app/stylesheets/application.sass */
+/* line 325, ../../../app/stylesheets/application.sass */
 #address.off .existing_address {
   display: block;
 }

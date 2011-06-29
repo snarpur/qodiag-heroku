@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Devise::InvitationsController do
 
-  describe "GET new", :focus => true do
+  describe "GET new" do
     context "When the caretaker is loged in" do
       login_user(:caretaker)
 

@@ -1,5 +1,5 @@
-- form_builder = locals[:form_builder]
-- record = form_builder.object
+- f ||= locals[:form_builder]
+- record = f.object
 - errors = record.errors
 -if errors.any?
   #errorExplanation

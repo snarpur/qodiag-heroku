@@ -1,8 +1,13 @@
-When /^(?:|I )choose (.*)(?: within (.*))?$/ do |choise, selector|
+When /^(?:|I )choose (.*)(?: within the (.*) section)?$/ do |choise, selector|
+  msg = "cannot choose field, no radio button with id, name, or label with this locator found"
   unless choise.blank?
-    with_scope(selector) do
-      msg = "cannot choose field, no radio button with id, name, or label with this locator found"
-      find(:xpath, "//input[ends-with(@id,#{choise}) and @type='radio']", :message => msg).set(true)
+    unless selector.nil?
+      within(selector) do
+        choose(choise)
+        #find(:xpath, "//input[ends-with(@id,#{choise}) and @type='radio']", :message => msg).set(true)
+      end
+    else
+      choose(choise)
     end
   end
 end
@@ -50,7 +55,5 @@ Then /^(?:|I )should not see the (.*) (.*) message$/ do |message, action|
 end
 
 When /^debug(?: for "([^"]*)")?$/ do |param|
-
- KK.see  User.find_by_email("gulli@snarpurtest.is")
-
+ KK.see ap Survey.all
 end

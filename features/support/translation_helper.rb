@@ -1,10 +1,31 @@
+module ScenarioStateHelper
+  def assigned
+    @assigned ||= {}
+  end
+
+  def set_assigned(name,item)
+    assigned[name] = item
+  end
+  def get_assigned(name)
+    assigned[name]
+  end
+  def all_assigned
+    pp assigned
+  end
+  def clear_assigned
+    @assigned.clear
+  end
+
+end
+
 module TranslationHelper
 
   MESSAGES = {
      :registration =>  {:translation => "devise.registrations"},
      :invitation => {:translation => "devise.invitations"},
      :page_error => {:translation => "page_errors"},
-     :too_short => {:translation => "activerecord.errors.messages", :validator =>"Length", :condition => :minimum}
+     :too_short => {:translation => "activerecord.errors.messages", :validator =>"Length", :condition => :minimum},
+     :survey => {:translation => 'responder_item.messages'}
      }
 
    def get_error_translation(message,model,attribute)
@@ -86,7 +107,7 @@ module FactoryGirlStepHelpers
 
 end
 
-World(TranslationHelper,FactoryGirlStepHelpers)
+World(TranslationHelper,FactoryGirlStepHelpers,ScenarioStateHelper)
 
 Factory.factories.values.each do |factory|
   Given /^the following (?:#{factory.human_name}|#{factory.human_name.pluralize}) exists?:$/ do |table|
