@@ -12,7 +12,8 @@ class ResponderItem < ActiveRecord::Base
   scope :recently_completed, where("completed IS NOT NULL")
   scope :completed, where("completed IS NOT NULL")
   scope :surveys, where("survey_id IS NOT NULL")
-  scope :registrations, where("registration_identifier IS NOT NULL")
+  scope :registrations, where("registration_identifier IS NOT NULL").order(:id)
+  scope :surveys_by_group, ResponderItem.surveys.order('survey_id')
 
   accepts_nested_attributes_for :client, :subject
 
@@ -55,6 +56,6 @@ class ResponderItem < ActiveRecord::Base
   end
 
   def set_response_set
-   self.response_set=(ResponseSet.create(:survey => self.survey, :user => self.client.user))
+   self.response_set=(ResponseSet.create(:survey => self.survey, :user_id => self.client.user.id))
   end
 end

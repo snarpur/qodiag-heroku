@@ -1,0 +1,13 @@
+-@timeline = Timeline.new(@person)
+-months = @timeline.months
+
+#tml-body
+  #tml-l-gutter{@timeline.gutter_style}
+    #tml-menu{@timeline.menu_style}
+    =render :partial => "shared/timeline/gutter", :collection => responses
+    %hr.break
+  #tml-history{@timeline.history_style}
+    =render "shared/timeline/months", :months => months
+    =render :partial => "shared/timeline/line", :collection => responses
+    %hr.break
+  %hr.break

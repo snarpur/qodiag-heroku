@@ -32,14 +32,24 @@ describe ResponderItem do
   end
   context "scopes" do
     it "surveys" do
-      Factory(:survey_item)
+      Factory(:survey_item_with_people)
       ResponderItem.surveys.size.should == 1
     end
     it "registrations" do
       Factory(:responder_item)
       ResponderItem.registrations.size.should == 1
     end
+    it "by group" do
+      items = []
+      2.times{|i| items[i] = Factory(:survey)}
+      4.times do |i|
+        Factory(:item_with_people, :survey => items[i%2])
+      end
+      ResponderItem.surveys_by_group.first.survey.should == items[0]
+      ResponderItem.surveys_by_group.last.survey.should == items[1]
+    end
   end
+
   context "validations" do
     context "has survey or registration identifier" do
       it "if not survey nor registraion should be invalid" do

@@ -157,6 +157,7 @@ is:
       short: "%e. %b"
       long: "%e. %B %Y"
 
+
     day_names: [sunnudaginn, mánudaginn, þriðjudaginn, miðvikudaginn, fimmtudaginn, föstudaginn, laugardaginn]
     abbr_day_names: [sun, mán, þri, mið, fim, fös, lau]
 
@@ -172,6 +173,7 @@ is:
       time: "%H:%M"
       short: "%e. %B %Y"
       long: "%A %e. %B %Y kl. %H:%M"
+      abbr_month: "%b"
     am: ""
     pm: ""
 

@@ -114,25 +114,40 @@ class Person < ActiveRecord::Base
     person
   end
 
+  def responder_items
+    self.send("#{self.role}_responder_items")
+  end
 
-  def responder_items(name,status=:all)
+  def responder_items_by_name_and_status(name,status=:all)
       status = status.is_a?(Array) ? status : [status]
       items = []
 
       status.each do |s|
         if name.eql?(:all)
-          item_group = self.send("#{self.role}_responder_items") & ResponderItem.send(s)
+          item_group = self.responder_items & ResponderItem.send(s)
         else
-          item_group = self.send("#{self.role}_responder_items") & ResponderItem.send(name).send(s)
+          item_group = self.responder_items & ResponderItem.send(name).send(s)
         end
         items << {:name => s, :items => item_group} unless item_group.empty?
       end
       items
   end
 
+  def responder_items_by_group
+    items = self.responder_items.surveys_by_group
+    groups, groups_arr = {},[]
+    items.each_with_index do |item,index|
+      groups[item.access_code] ||= []
+      groups[item.access_code] << item
+        if item == items.last || items[index + 1].access_code != item.access_code
+          groups_arr << {:name => item.access_code, :items => groups[item.access_code]}
+        end
+     end
+     groups_arr
+  end
+
   def role
-    role = Role.joins(:users).where(:users =>{:person_id => self.id}).first
-    role.nil? ? 'patient' : role.name
+    role = self.user.nil? ? 'patient' : self.user.role_name
   end
 
   def age

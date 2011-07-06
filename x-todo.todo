@@ -1,7 +1,7 @@
 : :::::::::::::::::::::::::::::::::::::: START :::::::::::::::::::::::::::::::::::::
 
 
-! Klára að ganga frá assets file
+! setja upp responder_items_by_group til að virka í render partial collection
 ! setja upp backbone test
 ! bæta fjöldi 2-3sta, +/- meðaltal, (+/- staðalfrávik) inn í label
 ! setja upp staðalfrávikstöflu

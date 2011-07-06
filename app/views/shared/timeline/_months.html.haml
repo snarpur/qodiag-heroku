@@ -1,0 +1,6 @@
+
+.months{@timeline.month_style}
+  -months.each_with_index do |m,i|
+    .vertical-divider{@timeline.month_cell_style(m.month,i)}
+      =l m, :format => :abbr_month
+  %hr.break

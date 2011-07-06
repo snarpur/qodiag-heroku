@@ -1,7 +1,7 @@
-- pending = @current_user.person.responder_items(:all, [:uncompleted,:overdue])
+- pending = @current_user.person.responder_items_by_name_and_status(:all, [:uncompleted,:overdue])
 =responder_item_partial_for(@current_user.person,pending,:pending)
 
-- completed = @current_user.person.responder_items(:surveys, [:completed])
+- completed = @current_user.person.responder_items_by_name_and_status(:all, [:completed])
 =responder_item_partial_for(@current_user.person,completed,:completed)
 
-#canvas
+

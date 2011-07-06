@@ -1,2 +1,2 @@
-- registrations = @person.responder_items(:all,[:recently_completed,:uncompleted,:overdue])
+- registrations = @person.responder_items_by_name_and_status(:all,[:recently_completed,:uncompleted,:overdue])
 =responder_item_partial_for(@current_user.person,registrations)

@@ -53,6 +53,7 @@ Spork.each_run do
   Factory.factories.clear
   Dir[Rails.root.join("spec/factories/**/*.rb")].each {|f| load f}
   Dir["#{Rails.root}/app/**/*.rb"].each { |f| load f }
+  Dir["#{Rails.root}/lib/app/**/*.rb"].each { |f| load f }
 
 end
 

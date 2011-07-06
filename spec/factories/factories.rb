@@ -2,7 +2,7 @@ require 'factory_girl'
 require 'faker'
 
 Factory.define :user do |user|
-    user.sequence(:email) {|n| "person#{n}@example.com" }
+    user.sequence(:email) {|n| "person#{n}_#{rand(100000)}@example.com"}
     user.password 'asdfkj'
     user.password_confirmation {|a| a.password}
     user.person { |person| person.association(:person) }
@@ -19,7 +19,7 @@ Factory.define :client_user, :parent => :user do |user|
 end
 
 Factory.define :simple_client, :class => User do |user|
-    user.sequence(:email) {|n| "person#{n}@example.com"}
+    user.sequence(:email) {|n| "person#{n}_#{rand(100000)}@example.com"}
     user.password '123456'
     user.password_confirmation {|a| a.password}
     user.role_ids '3'
@@ -38,6 +38,14 @@ Factory.define :person do |person|
   person.firstname "John"
   person.lastname "Smith"
   person.sex {["male","female"].at(rand(2))}
+end
+
+Factory.define :client_person, :parent => :person do |person|
+  person.association :user, :factory => :client_user
+end
+
+Factory.define :caretaker_person, :parent => :person do |person|
+  person.association :user, :factory => :caretaker_user
 end
 
 Factory.define :patient_relationship,:class => Relationship do |relationship|
@@ -61,6 +69,7 @@ end
 Factory.define :responder_item  do |item|
   item.registration_identifier "some_registration"
   item.deadline Time.zone.now.advance(:weeks => 1)
+  item.created_at Time.zone.now
   item.completed nil
 end
 
@@ -84,14 +93,15 @@ end
 Factory.define :survey_item, :parent => :responder_item do |item|
   item.registration_identifier nil
   item.association :survey
+  #item.survey {|i| i.association(:survey, :access_code => "#{i.id}_my_survey") }
 end
 
 Factory.define :item_with_people, :parent => :responder_item do |item|
-  item.association :client, :factory => :person
-  item.association :caretaker, :factory => :person
+  item.association :client, :factory => :client_person
+  item.association :caretaker, :factory => :caretaker_person
   item.association :subject, :factory => :person
-  item.after_create { |a| Factory(:client_user, :person => a.client) }
-  item.after_create { |a| Factory(:caretaker_user, :person => a.caretaker) }
+  # item.after_create { |a| Factory(:client_user, :person => a.client) }
+  # item.after_create { |a| Factory(:caretaker_user, :person => a.caretaker) }
 end
 
 Factory.define :survey_item_with_people, :parent => :item_with_people do |item|

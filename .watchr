@@ -29,6 +29,12 @@ watch("app/(.*/.*)\.rb") do |match|
   run_spec %{spec/#{match[1]}_spec.rb}
 end
 
+watch("lib/app/(.*)\.rb") do |match|
+  run_spec %{spec/lib/#{match[1]}_spec.rb}
+end
+
+
+
 watch("features/.*/.*\.feature") do |match|
   run_feature match[0]
 end

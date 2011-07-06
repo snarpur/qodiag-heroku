@@ -1,7 +1,10 @@
 embed_assets: on
-javascript_compressor: yui
-template_extension: html.mustache
-template_function: "Handlebars.compile"
+#javascript_compressor: yui
+template_function: Haml
+template_extension: .jst.haml
+templates_strip_newlines: on
+
+
 javascripts:
   common:
     - public/javascripts/vendor/jquery/jquery.js
@@ -10,12 +13,21 @@ javascripts:
     - public/javascripts/vendor/jquery/jquery.metadata.js
     - public/javascripts/rails.js
     - public/javascripts/vendor/underscore/underscore.js
+    - public/javascripts/vendor/json2.js
+    - public/javascripts/vendor/backbone.js
+    - public/javascripts/vendor/haml/haml.js
     - public/javascripts/init.js
-  nested_fields:
-    - public/javascripts/action_items
-    - public/javascripts/action_elements
+  snarpur:
+    - public/javascripts/coffeescripts/app.js
+    - public/javascripts/coffeescripts/models/*
+    - public/javascripts/coffeescripts/controllers/*
+    - public/javascripts/coffeescripts/views/**/*
+    - app/views/**/*.jst.haml
+  # nested_fields:
+  #   - public/javascripts/action_items
+  #   - public/javascripts/action_elements
 
-    # - public/javascripts/vendor/backbone.js
+
     # - public/javascripts/vendor/handlebars.js
     # - public/javascripts/vendor/jquery.datalink.js
     #
@@ -32,4 +44,5 @@ stylesheets:
     - public/javascripts/jquery-ui/css/smoothness/jquery-ui-1.8.2.custom.css
     - public/stylesheets/buttons.css
     - public/stylesheets/compiled/application.css
+    - public/stylesheets/compiled/timeline.css
     - http://fonts.googleapis.com/css?family=Droid+Sans:regular,bold

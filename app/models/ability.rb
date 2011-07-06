@@ -26,6 +26,10 @@ class Ability
       can :manage, ResponseSet do |rs|
         rs.responder.user == user
       end
+      can :manage, Person do |p|
+        p.guardian_client == user.person
+      end
+
       can :manage, ResponderItem do |ri|
         ri.client == user.person
       end

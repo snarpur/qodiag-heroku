@@ -3,18 +3,13 @@
   %head
     %meta{ :content => "text/html;charset=UTF-8", "http-equiv" => "content-type" }
     = yield(:head)
-    = csrf_meta_tag
-    = stylesheet_link_tag "../javascripts/jquery-ui/css/smoothness/jquery-ui-1.8.2.custom.css"
-    = stylesheet_link_tag "buttons.css"
-    = stylesheet_link_tag "compiled/application.css"
-    = stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Droid+Sans:regular,bold'
 
 
 
-    =include_javascripts :common
-    =javascript_include_tag 'init.js'
-    =jqplot_includes
-    =javascript_include_tag 'app'
+    =include_stylesheets :common
+    =include_javascripts :common, :snarpur
+
+
     /=snarpur_timeline_js
     =javascript_tag do
       = yield(:jstemplates)

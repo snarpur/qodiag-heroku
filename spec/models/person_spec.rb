@@ -64,12 +64,33 @@ describe Person do
         @items.each do |response|
           name = response[:name]
           [:caretaker,:subject,:client].each do |role|
-            person =   response[:item].send(role)
-            person.responder_items(name).size.should == 1
+            person = response[:item].send(role)
+            person.responder_items_by_name_and_status(name).size.should == 1
           end
         end
 
       end
+      describe "group items by type(survey/registration) and id", :focus => true do
+        before do
+          @items = []
+          @subject = Factory(:person)
+          @caretaker = Factory(:caretaker_person)
+          @client = Factory(:client_person)
+          2.times{|i| @items[i] = Factory(:survey)}
+          4.times do |i|
+            Factory(:survey_item_with_people, :survey => @items[i%2], :subject => @subject, :client => @client, :caretaker => @caretaker)
+            Factory(:item_with_people, :subject => @subject, :client => @client, :caretaker => @caretaker)
+          end
+        end
+        it "should have 2 types of surveys" do
+          @client.responder_items_by_group.size.should == 2
+          @client.responder_items_by_group.first[:items].size.should == 2
+          @client.responder_items_by_group.first[:items].size.should == 2
+          @client.responder_items_by_group.first[:items].first.access_code == @items.first.access_code
+          @client.responder_items_by_group.first[:name].should == @items.first.access_code
+        end
+      end
+
     end
 
     describe "status" do
@@ -83,7 +104,7 @@ describe Person do
 
       it "has one of each uncompleted, recently_completed, overdue" do
         @status.each do |status|
-          @caretaker.responder_items(:registrations,status).size.should == 1
+          @caretaker.responder_items_by_name_and_status(:registrations,status).size.should == 1
         end
       end
 
