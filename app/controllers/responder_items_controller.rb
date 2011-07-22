@@ -3,11 +3,19 @@ class ResponderItemsController < ApplicationController
   load_and_authorize_resource
 
   def index
-
+    @responder_items = @current_user.person.responder_items_by_group
+    respond_to do |format|
+      format.html
+      format.json {render :json => @responder_items }
+    end
   end
 
   def show
     @responder_item = ResponderItem.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.json {render :json => @responder_item.result.to_json}
+    end
   end
 
   def new

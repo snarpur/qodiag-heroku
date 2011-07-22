@@ -1,4 +1,4 @@
-/* DO NOT MODIFY. This file was compiled Tue, 05 Jul 2011 17:23:43 GMT from
+/* DO NOT MODIFY. This file was compiled Tue, 19 Jul 2011 15:18:29 GMT from
  * /Users/orripalsson/Dev/snarpur/app/02/snarpur/app/coffeescripts/controllers/responder_items_controller.coffee
  */
 
@@ -12,34 +12,42 @@
     return child;
   };
   App.Controllers.ResponderItemsController = (function() {
-    __extends(ResponderItemsController, Backbone.Controller);
+    __extends(ResponderItemsController, Backbone.Router);
     function ResponderItemsController() {
       ResponderItemsController.__super__.constructor.apply(this, arguments);
     }
     ResponderItemsController.prototype.initialize = function(options) {
-      console.log("in RI controller " + options.responder_items[0].name);
-      this.responder_items = new App.Collections.ResponderItemsCollection(options);
-      return console.log(this.responder_items, "initialize controller");
+      this.current;
+      this.responder_items = new App.Collections.ResponderItemsCollection(options.responder_items);
+      return this.responder_items.initTimeline(options.timeline);
     };
     ResponderItemsController.prototype.routes = {
-      ".*": "index",
-      "/:id": "show"
+      "": "index",
+      "responder_items/:id/": "show"
     };
     ResponderItemsController.prototype.show = function(id) {
       var responder_item;
-      responder_item = this.responder_items.get(id);
-      this.view = new App.Views.ResponderItems.View({
-        model: responder_item
+      responder_item = this.responder_items.get({
+        id: id
       });
-      return $("#responder_item").html(this.view.render().el);
+      return responder_item.fetch({
+        success: function(model, response) {
+          var params, show;
+          params = {
+            model: model
+          };
+          show = new App.Views.ResponderItems.Show(params);
+          return show.render();
+        },
+        error: function() {
+          return console.log("error");
+        }
+      });
     };
-    ResponderItemsController.prototype.index = function(items) {
-      console.log("index CONTROLLER being called");
-      this.view = new App.Views.ResponderItems.Index({
+    ResponderItemsController.prototype.index = function() {
+      return new App.Views.ResponderItems.Index({
         responder_items: this.responder_items
       });
-      console.log(this.view, "@view");
-      return $("#test-index").html(this.view.render().el);
     };
     return ResponderItemsController;
   })();

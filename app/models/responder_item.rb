@@ -31,6 +31,7 @@ class ResponderItem < ActiveRecord::Base
     item
   end
 
+
   def access_code
     self.survey.nil? ? self.registration_identifier : self.survey.access_code
   end

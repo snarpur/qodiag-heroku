@@ -19,12 +19,13 @@ namespace :db do
     password_params = {:password => "asdfkj", :password_confirmation => "asdfkj"}
 
 
-     surveys = ["adhd_rating_scale", "quiz", "hsq_r"]
+     surveys = ["adhd_rating_scale","sdq"]
      surveys.each do |survey|
        system "bundle exec rake surveyor FILE=surveys/#{survey}.rb"
      end
 
      NormReferenceParser.new('adhd_rating_scale')
+     NormReferenceParser.new('sdq')
 
     ["jon","gunnar","svenni"].each do |user|
       user = User.create({:email => "#{user}@snarpurland.is"}.merge!(password_params))
@@ -68,7 +69,7 @@ namespace :db do
             item_status = ['completed','uncompleted','overdue']
             item_count = 0
            ResponderItem.populate 8 do |item|
-              new_survey_id = item_count < 4 ? rand(3) + 1 : 1
+              new_survey_id = item_count < 4 ? rand(surveys.length) + 1 : 1
               item.client_id = parent.id
               item.subject_id = patient.id
               item.caretaker_id = caretaker.id

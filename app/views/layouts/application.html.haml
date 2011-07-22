@@ -5,12 +5,13 @@
     = yield(:head)
 
 
+    =stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Droid+Sans&v1'
+    =include_stylesheets :common, :chart
+    =include_javascripts :common, :snarpur, :chart
 
-    =include_stylesheets :common
-    =include_javascripts :common, :snarpur
 
-
-    /=snarpur_timeline_js
+    %style{:type => 'text/css'}
+      =yield(:style_header)
     =javascript_tag do
       = yield(:jstemplates)
 
@@ -42,3 +43,4 @@
         %span
           Snarpur 2010 | Fallegt virkar betur
     #dialog
+    //=include_javascripts :snarpur_test

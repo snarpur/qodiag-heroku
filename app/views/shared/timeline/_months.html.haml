@@ -1,6 +1,5 @@
-
-.months{@timeline.month_style}
+.months
   -months.each_with_index do |m,i|
-    .vertical-divider{@timeline.month_cell_style(m.month,i)}
+    %div{:class => "vertical-divider m-#{i} #{@timeline.even_month_class(m)}"}
       =l m, :format => :abbr_month
   %hr.break

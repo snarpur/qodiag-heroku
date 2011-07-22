@@ -1,16 +1,36 @@
 class Timeline
-  attr_accessor(:month_width, :line_height)
+  attr_accessor :month_width,
+                :line_height,
+                :gutter_width,
+                :header_height,
+                :body_width,
+                :history_width,
+                :even_month_class,
+                :months,
+                :responder_items,
+                :starts,
+                :ends,
+                :line_height_expanded,
+                :chart_dialog_width
+
+
   def initialize(person)
+    #YAML.load_file("#{RAILS_ROOT}/config/config.yml")
     @person = person
-    @starts = @person.responder_items.order(:created_at).first.created_at - 1.month
-    @ends = Time.now + 1.month
+    month_padding = 6
+    @starts = (@person.responder_items.order(:created_at).first.created_at).beginning_of_month - month_padding.months
+    @ends = (Time.zone.now).beginning_of_month + month_padding.months
     @month_width = 70
     @line_height = 80
+    @item_width = 5
+    @line_height_expanded = 400
+    @chart_dialog_width = 400
     @header_height = 35
+    self
   end
 
   def months
-    total_months = time_diff = diff_in_months
+    total_months = timeline_month_span
     months = [@starts]
     total_months.times do |i|
       months << @starts + i.months unless i.zero?
@@ -18,67 +38,56 @@ class Timeline
     months
   end
 
-  def diff_in_months
-    time_diff = Time.diff(@starts, @ends)
-    total_months = time_diff[:year] * 12 + time_diff[:month]
+  def diff_in_months(from,to)
+    diff_years = diff_in_years(from,to)
+    start_month = from.month
+    end_month = to.month
+    if start_month > end_month
+      month_diff = (diff_years - 1) * 12 + ((12 - start_month) + end_month)
+    else
+      month_diff = diff_years * 12 + (end_month - start_month)
+    end
+    month_diff
   end
 
-  def diff_in_days
-    (@ends.to_date - @starts.to_date).days
+  def timeline_month_span
+    diff_in_months(@starts,@ends)
   end
+
+  def diff_in_days(from,to)
+    (from - to).abs.to_int
+  end
+
+  def diff_in_years(from,to)
+    to.year - from.year
+  end
+
   def even_quarter?(month)
     (((month - 1) / 3) + 1).even?
   end
-  def day_width
-    body_width / diff_in_days
+
+  def even_month_class(month)
+    "even" if even_quarter?(month.month)
   end
 
-  def body_width
-    (diff_in_months + 1 ) * @month_width
+  def day_width
+    history_width.fdiv(diff_in_days).round(2)
+  end
+
+  def canvas_width
+    (month_width * 12) + gutter_width
+  end
+
+  def history_view_width
+    month_width * 12
   end
 
   def gutter_width
     month_width * 2
   end
-  def gutter_style
-    css = {:width => gutter_width }
-    to_css css
-  end
 
-  def gutter_item_style
-    css = {:line_height => line_height,
-           :height => line_height }
-    to_css css
-  end
-
-  def menu_style
-    css = {:height => @header_height}
-    to_css css
-  end
-
-  def month_style
-    css= {:width => body_width,
-          :bottom => 0}
-    to_css css
-  end
-
-  def month_cell_style(month,order)
-    css = {:width => @month_width,
-           :left => order * @month_width}
-    css.merge!(:selector => 'even') if even_quarter?(month)
-    to_css css
-  end
-
-  def line_style
-    css = {:height => line_height}
-    to_css css
-  end
-
-  def history_style
-    css = {:width => body_width - gutter_width,
-           :left => gutter_width,
-           :padding_top =>  @header_height}
-    to_css css
+  def history_width
+     timeline_month_span * month_width
   end
 
   def item_style(date)
@@ -87,13 +96,51 @@ class Timeline
     to_css css
   end
 
+  def position_within_month(date)
+      days = date.day * (month_width.fdiv( Time.days_in_month(date.month, date.year)).round(2))
+  end
 
-  def set_style(element)
-    {:style => "width:#{self.send(element)}px;"}
+  def position_of_month(date)
+    months = diff_in_months(@starts,date) * month_width
   end
 
   def horizontal_position(date)
-    (date - @starts) * day_width
+    position_of_month(date) + position_within_month(date) - @item_width
+  end
+
+
+  def current_position
+    canvas_width - history_width
+  end
+
+  def canvas_end_position
+    -current_position + canvas_width
+  end
+
+  def item_name(name)
+    I18n.t("surveys.#{name}")
+  end
+
+  def responder_item_codes
+    @responder_items.map{|i| i.access_code}.uniq
+  end
+
+
+  def responder_items_with_position
+     @responder_items.map do |i|
+      attributes = {:position => horizontal_position(i.created_at),
+                    :access_code => i.access_code,
+                    :item_name => item_name(i.access_code)}
+      i.attributes.merge(attributes)
+    end
+  end
+
+  def dimensions
+    values = {}
+    %w{history_width gutter_width current_position canvas_end_position
+       month_width line_height line_height_expanded chart_dialog_width canvas_width history_view_width}.
+    each{|i| values[i.to_sym] = self.send(i)}
+    values.merge!(:end_position => current_position)
   end
 
   private
@@ -111,6 +158,4 @@ class Timeline
     css.merge!(:class => selector) unless selector.blank?
     css
   end
-
-
 end

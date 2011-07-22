@@ -15,7 +15,7 @@ class NormReference < ActiveRecord::Base
   end
 
   def get_score(name,value)
-    self.scores.where(:name => name).select(value).first.average
+    self.scores.where(:name => name).select(value).first.send(value)
   end
 
   def age_group_string

@@ -1,0 +1,43 @@
+=content_for :style_header do
+  -@timeline.months.each_index do |month|
+    :sass
+      .vertical-divider.m-#{month}
+        left: #{@timeline.month_width * month}px
+  :sass
+    $history_nav_size: 50px
+    #canvas
+      width: #{@timeline.canvas_width}px
+      .tml-history-nav
+        height: #{@timeline.header_height}px
+        padding-left: #{@timeline.canvas_width/2}px
+    #tml-l-gutter,
+    #tml-history
+      padding-top: #{@timeline.header_height/2}px
+    #tml-l-gutter
+      width: #{@timeline.gutter_width}px
+      li
+        height: #{@timeline.line_height}px
+    #tml-menu
+      height: #{@timeline.header_height}px
+    #tml-history
+      width: #{@timeline.history_width}px
+      left: #{@timeline.current_position}px
+    .line
+      &.closed
+        height: #{@timeline.line_height}px
+      &.open
+      height: #{@timeline.line_height_expanded}px
+    .months
+      width: #{@timeline.history_width}px
+    .vertical-divider
+      width: #{@timeline.month_width}px
+    .item
+      top: #{@timeline.line_height/3}px
+    .chart-dialog
+      height: #{@timeline.line_height_expanded}px
+      width: #{@timeline.history_view_width - (@timeline.history_view_width / 6)}px
+      left: #{@timeline.gutter_width}px
+      padding-left: #{(@timeline.history_view_width / 6)}px
+      .jqplot-target
+        height: #{@timeline.line_height*4}px
+        width: #{(@timeline.history_view_width / 3) * 2}px

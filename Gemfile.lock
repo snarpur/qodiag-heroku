@@ -213,9 +213,6 @@ GEM
     therubyracer (0.9.2)
       libv8 (~> 3.3.10)
     thor (0.14.6)
-    time_diff (0.2.1)
-      activesupport
-      i18n
     treetop (1.4.9)
       polyglot (>= 0.3.1)
     tzinfo (0.3.27)
@@ -272,6 +269,5 @@ DEPENDENCIES
   surveyor!
   syntax
   therubyracer
-  time_diff
   watchr
   wirble

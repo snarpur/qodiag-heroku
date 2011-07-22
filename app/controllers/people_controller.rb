@@ -9,6 +9,10 @@ class PeopleController < ApplicationController
   end
   def show
     @person = Person.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.json {render :json => @person, :partial => "test"}
+    end
   end
 
   def update

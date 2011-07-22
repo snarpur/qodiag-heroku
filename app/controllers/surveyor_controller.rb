@@ -9,15 +9,12 @@ module SurveyorControllerCustomMethods
 
   # Actions
   def new
-    KK.see "current_user"
-    KK.see ap @current_user
     @surveys = Survey.find(:all)
     @title = "You can take these surveys"
     redirect_to surveyor_index unless surveyor_index == available_surveys_path
   end
 
   def create
-    KK.see "params[:survey_code] #{params[:survey_code]}"
     @survey = Survey.find_by_access_code(params[:survey_code])
     @response_set = ResponseSet.create(:survey => @survey, :user_id => (@current_user.nil? ? @current_user : @current_user.id))
 
@@ -63,13 +60,9 @@ module SurveyorControllerCustomMethods
     return redirect_with_message(available_surveys_path, :notice, t('surveyor.unable_to_find_your_responses')) if @response_set.blank?
     saved = false
     ActiveRecord::Base.transaction do
-      KK.see "save 1 #{saved}"
       saved = @response_set.update_attributes(:status => params[:finish],:responses_attributes => params[:r])
-      KK.see "save 2 #{saved} - #{@response_set.completed_at}"
       @response_set.complete! if saved && params[:finish]
-      KK.see "save 3 #{saved} - #{@response_set.completed_at}"
        saved &= @response_set.save
-      KK.see "save 4 #{saved} - #{@response_set.completed_at}"
     end
     return redirect_with_message(user_path(@current_user), :notice, t('surveyor.completed_survey')) if saved && params[:finish]
 
@@ -83,8 +76,7 @@ module SurveyorControllerCustomMethods
         ids, remove, question_ids = {}, {}, []
         ResponseSet.reject_or_destroy_blanks(params[:r]).each do |k,v|
           ids[k] = @response_set.responses.find(:first, :conditions => v).id if !v.has_key?("id")
-          KK.see k.inspect
-          KK.see v.inspect
+
           remove[k] = v["id"] if v.has_key?("id") && v.has_key?("_destroy")
           question_ids << v["question_id"]
         end

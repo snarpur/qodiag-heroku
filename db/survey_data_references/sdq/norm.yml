@@ -1,0 +1,37 @@
+survey_access_code: 'sdq'
+norm_reference_attributes: [age_start, age_end, sex, responder]
+score_name_attribute_values: [emotional, conduct, hyperactivity_inattention, peer_problem, prosocial_behaviour, impact_supplement, total]
+score_attributes: [result_name, start_value, end_value]
+norm_references:
+  -
+    group: [5, 5, male, parent]
+    scores:
+      - emotional:
+          - [normal, 0, 2]
+          - [borderline, 3, 4]
+          - [abnormal, 5, 10]
+      - conduct:
+          - [normal, 0, 2]
+          - [borderline, 3, 3]
+          - [abnormal, 4, 10]
+      - hyperactivity_inattention:
+          - [normal, 0, 4]
+          - [borderline, 5, 5]
+          - [abnormal, 6, 10]
+      - peer_problem:
+          - [normal, 0, 2]
+          - [borderline, 3, 3]
+          - [abnormal, 4, 10]
+      - prosocial_behaviour:
+          - [normal, 7, 10]
+          - [borderline, 6, 6]
+          - [abnormal, 0, 5]
+      - total:
+          - [normal, 0, 9]
+          - [borderline, 10, 10]
+          - [abnormal, 13, 2]
+      - impact_supplement:
+          - [normal, 0, 9]
+          - [borderline, 10, 10]
+          - [abnormal, 13, 2]
+

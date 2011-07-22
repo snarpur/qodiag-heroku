@@ -1038,13 +1038,14 @@ a.view-details {
 
 /* line 121, ../../../app/stylesheets/timeline.sass */
 .item {
-  width: 20px;
-  height: 20px;
-}
-/* line 126, ../../../app/stylesheets/timeline.sass */
-.item.point {
+  width: 50px;
+  height: 30px;
   display: block;
   position: absolute;
+  background-color: yellow;
+}
+/* line 128, ../../../app/stylesheets/timeline.sass */
+.item.point {
   left: 0;
   font-size: 0.7em;
   overflow: visible;

@@ -32,8 +32,16 @@ class NormReferenceParser
 
   def create_scores(norm_reference, norm_data)
     norm_data['scores'].each_with_index do |item, index|
-      score_attributes = {:name => get_score_name(index)}.merge!(get_score_values(item))
-      norm_reference.scores.create(score_attributes)
+      if item.is_a?(Hash)
+        name = item.first.first
+        item[name].each do |nested_item|
+          score_attributes = {:name => name}.merge!(get_score_values(nested_item))
+          norm_reference.scores.create(score_attributes)
+        end
+      else
+        score_attributes = {:name => get_score_name(index)}.merge!(get_score_values(item))
+        norm_reference.scores.create(score_attributes)
+      end
     end
   end
 

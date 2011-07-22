@@ -1,5 +1,1 @@
-#test-index
 =render responder_item_index_partial
-:javascript
-  window.controller = new App.Controllers.ResponderItemsController({responder_items: #{@current_user.person.responder_items_by_group.to_json}});
-  Backbone.history.start();

@@ -1,3 +1,5 @@
+-@current_user.person.relations.guardian_of.each do |child|
+  = link_to child.full_name, person_path(child.id,:trailing_slash => true)
 - pending = @current_user.person.responder_items_by_name_and_status(:all, [:uncompleted,:overdue])
 =responder_item_partial_for(@current_user.person,pending,:pending)
 

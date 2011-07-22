@@ -1,2 +1,5 @@
-- registrations = @person.responder_items_by_name_and_status(:all,[:recently_completed,:uncompleted,:overdue])
-=responder_item_partial_for(@current_user.person,registrations)
+/ - registrations = @person.responder_items_by_name_and_status(:all,[:recently_completed,:uncompleted,:overdue])
+/ =responder_item_partial_for(@current_user.person,registrations)
+
+-responses = @person.responder_items
+=render "shared/timeline/canvas", :responses => responses

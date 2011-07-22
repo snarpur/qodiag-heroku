@@ -4,7 +4,7 @@ class ChartRenderer
     @response_set = response_set
     @group_names = group_names
     @group_results = group_results
-    @group_reference = group_reference
+    @group_reference = group_reference(:average)
   end
 
   def group_names
@@ -18,10 +18,10 @@ class ChartRenderer
     results << results.sum
   end
 
-  def group_reference
+  def group_reference(val)
     reference = []
     unless @response_set.norm_reference.nil?
-      @group_names.each {|r| reference << @response_set.group_norm_reference(r,'average')}
+      @group_names.each {|r| reference << @response_set.group_norm_reference(r,val.to_s)}
     end
     reference
   end
@@ -44,15 +44,25 @@ class ChartRenderer
    str << I18n.t("surveys.terms.#{@response_set.norm_reference.sex}")
   end
 
+  def standard_deviation_from_average(value, index)
+    @group_results[index] - value
+  end
+
   def bar_labels
     labels = []
-    @group_names.map do |n|
+    standard_deviation = group_reference(:standard_deviation)
+    @group_names.enum_for(:each_with_index).map do |name,index|
       item = {}
-      item[:name] = "#{I18n.t("surveys.terms.#{n}")}"
+      item[:name] = "#{I18n.t("surveys.terms.#{name}")}"
+      item[:data] = [{:name => "#{I18n.t("surveys.terms.standard_deviation_from_average")}",
+                      :value => standard_deviation_from_average(standard_deviation[index], index)}]
+      labels << item
     end
+    labels
   end
 
   def result_to_chart
+
     json = { :start => @response_set.updated_at,
               :legend => "#{I18n.t("surveys.#{@response_set.survey.access_code}")} #{I18n.l(Date.current, :format => :long)}",
               :chart => {

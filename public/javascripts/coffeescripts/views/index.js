@@ -1,4 +1,4 @@
-/* DO NOT MODIFY. This file was compiled Wed, 06 Jul 2011 08:58:49 GMT from
+/* DO NOT MODIFY. This file was compiled Tue, 19 Jul 2011 11:34:38 GMT from
  * /Users/orripalsson/Dev/snarpur/app/02/snarpur/app/coffeescripts/views/index.coffee
  */
 
@@ -18,18 +18,23 @@
     function Index() {
       Index.__super__.constructor.apply(this, arguments);
     }
+    Index.prototype.el = "#canvas";
     Index.prototype.template = function() {
       return JST["index"];
     };
     Index.prototype.initialize = function() {
-      return _.bindAll(this, 'render');
+      this.el = $(this.el);
+      _.bindAll(this, 'addOne', 'addAll', 'render');
+      return this.render();
+    };
+    Index.prototype.addOne = function(item) {
+      return $("#line-" + (item.get('access_code')), this.el).append(this.template()(item.toJSON()));
+    };
+    Index.prototype.addAll = function() {
+      return this.options.responder_items.each(this.addOne);
     };
     Index.prototype.render = function() {
-      console.log("index VIEW");
-      console.log(this.options.responder_items.toJSON());
-      $(this.el).html(this.template()({
-        responder_items: this.options.responder_items.toJSON()
-      }));
+      this.addAll();
       return this;
     };
     return Index;

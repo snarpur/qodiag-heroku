@@ -2,14 +2,23 @@ App.Views.ResponderItems ||= {}
 
 class App.Views.ResponderItems.Index extends Backbone.View
 
+  el : "#canvas"
+
   template: ->
     return JST["index"]
 
   initialize: () ->
-    _.bindAll(this, 'render');
+    this.el = $(this.el)
+    _.bindAll(this,'addOne','addAll','render')
+    this.render()
+
+  addOne: (item) ->
+    $("#line-#{item.get('access_code')}",this.el).append(this.template()(item.toJSON()))
+
+  addAll: ->
+    @options.responder_items.each(this.addOne)
 
   render: ->
-    console.log "index VIEW"
-    console.log this.options.responder_items.toJSON()
-    $(this.el).html(this.template()(responder_items: this.options.responder_items.toJSON()))
-    return this
+     @addAll()
+     return this
+

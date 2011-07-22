@@ -39,14 +39,19 @@ describe ResponderItem do
       Factory(:responder_item)
       ResponderItem.registrations.size.should == 1
     end
-    it "by group" do
-      items = []
-      2.times{|i| items[i] = Factory(:survey)}
+  end
+ context "scope by group", :focus => true do
+    before(:each) do
+      @items = []
+      2.times{|i| @items[i] = Factory(:survey)}
       4.times do |i|
-        Factory(:item_with_people, :survey => items[i%2])
+        Factory(:item_with_people, :survey => @items[i%2])
       end
-      ResponderItem.surveys_by_group.first.survey.should == items[0]
-      ResponderItem.surveys_by_group.last.survey.should == items[1]
+    end
+
+    it "finds by group" do
+      ResponderItem.surveys_by_group.first.survey.should == @items[0]
+      ResponderItem.surveys_by_group.last.survey.should == @items[1]
     end
   end
 

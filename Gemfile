@@ -18,10 +18,10 @@ gem "fancy-buttons"
 gem "surveyor", :git => "git://github.com/breakpointer/surveyor.git", :branch => "rails3"
 gem 'formtastic'
 gem 'ruby_parser'
-gem 'time_diff'
 gem "jammit"
 gem 'therubyracer', :require => false
 gem 'barista'
+
 
 
 group :development, :test do

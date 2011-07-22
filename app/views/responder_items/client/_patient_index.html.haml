@@ -1,7 +1,11 @@
-- registrations = @person.responder_items_by_name_and_status(:all,[:uncompleted,:overdue])
+/registrations = @person.responder_items_by_name_and_status(:all,[:uncompleted,:overdue])
 /=responder_item_partial_for(@current_user.person,registrations,:pending)
-#canvas
-  -responses = @current_user.person.responder_items_by_group
-  =render "shared/timeline/canvas", :responses => responses
+
+  / !!Debugging statement --------------------------------------
+  /- @person = Person.find(2)
+  /=responses = @person.responder_items
+  / !! -----------------------------------------------------------
+-responses = @current_user.person.responder_items
+=render "shared/timeline/canvas", :responses => responses
 
 

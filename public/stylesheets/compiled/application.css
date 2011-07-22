@@ -59,7 +59,7 @@ a img {
 
 /* line 46, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .container {
-  width: 950px;
+  width: 1040px;
   margin: 0 auto;
   overflow: hidden;
   *zoom: 1;
@@ -69,7 +69,7 @@ a img {
 .column, .span-1, .span-2, .span-3, .span-4, .span-5, .span-6, .span-7, .span-8, .span-9, .span-10, .span-11, .span-12, .span-13, .span-14, .span-15, .span-16, .span-17, .span-18, .span-19, .span-20, .span-21, .span-22, .span-23, .span-24 {
   display: inline;
   float: left;
-  margin-right: 10px;
+  margin-right: 5px;
 }
 /* line 147, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html .column, * html .span-1, * html .span-2, * html .span-3, * html .span-4, * html .span-5, * html .span-6, * html .span-7, * html .span-8, * html .span-9, * html .span-10, * html .span-11, * html .span-12, * html .span-13, * html .span-14, * html .span-15, * html .span-16, * html .span-17, * html .span-18, * html .span-19, * html .span-20, * html .span-21, * html .span-22, * html .span-23, * html .span-24 {
@@ -83,450 +83,450 @@ a img {
 
 /* line 55, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .span-1 {
-  width: 30px;
+  width: 38.542px;
 }
 
 /* line 55, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .span-2 {
-  width: 70px;
+  width: 82.083px;
 }
 
 /* line 55, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .span-3 {
-  width: 110px;
+  width: 125.625px;
 }
 
 /* line 55, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .span-4 {
-  width: 150px;
+  width: 169.167px;
 }
 
 /* line 55, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .span-5 {
-  width: 190px;
+  width: 212.708px;
 }
 
 /* line 55, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .span-6 {
-  width: 230px;
+  width: 256.25px;
 }
 
 /* line 55, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .span-7 {
-  width: 270px;
+  width: 299.792px;
 }
 
 /* line 55, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .span-8 {
-  width: 310px;
+  width: 343.333px;
 }
 
 /* line 55, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .span-9 {
-  width: 350px;
+  width: 386.875px;
 }
 
 /* line 55, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .span-10 {
-  width: 390px;
+  width: 430.417px;
 }
 
 /* line 55, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .span-11 {
-  width: 430px;
+  width: 473.958px;
 }
 
 /* line 55, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .span-12 {
-  width: 470px;
+  width: 517.5px;
 }
 
 /* line 55, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .span-13 {
-  width: 510px;
+  width: 561.042px;
 }
 
 /* line 55, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .span-14 {
-  width: 550px;
+  width: 604.583px;
 }
 
 /* line 55, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .span-15 {
-  width: 590px;
+  width: 648.125px;
 }
 
 /* line 55, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .span-16 {
-  width: 630px;
+  width: 691.667px;
 }
 
 /* line 55, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .span-17 {
-  width: 670px;
+  width: 735.208px;
 }
 
 /* line 55, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .span-18 {
-  width: 710px;
+  width: 778.75px;
 }
 
 /* line 55, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .span-19 {
-  width: 750px;
+  width: 822.292px;
 }
 
 /* line 55, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .span-20 {
-  width: 790px;
+  width: 865.833px;
 }
 
 /* line 55, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .span-21 {
-  width: 830px;
+  width: 909.375px;
 }
 
 /* line 55, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .span-22 {
-  width: 870px;
+  width: 952.917px;
 }
 
 /* line 55, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .span-23 {
-  width: 910px;
+  width: 996.458px;
 }
 
 /* line 58, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .span-24 {
-  width: 950px;
+  width: 1040px;
   margin: 0;
 }
 
 /* line 64, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 input.span-1, textarea.span-1, select.span-1 {
-  width: 30px;
+  width: 38.542px;
 }
 /* line 64, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 input.span-2, textarea.span-2, select.span-2 {
-  width: 70px;
+  width: 82.083px;
 }
 /* line 64, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 input.span-3, textarea.span-3, select.span-3 {
-  width: 110px;
+  width: 125.625px;
 }
 /* line 64, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 input.span-4, textarea.span-4, select.span-4 {
-  width: 150px;
+  width: 169.167px;
 }
 /* line 64, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 input.span-5, textarea.span-5, select.span-5 {
-  width: 190px;
+  width: 212.708px;
 }
 /* line 64, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 input.span-6, textarea.span-6, select.span-6 {
-  width: 230px;
+  width: 256.25px;
 }
 /* line 64, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 input.span-7, textarea.span-7, select.span-7 {
-  width: 270px;
+  width: 299.792px;
 }
 /* line 64, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 input.span-8, textarea.span-8, select.span-8 {
-  width: 310px;
+  width: 343.333px;
 }
 /* line 64, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 input.span-9, textarea.span-9, select.span-9 {
-  width: 350px;
+  width: 386.875px;
 }
 /* line 64, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 input.span-10, textarea.span-10, select.span-10 {
-  width: 390px;
+  width: 430.417px;
 }
 /* line 64, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 input.span-11, textarea.span-11, select.span-11 {
-  width: 430px;
+  width: 473.958px;
 }
 /* line 64, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 input.span-12, textarea.span-12, select.span-12 {
-  width: 470px;
+  width: 517.5px;
 }
 /* line 64, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 input.span-13, textarea.span-13, select.span-13 {
-  width: 510px;
+  width: 561.042px;
 }
 /* line 64, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 input.span-14, textarea.span-14, select.span-14 {
-  width: 550px;
+  width: 604.583px;
 }
 /* line 64, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 input.span-15, textarea.span-15, select.span-15 {
-  width: 590px;
+  width: 648.125px;
 }
 /* line 64, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 input.span-16, textarea.span-16, select.span-16 {
-  width: 630px;
+  width: 691.667px;
 }
 /* line 64, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 input.span-17, textarea.span-17, select.span-17 {
-  width: 670px;
+  width: 735.208px;
 }
 /* line 64, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 input.span-18, textarea.span-18, select.span-18 {
-  width: 710px;
+  width: 778.75px;
 }
 /* line 64, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 input.span-19, textarea.span-19, select.span-19 {
-  width: 750px;
+  width: 822.292px;
 }
 /* line 64, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 input.span-20, textarea.span-20, select.span-20 {
-  width: 790px;
+  width: 865.833px;
 }
 /* line 64, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 input.span-21, textarea.span-21, select.span-21 {
-  width: 830px;
+  width: 909.375px;
 }
 /* line 64, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 input.span-22, textarea.span-22, select.span-22 {
-  width: 870px;
+  width: 952.917px;
 }
 /* line 64, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 input.span-23, textarea.span-23, select.span-23 {
-  width: 910px;
+  width: 996.458px;
 }
 /* line 64, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 input.span-24, textarea.span-24, select.span-24 {
-  width: 950px;
+  width: 1040px;
 }
 
 /* line 68, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .append-1 {
-  padding-right: 40px;
+  padding-right: 43.542px;
 }
 
 /* line 68, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .append-2 {
-  padding-right: 80px;
+  padding-right: 87.083px;
 }
 
 /* line 68, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .append-3 {
-  padding-right: 120px;
+  padding-right: 130.625px;
 }
 
 /* line 68, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .append-4 {
-  padding-right: 160px;
+  padding-right: 174.167px;
 }
 
 /* line 68, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .append-5 {
-  padding-right: 200px;
+  padding-right: 217.708px;
 }
 
 /* line 68, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .append-6 {
-  padding-right: 240px;
+  padding-right: 261.25px;
 }
 
 /* line 68, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .append-7 {
-  padding-right: 280px;
+  padding-right: 304.792px;
 }
 
 /* line 68, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .append-8 {
-  padding-right: 320px;
+  padding-right: 348.333px;
 }
 
 /* line 68, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .append-9 {
-  padding-right: 360px;
+  padding-right: 391.875px;
 }
 
 /* line 68, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .append-10 {
-  padding-right: 400px;
+  padding-right: 435.417px;
 }
 
 /* line 68, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .append-11 {
-  padding-right: 440px;
+  padding-right: 478.958px;
 }
 
 /* line 68, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .append-12 {
-  padding-right: 480px;
+  padding-right: 522.5px;
 }
 
 /* line 68, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .append-13 {
-  padding-right: 520px;
+  padding-right: 566.042px;
 }
 
 /* line 68, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .append-14 {
-  padding-right: 560px;
+  padding-right: 609.583px;
 }
 
 /* line 68, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .append-15 {
-  padding-right: 600px;
+  padding-right: 653.125px;
 }
 
 /* line 68, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .append-16 {
-  padding-right: 640px;
+  padding-right: 696.667px;
 }
 
 /* line 68, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .append-17 {
-  padding-right: 680px;
+  padding-right: 740.208px;
 }
 
 /* line 68, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .append-18 {
-  padding-right: 720px;
+  padding-right: 783.75px;
 }
 
 /* line 68, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .append-19 {
-  padding-right: 760px;
+  padding-right: 827.292px;
 }
 
 /* line 68, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .append-20 {
-  padding-right: 800px;
+  padding-right: 870.833px;
 }
 
 /* line 68, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .append-21 {
-  padding-right: 840px;
+  padding-right: 914.375px;
 }
 
 /* line 68, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .append-22 {
-  padding-right: 880px;
+  padding-right: 957.917px;
 }
 
 /* line 68, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .append-23 {
-  padding-right: 920px;
+  padding-right: 1001.458px;
 }
 
 /* line 72, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .prepend-1 {
-  padding-left: 40px;
+  padding-left: 43.542px;
 }
 
 /* line 72, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .prepend-2 {
-  padding-left: 80px;
+  padding-left: 87.083px;
 }
 
 /* line 72, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .prepend-3 {
-  padding-left: 120px;
+  padding-left: 130.625px;
 }
 
 /* line 72, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .prepend-4 {
-  padding-left: 160px;
+  padding-left: 174.167px;
 }
 
 /* line 72, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .prepend-5 {
-  padding-left: 200px;
+  padding-left: 217.708px;
 }
 
 /* line 72, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .prepend-6 {
-  padding-left: 240px;
+  padding-left: 261.25px;
 }
 
 /* line 72, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .prepend-7 {
-  padding-left: 280px;
+  padding-left: 304.792px;
 }
 
 /* line 72, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .prepend-8 {
-  padding-left: 320px;
+  padding-left: 348.333px;
 }
 
 /* line 72, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .prepend-9 {
-  padding-left: 360px;
+  padding-left: 391.875px;
 }
 
 /* line 72, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .prepend-10 {
-  padding-left: 400px;
+  padding-left: 435.417px;
 }
 
 /* line 72, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .prepend-11 {
-  padding-left: 440px;
+  padding-left: 478.958px;
 }
 
 /* line 72, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .prepend-12 {
-  padding-left: 480px;
+  padding-left: 522.5px;
 }
 
 /* line 72, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .prepend-13 {
-  padding-left: 520px;
+  padding-left: 566.042px;
 }
 
 /* line 72, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .prepend-14 {
-  padding-left: 560px;
+  padding-left: 609.583px;
 }
 
 /* line 72, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .prepend-15 {
-  padding-left: 600px;
+  padding-left: 653.125px;
 }
 
 /* line 72, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .prepend-16 {
-  padding-left: 640px;
+  padding-left: 696.667px;
 }
 
 /* line 72, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .prepend-17 {
-  padding-left: 680px;
+  padding-left: 740.208px;
 }
 
 /* line 72, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .prepend-18 {
-  padding-left: 720px;
+  padding-left: 783.75px;
 }
 
 /* line 72, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .prepend-19 {
-  padding-left: 760px;
+  padding-left: 827.292px;
 }
 
 /* line 72, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .prepend-20 {
-  padding-left: 800px;
+  padding-left: 870.833px;
 }
 
 /* line 72, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .prepend-21 {
-  padding-left: 840px;
+  padding-left: 914.375px;
 }
 
 /* line 72, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .prepend-22 {
-  padding-left: 880px;
+  padding-left: 957.917px;
 }
 
 /* line 72, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .prepend-23 {
-  padding-left: 920px;
+  padding-left: 1001.458px;
 }
 
 /* line 76, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
@@ -538,122 +538,122 @@ input.span-24, textarea.span-24, select.span-24 {
 
 /* line 79, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .pull-1 {
-  margin-left: -40px;
+  margin-left: -43.542px;
 }
 
 /* line 79, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .pull-2 {
-  margin-left: -80px;
+  margin-left: -87.083px;
 }
 
 /* line 79, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .pull-3 {
-  margin-left: -120px;
+  margin-left: -130.625px;
 }
 
 /* line 79, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .pull-4 {
-  margin-left: -160px;
+  margin-left: -174.167px;
 }
 
 /* line 79, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .pull-5 {
-  margin-left: -200px;
+  margin-left: -217.708px;
 }
 
 /* line 79, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .pull-6 {
-  margin-left: -240px;
+  margin-left: -261.25px;
 }
 
 /* line 79, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .pull-7 {
-  margin-left: -280px;
+  margin-left: -304.792px;
 }
 
 /* line 79, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .pull-8 {
-  margin-left: -320px;
+  margin-left: -348.333px;
 }
 
 /* line 79, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .pull-9 {
-  margin-left: -360px;
+  margin-left: -391.875px;
 }
 
 /* line 79, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .pull-10 {
-  margin-left: -400px;
+  margin-left: -435.417px;
 }
 
 /* line 79, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .pull-11 {
-  margin-left: -440px;
+  margin-left: -478.958px;
 }
 
 /* line 79, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .pull-12 {
-  margin-left: -480px;
+  margin-left: -522.5px;
 }
 
 /* line 79, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .pull-13 {
-  margin-left: -520px;
+  margin-left: -566.042px;
 }
 
 /* line 79, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .pull-14 {
-  margin-left: -560px;
+  margin-left: -609.583px;
 }
 
 /* line 79, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .pull-15 {
-  margin-left: -600px;
+  margin-left: -653.125px;
 }
 
 /* line 79, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .pull-16 {
-  margin-left: -640px;
+  margin-left: -696.667px;
 }
 
 /* line 79, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .pull-17 {
-  margin-left: -680px;
+  margin-left: -740.208px;
 }
 
 /* line 79, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .pull-18 {
-  margin-left: -720px;
+  margin-left: -783.75px;
 }
 
 /* line 79, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .pull-19 {
-  margin-left: -760px;
+  margin-left: -827.292px;
 }
 
 /* line 79, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .pull-20 {
-  margin-left: -800px;
+  margin-left: -870.833px;
 }
 
 /* line 79, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .pull-21 {
-  margin-left: -840px;
+  margin-left: -914.375px;
 }
 
 /* line 79, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .pull-22 {
-  margin-left: -880px;
+  margin-left: -957.917px;
 }
 
 /* line 79, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .pull-23 {
-  margin-left: -920px;
+  margin-left: -1001.458px;
 }
 
 /* line 79, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .pull-24 {
-  margin-left: -960px;
+  margin-left: -1045px;
 }
 
 /* line 81, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
@@ -665,122 +665,122 @@ input.span-24, textarea.span-24, select.span-24 {
 
 /* line 84, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .push-1 {
-  margin: 0 -40px 1.5em 40px;
+  margin: 0 -43.542px 1.5em 43.542px;
 }
 
 /* line 84, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .push-2 {
-  margin: 0 -80px 1.5em 80px;
+  margin: 0 -87.083px 1.5em 87.083px;
 }
 
 /* line 84, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .push-3 {
-  margin: 0 -120px 1.5em 120px;
+  margin: 0 -130.625px 1.5em 130.625px;
 }
 
 /* line 84, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .push-4 {
-  margin: 0 -160px 1.5em 160px;
+  margin: 0 -174.167px 1.5em 174.167px;
 }
 
 /* line 84, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .push-5 {
-  margin: 0 -200px 1.5em 200px;
+  margin: 0 -217.708px 1.5em 217.708px;
 }
 
 /* line 84, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .push-6 {
-  margin: 0 -240px 1.5em 240px;
+  margin: 0 -261.25px 1.5em 261.25px;
 }
 
 /* line 84, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .push-7 {
-  margin: 0 -280px 1.5em 280px;
+  margin: 0 -304.792px 1.5em 304.792px;
 }
 
 /* line 84, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .push-8 {
-  margin: 0 -320px 1.5em 320px;
+  margin: 0 -348.333px 1.5em 348.333px;
 }
 
 /* line 84, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .push-9 {
-  margin: 0 -360px 1.5em 360px;
+  margin: 0 -391.875px 1.5em 391.875px;
 }
 
 /* line 84, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .push-10 {
-  margin: 0 -400px 1.5em 400px;
+  margin: 0 -435.417px 1.5em 435.417px;
 }
 
 /* line 84, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .push-11 {
-  margin: 0 -440px 1.5em 440px;
+  margin: 0 -478.958px 1.5em 478.958px;
 }
 
 /* line 84, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .push-12 {
-  margin: 0 -480px 1.5em 480px;
+  margin: 0 -522.5px 1.5em 522.5px;
 }
 
 /* line 84, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .push-13 {
-  margin: 0 -520px 1.5em 520px;
+  margin: 0 -566.042px 1.5em 566.042px;
 }
 
 /* line 84, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .push-14 {
-  margin: 0 -560px 1.5em 560px;
+  margin: 0 -609.583px 1.5em 609.583px;
 }
 
 /* line 84, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .push-15 {
-  margin: 0 -600px 1.5em 600px;
+  margin: 0 -653.125px 1.5em 653.125px;
 }
 
 /* line 84, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .push-16 {
-  margin: 0 -640px 1.5em 640px;
+  margin: 0 -696.667px 1.5em 696.667px;
 }
 
 /* line 84, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .push-17 {
-  margin: 0 -680px 1.5em 680px;
+  margin: 0 -740.208px 1.5em 740.208px;
 }
 
 /* line 84, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .push-18 {
-  margin: 0 -720px 1.5em 720px;
+  margin: 0 -783.75px 1.5em 783.75px;
 }
 
 /* line 84, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .push-19 {
-  margin: 0 -760px 1.5em 760px;
+  margin: 0 -827.292px 1.5em 827.292px;
 }
 
 /* line 84, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .push-20 {
-  margin: 0 -800px 1.5em 800px;
+  margin: 0 -870.833px 1.5em 870.833px;
 }
 
 /* line 84, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .push-21 {
-  margin: 0 -840px 1.5em 840px;
+  margin: 0 -914.375px 1.5em 914.375px;
 }
 
 /* line 84, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .push-22 {
-  margin: 0 -880px 1.5em 880px;
+  margin: 0 -957.917px 1.5em 957.917px;
 }
 
 /* line 84, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .push-23 {
-  margin: 0 -920px 1.5em 920px;
+  margin: 0 -1001.458px 1.5em 1001.458px;
 }
 
 /* line 84, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 .push-24 {
-  margin: 0 -960px 1.5em 960px;
+  margin: 0 -1045px 1.5em 1045px;
 }
 
 /* line 86, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
@@ -795,11 +795,11 @@ input.span-24, textarea.span-24, select.span-24 {
 
 /* line 25, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_debug.scss */
 .showgrid {
-  background-image: -webkit-gradient(linear, 50% 100%, 50% 0%, color-stop(5%, rgba(0, 0, 0, 0.5)), color-stop(5%, rgba(0, 0, 0, 0))), -webkit-gradient(linear, 0% 50%, 960 50%, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(0%, rgba(100, 100, 225, 0.25)), color-stop(3.125%, rgba(100, 100, 225, 0.25)), color-stop(3.125%, rgba(0, 0, 0, 0)), color-stop(4.167%, rgba(0, 0, 0, 0)), color-stop(4.167%, rgba(100, 100, 225, 0.25)), color-stop(7.292%, rgba(100, 100, 225, 0.25)), color-stop(7.292%, rgba(0, 0, 0, 0)), color-stop(8.333%, rgba(0, 0, 0, 0)), color-stop(8.333%, rgba(100, 100, 225, 0.25)), color-stop(11.458%, rgba(100, 100, 225, 0.25)), color-stop(11.458%, rgba(0, 0, 0, 0)), color-stop(12.5%, rgba(0, 0, 0, 0)), color-stop(12.5%, rgba(100, 100, 225, 0.25)), color-stop(15.625%, rgba(100, 100, 225, 0.25)), color-stop(15.625%, rgba(0, 0, 0, 0)), color-stop(16.667%, rgba(0, 0, 0, 0)), color-stop(16.667%, rgba(100, 100, 225, 0.25)), color-stop(19.792%, rgba(100, 100, 225, 0.25)), color-stop(19.792%, rgba(0, 0, 0, 0)), color-stop(20.833%, rgba(0, 0, 0, 0)), color-stop(20.833%, rgba(100, 100, 225, 0.25)), color-stop(23.958%, rgba(100, 100, 225, 0.25)), color-stop(23.958%, rgba(0, 0, 0, 0)), color-stop(25%, rgba(0, 0, 0, 0)), color-stop(25%, rgba(100, 100, 225, 0.25)), color-stop(28.125%, rgba(100, 100, 225, 0.25)), color-stop(28.125%, rgba(0, 0, 0, 0)), color-stop(29.167%, rgba(0, 0, 0, 0)), color-stop(29.167%, rgba(100, 100, 225, 0.25)), color-stop(32.292%, rgba(100, 100, 225, 0.25)), color-stop(32.292%, rgba(0, 0, 0, 0)), color-stop(33.333%, rgba(0, 0, 0, 0)), color-stop(33.333%, rgba(100, 100, 225, 0.25)), color-stop(36.458%, rgba(100, 100, 225, 0.25)), color-stop(36.458%, rgba(0, 0, 0, 0)), color-stop(37.5%, rgba(0, 0, 0, 0)), color-stop(37.5%, rgba(100, 100, 225, 0.25)), color-stop(40.625%, rgba(100, 100, 225, 0.25)), color-stop(40.625%, rgba(0, 0, 0, 0)), color-stop(41.667%, rgba(0, 0, 0, 0)), color-stop(41.667%, rgba(100, 100, 225, 0.25)), color-stop(44.792%, rgba(100, 100, 225, 0.25)), color-stop(44.792%, rgba(0, 0, 0, 0)), color-stop(45.833%, rgba(0, 0, 0, 0)), color-stop(45.833%, rgba(100, 100, 225, 0.25)), color-stop(48.958%, rgba(100, 100, 225, 0.25)), color-stop(48.958%, rgba(0, 0, 0, 0)), color-stop(50%, rgba(0, 0, 0, 0)), color-stop(50%, rgba(100, 100, 225, 0.25)), color-stop(53.125%, rgba(100, 100, 225, 0.25)), color-stop(53.125%, rgba(0, 0, 0, 0)), color-stop(54.167%, rgba(0, 0, 0, 0)), color-stop(54.167%, rgba(100, 100, 225, 0.25)), color-stop(57.292%, rgba(100, 100, 225, 0.25)), color-stop(57.292%, rgba(0, 0, 0, 0)), color-stop(58.333%, rgba(0, 0, 0, 0)), color-stop(58.333%, rgba(100, 100, 225, 0.25)), color-stop(61.458%, rgba(100, 100, 225, 0.25)), color-stop(61.458%, rgba(0, 0, 0, 0)), color-stop(62.5%, rgba(0, 0, 0, 0)), color-stop(62.5%, rgba(100, 100, 225, 0.25)), color-stop(65.625%, rgba(100, 100, 225, 0.25)), color-stop(65.625%, rgba(0, 0, 0, 0)), color-stop(66.667%, rgba(0, 0, 0, 0)), color-stop(66.667%, rgba(100, 100, 225, 0.25)), color-stop(69.792%, rgba(100, 100, 225, 0.25)), color-stop(69.792%, rgba(0, 0, 0, 0)), color-stop(70.833%, rgba(0, 0, 0, 0)), color-stop(70.833%, rgba(100, 100, 225, 0.25)), color-stop(73.958%, rgba(100, 100, 225, 0.25)), color-stop(73.958%, rgba(0, 0, 0, 0)), color-stop(75%, rgba(0, 0, 0, 0)), color-stop(75%, rgba(100, 100, 225, 0.25)), color-stop(78.125%, rgba(100, 100, 225, 0.25)), color-stop(78.125%, rgba(0, 0, 0, 0)), color-stop(79.167%, rgba(0, 0, 0, 0)), color-stop(79.167%, rgba(100, 100, 225, 0.25)), color-stop(82.292%, rgba(100, 100, 225, 0.25)), color-stop(82.292%, rgba(0, 0, 0, 0)), color-stop(83.333%, rgba(0, 0, 0, 0)), color-stop(83.333%, rgba(100, 100, 225, 0.25)), color-stop(86.458%, rgba(100, 100, 225, 0.25)), color-stop(86.458%, rgba(0, 0, 0, 0)), color-stop(87.5%, rgba(0, 0, 0, 0)), color-stop(87.5%, rgba(100, 100, 225, 0.25)), color-stop(90.625%, rgba(100, 100, 225, 0.25)), color-stop(90.625%, rgba(0, 0, 0, 0)), color-stop(91.667%, rgba(0, 0, 0, 0)), color-stop(91.667%, rgba(100, 100, 225, 0.25)), color-stop(94.792%, rgba(100, 100, 225, 0.25)), color-stop(94.792%, rgba(0, 0, 0, 0)), color-stop(95.833%, rgba(0, 0, 0, 0)), color-stop(95.833%, rgba(100, 100, 225, 0.25)), color-stop(98.958%, rgba(100, 100, 225, 0.25)), color-stop(98.958%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0)));
-  background-image: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0.5) 5%, rgba(0, 0, 0, 0) 5%), -webkit-linear-gradient(left, rgba(0, 0, 0, 0) 0px, rgba(100, 100, 225, 0.25) 0px, rgba(100, 100, 225, 0.25) 30px, rgba(0, 0, 0, 0) 30px, rgba(0, 0, 0, 0) 40px, rgba(100, 100, 225, 0.25) 40px, rgba(100, 100, 225, 0.25) 70px, rgba(0, 0, 0, 0) 70px, rgba(0, 0, 0, 0) 80px, rgba(100, 100, 225, 0.25) 80px, rgba(100, 100, 225, 0.25) 110px, rgba(0, 0, 0, 0) 110px, rgba(0, 0, 0, 0) 120px, rgba(100, 100, 225, 0.25) 120px, rgba(100, 100, 225, 0.25) 150px, rgba(0, 0, 0, 0) 150px, rgba(0, 0, 0, 0) 160px, rgba(100, 100, 225, 0.25) 160px, rgba(100, 100, 225, 0.25) 190px, rgba(0, 0, 0, 0) 190px, rgba(0, 0, 0, 0) 200px, rgba(100, 100, 225, 0.25) 200px, rgba(100, 100, 225, 0.25) 230px, rgba(0, 0, 0, 0) 230px, rgba(0, 0, 0, 0) 240px, rgba(100, 100, 225, 0.25) 240px, rgba(100, 100, 225, 0.25) 270px, rgba(0, 0, 0, 0) 270px, rgba(0, 0, 0, 0) 280px, rgba(100, 100, 225, 0.25) 280px, rgba(100, 100, 225, 0.25) 310px, rgba(0, 0, 0, 0) 310px, rgba(0, 0, 0, 0) 320px, rgba(100, 100, 225, 0.25) 320px, rgba(100, 100, 225, 0.25) 350px, rgba(0, 0, 0, 0) 350px, rgba(0, 0, 0, 0) 360px, rgba(100, 100, 225, 0.25) 360px, rgba(100, 100, 225, 0.25) 390px, rgba(0, 0, 0, 0) 390px, rgba(0, 0, 0, 0) 400px, rgba(100, 100, 225, 0.25) 400px, rgba(100, 100, 225, 0.25) 430px, rgba(0, 0, 0, 0) 430px, rgba(0, 0, 0, 0) 440px, rgba(100, 100, 225, 0.25) 440px, rgba(100, 100, 225, 0.25) 470px, rgba(0, 0, 0, 0) 470px, rgba(0, 0, 0, 0) 480px, rgba(100, 100, 225, 0.25) 480px, rgba(100, 100, 225, 0.25) 510px, rgba(0, 0, 0, 0) 510px, rgba(0, 0, 0, 0) 520px, rgba(100, 100, 225, 0.25) 520px, rgba(100, 100, 225, 0.25) 550px, rgba(0, 0, 0, 0) 550px, rgba(0, 0, 0, 0) 560px, rgba(100, 100, 225, 0.25) 560px, rgba(100, 100, 225, 0.25) 590px, rgba(0, 0, 0, 0) 590px, rgba(0, 0, 0, 0) 600px, rgba(100, 100, 225, 0.25) 600px, rgba(100, 100, 225, 0.25) 630px, rgba(0, 0, 0, 0) 630px, rgba(0, 0, 0, 0) 640px, rgba(100, 100, 225, 0.25) 640px, rgba(100, 100, 225, 0.25) 670px, rgba(0, 0, 0, 0) 670px, rgba(0, 0, 0, 0) 680px, rgba(100, 100, 225, 0.25) 680px, rgba(100, 100, 225, 0.25) 710px, rgba(0, 0, 0, 0) 710px, rgba(0, 0, 0, 0) 720px, rgba(100, 100, 225, 0.25) 720px, rgba(100, 100, 225, 0.25) 750px, rgba(0, 0, 0, 0) 750px, rgba(0, 0, 0, 0) 760px, rgba(100, 100, 225, 0.25) 760px, rgba(100, 100, 225, 0.25) 790px, rgba(0, 0, 0, 0) 790px, rgba(0, 0, 0, 0) 800px, rgba(100, 100, 225, 0.25) 800px, rgba(100, 100, 225, 0.25) 830px, rgba(0, 0, 0, 0) 830px, rgba(0, 0, 0, 0) 840px, rgba(100, 100, 225, 0.25) 840px, rgba(100, 100, 225, 0.25) 870px, rgba(0, 0, 0, 0) 870px, rgba(0, 0, 0, 0) 880px, rgba(100, 100, 225, 0.25) 880px, rgba(100, 100, 225, 0.25) 910px, rgba(0, 0, 0, 0) 910px, rgba(0, 0, 0, 0) 920px, rgba(100, 100, 225, 0.25) 920px, rgba(100, 100, 225, 0.25) 950px, rgba(0, 0, 0, 0) 950px, rgba(0, 0, 0, 0) 960px);
-  background-image: -moz-linear-gradient(bottom, rgba(0, 0, 0, 0.5) 5%, rgba(0, 0, 0, 0) 5%), -moz-linear-gradient(left, rgba(0, 0, 0, 0) 0px, rgba(100, 100, 225, 0.25) 0px, rgba(100, 100, 225, 0.25) 30px, rgba(0, 0, 0, 0) 30px, rgba(0, 0, 0, 0) 40px, rgba(100, 100, 225, 0.25) 40px, rgba(100, 100, 225, 0.25) 70px, rgba(0, 0, 0, 0) 70px, rgba(0, 0, 0, 0) 80px, rgba(100, 100, 225, 0.25) 80px, rgba(100, 100, 225, 0.25) 110px, rgba(0, 0, 0, 0) 110px, rgba(0, 0, 0, 0) 120px, rgba(100, 100, 225, 0.25) 120px, rgba(100, 100, 225, 0.25) 150px, rgba(0, 0, 0, 0) 150px, rgba(0, 0, 0, 0) 160px, rgba(100, 100, 225, 0.25) 160px, rgba(100, 100, 225, 0.25) 190px, rgba(0, 0, 0, 0) 190px, rgba(0, 0, 0, 0) 200px, rgba(100, 100, 225, 0.25) 200px, rgba(100, 100, 225, 0.25) 230px, rgba(0, 0, 0, 0) 230px, rgba(0, 0, 0, 0) 240px, rgba(100, 100, 225, 0.25) 240px, rgba(100, 100, 225, 0.25) 270px, rgba(0, 0, 0, 0) 270px, rgba(0, 0, 0, 0) 280px, rgba(100, 100, 225, 0.25) 280px, rgba(100, 100, 225, 0.25) 310px, rgba(0, 0, 0, 0) 310px, rgba(0, 0, 0, 0) 320px, rgba(100, 100, 225, 0.25) 320px, rgba(100, 100, 225, 0.25) 350px, rgba(0, 0, 0, 0) 350px, rgba(0, 0, 0, 0) 360px, rgba(100, 100, 225, 0.25) 360px, rgba(100, 100, 225, 0.25) 390px, rgba(0, 0, 0, 0) 390px, rgba(0, 0, 0, 0) 400px, rgba(100, 100, 225, 0.25) 400px, rgba(100, 100, 225, 0.25) 430px, rgba(0, 0, 0, 0) 430px, rgba(0, 0, 0, 0) 440px, rgba(100, 100, 225, 0.25) 440px, rgba(100, 100, 225, 0.25) 470px, rgba(0, 0, 0, 0) 470px, rgba(0, 0, 0, 0) 480px, rgba(100, 100, 225, 0.25) 480px, rgba(100, 100, 225, 0.25) 510px, rgba(0, 0, 0, 0) 510px, rgba(0, 0, 0, 0) 520px, rgba(100, 100, 225, 0.25) 520px, rgba(100, 100, 225, 0.25) 550px, rgba(0, 0, 0, 0) 550px, rgba(0, 0, 0, 0) 560px, rgba(100, 100, 225, 0.25) 560px, rgba(100, 100, 225, 0.25) 590px, rgba(0, 0, 0, 0) 590px, rgba(0, 0, 0, 0) 600px, rgba(100, 100, 225, 0.25) 600px, rgba(100, 100, 225, 0.25) 630px, rgba(0, 0, 0, 0) 630px, rgba(0, 0, 0, 0) 640px, rgba(100, 100, 225, 0.25) 640px, rgba(100, 100, 225, 0.25) 670px, rgba(0, 0, 0, 0) 670px, rgba(0, 0, 0, 0) 680px, rgba(100, 100, 225, 0.25) 680px, rgba(100, 100, 225, 0.25) 710px, rgba(0, 0, 0, 0) 710px, rgba(0, 0, 0, 0) 720px, rgba(100, 100, 225, 0.25) 720px, rgba(100, 100, 225, 0.25) 750px, rgba(0, 0, 0, 0) 750px, rgba(0, 0, 0, 0) 760px, rgba(100, 100, 225, 0.25) 760px, rgba(100, 100, 225, 0.25) 790px, rgba(0, 0, 0, 0) 790px, rgba(0, 0, 0, 0) 800px, rgba(100, 100, 225, 0.25) 800px, rgba(100, 100, 225, 0.25) 830px, rgba(0, 0, 0, 0) 830px, rgba(0, 0, 0, 0) 840px, rgba(100, 100, 225, 0.25) 840px, rgba(100, 100, 225, 0.25) 870px, rgba(0, 0, 0, 0) 870px, rgba(0, 0, 0, 0) 880px, rgba(100, 100, 225, 0.25) 880px, rgba(100, 100, 225, 0.25) 910px, rgba(0, 0, 0, 0) 910px, rgba(0, 0, 0, 0) 920px, rgba(100, 100, 225, 0.25) 920px, rgba(100, 100, 225, 0.25) 950px, rgba(0, 0, 0, 0) 950px, rgba(0, 0, 0, 0) 960px);
-  background-image: -o-linear-gradient(bottom, rgba(0, 0, 0, 0.5) 5%, rgba(0, 0, 0, 0) 5%), -o-linear-gradient(left, rgba(0, 0, 0, 0) 0px, rgba(100, 100, 225, 0.25) 0px, rgba(100, 100, 225, 0.25) 30px, rgba(0, 0, 0, 0) 30px, rgba(0, 0, 0, 0) 40px, rgba(100, 100, 225, 0.25) 40px, rgba(100, 100, 225, 0.25) 70px, rgba(0, 0, 0, 0) 70px, rgba(0, 0, 0, 0) 80px, rgba(100, 100, 225, 0.25) 80px, rgba(100, 100, 225, 0.25) 110px, rgba(0, 0, 0, 0) 110px, rgba(0, 0, 0, 0) 120px, rgba(100, 100, 225, 0.25) 120px, rgba(100, 100, 225, 0.25) 150px, rgba(0, 0, 0, 0) 150px, rgba(0, 0, 0, 0) 160px, rgba(100, 100, 225, 0.25) 160px, rgba(100, 100, 225, 0.25) 190px, rgba(0, 0, 0, 0) 190px, rgba(0, 0, 0, 0) 200px, rgba(100, 100, 225, 0.25) 200px, rgba(100, 100, 225, 0.25) 230px, rgba(0, 0, 0, 0) 230px, rgba(0, 0, 0, 0) 240px, rgba(100, 100, 225, 0.25) 240px, rgba(100, 100, 225, 0.25) 270px, rgba(0, 0, 0, 0) 270px, rgba(0, 0, 0, 0) 280px, rgba(100, 100, 225, 0.25) 280px, rgba(100, 100, 225, 0.25) 310px, rgba(0, 0, 0, 0) 310px, rgba(0, 0, 0, 0) 320px, rgba(100, 100, 225, 0.25) 320px, rgba(100, 100, 225, 0.25) 350px, rgba(0, 0, 0, 0) 350px, rgba(0, 0, 0, 0) 360px, rgba(100, 100, 225, 0.25) 360px, rgba(100, 100, 225, 0.25) 390px, rgba(0, 0, 0, 0) 390px, rgba(0, 0, 0, 0) 400px, rgba(100, 100, 225, 0.25) 400px, rgba(100, 100, 225, 0.25) 430px, rgba(0, 0, 0, 0) 430px, rgba(0, 0, 0, 0) 440px, rgba(100, 100, 225, 0.25) 440px, rgba(100, 100, 225, 0.25) 470px, rgba(0, 0, 0, 0) 470px, rgba(0, 0, 0, 0) 480px, rgba(100, 100, 225, 0.25) 480px, rgba(100, 100, 225, 0.25) 510px, rgba(0, 0, 0, 0) 510px, rgba(0, 0, 0, 0) 520px, rgba(100, 100, 225, 0.25) 520px, rgba(100, 100, 225, 0.25) 550px, rgba(0, 0, 0, 0) 550px, rgba(0, 0, 0, 0) 560px, rgba(100, 100, 225, 0.25) 560px, rgba(100, 100, 225, 0.25) 590px, rgba(0, 0, 0, 0) 590px, rgba(0, 0, 0, 0) 600px, rgba(100, 100, 225, 0.25) 600px, rgba(100, 100, 225, 0.25) 630px, rgba(0, 0, 0, 0) 630px, rgba(0, 0, 0, 0) 640px, rgba(100, 100, 225, 0.25) 640px, rgba(100, 100, 225, 0.25) 670px, rgba(0, 0, 0, 0) 670px, rgba(0, 0, 0, 0) 680px, rgba(100, 100, 225, 0.25) 680px, rgba(100, 100, 225, 0.25) 710px, rgba(0, 0, 0, 0) 710px, rgba(0, 0, 0, 0) 720px, rgba(100, 100, 225, 0.25) 720px, rgba(100, 100, 225, 0.25) 750px, rgba(0, 0, 0, 0) 750px, rgba(0, 0, 0, 0) 760px, rgba(100, 100, 225, 0.25) 760px, rgba(100, 100, 225, 0.25) 790px, rgba(0, 0, 0, 0) 790px, rgba(0, 0, 0, 0) 800px, rgba(100, 100, 225, 0.25) 800px, rgba(100, 100, 225, 0.25) 830px, rgba(0, 0, 0, 0) 830px, rgba(0, 0, 0, 0) 840px, rgba(100, 100, 225, 0.25) 840px, rgba(100, 100, 225, 0.25) 870px, rgba(0, 0, 0, 0) 870px, rgba(0, 0, 0, 0) 880px, rgba(100, 100, 225, 0.25) 880px, rgba(100, 100, 225, 0.25) 910px, rgba(0, 0, 0, 0) 910px, rgba(0, 0, 0, 0) 920px, rgba(100, 100, 225, 0.25) 920px, rgba(100, 100, 225, 0.25) 950px, rgba(0, 0, 0, 0) 950px, rgba(0, 0, 0, 0) 960px);
-  background-image: linear-gradient(bottom, rgba(0, 0, 0, 0.5) 5%, rgba(0, 0, 0, 0) 5%), linear-gradient(left, rgba(0, 0, 0, 0) 0px, rgba(100, 100, 225, 0.25) 0px, rgba(100, 100, 225, 0.25) 30px, rgba(0, 0, 0, 0) 30px, rgba(0, 0, 0, 0) 40px, rgba(100, 100, 225, 0.25) 40px, rgba(100, 100, 225, 0.25) 70px, rgba(0, 0, 0, 0) 70px, rgba(0, 0, 0, 0) 80px, rgba(100, 100, 225, 0.25) 80px, rgba(100, 100, 225, 0.25) 110px, rgba(0, 0, 0, 0) 110px, rgba(0, 0, 0, 0) 120px, rgba(100, 100, 225, 0.25) 120px, rgba(100, 100, 225, 0.25) 150px, rgba(0, 0, 0, 0) 150px, rgba(0, 0, 0, 0) 160px, rgba(100, 100, 225, 0.25) 160px, rgba(100, 100, 225, 0.25) 190px, rgba(0, 0, 0, 0) 190px, rgba(0, 0, 0, 0) 200px, rgba(100, 100, 225, 0.25) 200px, rgba(100, 100, 225, 0.25) 230px, rgba(0, 0, 0, 0) 230px, rgba(0, 0, 0, 0) 240px, rgba(100, 100, 225, 0.25) 240px, rgba(100, 100, 225, 0.25) 270px, rgba(0, 0, 0, 0) 270px, rgba(0, 0, 0, 0) 280px, rgba(100, 100, 225, 0.25) 280px, rgba(100, 100, 225, 0.25) 310px, rgba(0, 0, 0, 0) 310px, rgba(0, 0, 0, 0) 320px, rgba(100, 100, 225, 0.25) 320px, rgba(100, 100, 225, 0.25) 350px, rgba(0, 0, 0, 0) 350px, rgba(0, 0, 0, 0) 360px, rgba(100, 100, 225, 0.25) 360px, rgba(100, 100, 225, 0.25) 390px, rgba(0, 0, 0, 0) 390px, rgba(0, 0, 0, 0) 400px, rgba(100, 100, 225, 0.25) 400px, rgba(100, 100, 225, 0.25) 430px, rgba(0, 0, 0, 0) 430px, rgba(0, 0, 0, 0) 440px, rgba(100, 100, 225, 0.25) 440px, rgba(100, 100, 225, 0.25) 470px, rgba(0, 0, 0, 0) 470px, rgba(0, 0, 0, 0) 480px, rgba(100, 100, 225, 0.25) 480px, rgba(100, 100, 225, 0.25) 510px, rgba(0, 0, 0, 0) 510px, rgba(0, 0, 0, 0) 520px, rgba(100, 100, 225, 0.25) 520px, rgba(100, 100, 225, 0.25) 550px, rgba(0, 0, 0, 0) 550px, rgba(0, 0, 0, 0) 560px, rgba(100, 100, 225, 0.25) 560px, rgba(100, 100, 225, 0.25) 590px, rgba(0, 0, 0, 0) 590px, rgba(0, 0, 0, 0) 600px, rgba(100, 100, 225, 0.25) 600px, rgba(100, 100, 225, 0.25) 630px, rgba(0, 0, 0, 0) 630px, rgba(0, 0, 0, 0) 640px, rgba(100, 100, 225, 0.25) 640px, rgba(100, 100, 225, 0.25) 670px, rgba(0, 0, 0, 0) 670px, rgba(0, 0, 0, 0) 680px, rgba(100, 100, 225, 0.25) 680px, rgba(100, 100, 225, 0.25) 710px, rgba(0, 0, 0, 0) 710px, rgba(0, 0, 0, 0) 720px, rgba(100, 100, 225, 0.25) 720px, rgba(100, 100, 225, 0.25) 750px, rgba(0, 0, 0, 0) 750px, rgba(0, 0, 0, 0) 760px, rgba(100, 100, 225, 0.25) 760px, rgba(100, 100, 225, 0.25) 790px, rgba(0, 0, 0, 0) 790px, rgba(0, 0, 0, 0) 800px, rgba(100, 100, 225, 0.25) 800px, rgba(100, 100, 225, 0.25) 830px, rgba(0, 0, 0, 0) 830px, rgba(0, 0, 0, 0) 840px, rgba(100, 100, 225, 0.25) 840px, rgba(100, 100, 225, 0.25) 870px, rgba(0, 0, 0, 0) 870px, rgba(0, 0, 0, 0) 880px, rgba(100, 100, 225, 0.25) 880px, rgba(100, 100, 225, 0.25) 910px, rgba(0, 0, 0, 0) 910px, rgba(0, 0, 0, 0) 920px, rgba(100, 100, 225, 0.25) 920px, rgba(100, 100, 225, 0.25) 950px, rgba(0, 0, 0, 0) 950px, rgba(0, 0, 0, 0) 960px);
+  background-image: -webkit-gradient(linear, 50% 100%, 50% 0%, color-stop(5%, rgba(0, 0, 0, 0.5)), color-stop(5%, rgba(0, 0, 0, 0))), -webkit-gradient(linear, 0% 50%, 1045 50%, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(0%, rgba(100, 100, 225, 0.25)), color-stop(3.688%, rgba(100, 100, 225, 0.25)), color-stop(3.688%, rgba(0, 0, 0, 0)), color-stop(4.167%, rgba(0, 0, 0, 0)), color-stop(4.167%, rgba(100, 100, 225, 0.25)), color-stop(7.855%, rgba(100, 100, 225, 0.25)), color-stop(7.855%, rgba(0, 0, 0, 0)), color-stop(8.333%, rgba(0, 0, 0, 0)), color-stop(8.333%, rgba(100, 100, 225, 0.25)), color-stop(12.022%, rgba(100, 100, 225, 0.25)), color-stop(12.022%, rgba(0, 0, 0, 0)), color-stop(12.5%, rgba(0, 0, 0, 0)), color-stop(12.5%, rgba(100, 100, 225, 0.25)), color-stop(16.188%, rgba(100, 100, 225, 0.25)), color-stop(16.188%, rgba(0, 0, 0, 0)), color-stop(16.667%, rgba(0, 0, 0, 0)), color-stop(16.667%, rgba(100, 100, 225, 0.25)), color-stop(20.355%, rgba(100, 100, 225, 0.25)), color-stop(20.355%, rgba(0, 0, 0, 0)), color-stop(20.833%, rgba(0, 0, 0, 0)), color-stop(20.833%, rgba(100, 100, 225, 0.25)), color-stop(24.522%, rgba(100, 100, 225, 0.25)), color-stop(24.522%, rgba(0, 0, 0, 0)), color-stop(25%, rgba(0, 0, 0, 0)), color-stop(25%, rgba(100, 100, 225, 0.25)), color-stop(28.688%, rgba(100, 100, 225, 0.25)), color-stop(28.688%, rgba(0, 0, 0, 0)), color-stop(29.167%, rgba(0, 0, 0, 0)), color-stop(29.167%, rgba(100, 100, 225, 0.25)), color-stop(32.855%, rgba(100, 100, 225, 0.25)), color-stop(32.855%, rgba(0, 0, 0, 0)), color-stop(33.333%, rgba(0, 0, 0, 0)), color-stop(33.333%, rgba(100, 100, 225, 0.25)), color-stop(37.022%, rgba(100, 100, 225, 0.25)), color-stop(37.022%, rgba(0, 0, 0, 0)), color-stop(37.5%, rgba(0, 0, 0, 0)), color-stop(37.5%, rgba(100, 100, 225, 0.25)), color-stop(41.188%, rgba(100, 100, 225, 0.25)), color-stop(41.188%, rgba(0, 0, 0, 0)), color-stop(41.667%, rgba(0, 0, 0, 0)), color-stop(41.667%, rgba(100, 100, 225, 0.25)), color-stop(45.355%, rgba(100, 100, 225, 0.25)), color-stop(45.355%, rgba(0, 0, 0, 0)), color-stop(45.833%, rgba(0, 0, 0, 0)), color-stop(45.833%, rgba(100, 100, 225, 0.25)), color-stop(49.522%, rgba(100, 100, 225, 0.25)), color-stop(49.522%, rgba(0, 0, 0, 0)), color-stop(50%, rgba(0, 0, 0, 0)), color-stop(50%, rgba(100, 100, 225, 0.25)), color-stop(53.688%, rgba(100, 100, 225, 0.25)), color-stop(53.688%, rgba(0, 0, 0, 0)), color-stop(54.167%, rgba(0, 0, 0, 0)), color-stop(54.167%, rgba(100, 100, 225, 0.25)), color-stop(57.855%, rgba(100, 100, 225, 0.25)), color-stop(57.855%, rgba(0, 0, 0, 0)), color-stop(58.333%, rgba(0, 0, 0, 0)), color-stop(58.333%, rgba(100, 100, 225, 0.25)), color-stop(62.022%, rgba(100, 100, 225, 0.25)), color-stop(62.022%, rgba(0, 0, 0, 0)), color-stop(62.5%, rgba(0, 0, 0, 0)), color-stop(62.5%, rgba(100, 100, 225, 0.25)), color-stop(66.188%, rgba(100, 100, 225, 0.25)), color-stop(66.188%, rgba(0, 0, 0, 0)), color-stop(66.667%, rgba(0, 0, 0, 0)), color-stop(66.667%, rgba(100, 100, 225, 0.25)), color-stop(70.355%, rgba(100, 100, 225, 0.25)), color-stop(70.355%, rgba(0, 0, 0, 0)), color-stop(70.833%, rgba(0, 0, 0, 0)), color-stop(70.833%, rgba(100, 100, 225, 0.25)), color-stop(74.522%, rgba(100, 100, 225, 0.25)), color-stop(74.522%, rgba(0, 0, 0, 0)), color-stop(75.0%, rgba(0, 0, 0, 0)), color-stop(75%, rgba(100, 100, 225, 0.25)), color-stop(78.688%, rgba(100, 100, 225, 0.25)), color-stop(78.688%, rgba(0, 0, 0, 0)), color-stop(79.167%, rgba(0, 0, 0, 0)), color-stop(79.167%, rgba(100, 100, 225, 0.25)), color-stop(82.855%, rgba(100, 100, 225, 0.25)), color-stop(82.855%, rgba(0, 0, 0, 0)), color-stop(83.333%, rgba(0, 0, 0, 0)), color-stop(83.333%, rgba(100, 100, 225, 0.25)), color-stop(87.022%, rgba(100, 100, 225, 0.25)), color-stop(87.022%, rgba(0, 0, 0, 0)), color-stop(87.5%, rgba(0, 0, 0, 0)), color-stop(87.5%, rgba(100, 100, 225, 0.25)), color-stop(91.188%, rgba(100, 100, 225, 0.25)), color-stop(91.188%, rgba(0, 0, 0, 0)), color-stop(91.667%, rgba(0, 0, 0, 0)), color-stop(91.667%, rgba(100, 100, 225, 0.25)), color-stop(95.355%, rgba(100, 100, 225, 0.25)), color-stop(95.355%, rgba(0, 0, 0, 0)), color-stop(95.833%, rgba(0, 0, 0, 0)), color-stop(95.833%, rgba(100, 100, 225, 0.25)), color-stop(99.522%, rgba(100, 100, 225, 0.25)), color-stop(99.522%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0)));
+  background-image: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0.5) 5%, rgba(0, 0, 0, 0) 5%), -webkit-linear-gradient(left, rgba(0, 0, 0, 0) 0px, rgba(100, 100, 225, 0.25) 0px, rgba(100, 100, 225, 0.25) 38.542px, rgba(0, 0, 0, 0) 38.542px, rgba(0, 0, 0, 0) 43.542px, rgba(100, 100, 225, 0.25) 43.542px, rgba(100, 100, 225, 0.25) 82.083px, rgba(0, 0, 0, 0) 82.083px, rgba(0, 0, 0, 0) 87.083px, rgba(100, 100, 225, 0.25) 87.083px, rgba(100, 100, 225, 0.25) 125.625px, rgba(0, 0, 0, 0) 125.625px, rgba(0, 0, 0, 0) 130.625px, rgba(100, 100, 225, 0.25) 130.625px, rgba(100, 100, 225, 0.25) 169.167px, rgba(0, 0, 0, 0) 169.167px, rgba(0, 0, 0, 0) 174.167px, rgba(100, 100, 225, 0.25) 174.167px, rgba(100, 100, 225, 0.25) 212.708px, rgba(0, 0, 0, 0) 212.708px, rgba(0, 0, 0, 0) 217.708px, rgba(100, 100, 225, 0.25) 217.708px, rgba(100, 100, 225, 0.25) 256.25px, rgba(0, 0, 0, 0) 256.25px, rgba(0, 0, 0, 0) 261.25px, rgba(100, 100, 225, 0.25) 261.25px, rgba(100, 100, 225, 0.25) 299.792px, rgba(0, 0, 0, 0) 299.792px, rgba(0, 0, 0, 0) 304.792px, rgba(100, 100, 225, 0.25) 304.792px, rgba(100, 100, 225, 0.25) 343.333px, rgba(0, 0, 0, 0) 343.333px, rgba(0, 0, 0, 0) 348.333px, rgba(100, 100, 225, 0.25) 348.333px, rgba(100, 100, 225, 0.25) 386.875px, rgba(0, 0, 0, 0) 386.875px, rgba(0, 0, 0, 0) 391.875px, rgba(100, 100, 225, 0.25) 391.875px, rgba(100, 100, 225, 0.25) 430.417px, rgba(0, 0, 0, 0) 430.417px, rgba(0, 0, 0, 0) 435.417px, rgba(100, 100, 225, 0.25) 435.417px, rgba(100, 100, 225, 0.25) 473.958px, rgba(0, 0, 0, 0) 473.958px, rgba(0, 0, 0, 0) 478.958px, rgba(100, 100, 225, 0.25) 478.958px, rgba(100, 100, 225, 0.25) 517.5px, rgba(0, 0, 0, 0) 517.5px, rgba(0, 0, 0, 0) 522.5px, rgba(100, 100, 225, 0.25) 522.5px, rgba(100, 100, 225, 0.25) 561.042px, rgba(0, 0, 0, 0) 561.042px, rgba(0, 0, 0, 0) 566.042px, rgba(100, 100, 225, 0.25) 566.042px, rgba(100, 100, 225, 0.25) 604.583px, rgba(0, 0, 0, 0) 604.583px, rgba(0, 0, 0, 0) 609.583px, rgba(100, 100, 225, 0.25) 609.583px, rgba(100, 100, 225, 0.25) 648.125px, rgba(0, 0, 0, 0) 648.125px, rgba(0, 0, 0, 0) 653.125px, rgba(100, 100, 225, 0.25) 653.125px, rgba(100, 100, 225, 0.25) 691.667px, rgba(0, 0, 0, 0) 691.667px, rgba(0, 0, 0, 0) 696.667px, rgba(100, 100, 225, 0.25) 696.667px, rgba(100, 100, 225, 0.25) 735.208px, rgba(0, 0, 0, 0) 735.208px, rgba(0, 0, 0, 0) 740.208px, rgba(100, 100, 225, 0.25) 740.208px, rgba(100, 100, 225, 0.25) 778.75px, rgba(0, 0, 0, 0) 778.75px, rgba(0, 0, 0, 0) 783.75px, rgba(100, 100, 225, 0.25) 783.75px, rgba(100, 100, 225, 0.25) 822.292px, rgba(0, 0, 0, 0) 822.292px, rgba(0, 0, 0, 0) 827.292px, rgba(100, 100, 225, 0.25) 827.292px, rgba(100, 100, 225, 0.25) 865.833px, rgba(0, 0, 0, 0) 865.833px, rgba(0, 0, 0, 0) 870.833px, rgba(100, 100, 225, 0.25) 870.833px, rgba(100, 100, 225, 0.25) 909.375px, rgba(0, 0, 0, 0) 909.375px, rgba(0, 0, 0, 0) 914.375px, rgba(100, 100, 225, 0.25) 914.375px, rgba(100, 100, 225, 0.25) 952.917px, rgba(0, 0, 0, 0) 952.917px, rgba(0, 0, 0, 0) 957.917px, rgba(100, 100, 225, 0.25) 957.917px, rgba(100, 100, 225, 0.25) 996.458px, rgba(0, 0, 0, 0) 996.458px, rgba(0, 0, 0, 0) 1001.458px, rgba(100, 100, 225, 0.25) 1001.458px, rgba(100, 100, 225, 0.25) 1040px, rgba(0, 0, 0, 0) 1040px, rgba(0, 0, 0, 0) 1045px);
+  background-image: -moz-linear-gradient(bottom, rgba(0, 0, 0, 0.5) 5%, rgba(0, 0, 0, 0) 5%), -moz-linear-gradient(left, rgba(0, 0, 0, 0) 0px, rgba(100, 100, 225, 0.25) 0px, rgba(100, 100, 225, 0.25) 38.542px, rgba(0, 0, 0, 0) 38.542px, rgba(0, 0, 0, 0) 43.542px, rgba(100, 100, 225, 0.25) 43.542px, rgba(100, 100, 225, 0.25) 82.083px, rgba(0, 0, 0, 0) 82.083px, rgba(0, 0, 0, 0) 87.083px, rgba(100, 100, 225, 0.25) 87.083px, rgba(100, 100, 225, 0.25) 125.625px, rgba(0, 0, 0, 0) 125.625px, rgba(0, 0, 0, 0) 130.625px, rgba(100, 100, 225, 0.25) 130.625px, rgba(100, 100, 225, 0.25) 169.167px, rgba(0, 0, 0, 0) 169.167px, rgba(0, 0, 0, 0) 174.167px, rgba(100, 100, 225, 0.25) 174.167px, rgba(100, 100, 225, 0.25) 212.708px, rgba(0, 0, 0, 0) 212.708px, rgba(0, 0, 0, 0) 217.708px, rgba(100, 100, 225, 0.25) 217.708px, rgba(100, 100, 225, 0.25) 256.25px, rgba(0, 0, 0, 0) 256.25px, rgba(0, 0, 0, 0) 261.25px, rgba(100, 100, 225, 0.25) 261.25px, rgba(100, 100, 225, 0.25) 299.792px, rgba(0, 0, 0, 0) 299.792px, rgba(0, 0, 0, 0) 304.792px, rgba(100, 100, 225, 0.25) 304.792px, rgba(100, 100, 225, 0.25) 343.333px, rgba(0, 0, 0, 0) 343.333px, rgba(0, 0, 0, 0) 348.333px, rgba(100, 100, 225, 0.25) 348.333px, rgba(100, 100, 225, 0.25) 386.875px, rgba(0, 0, 0, 0) 386.875px, rgba(0, 0, 0, 0) 391.875px, rgba(100, 100, 225, 0.25) 391.875px, rgba(100, 100, 225, 0.25) 430.417px, rgba(0, 0, 0, 0) 430.417px, rgba(0, 0, 0, 0) 435.417px, rgba(100, 100, 225, 0.25) 435.417px, rgba(100, 100, 225, 0.25) 473.958px, rgba(0, 0, 0, 0) 473.958px, rgba(0, 0, 0, 0) 478.958px, rgba(100, 100, 225, 0.25) 478.958px, rgba(100, 100, 225, 0.25) 517.5px, rgba(0, 0, 0, 0) 517.5px, rgba(0, 0, 0, 0) 522.5px, rgba(100, 100, 225, 0.25) 522.5px, rgba(100, 100, 225, 0.25) 561.042px, rgba(0, 0, 0, 0) 561.042px, rgba(0, 0, 0, 0) 566.042px, rgba(100, 100, 225, 0.25) 566.042px, rgba(100, 100, 225, 0.25) 604.583px, rgba(0, 0, 0, 0) 604.583px, rgba(0, 0, 0, 0) 609.583px, rgba(100, 100, 225, 0.25) 609.583px, rgba(100, 100, 225, 0.25) 648.125px, rgba(0, 0, 0, 0) 648.125px, rgba(0, 0, 0, 0) 653.125px, rgba(100, 100, 225, 0.25) 653.125px, rgba(100, 100, 225, 0.25) 691.667px, rgba(0, 0, 0, 0) 691.667px, rgba(0, 0, 0, 0) 696.667px, rgba(100, 100, 225, 0.25) 696.667px, rgba(100, 100, 225, 0.25) 735.208px, rgba(0, 0, 0, 0) 735.208px, rgba(0, 0, 0, 0) 740.208px, rgba(100, 100, 225, 0.25) 740.208px, rgba(100, 100, 225, 0.25) 778.75px, rgba(0, 0, 0, 0) 778.75px, rgba(0, 0, 0, 0) 783.75px, rgba(100, 100, 225, 0.25) 783.75px, rgba(100, 100, 225, 0.25) 822.292px, rgba(0, 0, 0, 0) 822.292px, rgba(0, 0, 0, 0) 827.292px, rgba(100, 100, 225, 0.25) 827.292px, rgba(100, 100, 225, 0.25) 865.833px, rgba(0, 0, 0, 0) 865.833px, rgba(0, 0, 0, 0) 870.833px, rgba(100, 100, 225, 0.25) 870.833px, rgba(100, 100, 225, 0.25) 909.375px, rgba(0, 0, 0, 0) 909.375px, rgba(0, 0, 0, 0) 914.375px, rgba(100, 100, 225, 0.25) 914.375px, rgba(100, 100, 225, 0.25) 952.917px, rgba(0, 0, 0, 0) 952.917px, rgba(0, 0, 0, 0) 957.917px, rgba(100, 100, 225, 0.25) 957.917px, rgba(100, 100, 225, 0.25) 996.458px, rgba(0, 0, 0, 0) 996.458px, rgba(0, 0, 0, 0) 1001.458px, rgba(100, 100, 225, 0.25) 1001.458px, rgba(100, 100, 225, 0.25) 1040px, rgba(0, 0, 0, 0) 1040px, rgba(0, 0, 0, 0) 1045px);
+  background-image: -o-linear-gradient(bottom, rgba(0, 0, 0, 0.5) 5%, rgba(0, 0, 0, 0) 5%), -o-linear-gradient(left, rgba(0, 0, 0, 0) 0px, rgba(100, 100, 225, 0.25) 0px, rgba(100, 100, 225, 0.25) 38.542px, rgba(0, 0, 0, 0) 38.542px, rgba(0, 0, 0, 0) 43.542px, rgba(100, 100, 225, 0.25) 43.542px, rgba(100, 100, 225, 0.25) 82.083px, rgba(0, 0, 0, 0) 82.083px, rgba(0, 0, 0, 0) 87.083px, rgba(100, 100, 225, 0.25) 87.083px, rgba(100, 100, 225, 0.25) 125.625px, rgba(0, 0, 0, 0) 125.625px, rgba(0, 0, 0, 0) 130.625px, rgba(100, 100, 225, 0.25) 130.625px, rgba(100, 100, 225, 0.25) 169.167px, rgba(0, 0, 0, 0) 169.167px, rgba(0, 0, 0, 0) 174.167px, rgba(100, 100, 225, 0.25) 174.167px, rgba(100, 100, 225, 0.25) 212.708px, rgba(0, 0, 0, 0) 212.708px, rgba(0, 0, 0, 0) 217.708px, rgba(100, 100, 225, 0.25) 217.708px, rgba(100, 100, 225, 0.25) 256.25px, rgba(0, 0, 0, 0) 256.25px, rgba(0, 0, 0, 0) 261.25px, rgba(100, 100, 225, 0.25) 261.25px, rgba(100, 100, 225, 0.25) 299.792px, rgba(0, 0, 0, 0) 299.792px, rgba(0, 0, 0, 0) 304.792px, rgba(100, 100, 225, 0.25) 304.792px, rgba(100, 100, 225, 0.25) 343.333px, rgba(0, 0, 0, 0) 343.333px, rgba(0, 0, 0, 0) 348.333px, rgba(100, 100, 225, 0.25) 348.333px, rgba(100, 100, 225, 0.25) 386.875px, rgba(0, 0, 0, 0) 386.875px, rgba(0, 0, 0, 0) 391.875px, rgba(100, 100, 225, 0.25) 391.875px, rgba(100, 100, 225, 0.25) 430.417px, rgba(0, 0, 0, 0) 430.417px, rgba(0, 0, 0, 0) 435.417px, rgba(100, 100, 225, 0.25) 435.417px, rgba(100, 100, 225, 0.25) 473.958px, rgba(0, 0, 0, 0) 473.958px, rgba(0, 0, 0, 0) 478.958px, rgba(100, 100, 225, 0.25) 478.958px, rgba(100, 100, 225, 0.25) 517.5px, rgba(0, 0, 0, 0) 517.5px, rgba(0, 0, 0, 0) 522.5px, rgba(100, 100, 225, 0.25) 522.5px, rgba(100, 100, 225, 0.25) 561.042px, rgba(0, 0, 0, 0) 561.042px, rgba(0, 0, 0, 0) 566.042px, rgba(100, 100, 225, 0.25) 566.042px, rgba(100, 100, 225, 0.25) 604.583px, rgba(0, 0, 0, 0) 604.583px, rgba(0, 0, 0, 0) 609.583px, rgba(100, 100, 225, 0.25) 609.583px, rgba(100, 100, 225, 0.25) 648.125px, rgba(0, 0, 0, 0) 648.125px, rgba(0, 0, 0, 0) 653.125px, rgba(100, 100, 225, 0.25) 653.125px, rgba(100, 100, 225, 0.25) 691.667px, rgba(0, 0, 0, 0) 691.667px, rgba(0, 0, 0, 0) 696.667px, rgba(100, 100, 225, 0.25) 696.667px, rgba(100, 100, 225, 0.25) 735.208px, rgba(0, 0, 0, 0) 735.208px, rgba(0, 0, 0, 0) 740.208px, rgba(100, 100, 225, 0.25) 740.208px, rgba(100, 100, 225, 0.25) 778.75px, rgba(0, 0, 0, 0) 778.75px, rgba(0, 0, 0, 0) 783.75px, rgba(100, 100, 225, 0.25) 783.75px, rgba(100, 100, 225, 0.25) 822.292px, rgba(0, 0, 0, 0) 822.292px, rgba(0, 0, 0, 0) 827.292px, rgba(100, 100, 225, 0.25) 827.292px, rgba(100, 100, 225, 0.25) 865.833px, rgba(0, 0, 0, 0) 865.833px, rgba(0, 0, 0, 0) 870.833px, rgba(100, 100, 225, 0.25) 870.833px, rgba(100, 100, 225, 0.25) 909.375px, rgba(0, 0, 0, 0) 909.375px, rgba(0, 0, 0, 0) 914.375px, rgba(100, 100, 225, 0.25) 914.375px, rgba(100, 100, 225, 0.25) 952.917px, rgba(0, 0, 0, 0) 952.917px, rgba(0, 0, 0, 0) 957.917px, rgba(100, 100, 225, 0.25) 957.917px, rgba(100, 100, 225, 0.25) 996.458px, rgba(0, 0, 0, 0) 996.458px, rgba(0, 0, 0, 0) 1001.458px, rgba(100, 100, 225, 0.25) 1001.458px, rgba(100, 100, 225, 0.25) 1040px, rgba(0, 0, 0, 0) 1040px, rgba(0, 0, 0, 0) 1045px);
+  background-image: linear-gradient(bottom, rgba(0, 0, 0, 0.5) 5%, rgba(0, 0, 0, 0) 5%), linear-gradient(left, rgba(0, 0, 0, 0) 0px, rgba(100, 100, 225, 0.25) 0px, rgba(100, 100, 225, 0.25) 38.542px, rgba(0, 0, 0, 0) 38.542px, rgba(0, 0, 0, 0) 43.542px, rgba(100, 100, 225, 0.25) 43.542px, rgba(100, 100, 225, 0.25) 82.083px, rgba(0, 0, 0, 0) 82.083px, rgba(0, 0, 0, 0) 87.083px, rgba(100, 100, 225, 0.25) 87.083px, rgba(100, 100, 225, 0.25) 125.625px, rgba(0, 0, 0, 0) 125.625px, rgba(0, 0, 0, 0) 130.625px, rgba(100, 100, 225, 0.25) 130.625px, rgba(100, 100, 225, 0.25) 169.167px, rgba(0, 0, 0, 0) 169.167px, rgba(0, 0, 0, 0) 174.167px, rgba(100, 100, 225, 0.25) 174.167px, rgba(100, 100, 225, 0.25) 212.708px, rgba(0, 0, 0, 0) 212.708px, rgba(0, 0, 0, 0) 217.708px, rgba(100, 100, 225, 0.25) 217.708px, rgba(100, 100, 225, 0.25) 256.25px, rgba(0, 0, 0, 0) 256.25px, rgba(0, 0, 0, 0) 261.25px, rgba(100, 100, 225, 0.25) 261.25px, rgba(100, 100, 225, 0.25) 299.792px, rgba(0, 0, 0, 0) 299.792px, rgba(0, 0, 0, 0) 304.792px, rgba(100, 100, 225, 0.25) 304.792px, rgba(100, 100, 225, 0.25) 343.333px, rgba(0, 0, 0, 0) 343.333px, rgba(0, 0, 0, 0) 348.333px, rgba(100, 100, 225, 0.25) 348.333px, rgba(100, 100, 225, 0.25) 386.875px, rgba(0, 0, 0, 0) 386.875px, rgba(0, 0, 0, 0) 391.875px, rgba(100, 100, 225, 0.25) 391.875px, rgba(100, 100, 225, 0.25) 430.417px, rgba(0, 0, 0, 0) 430.417px, rgba(0, 0, 0, 0) 435.417px, rgba(100, 100, 225, 0.25) 435.417px, rgba(100, 100, 225, 0.25) 473.958px, rgba(0, 0, 0, 0) 473.958px, rgba(0, 0, 0, 0) 478.958px, rgba(100, 100, 225, 0.25) 478.958px, rgba(100, 100, 225, 0.25) 517.5px, rgba(0, 0, 0, 0) 517.5px, rgba(0, 0, 0, 0) 522.5px, rgba(100, 100, 225, 0.25) 522.5px, rgba(100, 100, 225, 0.25) 561.042px, rgba(0, 0, 0, 0) 561.042px, rgba(0, 0, 0, 0) 566.042px, rgba(100, 100, 225, 0.25) 566.042px, rgba(100, 100, 225, 0.25) 604.583px, rgba(0, 0, 0, 0) 604.583px, rgba(0, 0, 0, 0) 609.583px, rgba(100, 100, 225, 0.25) 609.583px, rgba(100, 100, 225, 0.25) 648.125px, rgba(0, 0, 0, 0) 648.125px, rgba(0, 0, 0, 0) 653.125px, rgba(100, 100, 225, 0.25) 653.125px, rgba(100, 100, 225, 0.25) 691.667px, rgba(0, 0, 0, 0) 691.667px, rgba(0, 0, 0, 0) 696.667px, rgba(100, 100, 225, 0.25) 696.667px, rgba(100, 100, 225, 0.25) 735.208px, rgba(0, 0, 0, 0) 735.208px, rgba(0, 0, 0, 0) 740.208px, rgba(100, 100, 225, 0.25) 740.208px, rgba(100, 100, 225, 0.25) 778.75px, rgba(0, 0, 0, 0) 778.75px, rgba(0, 0, 0, 0) 783.75px, rgba(100, 100, 225, 0.25) 783.75px, rgba(100, 100, 225, 0.25) 822.292px, rgba(0, 0, 0, 0) 822.292px, rgba(0, 0, 0, 0) 827.292px, rgba(100, 100, 225, 0.25) 827.292px, rgba(100, 100, 225, 0.25) 865.833px, rgba(0, 0, 0, 0) 865.833px, rgba(0, 0, 0, 0) 870.833px, rgba(100, 100, 225, 0.25) 870.833px, rgba(100, 100, 225, 0.25) 909.375px, rgba(0, 0, 0, 0) 909.375px, rgba(0, 0, 0, 0) 914.375px, rgba(100, 100, 225, 0.25) 914.375px, rgba(100, 100, 225, 0.25) 952.917px, rgba(0, 0, 0, 0) 952.917px, rgba(0, 0, 0, 0) 957.917px, rgba(100, 100, 225, 0.25) 957.917px, rgba(100, 100, 225, 0.25) 996.458px, rgba(0, 0, 0, 0) 996.458px, rgba(0, 0, 0, 0) 1001.458px, rgba(100, 100, 225, 0.25) 1001.458px, rgba(100, 100, 225, 0.25) 1040px, rgba(0, 0, 0, 0) 1040px, rgba(0, 0, 0, 0) 1045px);
   -moz-background-size: 100% 20px, auto;
   -webkit-background-size: 100% 20px, auto;
   -o-background-size: 100% 20px, auto;
@@ -1191,13 +1191,192 @@ ul.wizard-nav li.active p {
   color: #0000bf;
 }
 
-/* line 8, ../../../app/stylesheets/application.sass */
+/* line 1, ../../../app/stylesheets/partials/timeline.sass */
+#canvas {
+  position: relative;
+  opacity: 1;
+  background: white;
+  overflow: hidden;
+}
+/* line 6, ../../../app/stylesheets/partials/timeline.sass */
+#canvas .chart-dialog {
+  position: absolute;
+  z-index: 4;
+  background-color: black;
+  background: rgba(255, 255, 255, 0.7);
+}
+/* line 11, ../../../app/stylesheets/partials/timeline.sass */
+#canvas .chart-dialog h3 {
+  padding: 5px;
+  font-size: 1.3em;
+}
+/* line 14, ../../../app/stylesheets/partials/timeline.sass */
+#canvas .chart-dialog .close {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+/* line 18, ../../../app/stylesheets/partials/timeline.sass */
+#canvas .tml-history-nav {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  *zoom: 1;
+  background-color: black;
+}
+/* line 60, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/compass/stylesheets/compass/typography/lists/_horizontal-list.scss */
+#canvas .tml-history-nav li {
+  list-style-image: none;
+  list-style-type: none;
+  margin-left: 0px;
+  white-space: nowrap;
+  display: inline;
+  float: left;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+/* line 48, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/compass/stylesheets/compass/typography/lists/_horizontal-list.scss */
+#canvas .tml-history-nav li:first-child, #canvas .tml-history-nav li.first {
+  padding-left: 0;
+}
+/* line 49, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/compass/stylesheets/compass/typography/lists/_horizontal-list.scss */
+#canvas .tml-history-nav li:last-child {
+  padding-right: 0;
+}
+/* line 50, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/compass/stylesheets/compass/typography/lists/_horizontal-list.scss */
+#canvas .tml-history-nav li.last {
+  padding-right: 0;
+}
+/* line 21, ../../../app/stylesheets/partials/timeline.sass */
+#canvas .tml-history-nav li {
+  margin-top: 4px;
+  font-size: 1.8em;
+  color: #e0e0e0;
+  cursor: pointer;
+}
+/* line 26, ../../../app/stylesheets/partials/timeline.sass */
+#canvas #tml-menu {
+  position: absolute;
+}
+
+/* line 30, ../../../app/stylesheets/partials/timeline.sass */
+#tml-body {
+  position: relative;
+  overflow: hidden;
+}
+
+/* line 35, ../../../app/stylesheets/partials/timeline.sass */
+#tml-l-gutter {
+  z-index: 3;
+  background-color: #ededed;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+/* line 39, ../../../app/stylesheets/partials/timeline.sass */
+#tml-l-gutter p {
+  position: relative;
+  text-align: center;
+  top: 1em;
+}
+/* line 43, ../../../app/stylesheets/partials/timeline.sass */
+#tml-l-gutter .add-item {
+  position: absolute;
+  bottom: 2px;
+  right: 3px;
+  font-weight: bold;
+  line-height: 1em;
+  cursor: pointer;
+  display: none;
+}
+/* line 51, ../../../app/stylesheets/partials/timeline.sass */
+#tml-l-gutter:hover .add-item {
+  display: block;
+}
+
+/* line 54, ../../../app/stylesheets/partials/timeline.sass */
+#tml-history {
+  position: relative;
+  z-index: 2;
+}
+/* line 57, ../../../app/stylesheets/partials/timeline.sass */
+#tml-history .months {
+  z-index: 0;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+/* line 60, ../../../app/stylesheets/partials/timeline.sass */
+#tml-history .months div {
+  border-left: black solid 1px;
+  float: left;
+  color: black;
+  text-align: center;
+  font-family: "PT Sans Narrow", arial, serif;
+  font-size: 1em;
+  margin: 0em 0 -0.5em 0;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+/* line 69, ../../../app/stylesheets/partials/timeline.sass */
+#tml-history .months div.even {
+  background-color: #eaeaea;
+}
+/* line 71, ../../../app/stylesheets/partials/timeline.sass */
+#tml-history .line {
+  position: relative;
+}
+
+/* line 75, ../../../app/stylesheets/partials/timeline.sass */
+a.view-details {
+  display: block;
+  background-color: #f8f8f8;
+  width: 140px;
+  margin: 10px 0 0 -145px;
+  color: #08a000;
+  z-index: 100;
+  text-align: center;
+}
+
+/* line 85, ../../../app/stylesheets/partials/timeline.sass */
+.item {
+  display: block;
+  position: absolute;
+}
+
+/* line 90, ../../../app/stylesheets/partials/timeline.sass */
+.vertical-divider {
+  float: left;
+  z-index: 1;
+  opacity: 0.4;
+}
+
+/* line 95, ../../../app/stylesheets/partials/timeline.sass */
+.bg-placeholder-header {
+  position: absolute;
+  top: 0;
+  background-color: #f9f8f9;
+  z-index: 3;
+}
+
+/* line 101, ../../../app/stylesheets/partials/timeline.sass */
+.bg-placeholder-shadow {
+  position: absolute;
+  top: 0;
+  width: 2px;
+  -webkit-box-shadow: 1px 1px 3px #dddddd;
+  z-index: 2;
+}
+
+/* line 9, ../../../app/stylesheets/application.sass */
 body {
   font-family: "Droid Sans", arial, serif;
   font-size: 12px;
 }
 
-/* line 13, ../../../app/stylesheets/application.sass */
+/* line 14, ../../../app/stylesheets/application.sass */
 #header {
   position: relative;
   overflow: hidden;
@@ -1205,7 +1384,7 @@ body {
   border-bottom: 1px solid #dfffe0;
   background-color: black;
 }
-/* line 18, ../../../app/stylesheets/application.sass */
+/* line 19, ../../../app/stylesheets/application.sass */
 #header h2 {
   text-indent: -119988px;
   overflow: hidden;
@@ -1217,7 +1396,7 @@ body {
   width: 45px;
   height: 29px;
 }
-/* line 23, ../../../app/stylesheets/application.sass */
+/* line 24, ../../../app/stylesheets/application.sass */
 #header ul {
   margin: 0;
   padding: 0;
@@ -1248,23 +1427,23 @@ body {
 #header ul li.last {
   padding-right: 0;
 }
-/* line 25, ../../../app/stylesheets/application.sass */
+/* line 26, ../../../app/stylesheets/application.sass */
 #header ul li {
   padding: 7px 2px;
 }
-/* line 27, ../../../app/stylesheets/application.sass */
+/* line 28, ../../../app/stylesheets/application.sass */
 #header ul.nav {
   display: inline;
   float: left;
-  margin-right: 10px;
-  width: 590px;
-  padding-left: 80px;
+  margin-right: 5px;
+  width: 648.125px;
+  padding-left: 87.083px;
 }
 /* line 147, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #header ul.nav {
   overflow-x: hidden;
 }
-/* line 31, ../../../app/stylesheets/application.sass */
+/* line 32, ../../../app/stylesheets/application.sass */
 #header ul.nav li a {
   display: block;
   border: #666666 solid 1px;
@@ -1278,11 +1457,11 @@ body {
   -khtml-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 38, ../../../app/stylesheets/application.sass */
+/* line 39, ../../../app/stylesheets/application.sass */
 #header ul.nav li a:hover {
   background-color: black;
 }
-/* line 41, ../../../app/stylesheets/application.sass */
+/* line 42, ../../../app/stylesheets/application.sass */
 #header ul.nav li.home a {
   text-indent: -119988px;
   overflow: hidden;
@@ -1291,7 +1470,7 @@ body {
   background-repeat: no-repeat;
   background-position: 50% 50%;
 }
-/* line 44, ../../../app/stylesheets/application.sass */
+/* line 45, ../../../app/stylesheets/application.sass */
 #header ul.nav li.settings a {
   text-indent: -119988px;
   overflow: hidden;
@@ -1300,31 +1479,31 @@ body {
   background-repeat: no-repeat;
   background-position: 50% 50%;
 }
-/* line 46, ../../../app/stylesheets/application.sass */
+/* line 47, ../../../app/stylesheets/application.sass */
 #header ul.login {
   display: inline;
   float: left;
-  margin-right: 10px;
-  width: 350px;
+  margin-right: 5px;
+  width: 386.875px;
 }
 /* line 147, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #header ul.login {
   overflow-x: hidden;
 }
-/* line 48, ../../../app/stylesheets/application.sass */
+/* line 49, ../../../app/stylesheets/application.sass */
 #header ul.login li:first-child {
-  padding-right: 80px;
+  padding-right: 87.083px;
 }
-/* line 50, ../../../app/stylesheets/application.sass */
+/* line 51, ../../../app/stylesheets/application.sass */
 #header ul.login a {
   color: white;
 }
 
-/* line 53, ../../../app/stylesheets/application.sass */
+/* line 54, ../../../app/stylesheets/application.sass */
 #container {
   overflow: hidden;
   *zoom: 1;
-  width: 950px;
+  width: 1040px;
   margin: 0 auto;
   overflow: hidden;
   *zoom: 1;
@@ -1334,21 +1513,21 @@ body {
   border-width: 0 1px;
 }
 
-/* line 61, ../../../app/stylesheets/application.sass */
+/* line 62, ../../../app/stylesheets/application.sass */
 #content {
   overflow: hidden;
   *zoom: 1;
-  padding-left: 40px;
-  padding-right: 40px;
+  padding-left: 43.542px;
+  padding-right: 43.542px;
   margin-bottom: 40px;
 }
 
-/* line 67, ../../../app/stylesheets/application.sass */
+/* line 68, ../../../app/stylesheets/application.sass */
 #flash div {
   display: inline;
   float: left;
-  margin-right: 10px;
-  width: 950px;
+  margin-right: 5px;
+  width: 1040px;
   display: none;
   position: absolute;
 }
@@ -1357,19 +1536,19 @@ body {
   overflow-x: hidden;
 }
 
-/* line 72, ../../../app/stylesheets/application.sass */
+/* line 73, ../../../app/stylesheets/application.sass */
 #footer {
   margin: 25px;
   border-top: 1px solid #dfdfdf;
 }
-/* line 75, ../../../app/stylesheets/application.sass */
+/* line 76, ../../../app/stylesheets/application.sass */
 #footer span {
   display: block;
   margin-top: 25px;
-  padding-left: 480px;
+  padding-left: 522.5px;
 }
 
-/* line 80, ../../../app/stylesheets/application.sass */
+/* line 81, ../../../app/stylesheets/application.sass */
 .alert {
   padding: 0.8em;
   margin-bottom: 1em;
@@ -1383,7 +1562,7 @@ body {
   color: #8a1f11;
 }
 
-/* line 83, ../../../app/stylesheets/application.sass */
+/* line 84, ../../../app/stylesheets/application.sass */
 .overdue {
   padding: 0.8em;
   margin-bottom: 1em;
@@ -1397,7 +1576,7 @@ body {
   color: #8a1f11;
 }
 
-/* line 86, ../../../app/stylesheets/application.sass */
+/* line 87, ../../../app/stylesheets/application.sass */
 .uncompleted {
   padding: 0.8em;
   margin-bottom: 1em;
@@ -1411,7 +1590,7 @@ body {
   color: #514721;
 }
 
-/* line 89, ../../../app/stylesheets/application.sass */
+/* line 90, ../../../app/stylesheets/application.sass */
 .recently_completed {
   padding: 0.8em;
   margin-bottom: 1em;
@@ -1425,7 +1604,7 @@ body {
   color: #264409;
 }
 
-/* line 92, ../../../app/stylesheets/application.sass */
+/* line 93, ../../../app/stylesheets/application.sass */
 ul {
   list-style: none;
   padding-left: 0;
@@ -1437,34 +1616,34 @@ ul li {
   margin-left: 0px;
 }
 
-/* line 96, ../../../app/stylesheets/application.sass */
+/* line 97, ../../../app/stylesheets/application.sass */
 hr.break {
   visibility: hidden;
   clear: both;
   margin: 0;
 }
 
-/* line 102, ../../../app/stylesheets/application.sass */
+/* line 103, ../../../app/stylesheets/application.sass */
 table th, table td {
   padding: 2px 2px 2px 8px;
 }
-/* line 104, ../../../app/stylesheets/application.sass */
+/* line 105, ../../../app/stylesheets/application.sass */
 table th {
   color: #141936;
   border-bottom: 1px solid #dfdfdf;
 }
-/* line 107, ../../../app/stylesheets/application.sass */
+/* line 108, ../../../app/stylesheets/application.sass */
 table td {
   color: #7c7c7c;
 }
 
-/* line 113, ../../../app/stylesheets/application.sass */
+/* line 114, ../../../app/stylesheets/application.sass */
 .section {
   overflow: hidden;
   *zoom: 1;
 }
 
-/* line 116, ../../../app/stylesheets/application.sass */
+/* line 117, ../../../app/stylesheets/application.sass */
 .ajax_notice {
   position: absolute;
   top: 0;
@@ -1472,15 +1651,15 @@ table td {
   width: 100%;
   background-color: #fff79f;
 }
-/* line 122, ../../../app/stylesheets/application.sass */
+/* line 123, ../../../app/stylesheets/application.sass */
 .ajax_notice span {
   font-size: 1.5em;
   padding-top: 10px;
   padding-bottom: 10px;
-  padding-left: 560px;
+  padding-left: 609.583px;
 }
 
-/* line 128, ../../../app/stylesheets/application.sass */
+/* line 129, ../../../app/stylesheets/application.sass */
 .notice.large {
   margin: 15px 0;
   padding: 30px 40px 30px 100px;
@@ -1489,56 +1668,56 @@ table td {
   background-position: 10px 50%;
 }
 
-/* line 135, ../../../app/stylesheets/application.sass */
+/* line 136, ../../../app/stylesheets/application.sass */
 .clear {
   overflow: hidden;
   *zoom: 1;
   visibility: hidden;
 }
 
-/* line 140, ../../../app/stylesheets/application.sass */
+/* line 141, ../../../app/stylesheets/application.sass */
 #bar-chart {
   width: 500px;
 }
 
-/* line 143, ../../../app/stylesheets/application.sass */
+/* line 144, ../../../app/stylesheets/application.sass */
 .spouse {
   margin: 0 2em;
 }
 
-/* line 146, ../../../app/stylesheets/application.sass */
+/* line 147, ../../../app/stylesheets/application.sass */
 .added-spouse {
   position: relative;
   margin: 1em 0;
   padding: 0.5em 0;
   border-bottom: 1px dashed #999999;
 }
-/* line 151, ../../../app/stylesheets/application.sass */
+/* line 152, ../../../app/stylesheets/application.sass */
 .added-spouse:last-child {
   border-bottom-width: 0;
 }
-/* line 153, ../../../app/stylesheets/application.sass */
+/* line 154, ../../../app/stylesheets/application.sass */
 .added-spouse > div {
   margin: 0 2em;
 }
 
-/* line 156, ../../../app/stylesheets/application.sass */
+/* line 157, ../../../app/stylesheets/application.sass */
 .added-spouse:first-child {
   border-top: 1px dashed #999999;
 }
 
-/* line 160, ../../../app/stylesheets/application.sass */
+/* line 161, ../../../app/stylesheets/application.sass */
 .siblings_list {
   overflow: hidden;
   *zoom: 1;
   margin-bottom: 4px;
 }
-/* line 163, ../../../app/stylesheets/application.sass */
+/* line 164, ../../../app/stylesheets/application.sass */
 .siblings_list ul {
   display: inline;
   float: left;
-  margin-right: 10px;
-  width: 190px;
+  margin-right: 5px;
+  width: 212.708px;
   border: 1px solid #f9f8f9;
   border-width: 0 1px 0 1px;
 }
@@ -1546,27 +1725,27 @@ table td {
 * html .siblings_list ul {
   overflow-x: hidden;
 }
-/* line 167, ../../../app/stylesheets/application.sass */
+/* line 168, ../../../app/stylesheets/application.sass */
 .siblings_list h4 {
   margin-bottom: 2px;
   padding: 6px 0 12px 28px;
   color: #003a85;
 }
-/* line 171, ../../../app/stylesheets/application.sass */
+/* line 172, ../../../app/stylesheets/application.sass */
 .siblings_list li {
   color: #333333;
 }
-/* line 173, ../../../app/stylesheets/application.sass */
+/* line 174, ../../../app/stylesheets/application.sass */
 .siblings_list li p {
   margin: 0 3px 2px 3px;
   padding-bottom: 2px;
   border-bottom: #f9f8f9 1px solid;
 }
-/* line 177, ../../../app/stylesheets/application.sass */
+/* line 178, ../../../app/stylesheets/application.sass */
 .siblings_list li em {
   float: right;
 }
-/* line 179, ../../../app/stylesheets/application.sass */
+/* line 180, ../../../app/stylesheets/application.sass */
 .siblings_list a {
   -moz-border-radius: 11px;
   -webkit-border-radius: 11px;
@@ -1587,47 +1766,47 @@ table td {
   background-color: white;
 }
 
-/* line 182, ../../../app/stylesheets/application.sass */
+/* line 183, ../../../app/stylesheets/application.sass */
 .siblings_list ul li:first-child {
   background-color: #f9f8f9;
   margin-bottom: 20px;
 }
 
-/* line 186, ../../../app/stylesheets/application.sass */
+/* line 187, ../../../app/stylesheets/application.sass */
 .siblings_list li:last-child {
   padding: 20px 0 8px 10px;
 }
 
-/* line 189, ../../../app/stylesheets/application.sass */
+/* line 190, ../../../app/stylesheets/application.sass */
 #full_sibling_list h4 {
   background: url("/images/fullsibling-16.png") 5px 5px no-repeat;
 }
 
-/* line 192, ../../../app/stylesheets/application.sass */
+/* line 193, ../../../app/stylesheets/application.sass */
 #half_sibling_mother_list h4 {
   background: url("/images/halfsibling-16.png") 5px 5px no-repeat;
 }
 
-/* line 195, ../../../app/stylesheets/application.sass */
+/* line 196, ../../../app/stylesheets/application.sass */
 #half_sibling_father_list h4 {
   background: url("/images/halfsibling-16.png") 5px 5px no-repeat;
 }
 
-/* line 198, ../../../app/stylesheets/application.sass */
+/* line 199, ../../../app/stylesheets/application.sass */
 #foster_sibling_list h4 {
   background: url("/images/fostersibling-16.png") 5px 5px no-repeat;
 }
 
-/* line 201, ../../../app/stylesheets/application.sass */
+/* line 202, ../../../app/stylesheets/application.sass */
 .select-sibling {
   margin-bottom: 10px;
 }
 
-/* line 207, ../../../app/stylesheets/application.sass */
+/* line 208, ../../../app/stylesheets/application.sass */
 .guardians .notice p {
   margin-left: 20px;
 }
-/* line 209, ../../../app/stylesheets/application.sass */
+/* line 210, ../../../app/stylesheets/application.sass */
 .guardians .notice a {
   -moz-border-radius: 11px;
   -webkit-border-radius: 11px;
@@ -1647,23 +1826,23 @@ table td {
 .guardians .notice a:hover {
   background-color: white;
 }
-/* line 211, ../../../app/stylesheets/application.sass */
+/* line 212, ../../../app/stylesheets/application.sass */
 .guardians .notice td:nth-child(1n+3) {
   float: right;
   margin-left: 11px;
 }
 
-/* line 216, ../../../app/stylesheets/application.sass */
+/* line 217, ../../../app/stylesheets/application.sass */
 .family-overview div.section {
   padding: 1em;
 }
 
-/* line 219, ../../../app/stylesheets/application.sass */
+/* line 220, ../../../app/stylesheets/application.sass */
 .family-overview h1:first-child + div {
   display: block;
 }
 
-/* line 222, ../../../app/stylesheets/application.sass */
+/* line 223, ../../../app/stylesheets/application.sass */
 .family-overview h1 {
   background-color: #f9f9f9;
   border: 1px solid #f4f4f4;
@@ -1671,52 +1850,52 @@ table td {
   padding: 0.4em 0 0.4em 0.9em;
 }
 
-/* line 229, ../../../app/stylesheets/application.sass */
+/* line 230, ../../../app/stylesheets/application.sass */
 .family-overview h2 {
   border-bottom: 1px solid #f4f4f4;
   font-size: 1.4em;
   margin-bottom: 5px;
 }
-/* line 233, ../../../app/stylesheets/application.sass */
+/* line 234, ../../../app/stylesheets/application.sass */
 .family-overview h3 {
   font-size: 14px;
   color: #7c7c7c;
   margin-bottom: 3px;
 }
 
-/* line 238, ../../../app/stylesheets/application.sass */
+/* line 239, ../../../app/stylesheets/application.sass */
 .family-overview .section .parent-info {
   position: relative;
   display: inline;
   float: left;
-  margin-right: 10px;
-  width: 390px;
+  margin-right: 5px;
+  width: 430.417px;
 }
 /* line 147, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html .family-overview .section .parent-info {
   overflow-x: hidden;
 }
-/* line 241, ../../../app/stylesheets/application.sass */
+/* line 242, ../../../app/stylesheets/application.sass */
 .family-overview .section .parent-info li {
   padding: 1px 0;
   border-bottom: solid 1px #eaeaea;
   overflow: hidden;
   *zoom: 1;
 }
-/* line 245, ../../../app/stylesheets/application.sass */
+/* line 246, ../../../app/stylesheets/application.sass */
 .family-overview .section .parent-info li:nth-child(even) {
   background-color: #fcfcfc;
 }
-/* line 247, ../../../app/stylesheets/application.sass */
+/* line 248, ../../../app/stylesheets/application.sass */
 .family-overview .section .parent-info li:nth-child(odd) {
   background-color: #f9f9f9;
 }
-/* line 249, ../../../app/stylesheets/application.sass */
+/* line 250, ../../../app/stylesheets/application.sass */
 .family-overview .section .parent-info b {
   display: inline;
   float: left;
-  margin-right: 10px;
-  width: 70px;
+  margin-right: 5px;
+  width: 82.083px;
   padding: 0 2px;
 }
 /* line 147, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
@@ -1724,25 +1903,25 @@ table td {
   overflow-x: hidden;
 }
 
-/* line 253, ../../../app/stylesheets/application.sass */
+/* line 254, ../../../app/stylesheets/application.sass */
 .family-overview .section .spouse-info {
   display: inline;
   float: left;
-  margin-right: 10px;
-  width: 390px;
+  margin-right: 5px;
+  width: 430.417px;
 }
 /* line 147, ../../../../../../../../.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html .family-overview .section .spouse-info {
   overflow-x: hidden;
 }
-/* line 255, ../../../app/stylesheets/application.sass */
+/* line 256, ../../../app/stylesheets/application.sass */
 .family-overview .section .spouse-info li {
   border: #dfffe0 solid 1px;
   margin-bottom: 2px;
   background-color: #deffdd;
 }
 
-/* line 260, ../../../app/stylesheets/application.sass */
+/* line 261, ../../../app/stylesheets/application.sass */
 .family-overview .section table {
   border: 1px solid black;
 }
@@ -1778,7 +1957,7 @@ table td {
   border-right: 1px solid black;
 }
 
-/* line 264, ../../../app/stylesheets/application.sass */
+/* line 265, ../../../app/stylesheets/application.sass */
 .family-overview .icon {
   display: block;
   padding-left: 22px;
@@ -1788,76 +1967,76 @@ table td {
   text-indent: -99999px;
 }
 
-/* line 272, ../../../app/stylesheets/application.sass */
+/* line 273, ../../../app/stylesheets/application.sass */
 #dialog {
   display: none;
 }
 
-/* line 278, ../../../app/stylesheets/application.sass */
+/* line 279, ../../../app/stylesheets/application.sass */
 .caretaker-view .box {
   position: relative;
-  width: 470px;
+  width: 517.5px;
   overflow: hidden;
   *zoom: 1;
 }
-/* line 282, ../../../app/stylesheets/application.sass */
+/* line 283, ../../../app/stylesheets/application.sass */
 .caretaker-view .box h1 {
   font-size: 1.6em;
   margin-bottom: 2em;
 }
-/* line 285, ../../../app/stylesheets/application.sass */
+/* line 286, ../../../app/stylesheets/application.sass */
 .caretaker-view .box h1 span {
   display: block;
   font-size: 0.8em;
   color: #777777;
 }
-/* line 290, ../../../app/stylesheets/application.sass */
+/* line 291, ../../../app/stylesheets/application.sass */
 .caretaker-view .box .button {
   position: absolute;
   top: 4px;
   right: 4px;
 }
-/* line 294, ../../../app/stylesheets/application.sass */
+/* line 295, ../../../app/stylesheets/application.sass */
 .caretaker-view .registration {
-  width: 430px;
+  width: 473.958px;
 }
-/* line 296, ../../../app/stylesheets/application.sass */
+/* line 297, ../../../app/stylesheets/application.sass */
 .caretaker-view h2 {
   font-size: 1.2em;
 }
 
-/* line 309, ../../../app/stylesheets/application.sass */
+/* line 310, ../../../app/stylesheets/application.sass */
 .hidden, .off {
   display: none;
 }
 
-/* line 312, ../../../app/stylesheets/application.sass */
+/* line 313, ../../../app/stylesheets/application.sass */
 .on {
   display: block;
 }
 
-/* line 315, ../../../app/stylesheets/application.sass */
+/* line 316, ../../../app/stylesheets/application.sass */
 #address.on {
   display: block;
 }
-/* line 317, ../../../app/stylesheets/application.sass */
+/* line 318, ../../../app/stylesheets/application.sass */
 #address.on .new_address {
   display: block;
 }
-/* line 319, ../../../app/stylesheets/application.sass */
+/* line 320, ../../../app/stylesheets/application.sass */
 #address.on .existing_address {
   display: none;
 }
 
-/* line 322, ../../../app/stylesheets/application.sass */
+/* line 323, ../../../app/stylesheets/application.sass */
 #address.off {
   display: block;
 }
-/* line 324, ../../../app/stylesheets/application.sass */
+/* line 325, ../../../app/stylesheets/application.sass */
 #address.off .new_address {
   display: none;
 }
-/* line 326, ../../../app/stylesheets/application.sass */
+/* line 327, ../../../app/stylesheets/application.sass */
 #address.off .existing_address {
   display: block;
 }

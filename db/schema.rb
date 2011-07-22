@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110621100846) do
+ActiveRecord::Schema.define(:version => 20110721123308) do
 
   create_table "addresses", :force => true do |t|
     t.string   "street_1"
@@ -203,15 +203,12 @@ ActiveRecord::Schema.define(:version => 20110621100846) do
     t.string   "name"
     t.float    "average"
     t.float    "standard_deviation"
-    t.float    "abnormal_start"
-    t.float    "abnormal_end"
-    t.float    "borderline_start"
-    t.float    "borderline_end"
-    t.float    "normal_start"
-    t.float    "normal_end"
     t.integer  "norm_reference_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "start_value"
+    t.integer  "end_value"
+    t.string   "result_name"
   end
 
   create_table "survey_sections", :force => true do |t|

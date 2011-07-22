@@ -4,4 +4,4 @@ window.App =
   Controllers: {}
   Views: {},
   init:->
-        Backbone.history.start();
+    Backbone.history.start();

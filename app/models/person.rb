@@ -151,7 +151,7 @@ class Person < ActiveRecord::Base
   end
 
   def age
-   Time.diff(Date.current.end_of_day,self.dateofbirth)[:year]
+    Date.current.year - self.dateofbirth.year
   end
 
   def presence_of_cpr
