@@ -5,8 +5,10 @@
 guard 'livereload' do
   watch(%r{app/.+\.(erb|haml)})
   watch(%r{app/helpers/.+\.rb})
+  watch(%r{app/.+\.(erb|haml|coffee|mustache)})
   watch(%r{public/.+\.(css|js|html)})
   watch(%r{config/locales/.+\.yml})
+
 end
 
 guard 'haml' do

@@ -1,47 +1,299 @@
 survey_access_code: 'adhd-rating-scale'
 norm_reference_attributes: [age_start, age_end, sex, responder]
 score_name_attribute_values: [inattention, impulsivity_hyperactivity, total]
-score_attributes: [average, standard_deviation]
+score_attributes: [result_name, value]
 norm_references:
-  -
-    group: [4, 4, male, parent]
-    scores: [[4.3, 4], [6.2, 4.9], [10.4, 8.2]]
-  -
-    group: [5, 5, male, parent]
-    scores: [[4.8, 4.5], [5.6, 4.9], [10.4, 8.9]]
-  -
-    group: [6, 7, male, parent]
-    scores: [[5.4, 4.7], [6.2, 6], [11.6, 10.2]]
-  -
-    group: [8, 11, male, parent]
-    scores: [[5.3, 5.2], [4.4, 5.1], [9.7, 9.8]]
-  -
-    group: [12, 13, male, parent]
-    scores: [[6.3, 5.3], [4.2, 5.5], [10.7, 10]]
-  -
-    group: [14, 15, male, parent]
-    scores: [[5.9, 5.2], [3.8, 4.6], [9, 8.7]]
-  -
-    group: [16, ~, male, parent]
-    scores: [[4.3, 4], [6.2, 4.9], [10.4, 8.2]]
-  -
-    group: [4, 4, female, parent]
-    scores: [[2.7, 3.2], [4.1, 3.4], [7, 5.9]]
-  -
-    group: [5, 5, female, parent]
-    scores: [[3.7, 3.7], [5.4, 4.7], [9.1, 7.8]]
-  -
-    group: [6, 7, female, parent]
-    scores: [[3.1, 2.9], [3.9, 3.6], [7, 5.8]]
-  -
-    group: [8, 11, female, parent]
-    scores: [[3.1, 3.5], [3.1, 3.3], [6.2, 6.4]]
-  -
-    group: [12, 13, female, parent]
-    scores: [[4.1, 4.6], [2.4, 3.2], [6.9, 7.3]]
-  -
-    group: [14, 15, female, parent]
-    scores: [[3.2, 4.3], [2, 2.8], [5.1, 5.6]]
-  -
-    group: [16, ~, female, parent]
-    scores: [[4.6, 5.6], [2.8, 4.4], [7.4, 9.3]]
+  - group:
+    - 4
+    - 4
+    - male
+    - parent
+    scores:
+    - inattention:
+      - - average
+        - 4.3
+      - - standard_deviation
+        - 4
+    - impulsivity_hyperactivity:
+      - - average
+        - 6.2
+      - - standard_deviation
+        - 4.9
+    - total:
+      - - average
+        - 10.4
+      - - standard_deviation
+        - 8.2
+  - group:
+    - 5
+    - 5
+    - male
+    - parent
+    scores:
+    - inattention:
+      - - average
+        - 4.8
+      - - standard_deviation
+        - 4.5
+    - impulsivity_hyperactivity:
+      - - average
+        - 5.6
+      - - standard_deviation
+        - 4.9
+    - total:
+      - - average
+        - 10.4
+      - - standard_deviation
+        - 8.9
+  - group:
+    - 6
+    - 7
+    - male
+    - parent
+    scores:
+    - inattention:
+      - - average
+        - 5.4
+      - - standard_deviation
+        - 4.7
+    - impulsivity_hyperactivity:
+      - - average
+        - 6.2
+      - - standard_deviation
+        - 6
+    - total:
+      - - average
+        - 11.6
+      - - standard_deviation
+        - 10.2
+  - group:
+    - 8
+    - 11
+    - male
+    - parent
+    scores:
+    - inattention:
+      - - average
+        - 5.3
+      - - standard_deviation
+        - 5.2
+    - impulsivity_hyperactivity:
+      - - average
+        - 4.4
+      - - standard_deviation
+        - 5.1
+    - total:
+      - - average
+        - 9.7
+      - - standard_deviation
+        - 9.8
+  - group:
+    - 12
+    - 13
+    - male
+    - parent
+    scores:
+    - inattention:
+      - - average
+        - 6.3
+      - - standard_deviation
+        - 5.3
+    - impulsivity_hyperactivity:
+      - - average
+        - 4.2
+      - - standard_deviation
+        - 5.5
+    - total:
+      - - average
+        - 10.7
+      - - standard_deviation
+        - 10
+  - group:
+    - 14
+    - 15
+    - male
+    - parent
+    scores:
+    - inattention:
+      - - average
+        - 5.9
+      - - standard_deviation
+        - 5.2
+    - impulsivity_hyperactivity:
+      - - average
+        - 3.8
+      - - standard_deviation
+        - 4.6
+    - total:
+      - - average
+        - 9
+      - - standard_deviation
+        - 8.7
+  - group:
+    - 16
+    -
+    - male
+    - parent
+    scores:
+    - inattention:
+      - - average
+        - 4.3
+      - - standard_deviation
+        - 4
+    - impulsivity_hyperactivity:
+      - - average
+        - 6.2
+      - - standard_deviation
+        - 4.9
+    - total:
+      - - average
+        - 10.4
+      - - standard_deviation
+        - 8.2
+  - group:
+    - 4
+    - 4
+    - female
+    - parent
+    scores:
+    - inattention:
+      - - average
+        - 2.7
+      - - standard_deviation
+        - 3.2
+    - impulsivity_hyperactivity:
+      - - average
+        - 4.1
+      - - standard_deviation
+        - 3.4
+    - total:
+      - - average
+        - 7
+      - - standard_deviation
+        - 5.9
+  - group:
+    - 5
+    - 5
+    - female
+    - parent
+    scores:
+    - inattention:
+      - - average
+        - 3.7
+      - - standard_deviation
+        - 3.7
+    - impulsivity_hyperactivity:
+      - - average
+        - 5.4
+      - - standard_deviation
+        - 4.7
+    - total:
+      - - average
+        - 9.1
+      - - standard_deviation
+        - 7.8
+  - group:
+    - 6
+    - 7
+    - female
+    - parent
+    scores:
+    - inattention:
+      - - average
+        - 3.1
+      - - standard_deviation
+        - 2.9
+    - impulsivity_hyperactivity:
+      - - average
+        - 3.9
+      - - standard_deviation
+        - 3.6
+    - total:
+      - - average
+        - 7
+      - - standard_deviation
+        - 5.8
+  - group:
+    - 8
+    - 11
+    - female
+    - parent
+    scores:
+    - inattention:
+      - - average
+        - 3.1
+      - - standard_deviation
+        - 3.5
+    - impulsivity_hyperactivity:
+      - - average
+        - 3.1
+      - - standard_deviation
+        - 3.3
+    - total:
+      - - average
+        - 6.2
+      - - standard_deviation
+        - 6.4
+  - group:
+    - 12
+    - 13
+    - female
+    - parent
+    scores:
+    - inattention:
+      - - average
+        - 4.1
+      - - standard_deviation
+        - 4.6
+    - impulsivity_hyperactivity:
+      - - average
+        - 2.4
+      - - standard_deviation
+        - 3.2
+    - total:
+      - - average
+        - 6.9
+      - - standard_deviation
+        - 7.3
+  - group:
+    - 14
+    - 15
+    - female
+    - parent
+    scores:
+    - inattention:
+      - - average
+        - 3.2
+      - - standard_deviation
+        - 4.3
+    - impulsivity_hyperactivity:
+      - - average
+        - 2
+      - - standard_deviation
+        - 2.8
+    - total:
+      - - average
+        - 5.1
+      - - standard_deviation
+        - 5.6
+  - group:
+    - 16
+    -
+    - female
+    - parent
+    scores:
+    - inattention:
+      - - average
+        - 4.6
+      - - standard_deviation
+        - 5.6
+    - impulsivity_hyperactivity:
+      - - average
+        - 2.8
+      - - standard_deviation
+        - 4.4
+    - total:
+      - - average
+        - 7.4
+      - - standard_deviation
+        - 9.3

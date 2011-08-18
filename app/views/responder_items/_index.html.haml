@@ -1,1 +1,33 @@
+:javascript
+  $(document).ready(function(){
+  high_opt = {
+             chart: {
+              renderTo: 'high',
+              type: 'bar'
+              },
+              title: {
+                text: 'Fruit Consumption'
+              },
+              xAxis: {
+                categories: ['Apples', 'Bananas', 'Oranges']
+              },
+              yAxis: {
+                title: {
+                  text: 'Fruit eaten'
+                }
+              },
+              series: [{
+                name: 'Jane',
+                data: [1, 0, 4]
+              },
+              {
+                name: 'John',
+                data: [5, 7, 3]
+              }]
+            }
+  //chart1 = new Highcharts.Chart(high_opt);
+
+  });
+
+#high
 =render responder_item_index_partial

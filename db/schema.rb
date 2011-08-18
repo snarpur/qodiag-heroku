@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110721123308) do
+ActiveRecord::Schema.define(:version => 20110802132251) do
 
   create_table "addresses", :force => true do |t|
     t.string   "street_1"
@@ -201,14 +201,13 @@ ActiveRecord::Schema.define(:version => 20110721123308) do
 
   create_table "scores", :force => true do |t|
     t.string   "name"
-    t.float    "average"
-    t.float    "standard_deviation"
     t.integer  "norm_reference_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "start_value"
     t.integer  "end_value"
     t.string   "result_name"
+    t.integer  "value"
   end
 
   create_table "survey_sections", :force => true do |t|

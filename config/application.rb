@@ -13,6 +13,7 @@ module Snarpur
     # -- all .rb files in that directory are automatically loaded.
     Haml::Template.options[:escape_html] = true
     # Add additional load paths for your own custom dirs
+    config.autoload_paths += %W(#{config.root}/app/models/charts)
     config.autoload_paths += %W(#{config.root}/lib)
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
 

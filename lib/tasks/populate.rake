@@ -3,7 +3,7 @@ namespace :db do
   task :populate => :environment do
 
     def random_date(years_back=5)
-      year = Time.now.year - rand(years_back) - 1
+      year = Time.now.year - years_back
       month = rand(12) + 1
       day = rand(31) + 1
       Time.local(year, month, day)
@@ -41,7 +41,7 @@ namespace :db do
           patient.firstname = Faker::Name.first_name
           patient.lastname = Faker::Name.last_name
           patient.sex = sex[rand(2)]
-          patient.dateofbirth = random_date(rand(11) + 5)
+          patient.dateofbirth = random_date(5)
           patient.ispatient = true
           Person.populate 1 do |parent|
             client_user = User.create({:email => Faker::Internet.email}.merge!(password_params))

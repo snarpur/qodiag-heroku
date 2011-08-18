@@ -26,21 +26,25 @@ module ResponseSetCustomMethods
 
   def group_result(group_name)
     result =  self.responses.joins(:answer,:question => :question_group).
-              where(:question_groups => {:text => "#{group_name}"}).
+              where(:question_groups => {:text => group_name}).
               sum('answers.weight').to_i
     result
-  end
-
-  def group_norm_reference(group,value)
-    self.norm_reference.get_score(group,value)
   end
 
   def norm_reference
     NormReference.age(self.subject.age).sex(self.subject.sex).survey(self.survey.id).first
   end
 
+  def chart_renderer
+  "#{self.survey.access_code.gsub(/\-/,"_").camelize}ChartRenderer".constantize
+  end
+
+  def survey_name
+    self.survey.access_code.gsub(/\-/,"_")
+  end
+
   def result_to_chart
-    ChartRenderer.new(self).result_to_chart
+    chart_renderer.send(:new, self).result_to_chart
   end
 
   private
@@ -51,7 +55,6 @@ module ResponseSetCustomMethods
   end
 
   def validate_mandatory_questions
-    KK.see "validating #{self.inspect}"
     errors.add(:base, "can't be in the past") unless
         self.mandatory_questions_complete?
   end

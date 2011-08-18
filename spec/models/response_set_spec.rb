@@ -18,7 +18,8 @@ describe ResponseSet do
       @set.subject.should == @responder_item.subject
     end
   end
-  describe "find group names" , :focus => true do
+
+  describe "find group names" do
     before(:each) do
       @names = ["first_group","second_group"]
       @question_groups = @names.map{|g|Factory(:question_group, :text => g)}

@@ -9,7 +9,6 @@ class App.Views.ResponderItems.Show extends Backbone.View
     "click .close" : "remove"
 
   initialize:(item) =>
-
     @el = $(@el)
     @model.view = @
 
@@ -20,8 +19,8 @@ class App.Views.ResponderItems.Show extends Backbone.View
     @el.remove()
 
   line:=>
-      @elements.line ?= $("#line-#{@model.get('access_code')}")
-      return @elements.line
+    @elements.line ?= $("#line-#{@model.get('access_code')}")
+    return @elements.line
 
   expandLine:=>
     @line().switchClass('closed','open', 1000 )
@@ -49,7 +48,26 @@ class App.Views.ResponderItems.Show extends Backbone.View
 
   barLabels: =>
     @chart('bar_labels').map (label) ->
-     JST.bar_labels(label)
+     label.name
+
+  dataLabelFormatter:() =>
+    pointLabels = @chart('point_labels')
+    formatter:
+      () ->
+        console.log(@,"CHART FORMATTER")
+        groupIndex = @.series.xAxis.categories.indexOf(@.x)
+        resultNameIndex = @.series.index
+        if resultNameIndex is 0
+          return @.y
+        else
+          range = pointLabels[groupIndex].data[resultNameIndex - 1]
+          return range
+
+
+  plotOptions: () =>
+    if @chart('plot_options')?
+      _.extend(@chart('plot_options').column.dataLabels,@dataLabelFormatter())
+    @chart('plot_options')
 
   inlineAttributes: =>
       attr =
@@ -57,35 +75,35 @@ class App.Views.ResponderItems.Show extends Backbone.View
           class: @getElClass()
       attr
 
-  chartConfig: ->
-    console.log @model
+  highChart:(chart) ->
+    console.info "HighChart Config", chart
     opt =
-      legend:
-        show:true
-        placement: 'outsideGrid'
-      seriesDefaults:
-        renderer: $.jqplot.BarRenderer
-        pointLabels:
-          show: true
-          edgeTolerance: 5
-      series: @chart('data_labels')
-      axes:
-        xaxis:
-          renderer: $.jqplot.CategoryAxisRenderer
-          ticks: @barLabels()
-          autoscale: true
-        yaxis:
-          min: 0
-          ticks: @chart('increment')
-    opt
+      chart:
+        renderTo: chart.name
+        type: chart.type
+      plotOptions: chart.plot_options
+      xAxis:
+        categories: chart.bar_labels
+        labels:
+          align: left
+          rotation: 30
+      series: chart.data
+
+  renderChart: (chart) =>
+    chart = chart.chart
+    $(this.el).append(JST['chart'](chart))
+    new Highcharts.Chart(@highChart(chart))
+
 
   render: =>
-    $(this.el).attr(@inlineAttributes())
-    $(this.el).html(this.template()(@model.toJSON()))
-    $("##{@dialogId()}").remove()
+    console.log "CHARTS-----", @model.get('charts')
+    ##@remove()
+    @el.attr(@inlineAttributes())
+    @el.html(@template()(@model.toJSON()))
     $("#canvas").append(@el)
     @setPosition()
-    plot = $.jqplot(@chartDivId(), _.values(@chart('data')), @chartConfig())
-    console.log plot
+    @renderChart chart for chart in @model.get('charts')
+
     @expandLine()
-    this
+    @
+

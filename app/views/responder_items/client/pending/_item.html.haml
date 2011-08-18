@@ -1,5 +1,5 @@
 %tr{:class => item.item_type}
-  %td= t("#{item.item_type.pluralize}.#{item.access_code}")
+  %td= t("surveys.#{item.access_code}.name")
   %td=l item.created_at, :format => :short
   %td=deadline_or_completed_date(item)
   %td=render 'responder_items/shared/complete_responder_item_link', :item => item

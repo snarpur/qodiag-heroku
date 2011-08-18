@@ -30,8 +30,502 @@ norm_references:
           - [normal, 0, 9]
           - [borderline, 10, 10]
           - [abnormal, 13, 2]
-      - impact_supplement:
+      # - impact_supplement:
+      #     - [normal, 0, 9]
+      #     - [borderline, 10, 10]
+      #     - [abnormal, 13, 2]
+  -
+    group: [5, 5, female, parent]
+    scores:
+      - emotional:
+          - [normal, 0, 3]
+          - [borderline, 4, 4]
+          - [abnormal, 5, 10]
+      - conduct:
+          - [normal, 0, 2]
+          - [borderline, 3, 3]
+          - [abnormal, 4, 10]
+      - hyperactivity_inattention:
+          - [normal, 0, 4]
+          - [borderline, 5, 5]
+          - [abnormal, 6, 10]
+      - peer_problem:
+          - [normal, 0, 2]
+          - [borderline, 3, 3]
+          - [abnormal, 4, 10]
+      - prosocial_behaviour:
+          - [normal, 7, 10]
+          - [borderline, 6, 6]
+          - [abnormal, 0, 5]
+      - total:
           - [normal, 0, 9]
           - [borderline, 10, 10]
-          - [abnormal, 13, 2]
-
+          - [abnormal, 12, 25]
+      # - impact_supplement:
+      #     - [normal, 0, 0]
+      #     - [borderline, 0, 0]
+      #     - [abnormal, 0, 0]
+  #   group: [x, x, male, parent]
+  #   scores:
+  #     - emotional:
+  #         - [normal, X, X]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, XX]
+  #     - conduct:
+  #         - [normal, X, X]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, XX]
+  #     - hyperactivity_inattention:
+  #         - [normal, X, X]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, XX]
+  #     - peer_problem:
+  #         - [normal, X, X]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, XX]
+  #     - prosocial_behaviour:
+  #         - [normal, X, XX]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, X]
+  #     - total:
+  #         - [normal, X, X]
+  #         - [borderline, XX, XX]
+  #         - [abnormal, XX, X]
+  #     - impact_supplement:
+  #         - [normal, X, X]
+  #         - [borderline, XX, XX]
+  #         - [abnormal, XX, X]
+  # -
+  #   group: [x, x, male, parent]
+  #   scores:
+  #     - emotional:
+  #         - [normal, X, X]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, XX]
+  #     - conduct:
+  #         - [normal, X, X]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, XX]
+  #     - hyperactivity_inattention:
+  #         - [normal, X, X]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, XX]
+  #     - peer_problem:
+  #         - [normal, X, X]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, XX]
+  #     - prosocial_behaviour:
+  #         - [normal, X, XX]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, X]
+  #     - total:
+  #         - [normal, X, X]
+  #         - [borderline, XX, XX]
+  #         - [abnormal, XX, X]
+  #     - impact_supplement:
+  #         - [normal, X, X]
+  #         - [borderline, XX, XX]
+  #         - [abnormal, XX, X]
+  # -
+  #   group: [x, x, male, parent]
+  #   scores:
+  #     - emotional:
+  #         - [normal, X, X]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, XX]
+  #     - conduct:
+  #         - [normal, X, X]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, XX]
+  #     - hyperactivity_inattention:
+  #         - [normal, X, X]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, XX]
+  #     - peer_problem:
+  #         - [normal, X, X]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, XX]
+  #     - prosocial_behaviour:
+  #         - [normal, X, XX]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, X]
+  #     - total:
+  #         - [normal, X, X]
+  #         - [borderline, XX, XX]
+  #         - [abnormal, XX, X]
+  #     - impact_supplement:
+  #         - [normal, X, X]
+  #         - [borderline, XX, XX]
+  #         - [abnormal, XX, X]
+  # -
+  #   group: [x, x, male, parent]
+  #   scores:
+  #     - emotional:
+  #         - [normal, X, X]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, XX]
+  #     - conduct:
+  #         - [normal, X, X]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, XX]
+  #     - hyperactivity_inattention:
+  #         - [normal, X, X]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, XX]
+  #     - peer_problem:
+  #         - [normal, X, X]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, XX]
+  #     - prosocial_behaviour:
+  #         - [normal, X, XX]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, X]
+  #     - total:
+  #         - [normal, X, X]
+  #         - [borderline, XX, XX]
+  #         - [abnormal, XX, X]
+  #     - impact_supplement:
+  #         - [normal, X, X]
+  #         - [borderline, XX, XX]
+  #         - [abnormal, XX, X]
+  # -
+  #   group: [x, x, male, parent]
+  #   scores:
+  #     - emotional:
+  #         - [normal, X, X]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, XX]
+  #     - conduct:
+  #         - [normal, X, X]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, XX]
+  #     - hyperactivity_inattention:
+  #         - [normal, X, X]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, XX]
+  #     - peer_problem:
+  #         - [normal, X, X]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, XX]
+  #     - prosocial_behaviour:
+  #         - [normal, X, XX]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, X]
+  #     - total:
+  #         - [normal, X, X]
+  #         - [borderline, XX, XX]
+  #         - [abnormal, XX, X]
+  #     - impact_supplement:
+  #         - [normal, X, X]
+  #         - [borderline, XX, XX]
+  #         - [abnormal, XX, X]
+  # -
+  #   group: [x, x, male, parent]
+  #   scores:
+  #     - emotional:
+  #         - [normal, X, X]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, XX]
+  #     - conduct:
+  #         - [normal, X, X]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, XX]
+  #     - hyperactivity_inattention:
+  #         - [normal, X, X]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, XX]
+  #     - peer_problem:
+  #         - [normal, X, X]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, XX]
+  #     - prosocial_behaviour:
+  #         - [normal, X, XX]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, X]
+  #     - total:
+  #         - [normal, X, X]
+  #         - [borderline, XX, XX]
+  #         - [abnormal, XX, X]
+  #     - impact_supplement:
+  #         - [normal, X, X]
+  #         - [borderline, XX, XX]
+  #         - [abnormal, XX, X]
+  # -
+  #   group: [x, x, male, parent]
+  #   scores:
+  #     - emotional:
+  #         - [normal, X, X]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, XX]
+  #     - conduct:
+  #         - [normal, X, X]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, XX]
+  #     - hyperactivity_inattention:
+  #         - [normal, X, X]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, XX]
+  #     - peer_problem:
+  #         - [normal, X, X]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, XX]
+  #     - prosocial_behaviour:
+  #         - [normal, X, XX]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, X]
+  #     - total:
+  #         - [normal, X, X]
+  #         - [borderline, XX, XX]
+  #         - [abnormal, XX, X]
+  #     - impact_supplement:
+  #         - [normal, X, X]
+  #         - [borderline, XX, XX]
+  #         - [abnormal, XX, X]
+  # -
+  #   group: [x, x, male, parent]
+  #   scores:
+  #     - emotional:
+  #         - [normal, X, X]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, XX]
+  #     - conduct:
+  #         - [normal, X, X]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, XX]
+  #     - hyperactivity_inattention:
+  #         - [normal, X, X]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, XX]
+  #     - peer_problem:
+  #         - [normal, X, X]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, XX]
+  #     - prosocial_behaviour:
+  #         - [normal, X, XX]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, X]
+  #     - total:
+  #         - [normal, X, X]
+  #         - [borderline, XX, XX]
+  #         - [abnormal, XX, X]
+  #     - impact_supplement:
+  #         - [normal, X, X]
+  #         - [borderline, XX, XX]
+  #         - [abnormal, XX, X]
+  # -
+  #   group: [x, x, male, parent]
+  #   scores:
+  #     - emotional:
+  #         - [normal, X, X]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, XX]
+  #     - conduct:
+  #         - [normal, X, X]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, XX]
+  #     - hyperactivity_inattention:
+  #         - [normal, X, X]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, XX]
+  #     - peer_problem:
+  #         - [normal, X, X]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, XX]
+  #     - prosocial_behaviour:
+  #         - [normal, X, XX]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, X]
+  #     - total:
+  #         - [normal, X, X]
+  #         - [borderline, XX, XX]
+  #         - [abnormal, XX, X]
+  #     - impact_supplement:
+  #         - [normal, X, X]
+  #         - [borderline, XX, XX]
+  #         - [abnormal, XX, X]
+  # -
+  #   group: [x, x, male, parent]
+  #   scores:
+  #     - emotional:
+  #         - [normal, X, X]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, XX]
+  #     - conduct:
+  #         - [normal, X, X]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, XX]
+  #     - hyperactivity_inattention:
+  #         - [normal, X, X]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, XX]
+  #     - peer_problem:
+  #         - [normal, X, X]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, XX]
+  #     - prosocial_behaviour:
+  #         - [normal, X, XX]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, X]
+  #     - total:
+  #         - [normal, X, X]
+  #         - [borderline, XX, XX]
+  #         - [abnormal, XX, X]
+  #     - impact_supplement:
+  #         - [normal, X, X]
+  #         - [borderline, XX, XX]
+  #         - [abnormal, XX, X]
+  # -
+  #   group: [x, x, male, parent]
+  #   scores:
+  #     - emotional:
+  #         - [normal, X, X]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, XX]
+  #     - conduct:
+  #         - [normal, X, X]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, XX]
+  #     - hyperactivity_inattention:
+  #         - [normal, X, X]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, XX]
+  #     - peer_problem:
+  #         - [normal, X, X]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, XX]
+  #     - prosocial_behaviour:
+  #         - [normal, X, XX]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, X]
+  #     - total:
+  #         - [normal, X, X]
+  #         - [borderline, XX, XX]
+  #         - [abnormal, XX, X]
+  #     - impact_supplement:
+  #         - [normal, X, X]
+  #         - [borderline, XX, XX]
+  #         - [abnormal, XX, X]
+  # -
+  #   group: [x, x, male, parent]
+  #   scores:
+  #     - emotional:
+  #         - [normal, X, X]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, XX]
+  #     - conduct:
+  #         - [normal, X, X]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, XX]
+  #     - hyperactivity_inattention:
+  #         - [normal, X, X]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, XX]
+  #     - peer_problem:
+  #         - [normal, X, X]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, XX]
+  #     - prosocial_behaviour:
+  #         - [normal, X, XX]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, X]
+  #     - total:
+  #         - [normal, X, X]
+  #         - [borderline, XX, XX]
+  #         - [abnormal, XX, X]
+  #     - impact_supplement:
+  #         - [normal, X, X]
+  #         - [borderline, XX, XX]
+  #         - [abnormal, XX, X]
+  # -
+  #   group: [x, x, male, parent]
+  #   scores:
+  #     - emotional:
+  #         - [normal, X, X]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, XX]
+  #     - conduct:
+  #         - [normal, X, X]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, XX]
+  #     - hyperactivity_inattention:
+  #         - [normal, X, X]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, XX]
+  #     - peer_problem:
+  #         - [normal, X, X]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, XX]
+  #     - prosocial_behaviour:
+  #         - [normal, X, XX]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, X]
+  #     - total:
+  #         - [normal, X, X]
+  #         - [borderline, XX, XX]
+  #         - [abnormal, XX, X]
+  #     - impact_supplement:
+  #         - [normal, X, X]
+  #         - [borderline, XX, XX]
+  #         - [abnormal, XX, X]
+  # -
+  #   group: [x, x, male, parent]
+  #   scores:
+  #     - emotional:
+  #         - [normal, X, X]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, XX]
+  #     - conduct:
+  #         - [normal, X, X]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, XX]
+  #     - hyperactivity_inattention:
+  #         - [normal, X, X]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, XX]
+  #     - peer_problem:
+  #         - [normal, X, X]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, XX]
+  #     - prosocial_behaviour:
+  #         - [normal, X, XX]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, X]
+  #     - total:
+  #         - [normal, X, X]
+  #         - [borderline, XX, XX]
+  #         - [abnormal, XX, X]
+  #     - impact_supplement:
+  #         - [normal, X, X]
+  #         - [borderline, XX, XX]
+  #         - [abnormal, XX, X]
+  # -
+  #   group: [x, x, male, parent]
+  #   scores:
+  #     - emotional:
+  #         - [normal, X, X]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, XX]
+  #     - conduct:
+  #         - [normal, X, X]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, XX]
+  #     - hyperactivity_inattention:
+  #         - [normal, X, X]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, XX]
+  #     - peer_problem:
+  #         - [normal, X, X]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, XX]
+  #     - prosocial_behaviour:
+  #         - [normal, X, XX]
+  #         - [borderline, X, X]
+  #         - [abnormal, X, X]
+  #     - total:
+  #         - [normal, X, X]
+  #         - [borderline, XX, XX]
+  #         - [abnormal, XX, X]
+  #       - impact_supplement:
+  #         - [normal, X, X]
+  #         - [borderline, XX, XX]
+  #         - [abnormal, XX, X]

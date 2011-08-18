@@ -28,11 +28,10 @@ describe NormReference do
   context "finders with score" do
     before(:each) do
       @norm =  Factory(:norm_reference)
-      Factory(:score, :name =>'symptom', :average => 4, :norm_reference => @norm)
-      Factory(:score, :name =>'another_symptom', :average => 1, :norm_reference => @norm)
+      Factory(:score, :name =>'symptom', :result_name => 'average', :value => 4, :norm_reference => @norm)
     end
     it "should get the average score" do
-      @norm.get_score('symptom','average').should == 4
+      @norm.get_score('symptom','average')
     end
 
   end

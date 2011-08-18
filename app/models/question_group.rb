@@ -4,8 +4,6 @@ module QuestionGroupCustomMethods
     base.send :scope, :names, QuestionGroup.select('DISTINCT(question_groups.text)')
   end
 
-
-
 end
 
 class QuestionGroup < ActiveRecord::Base

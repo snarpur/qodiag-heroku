@@ -1,3 +1,4 @@
 ! create AttributeBuildHelper in spec/support/attribute_build_helper.rb  to generate nested attributes in contoller testing
 ! List responder_items through responder_items_controller
 ! Change ResponderItem to have polymorphic associations with surveys and registrations :as => respondable
+! Create clean and scoped methods for classes involved in group_result(group_name) in response_set.rb

@@ -1,12 +1,16 @@
 : :::::::::::::::::::::::::::::::::::::: START :::::::::::::::::::::::::::::::::::::
+! redesign scores for a unified api for ADHD, SDQ
+! set up test for Chart renderer
+  group_names should be
+  group_reference should be
+
+! Klára norm.yml fyrir SDQ
 
 
-! setja upp responder_items_by_group til að virka í render partial collection
-! setja upp backbone test
 ! bæta fjöldi 2-3sta, +/- meðaltal, (+/- staðalfrávik) inn í label
-! setja upp staðalfrávikstöflu
+! setja upp hundraðasta raðirw
 ! Gera lineChart => hugsa hvernig það mun líta út => setja upp allt á tímalínu ????
-! Setja upp HSQ-r
+
 
 
 

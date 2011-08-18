@@ -1,13 +1,23 @@
 is:
   surveys:
-    adhd-rating-scale: "ADHD Mælikvarði"
     terms:
-      inattention: "athyglisbrestur"
-      impulsivity_hyperactivity: "ofvirkni/hvatvísi"
-      total: "heildarskor"
       age: "ára"
       male: "kk"
-      standard_deviation_from_average: "s frá m"
-    quiz: "Svefnskráning"
-    hsq-r: "Veikleikar - styrkleikar"
-    sdq: "Spurningar um styrk og vanda (SDQ)"
+      female: "kvk"
+    adhd-rating-scale:
+      name: "ADHD Mælikvarði"
+      terms:
+        inattention: "athyglisbrestur"
+        impulsivity_hyperactivity: "ofvirkni/hvatvísi"
+        total: "heildarskor"
+        standard_deviation_from_average: "s frá m"
+    sdq:
+      name: "Spurningar um styrk og vanda (SDQ)"
+      terms:
+        emotional: tilfinningavandi
+        conduct: "hegðunarvandi"
+        hyperactivity_inattention: "ofvirkni"
+        peer_problem: "samskiptavandi"
+        prosocial_behaviour: "félagshæfni"
+        total: "heildarvandi"
+        impact_supplement: viðbótarspurningar

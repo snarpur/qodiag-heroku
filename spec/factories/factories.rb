@@ -119,7 +119,9 @@ end
 Factory.define :score do |score|
   score.name "symptom x"
   score.association :norm_reference
-  score.average 4
-  score.standard_deviation 5
+  score.result_name
+  score.start_value
+  score.end_value
+  score.value
 end
 

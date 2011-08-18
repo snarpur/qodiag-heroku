@@ -6,11 +6,11 @@ emotional = [
   {:order => 13,:text => "Often unhappy, depressed or tearful"},
   {:order => 16,:text => "Nervous or clingy in new situations, easily loses confidence"},
   {:order => 24, :text => "Many fears, easily scared"},
-  {:order => 5, :text => "Often loses temper"}
 ]
 
 conduct = [
-  {:order => 7,  :text => "Generally well behaved, usually does what adults request"},
+  {:order => 5, :text => "Often loses temper"},
+  {:order => 7,  :text => "Generally well behaved, usually does what adults request", :inverted => true},
   {:order => 12, :text => "Often fights with other children or bullies them"},
   {:order => 18, :text => "Often lies or cheats"},
   {:order => 22, :text => "Steals from home or school or elsewhere"}
@@ -20,14 +20,14 @@ hyperactivity_inattention = [
   {:order => 2 ,  :text => "Restless, overactive, cannot stay still for long"},
   {:order => 10,  :text => "Constantly fidgeting or squirming"},
   {:order => 15,  :text => "Easily distracted, concentration wanders"},
-  {:order => 21,  :text => "Thinks things out before acting"},
-  {:order => 25,  :text => "Good attention span, sees chores or homework through to the end"}
+  {:order => 21,  :text => "Thinks things out before acting", :inverted => true},
+  {:order => 25,  :text => "Good attention span, sees chores or homework through to the end", :inverted => true}
 ]
 
 peer_problem = [
   {:order => 6,  :text => "Rather solitary, prefers to play alone"},
-  {:order => 11,  :text => "Has at least one good friend"},
-  {:order => 14,  :text => "Generally liked by other children"},
+  {:order => 11,  :text => "Has at least one good friend", :inverted => true},
+  {:order => 14,  :text => "Generally liked by other children", :inverted => true},
   {:order => 19,  :text => "Picked on or bullied by other children"},
   {:order => 23,  :text => "Gets along better with adults than other children"}
 ]
@@ -53,8 +53,9 @@ sdq = [ {:name => "emotional", :content => emotional },
         {:name => "conduct", :content => conduct },
         {:name => "hyperactivity_inattention", :content => hyperactivity_inattention },
         {:name => "peer_problem", :content => peer_problem },
-        {:name => "prosocial_behaviour", :content => prosocial_behaviour },
-        {:name => "impact_supplement", :content => impact_supplement }
+        {:name => "prosocial_behaviour", :content => prosocial_behaviour }
+        # ,
+        # {:name => "impact_supplement", :content => impact_supplement }
   ]
 
 survey "SDQ" do
@@ -63,7 +64,12 @@ survey "SDQ" do
       group sdq_group[:name] do
         sdq_group[:content].each do |sdq_question|
          question sdq_question[:text] , :pick => :one, :display_order => sdq_question[:order]
-         ratings.each_index { |r| a ratings[r], :weight => r }
+         if sdq_question[:inverted].nil?
+           ratings.each_index { |r| a ratings[r], :weight => r }
+         else
+           inverse = ratings.reverse
+           inverse.each_index { |r| a inverse[r], :weight => r }
+         end
         end
       end
     end

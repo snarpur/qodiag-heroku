@@ -1,0 +1,18 @@
+chart_class: StackedColumnChart
+default_plot_options:
+  column:
+    stacking: normal
+    dataLabels:
+    enabled: true
+    color:  '#fff'
+default_color:
+  good: green
+  ok: yellow
+  bad: red
+default_result_names: [good, ok, bad]
+default_chart_type: column
+name:  score
+question_groups: [body, mind ]
+group_actions:
+  body: reverse_stack
+

@@ -1,6 +1,6 @@
 %tr{:class => item.item_type}
   %td= link_to item.subject.full_name, person_path(item.subject)
-  %td= t("#{item.item_type.pluralize}.#{item.access_code}")
+  %td= t("surveys.#{item.access_code}.name")
   %td="#{item.client.firstname} #{item.client.lastname}"
   %td=l item.created_at, :format => :short
   %td=deadline_or_completed_date(item)

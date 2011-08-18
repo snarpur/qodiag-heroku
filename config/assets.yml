@@ -19,7 +19,9 @@ javascripts:
     - public/javascripts/coffeescripts/controllers/*
     - public/javascripts/coffeescripts/views/**/*
     - app/coffeescripts/templates/**/*
-  chart:
+  high_chart:
+    - public/javascripts/vendor/highcharts/js/highcharts.js
+  jqplot:
     - public/javascripts/vendor/jqplot/jquery.jqplot.js
     - public/javascripts/vendor/jqplot/plugins/jqplot.categoryAxisRenderer.js
     - public/javascripts/vendor/jqplot/plugins/jqplot.axisLabelRenderer.js

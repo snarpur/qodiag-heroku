@@ -1,0 +1,12 @@
+chart_class: ColumnChart
+default_plot_options:
+  column:
+    dataLabels:
+      enabled: true
+      color:  '#fff'
+default_result_names: [average]
+default_chart_type: column
+charts:
+  -
+    name:  score
+    question_groups: [inattention, impulsivity_hyperactivity, total]

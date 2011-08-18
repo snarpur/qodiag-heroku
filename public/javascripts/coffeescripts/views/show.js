@@ -1,4 +1,4 @@
-/* DO NOT MODIFY. This file was compiled Wed, 20 Jul 2011 16:21:29 GMT from
+/* DO NOT MODIFY. This file was compiled Thu, 18 Aug 2011 14:57:23 GMT from
  * /Users/orripalsson/Dev/snarpur/app/02/snarpur/app/coffeescripts/views/show.coffee
  */
 
@@ -17,7 +17,10 @@
     __extends(Show, Backbone.View);
     function Show() {
       this.render = __bind(this.render, this);
+      this.renderChart = __bind(this.renderChart, this);
       this.inlineAttributes = __bind(this.inlineAttributes, this);
+      this.plotOptions = __bind(this.plotOptions, this);
+      this.dataLabelFormatter = __bind(this.dataLabelFormatter, this);
       this.barLabels = __bind(this.barLabels, this);
       this.getElClass = __bind(this.getElClass, this);
       this.chart = __bind(this.chart, this);
@@ -84,8 +87,32 @@
     };
     Show.prototype.barLabels = function() {
       return this.chart('bar_labels').map(function(label) {
-        return JST.bar_labels(label);
+        return label.name;
       });
+    };
+    Show.prototype.dataLabelFormatter = function() {
+      var pointLabels;
+      pointLabels = this.chart('point_labels');
+      return {
+        formatter: function() {
+          var groupIndex, range, resultNameIndex;
+          console.log(this, "CHART FORMATTER");
+          groupIndex = this.series.xAxis.categories.indexOf(this.x);
+          resultNameIndex = this.series.index;
+          if (resultNameIndex === 0) {
+            return this.y;
+          } else {
+            range = pointLabels[groupIndex].data[resultNameIndex - 1];
+            return range;
+          }
+        }
+      };
+    };
+    Show.prototype.plotOptions = function() {
+      if (this.chart('plot_options') != null) {
+        _.extend(this.chart('plot_options').column.dataLabels, this.dataLabelFormatter());
+      }
+      return this.chart('plot_options');
     };
     Show.prototype.inlineAttributes = function() {
       var attr;
@@ -95,45 +122,42 @@
       };
       return attr;
     };
-    Show.prototype.chartConfig = function() {
+    Show.prototype.highChart = function(chart) {
       var opt;
-      console.log(this.model);
-      opt = {
-        legend: {
-          show: true,
-          placement: 'outsideGrid'
+      console.info("HighChart Config", chart);
+      return opt = {
+        chart: {
+          renderTo: chart.name,
+          type: chart.type
         },
-        seriesDefaults: {
-          renderer: $.jqplot.BarRenderer,
-          pointLabels: {
-            show: true,
-            edgeTolerance: 5
+        plotOptions: chart.plot_options,
+        xAxis: {
+          categories: chart.bar_labels,
+          labels: {
+            align: left,
+            rotation: 30
           }
         },
-        series: this.chart('data_labels'),
-        axes: {
-          xaxis: {
-            renderer: $.jqplot.CategoryAxisRenderer,
-            ticks: this.barLabels(),
-            autoscale: true
-          },
-          yaxis: {
-            min: 0,
-            ticks: this.chart('increment')
-          }
-        }
+        series: chart.data
       };
-      return opt;
+    };
+    Show.prototype.renderChart = function(chart) {
+      chart = chart.chart;
+      $(this.el).append(JST['chart'](chart));
+      return new Highcharts.Chart(this.highChart(chart));
     };
     Show.prototype.render = function() {
-      var plot;
-      $(this.el).attr(this.inlineAttributes());
-      $(this.el).html(this.template()(this.model.toJSON()));
-      $("#" + (this.dialogId())).remove();
+      var chart, _i, _len, _ref;
+      console.log("CHARTS-----", this.model.get('charts'));
+      this.el.attr(this.inlineAttributes());
+      this.el.html(this.template()(this.model.toJSON()));
       $("#canvas").append(this.el);
       this.setPosition();
-      plot = $.jqplot(this.chartDivId(), _.values(this.chart('data')), this.chartConfig());
-      console.log(plot);
+      _ref = this.model.get('charts');
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        chart = _ref[_i];
+        this.renderChart(chart);
+      }
       this.expandLine();
       return this;
     };
