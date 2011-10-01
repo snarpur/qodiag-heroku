@@ -4,9 +4,18 @@ is:
       age: "ára"
       male: "kk"
       female: "kvk"
+      responder:
+        parents: "foreldri"
+        teacher: "kennari"
+      norm_reference:
+        group: "samanburðarhópur"
+        teacher: "kennaramat"
+        parent: "foreldramat"
+      teacher: "kennari"
     adhd-rating-scale:
       name: "ADHD Mælikvarði"
       terms:
+        average: meðaltal
         inattention: "athyglisbrestur"
         impulsivity_hyperactivity: "ofvirkni/hvatvísi"
         total: "heildarskor"
@@ -14,6 +23,9 @@ is:
     sdq:
       name: "Spurningar um styrk og vanda (SDQ)"
       terms:
+        normal: undir mörkum
+        borderline: jaðarsvæði
+        abnormal: yfir mörkum
         emotional: tilfinningavandi
         conduct: "hegðunarvandi"
         hyperactivity_inattention: "ofvirkni"

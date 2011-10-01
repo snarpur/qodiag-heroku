@@ -36,14 +36,24 @@ class ResultChart
     end
   end
 
+  def norm_reference_group_name
+    norm_reference.norm_reference_group_name
+  end
+
+  def chart_size
+    reference_groups.size * 2
+  end
+
   def chart_data
     @reference_values.reverse.insert(0,subject_series)
   end
 
   def categories
-    reference_groups.enum_for(:each_with_index).map do |name,index|
-     "#{I18n.t("surveys.#{@response_set.survey.access_code}.terms.#{name}")}"
-    end
+    reference_groups
+  end
+
+  def translations
+    I18n.t("surveys.#{norm_reference.survey.access_code}.terms")
   end
 
   private

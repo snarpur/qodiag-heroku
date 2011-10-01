@@ -11,7 +11,6 @@ class App.Models.Timeline extends Backbone.Model
     setCanvasEndPosition:(position)
     @changePosition(position)
 
-
   setCanvasEndPosition:(position) ->
       @.set(canvas_end_position: @.get("canvas_width") - position)
 
@@ -21,10 +20,14 @@ class App.Models.Timeline extends Backbone.Model
     position = gutter if position > gutter
     position = end if position < end
     @.set(current_position: position)
-
-
+  
   move:()->
     @history.animate(left: @.get("current_position"), 500)
 
-
+  showItemInDialog:(old, current, params) ->
+    console.info old
+    if old.id isnt current.id
+      show   = new App.Views.ResponderItems.Show(params)
+      show.render()
+    
 

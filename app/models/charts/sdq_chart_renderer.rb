@@ -6,7 +6,8 @@ class SdqChartRenderer < ChartRenderer
                          :stacking   => 'normal',
                          :dataLabels => {
                            :enabled => 'true',
-                           :color   => "#fff"
+                           :color   => "#fff",
+                           :formatter => :rangeValues
                     }}},
                      :default_color => {:normal => '#6ddb00', :borderline => '#ffff00', :abnormal => "#e20000"},
                      :default_result_names => %w{normal borderline abnormal},

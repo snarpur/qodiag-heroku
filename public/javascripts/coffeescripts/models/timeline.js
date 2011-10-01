@@ -1,4 +1,4 @@
-/* DO NOT MODIFY. This file was compiled Fri, 15 Jul 2011 12:14:28 GMT from
+/* DO NOT MODIFY. This file was compiled Wed, 28 Sep 2011 15:32:34 GMT from
  * /Users/orripalsson/Dev/snarpur/app/02/snarpur/app/coffeescripts/models/timeline.coffee
  */
 
@@ -54,6 +54,14 @@
       return this.history.animate({
         left: this.get("current_position")
       }, 500);
+    };
+    Timeline.prototype.showItemInDialog = function(old, current, params) {
+      var show;
+      console.info(old);
+      if (old.id !== current.id) {
+        show = new App.Views.ResponderItems.Show(params);
+        return show.render();
+      }
     };
     return Timeline;
   })();

@@ -1,0 +1,7 @@
+class ConfigStackedColumn
+
+
+  @@config = {}
+
+
+end

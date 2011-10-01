@@ -1,23 +1,54 @@
 chart_class: StackedColumnChart
-default_plot_options:
-  column:
-    stacking: normal
-    dataLabels:
-      enabled: true
-      color:  '#fff'
-default_color:
-  normal: '#6ddb00'
-  borderline: '#ffff00'
-  abnormal: '#e20000'
-default_result_names: [normal, borderline, abnormal]
-default_chart_type: column
+defaults:
+  chart:
+    type: column
+    marginBottom: 100
+  plot_options:
+    column:
+      groupPadding: 0.1
+      pointPadding: 0.1
+      stacking: normal
+      dataLabels:
+        enabled: true
+        color:  '#777'
+        formatter: dataLabelFormatter
+        style:
+          fontSize: 8px
+  color:
+    normal: '#6ddb00'
+    borderline: '#ffff00'
+    abnormal: '#e20000'
+  result_names: [normal, borderline, abnormal]
+  title:
+    text: "  "
+  legend:
+    align: center
+    floating: true
+  y_axis:
+    allowDecimals: false
+    title:
+      text: ~
+    tickPosition: inside
+  x_axis:
+    title:
+      text: ~
+      align: "middle"
+      margin: 25
+    # maxPadding: 0
 charts:
   -
     name:  score
     question_groups: [emotional, conduct, hyperactivity_inattention, peer_problem, prosocial_behaviour]
+    title:
+      text: true
     group_actions:
       prosocial_behaviour: reverse_stack
   -
     name: total
+    legend:
+        enabled: false
+    y_axis:
+      opposite: true
+      maxPadding: 0.01
     question_groups:
       total: [emotional, conduct, hyperactivity_inattention, peer_problem, prosocial_behaviour]

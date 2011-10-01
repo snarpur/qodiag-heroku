@@ -13,7 +13,7 @@ module ChartMethods
   end
 
   def group_value_for_result(group_name,result_name)
-    @reference_values[index_of_result(result_name)][:data][group_index(group_name)]
+   @reference_values[index_of_result(result_name)][:data][group_index(group_name)]
   end
 
   def name_of_opposite_result(result_name)

@@ -124,6 +124,7 @@ GEM
       guard (>= 0.2.2)
       json (~> 1.5.1)
     haml (3.2.0.alpha.5)
+    hash-deep-merge (0.1.1)
     hirb (0.4.5)
     hirb-unicode (0.0.4)
       hirb (~> 0.4.0)
@@ -247,6 +248,7 @@ DEPENDENCIES
   guard-haml
   guard-livereload
   haml (>= 3.1.alpha.50)
+  hash-deep-merge
   hirb-unicode
   hpricot
   jammit

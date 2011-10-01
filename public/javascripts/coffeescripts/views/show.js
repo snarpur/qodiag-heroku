@@ -1,4 +1,4 @@
-/* DO NOT MODIFY. This file was compiled Thu, 18 Aug 2011 14:57:23 GMT from
+/* DO NOT MODIFY. This file was compiled Wed, 28 Sep 2011 14:13:26 GMT from
  * /Users/orripalsson/Dev/snarpur/app/02/snarpur/app/coffeescripts/views/show.coffee
  */
 
@@ -17,14 +17,18 @@
     __extends(Show, Backbone.View);
     function Show() {
       this.render = __bind(this.render, this);
+      this.openDialog = __bind(this.openDialog, this);
       this.renderChart = __bind(this.renderChart, this);
+      this.highChart = __bind(this.highChart, this);
       this.inlineAttributes = __bind(this.inlineAttributes, this);
       this.plotOptions = __bind(this.plotOptions, this);
+      this.categoryFormatter = __bind(this.categoryFormatter, this);
+      this.legendFormatter = __bind(this.legendFormatter, this);
       this.dataLabelFormatter = __bind(this.dataLabelFormatter, this);
-      this.barLabels = __bind(this.barLabels, this);
+      this.chartWidth = __bind(this.chartWidth, this);
       this.getElClass = __bind(this.getElClass, this);
-      this.chart = __bind(this.chart, this);
-      this.setPosition = __bind(this.setPosition, this);
+      this.charts = __bind(this.charts, this);
+      this.dialogYPosition = __bind(this.dialogYPosition, this);
       this.dialog = __bind(this.dialog, this);
       this.dialogId = __bind(this.dialogId, this);
       this.chartDivId = __bind(this.chartDivId, this);
@@ -32,23 +36,33 @@
       this.expandLine = __bind(this.expandLine, this);
       this.line = __bind(this.line, this);
       this.remove = __bind(this.remove, this);
+      this.setDialogAsClosed = __bind(this.setDialogAsClosed, this);
       this.initialize = __bind(this.initialize, this);
       Show.__super__.constructor.apply(this, arguments);
     }
     Show.prototype.template = function() {
       return JST['show'];
     };
+    Show.prototype.elements = {};
     Show.prototype.events = {
-      "click .close": "remove"
+      "click .close": "setDialogAsClosed"
     };
     Show.prototype.initialize = function(item) {
+      this.model.bind("change:openDialog", this.remove);
       this.el = $(this.el);
       return this.model.view = this;
     };
-    Show.prototype.elements = {};
+    Show.prototype.setDialogAsClosed = function() {
+      console.info("SETTINGDIALOG AS CLOSED");
+      return this.model.set({
+        openDialog: false
+      });
+    };
     Show.prototype.remove = function() {
-      this.contractLine();
-      return this.el.remove();
+      if (this.model.get(openDialog) === false) {
+        this.dialog.empty();
+        return this.contactLine();
+      }
     };
     Show.prototype.line = function() {
       var _base2, _ref;
@@ -74,91 +88,119 @@
     Show.prototype.dialog = function() {
       return $("#" + (this.dialogId()));
     };
-    Show.prototype.setPosition = function() {
-      return this.el.css({
-        top: this.line().position().top + this.model.getTimeline('line_height')
-      });
+    Show.prototype.dialogYPosition = function() {
+      return "top: " + (this.line().position().top + this.model.getTimeline('line_height')) + "px;";
     };
-    Show.prototype.chart = function(item) {
-      return this.model.get('chart')[item];
+    Show.prototype.charts = function(item) {
+      return this.model.get('charts')[item];
     };
     Show.prototype.getElClass = function() {
       return "chart-dialog";
     };
-    Show.prototype.barLabels = function() {
-      return this.chart('bar_labels').map(function(label) {
-        return label.name;
-      });
+    Show.prototype.chartWidth = function(chart) {
+      var width;
+      width = this.model.getTimeline('canvas_width') * (chart.size / this.model.get('charts_size_total'));
+      return (width * 0.8) + 22;
     };
     Show.prototype.dataLabelFormatter = function() {
-      var pointLabels;
-      pointLabels = this.chart('point_labels');
-      return {
-        formatter: function() {
-          var groupIndex, range, resultNameIndex;
-          console.log(this, "CHART FORMATTER");
-          groupIndex = this.series.xAxis.categories.indexOf(this.x);
-          resultNameIndex = this.series.index;
-          if (resultNameIndex === 0) {
-            return this.y;
-          } else {
-            range = pointLabels[groupIndex].data[resultNameIndex - 1];
-            return range;
-          }
+      return function() {
+        if ((this.point.config.name != null) && this.point.config.name.data_label) {
+          return this.point.config.name.data_label;
+        } else {
+          return this.y;
         }
       };
     };
-    Show.prototype.plotOptions = function() {
-      if (this.chart('plot_options') != null) {
-        _.extend(this.chart('plot_options').column.dataLabels, this.dataLabelFormatter());
-      }
-      return this.chart('plot_options');
+    Show.prototype.legendFormatter = function() {
+      var model;
+      model = this.model;
+      return function() {
+        var _ref;
+        return (_ref = model.get('translations')[this.name]) != null ? _ref : this.name;
+      };
+    };
+    Show.prototype.categoryFormatter = function() {
+      var model;
+      model = this.model;
+      return function() {
+        var _ref;
+        return (_ref = model.get('translations')[this.value]) != null ? _ref : this.value;
+      };
+    };
+    Show.prototype.plotOptions = function(chart) {
+      _.extend(chart.plot_options.column.dataLabels, {
+        formatter: this.dataLabelFormatter()
+      });
+      return chart.plot_options;
     };
     Show.prototype.inlineAttributes = function() {
       var attr;
       attr = {
         id: this.dialogId(),
-        "class": this.getElClass()
+        "class": this.getElClass(),
+        style: this.dialogYPosition()
       };
       return attr;
     };
     Show.prototype.highChart = function(chart) {
       var opt;
-      console.info("HighChart Config", chart);
-      return opt = {
-        chart: {
-          renderTo: chart.name,
-          type: chart.type
+      opt = {
+        credits: {
+          enabled: false
         },
-        plotOptions: chart.plot_options,
+        chart: {
+          title: chart.chart.title,
+          renderTo: chart.name,
+          marginBottom: chart.chart.marginBottom,
+          type: chart.chart.type
+        },
+        tooltip: {
+          enabled: false
+        },
+        plotOptions: this.plotOptions(chart),
         xAxis: {
-          categories: chart.bar_labels,
+          categories: chart.categories,
           labels: {
-            align: left,
-            rotation: 30
+            formatter: this.categoryFormatter()
           }
         },
         series: chart.data
       };
+      opt['title'] = chart.title;
+      if (chart.y_axis != null) {
+        opt['yAxis'] = chart.y_axis;
+      }
+      opt['legend'] = _.extend(chart.legend, {
+        labelFormatter: this.legendFormatter()
+      });
+      opt['width'] = this.chartWidth(chart);
+      _.extend(opt['xAxis'], chart.x_axis);
+      return opt;
     };
     Show.prototype.renderChart = function(chart) {
-      chart = chart.chart;
-      $(this.el).append(JST['chart'](chart));
-      return new Highcharts.Chart(this.highChart(chart));
+      var high;
+      chart = chart;
+      $(this.el).append(JST['chart'](_.extend(chart, {
+        width: this.chartWidth(chart)
+      })));
+      return high = new Highcharts.Chart(this.highChart(chart));
     };
+    Show.prototype.openDialog = function() {};
     Show.prototype.render = function() {
       var chart, _i, _len, _ref;
-      console.log("CHARTS-----", this.model.get('charts'));
+      console.info(this);
+      this.model.set({
+        openDialog: true
+      });
+      this.expandLine();
       this.el.attr(this.inlineAttributes());
       this.el.html(this.template()(this.model.toJSON()));
       $("#canvas").append(this.el);
-      this.setPosition();
       _ref = this.model.get('charts');
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         chart = _ref[_i];
         this.renderChart(chart);
       }
-      this.expandLine();
       return this;
     };
     return Show;

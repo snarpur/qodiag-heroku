@@ -21,6 +21,7 @@ gem 'ruby_parser'
 gem "jammit"
 gem 'therubyracer', :require => false
 gem 'barista'
+gem 'hash-deep-merge'
 
 
 

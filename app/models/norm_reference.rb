@@ -29,8 +29,14 @@ class NormReference < ActiveRecord::Base
   end
 
   def age_group_string
-    age = self.age_start == self.age_end ? self.age_start : "#{self.age_start} - #{self.age_end}"
+    age = self.age_start == self.age_end ? self.age_start.to_s : "#{self.age_start} - #{self.age_end}"
   end
 
+  def norm_reference_group_name
+    str = I18n.t("surveys.terms.norm_reference.#{self.responder}").capitalize
+    str << " og viðmið, "
+    str << "#{I18n.t('surveys.terms.'+ self.sex)} #{age_group_string} "
+    str << I18n.t("surveys.terms.age")
 
+  end
 end

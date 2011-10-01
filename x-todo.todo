@@ -1,14 +1,9 @@
 : :::::::::::::::::::::::::::::::::::::: START :::::::::::::::::::::::::::::::::::::
-! redesign scores for a unified api for ADHD, SDQ
-! set up test for Chart renderer
-  group_names should be
-  group_reference should be
-
-! Klára norm.yml fyrir SDQ
-
+! closing dialog
+! labelFormatter Error on adhad_rating_scale.yml
 
 ! bæta fjöldi 2-3sta, +/- meðaltal, (+/- staðalfrávik) inn í label
-! setja upp hundraðasta raðirw
+! setja upp hundraðasta raðir
 ! Gera lineChart => hugsa hvernig það mun líta út => setja upp allt á tímalínu ????
 
 

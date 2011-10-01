@@ -5,18 +5,25 @@ class App.Views.ResponderItems.Show extends Backbone.View
   template: ->
     return JST['show']
 
+  elements: 
+    {}
+
   events:
-    "click .close" : "remove"
+    "click .close" : "setDialogAsClosed"
 
   initialize:(item) =>
+    @model.bind("change:openDialog", @remove)
     @el = $(@el)
     @model.view = @
 
-  elements: {}
-
-  remove: =>
-    @contractLine()
-    @el.remove()
+  setDialogAsClosed:() =>
+    console.info "SETTINGDIALOG AS CLOSED"
+    @model.set(openDialog: false)
+  
+  remove:()=>
+    if @model.get(openDialog) is false
+      @dialog.empty()
+      @contactLine()
 
   line:=>
     @elements.line ?= $("#line-#{@model.get('access_code')}")
@@ -37,73 +44,86 @@ class App.Views.ResponderItems.Show extends Backbone.View
   dialog: =>
     $("##{@dialogId()}")
 
-  setPosition: =>
-    @el.css(top:@line().position().top + @model.getTimeline('line_height'))
+  dialogYPosition: =>
+   "top: #{@line().position().top + @model.getTimeline('line_height')}px;"
 
-  chart: (item) =>
-    @model.get('chart')[item]
+  charts: (item) =>
+    @model.get('charts')[item]
 
   getElClass: =>
     "chart-dialog"
 
-  barLabels: =>
-    @chart('bar_labels').map (label) ->
-     label.name
+  chartWidth:(chart) =>
+    width =  @model.getTimeline('canvas_width') * (chart.size/@model.get('charts_size_total'))
+    (width * 0.8) + 22
 
-  dataLabelFormatter:() =>
-    pointLabels = @chart('point_labels')
-    formatter:
-      () ->
-        console.log(@,"CHART FORMATTER")
-        groupIndex = @.series.xAxis.categories.indexOf(@.x)
-        resultNameIndex = @.series.index
-        if resultNameIndex is 0
-          return @.y
-        else
-          range = pointLabels[groupIndex].data[resultNameIndex - 1]
-          return range
+  dataLabelFormatter: =>
+    () ->
+      if @point.config.name? and @point.config.name.data_label
+        @point.config.name.data_label
+      else
+        @.y
 
+  legendFormatter: =>
+    model = @model
+    () ->
+      model.get('translations')[@.name] ? @.name
 
-  plotOptions: () =>
-    if @chart('plot_options')?
-      _.extend(@chart('plot_options').column.dataLabels,@dataLabelFormatter())
-    @chart('plot_options')
+  categoryFormatter: =>
+    model = @model
+    () ->
+      model.get('translations')[@.value] ? @.value
+
+  plotOptions: (chart) =>
+    _.extend(chart.plot_options.column.dataLabels,{formatter: @dataLabelFormatter()})
+    chart.plot_options
 
   inlineAttributes: =>
       attr =
           id:    @dialogId()
           class: @getElClass()
+          style: @dialogYPosition()
       attr
 
-  highChart:(chart) ->
-    console.info "HighChart Config", chart
-    opt =
-      chart:
-        renderTo: chart.name
-        type: chart.type
-      plotOptions: chart.plot_options
-      xAxis:
-        categories: chart.bar_labels
-        labels:
-          align: left
-          rotation: 30
-      series: chart.data
+  highChart:(chart) =>
+      opt =
+        credits:
+          enabled: false
+        chart:
+          title: chart.chart.title
+          renderTo: chart.name
+          marginBottom: chart.chart.marginBottom
+          type: chart.chart.type
+        tooltip:
+          enabled: false
+        plotOptions: @plotOptions(chart)
+        xAxis:
+          categories: chart.categories
+          labels: 
+            formatter: @categoryFormatter()
+        series: chart.data
+   
+      opt['title'] = chart.title
+      opt['yAxis'] = chart.y_axis if chart.y_axis?
+      opt['legend'] = _.extend(chart.legend, {labelFormatter: @legendFormatter()})
+      opt['width'] = @chartWidth(chart)
+      _.extend(opt['xAxis'], chart.x_axis)
+      opt
+   
+    renderChart: (chart) =>
+      chart = chart
+      $(this.el).append(JST['chart'](_.extend(chart, {width:@chartWidth(chart)})))
+      high = new Highcharts.Chart(@highChart(chart))
+   
+    openDialog:() =>
+      
 
-  renderChart: (chart) =>
-    chart = chart.chart
-    $(this.el).append(JST['chart'](chart))
-    new Highcharts.Chart(@highChart(chart))
-
-
-  render: =>
-    console.log "CHARTS-----", @model.get('charts')
-    ##@remove()
-    @el.attr(@inlineAttributes())
-    @el.html(@template()(@model.toJSON()))
-    $("#canvas").append(@el)
-    @setPosition()
-    @renderChart chart for chart in @model.get('charts')
-
-    @expandLine()
-    @
-
+    render: =>
+      console.info @
+      @model.set(openDialog: true)
+      @expandLine()
+      @el.attr(@inlineAttributes())
+      @el.html(@template()(@model.toJSON()))
+      $("#canvas").append(@el)
+      @renderChart chart for chart in @model.get('charts')
+      @

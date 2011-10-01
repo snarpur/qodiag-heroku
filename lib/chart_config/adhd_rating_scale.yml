@@ -1,12 +1,34 @@
 chart_class: ColumnChart
-default_plot_options:
-  column:
-    dataLabels:
-      enabled: true
-      color:  '#fff'
-default_result_names: [average]
-default_chart_type: column
+defaults:
+  chart:
+    type: column
+    marginBottom: 100
+  plot_options:
+    column:
+      dataLabels:
+        enabled: true
+        color:  '#777'
+        formatter: dataLabelFormatter
+        style:
+          fontSize: 8px
+  result_names: [average]
+  title:
+    text: "  "
+  legend:
+    align: center
+    floating: true
+  y_axis:
+    allowDecimals: false
+    title:
+      text: ~
+    tickPosition: inside
+  x_axis:
+    title:
+      text: ~
+      align: "middle"
+      margin: 25
 charts:
   -
     name:  score
+    result_names: [average]
     question_groups: [inattention, impulsivity_hyperactivity, total]

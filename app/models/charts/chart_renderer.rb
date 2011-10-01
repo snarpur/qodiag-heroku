@@ -3,7 +3,6 @@ class ChartRenderer
   def initialize(response_set)
     @response_set = response_set
     get_chart_config
-    KK.log ap @chart_config
   end
 
   def get_chart_config
@@ -25,18 +24,26 @@ class ChartRenderer
   end
 
   def result_to_chart
-    json = @chart_config[:charts].map do |chart|
-      chart_config = @chart_config.except(:charts).merge(chart)
+
+    size = 0
+    translations = nil
+    json = @chart_config[:charts].map do |config|
+      chart_config = @chart_config[:defaults].deep_merge(config)
       results = chart_class.send(:new, chart_config ,@response_set)
-      { :chart => {
-          :name         => results.get(:name),
-          :type         => results.get(:chart_type),
-          :data         => results.chart_data,
-          :bar_labels   => results.categories,
-          :plot_options => results.get(:plot_options)
+      size += results.chart_size
+      translations ||= results.translations
+      chart = {:chart => {
+                :data         => results.chart_data,
+                :size         => results.chart_size,
+                :categories   => results.categories
         }}
+        if chart_config[:title][:text] == true
+          chart_config[:title][:text] = results.norm_reference_group_name
+        end
+        chart_config.deep_merge(chart[:chart])
+
     end
-    {:charts => json}
+    {:charts => json, :charts_size_total => size, :translations => translations }
   end
 
 end

@@ -16,26 +16,16 @@ class StackedColumnChart < ResultChart
     series
   end
 
-  def subject_result
+  def subject_series
     series = super
-    set_group_stack(series,"subject")
-  end
-
-  def set_group_stack(series, stack)
-    stack = {:stack => stack}
-    if series.is_a?(Array)
-      series.each{|s| s.merge!(stack)}
-    else
-      series.merge!(stack)
-    end
-    series
+    series.merge(:stack => 'subject')
   end
 
   def set_group_actions
     return @reference_values unless has_group_actions?
     series = []
     @reference_values.each do |result|
-        get(:group_actions).each_pair do |group,action|
+      get(:group_actions).each_pair do |group,action|
         data = send(action.to_sym, result, group)
         series << result.merge(:data => data)
       end
@@ -44,59 +34,17 @@ class StackedColumnChart < ResultChart
   end
 
   def data_values(scores)
-    scores.map{|s| s.get_value}
+    scores.map{|s| {:y => s.get_value, :name=> {:data_label => s.get_range_values.join("-") }}}
   end
 
   def reverse_stack(result, group)
     data = result[:data].clone
-     data[group_index(group)] = {
-      :y =>      group_value_for_opposite_result(group,result[:name]),
+    data[group_index(group)] = {
+      :y =>      group_value_for_opposite_result(group,result[:name])[:y],
       :color =>  color_of_opposite_result(result[:name]),
-      :name =>   name_of_opposite_result(result[:name])
+      :name =>   group_value_for_opposite_result(group,result[:name])[:name]
     }
     data
   end
 
-  # def has_group_actions?
-  #   !get(:group_actions).nil?
-  # end
-  #
-  # def group_value_for_opposite_result(group_name,result_name)
-  #   KK.log "group_name #{group_name}"
-  #   KK.log "result_name #{result_name}"
-  #   KK.log "group_index(group_name) #{group_index(group_name)}"
-  #   KK.log "color_of_opposite_result(result_name) #{color_of_opposite_result(result_name)}"
-  #   KK.log "@reference_values #{@reference_values.inspect}"
-  #   KK.log "@reference_values[index_of_opposite_result(result_name)] #{@reference_values[index_of_opposite_result(result_name)]}"
-  #
-  #   @reference_values[index_of_opposite_result(result_name)][:data][group_index(group_name)]
-  # end
-  #
-  # def group_value_for_result(group_name,result_name)
-  #   @reference_values[index_of_opposite_result(result_name)][group_index(group_name)]
-  # end
-  #
-  # def name_of_opposite_result(result_name)
-  #   get(:result_names)[index_of_opposite_result(result_name)]
-  # end
-  #
-  # def color_for_opposite_result(result_name)
-  #   get(:colors)[name_of_opposite_result(result_name).to_sym]
-  # end
-  #
-  # def color_for_result(result_name)
-  #   get(:color)[result_name.to_sym]
-  # end
-  #
-  # def index_of_opposite_result(result_name)
-  #   get(:result_names).reverse.index(result_name)
-  # end
-  #
-  # def index_of_result(result_name)
-  #   get(:result_names).index(result_name)
-  # end
-  #
-  # def group_index(group)
-  #   get(:question_groups).index(group.to_s)
-  # end
 end
