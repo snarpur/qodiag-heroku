@@ -201,8 +201,8 @@ class Person < ActiveRecord::Base
         first.person
   end
 
-  def new_patient_request(patient_id)
-    ResponderItem.new_patient_item(patient_id, self)
+  def new_patient_request(params)
+    ResponderItem.new_patient_item(params, self)
   end
 
   def father

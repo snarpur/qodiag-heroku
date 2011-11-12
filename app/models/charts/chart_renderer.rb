@@ -13,18 +13,7 @@ class ChartRenderer
     @chart_config[:chart_class].constantize
   end
 
-  def chart_defaults
-    defaults = {}
-    @chart_config.each_pair do |k,v|
-      if k.to_s.starts_with?('default')
-        defaults[k.to_sym] = v
-      end
-    end
-    defaults
-  end
-
   def result_to_chart
-
     size = 0
     translations = nil
     json = @chart_config[:charts].map do |config|

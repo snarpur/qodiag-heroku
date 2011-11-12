@@ -1,27 +1,10 @@
 -@timeline = Timeline.new(@person)
--@timeline.responder_items = responses
-
 =render "shared/timeline/timeline_styles"
-=link_to "reload", person_path(@person,:trailing_slash => true), :class => "button green large"
+/ =link_to "reload", person_path(@person,:trailing_slash => true), :class => "button green large"
 #canvas
-  #tml-menu
-  #tml-body
-    %ul#tml-l-gutter
-      =render :partial => "shared/timeline/gutter", :collection => @timeline.responder_item_codes
-      %hr.break
-    #tml-history
-      =render "shared/timeline/months", :months => @timeline.months
-      =render :partial => "shared/timeline/line", :collection => @timeline.responder_item_codes
-      %hr.break
-    %hr.break
-=link_to "reload", person_path(@person,:trailing_slash => true), :class => "button green large"
+/ =link_to "reload", person_path(@person,:trailing_slash => true), :class => "button green large"
 :javascript
   $(document).ready(function(){
-    window.controller = new App.Controllers.ResponderItemsController({timeline: #{@timeline.dimensions.to_json}, responder_items: #{@timeline.responder_items_with_position.to_json}});
+    window.controller = new App.Controllers.ResponderItemsController({timeline: #{@timeline.settings.to_json}, responder_items: #{responses.to_json}});
     App.init();
-
   })
-
-#item-dialog
-
-

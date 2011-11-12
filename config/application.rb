@@ -1,13 +1,21 @@
 require File.expand_path('../boot', __FILE__)
-
 require 'rails/all'
 
-# If you have a Gemfile, require the gems listed there, including any gems
-# you've limited to :test, :development, or :production.
-Bundler.require(:default, Rails.env) if defined?(Bundler)
+if defined?(Bundler)
+    Bundler.require *Rails.groups(:assets => %w(development test))
+end
 
 module Snarpur
   class Application < Rails::Application
+
+
+
+
+    stylesheets_directory = "#{Rails.root}/app/assets/stylesheets"
+    config.assets.precompile << /(^[^_]|\/[^_])[^\/]*/
+    config.sass.preferred_syntax = :sass
+
+    config.assets.enabled = true
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

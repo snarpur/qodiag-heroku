@@ -1,5 +1,9 @@
 chart_class: StackedColumnChart
 defaults:
+  credits:
+    enabled: false
+  tooltip:
+    enabled: false
   chart:
     type: column
     marginBottom: 100
@@ -34,10 +38,9 @@ defaults:
       text: ~
       align: "middle"
       margin: 25
-    # maxPadding: 0
 charts:
   -
-    name:  score
+    name: score
     question_groups: [emotional, conduct, hyperactivity_inattention, peer_problem, prosocial_behaviour]
     title:
       text: true

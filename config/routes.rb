@@ -19,7 +19,7 @@ Snarpur::Application.routes.draw do
   resources :responder_items do
       resources :people
   end
-  resources :people do
+  resources :people, :as => 'subject' do
       resources :responder_items
   end
   get "pages/error_401"

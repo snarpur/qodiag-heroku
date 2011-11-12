@@ -1,25 +1,25 @@
 class SdqChartRenderer < ChartRenderer
 
-  @@chart_config = { :chart_class => 'StackedColumnChart',
-                      :default_plot_options => {
-                       :column => {
-                         :stacking   => 'normal',
-                         :dataLabels => {
-                           :enabled => 'true',
-                           :color   => "#fff",
-                           :formatter => :rangeValues
-                    }}},
-                     :default_color => {:normal => '#6ddb00', :borderline => '#ffff00', :abnormal => "#e20000"},
-                     :default_result_names => %w{normal borderline abnormal},
-                     :default_chart_type => 'column',
-                     :charts  => [
-                         { :name            => "score",
-                           :question_groups => %w{emotional conduct hyperactivity_inattention peer_problem prosocial_behaviour},
-                           :group_actions => {:prosocial_behaviour => [:reverse_stack]}},
-                         { :name            => "total",
-                           :question_groups => {:total => %w{emotional conduct hyperactivity_inattention peer_problem prosocial_behaviour}}}
-                         ]
-                    }
+  # @@chart_config = { :chart_class => 'StackedColumnChart',
+  #                     :default_plot_options => {
+  #                      :column => {
+  #                        :stacking   => 'normal',
+  #                        :dataLabels => {
+  #                          :enabled => 'true',
+  #                          :color   => "#fff",
+  #                          :formatter => :rangeValues
+  #                   }}},
+  #                    :default_color => {:normal => '#6ddb00', :borderline => '#ffff00', :abnormal => "#e20000"},
+  #                    :default_result_names => %w{normal borderline abnormal},
+  #                    :default_chart_type => 'column',
+  #                    :charts  => [
+  #                        { :name            => "score",
+  #                          :question_groups => %w{emotional conduct hyperactivity_inattention peer_problem prosocial_behaviour},
+  #                          :group_actions => {:prosocial_behaviour => [:reverse_stack]}},
+  #                        { :name            => "total",
+  #                          :question_groups => {:total => %w{emotional conduct hyperactivity_inattention peer_problem prosocial_behaviour}}}
+  #                        ]
+  #                   }
 
 
   def initialize(response_set)

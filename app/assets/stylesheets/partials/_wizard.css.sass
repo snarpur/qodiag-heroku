@@ -1,0 +1,62 @@
+ul.wizard-nav
+  font-weight: normal
+  +horizontal-list(0)
+  margin-top: 20px
+  margin-bottom: 30px
+  li
+    padding: 0 10px 0 24px
+    margin-left: -31px
+    width: 140px
+  li:first-child
+    margin-left: 0
+  p
+    position: relative
+    background: url("/images/wizard-bg-left.png") no-repeat
+    padding: 8px 8px 6px 23px
+  b,a
+    color: white
+    display: block
+  b
+    +border-radius(12px)
+    line-height: 8px
+    text-align: center
+    font-size: 0.8em
+    padding: 3px
+    height: 8px
+    width: 8px
+    border: solid 1px white
+  a
+    position: absolute
+    right: -15px
+    top: 0
+    width: 85px
+    padding: 8px 15px 7px 0
+    background: url("/images/wizard-bg-right.png") 100% 0 no-repeat
+    text-decoration: none
+  li.active a
+    background-position: 100% -35px
+  li.active p
+    background-position: 0 -35px
+
+.inp-btn.wizard
+  position: relative
+  +clearfix
+  span
+    height: 30px
+  .save
+    float: right
+    margin-right: 1em
+  .back,.forward
+    float: left
+    width: 25px
+    a
+      display: block
+      padding: 6px
+  .back
+    margin: 0 -385px 0 385px
+    a
+      +replace-text(unquote("/images/25/color2/circle-arrow-left.png"), 50%, 50%)
+  .forward
+    margin: 0 -450px 0 450px
+    a
+      +replace-text(unquote("/images/25/color2/circle-arrow-right.png"), 50%, 50%)

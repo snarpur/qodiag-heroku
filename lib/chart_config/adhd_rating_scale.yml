@@ -1,10 +1,16 @@
 chart_class: ColumnChart
 defaults:
+  credits:
+    enabled: false
+  tooltip:
+    enabled: false
   chart:
     type: column
     marginBottom: 100
   plot_options:
     column:
+      groupPadding: 0.1
+      pointPadding: 0.1
       dataLabels:
         enabled: true
         color:  '#777'
@@ -27,8 +33,10 @@ defaults:
       text: ~
       align: "middle"
       margin: 25
+
 charts:
   -
     name:  score
-    result_names: [average]
     question_groups: [inattention, impulsivity_hyperactivity, total]
+    title:
+      text: true

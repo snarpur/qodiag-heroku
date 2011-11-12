@@ -1,23 +1,13 @@
 /*
-Syntax error: Undefined mixin 'horizontal-list'.
-        on line 26 of /Users/orripalsson/Dev/snarpur/app/02/snarpur/app/stylesheets/partials/timeline.sass, in `horizontal-list'
-        from line 26 of /Users/orripalsson/Dev/snarpur/app/02/snarpur/app/stylesheets/partials/timeline.sass
+Syntax error: Undefined mixin 'stretch'.
+        on line 6 of /Users/orripalsson/Dev/snarpur/app/02/snarpur/app/stylesheets/partials/timeline.sass, in `stretch'
+        from line 6 of /Users/orripalsson/Dev/snarpur/app/02/snarpur/app/stylesheets/partials/timeline.sass
 
-21:     .close
-22:       position: absolute
-23:       right: 10px
-24:       top: 10px
-25:   .tml-history-nav
-26:     +horizontal-list
-27:     background-color: #000
-28:     li
-29:       margin-top: 4px
-30:       font-size: 1.8em
-31:       color: #e0e0e0
+1: /Users/orripalsson/Dev/snarpur/app/02/snarpur/app/stylesheets/partials/timeline.sass
 
 Backtrace:
-/Users/orripalsson/Dev/snarpur/app/02/snarpur/app/stylesheets/partials/timeline.sass:26:in `horizontal-list'
-/Users/orripalsson/Dev/snarpur/app/02/snarpur/app/stylesheets/partials/timeline.sass:26
+/Users/orripalsson/Dev/snarpur/app/02/snarpur/app/stylesheets/partials/timeline.sass:6:in `stretch'
+/Users/orripalsson/Dev/snarpur/app/02/snarpur/app/stylesheets/partials/timeline.sass:6
 /Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.1/lib/sass/../sass/tree/visitors/perform.rb:169:in `visit_mixin'
 /Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.1/lib/sass/../sass/tree/visitors/base.rb:37:in `send'
 /Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.1/lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
@@ -62,69 +52,50 @@ Backtrace:
 /Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.1/lib/sass/../sass/engine.rb:239:in `render'
 /Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.1/lib/sass/../sass/util.rb:298:in `silence_sass_warnings'
 /Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.1/lib/sass/../sass/engine.rb:239:in `render'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.1/lib/sass/../sass/plugin/compiler.rb:319:in `update_stylesheet'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.1/lib/sass/../sass/plugin/compiler.rb:181:in `update_stylesheets'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.1/lib/sass/../sass/plugin/compiler.rb:175:in `each'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.1/lib/sass/../sass/plugin/compiler.rb:175:in `update_stylesheets'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.1/lib/sass/../sass/plugin/compiler.rb:173:in `each'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.1/lib/sass/../sass/plugin/compiler.rb:173:in `update_stylesheets'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.1/lib/sass/../sass/plugin.rb:81:in `update_stylesheets'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.1/lib/sass/../sass/plugin.rb:54:in `check_for_updates'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.1/lib/sass/../sass/plugin/rack.rb:51:in `call'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/warden-1.0.4/lib/warden/manager.rb:35:in `call'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/warden-1.0.4/lib/warden/manager.rb:34:in `catch'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/warden-1.0.4/lib/warden/manager.rb:34:in `call'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/actionpack-3.0.3/lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/actionpack-3.0.3/lib/action_dispatch/middleware/head.rb:14:in `call'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/rack-1.2.3/lib/rack/methodoverride.rb:24:in `call'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/actionpack-3.0.3/lib/action_dispatch/middleware/params_parser.rb:21:in `call'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/actionpack-3.0.3/lib/action_dispatch/middleware/flash.rb:182:in `call'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/actionpack-3.0.3/lib/action_dispatch/middleware/session/abstract_store.rb:149:in `call'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/actionpack-3.0.3/lib/action_dispatch/middleware/cookies.rb:295:in `call'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/activerecord-3.0.3/lib/active_record/query_cache.rb:32:in `call'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/activerecord-3.0.3/lib/active_record/connection_adapters/abstract/query_cache.rb:28:in `cache'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/activerecord-3.0.3/lib/active_record/query_cache.rb:12:in `cache'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/activerecord-3.0.3/lib/active_record/query_cache.rb:31:in `call'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/activerecord-3.0.3/lib/active_record/connection_adapters/abstract/connection_pool.rb:353:in `call'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/actionpack-3.0.3/lib/action_dispatch/middleware/callbacks.rb:46:in `call'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/activesupport-3.0.3/lib/active_support/callbacks.rb:415:in `_run_call_callbacks'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/actionpack-3.0.3/lib/action_dispatch/middleware/callbacks.rb:44:in `call'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/rack-1.2.3/lib/rack/sendfile.rb:107:in `call'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/actionpack-3.0.3/lib/action_dispatch/middleware/remote_ip.rb:48:in `call'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/actionpack-3.0.3/lib/action_dispatch/middleware/show_exceptions.rb:46:in `call'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/railties-3.0.3/lib/rails/rack/logger.rb:13:in `call'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/rack-1.2.3/lib/rack/runtime.rb:17:in `call'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/activesupport-3.0.3/lib/active_support/cache/strategy/local_cache.rb:72:in `call'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/rack-1.2.3/lib/rack/lock.rb:11:in `call'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/rack-1.2.3/lib/rack/lock.rb:11:in `synchronize'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/rack-1.2.3/lib/rack/lock.rb:11:in `call'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/actionpack-3.0.3/lib/action_dispatch/middleware/static.rb:30:in `call'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/railties-3.0.3/lib/rails/application.rb:168:in `call'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/railties-3.0.3/lib/rails/application.rb:77:in `send'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/railties-3.0.3/lib/rails/application.rb:77:in `method_missing'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/railties-3.0.3/lib/rails/rack/log_tailer.rb:14:in `call'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/rack-1.2.3/lib/rack/content_length.rb:13:in `call'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/rack-1.2.3/lib/rack/handler/webrick.rb:52:in `service'
-/Users/orripalsson/.rvm/rubies/ruby-1.8.7-p334/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
-/Users/orripalsson/.rvm/rubies/ruby-1.8.7-p334/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
-/Users/orripalsson/.rvm/rubies/ruby-1.8.7-p334/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
-/Users/orripalsson/.rvm/rubies/ruby-1.8.7-p334/lib/ruby/1.8/webrick/server.rb:162:in `start'
-/Users/orripalsson/.rvm/rubies/ruby-1.8.7-p334/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
-/Users/orripalsson/.rvm/rubies/ruby-1.8.7-p334/lib/ruby/1.8/webrick/server.rb:95:in `start'
-/Users/orripalsson/.rvm/rubies/ruby-1.8.7-p334/lib/ruby/1.8/webrick/server.rb:92:in `each'
-/Users/orripalsson/.rvm/rubies/ruby-1.8.7-p334/lib/ruby/1.8/webrick/server.rb:92:in `start'
-/Users/orripalsson/.rvm/rubies/ruby-1.8.7-p334/lib/ruby/1.8/webrick/server.rb:23:in `start'
-/Users/orripalsson/.rvm/rubies/ruby-1.8.7-p334/lib/ruby/1.8/webrick/server.rb:82:in `start'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/rack-1.2.3/lib/rack/handler/webrick.rb:13:in `run'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/rack-1.2.3/lib/rack/server.rb:217:in `start'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/railties-3.0.3/lib/rails/commands/server.rb:65:in `start'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/railties-3.0.3/lib/rails/commands.rb:30
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/railties-3.0.3/lib/rails/commands.rb:27:in `tap'
-/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/railties-3.0.3/lib/rails/commands.rb:27
-script/rails:6:in `require'
-script/rails:6
+/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/lib/compass/compiler.rb:130:in `compile'
+/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/lib/compass/compiler.rb:116:in `timed'
+/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/lib/compass/compiler.rb:129:in `compile'
+/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/lib/compass/logger.rb:45:in `red'
+/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/lib/compass/compiler.rb:128:in `compile'
+/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/lib/compass/compiler.rb:108:in `compile_if_required'
+/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/lib/compass/compiler.rb:95:in `run'
+/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/lib/compass/compiler.rb:93:in `each'
+/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/lib/compass/compiler.rb:93:in `run'
+/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/lib/compass/compiler.rb:116:in `timed'
+/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/lib/compass/compiler.rb:92:in `run'
+/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/lib/compass/commands/watch_project.rb:142:in `recompile'
+/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/lib/compass/commands/watch_project.rb:5:in `to_proc'
+/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/fssm-0.2.7/lib/fssm/path.rb:73:in `call'
+/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/fssm-0.2.7/lib/fssm/path.rb:73:in `run_callback'
+/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/fssm-0.2.7/lib/fssm/path.rb:55:in `callback_action'
+/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/fssm-0.2.7/lib/fssm/path.rb:35:in `update'
+/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/fssm-0.2.7/lib/fssm/state/directory.rb:39:in `modified'
+/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/fssm-0.2.7/lib/fssm/state/directory.rb:37:in `each'
+/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/fssm-0.2.7/lib/fssm/state/directory.rb:37:in `modified'
+/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/fssm-0.2.7/lib/fssm/state/directory.rb:18:in `refresh'
+/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/fssm-0.2.7/lib/fssm/backends/rbfsevent.rb:30:in `temporary_multipath_handler'
+/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/fssm-0.2.7/lib/fssm/backends/rbfsevent.rb:27:in `each'
+/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/fssm-0.2.7/lib/fssm/backends/rbfsevent.rb:27:in `temporary_multipath_handler'
+/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/fssm-0.2.7/lib/fssm/backends/rbfsevent.rb:17:in `run'
+/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/fssm-0.2.7/lib/fssm/backends/rbfsevent.rb:16:in `each'
+/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/fssm-0.2.7/lib/fssm/backends/rbfsevent.rb:16:in `run'
+/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/rb-fsevent-0.4.0/lib/rb-fsevent/fsevent.rb:34:in `call'
+/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/rb-fsevent-0.4.0/lib/rb-fsevent/fsevent.rb:34:in `run'
+/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/fssm-0.2.7/lib/fssm/backends/rbfsevent.rb:20:in `run'
+/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/fssm-0.2.7/lib/fssm/monitor.rb:26:in `run'
+/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/fssm-0.2.7/lib/fssm.rb:20:in `monitor'
+/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/lib/compass/commands/watch_project.rb:86:in `perform'
+/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/lib/compass/commands/base.rb:18:in `execute'
+/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/lib/compass/commands/project_base.rb:19:in `execute'
+/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/lib/compass/exec/sub_command_ui.rb:43:in `perform!'
+/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/lib/compass/exec/sub_command_ui.rb:15:in `run!'
+/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/bin/compass:25
+/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/bin/compass:39:in `call'
+/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/gems/compass-0.11.1/bin/compass:39
+/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/bin/compass:19:in `load'
+/Users/orripalsson/.rvm/gems/ruby-1.8.7-p334/bin/compass:19
 */
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Syntax error: Undefined mixin 'horizontal-list'.\A         on line 26 of /Users/orripalsson/Dev/snarpur/app/02/snarpur/app/stylesheets/partials/timeline.sass, in `horizontal-list'\A         from line 26 of /Users/orripalsson/Dev/snarpur/app/02/snarpur/app/stylesheets/partials/timeline.sass\A \A 21:     .close\A 22:       position: absolute\A 23:       right: 10px\A 24:       top: 10px\A 25:   .tml-history-nav\A 26:     +horizontal-list\A 27:     background-color: #000\A 28:     li\A 29:       margin-top: 4px\A 30:       font-size: 1.8em\A 31:       color: #e0e0e0"; }
+  content: "Syntax error: Undefined mixin 'stretch'.\A         on line 6 of /Users/orripalsson/Dev/snarpur/app/02/snarpur/app/stylesheets/partials/timeline.sass, in `stretch'\A         from line 6 of /Users/orripalsson/Dev/snarpur/app/02/snarpur/app/stylesheets/partials/timeline.sass\A \A 1: /Users/orripalsson/Dev/snarpur/app/02/snarpur/app/stylesheets/partials/timeline.sass"; }

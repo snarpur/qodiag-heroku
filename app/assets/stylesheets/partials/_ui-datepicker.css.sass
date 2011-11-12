@@ -1,0 +1,59 @@
+.hasDatepicker .ui-datepicker
+  display: block
+  width: 100%
+  .ui-datepicker-header
+    color: #fff
+  table
+    font-size: 1.6em
+
+    a, th
+      color: #fff
+    a, th, span
+      text-align: center
+    td span, td a
+      padding: .4em .2em
+    td a 
+      +box-shadow(0px 0px 1px 1px rgba(0,0,0,0.07))
+      background-color: rgba(0,0,0,0.1)
+      +background-image(linear-gradient(top,rgba(181,189,200,0.08) 0%,rgba(40,52,59,0.09) 100%))
+    a.ui-state-active
+      +background-image(linear-gradient(top,rgba(181,189,0,0.8) 0%,rgba(40,52,0,0.09) 100%))
+    a:hover
+      background-color: rgba(0,0,0,0.3)
+
+  .ui-datepicker-title
+    font-size: 1.5em
+    border-bottom: 1px solid rgba(233,233,233,.44)
+    padding-bottom: .6em
+    margin: 0
+  .ui-datepicker-header > a > span
+    display: block
+    text-indent: -9999px
+    font-size: 1.1em
+    +icon-size(2em)
+  .ui-datepicker-next,
+  .ui-datepicker-prev
+    span:after
+      content: "\25BA"
+      display: block
+      text-indent: 0
+      position: absolute
+      top: 0
+      left: 0
+      right: 0
+      width: 2em
+      +border-radius(.4em)
+      background-color: rgba(0,20, 250, 0.13)
+      border: #888 solid 1px
+      cursor: pointer
+  .ui-datepicker-next,
+  .ui-datepicker-prev
+    &:hover span:after
+      +box-shadow(0 0 6px -1px rgba(255,255,255,.4))
+
+
+  .ui-datepicker-prev
+    span:after
+      content: "\25C4"
+      display: block
+

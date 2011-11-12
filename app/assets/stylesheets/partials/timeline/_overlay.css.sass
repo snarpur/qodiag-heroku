@@ -1,0 +1,100 @@
+.line.state-open
+  &.overlay-new-item
+    .new-item
+      +opacity(1)
+      z-index: 200     
+      visibility: visible
+  &.overlay-charts 
+    .chart-dialog
+      +opacity(1)
+      z-index: 200
+      visibility: visible
+  
+
+.line
+  .line-overlay
+    +transition-timing-function(ease-out)
+    +transition-duration(.2s)
+    +opacity(0)
+    visibility: hidden
+    position: absolute
+    background-color: #fff
+    z-index: -1
+#canvas.state-new-item .line-overlay 
+  z-index: 300
+.line .new-item
+  z-index: 101
+  background-color: rgba(0, 0, 0, 0.78)
+  border: 1px #eaeaea solid
+  +border-radius(13px)
+  +box-shadow(0 0 0px 9px rgba(0, 0, 0, 0.9), rgba(0,0,0,.4) 0 0 9px 9px) 
+  .left, .right
+    float: left
+    position: relative
+    height: 80%
+    top: 10%
+    left: 10%
+  .left
+    text-align: center
+    button
+      display: none
+      position: absolute
+      bottom: 0px
+      left: 25%
+      width: 50%
+  &.state-selected button
+    &.send
+      +inline-block()
+    &.disabled
+      display: none
+  &.state-success button, 
+  &.state-idle button,
+  &.state-error button
+    &.send
+      display: none
+    &.disabled
+      +inline-block()
+  & .state-msg 
+    position: absolute
+    width: 80%
+    left: 10%
+    top: 17%
+    li
+      display: none
+      font-size: 1.4em
+      em
+        display: block
+        padding: 5px
+        margin: 0 auto 1.3em
+        color: rgba(0, 0, 0, 0.78)
+  .m-success
+    color: #{$m-success}
+    em
+      background-color: #{$m-success} 
+  .m-selected, .m-idle
+    color: #{$m-selected}
+    em
+      background-color: #{$m-selected} 
+  .m-error
+    color: #{$m-error}
+@each $state in idle, selected, success, error
+  .new-item.state-#{$state} .state-msg .m-#{$state}
+    display: block 
+
+
+.line .chart-dialog
+  left: 0
+  +box-shadow(rgba(0,0,0,0.15) 0 0 3px 1px)
+  &>div
+    +clearfix
+    background-color: #fff
+  .chart
+    float: left
+    margin-left: 25px
+  h3
+    padding: 5px
+    font-size: 1.3em
+  .c-icon
+    position: absolute
+    right: 10px
+    top: 10px

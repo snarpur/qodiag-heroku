@@ -12,6 +12,8 @@ is:
         teacher: "kennaramat"
         parent: "foreldramat"
       teacher: "kennari"
+    client_registration: 
+      name: Aðrar upplýsingar
     adhd-rating-scale:
       name: "ADHD Mælikvarði"
       terms:

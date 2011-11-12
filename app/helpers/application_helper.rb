@@ -1,9 +1,10 @@
 module ApplicationHelper
-
+  
   def role_partial(name, action)
     partial = @current_user.role_name
     "#{name}/#{partial}/#{action}"
   end
+  
   def role_view
     "#{@current_user.role_name}-view" unless @current_user.nil?
   end
@@ -16,13 +17,6 @@ module ApplicationHelper
   def javascript(*args)
     args = args.map { |arg| arg == :defaults ? arg : arg.to_s }
     content_for(:head) { javascript_include_tag(*args) }
-  end
-
-  def remove_link_unless_new_record(fields)
-    out = ''
-    out << fields.hidden_field(:_delete)  unless fields.object.new_record?
-    out << link_to(t('actions.remove'), "##{fields.object.class.name.underscore}", :class => 'remove-spouse button small red')
-    out
   end
 
   def generate_html(form_builder, method, options = {}, attributes = {})

@@ -1,0 +1,89 @@
+$icn_s: 18px
+=icon-size($size)
+  height: $size
+  width: $size
+  line-height: $size
+  text-align: center
+
+.c-icon
+  display: block
+  position: relative
+  &.small
+    +icon-size($icn_s)
+  &.close
+    position: absolute
+    right: 1em
+    top: 1em
+    +border-radius($icn_s/2)
+    background-color: rgba(255,0,0,0.6)
+    +box-shadow(rgba(255,0,0,0.3) 0 0 1px 1px)
+  &.close:after
+    content: "\2715"
+    display: block
+    text-indent: 1px
+    color: #f4f4f4
+  &.add-1:after
+    content: "\2295"
+    display: block
+  &.close, &.add-1
+    cursor: pointer
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+$icon-16-c2: unquote("/images/16/color2/")
+$icon-12-c2: unquote("/images/12/color2/")
+
+=icon($size, $color, $action: true)
+  display: block
+  width: $size + px
+  height: $size + px
+  padding: 1px
+  text-indent: -99999px
+  @if $action == true
+    cursor: pointer
+    opacity: 0.8
+    &:hover
+      opacity: 1
+
+=icon-image($type, $name)
+  background: url($type + $name + ".png") 0 0 no-repeat
+
+.icon-16-c2
+  +icon(16, color2)
+  &.delete
+    +icon-image($icon-16-c2, trash)
+  &.edit
+    +icon-image($icon-16-c2, edit)
+
+.icon-12-c2
+  +icon(12, color2)
+  &.delete
+    +icon-image($icon-12-c2, trash)
+  &.edit
+    +icon-image($icon-12-c2, edit)
+
+.icon.partner
+  background: url("/images/partner.png") no-repeat
+  padding-left: 45px
+
+.icon.delete
+  padding: 6px 0 4px 20px
+  background: url("/images/trash.png") 3px 3px no-repeat
+  color: #bcbfd6
+  opacity: 0.7
+  font-size: 0.9em
+  cursor: pointer
+
+.icon.delete:hover
+  opacity: 1

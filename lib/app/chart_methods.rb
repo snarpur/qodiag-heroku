@@ -1,4 +1,4 @@
-module ChartMethods
+module ChartMethods 
 
   def result_color(result_name)
     {:color => get(:color)[result_name.to_sym]}
@@ -39,4 +39,6 @@ module ChartMethods
   def group_index(group)
     get(:question_groups).index(group.to_s)
   end
+
+
 end

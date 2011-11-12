@@ -1,45 +1,61 @@
 =content_for :style_header do
-  -@timeline.months.each_index do |month|
-    :sass
-      .vertical-divider.m-#{month}
-        left: #{@timeline.month_width * month}px
   :sass
-    $history_nav_size: 50px
+    #{dimensions(@timeline)}  
+    $header_height: $line_height/2
+    $nav_height: $line_height*0.3
     #canvas
-      width: #{@timeline.canvas_width}px
-      .tml-history-nav
-        height: #{@timeline.header_height}px
-        padding-left: #{@timeline.canvas_width/2}px
-    #tml-l-gutter,
+      width: $canvas_width
+      &>nav
+        li
+          width: $history_view_width/2
+          height: $nav_height
+    #tml-body 
+      &>ul
+        padding-top: $header_height
+        li
+          height: $line_height
+          width: $gutter_width
     #tml-history
-      padding-top: #{@timeline.header_height/2}px
-    #tml-l-gutter
-      width: #{@timeline.gutter_width}px
-      li
-        height: #{@timeline.line_height}px
-    #tml-menu
-      height: #{@timeline.header_height}px
-    #tml-history
-      width: #{@timeline.history_width}px
-      left: #{@timeline.current_position}px
-    .line
-      &.closed
-        height: #{@timeline.line_height}px
-      &.open
-      height: #{@timeline.line_height_expanded}px
-    .months
-      width: #{@timeline.history_width}px
-    .vertical-divider
-      width: #{@timeline.month_width}px
-    .item
-      top: #{@timeline.line_height/3}px
-    .chart-dialog
-      height: #{@timeline.line_height_expanded}px
-      width: #{@timeline.canvas_width}px
-      .chart
-        height: #{@timeline.line_height_expanded * 0.9}px
-      //left: #{@timeline.gutter_width}px
-      //padding-left: #{(@timeline.history_view_width / 6)}px
-      .jqplot-target
-        height: #{@timeline.line_height*4}px
-        width: #{(@timeline.history_view_width / 3) * 2}px
+      width: $history_width
+      &>ul
+        li
+          height: $header_height
+          width: $history_view_width
+        span
+          height: $header_height
+        b
+          height: $nav_height
+          line-height: $nav_height
+      .line
+        &.state-closed
+          height: $line_height
+        &.state-open
+          height: $line_height_expanded + $header_height
+      .item
+        top: $line_height/3 
+    .line-overlay
+      height: $line_height_expanded
+      width: $canvas_width
+      &.chart-dialog
+        margin-top: $header_height
+      &.new-item
+        width: $canvas_width - 20px
+        left: 10px
+        .left, .right 
+          width: 40%  
+
+
+    
+    .line:nth-child(1) .line-overlay
+      top: ($line_height * 1) - ($line_height*1.5)
+    .line:nth-child(2)  .line-overlay
+      top: ($line_height * 2) - ($line_height*1.5) 
+    .line:nth-child(3)  .line-overlay
+      top: ($line_height * 3) - ($line_height*1.5) 
+    .line:nth-child(4)  .line-overlay
+      top: ($line_height * 4) - ($line_height*1.5) 
+    .line:nth-child(5)  .line-overlay
+      top: ($line_height * 5) - ($line_height*1.5) 
+    .line:nth-child(6)  .line-overlay
+      top: ($line_height * 6) - ($line_height*1.5)
+       

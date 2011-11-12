@@ -1,0 +1,16 @@
+//= require jquery
+//= require jquery-ui/development-bundle/ui/jquery.ui.datepicker
+//= require jquery_ujs
+//= require underscore/underscore
+//= require underscore/underscore.string
+//= require json2.js
+//= require backbone/backbone.js
+//= require backbone/backboneCSRF.js
+//= require js-templates/handlebars.js
+//= require date/build/date-is-IS.js
+//= require XDate/XDate
+//= require highcharts/js/highcharts
+//= require i18n
+//= require i18n/translations
+//= require_self 
+//= require_tree .

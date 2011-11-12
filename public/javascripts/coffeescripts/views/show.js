@@ -1,4 +1,4 @@
-/* DO NOT MODIFY. This file was compiled Wed, 28 Sep 2011 14:13:26 GMT from
+/* DO NOT MODIFY. This file was compiled Fri, 07 Oct 2011 13:54:50 GMT from
  * /Users/orripalsson/Dev/snarpur/app/02/snarpur/app/coffeescripts/views/show.coffee
  */
 
@@ -17,7 +17,6 @@
     __extends(Show, Backbone.View);
     function Show() {
       this.render = __bind(this.render, this);
-      this.openDialog = __bind(this.openDialog, this);
       this.renderChart = __bind(this.renderChart, this);
       this.highChart = __bind(this.highChart, this);
       this.inlineAttributes = __bind(this.inlineAttributes, this);
@@ -185,7 +184,6 @@
       })));
       return high = new Highcharts.Chart(this.highChart(chart));
     };
-    Show.prototype.openDialog = function() {};
     Show.prototype.render = function() {
       var chart, _i, _len, _ref;
       console.info(this);

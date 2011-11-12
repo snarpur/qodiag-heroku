@@ -1,13 +1,14 @@
 !!!
-%html{ "xml:lang" => "en", :lang => "en", :xmlns => "http://www.w3.org/1999/xhtml" }
+%html
   %head
-    %meta{ :content => "text/html;charset=UTF-8", "http-equiv" => "content-type" }
+    %meta{:chartset => "UTF-8"}
     = yield(:head)
-
-
-    =stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Droid+Sans&v1'
-    =include_stylesheets :common
-    =include_javascripts :common, :snarpur, :high_chart
+    =csrf_meta_tag
+    = stylesheet_link_tag "application"
+    = javascript_include_tag "application"
+    %script{:type => 'text/javascript'}
+      ="I18n.defaultLocale = '#{I18n.default_locale}';"
+      ="I18n.locale = '#{I18n.locale}';"
 
 
     %style{:type => 'text/css'}
@@ -42,5 +43,4 @@
       #footer
         %span
           Snarpur 2010 | Fallegt virkar betur
-    #dialog
-    //=include_javascripts :snarpur_test
+

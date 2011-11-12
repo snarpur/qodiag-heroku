@@ -1,5 +1,5 @@
 class ResponderItemsController < ApplicationController
-  before_filter :create_responder_item, :only => :new
+  before_filter :create_responder_item, :only => [:new,:create]
   load_and_authorize_resource
 
   def index
@@ -23,10 +23,11 @@ class ResponderItemsController < ApplicationController
   end
 
   def create
-    @responder_item = ResponderItem.new(params[:responder_item])
+    @responder_item
     if @responder_item.save
       RequestNotice.request_survey(@responder_item).deliver
-      redirect_to(person_path(@responder_item.subject), :notice => I18n.t('responder_item.messages.requested'))
+      render :json => @responder_item
+      #redirect_to(person_path(@responder_item.subject), :notice => I18n.t('responder_item.messages.requested'))
     else
       render :action => :new
     end
@@ -41,8 +42,8 @@ class ResponderItemsController < ApplicationController
 
   private
   def create_responder_item
-    @responder_item = current_user.person.new_patient_request(params[:person_id])
-
+    args = params[:responder_item].nil? ? params : params[:responder_item]
+    @responder_item = current_user.person.new_patient_request(args)
   end
 
 end

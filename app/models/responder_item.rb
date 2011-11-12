@@ -21,13 +21,12 @@ class ResponderItem < ActiveRecord::Base
   validates_presence_of :registration_identifier, :if => Proc.new { |a| a.survey_id.nil? }
   validates_associated :client
 
-  def self.new_patient_item(patient_id,caretaker)
-    patient = Person.find(patient_id)
-    item = ResponderItem.new
+  def self.new_patient_item(params,caretaker)
+    item = ResponderItem.new(params)
+    patient = Person.find(params[:subject_id])
     item.subject = patient
     item.caretaker = caretaker
     item.client = patient.guardian_client
-    item.deadline = 2.weeks.from_now
     item
   end
 

@@ -90,7 +90,7 @@ module FactoryGirlStepHelpers
   end
 
   def association_factory(factory_name)
-    if !Factory.factories[factory_name.to_sym].nil?
+    if !FactoryGirl.factories[factory_name.to_sym].nil?
       factory_name
     else
       nil
@@ -109,7 +109,7 @@ end
 
 World(TranslationHelper,FactoryGirlStepHelpers,ScenarioStateHelper)
 
-Factory.factories.values.each do |factory|
+FactoryGirl.factories.values.each do |factory|
   Given /^the following (?:#{factory.human_name}|#{factory.human_name.pluralize}) exists?:$/ do |table|
     table.hashes.each do |human_hash|
       attributes = process_attributes(factory, human_hash)
