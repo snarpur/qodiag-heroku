@@ -85,16 +85,40 @@
 .line .chart-dialog
   left: 0
   +box-shadow(rgba(0,0,0,0.15) 0 0 3px 1px)
-  &>div
-    +clearfix
-    background-color: #fff
+  &.state-column 
+    .chart-wrapper
+      left: 0
+    .column-chart-icn
+      +opacity(0.7)
+  &.state-line 
+    .chart-wrapper
+      left: -100%
+    .line-chart-icn
+      +opacity(0.7)
+  .chart-wrapper
+    +transition-property(left)
+    +transition-duration(.5s)
+    +transition-timing-function(ease)
+    position: absolute
+    & > div
+      float: left
+      width: 50%
   .chart
     float: left
-    margin-left: 25px
+    &:first-child
+      margin-left: 100px
+  ul
+    +horizontal-list
+    position: absolute
+    top: 20px
+    right: 100px
+    span
+      +opacity(.2)
+      display: block
   h3
     padding: 5px
     font-size: 1.3em
-  .c-icon
+  .c-icon.close
     position: absolute
     right: 10px
     top: 10px

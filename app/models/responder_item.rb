@@ -12,6 +12,7 @@ class ResponderItem < ActiveRecord::Base
   scope :recently_completed, where("completed IS NOT NULL")
   scope :completed, where("completed IS NOT NULL")
   scope :surveys, where("survey_id IS NOT NULL")
+  scope :surveys_by_id, lambda {|survey_id| where("survey_id = ?", survey_id)}
   scope :registrations, where("registration_identifier IS NOT NULL").order(:id)
   scope :surveys_by_group, ResponderItem.surveys.order('survey_id')
 
@@ -30,6 +31,17 @@ class ResponderItem < ActiveRecord::Base
     item
   end
 
+  def self.to_chart(params)
+    KK.log params.inspect
+    if params[:survey_id]
+      responder = Person.find(params[:subject_id]).guardian_user
+      {:charts => ResponseSet.to_chart(params[:survey_id], responder)}
+    else  
+      responder_item = ResponderItem.find(params[:id])
+      responder_item.response_set.result_to_chart
+    end
+
+  end
 
   def access_code
     self.survey.nil? ? self.registration_identifier : self.survey.access_code

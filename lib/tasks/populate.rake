@@ -67,20 +67,21 @@ namespace :db do
             end
             item_type = ['survey','registration']
             item_status = ['completed','uncompleted','overdue']
-            item_count = 0
-           ResponderItem.populate 8 do |item|
-              new_survey_id = item_count < 4 ? rand(surveys.length) + 1 : 1
+            item_count = -1
+           ResponderItem.populate 15 do |item|
+              item_count += 1
+              new_survey_id = rand(surveys.length) + 1
               item.client_id = parent.id
               item.subject_id = patient.id
               item.caretaker_id = caretaker.id
-              if item_count < 4
-                date = Time.now - rand(2).weeks
+              if item_count < 4                  ## Pending
+                date = Time.now - rand(20).days
                 item.created_at = date
                 deadline = date.advance(:weeks =>2)
                 item.deadline = deadline
-                item.completed = date - 1.days if item_count < 1
+                item.completed = date - 1.days if item_count < 1 ## first is completed
               else
-                date = Time.now - rand(100).weeks
+                date = Time.now - rand(800).days
                 item.created_at = date
                 deadline = date.advance(:weeks =>2)
                 item.deadline = deadline
@@ -92,14 +93,28 @@ namespace :db do
               else
                  item.survey_id = new_survey_id
               end
-              item_count += 1
-              ResponseSet.populate 1 do |set|
-                set.survey_id = new_survey_id
-                set.access_code = "new-acss" << item.id.to_s
-                set.user_id = client_user.id
-                item.response_set_id = set.id
-
-              end
+              unless item.completed.nil?
+                ResponseSet.populate 1 do |set|
+                  set.survey_id = new_survey_id
+                  set.access_code = "new-acss" << item.id.to_s
+                  set.user_id = client_user.id
+                  item.response_set_id = set.id
+                  set.completed_at = item.completed
+                  survey_sections = SurveySection.where(item.survey_id).select(:id)
+                  survey_sections.each do |section|
+                    questions = Question.where("survey_section_id = #{section.id}")
+                    questions_size = questions.size
+                    questions.each do |question|
+                      answers = question.answers 
+                      Response.populate 1 do |response|
+                        response.response_set_id = set.id
+                        response.question_id = question.id
+                        response.answer_id = answers[rand(answers.size)].id
+                      end
+                    end
+                  end
+                end
+              end 
             end
           end
         end

@@ -19,6 +19,10 @@ class UsersController < ApplicationController
   end
 
   def show
+    @patients = @current_user.person.relations.patients
+    respond_to do |format|
+       format.html
+    end
   end
 
 

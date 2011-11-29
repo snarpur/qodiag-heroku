@@ -15,8 +15,9 @@ class App.Controllers.ResponderItemsController extends Backbone.Router
       el: canvasEl
     
     canvas = new App.Views.Timeline.Canvas(params)
-    $("#content").append(canvas.render().el)
-
+    #$("#content").append(canvas.render().el)
+    $("#canvas-p").append(canvas.render().el)
+  
   closeOpenDialog: =>
     console.info "in openClose"
     $("#chart-dialog").remove()

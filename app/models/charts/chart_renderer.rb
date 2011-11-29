@@ -1,5 +1,5 @@
 class ChartRenderer
-
+  
   def initialize(response_set)
     @response_set = response_set
     get_chart_config

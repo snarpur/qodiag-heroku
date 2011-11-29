@@ -118,7 +118,7 @@ class Person < ActiveRecord::Base
     self.send("#{self.role}_responder_items")
   end
 
-  def responder_items_by_name_and_status(name,status=:all)
+  def responder_items_by_type_and_status(name,status=:all)
       status = status.is_a?(Array) ? status : [status]
       items = []
 
@@ -126,11 +126,15 @@ class Person < ActiveRecord::Base
         if name.eql?(:all)
           item_group = self.responder_items & ResponderItem.send(s)
         else
-          item_group = self.responder_items & ResponderItem.send(name).send(s)
+          item_group = self.responder_items(:subject_id) & ResponderItem.send(name).send(s)
         end
         items << {:name => s, :items => item_group} unless item_group.empty?
       end
       items
+  end
+
+  def completed_surveys_by_id(id)
+    self.responder_items & ResponderItem.surveys_by_id(id).completed
   end
 
   def responder_items_by_group
@@ -183,22 +187,23 @@ class Person < ActiveRecord::Base
       self.cpr = cpr[6..9]
     end
   end
+  
   def full_name
     "#{self.firstname} #{self.lastname}"
   end
 
-  # def user
-  #   User.where(:person_id => self.id).first
-  # end
-
   def mother
-      self.inverse_relations.mother.first
-    end
+    self.inverse_relations.mother.first
+  end
+
+  def guardian_user
+    self.inverse_relations.guardians.first.user
+  end
 
   def guardian_client
-      User.joins(:person => :relationships).
-        where("relationships.name = 'guardian' AND relationships.relation_id = #{self.id}").
-        first.person
+    User.joins(:person => :relationships).
+    where("relationships.name = 'guardian' AND relationships.relation_id = #{self.id}").
+    first.person
   end
 
   def new_patient_request(params)

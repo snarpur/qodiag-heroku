@@ -40,6 +40,5 @@ class User < ActiveRecord::Base
   def role_name
     self.roles.first.name
   end
-
 end
 

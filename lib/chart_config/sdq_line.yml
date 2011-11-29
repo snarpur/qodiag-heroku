@@ -1,0 +1,32 @@
+chart_class: ColumnChart
+defaults:
+  credits:
+    enabled: false
+  tooltip:
+    enabled: false
+  chart:
+    defaultSeriesType: line
+    marginBottom: 100
+    renderTo: lineContainer
+  result_names: [normal, borderline, abnormal]
+  title:
+    text: "  "
+  legend:
+    align: center
+    floating: true
+  yAxis:
+    allowDecimals: false
+    title:
+      text: ~
+    tickPosition: inside
+  xAxis:
+    title:
+      text: ~
+      align: "middle"
+      margin: 25
+
+charts:
+  -
+    chart: 
+      renderTo: score
+    question_groups: [emotional, conduct, hyperactivity_inattention, peer_problem, prosocial_behaviour]

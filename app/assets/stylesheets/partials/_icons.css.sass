@@ -1,4 +1,5 @@
 $icn_s: 18px
+$icn_m: 45px
 =icon-size($size)
   height: $size
   width: $size
@@ -27,6 +28,21 @@ $icn_s: 18px
     display: block
   &.close, &.add-1
     cursor: pointer
+
+  &.medium
+    +icon-size($icn_m)
+    cursor: pointer
+    &.line-chart-icn,
+    &.column-chart-icn
+      background-repeat: no-repeat
+      background-position: 50% 50%
+      +border-radius(5px)
+      &:hover
+        background-color: #888
+    &.line-chart-icn
+      background-image: url("/images/cc/blacks/48x48/chart_line_2.png")      
+    &.column-chart-icn
+      background-image: url("/images/cc/blacks/48x48/chart_bar.png")
 
 
 

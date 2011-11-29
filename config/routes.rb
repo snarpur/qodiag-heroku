@@ -16,12 +16,14 @@ Snarpur::Application.routes.draw do
   resources :people
   resources :relationships
   resources :roles
+  
   resources :responder_items do
       resources :people
   end
   resources :people, :as => 'subject' do
       resources :responder_items
   end
+  match 'people/:subject_id/responder_items/survey/:survey_id' => 'responder_items#show', :via => :get
   get "pages/error_401"
 
 

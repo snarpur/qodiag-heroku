@@ -1,6 +1,8 @@
 App.Views.Charts ||= {}
 
 class App.Views.Charts extends Backbone.View
+  
+  className: "column-chart"
 
   initialize:->
     @timeline = @.options.timeline
@@ -22,22 +24,17 @@ class App.Views.Charts extends Backbone.View
       else
         @.y
 
-  legendFormatter:=>
-    
-    model = @model
+  legendFormatter:=>    
+    accessCode = @timeline.getSurveyAccessCode(@model.get("survey_id"))
     () ->
-      str = I18n.t("surveys.#{model.get('access_code')}.terms.#{@.name}")
-      console.log "surveys.#{model.get('access_code')}.terms.#{@.name}", model
+      str = I18n.t("surveys.#{accessCode}.terms.#{@.name}")
       str = @.name if _.includes(str,'missing')
       _.capitalize(str)
 
-
-
   categoryFormatter:=>
-    model = @model
+    accessCode = @timeline.getSurveyAccessCode(@model.get("survey_id"))
     () ->
-      model.get('translations')[@.value] ? @.value
-      str = I18n.t("surveys.#{model.get('access_code')}.terms.#{@.value}")
+      str = I18n.t("surveys.#{accessCode}.terms.#{@.value}")
       str = @.value if _.includes(str,'missing')
       _.capitalize(str)
 
@@ -55,10 +52,13 @@ class App.Views.Charts extends Backbone.View
           title: chart.chart.title
           renderTo: chart.name
           marginBottom: chart.chart.marginBottom
+          height: @timeline.getChartHeight()
           type: chart.chart.type
         plotOptions: @plotOptions(chart)
         xAxis:
           categories: chart.categories
+          title:
+            text: chart.date
           labels: 
             formatter: @categoryFormatter()
         yAxis: chart.y_axis
@@ -67,6 +67,8 @@ class App.Views.Charts extends Backbone.View
 
   
   renderChart:(chart)=>
+    date = I18n.l("date.formats.long", new Date(@model.get("completed"))) if chart is @model.get("charts")[0]
+    _.extend(chart, {date: date}) 
     chartEl = $(@template()(chart))
     chartEl.width(@chartWidth(chart))
     $(@el).append(chartEl)

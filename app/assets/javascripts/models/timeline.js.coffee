@@ -4,8 +4,7 @@ class App.Models.Timeline extends Backbone.Model
     console.log @
     years = {years: [@.get("starts")..@.get("ends")]}
     @.set(years)
-
-  
+ 
   setOpenLine:(line)=>
     @.set(openLine: line)
   
@@ -54,6 +53,9 @@ class App.Models.Timeline extends Backbone.Model
 
   getSurveyAccessCode:(id)=>
     _.find(@.get('surveys'), (o) -> o.id is +id)?.access_code
+
+  getChartHeight:=>
+    @.get('line_height_expanded') - @.get('line_height')
 
 
 

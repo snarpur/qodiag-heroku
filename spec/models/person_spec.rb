@@ -65,7 +65,7 @@ describe Person do
           name = response[:name]
           [:caretaker,:subject,:client].each do |role|
             person = response[:item].send(role)
-            person.responder_items_by_name_and_status(name).size.should == 1
+            person.responder_items_by_type_and_status(name).size.should == 1
           end
         end
 
@@ -104,7 +104,7 @@ describe Person do
 
       it "has one of each uncompleted, recently_completed, overdue" do
         @status.each do |status|
-          @caretaker.responder_items_by_name_and_status(:registrations,status).size.should == 1
+          @caretaker.responder_items_by_type_and_status(:registrations,status).size.should == 1
         end
       end
 

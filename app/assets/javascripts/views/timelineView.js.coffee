@@ -8,7 +8,7 @@ class App.Views.Timeline.Canvas extends Backbone.View
     @model.view = @
     @lines = new App.Collections.LineCollection()
     @lines.bind("change:currentDialogItem", @updateOpenLine)
-    @lines.bind("change:newItem", @focusNewItem)
+    @lines.bind("change:newItemOverlayState", @focusNewItem)
     @model.bind("change:current_position", @move)
     @model.bind("change:current_date", @goToDate)
     @lines.bind("add", @addHeader)

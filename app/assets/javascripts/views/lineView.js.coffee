@@ -42,6 +42,7 @@ class App.Views.Timeline.Line extends Backbone.View
     dialog.renderCharts()
   
   renderLineItems: =>
+    @.$(".line-items").empty()
     _.each(@model.get('items') ,@renderLineItem)
   
   renderLineItem:(item)=>

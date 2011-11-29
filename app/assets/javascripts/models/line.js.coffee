@@ -34,7 +34,7 @@ class App.Models.Line extends Backbone.Model
   
   addItems:(items)=>
     @.set(items: @.get('items').concat(items), {newItem: items})
-    console.log "REMEMBER ADD NEW ITEM TO RESPONDERITE_MCOLLECTION"
+    @timeline.get("items").add(items,{silent: true})
     
     
 class App.Collections.LineCollection extends Backbone.Collection

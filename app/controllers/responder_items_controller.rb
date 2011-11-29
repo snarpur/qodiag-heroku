@@ -3,7 +3,9 @@ class ResponderItemsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @responder_items = @current_user.person.responder_items_by_group
+    @person = Person.find(params[:subject_id])
+    @responder_items = @person.responder_items
+
     respond_to do |format|
       format.html
       format.json {render :json => @responder_items }
@@ -11,10 +13,9 @@ class ResponderItemsController < ApplicationController
   end
 
   def show
-    @responder_item = ResponderItem.find(params[:id])
     respond_to do |format|
       format.html
-      format.json {render :json => @responder_item.result.to_json}
+      format.json {render :json => ResponderItem.to_chart(params).to_json}
     end
   end
 
@@ -25,7 +26,7 @@ class ResponderItemsController < ApplicationController
   def create
     @responder_item
     if @responder_item.save
-      RequestNotice.request_survey(@responder_item).deliver
+      #RequestNotice.request_survey(@responder_item).deliver
       render :json => @responder_item
       #redirect_to(person_path(@responder_item.subject), :notice => I18n.t('responder_item.messages.requested'))
     else

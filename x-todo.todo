@@ -1,36 +1,11 @@
-: :::::::::::::::::::::::::::::::::::::: START :::::::::::::::::::::::::::::::::::::
-! closing dialog
-! labelFormatter Error on adhad_rating_scale.yml
+: Desember 
 
-! bæta fjöldi 2-3sta, +/- meðaltal, (+/- staðalfrávik) inn í label
-! setja upp hundraðasta raðir
-! Gera lineChart => hugsa hvernig það mun líta út => setja upp allt á tímalínu ????
-
-
-
-
-! Setja upp https://github.com/mischa/cucumber_rails_debug
-! Rewrite create in SurveyControler#create
-
-: :::::::::::::::::::::::::::::::::::::: DEVELOPMENT ::::::::::::::::::::::::::::::::::::::
-
-
-
-! see results of survey
-: ::::::::::::::::::::::::::::::::::::: CHECK ::::::::::::::::::::::::::::::::::::::
-
-% PRIORITY
-  ! MOCHA
-
-% ENVIRONMENT
-
-
-
-% URGENT STUDY
-  ! Testing models (testing screencasts)
-  ! Prófa backbone.js á ResponseItem
-  ! Fara ígegnum jasmine og cucumber testing with capybara
-
-% STUDY
-  ! HTML 5
-  ! HTML 5 boilerplate
+! Hosting
+! Deployment
+! New github repository
+! Refactor temporary demo features
+! Testing
+%   javascripts
+%   replace cucumber ?
+! Norm reference parser - extract from excel
+! User feedback mechanism

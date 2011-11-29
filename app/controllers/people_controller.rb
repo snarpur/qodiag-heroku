@@ -1,12 +1,14 @@
 class PeopleController < ApplicationController
   before_filter :get_user
   load_and_authorize_resource
+  
   def edit
     @person = Person.find(params[:id])
     if params[:responder_item_id]
       @responder_item = ResponderItem.find(params[:responder_item_id])
     end
   end
+  
   def show
     @person = Person.find(params[:id])
     respond_to do |format|
@@ -26,6 +28,7 @@ class PeopleController < ApplicationController
       end
     end
   end
+  
   private
 
   def get_user

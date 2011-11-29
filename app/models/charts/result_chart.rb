@@ -1,5 +1,5 @@
 class ResultChart
-  include ChartMethods
+  include ChartMethods 
 
   def initialize(chart_options,response_set)
     @chart = chart_options
@@ -57,6 +57,7 @@ class ResultChart
   end
 
   private
+  
   def get_defaults(key)
     @chart["#{:default}_#{key}".to_sym]
   end

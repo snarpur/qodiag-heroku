@@ -22,16 +22,12 @@
 
   %body{:class => role_view}
     #wrapper
-      =render "shared/debug/annotations"
       #header
         %h2 Snarpur í vinnslu
         %ul.nav
           %li.home
-            %a{:href => "/"}
+            %a{:href => "/users"}
               = t('navigation.home')
-          %li.settings
-            %a{:href => "/"}
-              = t('navigation.settings')
         =render 'shared/log_in_out'
       #flash
         -flash.each do |name, msg|
