@@ -1,167 +1,0 @@
-3.0.25 (Classy Cassidy)
-5b51b9572d5b85dd26566ac0315220a0f5a30787
-o:Sass::Tree::RootNode	:@options{:load_paths[Ô"app"app/controllers"app/controllers/devise"app/helpers"app/models"app/stylesheets"app/stylesheets/partials"app/views"app/views/addresses"app/views/application"app/views/devise"#app/views/devise/confirmations"!app/views/devise/invitations"app/views/devise/mailer"app/views/devise/passwords"#app/views/devise/registrations"app/views/devise/sessions"app/views/devise/shared"app/views/devise/unlocks"app/views/layouts"app/views/pages"app/views/people")app/views/people/client_registration"app/views/people/guardians"app/views/people/parents"app/views/people/patient"app/views/people/siblings"app/views/relationships"app/views/responder_items"2app/views/responder_items/client_registration"app/views/roles"app/views/shared"app/views/shared/debug"!app/views/shared/error_pages"app/views/users"app/views/users/caretaker"app/views/users/client"config"config/environments"config/initializers"config/locales"config/locales/app"config/locales/devise"config/locales/models"db"db/migrate"doc"features"features/invitations"features/login_logout"features/step_definitions"$features/step_definitions/users"features/support"lib"lib/simple_form"lib/tasks"lib/templates"lib/templates/erb"lib/templates/erb/scaffold"log"public"public/images"public/images/12"public/images/12/color2"public/images/16"public/images/16/color2"public/images/25"public/images/25/color2"public/images/nav"public/images/notice"public/images/raw"public/javascripts"%public/javascripts/InFieldLabels",public/javascripts/InFieldLabels/sample"0public/javascripts/InFieldLabels/sample/css")public/javascripts/InFieldLabels/src"!public/javascripts/jquery-ui"%public/javascripts/jquery-ui/css"0public/javascripts/jquery-ui/css/smoothness"7public/javascripts/jquery-ui/css/smoothness/images"4public/javascripts/jquery-ui/development-bundle":public/javascripts/jquery-ui/development-bundle/demos"Dpublic/javascripts/jquery-ui/development-bundle/demos/accordion"Cpublic/javascripts/jquery-ui/development-bundle/demos/addClass"Bpublic/javascripts/jquery-ui/development-bundle/demos/animate"Gpublic/javascripts/jquery-ui/development-bundle/demos/autocomplete"Apublic/javascripts/jquery-ui/development-bundle/demos/button"Epublic/javascripts/jquery-ui/development-bundle/demos/datepicker"Lpublic/javascripts/jquery-ui/development-bundle/demos/datepicker/images"Apublic/javascripts/jquery-ui/development-bundle/demos/dialog"Dpublic/javascripts/jquery-ui/development-bundle/demos/draggable"Dpublic/javascripts/jquery-ui/development-bundle/demos/droppable"Kpublic/javascripts/jquery-ui/development-bundle/demos/droppable/images"Apublic/javascripts/jquery-ui/development-bundle/demos/effect"?public/javascripts/jquery-ui/development-bundle/demos/hide"Apublic/javascripts/jquery-ui/development-bundle/demos/images"Cpublic/javascripts/jquery-ui/development-bundle/demos/position"Jpublic/javascripts/jquery-ui/development-bundle/demos/position/images"Fpublic/javascripts/jquery-ui/development-bundle/demos/progressbar"Mpublic/javascripts/jquery-ui/development-bundle/demos/progressbar/images"Fpublic/javascripts/jquery-ui/development-bundle/demos/removeClass"Dpublic/javascripts/jquery-ui/development-bundle/demos/resizable"Epublic/javascripts/jquery-ui/development-bundle/demos/selectable"?public/javascripts/jquery-ui/development-bundle/demos/show"Apublic/javascripts/jquery-ui/development-bundle/demos/slider"Cpublic/javascripts/jquery-ui/development-bundle/demos/sortable"Fpublic/javascripts/jquery-ui/development-bundle/demos/switchClass"?public/javascripts/jquery-ui/development-bundle/demos/tabs"Dpublic/javascripts/jquery-ui/development-bundle/demos/tabs/ajax"Apublic/javascripts/jquery-ui/development-bundle/demos/toggle"Fpublic/javascripts/jquery-ui/development-bundle/demos/toggleClass"9public/javascripts/jquery-ui/development-bundle/docs"=public/javascripts/jquery-ui/development-bundle/external";public/javascripts/jquery-ui/development-bundle/themes"@public/javascripts/jquery-ui/development-bundle/themes/base"Gpublic/javascripts/jquery-ui/development-bundle/themes/base/images"Fpublic/javascripts/jquery-ui/development-bundle/themes/smoothness"Mpublic/javascripts/jquery-ui/development-bundle/themes/smoothness/images"7public/javascripts/jquery-ui/development-bundle/ui"<public/javascripts/jquery-ui/development-bundle/ui/i18n"@public/javascripts/jquery-ui/development-bundle/ui/minified"$public/javascripts/jquery-ui/js"'public/javascripts/jquery.metadata",public/javascripts/jquery.metadata/test"#public/javascripts/pixelmatrix"'public/javascripts/pixelmatrix/css"(public/javascripts/pixelmatrix/demo"*public/javascripts/pixelmatrix/images"!public/javascripts/prototype""public/javascripts/underscore"public/stylesheets" public/stylesheets/compiled")public/stylesheets/compiled/partials"public/stylesheets/img"#public/stylesheets/img/buttons"!public/stylesheets/img/icons"'public/stylesheets/img/icons/16x16"public/stylesheets/plugins"public/stylesheets/public"*public/stylesheets/public/stylesheets"3public/stylesheets/public/stylesheets/compiled"script"	spec"spec/controllers"spec/controllers/devise"spec/helpers"spec/models"spec/support"spec/views"	test"test/fixtures"test/functional"test/integration"test/performance"test/unit"test/unit/helpers"tmp"tmp/cache"tmp/capybara"tmp/pids"tmp/sass-cache"<tmp/sass-cache/002eea6863a527c8838679595d795068cad0953e"<tmp/sass-cache/03885a62c254c7c2accc4d56c9aff73bc2b8690a"<tmp/sass-cache/042382b598f4a62efedab9489b3c74624799e5f8"<tmp/sass-cache/122790ec1982e2b55a55b4ada1142eef86bcdf40"<tmp/sass-cache/1c8c75c37fbef2375d720ec730083af636edb455"<tmp/sass-cache/1dc47661b3aefa6818d85a16fcedef3d7ec58d68"<tmp/sass-cache/28d717a9b402e45878174f3873d68eb8510fdffc"<tmp/sass-cache/2956a2877f77ba08ed26c45497753b89aca2a4a4"<tmp/sass-cache/2a468ef7ec27a33f8760fe136280f4d3763eb28c"<tmp/sass-cache/3415218696ee9d32edf413e26d49495b15a8c71f"<tmp/sass-cache/35ce3619ca6e61970d664092b2359182baf694fb"<tmp/sass-cache/3c7c4e9915a4c99c31e70f0616edca95fdddf36d"<tmp/sass-cache/4a86d4f9d24aeaf156bcfde4e3816261b93f919f"<tmp/sass-cache/581dbff3afd2c26c42a95192b7d0da7197411e50"<tmp/sass-cache/645567791c3076d00e5518eadfd4d322266d3c95"<tmp/sass-cache/66af0f46c772eb4b04c81cb94c9caf626ee6997f"<tmp/sass-cache/6f864cb7a0fd8c0ef7d99924a561fb0947e8e4ad"<tmp/sass-cache/7c5442beff646a8bc5377f39f131805cbb7b031a"<tmp/sass-cache/7e044594185de904ae5ddea6794b0eba762f9226"<tmp/sass-cache/85d093083d0970d00f50a6e406b917bc8e57084d"<tmp/sass-cache/8b051ce3ba3a599df6b43d7592d0dde1168c698d"<tmp/sass-cache/8e832d843fed5d1a2ebfcefaf4aa8be0a122d46d"<tmp/sass-cache/9172853ccbedf4daf3a1637477a06e171b8016e9"<tmp/sass-cache/979cb0604153df91b26ad31e4a3968c997fc15e0"<tmp/sass-cache/9d1c423ebdf65c3ead19675bb74e4212e64b4941"<tmp/sass-cache/9dde7ea8b759ae8fd48c6c368477208cbb786673"<tmp/sass-cache/9f0c45482dd5b11d9cb68b1687249b21d9d932ce"<tmp/sass-cache/a0e7edbe12eea4f87a3e6dd76397f7678046656a"<tmp/sass-cache/a39a7a155eb87bd243b4c98821752c009c80e530"<tmp/sass-cache/a6e7faa8a059c22d5b240978e82733a560e8a0f9"<tmp/sass-cache/ad83923a142c5db6c8f2a8a849886b8d78fc513a"<tmp/sass-cache/adc45198460943389f1b274f83e7439cf41e722c"<tmp/sass-cache/b710bdf8107af53e324e2916b9bb1f32d905ac24"<tmp/sass-cache/b79e3e4b2004ab0ede0aa6067971e7e6a88ec3f6"<tmp/sass-cache/baedad33ecc847034ebb758ab3085912ac6ee9cd"<tmp/sass-cache/c96d43a3015683dd9b0f398a81a0f52023da8804"<tmp/sass-cache/d2bb0b7db34d67e00475a5d2b62af01e42c22de0"<tmp/sass-cache/d5765ee7dfed7186fd18227e470e9f5f9c0018d6"<tmp/sass-cache/df40564033085787df07ab54c263f78c20b77a68"<tmp/sass-cache/e04d3c922e3b3aada6b70b0f0d1b9c884fc47da5"<tmp/sass-cache/e074e3e244669c176fbe731e74bd8af5f56730a5"<tmp/sass-cache/e285423697da31daa26a9787a8685a542d93ffe4"<tmp/sass-cache/e708b27684b7743d4ded18d0ddc82a270ca22e62"<tmp/sass-cache/e88eb7c23249d43f58811f5e92717d2fd7453436"<tmp/sass-cache/f1abf8ca118e3fb54ae8439710394afdb5514cf8"<tmp/sass-cache/f447892072c6bf626915415138c4d31af10165c3"<tmp/sass-cache/f70453e6595a2aba4d85456e8665a715120ced32"tmp/sessions"tmp/sockets"vendor"vendor/plugins:cache_location"./.sass-cache:property_syntax0:
-style:nested:syntax:	sass:
-cacheT:line_comments0:filename"(app/stylesheets/partials/_base.sass:@has_childrenT:@template"H	// Here is where you can define your constants for your application and to configure the blueprint framework.
-// Feel free to delete these if you want keep the defaults:
-!blueprint_font_size = 12px
-!blueprint_button_border_color = #dedede
-!blueprint_button_background_color = #f5f5f5
-
-!blueprint_grid_columns = 24
-!blueprint_container_size = 950px
-!blueprint_grid_margin  = 10px
-
-
-
-// Use this to calculate the width based on the total width.
-// Or you can set !blueprint_grid_width to a fixed value and unset !blueprint_container_size -- it will be calculated for you.
-!blueprint_grid_width   = (!blueprint_container_size + !blueprint_grid_margin) / !blueprint_grid_columns - !blueprint_grid_margin
-
-@import "blueprint"
-@import "blueprint/reset"
-@import "blueprint/scaffolding"
-@import "blueprint/typography"
-@import "blueprint/buttons"
-@import "compass/utilities"
-@import "compass/utilities/tables"
-@import "compass/utilities/tables/borders"
-@import "compass/css3/border-radius"
-@import "compass/utilities/general/clearfix"
-@import "compass/layout"
-@import "compass/css3/opacity"
-@import "compass/css3/gradient"
-@import "compass/css3/box-shadow"
-@import "compass/css3/text-shadow"
-
-
-+blueprint-grid
-+blueprint-debug
-+blueprint-interaction
-
-// =============== Constants =======================
-!table_even = #EBEBEB
-!table_odd = #DBE7FF
-!border_lightblue = 1px "solid" #DFE2FF
-!grey_ultralightest = #fcfcfc
-!grey_ultralight = #f9f9f9
-!grey_lightest = #f4f4f4
-!grey_lighter = #eaeaea
-!grey_light = #DFDFDF
-!grey = #bcbcba
-!grey_dark = #7c7c7c
-!grey_darker = #636362
-!orange_light = #FFCA6F
-!orange = #FF981F
-!green_ultralight = #deffdd
-!green_lightest = #DFFFE0
-!green_light = #A4EFA7
-!green_dark = #158F00
-!yellow_lightest = #FFFBCF
-!yellow_light = #FFF79F
-!blue_lightest = #DFE2FF
-!blue_light = #AFB6FF
-!blue_dark = #3b4991
-
-!china1 = #141936
-!china2 = #003A85
-!china3 = #BCBFD6
-!china4 = #E4DCE7
-!china5 = #F9F8F9
-
-!header_border_lightblue = 1px "solid" #DFE2FF
-!h2_border_width = 1px 0 1px 0
-!h2_font_size= 1.4em
-
-
-=debug(!color = "red")
-  :border= !color 1px solid
-
-=sn-btn(!bg-color,!color)
-  +border-radius(11px)
-  :background= !bg-color url('/images/add-grey-12.png') 7px 6px no-repeat
-  :padding 5px 14px 5px 24px
-  :margin-left 10px
-  :color= !color
-  :text-decoration none
-  :border= solid 1px !color
-  :color #333
-  &:hover
-    background-color= !bg-color *2
-
-
-
-
-
-:@children[Ao:Sass::Tree::CommentNode;@:@filename@Ø:@value"©// Here is where you can define your constants for your application and to configure the blueprint framework.
-// Feel free to delete these if you want keep the defaults::@silentT:
-@linei;[ :@lines[ o:Sass::Tree::VariableNode;@:
-@expro:Sass::Script::Number:@numerator_units["px;@;i:@context:equals:@original"	12px:@denominator_units[ ;i;@Ø:
-@name"blueprint_font_size;i;[ :@guarded0o;;@;o:Sass::Script::Color
-;@;0:@attrs{	:	blueiÞ:rediÞ:
-alphai:
-greeniÞ;;;i	;@Ø;"""blueprint_button_border_color;i	;[ ;#0o;;@;o;$
-;@;0;%{	;&iõ;'iõ;(i;)iõ;;;i
-;@Ø;""&blueprint_button_background_color;i
-;[ ;#0o;;@;o;;[ ;@;i;;; "24;![ ;i;@Ø;""blueprint_grid_columns;i;[ ;#0o;;@;o;;["px;@;i¶;;; "
-950px;![ ;i;@Ø;""blueprint_container_size;i;[ ;#0o;;@;o;;["px;@;i;;; "	10px;![ ;i;@Ø;""blueprint_grid_margin;i;[ ;#0o;;@;@Ø;"»// Use this to calculate the width based on the total width.
-// Or you can set !blueprint_grid_width to a fixed value and unset !blueprint_container_size -- it will be calculated for you.;T;i;[ ;[ o;;@;o:Sass::Script::Operation;@:@operator:
-minus;;:@operand2o:Sass::Script::Variable	;@;;;""blueprint_grid_margin;i;i:@operand1o;*;@;+:div;;;-o;.	;@;;;""blueprint_grid_columns;i;i;/o;*;@;+:	plus;;;-o;.	;@;;;""blueprint_grid_margin;i;i;/o;.	;@;;;""blueprint_container_size;i;@Ø;""blueprint_grid_width;i;[ ;#0o:Sass::Tree::ImportNode;@;@Ø:@imported_filename"blueprint;i;0;[ o;2;@;@Ø;3"blueprint/reset;i;0;[ o;2;@;@Ø;3"blueprint/scaffolding;i;0;[ o;2;@;@Ø;3"blueprint/typography;i;0;[ o;2;@;@Ø;3"blueprint/buttons;i;0;[ o;2;@;@Ø;3"compass/utilities;i;0;[ o;2;@;@Ø;3"compass/utilities/tables;i;0;[ o;2;@;@Ø;3"%compass/utilities/tables/borders;i;0;[ o;2;@;@Ø;3"compass/css3/border-radius;i;0;[ o;2;@;@Ø;3"'compass/utilities/general/clearfix;i;0;[ o;2;@;@Ø;3"compass/layout;i ;0;[ o;2;@;@Ø;3"compass/css3/opacity;i!;0;[ o;2;@;@Ø;3"compass/css3/gradient;i";0;[ o;2;@;@Ø;3"compass/css3/box-shadow;i#;0;[ o;2;@;@Ø;3"compass/css3/text-shadow;i$;0;[ o:Sass::Tree::MixinNode:
-@args[ ;@;@Ø;""blueprint-grid;i';[ o;4;5[ ;@;@Ø;""blueprint-debug;i(;[ o;4;5[ ;@;@Ø;""blueprint-interaction;i);[ o;;@;@Ø;"9// =============== Constants =======================;T;i+;[ ;[ o;;@;o;$
-;@;0;%{	;&ië;'ië;(i;)ië;;;i,;@Ø;""table_even;i,;[ ;#0o;;@;o;$
-;@;0;%{	;&iÿ;'iÛ;(i;)iç;;;i-;@Ø;""table_odd;i-;[ ;#0o;;@;o;*;@;+:concat;;;-o;$
-;@;0;%{	;&iÿ;'iß;(i;)iâ;;;i.;i.;/o;*;@;+;6;;;-o:Sass::Script::String
-;@;"
-solid:
-@type:identifier;;;i.;i.;/o;;["px;@;i;;; "1px;![ ;i.;@Ø;""border_lightblue;i.;[ ;#0o;;@;o;$
-;@;0;%{	;&iü;'iü;(i;)iü;;;i/;@Ø;""grey_ultralightest;i/;[ ;#0o;;@;o;$
-;@;0;%{	;&iù;'iù;(i;)iù;;;i0;@Ø;""grey_ultralight;i0;[ ;#0o;;@;o;$
-;@;0;%{	;&iô;'iô;(i;)iô;;;i1;@Ø;""grey_lightest;i1;[ ;#0o;;@;o;$
-;@;0;%{	;&iê;'iê;(i;)iê;;;i2;@Ø;""grey_lighter;i2;[ ;#0o;;@;o;$
-;@;0;%{	;&iß;'iß;(i;)iß;;;i3;@Ø;""grey_light;i3;[ ;#0o;;@;o;$
-;@;0;%{	;&iº;'i¼;(i;)i¼;;;i4;@Ø;""	grey;i4;[ ;#0o;;@;o;$
-;@;0;%{	;&i|;'i|;(i;)i|;;;i5;@Ø;""grey_dark;i5;[ ;#0o;;@;o;$
-;@;0;%{	;&ig;'ih;(i;)ih;;;i6;@Ø;""grey_darker;i6;[ ;#0o;;@;o;$
-;@;0;%{	;&it;'iÿ;(i;)iÊ;;;i7;@Ø;""orange_light;i7;[ ;#0o;;@;o;$
-;@;0;%{	;&i$;'iÿ;(i;)i˜;;;i8;@Ø;""orange;i8;[ ;#0o;;@;o;$
-;@;0;%{	;&iÝ;'iÞ;(i;)iÿ;;;i9;@Ø;""green_ultralight;i9;[ ;#0o;;@;o;$
-;@;0;%{	;&ià;'iß;(i;)iÿ;;;i:;@Ø;""green_lightest;i:;[ ;#0o;;@;o;$
-;@;0;%{	;&i§;'i¤;(i;)iï;;;i;;@Ø;""green_light;i;;[ ;#0o;;@;o;$
-;@;0;%{	;&i ;'i;(i;)i;;;i<;@Ø;""green_dark;i<;[ ;#0o;;@;o;$
-;@;0;%{	;&iÏ;'iÿ;(i;)iû;;;i=;@Ø;""yellow_lightest;i=;[ ;#0o;;@;o;$
-;@;0;%{	;&iŸ;'iÿ;(i;)i÷;;;i>;@Ø;""yellow_light;i>;[ ;#0o;;@;o;$
-;@;0;%{	;&iÿ;'iß;(i;)iâ;;;i?;@Ø;""blue_lightest;i?;[ ;#0o;;@;o;$
-;@;0;%{	;&iÿ;'i¯;(i;)i¶;;;i@;@Ø;""blue_light;i@;[ ;#0o;;@;o;$
-;@;0;%{	;&i‘;'i@;(i;)iN;;;iA;@Ø;""blue_dark;iA;[ ;#0o;;@;o;$
-;@;0;%{	;&i;;'i;(i;)i;;;iC;@Ø;""china1;iC;[ ;#0o;;@;o;$
-;@;0;%{	;&i…;'i ;(i;)i?;;;iD;@Ø;""china2;iD;[ ;#0o;;@;o;$
-;@;0;%{	;&iÖ;'i¼;(i;)i¿;;;iE;@Ø;""china3;iE;[ ;#0o;;@;o;$
-;@;0;%{	;&iç;'iä;(i;)iÜ;;;iF;@Ø;""china4;iF;[ ;#0o;;@;o;$
-;@;0;%{	;&iù;'iù;(i;)iø;;;iG;@Ø;""china5;iG;[ ;#0o;;@;o;*;@;+;6;;;-o;$
-;@;0;%{	;&iÿ;'iß;(i;)iâ;;;iI;iI;/o;*;@;+;6;;;-o;7
-;@;"
-solid;8;9;;;iI;iI;/o;;["px;@;i;;; "1px;![ ;iI;@Ø;""header_border_lightblue;iI;[ ;#0o;;@;o;*;@;+;6;;;-o;;[ ;@;i ;;; "0;![ ;iJ;iJ;/o;*;@;+;6;;;-o;;["px;@;i;;; "1px;![ ;iJ;iJ;/o;*;@;+;6;;;-o;;[ ;@;i ;;; "0;![ ;iJ;iJ;/o;;["px;@;i;;; "1px;![ ;iJ;@Ø;""h2_border_width;iJ;[ ;#0o;;@;o;;["em;@;f1.3999999999999999 ff;;; "
-1.4em;![ ;iK;@Ø;""h2_font_size;iK;[ ;#0o:Sass::Tree::MixinDefNode;5[[o;.;@;:default;""
-coloro;7
-;@;"red;8;9;;;iN;@;@Ø;T;""
-debug;iN;[o:Sass::Tree::PropNode:
-@tabsi ;@;@Ø;o;*;@;+;6;;;-o;7
-;@;"
-solid;8;9;;;iO;iO;/o;*;@;+;6;;;-o;;["px;@;i;;; "1px;![ ;iO;iO;/o;.	;@;;;""
-color;iO:@prop_syntax:old;"["border;iO;[ o;:;5[[o;.;@;;;;""bg-color0[o;.;@;;;;""
-color0;@;@Ø;T;""sn-btn;iQ;[o;4;5[o;;["px;@;i;;;; "	11px;![ ;iR;@;@Ø;""border-radius;iR;[ o;<;=i ;@;@Ø;o;*;@;+;6;;;-o;7
-;@;"no-repeat;8;9;;;iS;iS;/o;*;@;+;6;;;-o;;["px;@;i;;; "6px;![ ;iS;iS;/o;*;@;+;6;;;-o;;["px;@;i;;; "7px;![ ;iS;iS;/o;*;@;+;6;;;-o:Sass::Script::Funcall
-;5[o;7
-;@;"/images/add-grey-12.png;8:string;;;;iS;@;;;;""url;iS;iS;/o;.	;@;;;""bg-color;iS;>;?;"["background;iS;[ o;<;=i ;@;@Ø;o;*;@;+;6;;;;-o;;["px;@;i;;;; "	24px;![ ;iT;iT;/o;*;@;+;6;;;;-o;;["px;@;i
-;;;; "5px;![ ;iT;iT;/o;*;@;+;6;;;;-o;;["px;@;i;;;; "	14px;![ ;iT;iT;/o;;["px;@;i
-;;;; "5px;![ ;iT;>;?;"["padding;iT;[ o;<;=i ;@;@Ø;o;;["px;@;i;;;; "	10px;![ ;iU;>;?;"["margin-left;iU;[ o;<;=i ;@;@Ø;o;.	;@;;;""
-color;iV;>;?;"["
-color;iV;[ o;<;=i ;@;@Ø;o;7
-;@;"	none;8;9;;;;iW;>;?;"["text-decoration;iW;[ o;<;=i ;@;@Ø;o;*;@;+;6;;;-o;.	;@;;;""
-color;iX;iX;/o;*;@;+;6;;;-o;;["px;@;i;;; "1px;![ ;iX;iX;/o;7
-;@;"
-solid;8;9;;;iX;>;?;"["border;iX;[ o;<;=i ;@;@Ø;o;$
-;@;0;%{	;&i8;'i8;(i;)i8;;;;iY;>;?;"["
-color;iY;[ o:Sass::Tree::RuleNode;=i ;@;@Ø;T:
-@rule["&:hover;iZ;[o;<;=i ;@;@Ø;o;*;@;+:
-times;;;-o;;[ ;@;i;;; "2;![ ;i[;i[;/o;.	;@;;;""bg-color;i[;>:new;"["background-color;i[;[ 
