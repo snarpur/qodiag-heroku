@@ -8,12 +8,9 @@ end
 module Snarpur
   class Application < Rails::Application
 
-
-
-
-    stylesheets_directory = "#{Rails.root}/app/assets/stylesheets"
+    # stylesheets_directory = "#{Rails.root}/app/assets/stylesheets"
     config.assets.precompile << /(^[^_]|\/[^_])[^\/]*/
-    config.sass.preferred_syntax = :sass
+    # config.sass.preferred_syntax = :sass
 
     config.assets.enabled = true
     # Settings in config/environments/* take precedence over those specified here.

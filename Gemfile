@@ -52,7 +52,7 @@ group :development, :test do
   gem "populator"
   gem "faker"
   gem "syntax"
-  gem "rb-fsevent", :require => false if RUBY_PLATFORM =~ /darwin/i
+#  gem "rb-fsevent", :require => false if RUBY_PLATFORM =~ /darwin/i
   gem "guard-haml"
   gem "guard-livereload"
   gem "letter_opener"

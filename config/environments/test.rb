@@ -35,5 +35,6 @@ Snarpur::Application.configure do
 
   config.serve_static_assets = true
   config.static_cache_control = "public, max-age=3600"
+  config.sass.preferred_syntax = :sass
 
 end
