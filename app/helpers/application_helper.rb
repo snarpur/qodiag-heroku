@@ -10,8 +10,8 @@ module ApplicationHelper
   end
 
   def set_checked_status(record,role)
-    if record.role != role || record.new_record? : status = true end
-    if record.role.nil? : status = false end
+    if record.role != role || record.new_record? then status = true end
+    if record.role.nil? then status = false end
   end
 
   def javascript(*args)

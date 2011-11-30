@@ -5,7 +5,7 @@ module PeopleHelper
   end
   
   def mother_or_father(parent)
-    parent = parent.sex == "female" ? "mother": "father"
+    parent = parent.sex == "female" ? "mother" : "father"
   end
   
   def get_relationship_inverse_relationship(person, opposit, name)
@@ -68,10 +68,10 @@ module PeopleHelper
       link_to step_name, :controller => "people", :action => "new", :step => step_no
     else
       person = case
-       when step_no == 1 : patient
-       when step_no == 2 : patient.mother
-       when step_no == 3 : patient.father
-       when step_no == 4 : patient
+       when step_no == 1 then patient
+       when step_no == 2 then patient.mother
+       when step_no == 3 then patient.father
+       when step_no == 4 then patient
       end
     
       if !person
@@ -92,10 +92,10 @@ module PeopleHelper
   
   def sibling_relation(person, sibling)
     relation = case
-      when person.full_siblings.include?(sibling) : "full_sibling"
-      when person.half_siblings(person.father).include?(sibling) : "half_sibling_father"
-      when person.half_siblings(person.mother).include?(sibling) : "half_sibling_mother"
-      when person.foster_siblings.include?(sibling) : "foster_sibling"
+      when person.full_siblings.include?(sibling) then "full_sibling"
+      when person.half_siblings(person.father).include?(sibling) then "half_sibling_father"
+      when person.half_siblings(person.mother).include?(sibling) then "half_sibling_mother"
+      when person.foster_siblings.include?(sibling) then "foster_sibling"
       else "none"
     end
   end

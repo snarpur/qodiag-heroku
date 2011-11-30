@@ -159,12 +159,12 @@ class Person < ActiveRecord::Base
   end
 
   def presence_of_cpr
-    errors.add(:cpr, "má ekki vera autt") if
+    errors.add(:cpr, "cannot be empty") if
       ispatient == true and cpr.nil?
   end
 
   def presence_of_parent_occupation
-    errors.add(:occupation, "má ekki vera autt") if
+    errors.add(:occupation, "cannot be empty") if
       !relationships.select{|v|v.name == "guardian" || "parent"}.empty? and occupation.try("empty?")
   end
 

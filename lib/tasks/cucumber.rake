@@ -58,8 +58,8 @@ begin
     STDERR.puts "*** The 'features' task is deprecated. See rake -T cucumber ***"
   end
   task :cucumberhtml do
-       output_path = Dir["#{Rails.root}/html_output.html"]
-       system "bundle exec cucumber -r features -f html -o html_output.html"
+       output_path = Dir["#{Rails.root}/features/html_output.html"]
+       system "bundle exec cucumber -r features -f html -o features/html_output.html"
        puts
        system "open #{output_path} -a 'Google Chrome'"
        puts ":::: OPENING < #{output_path} > WITH GOOGLE CHROME".foreground(:black).background(:cyan)

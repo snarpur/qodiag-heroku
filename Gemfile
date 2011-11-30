@@ -41,7 +41,7 @@ group :development, :test do
   gem "factory_girl_rails"
   gem "pickle"
   gem "email_spec"
-  gem "ruby-debug"
+#  gem "ruby-debug"
   gem "nokogiri"
   gem "launchy"
   gem "wirble"
