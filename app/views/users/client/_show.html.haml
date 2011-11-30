@@ -1,7 +1,0 @@
-- registrations = registration_items([:uncompleted,:overdue],@current_user)
-- registrations.each do |r|
-  %h2
-    = t('responder_item.registrations')
-    = t("responder_item.status.#{r[:name]}")
-  %div{:class =>"#{r[:name]} registration"}
-    =render r[:partial], :locals => r[:locals]

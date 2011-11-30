@@ -1,7 +1,0 @@
-.nested_item
-  -f ||= locals[:form_builder]
-  -parent_id = locals[:parent_id]
-  -relationship = f.object.inverse_relationships.build
-  =f.fields_for :inverse_relationships, relationship do |second_parent_relationship|
-    =second_parent_relationship.text_field :name, :value => "parent"
-    =second_parent_relationship.text_field :person_id, :value => parent_id

@@ -1,4 +1,0 @@
-$("#dialog").dialog('close');
-$("#guardian-<%=@person.id%>").replaceWith("<%=escape_javascript(render('people/guardians/guardian', :locals => {:guardian => @person}))%>");
-//Highlight new sibling
-//$("#guardian-#{@person.id}").effect("highlight",1000)

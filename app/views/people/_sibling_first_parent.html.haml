@@ -1,8 +1,0 @@
-= debug f.object
-.nested_item
-  =f.text_field :name, :value => "parent"
-  -child = f.object.build_relation
-  =f.fields_for :relation, child do |child_form|
-    =render "siblings_core", :locals => {:form_builder => child_form}
-
-    /=render "siblings_second_parent", :locals =>{:form_builder => child_form , :parent_id => @parents[1].id}
