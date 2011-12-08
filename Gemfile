@@ -6,7 +6,8 @@ gem "sass","~> 3.1.11"
 gem "ejs"
 gem "jquery-rails"
 gem "backbone-rails"
-gem "mysql", "2.8.1"
+gem 'mysql2', '~> 0.3.7'
+gem 'json'
 gem "devise", "~> 1.4.1"
 gem "devise_invitable", "~> 0.5.4"
 gem "cancan"
