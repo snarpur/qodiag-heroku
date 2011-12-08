@@ -1,8 +1,8 @@
 source "http://rubygems.org"
 
-gem "rails", "3.1.1"
+gem "rails", "3.1.3"
 
-gem "sass"
+gem "sass","~> 3.1.11"
 gem "ejs"
 gem "jquery-rails"
 gem "backbone-rails"
@@ -22,11 +22,12 @@ gem 'rails-dev-tweaks', '~> 0.5.1'
 gem "i18n-js"
 
 group :assets do
-  gem "sass-rails", "~> 3.1.0"
+  gem "sass-rails"
   gem "coffee-rails", "~> 3.1.0"
   gem "uglifier"
-  gem 'compass', '~> 0.12.alpha'
-  gem "fancy-buttons", :require => 'fancy-buttons'
+  gem 'closure-compiler'
+  gem 'compass', :git => 'git://github.com/chriseppstein/compass.git', :tag => 'v0.12.alpha.0'
+  # gem "fancy-buttons", :require => 'fancy-buttons'
 end
 
 
@@ -41,7 +42,7 @@ group :development, :test do
   gem "factory_girl_rails"
   gem "pickle"
   gem "email_spec"
-#  gem "ruby-debug"
+  #  gem "ruby-debug"
   gem "nokogiri"
   gem "launchy"
   gem "wirble"

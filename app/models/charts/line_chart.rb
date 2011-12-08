@@ -4,9 +4,6 @@ class LineChart < ResultChart
 		@chart = chart_options
 		@response_sets = response_sets
 		@groups = subject_groups
-		KK.log "subject groups #{subject_groups}"
-		KK.log "series #{series.inspect}"
-
 	end
 
 	def data
@@ -19,7 +16,6 @@ class LineChart < ResultChart
 	def series
 		series = []
 		data.each_with_index do |item,index|
-			KK.log "#{index}  #{item}"
 			series << {:name => @groups[index], :data => item}	
 		end
 		series

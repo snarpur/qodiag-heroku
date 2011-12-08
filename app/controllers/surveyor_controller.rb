@@ -97,12 +97,7 @@ module SurveyorControllerCustomMethods
     def get_response_set
       @response_set = ResponseSet.find_by_access_code(params[:response_set_code], :include => {:responses => [:question, :answer]})
     end
-
-
-    def validate_on_edit
-      KK.see ap @response_set
-    end
-
+    
 end
 class SurveyorController < ApplicationController
   include Surveyor::SurveyorControllerMethods

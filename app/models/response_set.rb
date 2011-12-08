@@ -45,9 +45,7 @@ module ResponseSetCustomMethods
   
   def results_with_total_for_current_groups(groups)
     total = groups.select{|g| g == "total"}
-    KK.log "groups : #{groups.inspect}"
     data = (groups - total).map{|g| self.group_result(g)}
-    KK.log "data: #{data.inspect}"
     data << data.sum unless total.empty?
     data
   end
@@ -76,7 +74,6 @@ class ResponseSet < ActiveRecord::Base
   #include ChartRenderer
 
   def self.to_chart(id, user)
-    KK.log "user is of #{user.id}"
     response_sets = ResponseSet.where("survey_id = #{id} and user_id = #{user.id} and completed_at IS NOT NULL").order("completed_at")
     LineChartRenderer.new(response_sets).result_to_chart
   end

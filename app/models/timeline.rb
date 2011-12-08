@@ -46,7 +46,6 @@ class Timeline
     %w{history_width gutter_width header_height canvas_width history_view_width}.
     each{|i| values[i.to_sym] = self.send(i)}
     values.merge!(DIMENSIONS)
-    KK.log values.inspect
     values
   end
 

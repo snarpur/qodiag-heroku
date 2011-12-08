@@ -1,6 +1,9 @@
+@import partials/base
+
 $pending-color: rgb(255,255,0)
 $overdue-color: rgb(255,0,0)
 $completed-color: rgb(0,255,0)
+
 #tml-history  .line
   +transition-property(height)
   +transition-duration(.5s)
@@ -48,7 +51,7 @@ $completed-color: rgb(0,255,0)
     z-index: 300
     +border-radius(10px)
     & li:nth-child(1):after
-      content: "►"
+      content: "\25BA"
       display: block
       position: absolute
       top: .5em

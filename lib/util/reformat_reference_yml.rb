@@ -5,7 +5,6 @@ module ReformatReferenceYml
     @yml['norm_references'].each do |norm_data|
       group_results =  ['average', 'standard_deviation']
       group_names = ['inattention', 'impulsivity_hyperactivity', 'total']
-        KK.see norm_data['group']
         ref = {"group" => norm_data['group'], "scores" => []}
         norm_data['scores'].each_with_index do |item, index|
          ref["scores"] << {group_names[index] => item.enum_for(:each_with_index).collect {|it,ind| [group_results[ind], it]}}

@@ -10,9 +10,8 @@ module Snarpur
 
     # stylesheets_directory = "#{Rails.root}/app/assets/stylesheets"
     config.assets.precompile << /(^[^_]|\/[^_])[^\/]*/
-    # config.sass.preferred_syntax = :sass
 
-    config.assets.enabled = true
+    
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

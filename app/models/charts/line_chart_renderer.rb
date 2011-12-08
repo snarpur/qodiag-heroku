@@ -3,7 +3,6 @@ class LineChartRenderer
  def initialize(response_sets)
     @response_sets = response_sets
     get_chart_config
-    KK.log get_chart_config
   end
 
   def get_chart_config

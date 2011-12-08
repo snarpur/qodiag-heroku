@@ -55,5 +55,4 @@ Then /^(?:|I )should not see the (.*) (.*) message$/ do |message, action|
 end
 
 When /^debug(?: for "([^"]*)")?$/ do |param|
- KK.see ap Survey.all
 end

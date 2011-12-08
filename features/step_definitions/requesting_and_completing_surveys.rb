@@ -25,7 +25,6 @@ When /^I complete the survey$/ do
   msg = "no such radio button"
   num = rand(3) +1
   page.all(:xpath, "//fieldset/descendant::input[@type='radio'][#{num}]", :message => msg).each do |radio|
-    KK.see radio.inspect
     radio.set(true)
   end
 

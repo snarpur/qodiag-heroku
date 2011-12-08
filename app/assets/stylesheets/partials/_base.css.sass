@@ -1,3 +1,27 @@
+@import blueprint/grid
+@import blueprint/interaction
+
+@import compass/typography/lists/horizontal-list
+@import compass/typography/text/replacement
+@import compass/layout/stretching
+@import compass/layout/sticky-footer
+@import compass/utilities/general/clearfix
+@import compass/utilities/general/clearfix
+@import compass/utilities/tables/borders
+
+@import compass/css3/background-size
+@import compass/css3/border-radius
+@import compass/css3/box
+@import compass/css3/box-shadow
+@import compass/css3/box-sizing
+@import compass/css3/images
+@import compass/css3/inline-block
+@import compass/css3/opacity
+@import compass/css3/text-shadow
+@import compass/css3/transform
+@import compass/css3/transition
+
+
 // Here is where you can define your constants for your application and to configure the blueprint framework.
 // Feel free to delete these if you want keep the defaults:
 $blueprint_font_size: 12px
@@ -12,21 +36,13 @@ $blueprint_grid_margin: 5px
 // Or you can set !blueprint_grid_width to a fixed value and unset !blueprint_container_size -- it will be calculated for you.
 $blueprint_grid_width: ($blueprint_container_size + $blueprint_grid_margin) / $blueprint_grid_columns - $blueprint_grid_margin
 
-@import blueprint
-@import blueprint/reset
-@import compass/css3
-@import compass/utilities
-@import compass/layout
-@import compass/typography
+
+$m-success: rgba(0,255,0,.7)
+$m-selected: rgba(255,255,0,.7)
+$m-error: rgba(255,0,0,.6)
 
 
-
-
-
-
-+blueprint-grid
-+blueprint-debug
-+blueprint-interaction
+// +blueprint-grid
 
 // =============== Constants =======================
 $table_even: #ebebeb
@@ -36,6 +52,9 @@ $grey_ultralightest: #fcfcfc
 $grey_ultralight: #f9f9f9
 $grey_lightest: #f4f4f4
 $grey_lighter: #eaeaea
+
+
+
 $grey_light: #dfdfdf
 $grey: #bcbcba
 $grey_dark: #7c7c7c
@@ -62,11 +81,6 @@ $header_border_lightblue: 1px solid #dfe2ff
 $h2_border_width: 1px 0 1px 0
 $h2_font_size: 1.4em
 
-
-$m-success: rgba(0,255,0,.7)
-$m-selected: rgba(255,255,0,.7)
-$m-error: rgba(255,0,0,.6)
-
 =debug($color: red)
   border: $color 1px solid
 
@@ -81,3 +95,5 @@ $m-error: rgba(255,0,0,.6)
   color: #333333
   &:hover
     background-color: $bg-color * 2
+
+

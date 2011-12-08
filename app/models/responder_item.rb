@@ -32,7 +32,6 @@ class ResponderItem < ActiveRecord::Base
   end
 
   def self.to_chart(params)
-    KK.log params.inspect
     if params[:survey_id]
       responder = Person.find(params[:subject_id]).guardian_user
       {:charts => ResponseSet.to_chart(params[:survey_id], responder)}

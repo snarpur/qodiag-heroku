@@ -1,6 +1,7 @@
 //= require jquery
-//= require jquery-ui/development-bundle/ui/jquery.ui.datepicker
 //= require jquery_ujs
+//= require jquery-ui/development-bundle/ui/jquery.ui.datepicker
+//= require jquery-ui/development-bundle/ui/i18n/jquery-ui-i18n
 //= require underscore/underscore
 //= require underscore/underscore.string
 //= require json2.js
@@ -12,5 +13,4 @@
 //= require highcharts/js/highcharts
 //= require i18n
 //= require i18n/translations
-//= require_self 
 //= require_tree .
