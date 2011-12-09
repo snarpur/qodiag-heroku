@@ -24,7 +24,7 @@ Snarpur::Application.configure do
   config.colorize_logging = true
   config.active_support.deprecation = :log
 
-  config.assets.enabled = false
+  config.assets.enabled = true
   config.assets.compress = false
   # Expands the lines which load the assets
   config.assets.debug = false

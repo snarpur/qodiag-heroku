@@ -11,6 +11,3 @@
 //= require date/build/date-is-IS.js
 //= require XDate/XDate
 //= require highcharts/js/highcharts
-//= require i18n
-//= require i18n/translations
-//= require_tree .
