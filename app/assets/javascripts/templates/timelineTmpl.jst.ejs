@@ -1,0 +1,14 @@
+<div id="tml-body">
+  <ul></ul>
+  <div id="tml-history">
+    <ul>
+      <% for(var i=0; i<years.length; i++) {%>
+        <li>
+        	<b><%= years[i] %></b>
+        	<b><%= years[i] %></b>
+        	<p><%= I18n.t("date.abbr_month_names").slice(1,13).join("</p><p>")%></p>
+        </li>
+      <% } %>
+    </ul>
+  </div>
+</div>
