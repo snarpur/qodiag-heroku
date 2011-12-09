@@ -17,7 +17,6 @@ gem "simple_form"
 gem "rainbow"
 gem "surveyor", :git => "git://github.com/breakpointer/surveyor.git", :branch => "rails3"
 gem "formtastic", "< 2.0"
-gem "ruby_parser"
 gem "hash-deep-merge"
 gem 'rails-dev-tweaks', '~> 0.5.1'
 gem "i18n-js"
