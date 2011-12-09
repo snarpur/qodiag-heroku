@@ -1,13 +1,1 @@
-//= require jquery
-//= require jquery_ujs
-//= require jquery-ui/development-bundle/ui/jquery.ui.datepicker
-//= require jquery-ui/development-bundle/ui/i18n/jquery-ui-i18n
-//= require underscore/underscore
-//= require underscore/underscore.string
-//= require json2.js
-//= require backbone/backbone.js
-//= require backbone/backboneCSRF.js
-//= require js-templates/handlebars.js
-//= require date/build/date-is-IS.js
-//= require XDate/XDate
-//= require highcharts/js/highcharts
+alert("deploy son");
