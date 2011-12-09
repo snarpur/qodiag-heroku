@@ -1,3 +1,4 @@
+
 require File.expand_path('../boot', __FILE__)
 require 'rails/all'
 
@@ -18,8 +19,8 @@ module Snarpur
     Haml::Template.options[:escape_html] = true
     # Add additional load paths for your own custom dirs
     config.autoload_paths += %W(#{config.root}/app/models/charts)
-    config.autoload_paths += %W(#{config.root}/lib)
-    config.autoload_paths += Dir["#{config.root}/lib/**/"]
+    # config.autoload_paths += %W(#{config.root}/lib)
+    # config.autoload_paths += Dir["#{config.root}/lib/**/"]
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named
@@ -35,7 +36,7 @@ module Snarpur
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
-    config.i18n.default_locale = :is
+    config.i18n.default_locale = :en
 
     # Configure generators values. Many other options are available, be sure to check the documentation.
     # config.generators do |g|
