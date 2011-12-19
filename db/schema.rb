@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110802132251) do
+ActiveRecord::Schema.define(:version => 20111210011642) do
 
   create_table "addresses", :force => true do |t|
     t.string   "street_1"
@@ -38,13 +38,14 @@ ActiveRecord::Schema.define(:version => 20110802132251) do
     t.string   "common_identifier"
     t.integer  "display_order"
     t.boolean  "is_exclusive"
-    t.boolean  "hide_label"
     t.integer  "display_length"
     t.string   "custom_class"
     t.string   "custom_renderer"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "default_value"
+    t.string   "api_id"
+    t.string   "display_type"
   end
 
   create_table "dependencies", :force => true do |t|
@@ -132,6 +133,7 @@ ActiveRecord::Schema.define(:version => 20110802132251) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "correct_answer_id"
+    t.string   "api_id"
   end
 
   create_table "relationships", :force => true do |t|
@@ -240,6 +242,7 @@ ActiveRecord::Schema.define(:version => 20110802132251) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "display_order"
+    t.string   "api_id"
   end
 
   add_index "surveys", ["access_code"], :name => "surveys_ac_idx", :unique => true

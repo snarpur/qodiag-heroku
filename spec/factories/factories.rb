@@ -35,9 +35,10 @@ Factory.define :address do |address|
 end
 
 Factory.define :person do |person|
-  person.firstname "John"
-  person.lastname "Smith"
+  person.firstname "jon"
+  person.lastname "smith"
   person.sex {["male","female"].at(rand(2))}
+  person.dateofbirth (rand(20)+20).years.ago
 end
 
 Factory.define :client_person, :parent => :person do |person|
@@ -68,7 +69,7 @@ end
 
 Factory.define :responder_item  do |item|
   item.registration_identifier "some_registration"
-  item.deadline Time.zone.now.advance(:weeks => 1)
+  item.deadline Time.zone.now.advance(:days => rand(30) + 2)
   item.created_at Time.zone.now
   item.completed nil
 end
@@ -82,7 +83,7 @@ Factory.define :uncompleted_registration, :parent => :responder_item do |item|
 end
 
 Factory.define :overdue_registration, :parent => :responder_item do |item|
-  item.deadline 3.days.ago
+  item.deadline rand(20).days.ago
   item.completed nil
 end
 
@@ -93,15 +94,12 @@ end
 Factory.define :survey_item, :parent => :responder_item do |item|
   item.registration_identifier nil
   item.association :survey
-  #item.survey {|i| i.association(:survey, :access_code => "#{i.id}_my_survey") }
 end
 
 Factory.define :item_with_people, :parent => :responder_item do |item|
   item.association :client, :factory => :client_person
   item.association :caretaker, :factory => :caretaker_person
   item.association :subject, :factory => :person
-  # item.after_create { |a| Factory(:client_user, :person => a.client) }
-  # item.after_create { |a| Factory(:caretaker_user, :person => a.caretaker) }
 end
 
 Factory.define :survey_item_with_people, :parent => :item_with_people do |item|

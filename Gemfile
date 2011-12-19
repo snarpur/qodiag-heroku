@@ -1,4 +1,4 @@
-source "http://rubygems.org"
+  source "http://rubygems.org"
 
 gem "rails", "3.1.3"
 
@@ -15,7 +15,8 @@ gem "hpricot"
 gem "ruby_parser"
 gem "simple_form"
 gem "rainbow"
-gem "surveyor", :git => "git://github.com/breakpointer/surveyor.git", :branch => "rails3"
+gem "surveyor"
+gem "fastercsv", "~> 1.5.4"
 gem "formtastic", "< 2.0"
 gem "hash-deep-merge"
 gem 'rails-dev-tweaks', '~> 0.5.1'

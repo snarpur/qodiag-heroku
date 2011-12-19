@@ -1,4 +1,4 @@
-survey "Quiz" do
+survey "Favorites" do
   section "Foods" do
     # In a quiz, both the questions and the answers need to have reference identifiers
     # Here, the question has reference_identifier: "1", and the answers: "oint", "tweet", and "moo"

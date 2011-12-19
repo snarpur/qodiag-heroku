@@ -50,8 +50,8 @@ class ResponderItem < ActiveRecord::Base
     self.survey.nil? ? 'registration' : 'survey'
   end
 
-  def complete_item=(complete_item)
-   self.completed = Time.zone.now
+  def complete_item=(complete_at=Time.zone.now)
+   self.completed = completed_at
   end
 
   def result

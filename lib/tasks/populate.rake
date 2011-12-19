@@ -8,117 +8,78 @@ namespace :db do
       day = rand(31) + 1
       Time.local(year, month, day)
     end
-
-
-    require 'populator'
+    require "#{Rails.root}/lib/util/populate_util.rb"
     require 'faker'
+
     Rake::Task["db:reset"].invoke
+    #[Person, User, Right, Relationship].each(&:delete_all)
+    
     sex = ['male','female']
-    caretaker_id = Role.find_by_name('caretaker').id
-    client_id = Role.find_by_name('client').id
+    caretaker = Role.find_by_name('caretaker')
+    client = Role.find_by_name('client')
     password_params = {:password => "asdfkj", :password_confirmation => "asdfkj"}
+    
+    surveys = ["adhd_rating_scale","sdq"]
+    surveys.each do |survey|
+      system "bundle exec rake surveyor FILE=surveys/#{survey}.rb --trace"
+      NormReferenceParser.new(survey)
+    end
 
 
-     surveys = ["adhd_rating_scale","sdq"]
-     surveys.each do |survey|
-       system "bundle exec rake surveyor FILE=surveys/#{survey}.rb"
-     end
+    ["jon","gunnar","svenni"].each do |u|
+      caretaker_person = Factory.create(:person, PopulateUtil.fullname)
+      caretaker_user = Factory.create(:user, 
+                                      :email => "#{u}@snarpurland.is", 
+                                      :roles => [caretaker], 
+                                      :person => caretaker_person
+                                     )
+      patient = Factory.create(:person, PopulateUtil.fullname.merge({:dateofbirth => random_date(5)}))
+      Factory.create(:patient_relationship, :person => caretaker_person, :relation => patient)
 
-     NormReferenceParser.new('adhd_rating_scale')
-     NormReferenceParser.new('sdq')
+      parent_person = Factory.create(:person, PopulateUtil.fullname)
+      parent_user = Factory.create(:user, 
+                                   :email => Faker::Internet.email, 
+                                   :roles => [client], 
+                                   :person => parent_person
+                                  )
+      Factory.create(:guardian_relationship, :person => parent_person, :relation => patient)
+      Factory.create(:parent_relationship, :person => parent_person, :relation => patient)
+      
+      created_at = Time.now - rand(30).days
+      deadline = created_at.advance(:weeks =>2)
+      completed_at = created_at.advance(:days => 1)
+      
 
-    ["jon","gunnar","svenni"].each do |user|
-      user = User.create({:email => "#{user}@snarpurland.is"}.merge!(password_params))
-      Right.populate 1 do |right|
-        right.user_id = user.id
-        right.role_id = caretaker_id
-      end
-      Person.populate 1 do |caretaker|
-        caretaker.firstname = Faker::Name.first_name
-        caretaker.lastname = Faker::Name.last_name
-        user.update_attribute(:person_id, caretaker.id)
-        Person.populate 6 do |patient|
-          patient.firstname = Faker::Name.first_name
-          patient.lastname = Faker::Name.last_name
-          patient.sex = sex[rand(2)]
-          patient.dateofbirth = random_date(5)
-          patient.ispatient = true
-          Person.populate 1 do |parent|
-            client_user = User.create({:email => Faker::Internet.email}.merge!(password_params))
-            client_user.update_attribute(:person_id, parent.id)
-            Right.populate 1 do |right|
-              right.user_id = client_user.id
-              right.role_id = client_id
-            end
-            parent.firstname = Faker::Name.first_name
-            parent.lastname = Faker::Name.last_name
-            parent.sex = sex[rand(2)]
-            parent_child = ["parent","guardian"]
 
-            Relationship.populate 2 do |r_child|
-              r_child.person_id = parent.id
-              r_child.relation_id = patient.id
-              r_child.name = parent_child.pop
-            end
-            Relationship.populate 1 do |r_patient|
-              r_patient.person_id = caretaker.id
-              r_patient.relation_id = patient.id
-              r_patient.name = "patient"
-            end
-            item_type = ['survey','registration']
-            item_status = ['completed','uncompleted','overdue']
-            item_count = -1
-           ResponderItem.populate 15 do |item|
-              item_count += 1
-              new_survey_id = rand(surveys.length) + 1
-              item.client_id = parent.id
-              item.subject_id = patient.id
-              item.caretaker_id = caretaker.id
-              if item_count < 4                  ## Pending
-                date = Time.now - rand(20).days
-                item.created_at = date
-                deadline = date.advance(:weeks =>2)
-                item.deadline = deadline
-                item.completed = date - 1.days if item_count < 1 ## first is completed
-              else
-                date = Time.now - rand(800).days
-                item.created_at = date
-                deadline = date.advance(:weeks =>2)
-                item.deadline = deadline
-                item.completed = date - 1.days
-              end
-              if item_type.last == 'registration'
-                item.registration_identifier = 'client_registration'
-                item_type.pop
-              else
-                 item.survey_id = new_survey_id
-              end
-              unless item.completed.nil?
-                ResponseSet.populate 1 do |set|
-                  set.survey_id = new_survey_id
-                  set.access_code = "new-acss" << item.id.to_s
-                  set.user_id = client_user.id
-                  item.response_set_id = set.id
-                  set.completed_at = item.completed
-                  survey_sections = SurveySection.where(item.survey_id).select(:id)
-                  survey_sections.each do |section|
-                    questions = Question.where("survey_section_id = #{section.id}")
-                    questions_size = questions.size
-                    questions.each do |question|
-                      answers = question.answers 
-                      Response.populate 1 do |response|
-                        response.response_set_id = set.id
-                        response.question_id = question.id
-                        response.answer_id = answers[rand(answers.size)].id
-                      end
-                    end
-                  end
-                end
-              end 
-            end
-          end
+      responder_item = Factory.create( :item_with_people, 
+                      :client => parent_person, 
+                      :subject => patient, 
+                      :caretaker => caretaker_person,
+                      :survey_id => 1,
+                      :created_at => created_at,
+                      :deadline => deadline
+                      )
+      
+      response_set = responder_item.response_set
+      response_set.completed_at = completed_at
+      response_set.save!
+              
+      survey_sections = SurveySection.where(responder_item.survey_id).select(:id)
+
+      survey_sections.each do |section|
+        questions = Question.where("survey_section_id = #{section.id}")
+        questions_size = questions.size
+        questions.each do |question|
+          answers = question.answers 
+          Factory.create(:response, 
+                         :response_set => response_set, 
+                         :question_id => question.id,
+                         :answer_id => answers[rand(answers.size)].id 
+                        )
         end
       end
+      
+
     end
   end
 end

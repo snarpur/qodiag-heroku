@@ -51,11 +51,7 @@ impact_supplement  = [
 
 sdq = [ {:name => "emotional", :content => emotional },
         {:name => "conduct", :content => conduct },
-        {:name => "hyperactivity_inattention", :content => hyperactivity_inattention },
-        {:name => "peer_problem", :content => peer_problem },
-        {:name => "prosocial_behaviour", :content => prosocial_behaviour }
-        # ,
-        # {:name => "impact_supplement", :content => impact_supplement }
+        {:name => "hyperactivity_inattention", :content => hyperactivity_inattention }
   ]
 
 survey "SDQ" do

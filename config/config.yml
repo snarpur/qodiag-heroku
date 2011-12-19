@@ -1,6 +1,6 @@
-# production:
-#   chart_config_path: '/lib/chart_config'
-# development:
-#   chart_config_path: '/lib/chart_config'
-# test:
-#   chart_config_path: '/spec/support'
+production:
+  chart_config_path: '/lib/chart_config'
+development:
+  chart_config_path: '/lib/chart_config'
+test:
+  chart_config_path: '/spec/support'
