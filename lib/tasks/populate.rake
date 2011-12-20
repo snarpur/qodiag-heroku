@@ -1,15 +1,19 @@
 namespace :db do
   desc "Erase and fill database"
   task :populate => :environment do
-
+    require 'faker'
     def random_date(years_back=5)
       year = Time.now.year - years_back
       month = rand(12) + 1
       day = rand(31) + 1
       Time.local(year, month, day)
     end
-    require "#{Rails.root}/lib/util/populate_util.rb"
-    require 'faker'
+
+    def fullname
+      {:firstname => Faker::Name.first_name, :lastname => Faker::Name.last_name}
+    end
+    
+    
 
     Rake::Task["db:reset"].invoke
     #[Person, User, Right, Relationship].each(&:delete_all)
@@ -27,16 +31,16 @@ namespace :db do
 
 
     ["jon","gunnar","svenni"].each do |u|
-      caretaker_person = Factory.create(:person, PopulateUtil.fullname)
+      caretaker_person = Factory.create(:person, fullname)
       caretaker_user = Factory.create(:user, 
                                       :email => "#{u}@snarpurland.is", 
                                       :roles => [caretaker], 
                                       :person => caretaker_person
                                      )
-      patient = Factory.create(:person, PopulateUtil.fullname.merge({:dateofbirth => random_date(5)}))
+      patient = Factory.create(:person, fullname.merge({:dateofbirth => random_date(5)}))
       Factory.create(:patient_relationship, :person => caretaker_person, :relation => patient)
 
-      parent_person = Factory.create(:person, PopulateUtil.fullname)
+      parent_person = Factory.create(:person, fullname)
       parent_user = Factory.create(:user, 
                                    :email => Faker::Internet.email, 
                                    :roles => [client], 

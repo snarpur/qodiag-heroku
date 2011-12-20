@@ -21,6 +21,8 @@ gem "formtastic", "< 2.0"
 gem "hash-deep-merge"
 gem 'rails-dev-tweaks', '~> 0.5.1'
 gem "i18n-js"
+gem "factory_girl_rails"
+gem "faker"
 
 group :assets do
   gem "sass-rails"
@@ -40,7 +42,6 @@ group :development, :test do
   gem "cucumber-rails", ">= 0.3.2"
   gem "capybara"
   gem "database_cleaner"
-  gem "factory_girl_rails"
   gem "pickle"
   gem "email_spec"
   #  gem "ruby-debug"
@@ -52,7 +53,6 @@ group :development, :test do
   gem "spork", "~> 0.9.0.rc"
   gem "watchr"
   gem "populator"
-  gem "faker"
   gem "syntax"
 #  gem "rb-fsevent", :require => false if RUBY_PLATFORM =~ /darwin/i
   gem "guard-haml"

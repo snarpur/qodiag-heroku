@@ -9,3 +9,5 @@ tmp/*
 *.log
 vendor/**/*
 public/assets
+yes
+yes.pub
