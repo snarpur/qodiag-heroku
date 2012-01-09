@@ -22,7 +22,6 @@ class App.Views.Timeline.NewItem extends Backbone.View
 
   setIdle:=>
     
-    console.log @model.get("newItemOverlayState")
     if @model.get("newItemOverlayState") is "closed"
       $(@el).setCssState("idle")
   
@@ -49,8 +48,11 @@ class App.Views.Timeline.NewItem extends Backbone.View
   setDate:=>
     that = @
     (txt,d) ->
+      console.log @
+      console.log txt, d
+      console.log that
       $(that.el).setCssState("selected")
-      that.selectedDate = $.datepicker.parseDate("m/d/yy",txt)
+      that.selectedDate = $.datepicker.parseDate("dd/mm/yy",txt)
       that.$(".state-msg .m-selected").html(JST['templates/newItemMsgTmpl']({date: that.selectedDate}))
       
   renderCalendar:=>

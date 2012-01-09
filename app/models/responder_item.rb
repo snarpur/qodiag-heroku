@@ -39,7 +39,6 @@ class ResponderItem < ActiveRecord::Base
       responder_item = ResponderItem.find(params[:id])
       responder_item.response_set.result_to_chart
     end
-
   end
 
   def access_code
@@ -67,6 +66,6 @@ class ResponderItem < ActiveRecord::Base
   end
 
   def set_response_set
-   self.response_set=(ResponseSet.create(:survey => self.survey, :user_id => self.client.user.id))
+    self.response_set=(ResponseSet.create(:survey_id => self.survey_id, :user_id => self.client.user.id))
   end
 end

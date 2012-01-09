@@ -1,110 +1,144 @@
-// .family-registration
-//   +clearfix
-//   h3
-//     color: $china2
-//     background-color: $china5
-//     padding: 5px
-//   p
-//     margin: 0
+$fb-label-width: 100px
+$fb-inp-string-width: 300px
+$fb-width: ($fb-label-width + $fb-inp-string-width) * 1.05
+.form-base
+	width: $fb-width
+	+clearfix
+	abbr
+		display: none
+	label
+		text-transform: capitalize
+		color: $grey_dark
+	div.input
+		position: relative
+		margin-bottom: 2px
+		padding-left: $fb-label-width
+		padding: .7em 0 .7em $fb-label-width
+		background-color: $china5
+		+border-radius(3px)
+		label:nth-child(1)
+			position: absolute
+			width: $fb-label-width
+			font-size: 1em
+			top: .8em
+			left: 5px
+			&.radio
+				top: 0
+	div.input.string input
+		width: $fb-inp-string-width
+	button, .button
+		float: right
 
-// fieldset h2
-//   font-size: 1.3em
-//   font-weight: bold
-//   display: block
-//   border-bottom: 1px solid $grey_lightest
+		
 
-// .frm-section-hrz
-//   float: left
-//   margin-right: 6px
-//   h4
-//     padding: 2px 5px
-//     color: $blue_dark
-//     background-color: $grey_lightest
-//     border-right: 5px solid white
+// ======= OLD =========
+.family-registration
+	+clearfix
+	h3
+		color: $china2
+		background-color: $china5
+		padding: 5px
+	p
+		margin: 0
 
-// .frm-section
-//   position: relative
-//   padding: 0 0 0.6em 0
-//   margin-bottom: 0.4em
-//   background-color: $china5
-//   &:last-child
-//     margin-bottom: 0
-//   h4,i
-//     color: $china2
-//     margin-bottom: -1em
-//   h4
-//     padding: 2px 5px
-//   i
-//     position: absolute
-//     top: 1.5em
-//     left: 5px
-//     font-size: 0.8em
+fieldset h2
+	font-size: 1.3em
+	font-weight: bold
+	display: block
+	border-bottom: 1px solid $grey_lightest
 
-// .field
-//   label
-//     color: #666666
-//   &.disabled label
-//     color: $grey
+.frm-section-hrz
+	float: left
+	margin-right: 6px
+	h4
+		padding: 2px 5px
+		color: $blue_dark
+		background-color: $grey_lightest
+		border-right: 5px solid white
 
-// .field
-//   .inp-txt, .inp-rdo, .inp-sel, .inp-aux
-//   +prepend(5)
-//   padding-top: 2px
-//   padding-bottom: 3px
-//   margin-bottom: 2px
-//   +clearfix
+.frm-section
+	position: relative
+	padding: 0 0 0.6em 0
+	margin-bottom: 0.4em
+	background-color: $china5
+	&:last-child
+		margin-bottom: 0
+	h4,i
+		color: $china2
+		margin-bottom: -1em
+	h4
+		padding: 2px 5px
+	i
+		position: absolute
+		top: 1.5em
+		left: 5px
+		font-size: 0.8em
 
-// .field.inp-txt, .field.inp-sel
-//   label
-//     +column(3)
+.field
+	label
+		color: #666666
+	&.disabled label
+		color: $grey
 
-// .field.inp-txt
-//   .field.inp-txt
-//     +prepend(3)
-//   .field
-//     margin-left: 0
-//   span
+.field
+	.inp-txt, .inp-rdo, .inp-sel, .inp-aux
+	+prepend(5)
+	padding-top: 2px
+	padding-bottom: 3px
+	margin-bottom: 2px
+	+clearfix
 
-// .inp-rdo
-//   label
-//     float: none
-//   span
-//     display: block
-//   input
-//     margin: 0
+.field.inp-txt, .field.inp-sel
+	label
+		+column(3)
 
-// .inp-txt
-//   position: relative
-//   span:nth-child(3n+0)
-//     +prepend(3)
-//     display: block
-//     margin-top: 2px
-//   input
-//     +span(6)
-//     border: solid 1px $grey
-//     padding: 4px
-//     font-size: 1em
-//     color: #333333
+.field.inp-txt
+	.field.inp-txt
+		+prepend(3)
+	.field
+		margin-left: 0
+	span
 
-// .inp-btn
-//   padding: 4px
-//   border: $grey_light solid
-//   border-width: 1px 0
-//   ul
-//     +horizontal-list
-//     padding: 1px 0
-//     float: right
+.inp-rdo
+	label
+		float: none
+	span
+		display: block
+	input
+		margin: 0
 
-// input[type='submit']
-//   border-width: 0
+.inp-txt
+	position: relative
+	span:nth-child(3n+0)
+		+prepend(3)
+		display: block
+		margin-top: 2px
+	input
+		+span(6)
+		border: solid 1px $grey
+		padding: 4px
+		font-size: 1em
+		color: #333333
 
-// //------ Fields in dialog
-// .ui-dialog-titlebar
-//   display: none
+.inp-btn
+	padding: 4px
+	border: $grey_light solid
+	border-width: 1px 0
+	ul
+		+horizontal-list
+		padding: 1px 0
+		float: right
 
-// #dialog
-//   .field.inp-txt, .field.inp-rdo, .field.inp-sel
-//     +prepend(1)
-//   .frm-section
-//     h4
-//       margin-bottom: 1em
+input[type='submit']
+	border-width: 0
+
+//------ Fields in dialog
+.ui-dialog-titlebar
+	display: none
+
+#dialog
+	.field.inp-txt, .field.inp-rdo, .field.inp-sel
+		+prepend(1)
+	.frm-section
+		h4
+			margin-bottom: 1em

@@ -20,10 +20,10 @@
       Patients:
       = controller.action_name
 
-  %body{:class => role_view}
-    #wrapper
+  %body{:class => yield(:body_class)}
+    #wrapper{:class => role_view}
       #header
-        %h2 Snarpur í vinnslu
+        %h2 Snarpur
         %ul.nav
           %li.home
             %a{:href => "/users"}
@@ -38,5 +38,5 @@
           = yield
       #footer
         %span
-          Snarpur 2010 | Fallegt virkar betur
+          ="Snarpur #{Date.today.year}| Fallegt virkar betur"
 

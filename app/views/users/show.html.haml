@@ -1,29 +1,29 @@
-/=render "responder_items/index"
-%h1.client-head 
-  Skjólstæðingar
-  =link_to "+ Bæta við", new_user_invitation_path(3), :class => 'button small black'
-%table.overview
-  %thead
-    %tr
-      %th
-        Nafn
-      %th
-        Óklárðar beiðnir
-      %th
-        Útrunnar beiðnir
-  %tbody
-    -@patients.each do |p|
-      %tr
-        %td
-          = link_to p.full_name, subject_responder_items_path(p) 
-        %td.uncompleted
-          - u = p.responder_items.uncompleted.count
-          -unless u.zero?
-            %span
-              = u
-        %td.overdue
-          - o = p.responder_items.overdue.count
-          - unless o.zero?
-            %span
-              = o
+=render "responder_items/index"
+/ %h1.client-head 
+/   Skjólstæðingar
+/   =link_to "+ Bæta við", new_user_invitation_path(3), :class => 'button small black'
+/ %table.overview
+/   %thead
+/     %tr
+/       %th
+/         Nafn
+/       %th
+/         Óklárðar beiðnir
+/       %th
+/         Útrunnar beiðnir
+/   %tbody
+/     -@patients.each do |p|
+/       %tr
+/         %td
+/           = link_to p.full_name, subject_responder_items_path(p) 
+/         %td.uncompleted
+/           - u = p.responder_items.uncompleted.count
+/           -unless u.zero?
+/             %span
+/               = u
+/         %td.overdue
+/           - o = p.responder_items.overdue.count
+/           - unless o.zero?
+/             %span
+/               = o
 

@@ -1,5 +1,6 @@
 @import blueprint/grid
 @import blueprint/interaction
+@import blueprint/form
 
 @import compass/typography/lists/horizontal-list
 @import compass/typography/text/replacement
@@ -37,12 +38,11 @@ $blueprint_grid_margin: 5px
 $blueprint_grid_width: ($blueprint_container_size + $blueprint_grid_margin) / $blueprint_grid_columns - $blueprint_grid_margin
 
 
+
 $m-success: rgba(0,255,0,.7)
 $m-selected: rgba(255,255,0,.7)
 $m-error: rgba(255,0,0,.6)
 
-
-// +blueprint-grid
 
 // =============== Constants =======================
 $table_even: #ebebeb
@@ -71,15 +71,25 @@ $blue_lightest: #dfe2ff
 $blue_light: #afb6ff
 $blue_dark: #3b4991
 
-$china1: #141936
-$china2: #003a85
-$china3: #bcbfd6
-$china4: #e4dce7
-$china5: #f9f8f9
+$china1: rgb(20,25,54)
+$china2: rgb(20,58,133)
+$china3: rgb(188,198,214)
+$china4: rgb(228,220,231)
+$china5: rgb(250,248,249)
+
+$gradient_ch_1to2: linear-gradient(left top, rgba(0,58,133,1) 0%,rgba(20,25,54,1) 100%)
+$gradient_ch_2: linear-gradient(left top, rgba(20,25,54,.9)0%,rgba(20,25,54,1) 100%)
 
 $header_border_lightblue: 1px solid #dfe2ff
 $h2_border_width: 1px 0 1px 0
 $h2_font_size: 1.4em
+
+
+
+
+
+
+
 
 =debug($color: red)
   border: $color 1px solid

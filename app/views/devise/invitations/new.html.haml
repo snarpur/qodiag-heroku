@@ -1,13 +1,14 @@
 %h2= "#{t('role.client')} #{t('actions.sign_up').downcase}"
-= simple_form_for @user, :url => invitation_path(:user) do |f|
-  = render "shared/error_messages", :locals => {:form_builder => f}
-  =f.input :email
-  =f.input :invited_by_id, :as => :hidden
-  =f.association :roles,  :as => :hidden
-  =f.simple_fields_for :person do |parent|
-    .section.parent
-      =render "parent", :f => parent
-    .section.child
-      =render "child", :f => parent
+.form-base
+  = simple_form_for @user, :url => invitation_path(:user), do |f|
+    = render "shared/error_messages", :locals => {:form_builder => f}
+    =f.input :email
+    =f.input :invited_by_id, :as => :hidden
+    =f.association :roles,  :as => :hidden
+    =f.simple_fields_for :person do |parent|
+      .section.parent
+        =render "parent", :f => parent
+      .section.child
+        =render "child", :f => parent
 
-  =f.submit t('actions.create')
+    =f.submit t('actions.create'), :class => 'button'
