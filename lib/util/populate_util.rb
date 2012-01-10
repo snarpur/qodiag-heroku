@@ -4,14 +4,13 @@ class PopulateUtil
 
  	
  	def initialize
- 		@surveys = ["adhd_rating_scale","sdq"]
+ 		  @surveys = ["adhd_rating_scale","sdq"] 
     	@caretaker_role = Role.find_by_name('caretaker')
     	@client_role = Role.find_by_name('client')
     	@sex = ['male','female']
     	@password_params = {:password => "asdfkj", :password_confirmation => "asdfkj"}
     	@survey_ids = Survey.select(:id)
-
-    end
+  end
 
     def reset_db(reset_method=:delete_records)
       if reset_method == :reset_db

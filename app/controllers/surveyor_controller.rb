@@ -39,6 +39,9 @@ module SurveyorControllerCustomMethods
         @section = @sections.with_includes.first
       end
       @dependents = (@response_set.unanswered_dependencies - @section.questions) || []
+      respond_to do |format|
+       format.html
+      end
     else
       flash[:notice] = t('surveyor.unable_to_find_your_responses')
       redirect_to surveyor_index

@@ -32,11 +32,170 @@ is:
       
     internet:
       domain_suffix: ["no", "com", "net", "org"]
-
     name:
-      first_name: ["Emma", "Sara", "Guðrún", "Bára", "Hafrún", "Sigrún", "Helena", "María", "Snædís", "Soffía", "Sandra", "Anna", "Margrét", "Arna", "Hildur", "Heiða", "Halla", "Agnes", "Victoría", "Auður", "Árný", "Mathildur", "Marta", "Linda", "Ása", "Hedda", "Ásdís", "Hugrún", "Silja", "Lilja", "Begga", "Bergþóra", "Birta", "Bjargey", "Aurora", "Berglind", "Kamilla", "Birna", "Maren",  "Selma", "Björg", "Dóra", "Daníella", "Elín", "Krístín", "Elínborg", "Eva", "Eygló", "Ester", "Fjóla", "Fanney", "Friðleif", "Fríða", "Gerður", "Gréta", "Guðdís", "Gunnur", "Hanna", "Heiðbjörg", "Hera", "Hilda", "Hjördís", "Jódís", "Júlía", "Jenný", "Jónína", "Jóhanna", "Karen", "Kiddý", "Klara", "Kata", "Lára", "Lena", "Lísbet", "Lea", "Lóa", "Ósk", "Olga", "Oddný", "Pála", "Rán", "Rósa", "Rakel", "Rebekka", "Saga", "Sif", "Signý", "Svandís", "Svala", "Tinna", "Unnur", "Urður"] # duplication, unfortunately
-      female_first_name: ["Emma", "Sara", "Guðrún", "Bára", "Hafrún", "Sigrún", "Helena", "María", "Snædís", "Soffía", "Sandra", "Anna", "Margrét", "Arna", "Hildur", "Heiða", "Halla", "Agnes", "Victoría", "Auður", "Árný", "Mathildur", "Marta", "Linda", "Ása", "Hedda", "Ásdís", "Hugrún", "Silja", "Lilja", "Begga", "Bergþóra", "Birta", "Bjargey", "Aurora", "Berglind", "Kamilla", "Birna", "Maren",  "Selma", "Björg", "Dóra", "Daníella", "Elín", "Krístín", "Elínborg", "Eva", "Eygló", "Ester", "Fjóla", "Fanney", "Friðleif", "Fríða", "Gerður", "Gréta", "Guðdís", "Gunnur", "Hanna", "Heiðbjörg", "Hera", "Hilda", "Hjördís", "Jódís", "Júlía", "Jenný", "Jónína", "Jóhanna", "Karen", "Kiddý", "Klara", "Kata", "Lára", "Lena", "Lísbet", "Lea", "Lóa", "Ósk", "Olga", "Oddný", "Pála", "Rán", "Rósa", "Rakel", "Rebekka", "Saga", "Sif", "Signý", "Svandís", "Svala", "Tinna", "Unnur", "Urður"]
-      male_first_name: ["Adam","Aðalbjörn","Albert","Axel","Ágúst","Baldur","Benedikt","Baldvin","Birkir","Björn","Davíð","Daníel","Einar","Eyþór","Friðrik","Garðar","Geir","Guðjón","Gunnar","Gústaf","Halldór","Hafþór","Hannes","Harald","Heiðar","Heimir","Ísak","Ingvar","Ívar","Jens","Jakob","Jósef","Júlíus","Jón","Jóhann","Jóhannes","Karl","Kjartan","Krístján","Lárus","Lúkas","Magnús","Margeir","Marínó","Markús","Mattías","Ómar","Óskar","Pétur","Ragnar","Reynir","Rúnar","Samúel","Sigurjón","Snævar","Snæþór","Stefán","Steinar","Sverrir","Sævar","Tómas","Unnar","Valdimar","Viðar","Vigfús","Victor","Vilhelm","Þór"]
+      first_name: ["Emma", "Sara"] 
+      female_first_name: 
+        - Emma
+        - Sara
+        - Guðrún
+        - Bára
+        - Hafrún
+        - Sigrún
+        - Helena
+        - María
+        - Snædís
+        - Soffía
+        - Sandra
+        - Anna
+        - Margrét
+        - Arna
+        - Hildur
+        - Heiða
+        - Halla
+        - Agnes
+        - Victoría
+        - Auður
+        - Árný
+        - Mathildur
+        - Marta
+        - Linda
+        - Ása
+        - Hedda
+        - Ásdís
+        - Hugrún
+        - Silja
+        - Lilja
+        - Begga
+        - Bergþóra
+        - Birta
+        - Bjargey
+        - Aurora
+        - Berglind
+        - Kamilla
+        - Birna
+        - Maren
+        - Selma
+        - Björg
+        - Dóra
+        - Daníella
+        - Elín
+        - Krístín
+        - Elínborg
+        - Eva
+        - Eygló
+        - Ester
+        - Fjóla
+        - Fanney
+        - Friðleif
+        - Fríða
+        - Gerður
+        - Gréta
+        - Guðdís
+        - Gunnur
+        - Hanna
+        - Heiðbjörg
+        - Hera
+        - Hilda
+        - Hjördís
+        - Jódís
+        - Júlía
+        - Jenný
+        - Jónína
+        - Jóhanna
+        - Karen
+        - Kiddý
+        - Klara
+        - Kata
+        - Lára
+        - Lena
+        - Lísbet
+        - Lea
+        - Lóa
+        - Ósk
+        - Olga
+        - Oddný
+        - Pála
+        - Rán
+        - Rósa
+        - Rakel
+        - Rebekka
+        - Saga
+        - Sif
+        - Signý
+        - Svandís
+        - Svala
+        - Tinna
+        - Unnur
+        - Urður
+      male_first_name: 
+        - Adam
+        - Aðalbjörn
+        - Albert
+        - Axel
+        - Ágúst
+        - Baldur
+        - Benedikt
+        - Baldvin
+        - Birkir
+        - Björn
+        - Davíð
+        - Daníel
+        - Einar
+        - Eyþór
+        - Friðrik
+        - Garðar
+        - Geir
+        - Guðjón
+        - Gunnar
+        - Gústaf
+        - Halldór
+        - Hafþór
+        - Hannes
+        - Harald
+        - Heiðar
+        - Heimir
+        - Ísak
+        - Ingvar
+        - Ívar
+        - Jens
+        - Jakob
+        - Jósef
+        - Júlíus
+        - Jón
+        - Jóhann
+        - Jóhannes
+        - Karl
+        - Kjartan
+        - Krístján
+        - Lárus
+        - Lúkas
+        - Magnús
+        - Margeir
+        - Marínó
+        - Markús
+        - Mattías
+        - Ómar
+        - Óskar
+        - Pétur
+        - Ragnar
+        - Reynir
+        - Rúnar
+        - Samúel
+        - Sigurjón
+        - Snævar
+        - Snæþór
+        - Stefán
+        - Steinar
+        - Sverrir
+        - Sævar
+        - Tómas
+        - Unnar
+        - Valdimar
+        - Viðar
+        - Vigfús
+        - Victor
+        - Vilhelm
+        - Þór
       last_name: ["Johansen", "Hansen", "Andersen", "Kristiansen"]
       prefix: [Dr., Prof.]
       suffix: [Jr., Sr., I, II, III, IV, V]
@@ -47,6 +206,5 @@ is:
         - "#{masculine_name} #{masculine_name} #{last_name}"
         - "#{first_name} #{last_name} #{last_name}"
         - "#{first_name} #{last_name}"
-
     phone_number:
       formats: ["########", "## ## ## ##", "### ## ###", "+47 ## ## ## ##"]

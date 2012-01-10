@@ -22,6 +22,25 @@ is:
         impulsivity_hyperactivity: "ofvirkni/hvatvísi"
         total: "heildarskor"
         standard_deviation_from_average: "s frá m"
+      questions:
+        - Hugar illa að smáatriðum og gerir fljótfærnislegar villur á skólaverkefnum.
+        - Er mikið með hendur og fætur á hreyfingu eða iðar í sæti.
+        - Á erfitt með að halda athygli vakandi við verkefni eða leiki.
+        - Yfirgefur sæti í skólastofu eða við aðrar aðstæður þar sem ætlast er til að setið sé kyrr.
+        - Virðist ekki hlusta þegar talað er beint til hans/hennar.
+        - Hleypur um eða prílar óhóflega við aðstæður þar sem slíkt á ekki við.
+        - Fylgir oft ekki fyrirmælum til enda og lýkur ekki við verkefni.
+        - Á erfitt með að vera hljóð/ur við leik eða tómstundastarf.
+        - Á erfitt með að skipuleggja verkefni sín og athafnir.
+        - Er á “fleygiferð” eða er “eins og þeytispjald”.
+        - Forðast viðfangsefni (t.d. heimanám og verkefni í skóla) sem krefjast mikillar beitingar hugans.
+        - Talar óhóflega mikið.
+        - Týnir hlutum sem hann/hún þarf á að halda til verkefna sinna eða athafna.
+        - Grípur fram í með svari áður en spurningu er lokið.
+        - Truflast auðveldlega af utanaðkomandi áreitum.
+        - Á erfitt með að bíða eftir að röðin komi að honum/henni.
+        - Er gleymin/n í athöfnum daglegs lífs.
+        - Grípur fram í eða ryðst inn í (samræður eða leiki).
     sdq:
       name: "Spurningar um styrk og vanda (SDQ)"
       terms:
