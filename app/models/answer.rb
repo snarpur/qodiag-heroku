@@ -4,6 +4,8 @@ module AnswerCustomMethods
 
   end
 
+
+
 end
 
 class Answer < ActiveRecord::Base

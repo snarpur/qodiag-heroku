@@ -1,0 +1,7 @@
+%h1
+  = t("surveys.#{@response_set.survey_name}.name")
+%ul
+  %li
+    = @response_set.subject.full_name
+  %li
+    = "Skila fyrir: #{l(@response_set.responder_item.deadline, :format => :short)}" 

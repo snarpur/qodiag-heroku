@@ -1,16 +1,14 @@
 !!!
-%html{:lang => "en", "xml:lang" => "en", :xmlns => "http://www.w3.org/1999/xhtml"}
+%html
   %head
     %meta{:content => "text/html;charset=UTF-8", "http-equiv" => "content-type"}/
     %title
       Survey: #{controller.action_name}
-    = surveyor_assets
-    / = jqplot_includes
-    / = snarpur_javascripts
-    / = javascript_include_tag 'main'
-    / :javascript
-    /   $.jqplot.config.enablePlugins = true;
-    / =javascript_tag do
-    /   = yield(:jstemplates)
+    = stylesheet_link_tag "http://fonts.googleapis.com/css?family=Droid+Sans:400,700"
+    = stylesheet_link_tag "surveys"
   %body
-    = yield
+    #header
+      =render "surveyor/header"
+    #container
+      #content
+        = yield

@@ -6,7 +6,7 @@ class LineChartRenderer
   end
 
   def get_chart_config
-    @chart_config = YAML::load(File.open("#{Rails.root}#{APP_CONFIG['chart_config_path']}/#{@response_sets.first.survey_name}_line.yml")).symbolize_all_keys!
+    @chart_config = YAML::load(File.open("#{Rails.root}#{APP_CONFIG['chart_config_path']}/#{@response_sets.first.survey_name.underscore}_line.yml")).symbolize_all_keys!
   end
 
 

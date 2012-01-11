@@ -15,9 +15,9 @@ namespace :db do
       patient = pop.create_patient(caretaker[:person])
       parent = pop.create_parent(patient)
       people = {:caretaker => caretaker, :patient => patient, :parent => parent}
-
-      pop.create_requests({:people => people, :number => 5, :survey_id => 1})
-
+      2.times do |t|
+        pop.create_requests({:people => people, :number => 5, :survey_id => t+1})
+      end
     end
   end
 end

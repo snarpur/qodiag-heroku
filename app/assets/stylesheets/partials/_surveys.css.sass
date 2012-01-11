@@ -1,0 +1,54 @@
+@import partials/base
+body
+  font-family: 'Droid Sans', sans-serif
+  font-size: 12px
+
+#container
+  +container
+
+.surveyor_menu,
+.survey_title,
+.survey_section > .title,
+.survey_section > fieldset > legend
+  display: none
+
+.survey_section > fieldset:nth-child(even)
+  background-color: $china2
+  color: #fff
+  border: $china1 solid 1px
+  .surveyor_radio
+    background-color: lighten($china2, 5%)
+
+.survey_section > fieldset:nth-child(odd)
+  background-color: $china4
+  color: #111
+  border: $china2 solid 1px
+  .surveyor_radio
+    background-color: lighten($china4, 5%)
+
+
+.g_default
+  +border-radius 
+  margin-bottom: 5px
+
+
+
+.q_default_inline
+  padding: 2px
+  position: relative
+  legend
+    float: left
+    padding: .8em
+
+
+.q_default_inline ol
+  +horizontal-list(false)
+  position: absolute
+  top: .5em
+  right: .4em
+  li
+    +border-radius(3px)
+    padding: .3em .5em .5em .3em
+    margin-left: .6em
+    font-size: .8em
+    font-weight: bold

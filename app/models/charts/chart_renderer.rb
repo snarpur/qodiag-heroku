@@ -6,7 +6,7 @@ class ChartRenderer
   end
 
   def get_chart_config
-    @chart_config = YAML::load(File.open("#{Rails.root}#{APP_CONFIG['chart_config_path']}/#{@response_set.survey_name}.yml")).symbolize_all_keys!
+    @chart_config = YAML::load(File.open("#{Rails.root}#{APP_CONFIG['chart_config_path']}/#{@response_set.survey_name.underscore}.yml")).symbolize_all_keys!
   end
 
   def chart_class

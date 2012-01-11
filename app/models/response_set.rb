@@ -40,7 +40,7 @@ module ResponseSetCustomMethods
   end
 
   def survey_name
-    self.survey.access_code.gsub(/\-/,"_")
+    self.survey.access_code
   end
   
   def results_with_total_for_current_groups(groups)

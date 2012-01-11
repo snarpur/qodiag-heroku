@@ -6,18 +6,18 @@ params = {:common_namespace => namespace, :pick => :one, :display_type => :inlin
 survey name do
   section namespace do
     group "inattention" do
-      order = 1
+      order = 0
       9.times do |s|
         q namespace, params.merge({:display_order => order})
-        ratings.each_index { |r| a ratings[r], :weight => r }
+        ratings.each_index { |r| a ratings[r], :weight => r, :common_namespace => params[:common_namespace]}
         order += 2
       end
     end
     group "impulsivity_hyperactivity" do
-      order = 2
+      order = 1
       9.times do |s|
         q namespace, params.merge({:display_order => order})
-        ratings.each_index { |r| a ratings[r], :weight => r }
+        ratings.each_index { |r| a ratings[r], :weight => r, :weight => r, :common_namespace => params[:common_namespace]}
         order += 2
       end
     end

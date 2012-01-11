@@ -1,70 +1,31 @@
+require "#{Rails.root}/lib/util/survey_DSL_helpers.rb"
+survey_name = 'SDQ'
+namespace = SurveyDSLHelpers.access_code(survey_name)
+params = {:common_namespace => namespace, :pick => :one, :display_type => :inline}
+
 ratings =  ["not true",  "somewhat true",  "certainly true"]
-
-emotional = [
-  {:order => 3, :text => "Often complains of headaches, stomach aches or sickness"},
-  {:order => 8, :text => "Many worries or often seems worried"},
-  {:order => 13,:text => "Often unhappy, depressed or tearful"},
-  {:order => 16,:text => "Nervous or clingy in new situations, easily loses confidence"},
-  {:order => 24, :text => "Many fears, easily scared"},
+inverted_questions = [7,11,14,21,25]
+sdq = [
+  {:question_group => 'emotional', :order => [2,7,12,15,23]},
+  {:question_group => 'conduct', :order => [4,6,11,17,21]},
+  {:question_group => 'hyperactivity_inattention', :order => [1,9,14,20,24]},
+  {:question_group => 'peer_problem', :order => [5,10,13,18,22]},
+  {:question_group => 'prosocial_behaviour', :order => [0,3,8,16,19]}
 ]
 
-conduct = [
-  {:order => 5, :text => "Often loses temper"},
-  {:order => 7,  :text => "Generally well behaved, usually does what adults request", :inverted => true},
-  {:order => 12, :text => "Often fights with other children or bullies them"},
-  {:order => 18, :text => "Often lies or cheats"},
-  {:order => 22, :text => "Steals from home or school or elsewhere"}
-]
+impact_supplement  = [28,29,30,31,32,33]
 
-hyperactivity_inattention = [
-  {:order => 2 ,  :text => "Restless, overactive, cannot stay still for long"},
-  {:order => 10,  :text => "Constantly fidgeting or squirming"},
-  {:order => 15,  :text => "Easily distracted, concentration wanders"},
-  {:order => 21,  :text => "Thinks things out before acting", :inverted => true},
-  {:order => 25,  :text => "Good attention span, sees chores or homework through to the end", :inverted => true}
-]
-
-peer_problem = [
-  {:order => 6,  :text => "Rather solitary, prefers to play alone"},
-  {:order => 11,  :text => "Has at least one good friend", :inverted => true},
-  {:order => 14,  :text => "Generally liked by other children", :inverted => true},
-  {:order => 19,  :text => "Picked on or bullied by other children"},
-  {:order => 23,  :text => "Gets along better with adults than other children"}
-]
-
-prosocial_behaviour  = [
-  {:order => 1,  :text => "Considerate of other people’s feelings"},
-  {:order => 4,  :text => "Shares readily with other children, for example toys, food"},
-  {:order => 9,  :text => "Helpful is someone is hurt, upset or feeling ill"},
-  {:order => 17, :text => "Kind to younger children"},
-  {:order => 20, :text => "Often volunteers to help others (parents, teachers, other children"}
-]
-
-impact_supplement  = [
-    {:order => 28,  :text => "Do the difficulties upset or distress your child? Do the difficulties interfere with your child’s everyday life in the following areas?"},
-    {:order => 29,  :text => "Home life"},
-    {:order => 30,  :text => "Friendships"},
-    {:order => 31,  :text => "Classroom learning"},
-    {:order => 32,  :text => "Leisure activities"},
-    {:order => 33,  :text => "Do these difficulties put a burden on you or the family as a whole"}
-]
-
-sdq = [ {:name => "emotional", :content => emotional },
-        {:name => "conduct", :content => conduct },
-        {:name => "hyperactivity_inattention", :content => hyperactivity_inattention }
-  ]
-
-survey "SDQ" do
-  section "main" do
-    sdq.each do |sdq_group|
-      group sdq_group[:name] do
-        sdq_group[:content].each do |sdq_question|
-         question sdq_question[:text] , :pick => :one, :display_order => sdq_question[:order]
-         if sdq_question[:inverted].nil?
-           ratings.each_index { |r| a ratings[r], :weight => r }
+survey survey_name do
+  section namespace do
+    sdq.each do |s|
+      group s[:question_group] do
+        s[:order].each do |order|
+         q namespace, params.merge({:display_order => order})
+         if inverted_questions.include?(order)
+           ratings.each_index { |r| a ratings[r], :weight => r, :common_namespace => params[:common_namespace] }
          else
            inverse = ratings.reverse
-           inverse.each_index { |r| a inverse[r], :weight => r }
+           inverse.each_index { |r| a inverse[r], :weight => r, :common_namespace => params[:common_namespace] }
          end
         end
       end
