@@ -31,7 +31,7 @@ class PopulateUtil
     def generate_surveys
       @surveys.each do |survey|
         system "bundle exec rake surveyor FILE=surveys/#{survey}.rb --trace"
-        NormReferenceParser.new(survey)
+        NormReferenceCSVParser.new(survey)
       end
     end
 

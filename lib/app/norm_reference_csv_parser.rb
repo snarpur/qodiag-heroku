@@ -1,23 +1,19 @@
 require 'csv'
 class NormReferenceCSVParser
-  def parse
-    csv = self.read_csv(:adhd_rating_scale)
-    survey_id = self.get_survey_id(csv)
-    header = self.extract_header!(csv)
 
-    norm = {}
-    score = []
-    csv.each do |row|
-      row.each_index do |value|
-        field = header[value]
-        value = row[value]
-        unless field.starts_with?('score')
-          norm[field.to_sym] = value
-        else
-          puts "creating score with #{field} = #{value}"
-        end
-      end
-      puts "_________"
+  def initialize(survey)
+    @survey_id = Survey.find_by_access_code(survey.gsub(/\_/,'-')).id
+    data = read_csv(survey)
+    header = extract_header!(data)
+    @norm_attributes = norm_attributes(header)
+    @score_attributes = score_attributes(header)
+    parse_data(data)
+  end
+
+  def parse_data(data)
+    data.each_index do |i|
+      norm_object = create_norm_object(data[i])
+      create_score_objects(data[i],norm_object)
     end
   end
 
@@ -27,6 +23,57 @@ class NormReferenceCSVParser
 
   def extract_header!(csv)
       header = csv.shift
+  end
+
+  def norm_attributes(header)
+    header.select{|h| !h.starts_with?('score')}
+  end
+
+  def create_norm_object(data)
+    NormReference.create(norm_params(data))
+  end
+
+  def norm_params(data)
+    norm_values = data.slice!(0,@norm_attributes.length)
+    params = Hash[*@norm_attributes.zip(norm_values).flatten].merge(:survey_id => @survey_id)
+    set_norm_age_group(params)
+  end
+  
+  def score_attributes(header)
+    attributes = header.select{|h| h.starts_with?('score')}
+    attributes.map! do |v|
+      v.gsub(/score[\[]/,"").gsub(/\]/,"").split("-")
+    end
+  end
+
+  def create_score_objects(data,norm_object)
+    params = create_score_params(data,norm_object)
+    Score.create(params)
+  end
+
+  def create_score_params(data, norm_object)
+    score_params = []
+    data.each_index do |i|
+      params = {:name => @score_attributes[i][0],:result_name => @score_attributes[i][1], :norm_reference_id => norm_object.id} 
+      score_params << params.merge!(score_value(data[i]))
+    end
+    score_params
+  end
+
+  def set_norm_age_group(norm_params)
+    age_group = norm_params['age'].split("-")
+    norm_params.delete('age')
+    norm_params.merge({:age_start => age_group[0], :age_end => age_group[1]})
+  end
+
+  def score_value(value)
+    score_params = {}
+    if value.include?("-")
+      values = value.split("-")
+      score_params = {:start_value => values[0], :end_value => values[1]}
+    else
+      score_params = {:value => value}
+    end
   end
 
   def get_survey_id(csv)

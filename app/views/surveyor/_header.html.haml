@@ -4,4 +4,5 @@
   %li
     = @response_set.subject.full_name
   %li
-    = "Skila fyrir: #{l(@response_set.responder_item.deadline, :format => :short)}" 
+    %b Svarast fyrir:
+    = l(@response_set.responder_item.deadline, :format => :short)

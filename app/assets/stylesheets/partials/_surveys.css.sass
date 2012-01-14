@@ -2,8 +2,31 @@
 body
   font-family: 'Droid Sans', sans-serif
   font-size: 12px
+  background-color: $china5
+ 
+.surveys #header
+  width: $blueprint_container_size
+  margin: 5px auto
+
+  h1
+    font-size: 1.6em
+    padding: .5em 0 .2em 1.6em
+    background: url("/assets/black-gloss/32x32/document3.png") no-repeat
+  ul
+    +horizontal-list(padding)
+    b
+      font-weight: bold
+    li:nth-child(2)
+      float: right
+
 
 #container
+  border-top: $china3 solid 1px
+  padding-top: 1.2em
+  background-color: #fff
+
+
+#content
   +container
 
 .surveyor_menu,
@@ -26,12 +49,9 @@ body
   .surveyor_radio
     background-color: lighten($china4, 5%)
 
-
 .g_default
   +border-radius 
   margin-bottom: 5px
-
-
 
 .q_default_inline
   padding: 2px
@@ -52,3 +72,8 @@ body
     margin-left: .6em
     font-size: .8em
     font-weight: bold
+
+
+.next_section
+  float: right
+  margin: 1.3em 0 3em 0

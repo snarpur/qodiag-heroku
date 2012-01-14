@@ -14,7 +14,7 @@ norm_references:
         - 4.3
       - - standard_deviation
         - 4
-    - impulsivity_hyperactivity:
+    - impulsivity_hyperactivity: 
       - - average
         - 6.2
       - - standard_deviation

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111210011642) do
+ActiveRecord::Schema.define(:version => 20120113143639) do
 
   create_table "addresses", :force => true do |t|
     t.string   "street_1"
@@ -207,10 +207,10 @@ ActiveRecord::Schema.define(:version => 20111210011642) do
     t.integer  "norm_reference_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "start_value"
-    t.integer  "end_value"
+    t.float    "start_value"
+    t.float    "end_value"
     t.string   "result_name"
-    t.integer  "value"
+    t.float    "value"
   end
 
   create_table "survey_sections", :force => true do |t|

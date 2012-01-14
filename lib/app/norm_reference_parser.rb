@@ -24,7 +24,7 @@ class NormReferenceParser
       norm_attributes[get_norm_attribute_name(index)] = item
     end
     norm_attributes
-  end
+  end 
 
   def get_norm_attribute_name(index)
     @yml['norm_reference_attributes'][index]

@@ -6,14 +6,17 @@ class StackedColumnChart < ResultChart
   end
 
   def reference_values
-    series = norm_reference.get_score_by_name(reference_groups,:result_name).map do |i|
+    ordered_series = []
+    series = norm_reference.get_score_by_name(reference_groups,:result_name)
+    series.each do |i|
       group = {}
       group.merge!(:name  => i[0])
       group.merge!(:data  => data_values(i[1]))
       group.merge!(:stack => "reference_values")
       group.merge!(:color => color_of_result(i[0]))
+      ordered_series[index_of_result(i[0])] = group
     end
-    series
+    ordered_series
   end
 
   def subject_series
