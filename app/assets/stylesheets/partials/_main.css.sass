@@ -68,10 +68,15 @@ body
   +append(1)
   margin-bottom: 40px
 
+#flash
+  position: absolute
+  top: 0px
+
 #flash div
   +column(24)
-  display: none
-  position: absolute
+  width: $blueprint_container_size / 2
+  margin-left: $blueprint_container_size / 4
+  text-align: center
 
 #footer
   padding: 1em 0 3em 0
@@ -82,17 +87,16 @@ body
     display: block
     margin-top: 25px
     +prepend(12)
-
+    
 .alert
-  +error
-
 div.overdue
   +error
 
 div.uncompleted
   +notice
 
-.recently_completed
+.recently_completed,
+.notice
   +success
 
 ul
@@ -113,10 +117,6 @@ table
   td
     color: $grey_dark
 
-
-
-//#content table
-//  +alternating-rows-and-columns(!table_even, !table_odd,#222)
 
 .section
   +clearfix
