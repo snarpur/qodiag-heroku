@@ -3,9 +3,10 @@ class ApplicationController < ActionController::Base
   layout 'application'
 
   def index
-    respond_to do |format|
-      format.html # index.html.erb
-    end
+    render "devise/sessions/new"
+    # respond_to do |format|
+    #   format.html # index.html.erb
+    # end
   end
 
   rescue_from CanCan::AccessDenied do |exception|

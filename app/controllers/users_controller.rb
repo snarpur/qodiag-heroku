@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_filter :get_user, :only => [:index,:new,:edit,:show]
   before_filter :accessible_roles, :only => [:new, :edit, :show, :update, :create]
   before_filter :create_user_with_role, :only => [:new]
-  load_and_authorize_resource :only => [:show,:new,:destroy,:edit,:update]
+  load_and_authorize_resource :only => [:new,:destroy,:edit,:update]
 
   def index
     @users = User.all
@@ -19,9 +19,13 @@ class UsersController < ApplicationController
   end
 
   def show
-    @patients = @current_user.person.relations.patients
-    respond_to do |format|
-       format.html
+    unless user_signed_in?
+      redirect_to new_user_session_url 
+    else
+      @patients = @current_user.person.relations.patients
+      respond_to do |format|
+        format.html
+      end
     end
   end
 

@@ -1,6 +1,5 @@
 Snarpur::Application.routes.draw do
 
-
   devise_for :users do
     get "/login" => "devise/sessions#new"
     get "invitation/new/:role_ids" => 'devise/invitations#new', :as => :new_user_invitation
@@ -26,9 +25,9 @@ Snarpur::Application.routes.draw do
   match 'people/:subject_id/responder_items/survey/:survey_id' => 'responder_items#show', :via => :get
   get "pages/error_401"
 
-
-  root :to => "application#index"
-
+  root :to => 'users#show'
+  #How to define nested contoller as root
+  #root :to => Devise::SessionsController.action(:new)
 
 
 

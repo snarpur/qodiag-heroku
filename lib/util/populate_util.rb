@@ -63,7 +63,7 @@ class PopulateUtil
     def create_parent(patient)
       parent_person = Factory.create(:person, fullname)
       parent_user = Factory.create(:user, 
-                                   :email => Faker::Internet.email, 
+                                   :email => "user_#{parent_person.id}@snarpur.is", 
                                    :roles => [@client_role], 
                                    :person => parent_person
                                   )

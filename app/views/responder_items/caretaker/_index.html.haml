@@ -1,10 +1,29 @@
-- registrations = @current_user.person.responder_items_by_type_and_status(:all ,[:recently_completed,:uncompleted,:overdue])
+%h1.china-4.add-user.icon-wrap
+  Skjólstæðingar
+  =link_to "Skrá skjólstæðing", new_user_invitation_path(3), :class => 'c-icon'
+%table.overview
+  %thead
+    %tr
+      %th
+        Nafn
+      %th
+        Óklárðar beiðnir
+      %th
+        Útrunnar beiðnir
+  %tbody
+    -@patients.each do |p|
+      %tr
+        %td
+          = link_to p.full_name, subject_responder_items_path(p) 
+        %td.uncompleted
+          - u = p.responder_items.uncompleted.count
+          -unless u.zero?
+            %span
+              = u
+        %td.overdue
+          - o = p.responder_items.overdue.count
+          - unless o.zero?
+            %span
+              = o
 
-.box
-  %h1
-    Nýskráningar
-    %span beiðnir um skráningu grunnupplýsinga
-  =link_to "Senda nýja beiðni", new_user_invitation_path(3), :class => 'button green large'
-%hr.clear
-=responder_item_partial_for(@current_user.person,registrations)
 
