@@ -14,7 +14,7 @@ defaults:
       stacking: normal
       dataLabels:
         enabled: true
-        color:  '#777'
+        # color:  '#777'
         formatter: dataLabelFormatter
         style:
           fontSize: 8px

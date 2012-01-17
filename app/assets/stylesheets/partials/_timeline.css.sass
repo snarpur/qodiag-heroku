@@ -1,8 +1,9 @@
 @import partials/base
 #canvas
   position: relative
-  +box-shadow(0 0 16px 1px rgba(0, 0, 0, 0.1),0 0 1px 0px rgba(0, 0, 0, 0.4))
+  +box-shadow(2px 1px 4px 0px rgba(0, 0, 0, 0.13) inset)
   margin-bottom: 17px
+  +border-radius(4px)
  
 
 #canvas #tml-body:after
@@ -27,9 +28,10 @@
   +transition-property(margin-left)
   +transition-duration(0.2s)
   +transition-timing-function(ease)
-  +background-image(linear-gradient(left, rgba(201,232,249,.03) 50%,rgba(142,176,237,.11) 50%), linear-gradient(left, rgba(0,0,0,0.2) 2px, rgba(0,0,0,0) 2px))
+  +background-image(linear-gradient(left,  rgba(14, 100, 200, 0.04) 50%, rgba(14, 100, 200, 0.01) 50%), linear-gradient(left, rgba(0,0,0,0.1) 1px, rgba(255,255,255,0) 1px))
   +background-size(140px,840px)
-  background-position: 0,-2px
+  background-position: 0, -1px
+
 
 
 

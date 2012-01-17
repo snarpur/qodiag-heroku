@@ -20,16 +20,15 @@
     +opacity(0)
     visibility: hidden
     position: absolute
-    background-color: #fff
     z-index: -1
+    background-color: rgba(0, 0, 0, 0.78)
+    border: 1px #eaeaea solid
+    +border-radius(13px)
+    +box-shadow(0 0 0px 9px rgba(0, 0, 0, 0.9), rgba(0,0,0,.4) 0 0 9px 9px)
 #canvas.state-new-item .line-overlay 
   z-index: 300
 .line .new-item
   z-index: 101
-  background-color: rgba(0, 0, 0, 0.78)
-  border: 1px #eaeaea solid
-  +border-radius(13px)
-  +box-shadow(0 0 0px 9px rgba(0, 0, 0, 0.9), rgba(0,0,0,.4) 0 0 9px 9px) 
   .left, .right
     float: left
     position: relative
@@ -85,8 +84,6 @@
 
 
 .line .chart-dialog
-  left: 0
-  +box-shadow(rgba(0,0,0,0.15) 0 0 3px 1px)
   &.state-column 
     .chart-wrapper
       left: 0

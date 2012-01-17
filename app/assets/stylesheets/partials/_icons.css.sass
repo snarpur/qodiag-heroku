@@ -34,6 +34,25 @@ $icn_m: 45px
   &.close, &.add-1
     cursor: pointer
 
+  &.medium
+    +icon-size($icn_m)
+    cursor: pointer
+    &.line-chart-icn,
+    &.column-chart-icn
+      background-repeat: no-repeat
+      background-position: 50% 50%
+      +border-radius(5px)
+      &:hover
+        background-color: #888
+    &.line-chart-icn
+      background-image: url("/assets/cc/white/48x48/chart_line_2.png")      
+    &.column-chart-icn
+      background-image: url("/assets/cc/white/48x48/chart_bar.png")
+
+
+
+ 
+
 a.c-icon,
   text-decoration: none
 
@@ -60,36 +79,32 @@ a.c-icon,
   &:hover
     background-color: rgba(0,0,0,.05)
 
-    
+.placeholder
+  display: block
+  background-repeat: no-repeat
 
+.placeholder.portrait
+  position: absolute
+  +opacity(.4)
+  background-color: $china5
+  border: $china4 1px solid
+  +border-radius(3px)
+      
+.placeholder.portrait.s-50
+  background-image: url("/assets/placeholders/portrait-placeholder50x50.png")
+  +dimensions(50px,50px)
 
-  &.medium
-    +icon-size($icn_m)
-    cursor: pointer
-    &.line-chart-icn,
-    &.column-chart-icn
-      background-repeat: no-repeat
-      background-position: 50% 50%
-      +border-radius(5px)
-      &:hover
-        background-color: #888
-    &.line-chart-icn
-      background-image: url("/assets/cc/blacks/48x48/chart_line_2.png")      
-    &.column-chart-icn
-      background-image: url("/assets/cc/blacks/48x48/chart_bar.png")
+.placeholder.portrait.s-100
+  background-image: url("/assets/placeholders/portrait-placeholder100x100.png")
+  +dimensions(100px,100px)
 
+.placeholder.portrait.s-150
+  background-image: url("/assets/placeholders/portrait-placeholder150x150.png")
+  +dimensions(150px,150px)
 
-
- 
-
-
-
-
-
-
-
-
-
+.placeholder.portrait.s-200
+  background-image: url("/assets/placeholders/portrait-placeholder200x200.png")
+  +dimensions(200px,200px)
 
 $icon-16-c2: unquote("/images/16/color2/")
 $icon-12-c2: unquote("/images/12/color2/")

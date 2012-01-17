@@ -37,9 +37,13 @@ class StackedColumnChart < ResultChart
   end
 
   def data_values(scores)
-    scores.map{|s| {:y => s.get_value, :name=> {:data_label => s.get_range_values.join("-") }}}
+    scores.map{|s| {:y => s.get_value, :name=> {:data_label => format_range_value(s)}}}
   end
 
+  def format_range_value(score)
+    score.get_range_values.map{|s| s.floor == s ? s.to_i : s }.join("-")
+    
+  end
   def reverse_stack(result, group)
     data = result[:data].clone
     data[group_index(group)] = {

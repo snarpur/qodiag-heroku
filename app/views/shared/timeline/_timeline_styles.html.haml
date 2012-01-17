@@ -2,7 +2,7 @@
   :sass
     #{dimensions(@timeline)}  
     $header_height: $line_height/2
-    $nav_height: $line_height*0.3
+    $nav_height: $line_height*0.3 
     #canvas
       width: $canvas_width
       &>nav
@@ -18,38 +18,38 @@
     #tml-history
       width: $history_width
       &>ul
+        margin-bottom: -$line_height
         li
-          height: $header_height
+          height: $line_height * 1.5
           width: $history_view_width
         span
           height: $header_height
         b
-          height: $nav_height
+          height: $line_height
           line-height: $nav_height
       .line
         &.state-closed
           height: $line_height
-        &.state-open
+        &.state-open.overlay-charts
+          height: $line_height_expanded + $line_height + $header_height
+        &.state-open.overlay-new-item
           height: $line_height_expanded + $header_height
       .item
         top: $line_height/3 
     .line-overlay
       height: $line_height_expanded
-      width: $canvas_width
+      width: $canvas_width - 30px
+      left: 15px
       &.chart-dialog
-        margin-top: $header_height
+        margin-top: $line_height
         .chart-wrapper
           width: $canvas_width * 2
           top: $line_height
           height: $line_height_expanded - $line_height
       &.new-item
-        width: $canvas_width - 20px
-        left: 10px
         .left, .right 
           width: 40%  
 
-
-    
     .line:nth-child(1) .line-overlay
       top: ($line_height * 1) - ($line_height*1.5)
     .line:nth-child(2)  .line-overlay

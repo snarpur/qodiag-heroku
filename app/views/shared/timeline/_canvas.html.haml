@@ -1,51 +1,11 @@
 -@timeline = Timeline.new(@person)
 =render "shared/timeline/timeline_styles"
-%h2.patient-name= @person.full_name
-%ul#patient-nav
-	%li#c.selected
-		timeline
-	%li#h
-		history
-	%li#d
-		details
-		
-#patient-view
-	#canvas-p
-		#canvas
-	#history-p.state-mh
-		=render "shared/temporary_history"
-	#details-p
-		=render "shared/temporary_details"
+=render "people/patient/timeline_info_header"
 
-
-
+#canvas
 :javascript 
 	$(document).ready(function(){     
-		window.controller = new App.Controllers.ResponderItemsController({timeline: #{@timeline.settings.to_json}, responder_items:
-		#{responses.to_json}}); App.init();})
-		$("#patient-nav li").click(function(){
-			$(this).siblings().removeClass("selected");
-			$(this).addClass("selected");
-			state = this.id
-			if(state == "c")
-				$("#patient-view").setCssState("canvas")
-			if(state == "h")
-				$("#patient-view").setCssState("history")
-			if(state == "d")
-				$("#patient-view").setCssState("details")
-
+		window.controller = new App.Controllers.ResponderItemsController({timeline: #{@timeline.settings.to_json}, responder_items: #{responses.to_json}}); App.init();
 		});
-
-		$("#history-p li").click(function(){
-			$(this).siblings().removeClass("selected");
-			$(this).addClass("selected");
-			state = this.id
-			if(_.includes(state, "mh"))
-				$("#history-p").setCssState("mh")
-			if(_.includes(state, "en"))
-				$("#history-p").setCssState("en")
-			if(_.includes(state, "de"))
-				$("#history-p").setCssState("de")
-
-		});
+	
 
