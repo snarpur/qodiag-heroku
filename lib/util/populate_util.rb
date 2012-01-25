@@ -4,7 +4,7 @@ class PopulateUtil
 
  	
  	def initialize
- 		  @surveys = ["adhd_rating_scale","sdq"] 
+ 		  @surveys = ["adhd_rating_scale","sdq"]
     	@caretaker_role = Role.find_by_name('caretaker')
     	@client_role = Role.find_by_name('client')
     	@sex = ['male','female']
@@ -12,13 +12,28 @@ class PopulateUtil
     	@survey_ids = Survey.select(:id)
   end
 
-    def reset_db(reset_method=:delete_records)
-      if reset_method == :reset_db
-        Rake::Task["db:reset"].invoke
-      else
-        [Person, User, Right, Relationship, ResponderItem, ResponseSet, Response].each(&:delete_all)
-      end
+    def reset_db(reset)
+      self.send("#{reset}_level")
+    end
 
+    def reset_level
+      Rake::Task["db:reset"].invoke
+      self.generate_surveys
+    end
+
+    def user_level
+      KK.see "in user"
+      self.clear_user_tables
+    end
+
+    def survey_level
+      self.clear_user_tables
+      self.generate_surveys
+    end
+
+    def clear_user_tables
+      KK.see "clearing tables"
+      [Person, User, Right, Relationship, ResponderItem, ResponseSet, Response].each(&:delete_all)
     end
     
     def random_date(years_back=5)
@@ -40,7 +55,7 @@ class PopulateUtil
       sex = ['male','female'].at(pick)
       suffix = ['sson','sdóttir'].at(pick)
       lastname = Faker::Name.send("male_first_name")
-      {:firstname => Faker::Name.send("#{sex}_first_name"), :lastname => "#{lastname}#{suffix}"}
+      {:firstname => Faker::Name.send("#{sex}_first_name"), :lastname => "#{lastname}#{suffix}", :sex => sex}
     end
     
     def create_caretaker(name)

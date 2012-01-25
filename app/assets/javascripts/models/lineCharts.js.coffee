@@ -1,7 +1,7 @@
 class App.Models.LineChart extends Backbone.Model
 	
 	initialize:()->
-	  @.urlRoot = "/people/:subject_id/responder_items/survey/"
+	  @.urlRoot = "/people/:subject_id/responder_items/responses/"
   	@.url = ()->
   		base = @.urlRoot.replace(/:subject_id/, @.get('subject_id'))
  			"#{base}#{'' if _.endsWith(base,'/')}#{encodeURIComponent(@.id)}"

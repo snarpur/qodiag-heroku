@@ -16,6 +16,9 @@ class App.Views.Timeline.Line extends Backbone.View
     @model.bind("change:currentDialogItem", @changeLineState)
     @model.bind("change:newItemOverlayState", @newItemOverlayState)
     @model.bind("change:items", @renderLineItems)
+    @model.bind("change:menuItem", @removeItems)
+    @model.bind("remove", @removeLine)
+
   
   template:->
     JST['templates/lineTmpl']
@@ -43,7 +46,7 @@ class App.Views.Timeline.Line extends Backbone.View
   
   renderLineItems: =>
     @.$(".line-items").empty()
-    _.each(@model.get('items') ,@renderLineItem)
+    _.each(@model.get('items').models ,@renderLineItem)
   
   renderLineItem:(item)=>
     lineItem = new App.Views.Timeline.LineItem(model: item, line: @model, timeline: @timeline)
@@ -58,6 +61,13 @@ class App.Views.Timeline.Line extends Backbone.View
   renderAddItemOverlay:=>
     overlay = new App.Views.Timeline.NewItem(model: @model, timeline: @timeline)
     $(@el).append(overlay.render().el)
+  
+  removeItems:=>
+    if @model.get('menuItem') is null
+      @model.removeItems()
+  
+  removeLine:=>
+    $(@el).remove()
 
   render:=>
     $(@el).html(@template()(@model.toJSON()))

@@ -35,3 +35,8 @@ $.fn.extend
     
     @each () -> 
       setState settings
+  
+  cssState: () ->
+    css = @.attr('class').match(/state\-[a-z\-]*/g)
+    css[0].split("-")[1] if css isnt null
+

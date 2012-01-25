@@ -1,14 +1,17 @@
-%h2= "#{t('role.client')} #{t('actions.sign_up').downcase}"
-.form-base
+=content_for :css_hook, "registration"
+%h1.china-4
+  = "#{t('role.client')} #{t('actions.sign_up').downcase}"
+.form-base.col-2
   = simple_form_for @user, :url => invitation_path(:user), do |f|
-    = render "shared/error_messages", :locals => {:form_builder => f}
-    =f.input :email
-    =f.input :invited_by_id, :as => :hidden
-    =f.association :roles,  :as => :hidden
+    = render "shared/error_messages", :locals => {:form_builder => f} 
     =f.simple_fields_for :person do |parent|
-      .section.parent
+      .form-section
+        %h2 Foreldri/forráðamaður
+        =f.input :email
         =render "parent", :f => parent
-      .section.child
+      .form-section
+        %h2 Skjólstæðingur
         =render "child", :f => parent
-
-    =f.submit t('actions.create'), :class => 'button'
+    
+    %hr.break
+    =f.submit t('actions.create'), :class => 'button small china2' 

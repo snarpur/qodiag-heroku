@@ -2,7 +2,9 @@
   :sass
     #{dimensions(@timeline)}  
     $header_height: $line_height/2
-    $nav_height: $line_height*0.3 
+    $nav_height: $line_height*0.3
+    $survey_menu_width: $gutter_width * 3 
+    $gradient_padding: 50px
     #canvas
       width: $canvas_width
       &>nav
@@ -10,14 +12,23 @@
           width: $history_view_width/2
           height: $nav_height
     #tml-body 
-      &>ul
-        padding-top: $header_height
-        li
-          height: $line_height
-          width: $gutter_width
+      min-height: $header_height + ($line_height*2)
+    #line-headings
+      padding: $gradient_padding 0
+      width: $gutter_width
+      li
+        height: $line_height
+    #survey-menu
+      width: $survey_menu_width
+      &.state-closed
+        left: -$survey_menu_width
+      &.state-open
+        left: 0
     #tml-history
       width: $history_width
+      padding: $gradient_padding 0
       &>ul
+        top: -$gradient_padding
         margin-bottom: -$line_height
         li
           height: $line_height * 1.5

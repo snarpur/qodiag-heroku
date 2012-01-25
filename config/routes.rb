@@ -11,6 +11,7 @@ Snarpur::Application.routes.draw do
   devise_for :users do
     get 'users', :to => 'users#show', :as => :user_root # Rails 3
   end
+  
   resources :users
   resources :people
   resources :relationships
@@ -22,7 +23,12 @@ Snarpur::Application.routes.draw do
   resources :people, :as => 'subject' do
       resources :responder_items
   end
-  match 'people/:subject_id/responder_items/survey/:survey_id' => 'responder_items#show', :via => :get
+
+
+
+  match 'people/:subject_id/responder_items/responses/:survey_id' => 'responder_items#responses', :via => :get
+  match 'people/:subject_id/responder_items/survey/:survey_id' => 'responder_items#survey', :via => :get
+  
   get "pages/error_401"
 
   root :to => 'users#show'

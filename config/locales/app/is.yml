@@ -41,8 +41,8 @@ is:
     boy: "Drengur"
     girl: "Stúlka"
     sex:
-      male: "karlkyn"
-      female: "kvennkyn"
+      male: "Karlkyn"
+      female: "Kvennkyn"
     father: "Faðir"
     mother: "Móðir"
     parent: "Foreldri"
@@ -241,6 +241,8 @@ is:
         firstname: "fornafn"
         lastname: "eftirnafn"
         cpr: "kennitala"
+        sex: "kyn"
+        full_cpr: "kennitala"
       relationship:
         relation_id: "relation_id"
         name: "tenging"

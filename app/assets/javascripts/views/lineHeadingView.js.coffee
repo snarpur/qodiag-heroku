@@ -1,6 +1,6 @@
-App.Views.Timeline ||= {}
+App.Views.Timeline.LineHeading ||= {}
 
-class App.Views.Timeline.Headings extends Backbone.View
+class App.Views.Timeline.LineHeading extends Backbone.View
   
   tagName: "li"
 
@@ -9,10 +9,14 @@ class App.Views.Timeline.Headings extends Backbone.View
   
   initialize:->
     @model.headingView = @
+    @model.bind("remove", @removeHeader)
   
   newItem:=>
     @model.set(newItemOverlayState:'open')
 
+  removeHeader:(line)=>
+    $(@el).remove()
+  
   template:->
     JST['templates/headingsTmpl']
   	

@@ -76,13 +76,13 @@ GEM
       cucumber (>= 1.1.3)
       nokogiri (>= 1.5.0)
     database_cleaner (0.7.0)
-    devise (1.4.9)
+    devise (1.5.3)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.0.3)
-      warden (~> 1.0.3)
-    devise_invitable (0.5.7)
-      devise (~> 1.4.1)
-      rails (>= 3.0.0, < 3.2)
+      warden (~> 1.1)
+    devise_invitable (0.6.1)
+      devise (>= 1.4.6, < 1.6)
+      rails (~> 3.1.0)
     diff-lcs (1.1.3)
     ejs (1.0.0)
     em-websocket (0.3.5)
@@ -149,13 +149,13 @@ GEM
     multi_json (1.0.4)
     mysql2 (0.3.11)
     nokogiri (1.5.0)
-    orm_adapter (0.0.5)
+    orm_adapter (0.0.6)
     pickle (0.4.10)
       cucumber (>= 0.8)
       rake
     polyglot (0.3.3)
     populator (1.0.0)
-    rack (1.3.5)
+    rack (1.3.6)
     rack-cache (1.1)
       rack (>= 0.4)
     rack-mount (0.8.3)
@@ -185,6 +185,7 @@ GEM
       thor (~> 0.14.6)
     rainbow (1.1.3)
     rake (0.9.2.2)
+    rb-fsevent (0.4.3.1)
     rdoc (3.11)
       json (~> 1.4)
     rspec (2.7.0)
@@ -246,7 +247,7 @@ GEM
     unicode-display_width (0.1.1)
     uuid (2.3.4)
       macaddr (~> 1.0)
-    warden (1.0.6)
+    warden (1.1.0)
       rack (>= 1.0)
     watchr (0.7)
     wirble (0.1.3)
@@ -266,8 +267,8 @@ DEPENDENCIES
   compass!
   cucumber-rails (>= 0.3.2)
   database_cleaner
-  devise (~> 1.4.1)
-  devise_invitable (~> 0.5.4)
+  devise (~> 1.5)
+  devise_invitable (~> 0.6)
   ejs
   email_spec
   factory_girl_rails
@@ -292,6 +293,7 @@ DEPENDENCIES
   rails-dev-tweaks (~> 0.5.1)
   rails-footnotes (>= 3.7)
   rainbow
+  rb-fsevent
   rspec-rails (~> 2.4)
   ruby_parser
   sass (~> 3.1.11)

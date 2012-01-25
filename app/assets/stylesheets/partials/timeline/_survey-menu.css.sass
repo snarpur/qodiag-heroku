@@ -1,0 +1,52 @@
+@import partials/base
+#survey-menu
+  position: absolute
+  z-index: 200
+  top: 0px
+  bottom: 0
+  +box-sizing(border-box)
+  padding: 1.5em .9em
+  background-color: fade_out($china3,.2)
+  +box-shadow(0 0 3px 0px rgba(0, 0, 0, 0.3) inset)
+  +background-image(linear-gradient(right bottom, rgba(255,255,255,.2) 0%,rgba(255,255,255,.1) 100%))
+  button
+    position: absolute
+    top: 5px
+    width: 12%
+    padding: .2em .5em
+    color: #fff
+    font-weight: bold
+    border: none
+  ul
+    background-color: $china5
+    +border-radius(8px)
+    border: 1px solid $china3
+    padding: 1.3em .8em
+    margin-top: 4em
+  li
+    position: relative
+    color: $china2
+    padding: 1em .5em
+    +text-shadow(0 1px 0 rgba(255,255,255,.7))
+    border-bottom: $china4 solid 1px
+    &:nth-child(1)
+      border-top: $china4 solid 1px
+    span  
+      position: absolute
+      top: .8em
+      right: 0
+  label
+    width: 80%
+#survey-menu.state-open
+  button:nth-child(2)
+    display: block
+
+#survey-menu
+  +transition-property(left)
+  +transition-duration(.2s)
+  +transition-timing-function(ease)
+      
+
+
+
+

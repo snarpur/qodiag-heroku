@@ -27,7 +27,7 @@ Snarpur::Application.configure do
   config.assets.enabled = true
   config.assets.compress = false
   # Expands the lines which load the assets
-  config.assets.debug = false
+  config.assets.debug = true
   config.sass.debug_info = false
   config.sass.preferred_syntax = :sass
 

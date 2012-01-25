@@ -4,7 +4,7 @@ class ResponderItemsController < ApplicationController
 
   def index
     @person = Person.find(params[:subject_id])
-    @responder_items = @person.responder_items
+    @responder_items = @person.responder_items.surveys
 
     respond_to do |format|
       format.html
@@ -39,6 +39,23 @@ class ResponderItemsController < ApplicationController
   end
 
   def update
+  end
+  
+  # Should be moved to a response_set controller
+  def responses 
+    respond_to do |format|
+      format.html
+      format.json {render :json => ResponderItem.to_chart(params).to_json}
+    end
+  end
+
+  def survey
+    @person = Person.find(params[:subject_id])
+    @responder_items = @person.responder_items.surveys_by_id(params[:survey_id])
+    respond_to do |format|
+      format.html
+      format.json {render :json => @responder_items}
+    end
   end
 
   private

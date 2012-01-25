@@ -3,6 +3,10 @@ $fb-inp-string-width: 300px
 $fb-width: ($fb-label-width + $fb-inp-string-width) * 1.05
 .form-base
 	width: $fb-width
+	.form-section
+		margin-bottom: .4em
+		h2
+			+sn-heading($color: $china3, $size: 1em, $brightness: .5)
 	+clearfix
 	abbr
 		display: none
@@ -29,8 +33,23 @@ $fb-width: ($fb-label-width + $fb-inp-string-width) * 1.05
 	button, .button
 		float: right
 
+.form-base.col-2
+	width: ($fb-width*2) + 20px
+	margin: 0 auto
+	overflow: visible
+	.form-section
+		width: $fb-width
+		float: left
+		margin-bottom: 1em
+		&:nth-child(odd)
+			float: left
+		&:nth-child(even)
+			float: right
 		
-
+		
+			
+.form-base.registration
+	margin: 10px auto
 // ======= OLD =========
 .family-registration
 	+clearfix

@@ -1,10 +1,18 @@
 class App.Models.Timeline extends Backbone.Model
   
   initialize:->
-    console.log @
     years = {years: [@.get("starts")..@.get("ends")]}
     @.set(years)
+    @.set({lines: new App.Collections.LineCollection([], @)})
+    @.get('lines').setSubjectId(@.get('subject_id'))
+    @.set({surveyMenu: new App.Collections.SurveyMenuItemCollection([])})
  
+  fillSurveyMenu:()=>
+    @.get('surveyMenu').add(@.get('surveys'))
+
+  subjectId:()=>
+    @.get('subject_id')
+
   setOpenLine:(line)=>
     @.set(openLine: line)
   
@@ -13,7 +21,7 @@ class App.Models.Timeline extends Backbone.Model
   
   hasOpenLine:=>
     @getOpenLine()?
-  
+   
   step:(steps) =>
     movement = @.get("month_width") * steps
     position = @.get("current_position") + movement
@@ -50,12 +58,15 @@ class App.Models.Timeline extends Backbone.Model
   positionOnLine:(date)=>
     date = new XDate(date.toString())
     @monthPixelsFromStart(date) + @dayPixelsFromMonthStart(date)
-
+ 
   getSurveyAccessCode:(id)=>
     _.find(@.get('surveys'), (o) -> o.id is +id)?.access_code
 
   getChartHeight:=>
     @.get('line_height_expanded') - @.get('line_height')
+
+
+
 
 
 

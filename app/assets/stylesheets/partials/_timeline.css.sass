@@ -1,9 +1,20 @@
 @import partials/base
+
+
+$tml-shadow-left: linear-gradient(right, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.0) 100%)
+$tml-shadow-right: linear-gradient(left, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.0) 100%)
+$month-divider: linear-gradient(left, rgba(14, 100, 200, 0.04) 50%, rgba(14, 100, 200, 0.01) 50%)
+$year-divider-l: linear-gradient(left, #d2d2d2 0px,rgba(255,255,255,0) 0px, rgba(0,0,0,0) 100%)
+$year-divider-r: linear-gradient(left, #fff 0px,rgba(255,255,255,0) 0px, rgba(0,0,0,0) 100%)
+$fade-out-size: auto 50px
+$fadeout-bottom: 0 100%
+$fadeout-top: 0 0
+
 #canvas
   position: relative
-  +box-shadow(2px 1px 4px 0px rgba(0, 0, 0, 0.13) inset)
   margin-bottom: 17px
   +border-radius(4px)
+  +box-shadow(2px 1px 4px 0px rgba(0, 0, 0, 0.06) inset)
  
 
 #canvas #tml-body:after
@@ -28,11 +39,11 @@
   +transition-property(margin-left)
   +transition-duration(0.2s)
   +transition-timing-function(ease)
-  +background-image(linear-gradient(left,  rgba(14, 100, 200, 0.04) 50%, rgba(14, 100, 200, 0.01) 50%), linear-gradient(left, rgba(0,0,0,0.1) 1px, rgba(255,255,255,0) 1px))
-  +background-size(140px,840px)
-  background-position: 0, -1px
-
-
-
-
-
+  +background-image($year-divider-l,$year-divider-r,$month-divider)
+  +background-size(840px,840px,140px)
+  background-position: 0, 1px 4px, 0
+  background-repeat:repeat-x, repeat-x, repeat
+  // +background-image($tml-fadeout-top,$tml-fadeout-bottom,$month-divider, $year-divider)
+  // +background-size($fade-out-size,$fade-out-size,140px, 840px)
+  // background-position: $fadeout-top, $fadeout-bottom, 0, -1px
+  // background-repeat: no-repeat, no-repeat, repeat, repeat

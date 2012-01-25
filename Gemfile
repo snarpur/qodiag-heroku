@@ -8,8 +8,8 @@ gem "jquery-rails"
 gem "backbone-rails"
 gem 'mysql2', '~> 0.3.7'
 gem 'json'
-gem "devise", "~> 1.4.1"
-gem "devise_invitable", "~> 0.5.4"
+gem "devise", "~> 1.5"
+gem "devise_invitable", "~> 0.6"
 gem "cancan"
 gem "hpricot"
 gem "ruby_parser"
@@ -23,6 +23,7 @@ gem 'rails-dev-tweaks', '~> 0.5.1'
 gem "i18n-js"
 gem "factory_girl_rails"
 gem "faker"
+
 
 group :assets do
   gem "sass-rails"
@@ -54,11 +55,12 @@ group :development, :test do
   gem "watchr"
   gem "populator"
   gem "syntax"
-#  gem "rb-fsevent", :require => false if RUBY_PLATFORM =~ /darwin/i
+
   gem "guard-haml"
   gem "guard-livereload"
   gem "letter_opener"
 end
 
+  gem "rb-fsevent", :group => :test, :require => false if RUBY_PLATFORM =~ /darwin/i
 
 gem "rails-footnotes", ">= 3.7", :group => :development

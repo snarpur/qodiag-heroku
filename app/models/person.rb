@@ -103,7 +103,7 @@ class Person < ActiveRecord::Base
            :to => :user, :prefix => true
 
 
-  def self.new_as_guardian_by_invitation(inviter)
+  def self.new_as_guardian_by_invitation(inviter) 
     person = Person.new
     child = person.relations.build
     person.relationships.build(:name => "guardian").inverse_relation  = child

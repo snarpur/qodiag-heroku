@@ -25,6 +25,13 @@ class User < ActiveRecord::Base
     user
   end
 
+  def self.invite_client_as_guardian(params)
+      user = User.invite!(params)
+      user.set_role(:client)
+      user.person.set_responder_item_subject
+      user.update_attributes({:invited_by_id => params[:invited_by_id]})
+  end
+
   def invitation?
     self.invitation ||= false
   end
@@ -40,5 +47,10 @@ class User < ActiveRecord::Base
   def role_name
     self.roles.first.name
   end
+
+  def set_role(name)
+    self.roles << Role.find_by_name(name.to_sym)
+  end
+
 end
 

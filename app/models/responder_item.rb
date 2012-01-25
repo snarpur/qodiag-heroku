@@ -7,12 +7,13 @@ class ResponderItem < ActiveRecord::Base
 
   before_save :set_response_set, :if => :is_uncompleted_survey?
 
+  # scope :include_survey, ResponderItem
   scope :overdue, where("deadline < ? AND completed IS NULL", Time.zone.now)
   scope :uncompleted, where("deadline >= ? AND completed IS NULL", Time.zone.now)
   scope :recently_completed, where("completed IS NOT NULL")
   scope :completed, where("completed IS NOT NULL")
-  scope :surveys, where("survey_id IS NOT NULL")
-  scope :surveys_by_id, lambda {|survey_id| where("survey_id = ?", survey_id)}
+  scope :surveys, where("survey_id IS NOT NULL").joins(:survey).select("surveys.access_code, responder_items.*")
+  scope :surveys_by_id, lambda {|survey_id| where("survey_id = ?", survey_id).joins(:survey).select("surveys.access_code, responder_items.*")}
   scope :registrations, where("registration_identifier IS NOT NULL").order(:id)
   scope :surveys_by_group, ResponderItem.surveys.order('survey_id')
 

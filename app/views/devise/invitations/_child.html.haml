@@ -3,9 +3,9 @@
     = child.input :sex, :collection => [[t('terms.boy'),'male'],[t('terms.girl'),'female']],  :as => :radio
     = child.input :firstname
     = child.input :lastname
+    = child.input :full_cpr
     = child.simple_fields_for :inverse_relationships do |patient_relationship|
       = patient_relationship.input :name, :as => :hidden
       = patient_relationship.input :person_id, :as => :hidden
-  .input.checkbox.required
-    = parent_relationship.collection_check_boxes :name,[[t('terms.parent'),'parent'],[t('terms.guardian'),'guardian']],:last,:first, {:disabled => ['guardian'], :checked => 'guardian'}
-    = parent_relationship.input :relation_id, :as => :hidden
+      = parent_relationship.collection_check_boxes :name,[[t('terms.parent'),'parent'],[t('terms.guardian'),'guardian']],:last,:first, {:disabled => ['guardian'], :checked => 'guardian'}
+      = parent_relationship.input :relation_id, :as => :hidden

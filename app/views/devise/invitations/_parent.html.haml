@@ -1,9 +1,9 @@
-= f.input :sex, :collection => [[t('terms.father'),'male'],[t('terms.mother'),'female']],  :as => :radio
 = f.input :firstname
 = f.input :lastname
+= f.input :sex, :collection => [[t('terms.sex.male'),'male'],[t('terms.sex.female'),'female']],  :as => :radio
 = f.simple_fields_for :client_responder_items do |item|
   =item.input :registration_identifier, :as => :hidden
-  =item.input :caretaker_id, :as => :hidden
+  =item.input :caretaker_id #, :as => :hidden
   =item.input :deadline, 
   				:as => :date, 
   				:start_year => Date.today.year,

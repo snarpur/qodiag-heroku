@@ -17,8 +17,8 @@ class Devise::InvitationsController < ApplicationController
     @user = User.new(params[:user].merge!({:invitation => true}))
     @user.valid?
     if @user.errors.empty?
-      @user = User.invite!(params[:user])
-      @user.person.set_responder_item_subject
+      User.invite_client_as_guardian(params[:user])
+
       flash[:notice] = I18n.t('devise.invitations.send_instructions',:email => @user.email)
       redirect_to after_sign_in_path_for(User)
     else
@@ -55,7 +55,7 @@ class Devise::InvitationsController < ApplicationController
     end
 
     def build_new_user
-      @user = User.new_client_as_guardian_by_invitation(:role_ids => params[:role_ids], :inviter=> @current_user)
+      @user = User.new_client_as_guardian_by_invitation({:role_ids => params[:role_ids], :inviter=> @current_user})
     end
 
 end

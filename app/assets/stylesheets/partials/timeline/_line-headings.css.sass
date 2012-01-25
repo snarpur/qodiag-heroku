@@ -1,14 +1,18 @@
 @import partials/base
-#tml-body>ul
+#line-headings
+  position: absolute
   +stretch-y
   z-index: 100
-  // +background-image(linear-gradient(left, rgba(150, 150, 150, 0.15) 0%, rgba(0, 0, 0, 0) 50%, rgba(150, 150, 150, 0.15) 100%))
-  background-color: fade_out($china3, .30)
+  +box-shadow(2px 1px 2px 1px rgba(0, 0, 0, 0.06) inset)
+  background-color: fade_out($china4, .10)
   +background-image(linear-gradient(right bottom, rgba(255,255,255,.7) 0%,rgba(255,255,255,.3) 100%))
-  +box-shadow(2px 1px 2px 1px rgba(0, 0, 0, 0.13) inset)
   padding-left: 2px
   padding-right: 2px
   +border-radius(4px 0 0 4px)
+  button
+    position: absolute
+    right: .5em
+    top: .5em
   li
     position: relative
     +box-sizing(border-box)

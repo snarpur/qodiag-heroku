@@ -33,7 +33,7 @@
         -flash.each do |name, msg|
           %div{:class => name}
             =msg
-      #container
+      #container{:class => yield(:css_hook)}
         #content
           = yield
       #footer
