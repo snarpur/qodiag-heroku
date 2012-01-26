@@ -4,7 +4,7 @@
     $header_height: $line_height/2
     $nav_height: $line_height*0.3
     $survey_menu_width: $gutter_width * 3 
-    $gradient_padding: 50px
+    $timeline_hrz_padding: 50px
     #canvas
       width: $canvas_width
       &>nav
@@ -12,9 +12,9 @@
           width: $history_view_width/2
           height: $nav_height
     #tml-body 
-      min-height: $header_height + ($line_height*2)
+
     #line-headings
-      padding: $gradient_padding 0
+      padding: $timeline_hrz_padding 0
       width: $gutter_width
       li
         height: $line_height
@@ -26,10 +26,11 @@
         left: 0
     #tml-history
       width: $history_width
-      padding: $gradient_padding 0
+      min-height: $line_height*2
+      padding: $timeline_hrz_padding 0
       &>ul
-        top: -$gradient_padding
-        margin-bottom: -$line_height
+        top: -$timeline_hrz_padding
+        margin-bottom: -($line_height + $timeline_hrz_padding)
         li
           height: $line_height * 1.5
           width: $history_view_width
