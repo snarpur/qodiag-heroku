@@ -13,6 +13,7 @@ body
   +clearfix
   border-bottom: 1px solid #fff
   +box-shadow(0px 1px 0 0px $china1)
+  +background-image(linear-gradient(left bottom, rgba(255,255,255,0) 0%,rgba(255,255,255,0.18) 15%,rgba(255,255,255,0.22) 40%,rgba(255,255,255,0.18) 60%,rgba(255,255,255,0) 100%))
   & > div
     position: relative
     width: $blueprint_container_size
@@ -34,36 +35,44 @@ body
     text-shadow: 0 0 1px rgba(255, 255, 255, 0.6)
     text-transform: uppercase
     width: 50px
-  ul
-    +horizontal-list
+  ul.login
+    +horizontal-list(false)
+    position: absolute
+    right: 0
+    top: 5px
+    +opacity(.9)
     li
-      padding: 7px 2px
+      padding: .3em 1em .3em 1.8em
+      background-repeat: no-repeat
+      background-position:  0 0
+    li:nth-child(1)
+      background-image: url("/assets/cc/white/16x16/user.png")
+      margin-right: 1em
+    li:nth-child(2)
+      background-image: url("/assets/cc/white/16x16/padlock_closed.png")
+    a
+      color: #fff
+
+#container 
   ul.nav
-    margin-left: 150px
+    position: absolute
+    top: 75px
+    left: 20px
     li
       a
         display: block
-        border: #666666 solid 1px
-        height: 31px
-        width: 31px
-        background-color: #000
+        +box-shadow(0 0 2px 0 rgba(0,0,0,.2) inset)
+        border: 1px solid #fefefe
+        border-width: 0 1px 1px 0
+        height: 32px
+        width: 32px
         +border-radius(5px)
         &:hover
-          background-color: $china1
+          background-color: rgba(0,0,0,.1)
       &.home
         a
-          +replace-text(unquote("nav/home.png"))
-      &.settings
-        a
-          +replace-text(unquote("nav/settings.png"))
-  ul.login
-    position: absolute
-    right: 0
-    top: 0
-    li:first-child
-      +append(2)
-    a
-      color: white
+          +replace-text(unquote("/assets/black-gloss/32x32/home5.png"))
+
 
 #container
   +clearfix

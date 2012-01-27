@@ -25,16 +25,16 @@
       #header
         %h2 Snarpur
         %div
-          %ul.nav
-            %li.home
-              %a{:href => "/users"}
-                = t('navigation.home')
           =render 'shared/log_in_out'
       #flash
         -flash.each do |name, msg|
           %div{:class => name}
             =msg
       #container{:class => yield(:css_hook)}
+        %ul.nav
+          %li.home
+            %a{:href => "/users"}
+              = t('navigation.home')
         #content
           = yield
       #footer
