@@ -10,14 +10,13 @@ class App.Views.Timeline.Line extends Backbone.View
 
   initialize:->
     @timeline = @options.timeline
-    @items = @model.get('items')
     @model.view = @
     @model.bind("change:previousDialogItem", @removeDialog)
     @model.bind("change:currentDialogItem", @changeLineState)
     @model.bind("change:newItemOverlayState", @newItemOverlayState)
-    @model.bind("change:items", @renderLineItems)
     @model.bind("change:menuItem", @removeItems)
     @model.bind("remove", @removeLine)
+    @model.get('items').bind("add", @renderLineItems)
 
   
   template:->
@@ -44,7 +43,7 @@ class App.Views.Timeline.Line extends Backbone.View
     $(@el).append(dialog.render().el)
     dialog.renderCharts()
   
-  renderLineItems: =>
+  renderLineItems: => 
     @.$(".line-items").empty()
     _.each(@model.get('items').models ,@renderLineItem)
   

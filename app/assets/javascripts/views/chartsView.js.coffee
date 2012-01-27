@@ -38,9 +38,13 @@ class App.Views.Charts extends Backbone.View
       str = @.value if _.includes(str,'missing')
       _.capitalize(str)
 
+  legendEvent:=>
+    () ->
+      false
 
   plotOptions:(chart)=>
     _.extend(chart.plot_options.column.dataLabels,{formatter: @dataLabelFormatter()})
+    _.extend(chart.plot_options.column,{events:{legendItemClick: @legendEvent()}})
     chart.plot_options
 
   highChart:(chart)=>

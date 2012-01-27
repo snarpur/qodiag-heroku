@@ -3,7 +3,7 @@ class App.Models.Timeline extends Backbone.Model
   initialize:->
     years = {years: [@.get("starts")..@.get("ends")]}
     @.set(years)
-    @.set({lines: new App.Collections.LineCollection([], @)})
+    @.set({lines: new App.Collections.LineCollection([],@)})
     @.get('lines').setSubjectId(@.get('subject_id'))
     @.set({surveyMenu: new App.Collections.SurveyMenuItemCollection([])})
  

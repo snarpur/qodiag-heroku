@@ -1,29 +1,34 @@
-%h1.china-4.add-user.icon-wrap
-  Skjólstæðingar
-  =link_to "Skrá skjólstæðing", new_user_invitation_path(3), :class => 'c-icon tmp-closed'
-%table.overview
-  %thead
-    %tr
-      %th
-        Nafn
-      %th
-        Óklárðar beiðnir
-      %th
-        Útrunnar beiðnir
-  %tbody
-    -@patients.each do |p|
+.patient-search
+  %h1
+    Skjólstæðingar
+  =link_to "Skrá skjólstæðing", new_user_invitation_path(3), :class => 'z-icon add-user medium'
+  %div
+    %form
+      %input#patient-search
+.sn-box
+  %table.overview
+    %thead
       %tr
-        %td
-          = link_to p.full_name, subject_responder_items_path(p) 
-        %td.uncompleted
-          - u = p.responder_items.uncompleted.count
-          -unless u.zero?
-            %span
-              = u
-        %td.overdue
-          - o = p.responder_items.overdue.count
-          - unless o.zero?
-            %span
-              = o
+        %th
+          Nafn
+        %th
+          Óklárðar beiðnir
+        %th
+          Útrunnar beiðnir
+    %tbody
+      -@patients.each do |p|
+        %tr
+          %td
+            = link_to p.full_name, subject_responder_items_path(p) 
+          %td.uncompleted
+            - u = p.responder_items.uncompleted.count
+            -unless u.zero?
+              %span
+                = u
+          %td.overdue
+            - o = p.responder_items.overdue.count
+            - unless o.zero?
+              %span
+                = o
 
 

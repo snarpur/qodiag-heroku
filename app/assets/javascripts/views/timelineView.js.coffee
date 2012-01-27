@@ -51,16 +51,17 @@ class App.Views.Timeline.Canvas extends Backbone.View
   goToDate:=>
     @model.goToDate()
   
-  sortCollection:=>
+  createSortedLinesCollection:=>
     that = @
     ids = _.uniq(@collection.pluck('survey_id'))
     _.map(ids, (id) -> 
       models =  that.filterBySurveyId(id)
-      obj = 
+      params = 
         survey_id: id
         items: new App.Collections.ResponderItemsCollection(models)
         name: that.model.getSurveyAccessCode(id)
-        timeline: that.model, 
+        timeline: that.model
+      new App.Models.Line(params)
     )
     
   filterBySurveyId:(id)=>
@@ -74,6 +75,6 @@ class App.Views.Timeline.Canvas extends Backbone.View
     @renderNavigation()
     @renderSurveyMenu()
     @renderHeadingsList()
-    @lines.add(@sortCollection())
+    @lines.add(@createSortedLinesCollection())
     @model.set(current_date: Date.today())
     @

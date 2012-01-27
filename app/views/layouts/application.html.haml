@@ -24,11 +24,12 @@
     #wrapper{:class => role_view}
       #header
         %h2 Snarpur
-        %ul.nav
-          %li.home
-            %a{:href => "/users"}
-              = t('navigation.home')
-        =render 'shared/log_in_out'
+        %div
+          %ul.nav
+            %li.home
+              %a{:href => "/users"}
+                = t('navigation.home')
+          =render 'shared/log_in_out'
       #flash
         -flash.each do |name, msg|
           %div{:class => name}

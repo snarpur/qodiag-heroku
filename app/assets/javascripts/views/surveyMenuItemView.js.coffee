@@ -19,7 +19,6 @@ class App.Views.SurveyMenuItem extends Backbone.View
     $(@el).setCssState(value)
 
   setVisibility:()=>
-    console.log @.$("input")
     if $(@el).cssState() is 'visible'
       @model.hideLine()
     else

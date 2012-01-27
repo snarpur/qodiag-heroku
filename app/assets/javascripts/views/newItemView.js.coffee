@@ -38,9 +38,7 @@ class App.Views.Timeline.NewItem extends Backbone.View
     that = @
     callbacks =
       success: (model,response) -> 
-        console.log that.el
         that.model.addItems(model)
-        console.log that.el
         $(that.el).setCssState("success")
       error: (model,response) -> 
         $(that.el).setCssState("error")
@@ -48,9 +46,6 @@ class App.Views.Timeline.NewItem extends Backbone.View
   setDate:=>
     that = @
     (txt,d) ->
-      console.log @
-      console.log txt, d
-      console.log that
       $(that.el).setCssState("selected")
       that.selectedDate = $.datepicker.parseDate("dd/mm/yy",txt)
       that.$(".state-msg .m-selected").html(JST['templates/newItemMsgTmpl']({date: that.selectedDate}))

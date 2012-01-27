@@ -3,4 +3,15 @@
 	%h1.china-4
 		= "#{@person.full_name} #{@person.age} ára"
 
+	%table
+		%tr
+			%th{:colspan => 2} Forræðishafi
+		%tr
+			%td Nafn:
+			%td= @person.guardian_user.person.full_name 
+		%tr
+			%td Netfang:
+			%td= @person.guardian_user.email 
+		
+
 

@@ -1,5 +1,41 @@
 @import partials/base
 
+.patient-search
+	position: relative
+	margin: 2em auto 3em auto
+	h1
+		font-size: 2em
+		margin-bottom: 1em
+		color: #444
+	& .add-user
+		position: absolute
+		bottom: .5em
+		right: .5em
+.patient-search 
+	& > div
+		padding: 0 14em
+		+box-sizing(border-box)
+	input
+		width: 100%
+		font-size: 1.5em
+		padding: .2em 0 .2em .5em
+		border: 1px solid #c5c5c5
+		color: #555
+		+border-radius
+		+box-shadow(1px 1px 3px 0 rgba(0, 0, 0, 0.2) inset)
+	form
+		position: relative
+	form:after
+		content: "\26B2"
+		position: absolute
+		top: .12em
+		right: 0
+		font-size: 2.1em 
+		color: #777
+		+rotate(30deg)
+
+
+
 .caretaker-view .registration .form-base 
 	margin-top: 3em
 
@@ -10,23 +46,26 @@ table.overview
 	th
 		padding: 1em
 		font-weight: bold
+		color: #777
 	th:nth-child(2), th:nth-child(3)
 		text-align: center
 		font-size: .6em
 	tbody
 		tr:nth-child(odd)
-			background-color: #f9f9f9
+			background-color: #fefefe
+		tr:nth-child(odd):hover
+			background-color: #f1f1f1
 		tr:nth-child(even)
-			background-color: rgb(230,240,250)
+			background-color: $china5
+		tr:nth-child(even):hover
+			background-color: lighter($china5, 20%)
 		tr td:first-child
 		td
 			padding: .5em
 			color: #999
 			a
 				text-decoration: none
-				color: #777
-			a:hover
-				color: #111
+				color: #444
 		td.overdue,
 		td.uncompleted
 			text-align: center
@@ -45,6 +84,7 @@ table.overview
 			background-color: rgba(255,0,0,.4)
 		td.uncompleted span
 			background-color: rgba(255,255,0,.4)
+
 	
 	
 	

@@ -5,39 +5,48 @@
 body
   font-family: 'Droid Sans', sans-serif
   font-size: 12px
- 
+  +background-image(linear-gradient(bottom right, rgba(255,255,255,.8) 0%,rgba(255,255,255,0) 100%),url("/assets/bg-pattern-1.png"))
+
 #header
+  background-color: #000
   position: relative
   +clearfix
   border-bottom: 1px solid #fff
-  +background-image($gradient_ch_2)
   +box-shadow(0px 1px 0 0px $china1)
-  
+  & > div
+    position: relative
+    width: $blueprint_container_size
+    height: 50px
   h2
     position: absolute
-    top: .5em
-    left: .4em
-    +border-radius(30px 1px 30px 1px)
-    padding: .1em .5em
-    color: fade_out($china4,.5)
-    font-size: 1.6em
-    font-style: italic
-    font-weight: bold
-    +box-shadow(0 0 13px 5px rgba(250, 250, 250, 0.13) inset, 0 0 1px 0 rgba(250, 250, 250, 0.4))
+    top: 0
+    left: 0
+    background-image: url("/assets/s-logo-1.png")
+    background-position: 4px 4px
+    background-size: auto auto
+    color: rgba(255, 255, 255, 0.7)
+    height: 50px
+    line-height: 46px
+    letter-spacing: .14em
+    margin: 0
+    padding: 0
+    text-indent: 51px
+    text-shadow: 0 0 1px rgba(255, 255, 255, 0.6)
+    text-transform: uppercase
+    width: 50px
   ul
     +horizontal-list
     li
       padding: 7px 2px
   ul.nav
-    +column(15)
-    margin-left: 130px
+    margin-left: 150px
     li
       a
         display: block
         border: #666666 solid 1px
         height: 31px
         width: 31px
-        background-color: fade_out($china2,0.5)
+        background-color: #000
         +border-radius(5px)
         &:hover
           background-color: $china1
@@ -48,7 +57,9 @@ body
         a
           +replace-text(unquote("nav/settings.png"))
   ul.login
-    +column(9)
+    position: absolute
+    right: 0
+    top: 0
     li:first-child
       +append(2)
     a
@@ -57,9 +68,7 @@ body
 #container
   +clearfix
   +container
-  min-height: 800px
   margin: 20px 50px
-  background-color: white
   border-width: 0 1px
 
 #content
@@ -67,6 +76,7 @@ body
   +prepend(1)
   +append(1)
   margin-bottom: 40px
+  padding-bottom: 40px
 
 #flash
   position: absolute
@@ -87,7 +97,16 @@ body
     display: block
     margin-top: 25px
     +prepend(12)
-    
+
+.sn-box
+  position: relative
+  padding: 1em 1em 1em 1em
+  margin: 0 auto
+  min-height: 100px
+  background-color: rgba(255,255,255,.85)
+  +border-radius(1px)
+  +box-shadow(0 0 0 13px rgba(255,255,255,.5), 0 0 0 14px rgba(0,0,0,.04), 1px 1px 12px 10px rgba(0, 0, 0, 0.1))
+  
 .alert
 div.overdue
   +error

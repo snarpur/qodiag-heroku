@@ -6,19 +6,21 @@ $fb-width: ($fb-label-width + $fb-inp-string-width) * 1.05
 	.form-section
 		margin-bottom: .4em
 		h2
-			+sn-heading($color: $china3, $size: 1em, $brightness: .5)
+			margin-bottom: .5em
+			
 	+clearfix
 	abbr
 		display: none
 	label
 		text-transform: capitalize
-		color: $grey_dark
+		color: #555
 	div.input
 		position: relative
-		margin-bottom: 2px
+		margin-bottom: .9em
 		padding-left: $fb-label-width
 		padding: .7em 0 .7em $fb-label-width
-		background-color: $china5
+		background-color: rgba(0,0,0,.025)
+		border: 1px solid rgba(0,0,0,.1)
 		+border-radius(3px)
 		label:nth-child(1)
 			position: absolute
@@ -30,6 +32,11 @@ $fb-width: ($fb-label-width + $fb-inp-string-width) * 1.05
 				top: 0
 	div.input.string input
 		width: $fb-inp-string-width
+		border: #888 solid 1px
+		background-color: #fefefe
+		+box-shadow(1px 1px 1px rgba(0, 0, 0, 0.15) inset)
+		+border-radius(2px) 
+
 	button, .button
 		float: right
 

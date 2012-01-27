@@ -3,9 +3,9 @@ class App.Models.Line extends Backbone.Model
   # urlRoot: "/people/:subject_id/"
   
   initialize:->    
-    @.bind("updateDialog", @setCurrentDialogItem)
-    @timeline = @.get('timeline')
     @.urlRoot = "/people/:subject_id/responder_items/survey/"
+    @timeline = @.get('timeline')
+    @.bind("updateDialog", @setCurrentDialogItem)
   
   url:()=>
     base = @.urlRoot.replace(/:subject_id/,@subjectId())
@@ -13,9 +13,6 @@ class App.Models.Line extends Backbone.Model
   
   subjectId:()=>
     @.get("timeline").get("subject_id")
-
-  itemsCollection:=>
-    _.first(@.get('items')).collection
   
   setCurrentDialogItem:(item)=>
     @setPreviousDialogItem(item) 
@@ -43,7 +40,7 @@ class App.Models.Line extends Backbone.Model
     @.set(previousDialogItem: null)
   
   addItems:(items)=>
-    @timeline.get("items").add(items,{silent: true})
+    @.get('items').add(items)
     
   removeItems:()=>
     @.trigger('remove',@)
@@ -57,8 +54,6 @@ class App.Collections.LineCollection extends Backbone.Collection
   initialize:(lines, timeline)->
     @.models = lines
     @.timeline = timeline
-    console.log "collection arguments  ",arguments
-
 
   setSubjectId:(id)=>
     @.subjectId = id

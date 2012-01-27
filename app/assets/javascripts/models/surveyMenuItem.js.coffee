@@ -8,7 +8,6 @@ class App.Models.SurveyMenuItem extends Backbone.Model
     line.set({menuItem: @})
   
   hideLine:=>
-    console.log "hideLine", @
     @.set({visibility: "hidden"})
     @.get('line').set({menuItem: null})
     @.unset('line')

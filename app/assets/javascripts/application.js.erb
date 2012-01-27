@@ -13,8 +13,10 @@
 //= require highcharts/js/highcharts.src
 //= require i18n
 //= require i18n/translations
+//= require jquery.quicksearch
 //= require_tree .
 $(document).ready(function(){
 	$.datepicker.setDefaults($.datepicker.regional[I18n.locale]);
+	$('input#patient-search').quicksearch('table tbody tr');
 });
 

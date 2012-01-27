@@ -71,13 +71,13 @@ $blue_lightest: #dfe2ff
 $blue_light: #afb6ff
 $blue_dark: #3b4991
 
-$china1: rgb(20,25,54)
-$china2: rgb(20,58,133)
-$china3: rgb(188,198,214)
+$china1: desaturate(rgb(20,25,54),30%)
+$china2: desaturate(rgb(20,58,133),30%)
+$china3: desaturate(rgb(188,198,214),30%)
 $china4: rgb(228,220,231)
 $china5: rgb(250,248,249)
 
-$gradient_ch_1to2: linear-gradient(left top, rgba(0,58,133,1) 0%,rgba(20,25x,54,1) 100%)
+$gradient_ch_1to2: linear-gradient(left top, rgba(0,58,133,1) 0%,rgba(20,25,54,1) 100%)
 $gradient_ch_2: linear-gradient(left top, rgba(20,25,54,.9)0%,rgba(20,25,54,1) 100%)
 
 $header_border_lightblue: 1px solid #dfe2ff
@@ -92,7 +92,7 @@ $h2_font_size: 1.4em
   @if $brightness > 0
     +highlight($brightness, $direction: top)
   +border-radius(3px)
-  border: 1px solid #fff
+  border: 1px solid rgba(255,255,255,.85)
   +box-shadow(0 0 0 1px $color)
   font-size: #{$size}em
   color: grayscale(invert($color))

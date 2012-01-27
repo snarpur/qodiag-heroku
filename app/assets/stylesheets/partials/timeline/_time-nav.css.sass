@@ -1,28 +1,15 @@
 @import partials/base
-#canvas
-  margin-top: 30px
   
-#canvas > nav > ul
-  +stretch
-  +horizontal-list($padding: 0, $direction: right)
+#canvas > nav 
   position: absolute
   z-index: 100
-  height: 40px
-  top: -30px
+  & > ul
+  +horizontal-list($padding: 0, $direction: right)
   li
     text-align: center
-    font-size: 2em
-    line-height: 1.5em
-    +transition-property(opacity)
-    +transition-duration(0.2s)
-    +transition-timing-function(ease-in)
-    cursor: pointer
-    background-repeat: no-repeat
-    background-position: 50% 2px
-    +opacity(0.2)
-    &:hover
-      +opacity(0.7)
-    // &:nth-child(1)
-    //   background-image: url("/assets/cc/blacks/16x16/rnd_br_next.png")
-    // &:nth-child(2)
-    //   background-image: url("/assets/cc/blacks/16x16/rnd_br_prev.png") 
+    // font-size: 2em
+    // line-height: 1.5em
+    // cursor: pointer
+    // background-repeat: no-repeat
+    // background-position: 50% 2px
+

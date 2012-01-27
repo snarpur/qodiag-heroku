@@ -15,7 +15,6 @@ class App.Views.Timeline.HeadingsList extends Backbone.View
     JST['templates/headingsListTmpl']
   
   openSurveyMenu:()=>
-    console.log "opening survey menu SURVEYMENU VISIBILITY::",  @timeline.get('surveyMenuVisibility')
     @timeline.set({surveyMenuVisibility: 'open'})
   
   renderHeading:(line)=>
