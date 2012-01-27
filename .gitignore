@@ -8,7 +8,6 @@ app/assets/stylesheets/.sass-cache
 .watchr
 .rspec
 *.log
-vendor/**/*
 public/assets
 yes
 yes.pub
