@@ -25,7 +25,7 @@ class PopulateUtil
       KK.see "in user"
       self.clear_user_tables
     end
-
+  
     def survey_level
       self.clear_user_tables
       self.generate_surveys

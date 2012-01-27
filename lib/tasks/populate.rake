@@ -2,6 +2,7 @@
 namespace :db do
   desc "Erase and fill database"
   task :populate, :level do |cmd, args|
+    # e.g. db:populate[reset]
     #:level => reset -- resets database
     #:level => user -- delete user records and refill
     #:surveys =>  -- regenerates surveys, regenerates user data
