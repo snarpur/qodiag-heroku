@@ -6,14 +6,16 @@ body
   font-family: 'Droid Sans', sans-serif
   font-size: 12px
   +background-image(linear-gradient(bottom right, rgba(255,255,255,.8) 0%,rgba(255,255,255,0) 100%),url("/assets/bg-pattern-1.png"))
+  background-repeat: no-repeat, repeat
+  +background-size(cover, auto)
+
 
 #header
-  background-color: #000
   position: relative
   +clearfix
   border-bottom: 1px solid #fff
   +box-shadow(0px 1px 0 0px $china1)
-  +background-image(linear-gradient(left bottom, rgba(255,255,255,0) 0%,rgba(255,255,255,0.18) 15%,rgba(255,255,255,0.22) 40%,rgba(255,255,255,0.18) 60%,rgba(255,255,255,0) 100%))
+  +background-image($highlight_center)
   & > div
     position: relative
     width: $blueprint_container_size
@@ -32,7 +34,7 @@ body
     margin: 0
     padding: 0
     text-indent: 51px
-    text-shadow: 0 0 1px rgba(255, 255, 255, 0.6)
+    text-shadow: 0 0 1px rgba(255, 255, 255, 0.5)
     text-transform: uppercase
     width: 50px
   ul.login
@@ -79,6 +81,7 @@ body
   +container
   margin: 20px 50px
   border-width: 0 1px
+  min-height: 600px
 
 #content
   +clearfix
@@ -98,6 +101,7 @@ body
   text-align: center
 
 #footer
+  display: none
   padding: 1em 0 3em 0
   background-color: $china4
   +box-shadow(0px 1px 2px 1px rgba(0,0,0,.3) inset)

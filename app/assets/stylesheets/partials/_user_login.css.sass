@@ -3,15 +3,21 @@ $sign_in_top: 120px
 $sign_in_height: 300px
 
 body.sign-in
-	#header
-		display: none
-	+background-image($gradient_ch_1to2,$gradient_ch_1to2,$gradient_ch_1to2)
-	background-position: 0 $sign_in_top, 0 $sign_in_top - 2px, 0 ($sign_in_top + $sign_in_height + 1px)
-	background-repeat: no-repeat
-	+background-size(100% $sign_in_height, 100% 1px, 100% 1px)
+	+background-image($highlight_center, $highlight_center, $highlight_center, $bg_pattern, $bg_gradient)
+	background-position: 0 $sign_in_top, 0 $sign_in_top - 2px, 0 ($sign_in_top + $sign_in_height + 1px), 0, 0
+	background-repeat: no-repeat, no-repeat, no-repeat, repeat, no-repeat
+	+background-size(100% $sign_in_height, 100% 1px, 100% 1px, auto, auto)
+	h1,h2
+		border: none
+	#header,
+	#footer,
+	ul.nav
+		display: none	
 	#container
 		background-color: transparent
 		padding: 0
+	#content
+		height: $sign_in_height * 1.6
 .login-info
 	position: absolute
 	top: $sign_in_top * 1.25
@@ -40,8 +46,8 @@ body.sign-in
 		+box-shadow(1px 1px 2px 1px rgba(0, 0, 0, 0.01) inset)
 		+box-sizing(border-box)
 	h1
+		background-image: none
 		font-size: 1.4em
-		text-shadow: 1px 1px 1px rgba(255,255,255,.9)
 	p
 		margin: 1em 0
 	a
@@ -72,9 +78,11 @@ body.sign-in
 	h2
 		font-size: 2em
 		padding: 1.6em 0 1.1em 2.3em
-		text-shadow: 2px 2px 2px fade-out($china5,.1)
 		margin-bottom: 17px
-		background: url("/assets/black-gloss/64x64/lock4.png") no-repeat -25px 0
+		background-image: url("/assets/black-gloss/64x64/lock4.png")
+		background-repeat: no-repeat
+		background-position: -25px 0
+		+background-size(auto)
 	form
 		+clearfix
 	.input
