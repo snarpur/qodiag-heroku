@@ -61,6 +61,6 @@ group :development, :test do
   gem "letter_opener"
 end
 
-gem "rb-fsevent", :group => :test, :require => false if RUBY_PLATFORM =~ /darwin/i
+#gem "rb-fsevent", :group => :test, :require => false if RUBY_PLATFORM =~ /darwin/i
 
 gem "rails-footnotes", ">= 3.7", :group => :development
