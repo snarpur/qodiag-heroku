@@ -5,9 +5,9 @@
 body
   font-family: 'Droid Sans', sans-serif
   font-size: 12px
-  +background-image(linear-gradient(bottom right, rgba(255,255,255,.8) 0%,rgba(255,255,255,0) 100%),url("/assets/bg-pattern-1.png"))
+  +background-image(linear-gradient(left top , rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.2) 50%),url("/assets/bg-pattern-1.png"))
   background-repeat: no-repeat, repeat
-  +background-size(cover, auto)
+  +background-size(100% 200%, auto)
 
 
 #header
@@ -101,7 +101,6 @@ body
   text-align: center
 
 #footer
-  display: none
   padding: 1em 0 3em 0
   background-color: $china4
   +box-shadow(0px 1px 2px 1px rgba(0,0,0,.3) inset)
