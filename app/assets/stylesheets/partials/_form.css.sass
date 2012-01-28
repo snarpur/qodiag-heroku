@@ -1,14 +1,14 @@
+@import partials/base
 $fb-label-width: 100px
 $fb-inp-string-width: 300px
 $fb-width: ($fb-label-width + $fb-inp-string-width) * 1.05
 .form-base
 	width: $fb-width
+	+clearfix
 	.form-section
 		margin-bottom: .4em
 		h2
 			margin-bottom: .5em
-			
-	+clearfix
 	abbr
 		display: none
 	label
