@@ -2,7 +2,6 @@
 - record = f.object
 - errors = record.errors
 -if errors.any?
-  = debug errors
   #errorExplanation
     %h2
       - if errors.count == 1

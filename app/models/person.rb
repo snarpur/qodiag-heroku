@@ -1,20 +1,21 @@
 class Person < ActiveRecord::Base
 
-  validates_presence_of :firstname, :sex  #, :lastname, :sex, :full_date
-  #validate :presence_of_cpr
-  #validates_numericality_of :cpr, :full_date
-  #validates_length_of :full_date, :is => 6
-  #validates_length_of :cpr, :is => 4
+  validates_presence_of :firstname, :sex, :lastname
+  validate :presence_of_full_cpr
+  validates_length_of :full_cpr, :is => 10, :allow_nil => true
+  # validates_length_of :cpr, :is => 4
   #validate :presence_of_parent_occupation
   #after_save :set_parents_address
   after_initialize :person_factory, :if => :new_record?
 
   attr_accessor :factory
 
-  # has_one :user
+  belongs_to :address
+  has_one :user
   has_many :client_responder_items, :class_name => "ResponderItem", :foreign_key => "client_id"
   has_many :patient_responder_items, :class_name => "ResponderItem", :foreign_key => "subject_id"
   has_many :caretaker_responder_items, :class_name => "ResponderItem", :foreign_key => "caretaker_id"
+ 
   has_many  :relationships, :dependent => :destroy do
     def child
       where("name = 'parent'")
@@ -27,7 +28,6 @@ class Person < ActiveRecord::Base
     def guardian(id)
       where("name = 'guardian' AND relation_id = #{id}")
     end
-
   end
 
   has_many :inverse_relationships, :class_name => "Relationship", :foreign_key => "relation_id" do
@@ -35,6 +35,9 @@ class Person < ActiveRecord::Base
       where("name = 'spouse'")
     end
     def parents
+      where("name = 'parent'")
+    end
+    def patient
       where("name = 'parent'")
     end
   end
@@ -80,9 +83,6 @@ class Person < ActiveRecord::Base
     end
   end
 
-
-  belongs_to :address
-  has_one :user
   accepts_nested_attributes_for :relations, :allow_destroy => true
   accepts_nested_attributes_for :relationships, :allow_destroy => true #,  :reject_if => proc {|attributes| attributes['person_id'].blank?}
   accepts_nested_attributes_for :inverse_relationships, :allow_destroy => true
@@ -126,7 +126,7 @@ class Person < ActiveRecord::Base
         if name.eql?(:all)
           item_group = self.responder_items & ResponderItem.send(s)
         else
-          item_group = self.responder_items(:subject_id) & ResponderItem.send(name).send(s)
+          item_group = self.responder_items & ResponderItem.send(name).send(s)
         end
         items << {:name => s, :items => item_group} unless item_group.empty?
       end
@@ -161,6 +161,16 @@ class Person < ActiveRecord::Base
   def presence_of_cpr
     errors.add(:cpr, "cannot be empty") if
       ispatient == true and cpr.nil?
+  end
+  
+  def presence_of_full_cpr
+    errors.add(:full_cpr, I18n.t("activerecord.errors.messages.invalid")) if
+      !self.inverse_relationships.patient.empty? && (!valid_cpr? || dateofbirth.nil?)
+  end
+
+
+  def valid_cpr?
+    cpr.to_s.length == 4 ? true : false
   end
 
   def presence_of_parent_occupation
