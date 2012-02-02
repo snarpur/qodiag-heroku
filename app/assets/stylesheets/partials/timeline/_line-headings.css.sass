@@ -25,11 +25,11 @@
       border-top: none
     &:last-child
       border-bottom: none
-    &:hover .new-item.c-icon
+    &:hover .new-item
       display: block
   p
     color: desaturate(lighten($china2, 10%), 30%)
-    text-shadow: 0 1px 0 rgba(255,255,255,.9)
+    +text-shadow(0 1px 0 rgba(255,255,255,.9))
     text-align: center
     margin: 0 4px
     padding-top: 15px
@@ -39,11 +39,6 @@
     position: absolute
     bottom: 3px
     right: 3px
-    font-size: 1.5em
-    color: rgba(0,0,0,.5)
-    background-color: rgba(255,255,255,0.1)
-    +border-radius(5px)
-    +box-shadow(1px 1px 1px 0px rgba(0,0,0,.2) inset)
     cursor: pointer
   .new-item:hover
     background-color: rgba(255,255,255,0.2)

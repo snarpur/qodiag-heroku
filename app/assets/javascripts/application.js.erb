@@ -14,9 +14,17 @@
 //= require i18n
 //= require i18n/translations
 //= require jquery.quicksearch
-//= require_tree .
+//= require app
+//= require controllers
+//= require i18n
+//= require lib
+//= require models
+//= require templates
+//= require views
+
 $(document).ready(function(){
 	$.datepicker.setDefaults($.datepicker.regional[I18n.locale]);
 	$('input#patient-search').quicksearch('table tbody tr');
+	$("#flash > .notice").fadeOut(4000);
 });
 

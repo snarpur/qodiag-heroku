@@ -4,11 +4,11 @@
 is:
   surveyor:
     take_these_surveys: "Velja spurningalista"
-    take_it: "Take it"
-    completed_survey: "Completed survey"
-    unable_to_find_your_responses: "Unable to find your responses to the survey"
-    unable_to_update_survey: "Unable to update survey"
-    unable_to_find_that_survey: "Unable to find that survey"
+    take_it: "Fylla út spurningalista"
+    completed_survey: "Svör hafa verið send"
+    unable_to_find_your_responses: "Finn ekki niðurstöður"
+    unable_to_update_survey: "Ekki hægt að uppfæra svör"
+    unable_to_find_that_survey: "Spurningalisti finnst ekki"
     survey_started_success: "Hér er byrjað að svara spurningu"
     click_here_to_finish: "Klára"
     previous_section: "&laquo; Previous section"

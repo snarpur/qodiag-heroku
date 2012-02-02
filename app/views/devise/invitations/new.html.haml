@@ -3,7 +3,7 @@
   = "#{t('role.client')} #{t('actions.sign_up').downcase}"
 .form-base.col-2
   = simple_form_for @user, :url => invitation_path(:user), do |f|
-    = render "shared/error_messages", :locals => {:form_builder => f} 
+    / = render "shared/error_messages", :locals => {:form_builder => f} 
     =f.simple_fields_for :person do |parent|
       .form-section
         %h2 Foreldri/forráðamaður

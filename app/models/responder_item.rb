@@ -17,11 +17,11 @@ class ResponderItem < ActiveRecord::Base
   scope :registrations, where("registration_identifier IS NOT NULL").order(:id)
   scope :surveys_by_group, ResponderItem.surveys.order('survey_id')
 
-  accepts_nested_attributes_for :client, :subject
+  #accepts_nested_attributes_for :client, :subject
 
-  attr_accessible :registration_identifier, :id, :caretaker_id, :deadline, :completed, :complete_item, :client_id, :subject_id, :survey_id, :client_attributes, :subject_attributes
+  attr_accessible :registration_identifier, :id, :caretaker_id, :deadline, :completed, :complete_item, :client_id, :subject_id, :survey_id #,:client_attributes, :subject_attributes
   validates_presence_of :registration_identifier, :if => Proc.new { |a| a.survey_id.nil? }
-  validates_associated :client
+  # validates_associated :client
 
   def self.new_patient_item(params,caretaker)
     item = ResponderItem.new(params)

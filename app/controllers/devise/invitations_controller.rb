@@ -18,7 +18,6 @@ class Devise::InvitationsController < ApplicationController
     @user.valid?
     if @user.errors.empty?
       User.invite_client_as_guardian(params[:user])
-
       flash[:notice] = I18n.t('devise.invitations.send_instructions',:email => @user.email)
       redirect_to after_sign_in_path_for(User)
     else

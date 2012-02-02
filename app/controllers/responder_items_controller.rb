@@ -25,12 +25,16 @@ class ResponderItemsController < ApplicationController
 
   def create
     @responder_item
-    if @responder_item.save
+    if @responder_item.save!
       #RequestNotice.request_survey(@responder_item).deliver
-      render :json => @responder_item
       #redirect_to(person_path(@responder_item.subject), :notice => I18n.t('responder_item.messages.requested'))
+      respond_to do |format|
+        format.json {render :json => @responder_item}
+      end
     else
-      render :action => :new
+      respond_to do |format|
+        format.json {render :json => {:message => "error in create"}}
+      end
     end
   end
 
@@ -61,6 +65,7 @@ class ResponderItemsController < ApplicationController
   private
   def create_responder_item
     args = params[:responder_item].nil? ? params : params[:responder_item]
+    args[:deadline] = Time.zone.today + 2.weeks
     @responder_item = current_user.person.new_patient_request(args)
   end
 

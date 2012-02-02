@@ -2,12 +2,13 @@ is:
   surveys:
     terms:
       age: "ára"
-      male: "kk"
-      female: "kvk"
+      male: "drengir"
+      female: "stúlkur"
       responder:
         parents: "foreldri"
         teacher: "kennari"
       norm_reference:
+        title: "ísl. viðmið"
         group: "samanburðarhópur"
         teacher: "kennaramat"
         parent: "foreldramat"

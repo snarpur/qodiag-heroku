@@ -21,5 +21,6 @@ class App.Views.Timeline.LineHeading extends Backbone.View
     JST['templates/headingsTmpl']
   	
   render:->
+    console.log "rendering line, ", @
     $(@el).html(@template()(@model.toJSON()))
     @

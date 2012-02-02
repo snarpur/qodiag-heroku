@@ -21,12 +21,12 @@
           %td
             = link_to p.full_name, subject_responder_items_path(p) 
           %td.uncompleted
-            - u = p.responder_items.uncompleted.count
+            - u = p.responder_items.surveys.uncompleted.count
             -unless u.zero?
               %span
                 = u
           %td.overdue
-            - o = p.responder_items.overdue.count
+            - o = p.responder_items.surveys.overdue.count
             - unless o.zero?
               %span
                 = o
