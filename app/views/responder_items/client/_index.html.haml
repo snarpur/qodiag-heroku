@@ -1,5 +1,5 @@
 -@current_user.person.relations.guardian_of.each do |child|
-	%h3= child.full_name
+	%h1= child.full_name
 	- pending = @current_user.person.responder_items_by_type_and_status(:surveys, [:uncompleted,:overdue])
 	- if pending.size == 0
 		.empty-list-notice

@@ -1,0 +1,71 @@
+@import partials/base
+
+#help
+  position: absolute
+  left: $blueprint_container_size + 60px
+  top: 75px
+  padding-left: 2.5em
+  a
+    text-decoration: none
+    font-weight: bold
+    font-size: .9em
+    color: #284187
+  a:before
+    content: "?" 
+    position: absolute
+    top: -.4em
+    left: 0
+    display: block
+    height: 2em
+    width: 2em
+    line-height: 2em
+    text-align: center
+    +border-radius(1em)
+    background-color: #284187
+    +highlight($brightness: .4)
+    +box-shadow(0px 0 1px 2px rgba(250, 250, 250, 1) inset, 0 0 1px 1px rgba(40,65,135,1))
+    color: #f1f1f1
+
+
+body.help
+  img
+    border: solid 1px
+  th
+    font-size: 1.4em
+    border: solid 1px
+    border-width: 1px 0 1px 0
+    color: #333
+    padding: .4em 
+    margin-top: 1em
+  td
+    color: #333
+  
+  td div
+    padding: .5em
+  em
+    font-weight: .8em
+    font-style: italic
+  #container
+    padding: 0 4px
+  #content
+    margin-top: 4em
+    padding-top: 1.8em
+    background-color: #fff
+    +border-radius
+    border: solid #d2d2d2 1px
+    +box-shadow(1px 1px 3px 0 rgba(0,0,0,.15))
+  #content > div
+    font-size: 1.1em
+    margin-bottom: 1.7em
+    color: #333
+    p
+      font-weight: bold
+  #content > div  ul
+    padding: .4em 0 .4em .9em
+    li
+      list-style-type: disc
+      list-style-position: inside
+      padding: .3em
+      li
+        list-style-type: circle
+        font-size: .9em

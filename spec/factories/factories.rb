@@ -38,7 +38,6 @@ Factory.define :person do |person|
   person.firstname "jon"
   person.lastname "smith"
   person.sex {["male","female"].at(rand(2))}
-  person.dateofbirth (rand(20)+20).years.ago
 end
 
 Factory.define :client_person, :parent => :person do |person|

@@ -43,25 +43,36 @@ class PopulateUtil
       Time.local(year, month, day)
     end
 
-    def generate_surveys
-      @surveys.each do |survey|
-        system "bundle exec rake surveyor FILE=surveys/#{survey}.rb --trace"
-        NormReferenceCSVParser.new(survey)
-      end
+    def full_cpr(age=5)
+      dob = random_date(age).strftime("%d%m%y")
+      {:full_cpr => "#{dob}1289"}
     end
 
-    def fullname()
+    def fullname
       pick = rand(2)
       sex = ['male','female'].at(pick)
       suffix = ['sson','sdóttir'].at(pick)
       lastname = Faker::Name.send("male_first_name")
       {:firstname => Faker::Name.send("#{sex}_first_name"), :lastname => "#{lastname}#{suffix}", :sex => sex}
     end
+
+    def person_attributes(age)
+      name = fullname()
+      cpr = full_cpr(age)
+      name.merge(cpr)
+    end
+
+    def generate_surveys
+      @surveys.each do |survey|
+        system "bundle exec rake surveyor FILE=surveys/#{survey}.rb --trace"
+        NormReferenceCSVParser.new(survey)
+      end
+    end
     
     def create_caretaker(name)
-      caretaker_person = Factory.create(:person, fullname)
+      caretaker_person = Factory.create(:person, person_attributes(rand(10)+40))
       caretaker_user = Factory.create(:user, 
-                                      :email => "#{name}@snarpurland.is", 
+                                      :email => "#{name}@snarpur.is", 
                                       :roles => [@caretaker_role], 
                                       :person => caretaker_person
                                      )
@@ -70,13 +81,15 @@ class PopulateUtil
     end
 
     def create_patient(caretaker_person)
-      patient = Factory.create(:person, fullname.merge({:dateofbirth => random_date(5)}))
+      attrs = person_attributes(rand(10)+5)
+      attrs[:firstname] = "nonni"
+      patient = Factory.create(:person, attrs)
       Factory.create(:patient_relationship, :person => caretaker_person, :relation => patient)
       patient
     end
 
     def create_parent(patient)
-      parent_person = Factory.create(:person, fullname)
+      parent_person = Factory.create(:person, person_attributes(rand(20)+40))
       parent_user = Factory.create(:user, 
                                    :email => "user_#{parent_person.id}@snarpur.is", 
                                    :roles => [@client_role], 

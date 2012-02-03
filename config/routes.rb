@@ -30,6 +30,7 @@ Snarpur::Application.routes.draw do
   match 'people/:subject_id/responder_items/survey/:survey_id' => 'responder_items#survey', :via => :get
   
   get "pages/error_401"
+  get "pages/help"
 
   root :to => 'users#show'
   #How to define nested contoller as root

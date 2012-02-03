@@ -180,11 +180,12 @@ class Person < ActiveRecord::Base
 
   def full_cpr
     unless self.dateofbirth.nil?
-      date = self.dateofbirth
-      day = "%02d" % date.mday
-      month = "%02d" % date.month
-      year =  date.year.to_s[-2..-1].to_i
-      self.full_cpr = "#{day}#{month}#{year}#{self.cpr}"
+      # date = self.dateofbirth
+      # day = "%02d" % date.mday
+      # month = "%02d" % date.month
+      # year =  date.year.to_s[-2..-1].to_i
+      # self.full_cpr = "#{day}#{month}#{year}#{self.cpr}"
+      "#{self.dateofbirth.strftime("%d%m%y")}#{self.cpr}"
     end
   end
 

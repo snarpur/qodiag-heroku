@@ -1,6 +1,6 @@
 # encoding: utf-8
 namespace :db do
-  desc "Erase and fill database"
+  desc "populate database with test data"
   task :populate, :level do |cmd, args|
     # e.g. db:populate[reset]
     #:level => reset -- resets database
@@ -15,7 +15,7 @@ namespace :db do
     pop = PopulateUtil.new
     pop.reset_db(args[:level])  
 
-    ["jon"].each do |u|
+    ["jon","elsa"].each do |u|
       caretaker = pop.create_caretaker(u)
       25.times do |p|
           patient = pop.create_patient(caretaker[:person])

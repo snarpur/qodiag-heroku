@@ -1,0 +1,134 @@
+=content_for :body_class, "help"
+/ uppfæra browser
+/ óvæntar villur get komið upp
+%div
+  %p
+    Þetta er vinnusvæði sem ætlað er að gefa notendum tækifæri á að hafa áhrif á þróun hugbúnaðarins á þróunarstigi. 
+%div
+  %p
+    Á þessu stigi gerir Snarpur notendum kleift að að:
+  %ul
+    %li Senda beiðni til skjólstæðinga um að fylla út spurningalista 
+    %li Birta niðurstöður spurningalista og viðmiðunargildum
+%div
+  %p Næstu skref í þróun verða
+  %ul
+    %li Sýna staðalfrávik og hundraðastaröð þar sem við á
+    %li Bæta við listum eftir óskum
+    %li Kennaramat
+    %li 
+      Stillingar á beiðnum um útfyllingu lista:
+      %ul 
+        %li Endurtekningar
+        %li Áminningar til skjólstæðinga um ókláraðar beiðnir
+        %li Skjólstæðingur skráir ýtarlegri upplýsingar (Þætti úr heilsufarssögu, sjúkrasögu o.fl.)
+    %li Annað sem notendur telja mikilvægt
+      
+%div
+  %h2 Aðgerðir - starfsmenn
+  %table
+    %tr
+      %th{:colspan => 2}
+        Yfirlit yfir skjólstæðinga
+    %tr 
+      %td
+        %div      
+          %img{:src => "/assets/help/overview.png"}
+      %td
+        Til að skrá nýjan skjólstæðing er smellt á takkan hægra megin við leitarboxið
+    %tr
+      %th{:colspan => 2}
+        Skráning skjólstæðinga
+    %tr 
+      %td
+        %div
+          %img{:src => "/assets/help/registration.png"}
+      %td
+        Upplýsingar fylltar út og smellt á "Skrá". Þá er tölvupóstur sendur til forráðamanns með slóð þar sem lykilorð er valið.
+        %br
+        %em ATH! Núna eru sendingar á tölvupósti óvirkar
+    %tr
+      %th{:colspan => 2}
+        Yfirlit yfir listum sem skjólstæðingur hefur svarað
+    %tr 
+      %td
+        %div
+          %img{:src => "/assets/help/timeline-overview.png"}
+      %td
+        Merkin tákna
+        %ul
+          %li Gulur = Ósvarað skilafrestur ekki útrunninn
+          %li Rauður = Ósvarað skilafrestur útrunninn
+          %li Grænn = Svarað
+        Þegar smellt er á græna merkið birtast niðurstöður.
+        %br
+        %br
+        Þegar smellt er á "listar" birtist valmöguleiki að birta og fela lista(sjá mynd fyrir neðan)
+    %tr
+      %th{:colspan => 2}
+        Fela/birta lista á tímalínu 
+    %tr
+      %td
+        %div
+          %img{:src => "/assets/help/select-list.png"}
+      %td
+
+    %tr
+      %th{:colspan => 2}
+        Birting á niðustöðum spurningalista
+    %tr 
+      %td
+        %div
+          %img{:src => "/assets/help/columnchart.png"}
+        %div
+          %img{:src => "/assets/help/linechart.png"}
+      %td
+        Niðurstöður og viðmið. Skipta á milli birtingamöguleika með tökkunum í hægra horni
+        %br
+        %br
+        Þegar semllt er á heitinn neðst í línuriti er hægt að fela og birta einstakar mælingar
+    %tr
+      %th{:colspan => 2}
+        Senda beiðni um útfyllingu spurningalista
+    %tr 
+      %td
+        %div
+          %img{:src => "/assets/help/send-request.png"}
+        %div
+          %img{:src => "/assets/help/calendar.png"}
+      %td
+        Þegar músinni er rent yfir svæðið með heiti spurningalista birtist lítill blár plús takki. 
+        %br
+        %br
+        Þegar smellt er á takkan birtist dagatal þar sem skiladagur er valinn. 
+        %br
+        %br
+        Skjólstæðingur fær þá senda beiðni í tölvupósti um að skrá sig inn á www.snarpur.is og fylla út spurningalista
+        %br
+        %em ATH! Núna eru sendingar á tölvupósti óvirkar 
+
+
+
+%div
+  %h2 Aðgerðir - starfsmenn
+  %table
+    %tr
+      %th{:colspan => 2}
+        Yfirlit yfir skjólstæðinga
+    %tr 
+      %td
+        %div      
+          %img{:src => "/assets/help/survey-overview.png"}
+      %td
+        Smellt er á klára til að fylla út spurningalista
+    %tr
+      %th{:colspan => 2}
+        Fylla út spurningalista
+    %tr 
+      %td
+        %div      
+          %img{:src => "/assets/help/take-survey.png"}
+      %td
+        
+
+
