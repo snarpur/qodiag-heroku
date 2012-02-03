@@ -18,12 +18,12 @@ namespace :db do
     ["jon","elsa"].each do |u|
       puts "createing caretaker #{u}"
       caretaker = pop.create_caretaker(u)
-      2.times do |p|
+      10.times do |p|
           patient = pop.create_patient(caretaker[:person])
           parent = pop.create_parent(patient)
           people = {:caretaker => caretaker, :patient => patient, :parent => parent}
           puts "patient created - #{patient.firstname}"
-        2.times do |t|
+        5.times do |t|
           pop.create_requests({:people => people, :number => 2, :survey_id => t+1})
         end
       end
