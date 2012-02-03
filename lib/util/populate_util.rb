@@ -22,7 +22,6 @@ class PopulateUtil
     end
 
     def user_level
-      KK.see "in user"
       self.clear_user_tables
     end
   
@@ -32,7 +31,6 @@ class PopulateUtil
     end
 
     def clear_user_tables
-      KK.see "clearing tables"
       [Person, User, Right, Relationship, ResponderItem, ResponseSet, Response].each(&:delete_all)
     end
     
@@ -82,7 +80,6 @@ class PopulateUtil
 
     def create_patient(caretaker_person)
       attrs = person_attributes(rand(10)+5)
-      attrs[:firstname] = "nonni"
       patient = Factory.create(:person, attrs)
       Factory.create(:patient_relationship, :person => caretaker_person, :relation => patient)
       patient
