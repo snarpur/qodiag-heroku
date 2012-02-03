@@ -65,7 +65,6 @@ class ResponderItemsController < ApplicationController
   private
   def create_responder_item
     args = params[:responder_item].nil? ? params : params[:responder_item]
-    args[:deadline] = Time.zone.today + 2.weeks
     @responder_item = current_user.person.new_patient_request(args)
   end
 

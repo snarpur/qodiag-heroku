@@ -26,7 +26,9 @@ class User < ActiveRecord::Base
   end
 
   def self.invite_client_as_guardian(params)
-      user = User.invite!(params)
+      user = User.invite!(params) do |u|
+        u.skip_invitation = true
+      end
       user.set_role(:client)
       user.person.set_responder_item_subject
       user.update_attributes({:invited_by_id => params[:invited_by_id]})

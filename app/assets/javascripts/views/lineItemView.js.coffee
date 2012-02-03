@@ -30,6 +30,7 @@ class App.Views.Timeline.LineItem extends Backbone.View
     else @model.get("deadline")
   
   setPosition:=>
+    console.log @statusPosition()
     pos = @timeline.positionOnLine(new Date(@statusPosition()))
     $(@el).css('left', "#{pos}px")
   
