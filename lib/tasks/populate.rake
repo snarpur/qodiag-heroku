@@ -23,8 +23,8 @@ namespace :db do
           parent = pop.create_parent(patient)
           people = {:caretaker => caretaker, :patient => patient, :parent => parent}
           puts "patient created - #{patient.firstname}"
-        5.times do |t|
-          pop.create_requests({:people => people, :number => 2, :survey_id => t+1})
+        2.times do |t|
+          pop.create_requests({:people => people, :number => 5, :survey_id => t+1})
         end
       end
     end
