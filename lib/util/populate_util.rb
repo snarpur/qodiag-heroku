@@ -26,7 +26,6 @@ class PopulateUtil
     end
   
     def survey_level
-      self.clear_user_tables
       self.generate_surveys
     end
 
@@ -50,8 +49,9 @@ class PopulateUtil
       pick = rand(2)
       sex = ['male','female'].at(pick)
       suffix = ['sson','sdóttir'].at(pick)
-      lastname = Faker::Name.send("male_first_name")
-      {:firstname => Faker::Name.send("#{sex}_first_name"), :lastname => "#{lastname}#{suffix}", :sex => sex}
+      lastname = "#{Faker::Name.send('male_first_name')}#{suffix}"
+      lastname.gsub!(/sss/, 'ss')
+      {:firstname => Faker::Name.send("#{sex}_first_name"), :lastname => lastname, :sex => sex}
     end
 
     def person_attributes(age)

@@ -1,7 +1,8 @@
 # encoding: utf-8
 namespace :db do
+  
   desc "populate database with test data"
-  task :populate, :level do |cmd, args|
+  task :populate_reset, :level do |cmd, args|
     # e.g. db:populate[reset]
     #:level => reset -- resets database
     #:level => user -- delete user records and refill
@@ -14,11 +15,20 @@ namespace :db do
     puts "args[:level] #{args[:level]}"
     pop = PopulateUtil.new
     pop.reset_db(args[:level])  
+  end
 
-    ["jon","elsa"].each do |u|
+  desc "populate database with test data for user"
+  task :populate_users, :users do |cmd, args|
+    Rake::Task[:environment].invoke
+    require 'faker'
+    require "#{Rails.root}/lib/util/populate_util.rb"
+    users = args[:users].split(":")
+    puts users.inspect
+    pop = PopulateUtil.new
+    users.each do |u|
       puts "createing caretaker #{u}"
       caretaker = pop.create_caretaker(u)
-      10.times do |p|
+      20.times do |p|
           patient = pop.create_patient(caretaker[:person])
           parent = pop.create_parent(patient)
           people = {:caretaker => caretaker, :patient => patient, :parent => parent}
@@ -29,4 +39,5 @@ namespace :db do
       end
     end
   end
+
 end
