@@ -23,6 +23,7 @@ gem 'rails-dev-tweaks', '~> 0.5.1'
 gem "i18n-js"
 gem "factory_girl_rails"
 gem "faker"
+gem 'newrelic_rpm'
 
 
 group :assets do
