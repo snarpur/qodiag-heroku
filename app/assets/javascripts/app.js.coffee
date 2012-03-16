@@ -1,4 +1,6 @@
+
 window.App =
+  Lib: {}
   Models: {}
   Collections: {}
   Controllers: {}

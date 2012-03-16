@@ -7,6 +7,7 @@ namespace :db do
     #:level => reset -- resets database
     #:level => user -- delete user records and refill
     #:surveys =>  -- regenerates surveys, regenerates user data
+    
     Rake::Task[:environment].invoke
     require 'faker'
     require "#{Rails.root}/lib/util/populate_util.rb"
@@ -19,6 +20,8 @@ namespace :db do
 
   desc "populate database with test data for user"
   task :populate_users, :users do |cmd, args|
+    # e.g. db:populate_users[jonni]
+
     Rake::Task[:environment].invoke
     require 'faker'
     require "#{Rails.root}/lib/util/populate_util.rb"

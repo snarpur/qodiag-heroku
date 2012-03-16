@@ -31,6 +31,7 @@ Snarpur::Application.routes.draw do
   
   get "pages/error_401"
   get "pages/help"
+  get "pages/browser_update"
 
   root :to => 'users#show'
   #How to define nested contoller as root

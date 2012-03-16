@@ -24,7 +24,7 @@ gem "i18n-js"
 gem "factory_girl_rails"
 gem "faker"
 gem 'newrelic_rpm'
-
+gem 'browsernizer'
 
 group :assets do
   gem "sass-rails"

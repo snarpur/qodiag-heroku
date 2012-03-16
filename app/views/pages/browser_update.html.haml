@@ -1,0 +1,73 @@
+=content_for :css_hook, "useragent-detection"
+.one-col
+	%h1
+		Velkomin á þróunarsvæði Snarps
+	%p
+		Snarpur styður ekki Internet explorer eða eldri gerðir af vöfrum
+	%p
+		Til þess að geta skráð þig inn og prófað Snarp verður þú fyrst að uppfæra vafran í tölvunni þinni.
+
+
+.one-col
+	%span.img.no-1
+		=image_tag("useragent_detection/m01-clear.png")
+	.step.step-1
+		%div
+			%h3 Opanðu og uppfærðu Firefox, Safari eða Chrome ef þú ert með slíkan vafra í tölvunni þinni.
+		
+
+			%table
+				%tr
+					%th
+						= image_tag "useragent_detection/windowslogo.png"
+						%h4 
+							Á Windows
+					%th
+						= image_tag "useragent_detection/maclogo.png"
+						%h4 
+							Á Mac
+				%tr
+					%td
+						%span
+							= image_tag "useragent_detection/windowsupdate.png"
+					%td
+						%span
+							1.
+						%span
+							= image_tag "useragent_detection/mac_about.png"
+						%span
+							2.	
+						%span
+							= image_tag "useragent_detection/macupdate.png"
+
+
+
+		%h2 Eða..
+		%div
+			%h3
+				Settu upp annaðhvort Firefox eða Chrome á tölvuna þína. Veldu einn af eftirfarandi tenglum og fylgdu leiðbeiningum um uppsetningu.
+			%p.center
+				=link_to("http://www.mozilla.org/en-US/firefox/new/") do 
+					%span Firefox
+					=image_tag("useragent_detection/ff.png")
+				
+				=link_to("https://www.google.com/chrome") do 
+					%span Chrome
+					=image_tag("useragent_detection/chrome.png")
+
+				%span.clear
+
+
+%span.img.next-step
+	=image_tag("useragent_detection/arrow1-solid-down.png")
+
+.one-col
+	%span.img.no-2
+		=image_tag("useragent_detection/m02-clear.png")
+	.step.step-2
+		%div
+			Opanðu www.snapur.is í vafranum sem þú hefur valið þér og skráðu þig inn með notendanafni oglykilorði sem þú hefur fengið sent í tölvupósti
+			%span.img.snarpur-screen
+				=image_tag("useragent_detection/snarpur_screen.png")
+
+
