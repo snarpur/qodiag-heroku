@@ -1,27 +1,29 @@
 =content_for :body_class, "help"
-%div 
-  Snarpur er...
+%div.help-intro
+  %h1
+    Snarpur er...
   %p
-    \...nýsköpunarverkefni þar sem unnið er að þróun hugbúnaðar sem auðveldar söfnun og úrvinnslu gagna í starfi sérfræðinga sem taka sér skjólstæðinga til meðferðar s.s. lækna, sálfræðinga og félagsráðgjafa.
+    Nýsköpunarverkefni þar sem unnið er að þróun hugbúnaðar sem auðveldar söfnun og úrvinnslu gagna í starfi sérfræðinga sem taka sér skjólstæðinga til meðferðar s.s. lækna, sálfræðinga og félagsráðgjafa.
   %p
-    Til þess að gansemi og að Snarpur geti uppfylli sérhæfðar kröfur ólíkra stétta er nauðsynlegt að notendur séu þátttakendur í mótun kerfisins. Þetta vinnusvæði er til þess að gefa notendum kost á að prófa kerfið á meðan hugbúnðaurinn er ennþá á byrjunarstigi, ábendingar og hugmyndir þeirra mun svo liggja til grundvallar við áframhaldandi þróun.
-  %p
-    %ul
-      %li
-        Vinsamlegast athugið að á þessu stigi er nauðsylegt að prófa kerfið í nýlegum vafra()
-      %li  
-/  uppfæra browser
-/  óvæntar villur get komið upp
-/  gögn í kerfinu er skálduð engin gögn um raunverulegar einstaklinga
- 
-%div
-  %p
+    Til þess að gansemi og að Snarpur geti uppfylli sérhæfðar kröfur ólíkra stétta er nauðsynlegt að notendur séu þátttakendur í mótun kerfisins. Þróunn Snarps byggir á notendamiðaðri hönnun(user centered design) sem í stuttu máli felst í því að notendur og þarfir þeirra eru miðpunktur í þróunarferlinu. Þessi vefur er til þess notendur geti prófað hugbúnaðinn á á maðan hann er ennþá á byrjunarstigi, ábendingar og hugmyndir þeirra mun svo liggja til grundvallar við áframhaldandi þróun.
+  %h1
+    Vinsamlegast athugið að
+  %ul
+    %li
+      óvæntar villur get komið upp
+    %li 
+      gögn í kerfinu er skálduð engin gögn um raunverulegar einstaklinga
+
+  %h1
     Á þessu stigi gerir Snarpur notendum kleift að að:
   %ul
     %li Senda beiðni til skjólstæðinga um að fylla út spurningalista 
     %li Birta niðurstöður spurningalista og viðmiðunargildum
-%div
-  %p Næstu skref í þróun verða
+  %br
+  %br
+  %p Skjámyndir hér fyrir neðan sýna þær aðgerðir sem hægt er að framkvæma
+
+  %h2 Næstu skref í þróun verða
   %ul
     %li Sýna staðalfrávik og hundraðastaröð þar sem við á
     %li Bæta við listum eftir óskum
@@ -34,8 +36,9 @@
         %li Skjólstæðingur skráir ýtarlegri upplýsingar (Þætti úr heilsufarssögu, sjúkrasögu o.fl.)
     %li Annað sem notendur telja mikilvægt
       
+
 %div
-  %h2 Aðgerðir - starfsmenn
+  %h1 Aðgerðir - starfsmenn
   %table
     %tr
       %th{:colspan => 2}
@@ -120,7 +123,7 @@
 
 
 %div
-  %h2 Aðgerðir - starfsmenn
+  %h1 Aðgerðir - skjólstæðingar
   %table
     %tr
       %th{:colspan => 2}
@@ -130,7 +133,7 @@
         %div      
           %img{:src => "/assets/help/survey-overview.png"}
       %td
-        Smellt er á klára til að fylla út spurningalista
+        Þegar beiðni um að fylla út spurningar hafa verið send fær skjólstæðingur tölvupóst. Þegar skjólstæðingur skrár sig er birtast ókláraðar beiðnir. Smellt er á klára til að fylla út spurningalista.
     %tr
       %th{:colspan => 2}
         Fylla út spurningalista
