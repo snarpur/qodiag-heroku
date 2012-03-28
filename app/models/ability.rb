@@ -7,7 +7,6 @@ class Ability
       can :manage, :all
     elsif user.role? :caretaker
       can :create, User do |u|
-        KK.log "CAN CREATE"
        (u.role_names & ["caretaker","super_admin"]).empty?
       end
       can [:read, :update], User do |u|
