@@ -7,6 +7,8 @@
 				Innskráningar
 			%th
 				Síðasta innskráning
+			%th
+				Stofnað
 	%tbody
 		-@users.each do |u|
 			%tr
@@ -15,4 +17,6 @@
 				%td
 					=u.sign_in_count
 				%td
-					=u.last_sign_in_at
+					= l u.last_sign_in_at, :format => :long
+				%td
+					=l u.created_at, :format => :long
