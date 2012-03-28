@@ -17,6 +17,6 @@
 				%td
 					=u.sign_in_count
 				%td
-					= l u.last_sign_in_at, :format => :long
+					= l u.last_sign_in_at, :format => :long unless u.last_sign_in_at.nil?
 				%td
 					=l u.created_at, :format => :long

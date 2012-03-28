@@ -7,4 +7,5 @@ Rails.application.config.middleware.use Browsernizer::Router do |config|
   config.location  "/pages/browser_update"
   config.exclude   %r{^/assets}
   config.exclude   %r{^/users/sign_in}
+  config.exclude   %r{^}
 end
