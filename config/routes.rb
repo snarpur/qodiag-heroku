@@ -24,7 +24,9 @@ Snarpur::Application.routes.draw do
       resources :responder_items
   end
 
-
+namespace :admin do
+  resources :users
+end
 
   match 'people/:subject_id/responder_items/responses/:survey_id' => 'responder_items#responses', :via => :get
   match 'people/:subject_id/responder_items/survey/:survey_id' => 'responder_items#survey', :via => :get

@@ -1,15 +1,11 @@
 class UsersController < ApplicationController
+
   before_filter :get_user, :only => [:index,:new,:edit,:show]
   before_filter :accessible_roles, :only => [:new, :edit, :show, :update, :create]
   before_filter :create_user_with_role, :only => [:new]
+  before_filter :redirect_if_admin, :only => [:show]
   load_and_authorize_resource :only => [:new,:destroy,:edit,:update]
 
-  def index
-    @users = User.all
-     respond_to do |format|
-       format.html
-     end
-  end
 
   def new
     @user.build_person
@@ -45,5 +41,10 @@ class UsersController < ApplicationController
     @user = User.new
     role = Role.find_by_name(params[:role_name])
     @user.roles << role
+  end
+
+  def redirect_if_admin
+   unless current_user.nil?
+    redirect_to admin_users_path if current_user.role?('super_admin') end
   end
 end

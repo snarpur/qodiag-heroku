@@ -19,6 +19,8 @@ class User < ActiveRecord::Base
   validates_length_of :password, :in => 6..20, :unless => :invitation?
   validates_associated :person
 
+  scope :by_role, lambda {|r| joins(:roles).where("roles.name" => r)}
+
   def self.new_client_as_guardian_by_invitation(params)
     user = User.new(:role_ids => params[:role_ids], :invited_by_id => params[:inviter].id)
     user.person = Person.new_as_guardian_by_invitation(params[:inviter].person)
