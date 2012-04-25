@@ -1,13 +1,14 @@
+#DEPRICATED NOT USED
+
 class SdqChartRenderer < ChartRenderer
 
 
   def initialize(response_set)
-    KK.see "im in sdq renderer"
     super(response_set)
   end
 
   def point_data_labels
-    KK.see "im in point_data_labels"
+    KK.log "SDQ method 11"
     labels = norm_reference.get_score_by_name(question_group_names).map do |score|
       label = {:name => score[0]}
       label[:data] = score[1].map{|d| d.get_range_values.uniq.join("-")}
@@ -18,7 +19,7 @@ class SdqChartRenderer < ChartRenderer
   end
 
   def sdq_adjustments(values)
-    KK.see "im in sdq_adjustments"
+    KK.log "SDQ method 2"
     series = []
     values.each do |i|
       color = color_for_result(i[:name])

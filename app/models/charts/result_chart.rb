@@ -85,6 +85,12 @@ class ResultChart
   def reference_groups
     total_for_custom_groups? ? get(:question_groups).stringify_keys.keys : get(:question_groups)
   end
-
+  
+  # def get_series_options(series_name)
+  #   unless @chart[:result_options].nil?
+  #     options = @chart[:result_options][series_name.to_sym]
+  #     options ||= {}
+  #   end
+  # end
 
 end

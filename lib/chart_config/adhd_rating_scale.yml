@@ -1,9 +1,12 @@
-chart_class: ColumnChart
+# chart_class: ColumnChart
 defaults:
   credits:
     enabled: false
   tooltip:
-    enabled: false
+    enabled: true
+    useHTML: true
+    footerFormat: '</table>'
+    shared: true
   chart:
     type: column
     marginBottom: 100
@@ -18,6 +21,10 @@ defaults:
         style:
           fontSize: 8px
   result_names: [average]
+  result_options:
+    standard_deviation:
+      visible: false
+      showInLegend: false
   title:
     text: "  "
   legend:

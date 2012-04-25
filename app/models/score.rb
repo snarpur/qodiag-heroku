@@ -19,7 +19,4 @@ class Score < ActiveRecord::Base
   def get_range_values
     [self.start_value, self.end_value]
   end
-
-
-
 end

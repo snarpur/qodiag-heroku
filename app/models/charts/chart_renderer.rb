@@ -10,7 +10,11 @@ class ChartRenderer
   end
 
   def chart_class
-    @chart_config[:chart_class].constantize
+    if @chart_config[:chart_class]
+      @chart_config[:chart_class].constantize
+    else
+      "#{@response_set.survey_name.underscore.camelize}ChartRenderer".constantize
+    end
   end
 
   def result_to_chart

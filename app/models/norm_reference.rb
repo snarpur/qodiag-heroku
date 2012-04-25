@@ -8,13 +8,15 @@ class NormReference < ActiveRecord::Base
 
   def self.age(age)
     where("age_start <= ? AND age_end >= ?", age, age)
-  end
+  end 
 
   def self.survey(survey)
     where(:survey_id => survey)
   end
 
+  #REF 25.04
   def get_score(name,value)
+    KK.log "name and value #{name} {value}"
     (self.scores & Score.get_score(name, value)).map{|i| {:name => i.result_name,:value => i.get_value}}
   end
 

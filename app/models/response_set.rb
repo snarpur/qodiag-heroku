@@ -31,6 +31,17 @@ module ResponseSetCustomMethods
     result
   end
 
+  def count_results_by_group_and_weight(weight, group_name)
+    result = self.responses.joins(:answer,:question => :question_group).
+             where(:question_groups => {:text => group_name}, :answers => {:weight => weight}).
+             select('answers.weight, question_groups.text').length
+  end
+
+  def count_results_by_group(group_name)
+      result = self.responses.joins(:answer,:question => :question_group).
+             where(:question_groups => {:text => group_name}).length
+  end
+
   def norm_reference
     NormReference.age(self.subject.age).sex(self.subject.sex).survey(self.survey.id).first
   end
@@ -51,7 +62,7 @@ module ResponseSetCustomMethods
   end
 
   def result_to_chart
-    chart_renderer.send(:new, self).result_to_chart
+    ChartRenderer.new(self).result_to_chart
   end
 
   private
