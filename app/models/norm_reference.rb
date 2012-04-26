@@ -21,7 +21,7 @@ class NormReference < ActiveRecord::Base
   end
 
   def get_score_by_result_name(name, group_by=:result_name)
-    scores = (self.scores & Score.result_name(name).order('result_name'))
+    scores = (self.scores & Score.result_name(name))
     scores.group_by{|n|n.send(group_by)}
   end
 

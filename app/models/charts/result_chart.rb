@@ -28,6 +28,7 @@ class ResultChart
     else
       data = results_with_total_for_current_groups
     end
+    data.is_a?(Array) ? data : [data]
   end
 
   def reference_values
@@ -45,7 +46,7 @@ class ResultChart
   end
 
   def chart_data
-    @reference_values.reverse.insert(0,subject_series)
+    @reference_values.reverse.insert(0,@subject_series)
   end
 
   def categories

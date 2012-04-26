@@ -38,8 +38,8 @@ module ResponseSetCustomMethods
   end
 
   def count_results_by_group(group_name)
-      result = self.responses.joins(:answer,:question => :question_group).
-             where(:question_groups => {:text => group_name}).length
+    result = self.responses.joins(:answer,:question => :question_group).
+          where(:question_groups => {:text => group_name}).length
   end
 
   def norm_reference
@@ -47,7 +47,7 @@ module ResponseSetCustomMethods
   end
 
   def chart_renderer
-  "#{self.survey.access_code.gsub(/\-/,"_").camelize}ChartRenderer".constantize
+    "#{self.survey.access_code.gsub(/\-/,"_").camelize}ChartRenderer".constantize
   end
 
   def survey_name
