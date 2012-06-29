@@ -73,7 +73,7 @@ end
 #     | Note           | Nice guy   |
 #     | Wants Email?   |            |
 #
-# TODO: Add support for checkbox, select og option
+ Add support for checkbox, select og option
 # based on naming conventions.
 #
 When /^(?:|I )fill in the following:$/ do |fields|

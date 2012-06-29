@@ -1,3 +1,5 @@
+#NOTE: create separate controller for caretaker and client
+
 class ResponderItemsController < ApplicationController
   before_filter :create_responder_item, :only => [:new,:create]
   load_and_authorize_resource
@@ -24,8 +26,11 @@ class ResponderItemsController < ApplicationController
   end
 
   def create
+    KK.log "P in contr :: #{params}"
     @responder_item
+
     if @responder_item.save!
+      #NOTE: mail delivery is disabled in the controller
       #RequestNotice.request_survey(@responder_item).deliver
       #redirect_to(person_path(@responder_item.subject), :notice => I18n.t('responder_item.messages.requested'))
       respond_to do |format|
@@ -43,9 +48,19 @@ class ResponderItemsController < ApplicationController
   end
 
   def update
+     @responder_item = ResponderItem.find(params[:id])
+
+    respond_to do |format|
+      if @responder_item.update_attributes(params[:responder_item])
+        format.html { redirect_to(@current_user) }
+      else
+        format.html { render :action => "edit" }
+      end
+    end
+
   end
   
-  # Should be moved to a response_set controller
+  #NOTE: Should probably be moved to a response_set controller
   def responses 
     respond_to do |format|
       format.html
@@ -65,7 +80,7 @@ class ResponderItemsController < ApplicationController
   private
   def create_responder_item
     args = params[:responder_item].nil? ? params : params[:responder_item]
-    @responder_item = current_user.person.new_patient_request(args)
+    @responder_item = ResponderItem.new_patient_item(args,current_user.person)
   end
 
 end

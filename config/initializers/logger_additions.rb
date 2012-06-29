@@ -1,4 +1,4 @@
-if Rails.env.development? 
+if Rails.env.development? || Rails.env.test?
   logger = ActiveRecord::Base.logger
   def logger.debug_variables(bind)
     vars = eval('local_variables + instance_variables', bind)

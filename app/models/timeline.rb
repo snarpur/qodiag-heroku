@@ -48,7 +48,7 @@ class Timeline
     values.merge!(DIMENSIONS)
     values
   end
-
+  #NOTE: add responder ids to this when refactoring new patient Item
   def settings
     d = dimensions
     d.merge!(TIME)

@@ -1,0 +1,8 @@
+%h4= t("responder_item.status.#{item[:name]}.header").capitalize
+%div.sn-box
+  %table.overview
+    %tr
+      %th Heiti
+      %th Beiðni send dags.
+      %th{:colspan => 2}= t("responder_item.status.#{item[:name]}.column").capitalize
+    = render :partial => user_partial_path("registrations/item"), :collection => item[:items]

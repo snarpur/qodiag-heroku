@@ -6,12 +6,13 @@ if defined?(Bundler)
     Bundler.require *Rails.groups(:assets => %w(development test))
 end
 
+
 module Snarpur
   class Application < Rails::Application
 
     # stylesheets_directory = "#{Rails.root}/app/assets/stylesheets"
     config.assets.precompile << /(^[^_]|\/[^_])[^\/]*/
-
+    config.assets.enabled = true
     
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers

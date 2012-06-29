@@ -97,10 +97,10 @@ GEM
     eventmachine (0.12.10)
     execjs (1.2.12)
       multi_json (~> 1.0)
-    factory_girl (2.3.2)
-      activesupport
-    factory_girl_rails (1.4.0)
-      factory_girl (~> 2.3.0)
+    factory_girl (3.2.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (3.2.0)
+      factory_girl (~> 3.2.0)
       railties (>= 3.0.0)
     faker (1.0.1)
       i18n (~> 0.4)
@@ -136,7 +136,7 @@ GEM
     jquery-rails (1.0.19)
       railties (~> 3.0)
       thor (~> 0.14)
-    json (1.6.3)
+    json (1.6.6)
     launchy (2.0.5)
       addressable (~> 2.2.6)
     letter_opener (0.0.2)
@@ -159,7 +159,7 @@ GEM
     polyglot (0.3.3)
     populator (1.0.0)
     rack (1.3.6)
-    rack-cache (1.1)
+    rack-cache (1.2)
       rack (>= 0.4)
     rack-mount (0.8.3)
       rack (>= 1.0.0)
@@ -188,7 +188,7 @@ GEM
       thor (~> 0.14.6)
     rainbow (1.1.3)
     rake (0.9.2.2)
-    rdoc (3.11)
+    rdoc (3.12)
       json (~> 1.4)
     rspec (2.7.0)
       rspec-core (~> 2.7.0)
@@ -275,7 +275,7 @@ DEPENDENCIES
   devise_invitable (~> 0.6)
   ejs
   email_spec
-  factory_girl_rails
+  factory_girl_rails (~> 3.0)
   faker
   fastercsv (~> 1.5.4)
   formtastic (< 2.0)

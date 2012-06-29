@@ -1,4 +1,5 @@
 class ResponderItem < ActiveRecord::Base
+  belongs_to :person
   belongs_to :client, :class_name => "Person"
   belongs_to :caretaker, :class_name => "Person"
   belongs_to :subject, :class_name => "Person"
@@ -17,13 +18,16 @@ class ResponderItem < ActiveRecord::Base
   scope :registrations, where("registration_identifier IS NOT NULL").order(:id)
   scope :surveys_by_group, ResponderItem.surveys.order('survey_id')
 
-  #accepts_nested_attributes_for :client, :subject
+  accepts_nested_attributes_for :client, :subject, :person
 
-  attr_accessible :registration_identifier, :id, :caretaker_id, :deadline, :completed, :complete_item, :client_id, :subject_id, :survey_id #,:client_attributes, :subject_attributes
+  attr_accessible :registration_identifier, :id, :caretaker_id, :deadline, :completed, :complete_item, :client_id, :subject_id, :survey_id, :subject_attributes, :client_attributes
   validates_presence_of :registration_identifier, :if => Proc.new { |a| a.survey_id.nil? }
   # validates_associated :client
 
+
+  # TODO: NEXT refactoring step send relevant parameters in http request instead of infering caretaker and client progmatically change newItemView in backbone
   def self.new_patient_item(params,caretaker)
+    KK.log "PARAMS :: #{params.inspect}"
     item = ResponderItem.new(params)
     patient = Person.find(params[:subject_id])
     item.subject = patient
@@ -50,8 +54,13 @@ class ResponderItem < ActiveRecord::Base
     self.survey.nil? ? 'registration' : 'survey'
   end
 
-  def complete_item=(complete_at=Time.zone.now)
-   self.completed = completed_at
+  def complete_item=(is_complete)
+    KK.log "in complete"
+    KK.log is_complete.to_i
+    KK.log self.completed.nil?
+   if is_complete.to_i == 1 && self.completed.nil?
+    self.completed = Time.zone.now
+   end
   end
 
   def result

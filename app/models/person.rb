@@ -6,9 +6,10 @@ class Person < ActiveRecord::Base
   # validates_length_of :cpr, :is => 4
   #validate :presence_of_parent_occupation
   #after_save :set_parents_address
-  after_initialize :person_factory, :if => :new_record?
-
-  attr_accessor :factory
+  
+  #NOTE: probably depricated
+  #after_initialize :person_factory, :if => :new_record?
+  #attr_accessor :factory
 
   belongs_to :address
   has_one :user
@@ -93,9 +94,8 @@ class Person < ActiveRecord::Base
 
 
   attr_accessible :firstname, :lastname, :sex, :ispatient, :dateofbirth, :cpr, :workphone, :mobilephone, :occupation, :workplace, :full_cpr,
-                  :address_id,
-                  :relations_attributes, :inverse_relations_attributes, :relationships_attributes, :inverse_relationships_attributes,  :address_attributes, :factory,
-                  :client_responder_items_attributes, :patient_responder_items_attributes #, :user_attributes
+                  :address_id, :relations_attributes, :inverse_relations_attributes, :relationships_attributes, :inverse_relationships_attributes,  :address_attributes, 
+                  :client_responder_items_attributes, :patient_responder_items_attributes #, :user_attributes :factory,
 
   validates_associated :relationships, :inverse_relationships, :address
 
@@ -212,9 +212,10 @@ class Person < ActiveRecord::Base
     first.person
   end
 
-  def new_patient_request(params)
-    ResponderItem.new_patient_item(params, self)
-  end
+  #NOTE: deprecated ? moved to responderItem
+  # def new_patient_request(params)
+  #   ResponderItem.new_patient_item(params, self)
+  # end
 
   def father
     self.inverse_relations.father.first
@@ -279,18 +280,22 @@ class Person < ActiveRecord::Base
       responder_items.last.update_attribute("subject_id", self.relations.guardian_of.last.id)
     end
   end
-  private
 
-  def person_factory
-    unless self.factory.nil?
-      case self.factory[:name]
-      when :patient
-        self.factory[:relation].relationships << self.inverse_relationships.build(:name => "patient")
-      when :child
-       self.factory[:relation].relationships.build(:name => "parent,guardian").inverse_relation  = self
-      end
-    end
-  end
+
+  private
+  #NOTE: probably depricated
+  # def person_factory
+  #   KK.log "PERSON FACTORY #{self.factory}"
+  #   unless self.factory.nil?
+  #     KK.log "OK inside factory"
+  #     case self.factory[:name]
+  #     when :patient
+  #       self.factory[:relation].relationships << self.inverse_relationships.build(:name => "patient")
+  #     when :child
+  #      self.factory[:relation].relationships.build(:name => "parent,guardian").inverse_relation  = self
+  #     end
+  #   end
+  #end
 
 
 

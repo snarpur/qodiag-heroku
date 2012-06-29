@@ -1,124 +1,154 @@
-require 'factory_girl'
-require 'faker'
+# require 'factory_girl'
+# require 'faker'
 
-Factory.define :user do |user|
-    user.sequence(:email) {|n| "person#{n}_#{rand(100000)}@example.com"}
-    user.password 'asdfkj'
-    user.password_confirmation {|a| a.password}
-    user.person { |person| person.association(:person) }
-    user.roles { |roles| [roles.association(:role)] }
+
+
+FactoryGirl.define do
+
+
+  sequence(:random_deadline) {|n| Time.zone.now.advance(:days => rand(30) + 2) }
+  sequence(:email) {|n| "persona#{n}_#{rand(10000)}@example.com"}
+  factory :user do
+    email {generate(:email)}
+    password 'asdfkj'
+    password_confirmation {|a| a.password}
+    person
+    
+    factory :caretaker_user do
+      after_create do |user|
+        FactoryGirl.create(:caretaker_rights, user: user)
+      end
+    end
+
+    factory :client_user do
+      after_create do |user|
+        FactoryGirl.create(:client_rights, user: user)
+      end
+    end
+  end
+
+
+
+
+  factory :role do 
+    name "nmbnm"
+  end
+
+  factory :right do
+    #ROLES = {:super_admin => 1,:caretaker => 2, :client => 3}
+    factory :caretaker_rights do
+      role_id 2
+    end
+
+    factory :client_rights do
+      role_id 3
+    end
+  end
+
+  factory :address do 
+    street_1 "nonni"
+  end
+
+  factory :person do
+    firstname "jon"
+    lastname "smith"
+    sex {["male","female"].at(rand(2))}
+
+    # ATH !  Creates 2 persons == REFACTOR to
+    factory :caretaker_person do
+      association :user, factory: :caretaker_user
+    end
+
+    factory :client_person do
+      association :user, factory: :client_user
+    end
+  end
+
+  factory :relationship do
+    association :relation, factory: :person
+    association :person, factory: :person
+    factory :patient_relationship do
+      name "patient"
+    end
+    
+    factory :guardian_relationship do
+      name "guardian"
+    end
+
+    factory :parent_relationship do
+      name "parent"
+    end
+  end
+
+
+
+  factory :responder_item do
+    registration_identifier "some_registration"
+    deadline {generate(:random_deadline)}
+    created_at Time.zone.now
+    completed nil
+
+    factory :recently_completed_registration do
+      completed { 1.day.ago}
+    end
+
+    factory :uncompleted_registration do
+      completed nil
+    end
+
+    factory :overdue_registration do 
+      deadline {rand(20).days.ago}
+      completed nil
+    end
+
+    factory :responder_item_as_nothing do 
+      registration_identifier nil
+    end
+
+    factory :survey_item do
+      registration_identifier nil
+      survey
+    end
+  
+    factory :item_with_people do 
+      association :client, :factory => :client_person
+      association :caretaker, :factory => :caretaker_person
+      association :subject, :factory => :person
+    
+
+      factory :survey_item_with_people do 
+        registration_identifier nil
+        survey
+      end
+    end
+  end
+
+
+  factory :norm_reference do 
+    age_start 5
+    age_end 7
+    sex 'male'
+    survey
+  end
+
+  factory :score do
+    name "symptom x"
+    result_name nil
+    start_value nil
+    end_value nil
+    value nil
+    norm_reference
+  end
+
 end
 
+### PENDING REFACTORING
+# FactoryGirl.define :simple_client, :class => User do |user|
+#     user.sequence(:email) {|n| "person#{n}_#{rand(100000)}@example.com"
+#     user.password '123456'
+#     user.password_confirmation {|a| a.password}
+#     user.role_ids '3'
+#     user.invited_by_id nil
+# end
 
-Factory.define :caretaker_user, :parent => :user do |user|
-    user.roles { |roles| [roles.association(:role, :name => 'caretaker')] }
-end
-
-Factory.define :client_user, :parent => :user do |user|
-    user.roles { |roles| [roles.association(:role, :name => 'client')] }
-end
-
-Factory.define :simple_client, :class => User do |user|
-    user.sequence(:email) {|n| "person#{n}_#{rand(100000)}@example.com"}
-    user.password '123456'
-    user.password_confirmation {|a| a.password}
-    user.role_ids '3'
-    user.invited_by_id nil
-end
-
-Factory.define :role do |role|
-   role.name "snake"
-end
-
-Factory.define :address do |address|
-  address.street_1 "nonni"
-end
-
-Factory.define :person do |person|
-  person.firstname "jon"
-  person.lastname "smith"
-  person.sex {["male","female"].at(rand(2))}
-end
-
-Factory.define :client_person, :parent => :person do |person|
-  person.association :user, :factory => :client_user
-end
-
-Factory.define :caretaker_person, :parent => :person do |person|
-  person.association :user, :factory => :caretaker_user
-end
-
-Factory.define :patient_relationship,:class => Relationship do |relationship|
-  relationship.name 'patient'
-  relationship.relation { |person| person.association(:person) }
-  relationship.person  { |person| person.association(:person) }
-end
-
-Factory.define :guardian_relationship,:class => Relationship do |relationship|
-  relationship.name 'guardian'
-  relationship.relation { |person| person.association(:person) }
-  relationship.person  { |person| person.association(:person) }
-end
-
-Factory.define :parent_relationship,:class => Relationship do |relationship|
-  relationship.name 'parent'
-  relationship.relation { |person| person.association(:person) }
-  relationship.person  { |person| person.association(:person) }
-end
-
-Factory.define :responder_item  do |item|
-  item.registration_identifier "some_registration"
-  item.deadline Time.zone.now.advance(:days => rand(30) + 2)
-  item.created_at Time.zone.now
-  item.completed nil
-end
-
-Factory.define :recently_completed_registration, :parent => :responder_item do |item|
-  item.completed 1.day.ago
-end
-
-Factory.define :uncompleted_registration, :parent => :responder_item do |item|
-  item.completed nil
-end
-
-Factory.define :overdue_registration, :parent => :responder_item do |item|
-  item.deadline rand(20).days.ago
-  item.completed nil
-end
-
-Factory.define :responder_item_as_nothing, :parent => :responder_item do |item|
-  item.registration_identifier nil
-end
-
-Factory.define :survey_item, :parent => :responder_item do |item|
-  item.registration_identifier nil
-  item.association :survey
-end
-
-Factory.define :item_with_people, :parent => :responder_item do |item|
-  item.association :client, :factory => :client_person
-  item.association :caretaker, :factory => :caretaker_person
-  item.association :subject, :factory => :person
-end
-
-Factory.define :survey_item_with_people, :parent => :item_with_people do |item|
-  item.registration_identifier nil
-  item.association :survey
-end
-
-Factory.define :norm_reference do |norm|
-  norm.association :survey
-  norm.age_start 5
-  norm.age_end 7
-  norm.sex 'male'
-end
-
-Factory.define :score do |score|
-  score.name "symptom x"
-  score.association :norm_reference
-  score.result_name
-  score.start_value
-  score.end_value
-  score.value
-end
 

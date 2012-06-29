@@ -51,6 +51,7 @@ Spork.each_run do
 
   load "#{Rails.root}/config/routes.rb"
   FactoryGirl.factories.clear
+  FactoryGirl.sequences.clear
   Dir[Rails.root.join("spec/factories/**/*.rb")].each {|f| load f}
   Dir["#{Rails.root}/app/**/*.rb"].each { |f| load f }
   Dir["#{Rails.root}/lib/app/**/*.rb"].each { |f| load f }

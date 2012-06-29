@@ -1,11 +1,11 @@
 module PersonBuildHelpers
 
   def setup_patient
-    caretaker = Factory(:user, :roles => [Factory(:role, :name => 'caretaker')])
-    client = Factory(:user, :roles => [Factory(:role, :name => 'client')])
-    patient = Factory(:person)
-    Factory(:patient_relationship, :person => caretaker.person, :relation => patient)
-    Factory(:guardian_relationship, :person => client.person, :relation => patient)
+    caretaker = FactoryGirl.create(:caretaker_user)
+    client = FactoryGirl.create(:client_user)
+    patient = FactoryGirl.create(:person)
+    FactoryGirl.create(:patient_relationship, :person => caretaker.person, :relation => patient)
+    FactoryGirl.create(:guardian_relationship, :person => client.person, :relation => patient)
     {:patient => patient, :caretaker => caretaker, :client => client}
   end
 

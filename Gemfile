@@ -21,7 +21,7 @@ gem "formtastic", "< 2.0"
 gem "hash-deep-merge"
 gem 'rails-dev-tweaks', '~> 0.5.1'
 gem "i18n-js"
-gem "factory_girl_rails"
+gem "factory_girl_rails", "~> 3.0"
 gem "faker"
 gem 'newrelic_rpm'
 gem 'browsernizer'
