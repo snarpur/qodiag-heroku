@@ -1,49 +1,15 @@
-# chart_class: ColumnChart
-defaults:
-  credits:
-    enabled: false
+chart_name: AdhdRatingScale
+extends: Column
+chart_config:
+  title:
+    text: true
   tooltip:
     enabled: true
-    useHTML: true
-    footerFormat: '</table>'
-    shared: true
-  chart:
-    type: column
-    marginBottom: 100
-  plot_options:
-    column:
-      groupPadding: 0.1
-      pointPadding: 0.1
-      dataLabels:
-        enabled: true
-        color:  '#777'
-        formatter: dataLabelFormatter
-        style:
-          fontSize: 8px
+content:
   result_names: [average]
-  result_options:
-    standard_deviation:
-      visible: false
-      showInLegend: false
-  title:
-    text: "  "
-  legend:
-    align: center
-    floating: true
-  y_axis:
-    allowDecimals: false
-    title:
-      text: ~
-    tickPosition: inside
-  x_axis:
-    title:
-      text: ~
-      align: "middle"
-      margin: 25
-
 charts:
   -
-    name:  score
-    question_groups: [inattention, impulsivity_hyperactivity, total]
-    title:
-      text: true
+    content:
+      name:  score
+      question_groups: [inattention, impulsivity_hyperactivity, total]
+

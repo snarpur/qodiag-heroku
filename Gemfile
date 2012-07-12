@@ -25,6 +25,7 @@ gem "factory_girl_rails", "~> 3.0"
 gem "faker"
 gem 'newrelic_rpm'
 gem 'browsernizer'
+gem 'rabl'
 
 group :assets do
   gem "sass-rails"
@@ -65,3 +66,4 @@ end
 #gem "rb-fsevent", :group => :test, :require => false if RUBY_PLATFORM =~ /darwin/i
 
 gem "rails-footnotes", ">= 3.7", :group => :development
+gem 'quiet_assets', :group => :development

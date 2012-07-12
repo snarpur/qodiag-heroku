@@ -38,7 +38,7 @@ class App.Views.Timeline.ItemDialog extends Backbone.View
       )
   
   getLineChart:=>
-    [id, subject_id] = [@line.get("survey_id"),@timeline.get("subject_id")]
+    [id, subject_id] = [@line.get("survey_id"),@timeline.get("subject").id]
     lineChart = new App.Models.LineChart({id: id, subject_id: subject_id})
     that = @
     lineChart.fetch(

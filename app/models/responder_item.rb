@@ -39,7 +39,8 @@ class ResponderItem < ActiveRecord::Base
   def self.to_chart(params)
     if params[:survey_id]
       responder = Person.find(params[:subject_id]).guardian_user
-      {:charts => ResponseSet.to_chart(params[:survey_id], responder)}
+      # {:charts => ResponseSet.to_chart(params[:survey_id], responder)}
+      ResponseSet.to_chart(params[:survey_id], responder)
     else  
       responder_item = ResponderItem.find(params[:id])
       responder_item.response_set.result_to_chart

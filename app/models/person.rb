@@ -7,7 +7,7 @@ class Person < ActiveRecord::Base
   #validate :presence_of_parent_occupation
   #after_save :set_parents_address
   
-  #NOTE: probably depricated
+  #DEPRICATED: probably depricated
   #after_initialize :person_factory, :if => :new_record?
   #attr_accessor :factory
 
@@ -212,7 +212,7 @@ class Person < ActiveRecord::Base
     first.person
   end
 
-  #NOTE: deprecated ? moved to responderItem
+  #DEPRICATED: deprecated ? moved to responderItem
   # def new_patient_request(params)
   #   ResponderItem.new_patient_item(params, self)
   # end
@@ -283,7 +283,7 @@ class Person < ActiveRecord::Base
 
 
   private
-  #NOTE: probably depricated
+  #DEPRICATED: probably depricated
   # def person_factory
   #   KK.log "PERSON FACTORY #{self.factory}"
   #   unless self.factory.nil?

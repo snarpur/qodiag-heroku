@@ -1,57 +1,35 @@
-chart_class: StackedColumnChart
-defaults:
-  credits:
-    enabled: false
-  tooltip:
-    enabled: false
-  chart:
-    type: column
-    marginBottom: 100
-  plot_options:
-    column:
-      groupPadding: 0.1
-      pointPadding: 0.1
-      stacking: normal
-      dataLabels:
-        enabled: true
-        # color:  '#777'
-        formatter: dataLabelFormatter
-        style:
-          fontSize: 8px
+chart_name: Sdq
+extends: StackedColumn
+content:
+  result_names: [normal, borderline, abnormal]
   color:
     normal: '#6ddb00'
     borderline: '#ffff00'
     abnormal: '#e20000'
-  result_names: [normal, borderline, abnormal]
-  title:
-    text: "  "
-  legend:
-    align: center
-    floating: true
-  y_axis:
-    allowDecimals: false
-    title:
-      text: ~
-    tickPosition: inside
-  x_axis:
-    title:
-      text: ~
-      align: "middle"
-      margin: 25
 charts:
   -
-    name: score
-    question_groups: [emotional, conduct, hyperactivity_inattention, peer_problem, prosocial_behaviour]
-    title:
-      text: true
-    group_actions:
-      prosocial_behaviour: reverse_stack
+    content:
+      name: score
+      question_groups: [emotional, conduct, hyperactivity_inattention, peer_problem, prosocial_behaviour]
+      group_actions:
+        prosocial_behaviour: reverse_stack
+    chart_config:
+      title:
+        text: true
+
   -
-    name: total
-    legend:
-        enabled: false
-    y_axis:
-      opposite: true
-      maxPadding: 0.01
-    question_groups:
-      total: [emotional, conduct, hyperactivity_inattention, peer_problem, prosocial_behaviour]
+    content:
+      name: total
+      question_groups:
+        total: [emotional, conduct, hyperactivity_inattention, peer_problem, prosocial_behaviour]
+    chart_config:
+      legend:
+          enabled: false
+      xAxis:
+        title:
+          text: ~
+      yAxis:
+        opposite: true
+        maxPadding: 0.01
+      title:
+        text: ~ 

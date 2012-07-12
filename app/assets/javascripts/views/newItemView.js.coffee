@@ -28,7 +28,7 @@ class App.Views.Timeline.NewItem extends Backbone.View
   saveItem:=>
     $(@el).setCssState("sending")
     params = 
-      subject_id: @timeline.get('subject_id')
+      subject_id: @timeline.get('subject').id
       survey_id: @model.get('survey_id')
       deadline: @.selectedDate.toString()
     item = new App.Models.ResponderItem

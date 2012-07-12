@@ -1,5 +1,5 @@
 class Timeline
-  attr_accessor :dimensions
+  attr_accessor :dimensions, :timespan, :surveys, :subject, :responder_items
 
   DIMENSIONS = {
     :month_width => 70,
@@ -9,8 +9,8 @@ class Timeline
   }
 
   TIME = {
-    :starts => (Time.zone.now - 20.years).beginning_of_year.year,  
-    :ends => (Time.zone.now + 3.years).end_of_year.year
+    :back => 20, 
+    :forward => 3
   }
   
   def initialize(person)
@@ -38,7 +38,7 @@ class Timeline
   end
 
   def history_width
-    (TIME[:ends] - TIME[:starts] + 1) * (DIMENSIONS[:month_width] * 12)
+    (timespan[:ends] - timespan[:starts] + 1) * (DIMENSIONS[:month_width] * 12)
   end
   
   def dimensions
@@ -48,10 +48,31 @@ class Timeline
     values.merge!(DIMENSIONS)
     values
   end
+
+  def timespan
+    {
+    :starts => (Time.zone.now - TIME[:back].years).beginning_of_year.year,  
+    :ends => (Time.zone.now + TIME[:forward].years).end_of_year.year
+    }
+  end
+
+  def surveys
+    Survey.all
+  end
+
+  def subject
+    @person
+  end
+
+  def responder_items
+    @person.responder_items.surveys
+  end
+
+
   #NOTE: add responder ids to this when refactoring new patient Item
   def settings
     d = dimensions
-    d.merge!(TIME)
+    d.merge!(timespan)
     d.merge!(:subject_id => @person.id)
     d.merge!(:surveys => Survey.select([:id,:access_code]).to_a)
   end

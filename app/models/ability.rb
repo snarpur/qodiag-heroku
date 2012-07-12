@@ -19,6 +19,7 @@ class Ability
         ri.caretaker == user.person
       end
       can :read, Role
+      can :manage, Survey 
     elsif user.role? :client
       can [:read,:update], User do |u|
         u == user
@@ -37,7 +38,7 @@ class Ability
     #only super_admin abilities
     if !user.role? :super_admin
       cannot :manage, User do |u|
-        !(u.role_names & ["caretaker","super_admin"]).empty? && !user.role_names.includ?('super_admin')
+        !(u.role_names & ["caretaker","super_admin"]).empty? && !user.role_names.include?('super_admin')
       end
     end 
 

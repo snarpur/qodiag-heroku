@@ -13,7 +13,7 @@ class PeopleController < ApplicationController
     @person = Person.find(params[:id])
     respond_to do |format|
       format.html
-      format.json {render :json => @person, :partial => "test"}
+      format.json
     end
   end
 

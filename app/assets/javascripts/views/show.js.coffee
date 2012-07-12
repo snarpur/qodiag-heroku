@@ -54,7 +54,7 @@ class App.Views.ResponderItems.Show extends Backbone.View
     "chart-dialog"
 
   chartWidth:(chart) =>
-    width =  @model.getTimeline('canvas_width') * (chart.size/@model.get('charts_size_total'))
+    width =  @model.getTimeline('canvas_width') * (chart.size/@model.get('charts').size)
     (width * 0.8) + 22
 
   dataLabelFormatter: =>

@@ -3,9 +3,15 @@
 =render "people/patient/timeline_info_header"
 
 #canvas
-:javascript 
-	$(document).ready(function(){     
-		window.controller = new App.Controllers.ResponderItemsController({timeline: #{@timeline.settings.to_json}, responder_items: #{responses.to_json}}); App.init();
-		});
-	
+:javascript
+  rable_subject = #{render template: "people/show.json.rabl"}
+
+  $(document).ready(function(){     
+    window.controller = new App.Controllers.ResponderItemsController({
+      timeline: #{render template: "shared/timeline/timeline.json.rabl"}, 
+      responder_items: #{render template: "responder_items/index.json.rabl"}
+    }); 
+    App.init(); 
+  });
+  
 

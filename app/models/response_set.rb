@@ -1,5 +1,5 @@
 module ResponseSetCustomMethods
- 
+
   def self.included(base)
     base.send :attr_accessor, :status
     base.send :after_save, :complete_responder_item
@@ -61,9 +61,9 @@ module ResponseSetCustomMethods
     data
   end
 
-  def result_to_chart
-    ChartRenderer.new(self).result_to_chart
-  end
+  # def result_to_chart
+  #   ChartRenderer.new(self)#.result_to_chart
+  # end
 
   private
   def complete_responder_item
@@ -80,9 +80,8 @@ module ResponseSetCustomMethods
 
 class ResponseSet < ActiveRecord::Base
   include Surveyor::Models::ResponseSetMethods
-  #load "app/chart_renderer.rb"
   include ResponseSetCustomMethods
-  #include ChartRenderer
+  include ResponseSetChartRendererMethods
 
   def self.to_chart(id, user)
     response_sets = ResponseSet.where("survey_id = #{id} and user_id = #{user.id} and completed_at IS NOT NULL").order("completed_at")

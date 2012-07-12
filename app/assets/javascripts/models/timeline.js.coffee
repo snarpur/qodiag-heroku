@@ -5,7 +5,6 @@ class App.Models.Timeline extends Backbone.Model
     @.set(years)
     @.set({lines: new App.Collections.LineCollection([],@)})
     @.get('lines').setSubjectId(@.get('subject_id'))
-    console.log @
     @.set({surveyMenu: new App.Collections.SurveyMenuItemCollection([])})
  
   fillSurveyMenu:()=>

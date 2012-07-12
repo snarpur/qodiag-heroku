@@ -1,5 +1,5 @@
 #NOTE: create separate controller for caretaker and client
-
+require 'ostruct'
 class ResponderItemsController < ApplicationController
   before_filter :create_responder_item, :only => [:new,:create]
   load_and_authorize_resource
@@ -10,14 +10,15 @@ class ResponderItemsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json {render :json => @responder_items }
+      format.json
     end
   end
 
   def show
+    @chart = ResponderItem.to_chart(params)
     respond_to do |format|
       format.html
-      format.json {render :json => ResponderItem.to_chart(params).to_json}
+      format.json #{render :json => ResponderItem.to_chart(params).to_json}
     end
   end
 
@@ -26,7 +27,6 @@ class ResponderItemsController < ApplicationController
   end
 
   def create
-    KK.log "P in contr :: #{params}"
     @responder_item
 
     if @responder_item.save!

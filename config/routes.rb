@@ -12,11 +12,11 @@ Snarpur::Application.routes.draw do
     get 'users', :to => 'users#show', :as => :user_root # Rails 3
   end
   
+
   resources :users
   resources :people
   resources :relationships
-  resources :roles
-  
+
   resources :responder_items do
       resources :people
   end
@@ -28,6 +28,7 @@ namespace :admin do
   resources :users
 end
 
+  match 'all_surveys' => 'surveyor#index', :via => :get
   match 'people/:subject_id/responder_items/responses/:survey_id' => 'responder_items#responses', :via => :get
   match 'people/:subject_id/responder_items/survey/:survey_id' => 'responder_items#survey', :via => :get
   

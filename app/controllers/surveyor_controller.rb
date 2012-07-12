@@ -2,12 +2,22 @@ module SurveyorControllerCustomMethods
   def self.included(base)
     base.send :before_filter, :get_user
     base.send :before_filter, :get_response_set, :only => [:update]
-    base.send :load_resource, :response_set
-    base.send :authorize_resource, :response_set
-    base.send :layout, "surveyor_custom"
+    base.send :load_resource, :response_set, :except => [:index]
+    base.send :authorize_resource, :response_set, :except => [:index]
+    base.send :layout, "surveyor_custom", :except => [:index]
   end
 
   # Actions
+
+  def index
+    @surveys = Survey.find(:all)
+    
+    respond_to do |format|
+      format.html
+      format.json
+    end
+  end
+
   def new
     @surveys = Survey.find(:all)
     @title = "You can take these surveys"

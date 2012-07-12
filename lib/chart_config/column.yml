@@ -1,0 +1,45 @@
+chart_name: Column 
+chart_config:
+  credits:
+    enabled: false
+  tooltip:
+    enabled: false
+    useHTML: true
+    footerFormat: '</table>'
+    shared: true
+    formatter: true
+  chart:
+    type: column
+    marginBottom: 100
+  plotOptions:
+    column:
+      groupPadding: 0.1
+      pointPadding: 0.1
+      dataLabels:
+        enabled: true
+        color:  '#777'
+        formatter: true
+        style:
+          fontSize: 8px
+      events:
+        legendItemClick: false
+  title:
+    text: "  "
+  legend:
+    align: center
+    floating: true
+    labelFormatter: true
+    itemHoverStyle:
+      color: '#CCC'
+  yAxis:
+    allowDecimals: false
+    title:
+      text: ~
+    tickPosition: inside
+  xAxis:
+    title:
+      text: true
+      align: "middle"
+      margin: 25
+    labels:
+      formatter: true

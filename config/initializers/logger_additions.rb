@@ -8,11 +8,26 @@ if Rails.env.development? || Rails.env.test?
   end
 
   class CustomOutput
+    def time
+      "#{Time.now.strftime('%H:%M:%S')}".foreground(:black).background(:white)
+    end
+
+    def log_type(log)
+      "<#{log}>".foreground(:yellow).background(:red)
+    end
+    
+    def log_msg(msg)
+     " :::: " + "#{msg}"
+    end
+
     def see(msg)
       puts "<SEE>".foreground(:black).background(:green) + "  " + "#{msg}".foreground(:white).background(:blue)
     end
+    
     def log(msg)
-      ActiveRecord::Base.logger.debug "<LOG>".foreground(:yellow).background(:red) + "  " + "#{msg}".foreground(:white).background(:blue)
+      # ActiveRecord::Base.logger.debug "<LOG>".foreground(:yellow).background(:red) + "  " + "#{msg}".foreground(:white).background(:blue)
+      ActiveRecord::Base.logger.debug log_type("LOG") + "  " + time()
+      ActiveRecord::Base.logger.debug log_type("LOG") + "  " + log_msg(msg)
     end
   end
 
