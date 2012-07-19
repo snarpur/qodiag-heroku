@@ -1,5 +1,5 @@
 module ChartRenderer
-  class Result
+  class Chart
     include ChartMethods 
     attr_accessor :chart_data, :chart_size, :categories
 
@@ -57,7 +57,16 @@ module ChartRenderer
     end
 
     def title
-      @chart[:chart_config][:title][:text] &&= norm_reference_group_name
+      chart_title = @chart[:chart_config][:title][:text]
+      if chart_title.nil?
+          chart_title = "  "
+      elsif chart_title == true
+        chart_title = norm_reference_group_name
+      else
+        chart_title
+      end
+
+      chart_title = @chart[:chart_config][:title][:text] = chart_title
     end
 
 
@@ -89,11 +98,6 @@ module ChartRenderer
 
 
     private
-    
-    def get_defaults(key)
-      @chart["#{:default}_#{key}".to_sym]
-    end
-
     def total_for_custom_groups?
       get_content(:question_groups).is_a?(Hash) && get_content(:question_groups).has_key?(:total)
     end
@@ -118,12 +122,6 @@ module ChartRenderer
       total_for_custom_groups? ? get_content(:question_groups).stringify_keys.keys : get_content(:question_groups)
     end
     
-    # def get_series_options(series_name)
-    #   unless @chart[:result_options].nil?
-    #     options = @chart[:result_options][series_name.to_sym]
-    #     options ||= {}
-    #   end
-    # end
   end
-  %w{column adhd_rating_scale stacked_column}.each {|c| require_dependency "#{c}.rb"}
+  %w{column adhd_rating_scale stacked_column}.each {|c| require_dependency "#{c}.rb"} if Rails.env.development?
 end

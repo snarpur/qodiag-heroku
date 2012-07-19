@@ -15,7 +15,7 @@ class ResponderItemsController < ApplicationController
   end
 
   def show
-    @chart = ResponderItem.to_chart(params)
+    @chart = ResponderItem.find(params[:id]).to_column_chart
     respond_to do |format|
       format.html
       format.json #{render :json => ResponderItem.to_chart(params).to_json}
@@ -61,16 +61,18 @@ class ResponderItemsController < ApplicationController
   end
   
   #NOTE: Should probably be moved to a response_set controller
+
   def responses 
+    @chart = ResponderItem.to_line_chart(params)
     respond_to do |format|
       format.html
-      format.json {render :json => ResponderItem.to_chart(params).to_json}
+      format.json {render "show"}
     end
   end
 
   def survey
     @person = Person.find(params[:subject_id])
-    @responder_items = @person.responder_items.surveys_by_id(params[:survey_id])
+    @responder_items = @person.responder_items.by_surveys_id(params[:survey_id])
     respond_to do |format|
       format.html
       format.json {render :json => @responder_items}

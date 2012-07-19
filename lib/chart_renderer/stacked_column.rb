@@ -1,4 +1,5 @@
-class ChartRenderer::StackedColumn < ChartRenderer::Column
+module ChartRenderer::StackedColumn 
+class Chart < ChartRenderer::Column::Chart
 
   def initialize(chart_options,response_set)
     super(chart_options,response_set)
@@ -54,4 +55,5 @@ class ChartRenderer::StackedColumn < ChartRenderer::Column
     data
   end
 
+end
 end

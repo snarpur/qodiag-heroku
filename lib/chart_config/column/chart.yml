@@ -1,0 +1,12 @@
+chart_name: Column
+chart_type: Column
+extends: Chart
+chart_config:
+  chart:
+    type: column
+  tooltip:
+    enabled: false
+    useHTML: true
+    footerFormat: '</table>'
+    shared: true
+    # formatter: true

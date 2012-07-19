@@ -17,7 +17,8 @@ class ResponderItem < ActiveRecord::Base
   scope :surveys_by_id, lambda {|survey_id| where("survey_id = ?", survey_id).joins(:survey).select("surveys.access_code, responder_items.*")}
   scope :registrations, where("registration_identifier IS NOT NULL").order(:id)
   scope :surveys_by_group, ResponderItem.surveys.order('survey_id')
-
+  scope :by_responder, lambda {|responder_id| where("client_id = ?", responder_id)}
+  scope :by_subject, lambda {|subject_id| where("subject_id = ?", subject_id)} 
   accepts_nested_attributes_for :client, :subject, :person
 
   attr_accessible :registration_identifier, :id, :caretaker_id, :deadline, :completed, :complete_item, :client_id, :subject_id, :survey_id, :subject_attributes, :client_attributes
@@ -29,22 +30,22 @@ class ResponderItem < ActiveRecord::Base
   def self.new_patient_item(params,caretaker)
     KK.log "PARAMS :: #{params.inspect}"
     item = ResponderItem.new(params)
-    patient = Person.find(params[:subject_id])
+    patient = Person.find(params[:subject_id]).guardian_client
     item.subject = patient
     item.caretaker = caretaker
     item.client = patient.guardian_client
     item
   end
 
-  def self.to_chart(params)
-    if params[:survey_id]
-      responder = Person.find(params[:subject_id]).guardian_user
-      # {:charts => ResponseSet.to_chart(params[:survey_id], responder)}
-      ResponseSet.to_chart(params[:survey_id], responder)
-    else  
-      responder_item = ResponderItem.find(params[:id])
-      responder_item.response_set.result_to_chart
-    end
+  def to_column_chart
+    self.response_set.result_to_chart
+  end
+
+  #REFACTOR: pass responder name in http requeust
+  def self.to_line_chart(params)
+      responder = Person.find(params[:subject_id]).guardian_client
+      KK.log "RESPONDER #{responder.inspect}"
+      ResponseSet.to_line_chart(params[:survey_id], responder)
   end
 
   def access_code

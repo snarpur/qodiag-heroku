@@ -1,0 +1,12 @@
+chart_name: Line
+chart_type: Line
+extends: Chart
+chart_config:
+  chart:
+    type: line
+    marginBottom: 100
+  xAxis:
+    title:
+      text: false
+  title:
+    text: false

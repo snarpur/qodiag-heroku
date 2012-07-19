@@ -1,7 +1,10 @@
-chart_name: Line
-extends: Column
+chart_name: Sdq
+chart_type: Line
+extends: Line
 content:
   result_names: [normal, borderline, abnormal]
+
+
 charts:
   -
     chart_config:

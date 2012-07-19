@@ -134,7 +134,7 @@ class Person < ActiveRecord::Base
   end
 
   def completed_surveys_by_id(id)
-    self.responder_items & ResponderItem.surveys_by_id(id).completed
+    self.responder_items & ResponderItem.by_survey_id(id).completed
   end
 
   def responder_items_by_group

@@ -1,0 +1,32 @@
+chart_name: Sdq
+chart_type: Column
+extends: StackedColumn
+content:
+  result_names: [normal, borderline, abnormal]
+  color:
+    normal: '#6ddb00'
+    borderline: '#ffff00'
+    abnormal: '#e20000'
+charts:
+  -
+    content:
+      name: score
+      question_groups: [emotional, conduct, hyperactivity_inattention, peer_problem, prosocial_behaviour]
+      group_actions:
+        prosocial_behaviour: reverse_stack
+  -
+    content:
+      name: total
+      question_groups:
+        total: [emotional, conduct, hyperactivity_inattention, peer_problem, prosocial_behaviour]
+    chart_config:
+      legend:
+          enabled: false
+      xAxis:
+        title:
+          text: ~
+      yAxis:
+        opposite: true
+        maxPadding: 0.01
+      title:
+        text: ~ 

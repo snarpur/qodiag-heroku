@@ -4,12 +4,12 @@ module ResponseSetCustomMethods
     base.send :attr_accessor, :status
     base.send :after_save, :complete_responder_item
     #base.send :validate, :validate_mandatory_questions, :on => :update, :unless => Proc.new{|r|r.status.nil?}
+   
   end
 
-
-  def responder_item
-    ResponderItem.where(:response_set_id => self.id).first
-  end
+  # def responder_item
+  #   ResponderItem.where(:response_set_id => self.id).first
+  # end
 
   def responder
     self.responder_item.client
@@ -81,10 +81,22 @@ module ResponseSetCustomMethods
 class ResponseSet < ActiveRecord::Base
   include Surveyor::Models::ResponseSetMethods
   include ResponseSetCustomMethods
-  include ResponseSetChartRendererMethods
+  include ResponseSetChartRenderer::InstanceMethods
+  extend ResponseSetChartRenderer::ClassMethods
+  has_one :responder_item
 
-  def self.to_chart(id, user)
-    response_sets = ResponseSet.where("survey_id = #{id} and user_id = #{user.id} and completed_at IS NOT NULL").order("completed_at")
-    LineChartRenderer.new(response_sets).result_to_chart
+  scope :by_survey, lambda{|survey_id| where("response_sets.survey_id = ?", survey_id)}
+  scope :by_responder, lambda{|responder_id| joins(:responder_item).where("responder_items.client_id = ?", responder_id)}
+  scope :by_subject, lambda{|subject_id|joins(:responder_item).where("responder_items.subject_id = ?", subject_id)}
+
+  def self.to_line_chart(survey_id, responder)
+    responses = ResponseSet.by_survey(survey_id).by_responder(responder.id)
+    KK.log responses.inspect
+    ResponseSet.responses_to_chart(responses)
+    # LineChartRenderer.new(response_sets).result_to_chart(:line)
   end
+  # def self.to_chart(id, user)
+  #   response_sets = ResponseSet.where("survey_id = #{id} and user_id = #{user.id} and completed_at IS NOT NULL").order("completed_at")
+  #   LineChartRenderer.new(response_sets).result_to_chart
+  # end
 end

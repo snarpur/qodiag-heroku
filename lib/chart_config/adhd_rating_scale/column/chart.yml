@@ -1,14 +1,17 @@
 chart_name: AdhdRatingScale
-chart_type: Line
-extends: Line
+chart_type: Column
+extends: Column
+chart_config:
+  title:
+    text: true
+  tooltip:
+    enabled: true
+    formatter: true
 content:
   result_names: [average]
 charts:
   -
-    chart_config:
-      chart: 
-
-        renderTo: score
     content:
+      name:  score
       question_groups: [inattention, impulsivity_hyperactivity, total]
 
