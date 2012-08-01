@@ -17,9 +17,8 @@ describe ResponderItem do
 
   describe "create patient responder item as survey" do
     before do
-      
-
       @setup = setup_patient
+      puts @setup.inspect
       @item = ResponderItem.new_patient_item(@setup[:patient],@setup[:caretaker].person)
       @item.survey = FactoryGirl.create(:survey)
       @item.save

@@ -30,7 +30,7 @@ end
 
   match 'all_surveys' => 'surveyor#index', :via => :get
   match 'people/:subject_id/responder_items/responses/:survey_id' => 'responder_items#responses', :via => :get
-  match 'people/:subject_id/responder_items/survey/:survey_id' => 'responder_items#survey', :via => :get
+ 
   
   get "pages/error_401"
   get "pages/help"

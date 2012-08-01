@@ -1,5 +1,5 @@
 module ChartRenderer
-  class Chart
+ class Chart
     include ChartMethods 
     attr_accessor :chart_data, :chart_size, :categories
 
@@ -9,11 +9,16 @@ module ChartRenderer
       @response_set = response_set
       @subject_series = subject_series
       @reference_values = reference_values
+
     end
 
     def norm_reference
       return if @response_set.norm_reference.nil?
       @response_set.norm_reference
+    end
+    
+    def access_code
+      @response_set.survey_name
     end
 
     def get_content(item)

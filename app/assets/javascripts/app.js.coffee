@@ -4,6 +4,8 @@ window.App =
   Models: {}
   Collections: {}
   Controllers: {}
-  Views: {},
+  Views: {}
+  Timeline: {}
+
   init:->
     Backbone.history.start();

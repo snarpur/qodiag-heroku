@@ -21,16 +21,16 @@ class App.Views.Timeline.NewItem extends Backbone.View
     @model.set(newItemOverlayState: "closed")
 
   setIdle:=>
-    
     if @model.get("newItemOverlayState") is "closed"
       $(@el).setCssState("idle")
   
   saveItem:=>
     $(@el).setCssState("sending")
     params = 
-      subject_id: @timeline.get('subject').id
+      subject_id: @timeline.getSubjectId()
       survey_id: @model.get('survey_id')
       deadline: @.selectedDate.toString()
+      responder_id: @getSelectedResponder()
     item = new App.Models.ResponderItem
     item.save(params, @saveCallbacks())
       
@@ -42,7 +42,11 @@ class App.Views.Timeline.NewItem extends Backbone.View
         $(that.el).setCssState("success")
       error: (model,response) -> 
         $(that.el).setCssState("error")
-    
+   
+  getSelectedResponder:=>
+    _.first(@timeline.get("subject").get("responders")).id
+
+
   setDate:=>
     that = @
     (txt,d) ->

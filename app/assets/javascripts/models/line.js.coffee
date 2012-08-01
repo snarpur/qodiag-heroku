@@ -12,7 +12,7 @@ class App.Models.Line extends Backbone.Model
     "#{base}#{'' if _.endsWith(base,'/')}#{encodeURIComponent(@.get('survey_id'))}"
   
   subjectId:()=>
-    @.get("timeline").get("subject_id")
+    @.get("timeline").getSubjectId()
   
   setCurrentDialogItem:(item)=>
     @setPreviousDialogItem(item) 

@@ -158,6 +158,10 @@ class Person < ActiveRecord::Base
     Date.current.year - self.dateofbirth.year
   end
 
+  def responders
+    self.inverse_relations.guardians
+  end
+
   def presence_of_cpr
     errors.add(:cpr, "cannot be empty") if
       ispatient == true and cpr.nil?
@@ -212,10 +216,6 @@ class Person < ActiveRecord::Base
     first.person
   end
 
-  #DEPRICATED: deprecated ? moved to responderItem
-  # def new_patient_request(params)
-  #   ResponderItem.new_patient_item(params, self)
-  # end
 
   def father
     self.inverse_relations.father.first

@@ -1,5 +1,3 @@
-#TODO:: clean up formatters
-
 App.Views.Charts ||= {}
 
 class App.Views.Charts extends Backbone.View
@@ -26,7 +24,7 @@ class App.Views.Charts extends Backbone.View
 
   renderChart:(chart)=>
     chartEl = $(@template()(chart))
-    formatter = new App.Lib.columnFormatters(chart,@)
+    formatter = new App.Lib.chartFormatters.column(chart,@)
     formatter.setFormatters()
     chartEl.width(@chartWidth(chart))
     $(@el).append(chartEl)

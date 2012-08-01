@@ -7,10 +7,6 @@ module ResponseSetCustomMethods
    
   end
 
-  # def responder_item
-  #   ResponderItem.where(:response_set_id => self.id).first
-  # end
-
   def responder
     self.responder_item.client
   end
@@ -61,9 +57,6 @@ module ResponseSetCustomMethods
     data
   end
 
-  # def result_to_chart
-  #   ChartRenderer.new(self)#.result_to_chart
-  # end
 
   private
   def complete_responder_item
@@ -88,15 +81,12 @@ class ResponseSet < ActiveRecord::Base
   scope :by_survey, lambda{|survey_id| where("response_sets.survey_id = ?", survey_id)}
   scope :by_responder, lambda{|responder_id| joins(:responder_item).where("responder_items.client_id = ?", responder_id)}
   scope :by_subject, lambda{|subject_id|joins(:responder_item).where("responder_items.subject_id = ?", subject_id)}
+  scope :completed, where("completed_at IS NOT NULL")
+  
 
   def self.to_line_chart(survey_id, responder)
-    responses = ResponseSet.by_survey(survey_id).by_responder(responder.id)
-    KK.log responses.inspect
+    responses = ResponseSet.completed.by_survey(survey_id).by_responder(responder.id)
     ResponseSet.responses_to_chart(responses)
-    # LineChartRenderer.new(response_sets).result_to_chart(:line)
   end
-  # def self.to_chart(id, user)
-  #   response_sets = ResponseSet.where("survey_id = #{id} and user_id = #{user.id} and completed_at IS NOT NULL").order("completed_at")
-  #   LineChartRenderer.new(response_sets).result_to_chart
-  # end
+
 end

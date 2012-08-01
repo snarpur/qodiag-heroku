@@ -10,9 +10,6 @@ class App.Views.LineCharts extends Backbone.View
   template:->
     JST['templates/lineChartsTmpl']
 
-  # charts: (item) =>
-  #   @model.get('charts')[item]
-
   chartWidth:(chart)=>
     width = (@timeline.get('canvas_width') * 0.8) + 22
   
@@ -20,7 +17,7 @@ class App.Views.LineCharts extends Backbone.View
   renderChart:(chart)=>
     chartEl = $(@template()(chart))
     $(@el).append(chartEl)
-    formatter = new App.Lib.lineFormatters(chart,@)
+    formatter = new App.Lib.chartFormatters.line(chart,@)
     formatter.setFormatters()
     chartEl.width(@chartWidth(chart))
     high = new Highcharts.Chart(chart)

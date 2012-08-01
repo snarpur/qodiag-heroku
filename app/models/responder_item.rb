@@ -6,6 +6,7 @@ class ResponderItem < ActiveRecord::Base
   belongs_to :survey
   belongs_to :response_set
 
+
   before_save :set_response_set, :if => :is_uncompleted_survey?
 
   # scope :include_survey, ResponderItem
@@ -26,11 +27,11 @@ class ResponderItem < ActiveRecord::Base
   # validates_associated :client
 
 
-  # TODO: NEXT refactoring step send relevant parameters in http request instead of infering caretaker and client progmatically change newItemView in backbone
+ #START: change client_id to responder_id along with all dependant assocciations and dependencies
   def self.new_patient_item(params,caretaker)
-    KK.log "PARAMS :: #{params.inspect}"
+    puts params.inspect
     item = ResponderItem.new(params)
-    patient = Person.find(params[:subject_id]).guardian_client
+    patient = Person.find(params[:subject_id])
     item.subject = patient
     item.caretaker = caretaker
     item.client = patient.guardian_client
@@ -44,7 +45,6 @@ class ResponderItem < ActiveRecord::Base
   #REFACTOR: pass responder name in http requeust
   def self.to_line_chart(params)
       responder = Person.find(params[:subject_id]).guardian_client
-      KK.log "RESPONDER #{responder.inspect}"
       ResponseSet.to_line_chart(params[:survey_id], responder)
   end
 
@@ -57,19 +57,16 @@ class ResponderItem < ActiveRecord::Base
   end
 
   def complete_item=(is_complete)
-    KK.log "in complete"
-    KK.log is_complete.to_i
-    KK.log self.completed.nil?
    if is_complete.to_i == 1 && self.completed.nil?
     self.completed = Time.zone.now
    end
   end
 
-  def result
-    self.response_set.result_to_chart
+  def complete_item
   end
 
-  def complete_item
+  def result
+    self.response_set.result_to_chart
   end
 
   private

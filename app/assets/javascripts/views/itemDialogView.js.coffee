@@ -38,7 +38,10 @@ class App.Views.Timeline.ItemDialog extends Backbone.View
       )
   
   getLineChart:=>
-    [id, subject_id] = [@line.get("survey_id"),@timeline.get("subject").id]
+    #NEXT: This refactoring step is next
+    #REFACTOR: CREATE a person object with necessary methods e.g. getResponders()
+    [id, subject_id] = [@line.get("survey_id"),@timeline.getSubjectId()]
+    console.log "BETORE XHR:::", @timeline
     lineChart = new App.Models.LineChart({id: id, subject_id: subject_id})
     that = @
     lineChart.fetch(

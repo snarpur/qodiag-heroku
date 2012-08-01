@@ -14,6 +14,10 @@ module ChartRenderer::Line
 			data.transpose
 		end
 
+		def access_code
+			@response_sets.first.survey_name
+		end
+
 		def series
 			series = []
 			data.each_with_index do |item,index|
@@ -27,9 +31,8 @@ module ChartRenderer::Line
 				r.completed_at
 			end
 		end
-	  #START: continue to implement linechart
+
 	  def chart_output
-	  	KK.log categories
 	  	categories
 	  	series
 	    x_axis = @chart[:chart_config][:xAxis]

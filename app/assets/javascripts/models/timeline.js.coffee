@@ -3,15 +3,18 @@ class App.Models.Timeline extends Backbone.Model
   initialize:->
     years = {years: [@.get("starts")..@.get("ends")]}
     @.set(years)
+    @.set(subject: new App.Models.Subject(@.get('subject')))
     @.set({lines: new App.Collections.LineCollection([],@)})
-    @.get('lines').setSubjectId(@.get('subject_id'))
+    #REFACTOR: possibley redundant subject id in lines
+    @.get('lines').setSubjectId(@getSubjectId())
     @.set({surveyMenu: new App.Collections.SurveyMenuItemCollection([])})
+    console.log "subject::", @getSubjectId()
  
   fillSurveyMenu:()=>
     @.get('surveyMenu').add(@.get('surveys'))
 
-  subjectId:()=>
-    @.get('subject_id')
+  getSubjectId:()=>
+    @.get('subject').id
 
   setOpenLine:(line)=>
     @.set(openLine: line)

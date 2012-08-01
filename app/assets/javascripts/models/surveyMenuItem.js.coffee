@@ -1,7 +1,7 @@
 class App.Models.SurveyMenuItem extends Backbone.Model
 
   subjectId:=>
-    @.get('timeline').get('subject_id')
+    @.get('timeline').getSubjectId()
 
   showLine:(line)=>
     @.set({visibility: 'visible', line: line})
