@@ -6,7 +6,7 @@ class PopulateUtil
  	def initialize
  		  @surveys = ["adhd_rating_scale","sdq"]
     	@caretaker_role = Role.find_by_name('caretaker')
-    	@client_role = Role.find_by_name('client')
+    	@respondent_role = Role.find_by_name('respondent')
     	@sex = ['male','female']
     	@password_params = {:password => "asdfkj", :password_confirmation => "asdfkj"}
     	@survey_ids = Survey.select(:id)
@@ -22,6 +22,7 @@ class PopulateUtil
     end
 
     def user_level
+      puts "clearing users"
       self.clear_user_tables
     end
   
@@ -68,8 +69,8 @@ class PopulateUtil
     end
     
     def create_caretaker(name)
-      caretaker_person = Factory.create(:person, person_attributes(rand(10)+40))
-      caretaker_user = Factory.create(:user, 
+      caretaker_person = FactoryGirl.create(:person, person_attributes(rand(10)+40))
+      caretaker_user = FactoryGirl.create(:user, 
                                       :email => "#{name}@snarpur.is", 
                                       :roles => [@caretaker_role], 
                                       :person => caretaker_person
@@ -80,20 +81,20 @@ class PopulateUtil
 
     def create_patient(caretaker_person)
       attrs = person_attributes(rand(10)+5)
-      patient = Factory.create(:person, attrs)
-      Factory.create(:patient_relationship, :person => caretaker_person, :relation => patient)
+      patient = FactoryGirl.create(:person, attrs)
+      FactoryGirl.create(:patient_relationship, :person => caretaker_person, :relation => patient)
       patient
     end
 
     def create_parent(patient)
-      parent_person = Factory.create(:person, person_attributes(rand(20)+40))
-      parent_user = Factory.create(:user, 
+      parent_person = FactoryGirl.create(:person, person_attributes(rand(20)+40))
+      parent_user = FactoryGirl.create(:user, 
                                    :email => "user_#{parent_person.id}@snarpur.is", 
-                                   :roles => [@client_role], 
+                                   :roles => [@respondent_role], 
                                    :person => parent_person
                                   )
-      Factory.create(:guardian_relationship, :person => parent_person, :relation => patient)
-      Factory.create(:parent_relationship, :person => parent_person, :relation => patient)
+      FactoryGirl.create(:guardian_relationship, :person => parent_person, :relation => patient)
+      FactoryGirl.create(:parent_relationship, :person => parent_person, :relation => patient)
       {:person => parent_person, :user => parent_user}
     
   end
@@ -101,8 +102,8 @@ class PopulateUtil
     def create_responder_item(survey_id ,people,created_at)
 
     
-      responder_item = Factory.create( :item_with_people, 
-                      :client => people[:parent][:person], 
+      responder_item = FactoryGirl.create( :item_with_people, 
+                      :respondent => people[:parent][:person], 
                       :subject => people[:patient], 
                       :caretaker => people[:caretaker][:person],
                       :survey_id => survey_id,
@@ -128,7 +129,7 @@ class PopulateUtil
         questions_size = questions.size
         questions.each do |question|
           answers = question.answers 
-          Factory.create(:response, 
+          FactoryGirl.create(:response, 
                          :response_set => item.response_set, 
                          :question_id => question.id,
                          :answer_id => answers[rand(answers.size)].id 

@@ -19,12 +19,12 @@ describe Person do
       @person.relations.should_not be_empty
     end
 
-    it "has client_registration" do
-      @person.client_responder_items.should_not be_empty
+    it "has respondent_registration" do
+      @person.respondent_responder_items.should_not be_empty
     end
 
     it "child is patient of" do
-      @person.client_responder_items.should_not be_empty
+      @person.respondent_responder_items.should_not be_empty
     end
 
   end
@@ -32,7 +32,7 @@ describe Person do
   context "person has a role" do
     before do
       @caretaker = Factory(:user, :roles => [Factory(:role, :name => 'caretaker')])
-      @client = Factory(:user, :roles => [Factory(:role, :name => 'client')])
+      @respondent = Factory(:user, :roles => [Factory(:role, :name => 'respondent')])
       @person = Factory(:person)
     end
 
@@ -40,8 +40,8 @@ describe Person do
       @caretaker.person.role.should == 'caretaker'
     end
 
-    it "client should be client" do
-      @client.person.role.should == 'client'
+    it "respondent should be respondent" do
+      @respondent.person.role.should == 'respondent'
     end
 
     it "person with no role should be patient" do
@@ -60,10 +60,10 @@ describe Person do
         @items = [{:name => :surveys, :item => @survey},{:name => :registrations, :item => @registration}]
       end
 
-      it "caretaker, patient and client have one survey and one registration" do
+      it "caretaker, patient and respondent have one survey and one registration" do
         @items.each do |response|
           name = response[:name]
-          [:caretaker,:subject,:client].each do |role|
+          [:caretaker,:subject,:respondent].each do |role|
             person = response[:item].send(role)
             person.responder_items_by_type_and_status(name).size.should == 1
           end
@@ -75,19 +75,19 @@ describe Person do
           @items = []
           @subject = Factory(:person)
           @caretaker = Factory(:caretaker_person)
-          @client = Factory(:client_person)
+          @respondent = Factory(:respondent_person)
           2.times{|i| @items[i] = Factory(:survey)}
           4.times do |i|
-            Factory(:survey_item_with_people, :survey => @items[i%2], :subject => @subject, :client => @client, :caretaker => @caretaker)
-            Factory(:item_with_people, :subject => @subject, :client => @client, :caretaker => @caretaker)
+            Factory(:survey_item_with_people, :survey => @items[i%2], :subject => @subject, :respondent => @respondent, :caretaker => @caretaker)
+            Factory(:item_with_people, :subject => @subject, :respondent => @respondent, :caretaker => @caretaker)
           end
         end
         it "should have 2 types of surveys" do
-          @client.responder_items_by_group.size.should == 2
-          @client.responder_items_by_group.first[:items].size.should == 2
-          @client.responder_items_by_group.first[:items].size.should == 2
-          @client.responder_items_by_group.first[:items].first.access_code == @items.first.access_code
-          @client.responder_items_by_group.first[:name].should == @items.first.access_code
+          @respondent.responder_items_by_group.size.should == 2
+          @respondent.responder_items_by_group.first[:items].size.should == 2
+          @respondent.responder_items_by_group.first[:items].size.should == 2
+          @respondent.responder_items_by_group.first[:items].first.access_code == @items.first.access_code
+          @respondent.responder_items_by_group.first[:name].should == @items.first.access_code
         end
       end
 
@@ -126,16 +126,16 @@ describe Person do
   context "finders" do
     before do
       @caretaker = Factory(:user, :roles => [Factory(:role, :name => 'caretaker')])
-      @client = Factory(:user, :roles => [Factory(:role, :name => 'client')])
+      @respondent = Factory(:user, :roles => [Factory(:role, :name => 'respondent')])
       @patient = Factory(:person)
       Factory(:patient_relationship, :person => @caretaker.person, :relation => @patient)
-      Factory(:guardian_relationship, :person => @client.person, :relation => @patient)
+      Factory(:guardian_relationship, :person => @respondent.person, :relation => @patient)
     end
 
     describe "inverse_relation finders" do
 
-      it "patient should have a guardian_as_client" do
-        @patient.guardian_client.should == @client.person
+      it "patient should have a guardian_as_respondent" do
+        @patient.guardian_respondent.should == @respondent.person
       end
 
     end

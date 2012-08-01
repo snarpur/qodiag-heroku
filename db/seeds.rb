@@ -1,4 +1,4 @@
-users = ["super_admin", "caretaker", "client"]
+users = ["super_admin", "caretaker", "respondent"]
 
 users.each do |u|
   user = User.create(:email => "#{u}@orrigautur.com", :password => "asdfkj", :password_confirmation => "asdfkj")

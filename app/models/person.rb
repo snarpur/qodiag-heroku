@@ -13,7 +13,7 @@ class Person < ActiveRecord::Base
 
   belongs_to :address
   has_one :user
-  has_many :client_responder_items, :class_name => "ResponderItem", :foreign_key => "client_id"
+  has_many :respondent_responder_items, :class_name => "ResponderItem", :foreign_key => "respondent_id"
   has_many :patient_responder_items, :class_name => "ResponderItem", :foreign_key => "subject_id"
   has_many :caretaker_responder_items, :class_name => "ResponderItem", :foreign_key => "caretaker_id"
  
@@ -89,13 +89,13 @@ class Person < ActiveRecord::Base
   accepts_nested_attributes_for :inverse_relationships, :allow_destroy => true
   accepts_nested_attributes_for :inverse_relations, :allow_destroy => true
   accepts_nested_attributes_for :address, :allow_destroy => true
-  accepts_nested_attributes_for :client_responder_items, :allow_destroy => true
+  accepts_nested_attributes_for :respondent_responder_items, :allow_destroy => true
   accepts_nested_attributes_for :patient_responder_items, :allow_destroy => true
 
 
   attr_accessible :firstname, :lastname, :sex, :ispatient, :dateofbirth, :cpr, :workphone, :mobilephone, :occupation, :workplace, :full_cpr,
                   :address_id, :relations_attributes, :inverse_relations_attributes, :relationships_attributes, :inverse_relationships_attributes,  :address_attributes, 
-                  :client_responder_items_attributes, :patient_responder_items_attributes #, :user_attributes :factory,
+                  :respondent_responder_items_attributes, :patient_responder_items_attributes #, :user_attributes :factory,
 
   validates_associated :relationships, :inverse_relationships, :address
 
@@ -107,7 +107,7 @@ class Person < ActiveRecord::Base
     person = Person.new
     child = person.relations.build
     person.relationships.build(:name => "guardian").inverse_relation  = child
-    registration = person.client_responder_items.build( :registration_identifier => "client_registration",
+    registration = person.respondent_responder_items.build( :registration_identifier => "respondent_registration",
                                                         :caretaker_id => inviter.id,
                                                         :deadline => Time.zone.now.advance(:weeks => 2))
     child.inverse_relationships.build(:name=> "patient", :person_id => inviter.id)
@@ -158,7 +158,7 @@ class Person < ActiveRecord::Base
     Date.current.year - self.dateofbirth.year
   end
 
-  def responders
+  def respondents
     self.inverse_relations.guardians
   end
 
@@ -210,7 +210,7 @@ class Person < ActiveRecord::Base
     self.inverse_relations.guardians.first.user
   end
 
-  def guardian_client
+  def guardian_respondent
     User.joins(:person => :relationships).
     where("relationships.name = 'guardian' AND relationships.relation_id = #{self.id}").
     first.person
@@ -275,7 +275,7 @@ class Person < ActiveRecord::Base
   end
 
   def set_responder_item_subject
-   responder_items = self.client_responder_items
+   responder_items = self.respondent_responder_items
     unless responder_items.empty?
       responder_items.last.update_attribute("subject_id", self.relations.guardian_of.last.id)
     end

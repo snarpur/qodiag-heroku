@@ -24,7 +24,7 @@ describe ResponderItem do
       @item.save
     end 
     it "should have a parent" do
-      @item.client.should == @setup[:patient].guardian_client
+      @item.respondent.should == @setup[:patient].guardian_respondent
     end
     it "should have a response_set" do
       @item.response_set.should_not be_nil

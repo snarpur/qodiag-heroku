@@ -1,4 +1,4 @@
-#NOTE: create separate controller for caretaker and client
+#NOTE: create separate controller for caretaker and respondent
 require 'ostruct'
 class ResponderItemsController < ApplicationController
   before_filter :create_responder_item, :only => [:new,:create]
@@ -15,10 +15,10 @@ class ResponderItemsController < ApplicationController
   end
 
   def show
-    @chart = ResponderItem.find(params[:id]).to_column_chart
+    @chart = ResponderItem.find(params[:id]).response_to_chart
     respond_to do |format|
       format.html
-      format.json #{render :json => ResponderItem.to_chart(params).to_json}
+      format.json
     end
   end
 
@@ -59,7 +59,6 @@ class ResponderItemsController < ApplicationController
 
   end
   
-  #NOTE: Should probably be moved to a response_set controller
   def responses 
     @chart = ResponderItem.to_line_chart(params)
     respond_to do |format|
@@ -67,7 +66,15 @@ class ResponderItemsController < ApplicationController
       format.json {render "show"}
     end
   end
-
+  
+  def survey
+    @person = Person.find(params[:subject_id])
+    @responder_items = @person.responder_items.surveys_by_id(params[:survey_id])
+    respond_to do |format|
+      format.html
+      format.json {render :json => @responder_items}
+    end
+  end
   
 
   private

@@ -8,7 +8,7 @@ $.fn.extend
     setUp = () =>
       $(@,settings.trigger).bind("click", (e)->
         e.preventDefault()
-        console.log this
+         this
         $(settings.overlay).toggleClass("visible")
       )
         

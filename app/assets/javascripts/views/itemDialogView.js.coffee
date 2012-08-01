@@ -11,6 +11,7 @@ class App.Views.Timeline.ItemDialog extends Backbone.View
     @line = @options.line
     @timeline = @options.timeline
     @model.set({dialogView: @})
+     @model
 
   template:->
     JST['templates/itemDialogTmpl']
@@ -34,15 +35,13 @@ class App.Views.Timeline.ItemDialog extends Backbone.View
         @.$(".chart-wrapper").append(charts.render().el)
         charts.renderCharts()
       error:->
-        console.log "error"
+         "error"
       )
   
   getLineChart:=>
-    #NEXT: This refactoring step is next
-    #REFACTOR: CREATE a person object with necessary methods e.g. getResponders()
     [id, subject_id] = [@line.get("survey_id"),@timeline.getSubjectId()]
-    console.log "BETORE XHR:::", @timeline
-    lineChart = new App.Models.LineChart({id: id, subject_id: subject_id})
+     "BETORE XHR:::", @timeline
+    lineChart = new App.Models.LineChart({item: @model})
     that = @
     lineChart.fetch(
       success:(model,response) ->

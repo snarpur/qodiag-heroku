@@ -30,7 +30,7 @@ class App.Views.Timeline.NewItem extends Backbone.View
       subject_id: @timeline.getSubjectId()
       survey_id: @model.get('survey_id')
       deadline: @.selectedDate.toString()
-      responder_id: @getSelectedResponder()
+      respondent_id: @getSelectedRespondent()
     item = new App.Models.ResponderItem
     item.save(params, @saveCallbacks())
       
@@ -43,8 +43,8 @@ class App.Views.Timeline.NewItem extends Backbone.View
       error: (model,response) -> 
         $(that.el).setCssState("error")
    
-  getSelectedResponder:=>
-    _.first(@timeline.get("subject").get("responders")).id
+  getSelectedRespondent:=>
+    _.first(@timeline.get("subject").get("respondents")).id
 
 
   setDate:=>

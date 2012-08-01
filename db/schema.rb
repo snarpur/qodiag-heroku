@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120113143639) do
+ActiveRecord::Schema.define(:version => 20120801100206) do
 
   create_table "addresses", :force => true do |t|
     t.string   "street_1"
@@ -148,7 +148,7 @@ ActiveRecord::Schema.define(:version => 20120113143639) do
   end
 
   create_table "responder_items", :force => true do |t|
-    t.integer  "client_id"
+    t.integer  "respondent_id"
     t.integer  "subject_id"
     t.integer  "survey_id"
     t.string   "registration_identifier"

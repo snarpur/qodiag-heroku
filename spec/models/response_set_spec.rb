@@ -14,7 +14,7 @@ describe ResponseSet do
     end
     it "gets responder item and its accosiated objects" do
       @set.responder_item.should == @responder_item
-      @set.responder.should == @responder_item.client
+      @set.responder.should == @responder_item.respondent
       @set.subject.should == @responder_item.subject
     end
   end

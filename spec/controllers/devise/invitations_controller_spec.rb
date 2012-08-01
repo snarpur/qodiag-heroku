@@ -10,7 +10,7 @@ describe Devise::InvitationsController do
         get :new, :role_ids => "2"
         response.status.should eql(401)
       end
-      it "assigns the client object" do
+      it "assigns the respondent object" do
          get :new, :role_ids => "3"
 
          assigns[:user].should_not be_nil

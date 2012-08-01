@@ -9,7 +9,7 @@ module ResponseSetChartRenderer
       eval("ChartConfig::#{survey_class}::#{chart_type.capitalize.to_s}::Chart")
     end
 
-    def result_to_chart
+    def response_to_chart
       get_chart_items(:column).map do |item|
         config_copy = Marshal::load(Marshal.dump(item.get_config))
         item.get_renderer.send(:new, config_copy, self)

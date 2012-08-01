@@ -7,7 +7,7 @@ describe RequestNotice do
       @email = RequestNotice.request_survey(@responder_item)
     end
     it "does something" do
-      @email.should deliver_to(@responder_item.client.user_email)
+      @email.should deliver_to(@responder_item.respondent.user_email)
     end
   end
 end

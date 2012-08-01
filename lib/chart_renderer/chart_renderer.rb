@@ -60,7 +60,7 @@ module ChartRenderer
     def categories
       reference_groups
     end
-
+    
     def title
       chart_title = @chart[:chart_config][:title][:text]
       if chart_title.nil?

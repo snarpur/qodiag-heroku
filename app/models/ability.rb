@@ -20,19 +20,19 @@ class Ability
       end
       can :read, Role
       can :manage, Survey 
-    elsif user.role? :client
+    elsif user.role? :respondent
       can [:read,:update], User do |u|
         u == user
       end
       can :manage, ResponseSet do |rs|
-        rs.responder.user == user
+        rs.respondent.user == user
       end
       can :manage, Person do |p|
-        p.guardian_client == user.person
+        p.guardian_respondent == user.person
       end
 
       can :manage, ResponderItem do |ri|
-        ri.client == user.person
+        ri.respondent == user.person
       end 
     end
     #only super_admin abilities

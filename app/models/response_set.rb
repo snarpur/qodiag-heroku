@@ -7,8 +7,9 @@ module ResponseSetCustomMethods
    
   end
 
-  def responder
-    self.responder_item.client
+
+  def respondent
+    self.responder_item.respondent
   end
 
   def subject
@@ -40,10 +41,6 @@ module ResponseSetCustomMethods
 
   def norm_reference
     NormReference.age(self.subject.age).sex(self.subject.sex).survey(self.survey.id).first
-  end
-
-  def chart_renderer
-    "#{self.survey.access_code.gsub(/\-/,"_").camelize}ChartRenderer".constantize
   end
 
   def survey_name
@@ -79,13 +76,13 @@ class ResponseSet < ActiveRecord::Base
   has_one :responder_item
 
   scope :by_survey, lambda{|survey_id| where("response_sets.survey_id = ?", survey_id)}
-  scope :by_responder, lambda{|responder_id| joins(:responder_item).where("responder_items.client_id = ?", responder_id)}
+  scope :by_respondent, lambda{|respondent_id| joins(:responder_item).where("responder_items.respondent_id = ?", respondent_id)}
   scope :by_subject, lambda{|subject_id|joins(:responder_item).where("responder_items.subject_id = ?", subject_id)}
   scope :completed, where("completed_at IS NOT NULL")
   
 
-  def self.to_line_chart(survey_id, responder)
-    responses = ResponseSet.completed.by_survey(survey_id).by_responder(responder.id)
+  def self.to_line_chart(survey_id, respondent_id)
+    responses = ResponseSet.completed.by_survey(survey_id).by_respondent(respondent_id)
     ResponseSet.responses_to_chart(responses)
   end
 

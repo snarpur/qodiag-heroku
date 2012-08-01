@@ -9,14 +9,14 @@ describe User do
     it { @user.role_names.should include("caretaker")}
   end
 
-  context "client should have correct relationships"do
+  context "respondent should have correct relationships"do
     before do
       @caretaker = Factory(:user, :roles => [Factory(:role, :name => 'caretaker')])
-      @user = User.new_client_as_guardian_by_invitation(Factory.attributes_for(:simple_client, :inviter => @caretaker))
+      @user = User.new_respondent_as_guardian_by_invitation(Factory.attributes_for(:simple_respondent, :inviter => @caretaker))
       @user.save
 
     end
-    it { @user.role_names.should include('client') }
+    it { @user.role_names.should include('respondent') }
     it { @user.person.should_not be_nil }
     it {User.find(@user.invited_by_id) == @caretaker}
   end

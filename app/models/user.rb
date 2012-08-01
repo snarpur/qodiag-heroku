@@ -21,17 +21,17 @@ class User < ActiveRecord::Base
 
   scope :by_role, lambda {|r| joins(:roles).where("roles.name" => r)}
 
-  def self.new_client_as_guardian_by_invitation(params)
+  def self.new_respondent_as_guardian_by_invitation(params)
     user = User.new(:role_ids => params[:role_ids], :invited_by_id => params[:inviter].id)
     user.person = Person.new_as_guardian_by_invitation(params[:inviter].person)
     user
   end
 
-  def self.invite_client_as_guardian(params)
+  def self.invite_respondent_as_guardian(params)
       user = User.invite!(params) do |u|
         u.skip_invitation = true
       end
-      user.set_role(:client)
+      user.set_role(:respondent)
       user.person.set_responder_item_subject
       user.update_attributes({:invited_by_id => params[:invited_by_id]})
   end

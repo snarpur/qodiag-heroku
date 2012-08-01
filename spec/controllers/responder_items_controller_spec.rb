@@ -15,7 +15,7 @@ describe ResponderItemsController do
       @params = { :survey_id => 1,
                   :subject_id => @setup[:patient].id,
                   :caretaker_id => @current_user.person.id,
-                  :client_id => @setup[:client].person.id
+                  :respondent_id => @setup[:respondent].person.id
                 }
     end
     it "should redirect to person page" do

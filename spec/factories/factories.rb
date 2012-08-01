@@ -20,9 +20,9 @@ FactoryGirl.define do
       end
     end
 
-    factory :client_user do
+    factory :respondent_user do
       after_create do |user|
-        FactoryGirl.create(:client_rights, user: user)
+        FactoryGirl.create(:respondent_rights, user: user)
       end
     end
   end
@@ -35,12 +35,12 @@ FactoryGirl.define do
   end
 
   factory :right do
-    #ROLES = {:super_admin => 1,:caretaker => 2, :client => 3}
+    #ROLES = {:super_admin => 1,:caretaker => 2, :respondent => 3}
     factory :caretaker_rights do
       role_id 2
     end
 
-    factory :client_rights do
+    factory :respondent_rights do
       role_id 3
     end
   end
@@ -54,13 +54,12 @@ FactoryGirl.define do
     lastname "smith"
     sex {["male","female"].at(rand(2))}
 
-    # ATH !  Creates 2 persons == REFACTOR to
     factory :caretaker_person do
       association :user, factory: :caretaker_user
     end
 
-    factory :client_person do
-      association :user, factory: :client_user
+    factory :respondent_person do
+      association :user, factory: :respondent_user
     end
   end
 
@@ -111,7 +110,7 @@ FactoryGirl.define do
     end
   
     factory :item_with_people do 
-      association :client, :factory => :client_person
+      association :respondent, :factory => :respondent_person
       association :caretaker, :factory => :caretaker_person
       association :subject, :factory => :person
     
@@ -141,14 +140,3 @@ FactoryGirl.define do
   end
 
 end
-
-### PENDING REFACTORING
-# FactoryGirl.define :simple_client, :class => User do |user|
-#     user.sequence(:email) {|n| "person#{n}_#{rand(100000)}@example.com"
-#     user.password '123456'
-#     user.password_confirmation {|a| a.password}
-#     user.role_ids '3'
-#     user.invited_by_id nil
-# end
-
-
