@@ -16,6 +16,7 @@ Snarpur::Application.routes.draw do
   resources :users
   resources :people
   resources :relationships
+  resources :pre_registrations
 
   resources :responder_items do
       resources :people
@@ -23,6 +24,8 @@ Snarpur::Application.routes.draw do
   resources :people, :as => 'subject' do
       resources :responder_items
   end
+
+
 
 namespace :admin do
   resources :users
@@ -33,7 +36,10 @@ end
   match 'people/:subject_id/responder_items/responses/:respondent_id/:survey_id' => 'responder_items#responses', :via => :get
   match 'people/:subject_id/responder_items/survey/:survey_id' => 'responder_items#survey', :via => :get
 
-  
+  match 'pre_registrations/:responder_item_id/edit/step/:step_no' => 'pre_registrations#edit', :via => :get
+  match 'pre_registrations/:responder_item_id/edit' => 'pre_registrations#edit', :via => :get
+  match 'pre_registrations/:responder_item_id/edit/step/:step_no' => 'pre_registrations#update', :via => [:post]
+
   get "pages/error_401"
   get "pages/help"
   get "pages/browser_update"

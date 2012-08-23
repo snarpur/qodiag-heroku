@@ -8,6 +8,5 @@ class App.Views.useragentDetectionView extends Backbone.View
         JST['templates/useragentDetectionTmpl']
 
     render:->
-         @browser
         $(@el).html(@template()(@browser))
         @ 

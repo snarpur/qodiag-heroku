@@ -41,7 +41,6 @@ Backbone.sync = (function(original){
       if (method == 'create' || method == 'update') {
         railsParams['utf8'] = "✓";
       }
-
       options.data = JSON.stringify(railsParams);
     }
 

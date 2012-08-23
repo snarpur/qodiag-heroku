@@ -2,4 +2,4 @@
   %td= t("surveys.#{item.access_code}.name")
   %td=l item.created_at, :format => :short
   %td=deadline_or_completed_date(item)
-  %td=link_to t('actions.finish'), edit_responder_item_path(item)
+  %td=link_to t('actions.finish'), edit_pre_registration_path(item.id)

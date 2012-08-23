@@ -1,11 +1,11 @@
-
 window.App =
   Lib: {}
-  Models: {}
+  Models: {
+    Aliases: {}
+  }
   Collections: {}
   Controllers: {}
   Views: {}
   Timeline: {}
-
   init:->
     Backbone.history.start();

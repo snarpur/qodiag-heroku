@@ -1,18 +1,20 @@
-// ul.wizard-nav
-//   font-weight: normal
-//   +horizontal-list(0)
-//   margin-top: 20px
-//   margin-bottom: 30px
-//   li
-//     padding: 0 10px 0 24px
-//     margin-left: -31px
-//     width: 140px
-//   li:first-child
-//     margin-left: 0
-//   p
-//     position: relative
-//     background: url("/images/wizard-bg-left.png") no-repeat
-//     padding: 8px 8px 6px 23px
+div.wizard-nav
+  font-weight: normal
+  margin-top: 20px
+  margin-bottom: 30px
+  div
+    padding: 0 10px 0 24px
+    margin-left: -31px
+    width: 140px
+  div.current-step
+    color: #fff
+    background-color: #000
+  span
+    display: block
+    position: relative
+    // background: url("/images/wizard-bg-left.png") no-repeat
+    padding: 8px 8px 6px 23px
+    border: solid 1px
 //   b,a
 //     color: white
 //     display: block

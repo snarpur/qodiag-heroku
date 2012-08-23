@@ -11,7 +11,6 @@ class App.Views.Timeline.ItemDialog extends Backbone.View
     @line = @options.line
     @timeline = @options.timeline
     @model.set({dialogView: @})
-     @model
 
   template:->
     JST['templates/itemDialogTmpl']
@@ -40,7 +39,6 @@ class App.Views.Timeline.ItemDialog extends Backbone.View
   
   getLineChart:=>
     [id, subject_id] = [@line.get("survey_id"),@timeline.getSubjectId()]
-     "BETORE XHR:::", @timeline
     lineChart = new App.Models.LineChart({item: @model})
     that = @
     lineChart.fetch(

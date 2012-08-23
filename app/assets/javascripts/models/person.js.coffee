@@ -1,9 +1,20 @@
-class App.Models.Person extends Backbone.Model
-  
+class App.Models.Person extends App.Models.Base
+
   urlRoot: "/people"
   paramRoot: '/people'
 
-  initialize:()->
+
+  initialize:()-> 
+    console.log "in person initializer", @
+    @.schema = @.get('schema')
+    @
+
+
+App.Models.Aliases.Relations = App.Models.Person
+App.Models.Aliases.InverseRelations = App.Models.Person
+App.Models.Aliases.Relation = App.Models.Person
+App.Models.Aliases.InverseRelation = App.Models.Person
+
 
 class App.Models.Subject extends App.Models.Person
   

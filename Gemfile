@@ -26,6 +26,7 @@ gem "faker"
 gem 'newrelic_rpm'
 gem 'browsernizer'
 gem 'rabl'
+gem 'active_attr'
 
 group :assets do
   gem "sass-rails"

@@ -8,7 +8,6 @@ class App.Models.Timeline extends Backbone.Model
     #REFACTOR: possibley redundant subject id in lines
     @.get('lines').setSubjectId(@getSubjectId())
     @.set({surveyMenu: new App.Collections.SurveyMenuItemCollection([])})
-     "subject::", @getSubjectId()
  
   fillSurveyMenu:()=>
     @.get('surveyMenu').add(@.get('surveys'))

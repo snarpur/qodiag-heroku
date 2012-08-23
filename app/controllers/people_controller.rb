@@ -17,22 +17,20 @@ class PeopleController < ApplicationController
     end
   end
 
+  #FIXME: CLEAR debugging log messages when refactoring is complete
   def update
     @person = Person.find(params[:id])
-
+    picked_params = pick_params(params,'Person')
     respond_to do |format|
-      if @person.update_attributes(params[:person])
+      if @person.update_attributes(picked_params)
         format.html { redirect_to(users_path, :notice => 'Registration completed') }
+        format.json
       else
         format.html { render :action => "edit" }
+        format.json
       end
     end
   end
   
-  private
-
-  def get_user
-    @current_user = current_user
-  end
 
 end

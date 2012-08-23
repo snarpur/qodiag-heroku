@@ -27,13 +27,25 @@ class ResponderItem < ActiveRecord::Base
 
 
   def self.new_patient_item(params,caretaker)
-    ResponderItem.new({:caretaker_id => caretaker_id})
+    ResponderItem.new(params.merge({:caretaker_id => caretaker.id}))
   end
 
   def self.to_line_chart(params)
       ResponseSet.to_line_chart(params[:survey_id], params[:respondent_id])
   end
 
+  def opposite_parent_relation
+     subject.find_or_create_opposite_parent_relation(respondent)
+  end
+
+  def opposite_parent_relationship
+    subject.find_or_create_opposite_parent_relationship(respondent)
+  end
+
+  def parents_relationship
+    subject.fint_or_create_parents_relationship
+  end
+  
   def access_code
     self.survey.nil? ? self.registration_identifier : self.survey.access_code
   end

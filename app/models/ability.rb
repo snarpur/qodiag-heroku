@@ -30,7 +30,9 @@ class Ability
       can :manage, Person do |p|
         p.guardian_respondent == user.person
       end
-
+      can :manage, Person do |p|
+        p == user.person
+      end
       can :manage, ResponderItem do |ri|
         ri.respondent == user.person
       end 

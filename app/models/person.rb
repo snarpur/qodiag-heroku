@@ -1,8 +1,8 @@
 class Person < ActiveRecord::Base
 
-  validates_presence_of :firstname, :sex, :lastname
-  validate :presence_of_full_cpr
-  validates_length_of :full_cpr, :is => 10, :allow_nil => true
+  # validates_presence_of :firstname, :sex, :lastname
+  # validate :presence_of_full_cpr
+  # validates_length_of :full_cpr, :is => 10, :allow_nil => true
   # validates_length_of :cpr, :is => 4
   #validate :presence_of_parent_occupation
   #after_save :set_parents_address
@@ -39,7 +39,7 @@ class Person < ActiveRecord::Base
       where("name = 'parent'")
     end
     def patient
-      where("name = 'parent'")
+      where("name = 'patient'")
     end
   end
 
@@ -93,9 +93,9 @@ class Person < ActiveRecord::Base
   accepts_nested_attributes_for :patient_responder_items, :allow_destroy => true
 
 
-  attr_accessible :firstname, :lastname, :sex, :ispatient, :dateofbirth, :cpr, :workphone, :mobilephone, :occupation, :workplace, :full_cpr,
+  attr_accessible :id, :firstname, :lastname, :sex, :ispatient, :dateofbirth, :cpr, :workphone, :mobilephone, :occupation, :workplace, :full_cpr,
                   :address_id, :relations_attributes, :inverse_relations_attributes, :relationships_attributes, :inverse_relationships_attributes,  :address_attributes, 
-                  :respondent_responder_items_attributes, :patient_responder_items_attributes #, :user_attributes :factory,
+                  :respondent_responder_items_attributes, :patient_responder_items_attributes 
 
   validates_associated :relationships, :inverse_relationships, :address
 
@@ -216,7 +216,6 @@ class Person < ActiveRecord::Base
     first.person
   end
 
-
   def father
     self.inverse_relations.father.first
   end
@@ -257,9 +256,23 @@ class Person < ActiveRecord::Base
     self.parents.include?(person)
   end
 
+  #REFACTOR: Change method name to opposite_parent_relation
   def opposite_parent(parent)
-      self.parents.select{|i| i != parent}.first
+      self.parents.select{|i| i.id != parent.id}.first
   end
+
+  def find_or_create_opposite_parent_relation(parent)
+    opposite_parent(parent) || self.inverse_relations.build() 
+  end
+
+  def opposite_parent_relationship(parent)
+      parent_relationship = self.inverse_relationships.parents.select{|i| i.person_id != parent.id}.first
+  end
+
+  def find_or_create_opposite_parent_relationship(parent)
+    opposite_parent_relationship(parent).nil? ? self.inverse_relationships.build(:name => "parent") : opposite_parent_relationship(parent)
+  end
+
 
   def parents_relationship
     parents = self.parents
@@ -268,6 +281,10 @@ class Person < ActiveRecord::Base
     else
        parents[0].spouse_relationships & parents[1].spouse_relationships
     end
+  end
+
+  def find_or_create_parents_relationship
+    parents_relationships || parents.first.relationship.build(:name => :spouse)
   end
 
   def get_association(name)

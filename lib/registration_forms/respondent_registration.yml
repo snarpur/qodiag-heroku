@@ -1,0 +1,75 @@
+form_identifier: respondent_registration
+steps:
+  - 
+    name: contact_info
+    form_content:
+      person:
+        model: person
+        as: respondent
+        type: NestedModel
+        schema: 
+          id: Hidden 
+          firstname: 
+            validators:
+              - required
+          address: 
+            type: NestedModel
+            model: address
+            schema: 
+              street_1: Text
+              id: Hidden
+              town: Text
+
+  -
+    name: subject_parent
+    form_content:  
+      person:  
+        model:  person
+        as:  subject
+        type: NestedModel
+        schema:   
+          id:  Hidden
+          firstname:  Text
+          inverse_relations:
+            type: NestedModel
+            model: person 
+            as: responder_item.opposite_parent_relation
+            schema:
+              id:  Hidden
+              firstname:  Text
+              relationships:
+                type: NestedModel
+                model: relationships
+                objects:
+                  -
+                    as: responder_item.opposite_parent_relationship
+                    schema:   
+                      name:  Text
+                      relation_id:  Text
+                      person_id:  Text
+                      id:  Text
+                  # -
+                  #   as: responder_item.parents_relationship
+                  #   schema:   
+                  #     name:  Text
+                  #     relation_id:  Text
+                  #     person_id:  Text
+                  #     id:  Text
+         
+
+          # inverse_relationships:  
+          #   type:  NestedModel 
+          #   model:  inverse_relationships
+          #   as: responder_item.opposite_parent_relationship 
+          #   schema:   
+          #     name:  Text
+          #     relation_id:  Text
+          #     person_id:  Text
+          #     id:  Text
+              # relation:  
+              #   type:  NestedModel
+              #   model:  person
+              #   as:  relation
+              #   schema:  
+              #     id:  Text
+              #     firstname:  Text                  
