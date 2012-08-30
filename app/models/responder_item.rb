@@ -31,15 +31,19 @@ class ResponderItem < ActiveRecord::Base
   end
 
   def self.to_line_chart(params)
-      ResponseSet.to_line_chart(params[:survey_id], params[:respondent_id])
+    ResponseSet.to_line_chart(params[:survey_id], params[:respondent_id])
   end
 
   def opposite_parent_relation
-     subject.find_or_create_opposite_parent_relation(respondent)
+    subject.find_or_create_opposite_parent_relation(respondent)
   end
 
   def opposite_parent_relationship
     subject.find_or_create_opposite_parent_relationship(respondent)
+  end
+
+  def opposite_parent_guardian_relationship
+    subject.find_or_create_opposite_parent_guardian_relationship(respondent)
   end
 
   def parents_relationship

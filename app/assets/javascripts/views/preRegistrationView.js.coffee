@@ -3,14 +3,11 @@ class App.Views.PreRegistration extends Backbone.View
   id: "form-wizard"
 
   events:
-    "click button": "submitForm"
+    "click button": "validateForm"
 
   initialize:()=>
     @model = new App.Models.PreRegistration(@.options.model_attributes)
     @model.on("change:current_step_no", @move)
-    # @model.on("change:form_content", @renderSteps)
-    @model.processFormSchema()
-    # console.log @model.get("form_content").inverse_relationships.schema.relation
     @
 
   template:->
@@ -21,15 +18,18 @@ class App.Views.PreRegistration extends Backbone.View
     console.log "moving",arguments
 
 
-  submitForm:=>
+  validateForm:=>
     errors = @.form.commit()
     if _.isEmpty(errors)
-      json = @.form.model.formAttributes()
-      form = new App.Models.PreRegistrationForm(json)
-      form.url = @model.url()
-      form.save(json,@submitCallbacks())
+      @.form.model.url = @model.url()
+      @.trigger("submitForm",@model.url())
+      # @.form.model.save(@.form.model.toJSON(),@submitCallbacks())
 
-
+  submitForm:(content)=>
+    console.log "submitting in VIEW", content,arguments
+    @.form.model.unset("formHandler",null)
+    @.form.model.save(content,@submitCallbacks())
+  
   submitCallbacks:=>
     callbacks=
       success:(model, response) ->
@@ -39,25 +39,39 @@ class App.Views.PreRegistration extends Backbone.View
   
 
   bindForm:(form, model)=>
-    fieldStr = @getFields(model.get("schema"))
-    console.log "fieldStr",fieldStr
-    _.each(fieldStr, (i)->
-      field = i
-      model.on("#{i}:change", (k,y) ->
-        value = {}
-        value[field] = y
-        form.setValue(value)
-      )
+    console.warn "::TOP :: ", "FORM", form,"  MODEL  ",model
+    _.each(form.fields, (v,k)->
+      # v.model.bindToForm(v.form)
     )
+
+      
+
+      # _.each(nestedModel.getNestedModelNames(),(n)->
+      #     console.log nestedModel.get(n.name)
+      # )
+
+      # _.each(fields,(i)->
+      #   v.editor.on("#{i}:change", (nestedForm,editor) ->
+      #     console.log "CHANGING #{i}",nestedForm, editor
+      #     nestedModel.set(i,editor.getValue())
+  
+      #   )
+      # )
+    # )
     
 
   renderSteps:=>
     params = _.extend({schema: @model.get("schema")},@model.get("form_content"))
     rootModel = new App.Models.PreRegistrationForm(params)
+    rootModel.set("formHandler",@)
+    rootModel.on("readyToSave",@submitForm)
     form = new Backbone.Form({ model: rootModel}).render()
+    console.log "------------- APPENDING FORM -------------"
     @.form = form
+ 
+   
     @.$('#wizard-fields').append(form.el)
-    # @bindForm(form,rootModel)  
+    @bindForm(form,rootModel)  
     
 
   getFields:(schema,name,destination)=>
@@ -68,7 +82,6 @@ class App.Views.PreRegistration extends Backbone.View
         model_name = if !name? then k else "#{name}.#{k}" 
         view.getFields(v.schema,model_name,destination)
       else
-        #destination.push "#{name}.#{k}"
         destination.push k
     )
     destination

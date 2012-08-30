@@ -19,20 +19,56 @@ attr_accessor :responder_item, :steps
     populate_form(step,@responder_item)
   end
 
-  def populate_form(form_content,parent,destination={})
+  #REFACTOR: Clarify initention for improved readability
+  def populate_form(form_content,parent)
+    form_content = Hash[*form_content.to_a.flatten]
+    content = {}
     form_content.each do |item, settings|
-      relation_obj = get_parent_relation(parent, form_content[item])
-      destination[item] = relation_obj.attributes
-      destination[item][:schema] = settings[:schema]
-      settings[:schema].each do |k,v| 
-        if (v.respond_to?(:has_key?) && v.has_key?(:schema))
-         populate_form({k.to_sym => v} ,relation_obj,destination[item])
-        end
-      end
+      relation_obj = get_parent_relation(parent,item,form_content[item])
+      content[item] = relation_obj.attributes
+      content[item] = content[item].merge(populate_nested_entry(settings[:schema],relation_obj))
     end
-    destination
+    content
   end
 
+  #REFACTOR: Clarify initention for improved readability
+  def populate_nested_entry(form_content,parent)
+    content = {}
+    form_content.each do |item,settings|
+      if field_is_nested?(settings) && !field_is_list?(settings)
+        relation_obj = get_parent_relation(parent,item,settings)
+        content[item] = relation_obj.attributes
+        content[item] = content[item].merge(populate_nested_entry(settings[:schema],relation_obj))
+      end
+      if field_is_list?(settings) #field_is_list?(settings)
+        content[item.to_sym] = settings[:objects].map do |i|
+        relation_obj = get_parent_relation(parent,item,i)   
+        relation_obj.attributes
+        end
+          # content = {item.to_sym => get_relation_attributes(settings)}
+      
+      end
+    end
+    content
+  end
+  
+  #REFACTOR: Clarify initention for improved readability
+  def set_model_str(form_content)
+    schema = {}
+    form_content.each do |item,settings|
+      if field_is_nested?(settings)
+        schema[item] = settings.merge({:modelStr => settings[:model]})
+        KK.log schema[item]
+        schema[item][:schema] = schema[item][:schema].merge(set_model_str(schema[item][:schema]))
+        schema[item] = schema[item].except(:objects,:as)
+      end
+      if settings.is_a?(Array)
+        schema[item] = settings.map{|i| set_model_str({item.to_sym => i})[item.to_sym]}
+      end
+    end
+    schema
+  end
+  
   def responder_item_attributes
     @responder_item.attributes
   end
@@ -47,7 +83,7 @@ attr_accessor :responder_item, :steps
     
 
   def current_step_form_schema
-    @steps[current_step_no - 1][:form_content]
+   set_model_str @steps[current_step_no - 1][:form_content]
   end
   
   def current_step_form_content
@@ -105,12 +141,11 @@ attr_accessor :responder_item, :steps
   end
   
   private
-  def get_parent_relation(parent, form_content)
-    #START: implement has_many
+  def get_parent_relation(parent, form_obj, form_content)
     if form_content[:as].is_a?(Array)
       KK.log "has_many Not implemented !"
     else
-      relation = form_content[:as].nil? ? form_content[:model] : form_content[:as]
+      relation = form_content[:as].nil? ? form_obj : form_content[:as]
       if !(relation =~/\./).nil?
         relation.split(".").inject(self) do |memo,value|
           obj = memo.send(value)
@@ -121,6 +156,22 @@ attr_accessor :responder_item, :steps
         relation_obj ||= parent.association(relation).build
       end
     end
+  end
+
+  def get_relation_attributes(obj)
+    if obj.is_a?(Array)
+      obj.map{|i| i.attributes}
+    else
+      obj.attributes
+    end
+  end
+  
+  def field_is_nested?(field)
+    (field.respond_to?(:has_key?) && (field[:type] == "NestedModel" || field[:itemType] == "NestedModel" ))
+  end
+
+  def field_is_list?(field)
+    (field.respond_to?(:has_key?) && field.has_key?(:objects))
   end
 
 end

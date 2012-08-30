@@ -1,10 +1,18 @@
-class App.Models.PreRegistrationForm extends Backbone.Model
+class App.Models.PreRegistrationForm extends App.Models.Base
 
   initialize:=>
-    @.schema = @.get("schema")
+    super
+    @.on("change:formHandler",@setFormHandler)
+    @.on("change:url",@setUrl)  
+  
+  
+  setFormHandler:(self,handler)=>
+    if handler?
+      handler.on("submitForm",@submitForm)
+
+  setUrl:(self,url)=>
     @.url = ()->
-      @.get('url') 
-    @
+      url
   
   getFormRootObject:=>
     model = @
@@ -25,6 +33,12 @@ class App.Models.PreRegistrationForm extends Backbone.Model
       attributes.content[k] = $.extend(true, {}, v.toJSON())
     )
     attributes
+
+  submitForm:(url)=>
+    attrs = @formAttributes()
+    @.clear()
+    @.set("url",url)
+    @.trigger("readyToSave",attrs) 
   
    
 

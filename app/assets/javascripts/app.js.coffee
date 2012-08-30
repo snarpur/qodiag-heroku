@@ -3,7 +3,9 @@ window.App =
   Models: {
     Aliases: {}
   }
-  Collections: {}
+  Collections: {
+    Aliases: {}
+  }
   Controllers: {}
   Views: {}
   Timeline: {}

@@ -1,9 +1,9 @@
 class App.Models.Address extends App.Models.Base
   
-  initialize:=>
+  # initialize:=>
    
-   @.schema = @.get("schema")
-   @
+  #  @.schema = @.get("schema")
+  #  @
 
 
 # App.Models.Address.setup()

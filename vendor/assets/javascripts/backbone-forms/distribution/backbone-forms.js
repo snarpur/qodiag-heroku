@@ -77,6 +77,7 @@ var Form = (function() {
       //Determine fieldsets
       if (!options.fieldsets) {
         var fields = options.fields || _.keys(this.schema);
+
         options.fieldsets = [{ fields: fields }];
       }
       
@@ -304,18 +305,20 @@ var Form = (function() {
      * @return {Object}  Validation errors
      */
     commit: function() {
+      console.log("commit 01", this);
       //Validate
       var errors = this.validate();
+      console.log("errors",errors)
       if (errors) return errors;
 
       //Commit
+      console.log(this)
       var modelError;
       this.model.set(this.getValue(), {
         error: function(model, e) {
           modelError = e;
         }
       });
-      
       if (modelError) return modelError;
     },
 
@@ -344,7 +347,9 @@ var Form = (function() {
      */
     setValue: function(data) {
       for (var key in data) {
-        this.fields[key].setValue(data[key]);
+        if (_.has(this.fields, key)) {
+          this.fields[key].setValue(data[key]);
+        }
       }
     },
     
@@ -1043,6 +1048,7 @@ Form.editors = (function() {
      * @return {Mixed} error
      */
     commit: function() {
+      console.log("commit 04", this)
       var error = this.validate();
       if (error) return error;
       
@@ -1755,7 +1761,6 @@ Form.editors = (function() {
         idPrefix: this.id + '_',
         fieldTemplate: 'nestedField'
       });
-
       this._observeFormEvents();
 
       this.$el.html(this.form.render().el);
@@ -1766,8 +1771,15 @@ Form.editors = (function() {
     },
 
     getValue: function() {
-      if (this.form) return this.form.getValue();
-
+      if (this.form && !_.isArray(this.form)){
+       return this.form.getValue();
+     }
+      else if(_.isArray(this.form)){ 
+       arr = _.map(this.form,function(i){
+           return i.getValue();
+        });
+       return arr;
+      }
       return this.value;
     },
     
@@ -1795,25 +1807,41 @@ Form.editors = (function() {
       Backbone.View.prototype.remove.call(this);
     },
     
-    validate: function() {
-      return this.form.validate();
+    validate: function(){
+      if(_.isArray(this.form)){ 
+        arr = _.map(this.form,function(i){
+           return i.validate();
+        });
+        arr = _.isEmpty(_.compact(arr)) ? null : arr
+       return arr
+      }
+      else return this.form.validate();
     },
     
-    _observeFormEvents: function() {
-      this.form.on('all', function() {
-        // args = ["key:change", form, fieldEditor]
-        args = _.toArray(arguments);
-        args[1] = this;
-        // args = ["key:change", this=objectEditor, fieldEditor]
-        
-        this.trigger.apply(this, args)
-      }, this);
+    _observeFormEvents: function(){
+      if(_.isArray(this.form)){
+        _.each(this.form,function(i){
+          console.log(i);
+          i.on('all', function() {
+            args = _.toArray(arguments);
+            args[1] = this;        
+            this.trigger.apply(this, args)
+          },this);
+        },this);
+      }
+      else{
+        this.form.on('all', function() {
+          args = _.toArray(arguments);
+          args[1] = this;        
+          this.trigger.apply(this, args)
+        }, this);
+      }
     }
-
   });
 
 
 
+ 
   /**
    * NESTED MODEL
    * 
@@ -1825,7 +1853,6 @@ Form.editors = (function() {
   editors.NestedModel = editors.Object.extend({
     initialize: function(options) {
       editors.Base.prototype.initialize.call(this, options);
-
       if (!options.schema.model)
         throw 'Missing required "schema.model" option for NestedModel editor';
     },
@@ -1837,18 +1864,10 @@ Form.editors = (function() {
       //Wrap the data in a model if it isn't already a model instance
       var modelInstance = (data.constructor == nestedModel)
         ? data
-        : new nestedModel(data);
+        : new (this._findNestedModel(nestedModel))(data);
+      
+      this._renderModelOrCollection(modelInstance);
 
-      this.form = new Form({
-        model: modelInstance,
-        idPrefix: this.id + '_',
-        fieldTemplate: 'nestedField'
-      });
-
-      this._observeFormEvents();
-
-      //Render form
-      this.$el.html(this.form.render().el);
       
       if (this.hasFocus) this.trigger('blur', this);
 
@@ -1869,10 +1888,70 @@ Form.editors = (function() {
       }
 
       return editors.Object.prototype.commit.call(this);
+    },
+    
+    /**
+     * Render form for nested models and collections
+     */
+    _renderModelOrCollection: function(modelInstance){
+      var form;
+      if(modelInstance instanceof Backbone.Collection){
+        form = []
+        modelInstance.each(function(i){
+          form.push(this._renderNestedForm(i));
+        },this);              
+      }
+      else{
+        form = this._renderNestedForm(modelInstance);
+      }
+      this.form = form
+      form =  _.isArray(form) ? form : [form]
+      console.log("== OVERRIDEN ==this on events",this)
+      this._observeFormEvents();
+
+      _.each(form,function(i){
+        this.$el.append(i.render().el);}, this)
+
+      
+    },
+
+    _renderNestedForm: function(modelInstance){
+      form = new Form({
+        model: modelInstance,
+        idPrefix: this.id + '_'+ modelInstance.cid+"_",
+        fieldTemplate: 'nestedField'
+      });
+      return form
+    },
+    
+    /**
+     * Allow a nested model to be specified as a Model or as a string
+     * so that class definitions may be order independent
+     */
+    _findNestedModel: function(value) {
+      return _.isString(value) ? this._stringToFunction(value) : value;
+    },
+    
+    /**
+     * Helper function to create a namespaced class object from a string value
+     * e.g. "App.Models.SuperDuper"
+     */
+    _stringToFunction: function(str) {
+      var arr = str.split(".");
+
+      var fn = (window || this);
+      for (var i = 0, len = arr.length; i < len; i++) {
+        fn = fn[arr[i]];
+      }
+
+      if (typeof fn !== "function") {
+        throw "Schema Model not found";
+      }
+
+      return  fn;
     }
 
   });
-
 
 
   /**

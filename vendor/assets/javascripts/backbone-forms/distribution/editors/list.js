@@ -402,7 +402,9 @@
         if (!schema.model) throw 'Missing required option "schema.model"';
 
         this.nestedSchema = schema.model.prototype.schema;
+
         if (_.isFunction(this.nestedSchema)) this.nestedSchema = this.nestedSchema();
+
       }
     },
 

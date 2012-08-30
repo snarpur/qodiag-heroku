@@ -8,6 +8,12 @@ if Rails.env.development? || Rails.env.test?
   end
 
   class CustomOutput
+    COLORS = {
+      :r => [:red,[255,255,255]],
+      :b => [:blue,:yellow],
+      :g => [:green,[0,0,0]],
+      :y => [:yellow,[0,0,0]]
+    }
     def time
       "#{Time.now.strftime('%H:%M:%S')}".foreground(:black).background(:white)
     end
@@ -16,18 +22,22 @@ if Rails.env.development? || Rails.env.test?
       "<#{log}>".foreground(:yellow).background(:red)
     end
     
-    def log_msg(msg)
-     " :::: " + "#{msg}"
+    def log_msg(msg,color=nil)
+      if color.nil?
+         " :::: " + "#{msg}".foreground(:black).background(:yellow)
+      else
+        " :::: " + "#{msg}".foreground(COLORS[color][1]).background(COLORS[color][0])
+      end
     end
 
-    def see(msg)
+    def see(msg,color)
       puts "<SEE>".foreground(:black).background(:green) + "  " + "#{msg}".foreground(:white).background(:blue)
     end
     
-    def log(msg)
+    def log(msg,color=nil)
       # ActiveRecord::Base.logger.debug "<LOG>".foreground(:yellow).background(:red) + "  " + "#{msg}".foreground(:white).background(:blue)
       ActiveRecord::Base.logger.debug log_type("LOG") + "  " + time()
-      ActiveRecord::Base.logger.debug log_type("LOG") + "  " + log_msg(msg)
+      ActiveRecord::Base.logger.debug log_type("LOG") + "  " + log_msg(msg,color)
     end
   end
 

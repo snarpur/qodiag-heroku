@@ -41,6 +41,10 @@ class Person < ActiveRecord::Base
     def patient
       where("name = 'patient'")
     end
+
+    def guardians
+     where("name = 'guardian' AND end IS NULL")
+    end
   end
 
   has_many  :relations, :through => :relationships do
@@ -271,6 +275,14 @@ class Person < ActiveRecord::Base
 
   def find_or_create_opposite_parent_relationship(parent)
     opposite_parent_relationship(parent).nil? ? self.inverse_relationships.build(:name => "parent") : opposite_parent_relationship(parent)
+  end
+
+  def opposite_parent_guardian_relationship(parent)
+      self.inverse_relationships.guardians.select{|i| i.person_id != parent.id}.first
+  end
+
+  def find_or_create_opposite_parent_guardian_relationship(parent)
+     opposite_parent_guardian_relationship(parent).nil? ? self.inverse_relationships.build(:name => "guardian") : opposite_parent_guardian_relationship(parent)
   end
 
 

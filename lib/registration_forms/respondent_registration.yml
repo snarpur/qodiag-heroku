@@ -3,8 +3,9 @@ steps:
   - 
     name: contact_info
     form_content:
+      name: Text
       person:
-        model: person
+        model: App.Models.Person
         as: respondent
         type: NestedModel
         schema: 
@@ -14,7 +15,7 @@ steps:
               - required
           address: 
             type: NestedModel
-            model: address
+            model: App.Models.Address
             schema: 
               street_1: Text
               id: Hidden
@@ -22,54 +23,55 @@ steps:
 
   -
     name: subject_parent
-    form_content:  
+    form_content:
       person:  
-        model:  person
+        model:  App.Models.Person
         as:  subject
         type: NestedModel
-        schema:   
+        schema:
           id:  Hidden
           firstname:  Text
           inverse_relations:
             type: NestedModel
-            model: person 
+            model: App.Models.Person 
             as: responder_item.opposite_parent_relation
             schema:
               id:  Hidden
-              firstname:  Text
-              relationships:
-                type: NestedModel
-                model: relationships
-                objects:
+              lastname:  Text
+              guardian:
+                type: Checkbox
+                options:
                   -
-                    as: responder_item.opposite_parent_relationship
-                    schema:   
-                      name:  Text
-                      relation_id:  Text
-                      person_id:  Text
-                      id:  Text
-                  # -
-                  #   as: responder_item.parents_relationship
-                  #   schema:   
-                  #     name:  Text
-                  #     relation_id:  Text
-                  #     person_id:  Text
-                  #     id:  Text
-         
+                    gulli
+              relationships:
+                  type: NestedModel
+                  # itemType: NestedModel
+                  model: App.Collections.Relationships
+                  schema:   
+                    name:  Text
+                    relation_id:  Text
+                    person_id:  Text
+                    id:  Text       
+                  objects:
+                    -
+                      as: responder_item.opposite_parent_relationship
 
-          # inverse_relationships:  
-          #   type:  NestedModel 
-          #   model:  inverse_relationships
-          #   as: responder_item.opposite_parent_relationship 
-          #   schema:   
-          #     name:  Text
-          #     relation_id:  Text
-          #     person_id:  Text
-          #     id:  Text
-              # relation:  
-              #   type:  NestedModel
-              #   model:  person
-              #   as:  relation
-              #   schema:  
-              #     id:  Text
-              #     firstname:  Text                  
+                    -
+                      as: responder_item.opposite_parent_guardian_relationship
+               
+                  
+
+
+                # type: List
+                # model: App.Models.Relationship
+                # itemType: NestedModel
+                # schema:
+                #   name: Text
+                #   relation_id: Text
+                #   person_id: Text
+                # objects:
+                #   - 
+                #     as: responder_item.opposite_parent_relationship
+                #   - 
+                #     as: responder_item.opposite_parent_guardian_relationship
+                

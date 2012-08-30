@@ -4,11 +4,6 @@ class App.Models.Person extends App.Models.Base
   paramRoot: '/people'
 
 
-  initialize:()-> 
-    console.log "in person initializer", @
-    @.schema = @.get('schema')
-    @
-
 
 App.Models.Aliases.Relations = App.Models.Person
 App.Models.Aliases.InverseRelations = App.Models.Person
