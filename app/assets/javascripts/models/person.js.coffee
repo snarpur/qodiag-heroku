@@ -19,6 +19,6 @@ class App.Models.Subject extends App.Models.Person
 
 
 
-class App.Collections.PersonCollection extends Backbone.Collection
+class App.Collections.Person extends App.Collections.Base
   model: App.Models.Person
 

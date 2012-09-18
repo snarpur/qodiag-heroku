@@ -90,3 +90,124 @@ is:
         - Ekki rétt
         - Að nokkru rétt
         - Örugglega rétt
+    ysr-syndrome-scale:
+      name: "Spurningar um styrk og vanda (SDQ)"
+      terms:
+      questions:
+        - Ég haga mér barnalega miðað við aldur
+        - Ég drekk áfengi án samþykkis foreldra (lýstu)
+        - Ég rífst mikið
+        - Ég klára ekki verkefni sem ég byrja á
+        - Það er fátt sem ég hef ánægju af
+        - Mér þykir vænt um dýr
+        - Ég er montin(n), sjálfhælin(n)
+        - Ég á erfitt með að einbeita mér, eða fylgjast með
+        - Ég get ekki hætt að hugsa ákveðnar hugsanir /þráhyggja (lýstu)
+        - Ég á erfitt með að sitja kyrr
+        - Ég er of háð(ur) fullorðnum
+        - Mér finnst ég einmana
+        - Mér finnst ég vera rugluð/ruglaður eða ráðvillt(ur)
+        - Ég græt mikið
+        - Ég er nokkuð heiðarleg(ur)
+        - Ég er vondur við aðra
+        - Mig dreymir oft dagdrauma
+        - Ég meiði mig viljandi og reyni að fyrirfara mér
+        - Ég reyni að vekja á mér athygli
+        - Ég eyðilegg eigin eigur
+        - Ég eyðilegg eigur annarra
+        - Ég hlýði ekki foreldrum mínum
+        - Ég er óhlýðin(n) í skóla
+        - Ég borða ekki eins mikið og ég ætti að gera
+        - Mér semur illa við önnur börn
+        - Ég finn ekki til sektarkenndar eftir að hafa gert eitthvað sem ég ætti ekki að gera
+        - Ég er afbrýðissamur(söm) útí aðra
+        - Ég brýt reglur heimilisins, skóla eða annars staðar
+        - Ég hræðist sum dýr, aðstæður eða staði annað en skóla (lýstu)
+        - Ég óttast að fara í skóla
+        - Ég óttast að hugsa eða gera eitthvað slæmt
+        - Mér finnst ég þurfi að vera fullkomin(n)
+        - Mér finnst engum þykja vænt um mig
+        - Mér finnst aðrir ofsækja mig
+        - Mér finnst ég minna virði eða verri en aðrir
+        - Ég meiði mig oft af slysni
+        - Ég lendi oft í slagsmálum
+        - Mér er mikið strítt
+        - Ég er mikið með krökkum sem lenda í vandræðum
+        - Ég heyri oft hljóð eða raddir sem aðrir virðast ekki heyra (lýstu)
+        - Ég geri oft hluti án þess að hugsa
+        - Ég vil frekar vera ein(n) en með öðrum
+        - Ég lýg eða svindla
+        - Ég naga neglur
+        - Ég er taugaóstyrk(ur) eða spennt(ur)
+        - Hlutar líkama míns kippast til eða ég fæ taugaviprur/kæki (lýstu)
+        - Ég fæ martraðir
+        - Öðrum krökkum líkar ekki við mig
+        - Suma hluti get ég gert betur en flestir krakkar
+        - Ég er of hrædd(ur) eða kvíðin(n)
+        - Ég fæ svima
+        - Ég hef of mikla sektarkennd
+        - Ég borða of mikið
+        - Ég finn fyrir ofþreytu
+        - Ég er of feit(ur)
+        - Líkamleg vandamál án læknisfræðilegra skýringa
+        - Ég ræðst (líkamlega) á annað fólk
+        - Ég kroppa í húð eða aðra líkamshluta (lýstu)
+        - Ég get verið vingjarnleg(ur)
+        - Mér finnst gaman að reyna eitthvað nýtt
+        - Mér gengur illa í námi
+        - Ég hef lélega samhæfingu hreyfinga eða er klaufaleg(ur)
+        - Ég myndi frekar vilja vera með eldri krökkum en jafnöldrum mínum
+        - Ég myndi frekar vilja vera með yngri krökkum en jafnöldrum mínum
+        - Ég neita að tala
+        - Ég endurtek ákveðnar athafnir aftur og aftur, (lýstu)
+        - Ég strýk að heiman
+        - Ég öskra mikið
+        - Ég er dul(ur) og pukrast með hlutina
+        - Ég sé hluti sem aðrir virðast ekki geta séð (lýstu)
+        - Ég er feimin(n), fer auðveldlega hjá mér
+        - Ég kveiki í
+        - Ég á auðvelt með að gera hluti í höndunum
+        - Ég fíflast eða leik trúð til að ná athygli
+        - Ég er of feimin(n)
+        - Ég sef minna en flestir krakkar
+        - Ég sef meira en flestir aðrir á daginn og/eða nóttunni (lýstu)
+        - Ég á erfitt með að einbeita mér og missi auðveldlega einbeitinguna
+        - Ég á í mál- eða talörðugleikum (lýstu)
+        - Ég stend á rétti mínum
+        - Ég stel heima hjá mér
+        - Ég stel á stöðum utan heimilis (lýstu)
+        - Ég safna að mér drasli sem ég hef enga þörf fyrir (lýstu)
+        - Ég geri hluti sem öðru fólki þykja undarlegir (lýstu)
+        - Ég hugsa um ýmislegt sem öðru fólki finnst undarlegt (lýstu)
+        - Ég er þrjósk(ur)
+        - Skap mitt og líðan geta breyst skyndilega
+        - Ég hef gaman af að vera með öðru fólki
+        - Ég er tortryggin(n)
+        - Ég blóta eða klæmist
+        - Ég hugsa um að svipta mig lífi
+        - Ég hef gaman af því að koma öðrum til að hlæja
+        - Ég tala of mikið
+        - Ég er mjög stríðin(n)
+        - Ég er skapbráð(ur)
+        - Ég hugsa of mikið um kynferðismál
+        - Ég hóta að meiða fólk
+        - Mér finnst gaman að hjálpa öðrum
+        - Ég reyki, nota munn- eða neftóbak
+        - Ég á erfitt með svefn (lýstu)
+        - Ég skrópa í skóla eða sleppi úr tímum
+        - Mig skortir þrek
+        - Ég er óhamingjusöm(samur), hrygg(ur), þunglynd(ur)
+        - Ég er háværari en aðrir krakkar
+        - Ég nota eiturlyf eða lyf vegna annars en sjúkdóms (teldu ekki með áfengi eða tóbak) (lýstu)
+        - Ég reyni að vera sanngjörn(gjarn) við aðra
+        - Ég hef gaman af góðum bröndurum
+        - Ég tek lífinu létt
+        - Ég reyni að hjálpa öðru fólki þegar ég get
+        - Ég vildi óska að ég væri af gagnstæðu kyni
+        - Ég forðast að komast í kynni við annað fólk
+        - Ég er oft áhyggjufull(ur)
+      answers:
+        - Ekki rétt
+        - Stundum rétt
+        - Oft rétt
+

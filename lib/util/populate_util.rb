@@ -2,9 +2,10 @@
 require 'faker'
 class PopulateUtil
 
- 	
+ 	attr_accessor :surveys
+
  	def initialize
- 		  @surveys = ["adhd_rating_scale","sdq"]
+ 		  @surveys = ["adhd_rating_scale","sdq","ysr_syndrome_scale"]
     	@caretaker_role = Role.find_by_name('caretaker')
     	@respondent_role = Role.find_by_name('respondent')
     	@sex = ['male','female']
@@ -82,7 +83,7 @@ class PopulateUtil
     def create_patient(caretaker_person)
       attrs = person_attributes(rand(10)+5)
       patient = FactoryGirl.create(:person, attrs)
-      FactoryGirl.create(:patient_relationship, :person => caretaker_person, :relation => patient)
+      FactoryGirl.create(:patient_relationship, :relation => caretaker_person, :inverse_relation => patient)
       patient
     end
 
@@ -93,15 +94,14 @@ class PopulateUtil
                                    :roles => [@respondent_role], 
                                    :person => parent_person
                                   )
-      FactoryGirl.create(:guardian_relationship, :person => parent_person, :relation => patient)
-      FactoryGirl.create(:parent_relationship, :person => parent_person, :relation => patient)
+      FactoryGirl.create(:guardian_relationship, :relation => parent_person, :inverse_relation => patient)
+      FactoryGirl.create(:parent_relationship, :relation => parent_person, :inverse_relation => patient)
       {:person => parent_person, :user => parent_user}
     
   end
 
     def create_responder_item(survey_id ,people,created_at)
 
-    
       responder_item = FactoryGirl.create( :item_with_people, 
                       :respondent => people[:parent][:person], 
                       :subject => people[:patient], 

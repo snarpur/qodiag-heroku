@@ -316,7 +316,6 @@ var Form = (function() {
           modelError = e;
         }
       });
-      
       if (modelError) return modelError;
     },
 
@@ -540,13 +539,11 @@ Form.helpers = (function() {
    */
   helpers.createEditor = function(schemaType, options) {
     var constructorFn;
-
     if (_.isString(schemaType)) {
       constructorFn = Form.editors[schemaType];
     } else {
       constructorFn = schemaType;
     }
-
     return new constructorFn(options);
   };
   
@@ -760,7 +757,6 @@ Form.Field = (function() {
      */
     initialize: function(options) {
       options = options || {};
-
       this.form = options.form;
       this.key = options.key;
       this.value = options.value;
@@ -1352,7 +1348,6 @@ Form.editors = (function() {
 
     initialize: function(options) {
       editors.Text.prototype.initialize.call(this, options);
-      this.schema.title = "";
 
       this.$el.attr('type', 'hidden');
     },
@@ -1563,7 +1558,7 @@ Form.editors = (function() {
     
     events: {
       'click input[type=radio]:not(:checked)': function() {
-        this.trigger('change', this);
+        this.trigger('change', this)
       },
       'focus input[type=radio]': function() {
         if (this.hasFocus) return;
@@ -1589,6 +1584,7 @@ Form.editors = (function() {
     
     focus: function() {
       if (this.hasFocus) return;
+      
       var checked = this.$('input[type=radio]:checked');
       if (checked[0]) {
         checked.focus();
@@ -1758,7 +1754,6 @@ Form.editors = (function() {
         idPrefix: this.id + '_',
         fieldTemplate: 'nestedField'
       });
-
       this._observeFormEvents();
 
       this.$el.html(this.form.render().el);
@@ -1768,14 +1763,20 @@ Form.editors = (function() {
       return this;
     },
 
-    getValue: function() {    
-      if (this.form) return this.form.getValue();
-
+    getValue: function() {
+      if (this.form && !_.isArray(this.form)){
+       return this.form.getValue();
+     }
+      else if(_.isArray(this.form)){ 
+       arr = _.map(this.form,function(i){
+           return i.getValue();
+        });
+       return arr;
+      }
       return this.value;
     },
     
     setValue: function(value) {
-
       this.value = value;
       
       this.render();
@@ -1799,25 +1800,40 @@ Form.editors = (function() {
       Backbone.View.prototype.remove.call(this);
     },
     
-    validate: function() {
-      return this.form.validate();
+    validate: function(){
+      if(_.isArray(this.form)){ 
+        arr = _.map(this.form,function(i){
+           return i.validate();
+        });
+        arr = _.isEmpty(_.compact(arr)) ? null : arr
+       return arr
+      }
+      else return this.form.validate();
     },
     
-    _observeFormEvents: function() {
-      this.form.on('all', function() {
-        // args = ["key:change", form, fieldEditor]
-        args = _.toArray(arguments);
-        args[1] = this;
-        // args = ["key:change", this=objectEditor, fieldEditor]
-        
-        this.trigger.apply(this, args)
-      }, this);
+    _observeFormEvents: function(){
+      if(_.isArray(this.form)){
+        _.each(this.form,function(i){
+          i.on('all', function() {
+            args = _.toArray(arguments);
+            args[1] = this; 
+            this.trigger.apply(this, args)
+          },this);
+        },this);
+      }
+      else{
+        this.form.on('all', function() {
+          args = _.toArray(arguments);
+          args[1] = this; 
+          this.trigger.apply(this, args)
+        }, this);
+      }
     }
-
   });
 
 
 
+ 
   /**
    * NESTED MODEL
    * 
@@ -1829,7 +1845,6 @@ Form.editors = (function() {
   editors.NestedModel = editors.Object.extend({
     initialize: function(options) {
       editors.Base.prototype.initialize.call(this, options);
-
       if (!options.schema.model)
         throw 'Missing required "schema.model" option for NestedModel editor';
     },
@@ -1838,22 +1853,13 @@ Form.editors = (function() {
       var data = this.value || {},
           key = this.key,
           nestedModel = this.schema.model;
-
       //Wrap the data in a model if it isn't already a model instance
       var modelInstance = (data.constructor == nestedModel)
         ? data
-        : new nestedModel(data);
+        : new (this._findNestedModel(nestedModel))(data);
+      
+      this._renderModelOrCollection(modelInstance);
 
-      this.form = new Form({
-        model: modelInstance,
-        idPrefix: this.id + '_',
-        fieldTemplate: 'nestedField'
-      });
-
-      this._observeFormEvents();
-
-      //Render form
-      this.$el.html(this.form.render().el);
       
       if (this.hasFocus) this.trigger('blur', this);
 
@@ -1867,7 +1873,6 @@ Form.editors = (function() {
      * @return {Error|null} Validation error or null
      */
     commit: function() {
-      console.log("THIS FORM ",this.form)
       var error = this.form.commit();
       if (error) {
         this.$el.addClass('error');
@@ -1875,10 +1880,69 @@ Form.editors = (function() {
       }
 
       return editors.Object.prototype.commit.call(this);
+    },
+    
+    /**
+     * Render form for nested models and collections
+     */
+    _renderModelOrCollection: function(modelInstance){
+      var form;
+      if(modelInstance instanceof Backbone.Collection){
+        form = []
+        modelInstance.each(function(i){
+          form.push(this._renderNestedForm(i));
+        },this);              
+      }
+      else{
+        form = this._renderNestedForm(modelInstance);
+      }
+      this.form = form
+      form =  _.isArray(form) ? form : [form]
+      this._observeFormEvents();
+
+      _.each(form,function(i){
+        this.$el.append(i.render().el);}, this)
+
+      
+    },
+
+    _renderNestedForm: function(modelInstance){
+      form = new Form({
+        model: modelInstance,
+        idPrefix: this.id + '_'+ modelInstance.cid+"_",
+        fieldTemplate: 'nestedField'
+      });
+      return form
+    },
+    
+    /**
+     * Allow a nested model to be specified as a Model or as a string
+     * so that class definitions may be order independent
+     */
+    _findNestedModel: function(value) {
+      return _.isString(value) ? this._stringToFunction(value) : value;
+    },
+    
+    /**
+     * Helper function to create a namespaced class object from a string value
+     * e.g. "App.Models.SuperDuper"
+     */
+    _stringToFunction: function(str) {
+      var arr = str.split(".");
+
+      var fn = (window || this);
+      for (var i = 0, len = arr.length; i < len; i++) {
+        fn = fn[arr[i]];
+      }
+
+      if (typeof fn !== "function") {
+        throw "Schema Model not found";
+      }
+
+      return  fn;
     }
 
   });
-
 
 
   /**

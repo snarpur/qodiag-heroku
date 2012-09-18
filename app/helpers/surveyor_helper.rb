@@ -54,6 +54,7 @@ module SurveyorHelper
     return image_tag(obj.text) if obj.is_a?(Answer) and obj.display_type == "image"
     #obj.split_or_hidden_text(pos)
     I18n.t("surveys.#{obj.common_namespace}.answers")[obj.display_order]
+
   end
   def rc_to_attr(type_sym)
     case type_sym.to_s

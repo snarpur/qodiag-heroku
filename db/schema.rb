@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120801100206) do
+ActiveRecord::Schema.define(:version => 20120913120048) do
 
   create_table "addresses", :force => true do |t|
     t.string   "street_1"
@@ -144,7 +144,6 @@ ActiveRecord::Schema.define(:version => 20120801100206) do
     t.integer  "relation_id"
     t.date     "start"
     t.date     "end"
-    t.integer  "status"
   end
 
   create_table "responder_items", :force => true do |t|

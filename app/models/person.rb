@@ -17,7 +17,7 @@ class Person < ActiveRecord::Base
   has_many :patient_responder_items, :class_name => "ResponderItem", :foreign_key => "subject_id"
   has_many :caretaker_responder_items, :class_name => "ResponderItem", :foreign_key => "caretaker_id"
  
-  has_many  :relationships, :dependent => :destroy do
+  has_many  :relationships, :foreign_key => "person_id", :dependent => :destroy do
     def child
       where("name = 'parent'")
     end
@@ -88,6 +88,11 @@ class Person < ActiveRecord::Base
     end
   end
 
+  has_many :spouse_relationships, :class_name => "Relationship", :foreign_key => "person_id", :conditions => {:name => 'spouse'}
+  has_many :spouses_relationships, :class_name => "Relationship", :conditions => {:name => 'spouse'}
+ 
+
+
   accepts_nested_attributes_for :relations, :allow_destroy => true
   accepts_nested_attributes_for :relationships, :allow_destroy => true #,  :reject_if => proc {|attributes| attributes['person_id'].blank?}
   accepts_nested_attributes_for :inverse_relationships, :allow_destroy => true
@@ -99,7 +104,7 @@ class Person < ActiveRecord::Base
 
   attr_accessible :id, :firstname, :lastname, :sex, :ispatient, :dateofbirth, :cpr, :workphone, :mobilephone, :occupation, :workplace, :full_cpr,
                   :address_id, :relations_attributes, :inverse_relations_attributes, :relationships_attributes, :inverse_relationships_attributes,  :address_attributes, 
-                  :respondent_responder_items_attributes, :patient_responder_items_attributes 
+                  :spouse_relationships_attributes, :respondent_responder_items_attributes, :patient_responder_items_attributes 
 
   validates_associated :relationships, :inverse_relationships, :address
 
@@ -288,15 +293,16 @@ class Person < ActiveRecord::Base
 
   def parents_relationship
     parents = self.parents
-    if parents.size <= 1
-      nil
-    else
-       parents[0].spouse_relationships & parents[1].spouse_relationships
+    if parents.size == 1
+       parents[0].relationships.build(:name => :spouse)
+    elsif parents.size == 2
+       relationship = parents[0].spouse_relationships & parents[1].spouse_relationships
+       if relationship.empty?
+        parents[0].relationships.build(:name => :spouse, :relation_id => parents[1].id)
+       else
+        relationship.first
+       end
     end
-  end
-
-  def find_or_create_parents_relationship
-    parents_relationships || parents.first.relationship.build(:name => :spouse)
   end
 
   def get_association(name)
@@ -309,7 +315,22 @@ class Person < ActiveRecord::Base
       responder_items.last.update_attribute("subject_id", self.relations.guardian_of.last.id)
     end
   end
-
+  
+  def spouse_relationships_attributes=(params)
+    params.each do |i|
+      if !i.has_key?(:id) || i[:id] == nil
+        if i[:relation_id] == self.id
+          self.inverse_relationships.build(i)
+        else
+          self.relationships.build(i)
+        end
+      elsif i[:relation_id] == self.id
+        self.inverse_relationships.find(i[:id]).update_attributes(i)
+      elsif i[:person_id] == self.id
+        self.relationships.find(i[:id]).update_attributes(i)
+      end
+    end
+  end
 
   private
   #DEPRICATED: probably depricated

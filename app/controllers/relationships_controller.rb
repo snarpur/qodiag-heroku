@@ -1,4 +1,6 @@
 class RelationshipsController < ApplicationController
+
+  respond_to :json
   # GET /relationships
   # GET /relationships.xml
   def index
@@ -71,12 +73,9 @@ class RelationshipsController < ApplicationController
   # DELETE /relationships/1
   # DELETE /relationships/1.xml
   def destroy
+    KK.log params.inspect, :r
     @relationship = Relationship.find(params[:id])
     @relationship.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(relationships_url) }
-      format.xml  { head :ok }
-    end
+    render :json => {:ok => "ok"}
   end
 end

@@ -4,12 +4,15 @@ class Relationship < ActiveRecord::Base
   belongs_to :relation, :class_name => "Person", :foreign_key => :person_id
   belongs_to :inverse_relation, :class_name => "Person", :foreign_key => :relation_id
 
+  
 
 
+
+  # after_save :delete_nameless, :if => :is_nameless?
   after_create :split_names
   validate :name_presence
   accepts_nested_attributes_for :person, :relation
-  attr_accessible :person_id, :relation_id, :name, :start, :end, :status, :relation_attributes, :inverse_relation_attributes
+  attr_accessible :person_id, :relation_id, :name, :start, :end, :relation_attributes, :inverse_relation_attributes
 
   def name_presence
     name.delete("") if name.is_a?(Array)
@@ -18,9 +21,16 @@ class Relationship < ActiveRecord::Base
   end
 
   private
+  def delete_nameless
+     self.destroy 
+  end
+  
+  def is_nameless?
+    (name == nil)
+  end
 
   def split_names
-    self.name.delete("") if self.name.is_a?(Array)
+     self.name.delete("") if self.name.is_a?(Array)
     if self.name.is_a?(Array) && !self.name.empty?
       names = self.name
       first = names.pop

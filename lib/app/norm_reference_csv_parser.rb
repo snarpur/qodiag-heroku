@@ -22,7 +22,7 @@ class NormReferenceCSVParser
   end
 
   def extract_header!(csv)
-      header = csv.shift
+    header = csv.shift
   end
 
   def norm_attributes(header)
@@ -30,7 +30,8 @@ class NormReferenceCSVParser
   end
 
   def create_norm_object(data)
-    NormReference.create(norm_params(data))
+    params = norm_params(data)
+    NormReference.create(params)
   end
 
   def norm_params(data)
@@ -61,9 +62,10 @@ class NormReferenceCSVParser
   end
 
   def set_norm_age_group(norm_params)
-    age_group = norm_params['age'].split("-")
+    age_group = norm_params['age'].nil? ? [nil,nil] : norm_params['age'].split("-") 
     norm_params.delete('age')
     norm_params.merge({:age_start => age_group[0], :age_end => age_group[1]})
+ 
   end
 
   def score_value(value)

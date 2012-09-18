@@ -47,7 +47,7 @@ class ResponderItem < ActiveRecord::Base
   end
 
   def parents_relationship
-    subject.fint_or_create_parents_relationship
+    subject.parents_relationship
   end
   
   def access_code

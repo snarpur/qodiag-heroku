@@ -31,15 +31,15 @@ namespace :db do
     users.each do |u|
       puts "createing caretaker #{u}"
       caretaker = pop.create_caretaker(u)
-      20.times do |p|
+      2.times do |p|
         patient = pop.create_patient(caretaker[:person])
         parent = pop.create_parent(patient)
         people = {:caretaker => caretaker, :patient => patient, :parent => parent}
         puts "patient created - #{patient.firstname}"
-        2.times do |t|
+        3.times do |t|
           pop.create_requests({:people => people, :number => 5, :survey_id => t+1})
         end
       end
     end
   end
-end
+end 

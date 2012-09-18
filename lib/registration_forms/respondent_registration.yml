@@ -3,7 +3,6 @@ steps:
   - 
     name: contact_info
     form_content:
-      name: Text
       person:
         model: App.Models.Person
         as: respondent
@@ -25,53 +24,48 @@ steps:
     name: subject_parent
     form_content:
       person:  
-        model:  App.Models.Person
+        model: App.Models.Person
         as:  subject
         type: NestedModel
         schema:
           id:  Hidden
           firstname:  Text
           inverse_relations:
-            type: NestedModel
-            model: App.Models.Person 
+            type: App.FormEditors.NestedCollection
+            collection: App.Collections.Person 
             as: responder_item.opposite_parent_relation
             schema:
               id:  Hidden
               lastname:  Text
-              guardian:
-                type: Checkbox
-                options:
-                  -
-                    gulli
               relationships:
-                  type: NestedModel
-                  # itemType: NestedModel
-                  model: App.Collections.Relationships
-                  schema:   
-                    name:  Text
-                    relation_id:  Text
-                    person_id:  Text
-                    id:  Text       
-                  objects:
-                    -
-                      as: responder_item.opposite_parent_relationship
+                type: App.FormEditors.NestedCollection
+                collection: App.Collections.Relationships
+                as: [responder_item.opposite_parent_relationship,responder_item.opposite_parent_guardian_relationship]
+                schema:
+                  parent:
+                    id: Hidden
+                    person_id: Hidden
+                    relation_id: Hidden
+                    name: Hidden
+                  guardian:
+                    id: Hidden 
+                    person_id: Hidden 
+                    relation_id: Hidden 
+                    name: Hidden 
+                    status:
+                      type: Checkbox
+              spouse_relationships:
+                type: App.FormEditors.NestedCollection
+                as: [responder_item.parents_relationship]
+                collection: App.Collections.Relationships
+                schema:
+                  id: Hidden 
+                  person_id: Hidden 
+                  relation_id: Hidden
+                  name: Hidden
+                  status:
+                    type: Checkbox
 
-                    -
-                      as: responder_item.opposite_parent_guardian_relationship
-               
-                  
 
 
-                # type: List
-                # model: App.Models.Relationship
-                # itemType: NestedModel
-                # schema:
-                #   name: Text
-                #   relation_id: Text
-                #   person_id: Text
-                # objects:
-                #   - 
-                #     as: responder_item.opposite_parent_relationship
-                #   - 
-                #     as: responder_item.opposite_parent_guardian_relationship
-                
+

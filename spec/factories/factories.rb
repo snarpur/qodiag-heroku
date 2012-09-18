@@ -65,7 +65,7 @@ FactoryGirl.define do
 
   factory :relationship do
     association :relation, factory: :person
-    association :person, factory: :person
+    association :inverse_relation, factory: :person
     factory :patient_relationship do
       name "patient"
     end

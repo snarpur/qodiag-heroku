@@ -1,5 +1,6 @@
 class PreRegistrationsController < ApplicationController
   respond_to :json 
+  
   def index
     @pre_registration = PreRegistration.new()
   end
