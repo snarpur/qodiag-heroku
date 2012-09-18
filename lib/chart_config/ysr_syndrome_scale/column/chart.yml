@@ -1,0 +1,17 @@
+chart_name: YsrSyndromeScale
+chart_type: Column
+extends: Column
+chart_config:
+  title:
+    text: true
+  tooltip:
+    enabled: true
+    formatter: true
+content:
+  result_names: [raw_score_mean]
+charts:
+  -
+    content:
+      name:  score
+      question_groups: [anxious_depressed, somatic_complaints]
+

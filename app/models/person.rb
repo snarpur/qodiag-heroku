@@ -17,7 +17,7 @@ class Person < ActiveRecord::Base
   has_many :patient_responder_items, :class_name => "ResponderItem", :foreign_key => "subject_id"
   has_many :caretaker_responder_items, :class_name => "ResponderItem", :foreign_key => "caretaker_id"
  
-  has_many  :relationships, :foreign_key => "person_id", :dependent => :destroy do
+  has_many  :relationships,:dependent => :destroy do
     def child
       where("name = 'parent'")
     end

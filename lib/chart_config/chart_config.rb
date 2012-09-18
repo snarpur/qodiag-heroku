@@ -1,7 +1,7 @@
 require 'singleton'
 module ChartConfig
   
-  CONFIG_PATH = "#{Rails.root}#{APP_CONFIG['chart_config_path']}"
+  CONFIG_PATH = "#{Rails.root}#{APP_CONFIG[:chart_config_path]}"
   
   class ChartItem
     def initialize(config)
@@ -40,6 +40,7 @@ module ChartConfig
       if has_base_renderer? && has_type_renderer?(chart_type)
         type_renderer
       else
+        KK.log "ChartRenderer::#{@config[:extends]}::Chart",:r 
         eval("ChartRenderer::#{@config[:extends]}::Chart")
       end 
     end
@@ -115,6 +116,15 @@ module ChartConfig
   module Sdq
     module Column
         class  Chart < ChartConfig::StackedColumn::Chart;  end
+    end
+    module Line
+      class  Chart < ChartConfig::Line::Chart;  end
+    end
+  end
+
+  module YsrSyndromeScale
+    module Column
+        class  Chart < ChartConfig::Column::Chart;  end
     end
     module Line
       class  Chart < ChartConfig::Line::Chart;  end

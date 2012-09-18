@@ -1,8 +1,8 @@
 class Relationship < ActiveRecord::Base
   #validates_presence_of :status, :if => Proc.new {|a| a.name == 'spouse' || a.name == 'guardian'}
   belongs_to :person
-  belongs_to :relation, :class_name => "Person", :foreign_key => :person_id
-  belongs_to :inverse_relation, :class_name => "Person", :foreign_key => :relation_id
+  belongs_to :relation, :class_name => "Person"
+  belongs_to :inverse_relation, :class_name => "Person"
 
   
 

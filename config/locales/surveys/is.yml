@@ -91,7 +91,7 @@ is:
         - Að nokkru rétt
         - Örugglega rétt
     ysr-syndrome-scale:
-      name: "Spurningar um styrk og vanda (SDQ)"
+      name: "ysr-syndrome-scale"
       terms:
       questions:
         - Ég haga mér barnalega miðað við aldur
