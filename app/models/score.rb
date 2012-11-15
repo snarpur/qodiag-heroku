@@ -16,14 +16,19 @@ class Score < ActiveRecord::Base
     [self.start_value, self.end_value]
   end
 
-  def self.by_result_names_in_groups(result_name, group_by=:result_name)
-    self.by_result_name(result_name).group_by{|i|i.send(group_by)}
+  def is_range_value?
+    !(self.start_value.nil? && self.end_value.nil?)
+  end
+
+  def self.by_result_names_in_groups(result_names, group_by=:result_name)
+    self.by_result_name(result_names).group_by{|i|i.send(group_by)}
   end
 
   def self.by_names_in_groups(names, group_by=:name)
     self.by_name(names).group_by{|i|i.send(group_by)}
   end
 
-
-
+  def self.by_names_and_result_names_in_groups(names,result_names)
+    (self.by_name(names) & self.by_result_name(result_names)).group_by{|i|i.send(:result_name)}
+  end
 end

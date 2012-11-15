@@ -1,13 +1,8 @@
 chart_name: Sdq
 chart_type: Column
 extends: StackedColumn
-
 content:
   result_names: [normal, borderline, abnormal]
-  color:
-    normal: '#6ddb00'
-    borderline: '#ffff00'
-    abnormal: '#e20000'
 charts:
   -
     content:
@@ -23,11 +18,10 @@ charts:
     chart_config:
       legend:
           enabled: false
-      xAxis:
-        title:
-          text: ~
       yAxis:
         opposite: true
         maxPadding: 0.01
       title:
-        text: ~ 
+        text: ~
+      subtitle:
+        text: ~

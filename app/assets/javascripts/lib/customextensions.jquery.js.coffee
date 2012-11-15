@@ -1,34 +1,38 @@
 $.fn.extend
-  setCssState: (state) ->
+  setCssState: (state,prefix) ->
     settings = 
       state: ''
-      regexp: /state\-[a-z\-]*/g
+      regexp: /^state\-[a-z\-]*/g
       prefix: 'state-'
-     
-    if _.isObject(state) and state?
-      state.regexp = new RegExp("#{state.prefix}\\-[a-z\-]*","g") 
-      state.prefix = "#{state.prefix}-"
-    else
-      state = {state: state}
-    
-    settings = _.extend settings, state
-    
+
+    if prefix? and _.isString(prefix)
+      regexp = "\^#{_.trim(prefix,"-")}\\-[a-z\-]*"
+      settings.regexp = new RegExp(regexp,"g")
+      settings.prefix = "#{prefix}-"
+
+    settings.state = state
     setState = () =>
       @.attr('class', updatedCssStr())
     
     updatedCssStr = () =>   
       css
       if hasState()
-        css =cssString().replace(settings.regexp, newState())
+        css = cssString().replace(hasState(), newState())
       else
         css = "#{cssString()} #{newState()}"
+
       _.trim(css)
     
     cssString = () =>   
       @.attr('class') ? ""
     
+    isStateStr = (str) =>
+      str.match(settings.regexp)
+    
     hasState = () =>
-      _.include(cssString(),settings.prefix)
+      _.find(cssString().split(" "),(str)->
+        _.isArray(str.match(settings.regexp))
+      )
     
     newState = () =>  
      if _.isBlank(settings.state) then "" else "#{settings.prefix}#{settings.state}"
@@ -36,7 +40,16 @@ $.fn.extend
     @each () -> 
       setState settings
   
-  cssState: () ->
-    css = @.attr('class').match(/state\-[a-z\-]*/g)
+  cssState: (prefix) ->
+    settings = 
+      state: ''
+      regexp: /^state\-[a-z\-]*/g
+      prefix: 'state-'
+    
+    if prefix? and _.isString(prefix)
+      regexp = "\^#{_.trim(prefix,"-")}\\-[a-z\-]*"
+      settings.regexp = new RegExp(regexp,"g")
+      settings.prefix = "#{prefix}-"
+    
+    css = @.attr('class').match(settings.regexp)
     css[0].split("-")[1] if css isnt null
-

@@ -40,7 +40,6 @@ module ChartConfig
       if has_base_renderer? && has_type_renderer?(chart_type)
         type_renderer
       else
-        KK.log "ChartRenderer::#{@config[:extends]}::Chart",:r 
         eval("ChartRenderer::#{@config[:extends]}::Chart")
       end 
     end
@@ -49,7 +48,7 @@ module ChartConfig
   class Chart
     include Singleton
     def initialize
-      @config ||= get_config_file
+      @config ||= extend_config
       @items ||= process_chart
     end
 
@@ -63,7 +62,11 @@ module ChartConfig
 
     def get_config_file
       yml = YAML::load(File.open(config_file_path(self.class.name))).symbolize_all_keys!
-      extend_config(yml)
+      # extend_config(yml)
+    end
+    
+    def raw_config
+      @raw_config ||= get_config_file
     end
     
     def config_file_path(chart_class)
@@ -71,14 +74,12 @@ module ChartConfig
       "#{ChartConfig::CONFIG_PATH}/#{file_path}.yml"
     end
     
-    def extend_config(chart_config)
-      if chart_config[:extends]
-        puts "now im exdingind #{chart_config[:chart_name]}"
-        extended_config = self.class.superclass.instance.send(:get_config).deep_merge(chart_config)
+    def extend_config
+      if raw_config[:extends]
+        extended_config = self.class.superclass.instance.send(:get_config).deep_merge(raw_config)
         config = extended_config
       else
-         puts "now im exdingind #{chart_config[:chart_name]}"
-        config = chart_config
+        config = raw_config
       end
       config
     end
@@ -98,6 +99,12 @@ module ChartConfig
   module Column
     class Chart < ChartConfig::Chart; end
   end
+  
+  module Bar
+    class Chart < ChartConfig::Chart; end
+  end
+  
+
   module StackedColumn 
     class Chart < ChartConfig::Column::Chart; end
   end
@@ -121,13 +128,13 @@ module ChartConfig
       class  Chart < ChartConfig::Line::Chart;  end
     end
   end
-
   module YsrSyndromeScale
     module Column
-        class  Chart < ChartConfig::Column::Chart;  end
+        class  Chart < ChartConfig::StackedColumn::Chart;  end
     end
     module Line
       class  Chart < ChartConfig::Line::Chart;  end
     end
   end
+ 
 end

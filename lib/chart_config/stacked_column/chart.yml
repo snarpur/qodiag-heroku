@@ -3,4 +3,6 @@ extends: Column
 chart_config:
   plotOptions:
     column:
-      stacking: normal
+      stacking: normal 
+content:
+  color: ['#6ddb00', '#ffff00', '#e20000']

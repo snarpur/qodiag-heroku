@@ -83,7 +83,7 @@ class PopulateUtil
     def create_patient(caretaker_person)
       attrs = person_attributes(rand(10)+5)
       patient = FactoryGirl.create(:person, attrs)
-      FactoryGirl.create(:patient_relationship, :relation => caretaker_person, :inverse_relation => patient)
+      FactoryGirl.create(:patient_relationship, :person => caretaker_person, :relation => patient)
       patient
     end
 
@@ -94,8 +94,8 @@ class PopulateUtil
                                    :roles => [@respondent_role], 
                                    :person => parent_person
                                   )
-      FactoryGirl.create(:guardian_relationship, :relation => parent_person, :inverse_relation => patient)
-      FactoryGirl.create(:parent_relationship, :relation => parent_person, :inverse_relation => patient)
+      FactoryGirl.create(:guardian_relationship, :person => parent_person, :relation => patient)
+      FactoryGirl.create(:parent_relationship, :person => parent_person, :relation => patient)
       {:person => parent_person, :user => parent_user}
     
   end

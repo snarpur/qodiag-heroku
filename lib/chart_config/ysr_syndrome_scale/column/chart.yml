@@ -1,17 +1,30 @@
 chart_name: YsrSyndromeScale
 chart_type: Column
-extends: Column
-chart_config:
-  title:
-    text: true
-  tooltip:
-    enabled: true
-    formatter: true
+extends: StackedColumn
+
 content:
-  result_names: [raw_score_mean]
+  result_names: [raw_score_mean,borderline,clinical]
 charts:
   -
     content:
       name:  score
-      question_groups: [anxious_depressed, somatic_complaints]
-
+      question_groups: [anxious_or_depressed, withdrawn_or_depressed, somatic_complaints, social_problems, thought_problems, attention_problems, rule_breaking_behaviour, aggressive_behaviour]
+      drilldown: true
+  -   
+    content:
+      name: total
+      question_groups:
+        total: [anxious_or_depressed, withdrawn_or_depressed, somatic_complaints, social_problems, thought_problems, attention_problems, rule_breaking_behaviour, aggressive_behaviour]
+    chart_config:
+      legend:
+          enabled: false
+      xAxis:
+        title:
+          text: ~
+      yAxis:
+        opposite: true
+        maxPadding: 0.01
+      title:
+        text: ~
+      subtitle: 
+        text: ~

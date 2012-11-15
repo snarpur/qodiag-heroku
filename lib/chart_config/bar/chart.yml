@@ -1,0 +1,12 @@
+chart_name: Bar
+extends: Column
+chart_config:
+  chart:
+    type: bar
+  xAxis:
+    labels:
+      align: right
+      formatter: true
+
+# content:
+#   color: ['#6ddb00', '#ffff00', '#e20000']

@@ -21,11 +21,11 @@ module ChartMethods
   end
 
   def color_of_opposite_result(result_name)
-    get_content(:color)[name_of_opposite_result(result_name).to_sym]
+    get_content(:color)[index_of_opposite_result(result_name)]
   end
 
   def color_of_result(result_name)
-    get_content(:color)[result_name.to_sym]
+    get_content(:color)[index_of_result(result_name)]
   end
 
   def index_of_opposite_result(result_name)

@@ -19,7 +19,7 @@ module ChartRenderer::AdhdRatingScale
     		series.merge({:tooltip => count_high_values})
       end
 
-      #NOTE: Remove localized strings
+      #REFACTOR: Remove localized strings
       def count_high_values
       	groups = subject_groups - ["total"]
       	tooltip_object = {:heading => "Fjöldi 2/3: ", :content => {:total =>[0,0]}}
@@ -37,13 +37,13 @@ module ChartRenderer::AdhdRatingScale
       	tooltip_object
       end
 
-      #NOTE: Remove localized strings
+      #REFACTOR: Remove localized strings
       def standard_deviation_from_average(data)
       	groups = subject_groups
     		standard_deviation = norm_reference.get_score_by_result_name('standard_deviation').map do |i|
            i[1].map{|d| d.get_value}
         end
-        result = [subject_results, data, standard_deviation.flatten].transpose
+        result = [subject_results[:data], data, standard_deviation.flatten].transpose
       	tooltip_object = {:heading => "S frá M ", :content => {}}
       	result.each_index do |r|
       		tooltip_object[:content][groups[r]] = ((result[r][0] - result[r][1]) / result[r][2]).round(2)

@@ -1,3 +1,4 @@
+#TODO: Create registration form when respondent is guardian only
 class PreRegistration
   include ActiveAttr::Model
 
@@ -47,7 +48,9 @@ attr_accessor :responder_item, :steps
             end
           end
         else
+  
           content[item] = relation_obj.attributes
+
           content[item] = content[item].merge(populate_nested_entry(settings[:schema],relation_obj))
         end
         
@@ -151,9 +154,11 @@ attr_accessor :responder_item, :steps
       relation = form_content[:as].nil? ? form_obj : form_content[:as]
       if !(relation =~/\./).nil?
         relation_obj = relation.split(".").inject(self) do |memo,value|
+
           obj = memo.send(value)
           memo = obj
         end
+
         relation_obj
       else
         relation_obj = parent.send(relation)

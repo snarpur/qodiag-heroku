@@ -5,10 +5,7 @@ class Relationship < ActiveRecord::Base
   belongs_to :inverse_relation, :class_name => "Person"
 
   
-
-
-
-  # after_save :delete_nameless, :if => :is_nameless?
+  after_save :delete_nameless, :if => :is_nameless?
   after_create :split_names
   validate :name_presence
   accepts_nested_attributes_for :person, :relation
@@ -29,6 +26,7 @@ class Relationship < ActiveRecord::Base
     (name == nil)
   end
 
+  #IMPORTANT: Change forms no arrays with relationships names signifies create multiple relationships
   def split_names
      self.name.delete("") if self.name.is_a?(Array)
     if self.name.is_a?(Array) && !self.name.empty?

@@ -1,8 +1,12 @@
 module ResponseSetChartRenderer
   module InstanceMethods
-
+ 
    def survey_class
       survey_name.underscore.camelize
+   end
+    
+    def config_class
+      ChartConfig.const_get(survey_name.underscore.camelize)
     end
     
     def config_class(chart_type)
@@ -16,7 +20,6 @@ module ResponseSetChartRenderer
       end
     end
 
-
     def get_chart_items(chart_type)
       config_class(chart_type).send(:instance).get_items
     end
@@ -25,16 +28,12 @@ module ResponseSetChartRenderer
  
 
   module ClassMethods
-    
     def responses_to_chart(response_sets)
       response_sets.first.get_chart_items(:line).map do |item|
         config_copy = Marshal::load(Marshal.dump(item.get_config))
         item.get_renderer.send(:new, config_copy, response_sets)
-      end
-       
-     end 
+      end   
+    end 
 
   end 
-
-
 end

@@ -35,10 +35,8 @@ class App.Views.PreRegistration extends Backbone.View
     view = @
     callbacks=
       success:(model, response) ->
-        view.model.set(response)
-        # view.rootModel =  
+        view.model.set(response) 
         view.renderSteps()
-        # view.form
       error:(model, response) ->
         console.log "error", model
   

@@ -1,4 +1,5 @@
 class NormReference < ActiveRecord::Base
+
   belongs_to :survey
   has_many :scores
 
@@ -10,8 +11,23 @@ class NormReference < ActiveRecord::Base
     where("age_start <= ? AND age_end >= ?", age, age)
   end 
 
-  def self.survey(survey)
+  def self.survey_id(survey)
     where(:survey_id => survey)
+  end
+
+  def self.find_match(params)
+    ref = self.where(:survey_id => params[:survey_id]).limit(1).first
+    attributes = ref.attributes.merge({"age" =>  ref.age})
+    matchers = attributes.with_indifferent_access.slice(*params.keys).delete_if{|k,v| v.nil?}
+    reference_match = matchers.keys.inject(NormReference) do |memo,value|
+      obj = memo.send(value,params[value.to_sym])
+      memo = obj
+    end  
+    reference_match.first
+  end
+  
+  def age
+    self.age_start || self.age_end 
   end
 
   def get_score_by_result_name(result_names, group_by=:result_name)
@@ -19,20 +35,23 @@ class NormReference < ActiveRecord::Base
   end
 
   def get_score_by_name(names,group_by=:name)
-     self.scores.by_names_in_groups(names,group_by)
+    self.scores.by_names_in_groups(names,group_by)
+  end
+
+  def scores_by_names_and_result_names(names,result_names)
+    self.scores.by_names_and_result_names_in_groups(names,result_names)
   end
 
   def age_group_string
     age = self.age_start == self.age_end ? self.age_start.to_s : "#{self.age_start} - #{self.age_end}"
   end
  
-  #FIXME: PUT THIS INTO I18N TRANSLATION
   def norm_reference_group_name
-    str = I18n.t("surveys.terms.norm_reference.#{self.responder}").capitalize
-    str << " og "
-    str << "#{I18n.t('surveys.terms.norm_reference.title')} "
-    str << "#{I18n.t('surveys.terms.'+ self.sex)} #{age_group_string} "
-    str << I18n.t("surveys.terms.age")
-
+  title = []
+  title << [:survey,survey.access_code]
+  title << [:respondent,responder] unless responder.nil?
+  title << [:sex ,sex] unless sex.empty?
+  title << [:age,age_group_string] unless age_group_string.empty?
+  title
   end
 end

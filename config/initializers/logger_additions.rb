@@ -36,8 +36,12 @@ if Rails.env.development? || Rails.env.test?
     
     def log(msg,color=nil)
       # ActiveRecord::Base.logger.debug "<LOG>".foreground(:yellow).background(:red) + "  " + "#{msg}".foreground(:white).background(:blue)
-      ActiveRecord::Base.logger.debug log_type("LOG") + "  " + time()
-      ActiveRecord::Base.logger.debug log_type("LOG") + "  " + log_msg(msg,color)
+      Rails.logger.debug log_type("LOG") + "  " + time()
+      Rails.logger.debug log_type("LOG") + "  " + log_msg(msg,color)
+    end
+
+    def ap(msg)
+      Rails.logger.ap
     end
   end
 

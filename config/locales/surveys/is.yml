@@ -4,15 +4,14 @@ is:
       age: "ára"
       male: "drengir"
       female: "stúlkur"
-      responder:
-        parents: "foreldri"
+      respondent:
+        parent: "foreldri"
         teacher: "kennari"
       norm_reference:
-        title: "ísl. viðmið"
+        title: "viðmið"
         group: "samanburðarhópur"
         teacher: "kennaramat"
         parent: "foreldramat"
-      teacher: "kennari"
     client_registration: 
       name: Aðrar upplýsingar
     adhd-rating-scale:
@@ -91,8 +90,147 @@ is:
         - Að nokkru rétt
         - Örugglega rétt
     ysr-syndrome-scale:
-      name: "ysr-syndrome-scale"
+      name: "sjálfsmatslisti"
       terms:
+        clinical: yfir mörkum
+        borderline: jaðarsvæði
+        raw_score_mean: meðaltal
+        other_problems: önnur vandamál
+        aggressive_behaviour: árásagirni
+        rule_breaking_behaviour: óhlýðni
+        attention_problems: einbeitingarvandi
+        thought_problems: hugsun
+        somatic_complaints: líkamleg vanlíðan
+        withdrawn_or_depressed: hlédrægni/ þunglyndi
+        anxious_or_depressed: kvíði/ depurð
+        social_problems: félagsvandi
+        total: samtals
+        terms:
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
+          - vandamál
       questions:
         - Ég haga mér barnalega miðað við aldur
         - Ég drekk áfengi án samþykkis foreldra (lýstu)

@@ -1,4 +1,4 @@
-App.Views.Timeline ||= {}
+# App.Views.Timeline ||= {}
 
 class App.Views.Timeline.Line extends Backbone.View
   
@@ -26,11 +26,11 @@ class App.Views.Timeline.Line extends Backbone.View
     currentDialog = @model.currentDialogItem()
     if currentDialog is null
       $(@el).setCssState("closed")
-      $(@el).setCssState({prefix: 'overlay'})  
+      $(@el).setCssState('','overlay')  
       @model.clearDialogItem()
     else
       $(@el).setCssState("open")
-      $(@el).setCssState({prefix: 'overlay',state:'charts'})  
+      $(@el).setCssState('charts','overlay')  
       @renderDialog(@model.currentDialogItem())
 
   removeDialog:(item)=>
@@ -52,10 +52,9 @@ class App.Views.Timeline.Line extends Backbone.View
     @.$(".line-items").append(lineItem.render().el)
 
   newItemOverlayState:(self,state)=>
-    overlay = {prefix: 'overlay'}
-    overlay.state = "new-item" if state is 'open'
+    overlayState = "new-item" if state is 'open'
     $(@el).setCssState(state)
-    $(@el).setCssState(overlay) 
+    $(@el).setCssState(overlayState, 'overlay') 
   
   renderAddItemOverlay:=>
     overlay = new App.Views.Timeline.NewItem(model: @model, timeline: @timeline)

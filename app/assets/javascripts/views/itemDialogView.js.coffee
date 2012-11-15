@@ -30,7 +30,7 @@ class App.Views.Timeline.ItemDialog extends Backbone.View
   renderCharts:=>
     @model.fetch(
       success:(model,response)=>
-        charts = new App.Views.Charts(model: model, timeline: @.options.timeline)
+        charts = new App.Views.Charts(item: model, timeline: @.options.timeline)
         @.$(".chart-wrapper").append(charts.render().el)
         charts.renderCharts()
       error:->

@@ -5,6 +5,9 @@
     $nav_height: $line_height*0.3
     $survey_menu_width: $gutter_width * 3 
     $timeline_hrz_padding: 50px
+    $overlay_width: $canvas_width - 30px
+    $chart_margin: 50px    
+    $chart_width: $overlay_width - $chart_margin
     #canvas
       width: $canvas_width
       margin-top: $nav_height + 15px
@@ -52,17 +55,18 @@
         top: $line_height/3 
     .line-overlay
       height: $line_height_expanded
-      width: $canvas_width - 30px
+      width: $overlay_width
       left: 15px
       &.chart-dialog
         margin-top: $line_height
         .chart-wrapper
-          width: $canvas_width * 2
-          top: $line_height
-          height: $line_height_expanded - $line_height
+          width: $overlay_width * 2
+          height: $line_height_expanded
+          .column-chart, .line-chart
+            width: $chart_width
+            margin-left: $chart_margin 
           .chart
-            height: $line_height_expanded - $line_height
-
+            height: $line_height_expanded
       &.new-item
         .left, .right 
           width: 40%  

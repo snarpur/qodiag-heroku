@@ -1,6 +1,5 @@
 class App.Lib.chartFormatters.column extends App.Lib.chartFormatters.chart
 
-
   dataLabelsFormatter:()=>
     ()->
       if @point.config.name? and @point.config.name.data_label
@@ -11,8 +10,12 @@ class App.Lib.chartFormatters.column extends App.Lib.chartFormatters.chart
   labelsFormatter:=>
     accessCode = @chart.accessCode
     ()->
-      str = I18n.t("surveys.#{accessCode}.terms.#{@.value}")
+      if _.isNaN(parseInt(@.value))
+        str = I18n.t("surveys.#{accessCode}.terms.#{@.value }") 
+      else
+        str = I18n.t("surveys.#{accessCode}.terms.terms")[parseInt(@.value) - 1] 
       str = @.value if _.includes(str,'missing')
+      str.replace(/\s/,"\n")
       _.capitalize(str)
 
   tooltipFormatter:()=>

@@ -6,13 +6,14 @@ chart_config:
     enabled: false
   chart:
     marginBottom: 100
+    marginTop: 80
   plotOptions:
     column:
       groupPadding: 0.1
       pointPadding: 0.1
       dataLabels:
         enabled: true
-        color:  '#777'
+        color:  '#333'
         formatter: true
         style:
           fontSize: 8px
@@ -20,6 +21,10 @@ chart_config:
         legendItemClick: false
   title:
     text: true
+    align: left
+  subtitle:
+    text: true
+    align: left
   legend:
     align: center
     floating: true
@@ -33,8 +38,7 @@ chart_config:
     tickPosition: inside
   xAxis:
     title:
-      text: true
-      align: "middle"
-      margin: 25
+      text: ~
     labels:
       formatter: true
+      align: center

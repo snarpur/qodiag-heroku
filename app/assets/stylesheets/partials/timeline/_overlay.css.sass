@@ -84,6 +84,8 @@
 
 
 .line .chart-dialog
+  .c-icon
+    z-index: 200
   overflow: hidden
   &.state-column 
     .chart-wrapper
@@ -102,11 +104,25 @@
     position: absolute
     & > div
       float: left
-      width: 50%
   .chart
     float: left
-    &:first-child
-      margin-left: 100px
+    position: relative
+    .reset-drilldown-icn
+      position: absolute
+      display: none
+      top: 20% 
+      left: 50%
+      width: 35px
+      height: 35px
+      +opacity(0.3)
+      background-image: url("/assets/cc/white/32x32/round_arrow_left.png") 
+      background-repeat: no-repeat
+      cursor: pointer
+      z-index: 200
+      &.drilldown-on
+        display: block
+      &:hover
+        +opacity(0.7)  
   ul
     +horizontal-list
     position: absolute
