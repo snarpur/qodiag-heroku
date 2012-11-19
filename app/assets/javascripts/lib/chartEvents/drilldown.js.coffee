@@ -4,39 +4,41 @@ class App.Lib.ChartEvents.Drilldown extends Backbone.Model
   
   initialize:->
     @chart = @.get('chart')
-    @view =  @.get('view')
-    @.on("change:drilldown",@drillup)
-  
-  setChartObject:(chart)->
-    @chartObject = chart
+    @.on("drillup",@drillup)
+    @setDrilldownEvent()
 
   drillup:=>
-    unless @.get("drilldown")
-      params =
-        categories: @chart.xAxis.categories
-        series: @chart.series
-
-      @drawChart(params)
+    @.get('drilldown').destroy()  
 
   drilldown:(event)->
     handler = @series.chart.options.drilldownHandler
-    handler.setChartObject(@series.chart)
-    if @drilldown
-      handler.set("drilldown",handler.chart)
-      handler.drawChart(@drilldown)
-
+    handler.set({rootChart:@series.chart})
+    handler.drawChart(@drilldown) if @drilldown
+      
   drawChart:(params)->
+    params = @setFormatters(params)
+    params = @mergeParamsFromRoot(params)
+    @destroyRootChart()
+    @createDrilldownChart(params)
+
+  setFormatters:(params)=>
     formatter = new App.Lib.chartFormatters.column(_.extend(params,{accessCode: @chart.accessCode}))
-    params = formatter.setFormatters()
+    params = $.extend(true,{},formatter.setFormatters())
+
+  mergeParamsFromRoot:(params)=>
     inherited = ["chart","credits","legend","subtitle","title","tooltip","yAxis"]
     _.each(inherited,((i)->
       target = params[i]
       target ?= {}
       params[i] = $.extend({},@chart[i],target)
     ),@)
+    params
 
-    @chartObject.destroy()
-    new Highcharts.Chart(params)
+  destroyRootChart:=>
+    @.get('rootChart').destroy()
+
+  createDrilldownChart:(params)=>
+    @.set('drilldown',new Highcharts.Chart(params))
 
   setDrilldownEvent:()=>
     _.each(@chart.series,((v,k)->
@@ -45,10 +47,5 @@ class App.Lib.ChartEvents.Drilldown extends Backbone.Model
         pointFunction = _.first(_.values(v.point.events))
         v.point.events[pointEvent] = @[pointFunction]
         @chart.drilldownHandler =  @
-        # SET EVENTS ON DRILLDOWN SERIES  
-        # v.data = _.map(v.data,(i)-> 
-        #   _.each(i.drilldown.series,(s)-> s = _.extend(s,{point: v.point}))
-        #   i
-        # )
       ),@)
     @chart

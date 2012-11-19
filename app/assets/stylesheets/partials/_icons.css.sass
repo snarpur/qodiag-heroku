@@ -13,21 +13,22 @@ $icn_m: 45px
 .c-icon
   display: block
   position: relative
-  background-repeat: no-repeat
+  font-family: 'Entypo'
   &.small
     +icon-size($icn_s)
   &.close
+    font-size: 3em
     position: absolute
-    right: 1em
-    top: 1em
-    +border-radius($icn_s/2)
-    background-color: rgba(255,0,0,0.6)
-    +box-shadow(rgba(255,0,0,0.3) 0 0 1px 1px)
-  &.close:after
-    content: "\2715"
     display: block
     text-indent: 1px
-    color: #f4f4f4
+    right: 1em
+    top: 1em
+    +opacity(.8)
+  &.close:hover
+    +opacity(1) 
+  &.close:before
+    content: "\274E"
+    color: rgb(255,16,50)
   &.add-1:after
     content: "\2295"
     display: block
@@ -36,18 +37,18 @@ $icn_m: 45px
 
   &.medium
     +icon-size($icn_m)
+    font-size: 6em
     cursor: pointer
     &.line-chart-icn,
     &.column-chart-icn
-      background-repeat: no-repeat
-      background-position: 50% 50%
       +border-radius(5px)
+      background-color: #fff
       &:hover
-        background-color: #888
-    &.line-chart-icn
-      background-image: url("/assets/cc/white/48x48/chart_line_2.png")      
-    &.column-chart-icn
-      background-image: url("/assets/cc/white/48x48/chart_bar.png")
+        +opacity(0.6)
+    &.line-chart-icn:after
+      content: "\1F4C8"     
+    &.column-chart-icn:after
+      content: "\1F4CA"
 
 
 

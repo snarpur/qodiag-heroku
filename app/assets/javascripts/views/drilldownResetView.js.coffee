@@ -2,20 +2,23 @@ class App.Views.DrilldownReset extends Backbone.View
   className:  "reset-drilldown-icn"
   tagName: "span"
   events:
-    "click": "drillUp"
+    "click": "drillup"
   
   initialize:(chart)=>
-    @model = new App.Lib.ChartEvents.Drilldown({chart:@options.chart,view:@})
-    @model.setDrilldownEvent()
+    @chartEl = @options.chartEl
+    @chart = @options.chart
+    @model = new App.Lib.ChartEvents.Drilldown({chart:@chart})
     @model.on("change:drilldown",@showDrilldownReset)
+    @render()
 
-  drillUp:=>
-    @model.set("drilldown",null)
+  drillup:=>
+    @model.trigger("drillup")
     $(@el).setCssState("off","drilldown")
+    new Highcharts.Chart(@chart)
 
   showDrilldownReset:(model)=>
     if model.get("drilldown")
       $(@el).setCssState("on","drilldown")
  
   render:=>
-    @
+    @chartEl.prepend(@el)

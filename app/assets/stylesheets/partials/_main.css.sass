@@ -1,7 +1,10 @@
 @import partials/base
-
+@font-face 
+  font-family: 'Entypo'
+  src: font_url('Entypo/entypo.woff') format('woff'), font_url('Entypo/entypo.ttf') format('truetype')
 
 // =============== General =======================
+
 body
   font-family: 'Droid Sans', sans-serif
   // font-family: Helvetica, Arial, sans-serif
@@ -158,6 +161,11 @@ table
   td
     color: $grey_dark
 
-
 .section
   +clearfix
+
+#font-test
+  font-family: 'Entypo'
+  font-size: 2em
+  &:after
+    content: "\U+E736"

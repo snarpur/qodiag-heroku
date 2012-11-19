@@ -25,17 +25,22 @@ class App.Views.Charts extends Backbone.View
     width =  @timeline.get('canvas_width') * (chart.size/total_size)
     (width * 0.8) + 22
 
+  setChartDiv:(chart)=>
+    chart.chart.renderTo = @.$el.find("\##{chart.chart.renderTo} > div")[0]
+    chart
+  
   renderChart:(chart)=>
     chartEl = $(@template()(chart))
-    formatter = new App.Lib.chartFormatters.column(chart)
-    chart = formatter.setFormatters()
-    
-    drilldownReset = new App.Views.DrilldownReset({chart:chart}).render()
     $(@el).append(chartEl)
     chartEl.width(@chartWidth(chart))
-    highChart = new Highcharts.Chart(chart)
-    #START: prepend reset on drilldown
-    chartEl.prepend(drilldownReset.el)
+    
+    formatter = new App.Lib.chartFormatters.column(chart)
+    chart = formatter.setFormatters()
+    chart = @setChartDiv(chart)
+  
+    new App.Views.DrilldownReset({chart:chart, chartEl:chartEl})
+    new Highcharts.Chart(chart)
+
 
   renderCharts:=>
     _.each(@item.get('charts'), @renderChart)

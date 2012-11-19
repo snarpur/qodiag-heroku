@@ -108,21 +108,24 @@
     float: left
     position: relative
     .reset-drilldown-icn
+      font-family: "Entypo"
+      font-size: 6em
+      color: #fff
       position: absolute
       display: none
-      top: 20% 
+      top: 22px 
       left: 50%
       width: 35px
       height: 35px
-      +opacity(0.3)
-      background-image: url("/assets/cc/white/32x32/round_arrow_left.png") 
-      background-repeat: no-repeat
+      +opacity(0.5)
       cursor: pointer
       z-index: 200
       &.drilldown-on
         display: block
       &:hover
-        +opacity(0.7)  
+        +opacity(0.7)
+      &:after
+        content: "\E759"  
   ul
     +horizontal-list
     position: absolute
