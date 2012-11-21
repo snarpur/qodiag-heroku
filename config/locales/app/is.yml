@@ -35,6 +35,7 @@ is:
     super_admin: "Kerfisstjóri"
     caretaker: "Starfsmaður"
     client: "Skjólstæðingur"
+
   #Common terms -------------------------------------------------------
   terms:
     child: "Barn"
@@ -47,6 +48,7 @@ is:
     mother: "Móðir"
     parent: "Foreldri"
     patient: "Sjúklingur"
+    client: "Skjólstæðingur"
     spouse: "Maki"
     spouses: "Makar"
     ex_spouse: "Fyrrverandi maki"

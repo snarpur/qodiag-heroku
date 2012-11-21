@@ -2,20 +2,18 @@
 class PreRegistration
   include ActiveAttr::Model
 
-attr_accessor :responder_item, :steps
+  attr_accessor :responder_item, :steps
 
   def initialize(params)
     @responder_item = ResponderItem.find(params[:responder_item_id])
     @stepts = steps
     @current_step_no = params[:step_no].to_i
   end
-  
 
   def steps
     @steps ||= Marshal::load(Marshal.dump(ApplicationForms.get(@responder_item.registration_identifier)['steps']))
   end
 
-  
   def get_content_for_step(step)
     populate_form(step,@responder_item)
   end
@@ -56,10 +54,8 @@ attr_accessor :responder_item, :steps
     content
   end
 
-  
   def responder_item_attributes
     @responder_item.attributes
-
   end
 
   def subject
@@ -79,12 +75,11 @@ attr_accessor :responder_item, :steps
   def current_step_name
     @steps[@current_step_no - 1][:name]
   end
-    
 
   def current_step_form_schema
     @steps[current_step_no - 1][:form_content]
   end
-  
+
   def current_step_form_content
     get_content_for_step @steps[current_step_no - 1][:form_content]
   end
@@ -93,11 +88,10 @@ attr_accessor :responder_item, :steps
     @current_step || @steps.first
   end
 
-  
   def step(step_no)
     self.current_step = @steps[step_no - 1]
   end
-  
+
   def next_step
     @steps[@steps.index(current_step)+2]
   end
@@ -105,11 +99,11 @@ attr_accessor :responder_item, :steps
   def previous_step
     @steps[@steps.index(current_step)-1]
   end
-  
+
   def current_step_no
     @current_step_no ||= @steps.index(current_step)+1
   end
-  
+
   def next_step_no
     @steps.index(current_step)+2
   end
@@ -125,20 +119,20 @@ attr_accessor :responder_item, :steps
   def last_step?
     current_step == @steps.last
   end
-  
+
   def next_is_last?
     next_step_no == @steps.size
   end
-  
+
   def update_attributes(attributes)
     attributes.each do |i|
       i.each do |k,v|
-          rootObject =  eval(k.to_s.classify).find(v.with_indifferent_access[:id])
-          rootObject.update_attributes(v)
+        rootObject =  eval(k.to_s.classify).find(v.with_indifferent_access[:id])
+        rootObject.update_attributes(v)
       end
     end
   end
-  
+
   private
   def get_parent_relation(parent, form_obj, form_content)
     if form_content[:as].is_a?(Array)
@@ -167,7 +161,6 @@ attr_accessor :responder_item, :steps
         relation_obj
       end
     end
-
   end
 
   def get_relation_attributes(obj)
@@ -177,7 +170,7 @@ attr_accessor :responder_item, :steps
       obj.attributes
     end
   end
-  
+
   def type_is_nested_model?(field)
     return if field.is_a?(String) || field[:type].nil?
     (field.respond_to?(:has_key?) && (field[:type] == "NestedModel" || field[:type].include?("NestedCollection")))
