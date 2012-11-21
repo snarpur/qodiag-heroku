@@ -28,9 +28,7 @@ class User < ActiveRecord::Base
   end
 
   def self.invite_respondent_as_guardian(params)
-      user = User.invite!(params) do |u|
-        u.skip_invitation = true
-      end
+      user = User.invite!(params) 
       user.set_role(:respondent)
       user.person.set_responder_item_subject
       user.update_attributes({:invited_by_id => params[:invited_by_id]})

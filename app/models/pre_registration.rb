@@ -48,12 +48,9 @@ attr_accessor :responder_item, :steps
             end
           end
         else
-  
           content[item] = relation_obj.attributes
-
           content[item] = content[item].merge(populate_nested_entry(settings[:schema],relation_obj))
         end
-        
       end
     end
     content

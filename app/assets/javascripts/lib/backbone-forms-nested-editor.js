@@ -1,5 +1,3 @@
-Backbone.Form.editors.List.Modal.ModalAdapter = Backbone.BootstrapModal;
-
 //DELETE: Hack to make BackboneRelational work with backbone forms
  // Backbone.Form.editors.Base.prototype._initialize = Backbone.Form.editors.Base.prototype.initialize;
  //        Backbone.Form.editors.Base.prototype.initialize = function(options) {

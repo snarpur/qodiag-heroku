@@ -12,8 +12,8 @@ is:
         group: "samanburðarhópur"
         teacher: "kennaramat"
         parent: "foreldramat"
-    client_registration: 
-      name: Aðrar upplýsingar
+    respondent_registration: 
+      name: Grunnuplýsingar
     adhd-rating-scale:
       name: "ADHD Mælikvarði"
       terms:
