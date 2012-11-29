@@ -1,4 +1,4 @@
-class App.Models.PreRegistrationForm extends App.Models.Base
+class App.Models.FormRootObject extends App.Models.Base
 
   initialize:=>
     super
@@ -12,7 +12,6 @@ class App.Models.PreRegistrationForm extends App.Models.Base
 
   setUrl:(self,url)=>
     @.url = ()->
-      console.log url
       url
   
   getFormRootObject:=>

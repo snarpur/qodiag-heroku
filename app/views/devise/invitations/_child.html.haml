@@ -1,4 +1,5 @@
 = f.simple_fields_for :relationships do |parent_relationship|
+  = debug parent_relationship.object
   = parent_relationship.simple_fields_for :relation, @user.person.relations.first do |child|
     = child.input :sex, :collection => [[t('terms.boy'),'male'],[t('terms.girl'),'female']],  :as => :radio
     = child.input :firstname

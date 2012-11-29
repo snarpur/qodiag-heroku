@@ -1,6 +1,6 @@
 class Person < ActiveRecord::Base
 
-  # validates_presence_of :firstname, :sex, :lastname
+  validates_presence_of :firstname #, :sex, :lastname
   # validate :presence_of_full_cpr
   # validates_length_of :full_cpr, :is => 10, :allow_nil => true
   # validates_length_of :cpr, :is => 4
@@ -87,12 +87,13 @@ class Person < ActiveRecord::Base
      where("name = 'guardian' AND end IS NULL")
     end
   end
-
+  
+  #FIXME: ARE both of these associations in use
   has_many :spouse_relationships, :class_name => "Relationship", :foreign_key => "person_id", :conditions => {:name => 'spouse'}
   has_many :spouses_relationships, :class_name => "Relationship", :conditions => {:name => 'spouse'}
  
 
-
+  accepts_nested_attributes_for :user, :allow_destroy => true
   accepts_nested_attributes_for :relations, :allow_destroy => true
   accepts_nested_attributes_for :relationships, :allow_destroy => true #,  :reject_if => proc {|attributes| attributes['person_id'].blank?}
   accepts_nested_attributes_for :inverse_relationships, :allow_destroy => true
@@ -103,23 +104,23 @@ class Person < ActiveRecord::Base
 
 
   attr_accessible :id, :firstname, :lastname, :sex, :ispatient, :dateofbirth, :cpr, :workphone, :mobilephone, :occupation, :workplace, :full_cpr,
-                  :address_id, :relations_attributes, :inverse_relations_attributes, :relationships_attributes, :inverse_relationships_attributes,  :address_attributes, 
+                  :address_id, :user_attributes, :relations_attributes, :inverse_relations_attributes, :relationships_attributes, :inverse_relationships_attributes,  :address_attributes, 
                   :spouse_relationships_attributes, :respondent_responder_items_attributes, :patient_responder_items_attributes 
 
-  validates_associated :relationships, :inverse_relationships, :address
+  validates_associated :user,:relationships, :inverse_relationships, :address
 
   delegate :email,
            :to => :user, :prefix => true
 
 
-  def self.new_as_guardian_by_invitation(inviter) 
+  def self.new_as_guardian_by_invitation(inviter)
     person = Person.new
-    child = person.relations.build
-    person.relationships.build(:name => "guardian").inverse_relation  = child
-    registration = person.respondent_responder_items.build( :registration_identifier => "respondent_registration",
+    # child = person.relations.build
+    # person.relationships.build(:name => "guardian").inverse_relation  = child
+    person.respondent_responder_items.build( :registration_identifier => "respondent_registration",
                                                         :caretaker_id => inviter.id,
                                                         :deadline => Time.zone.now.advance(:weeks => 2))
-    child.inverse_relationships.build(:name=> "patient", :person_id => inviter.id)
+    # child.inverse_relationships.build(:name=> "patient", :person_id => inviter.id)
     person
   end
 
@@ -171,6 +172,11 @@ class Person < ActiveRecord::Base
     self.inverse_relations.guardians
   end
 
+  def user_invitation
+    self.build_user({:invitation => true})    
+  end
+
+  
   def presence_of_cpr
     errors.add(:cpr, "cannot be empty") if
       ispatient == true and cpr.nil?
@@ -263,6 +269,14 @@ class Person < ActiveRecord::Base
 
   def is_person_parent(person)
     self.parents.include?(person)
+  end
+
+  def new_child_as_parent
+    self.relationships.build({:name => 'parent'})
+  end
+
+  def new_child_as_guardian
+      self.relationships.build({:name => 'guardian'})
   end
 
   #REFACTOR: Change method name to opposite_parent_relation

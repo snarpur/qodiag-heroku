@@ -3,68 +3,78 @@ steps:
   - 
     name: contact_info
     form_content:
-      person:
-        model: App.Models.Person
-        as: respondent
+      responder_item:
+        model: App.Models.Base
         type: NestedModel
-        schema: 
-          id: Hidden 
-          firstname: 
-            validators:
-              - required
-          address: 
+        schema:
+          id: Text
+          respondent:
+            model: App.Models.Person
+            as: respondent
             type: NestedModel
-            model: App.Models.Address
             schema: 
-              street_1: Text
-              id: Hidden
-              town: Text
+              id: Hidden 
+              firstname: 
+                validators:
+                  - required
+              address: 
+                type: NestedModel
+                model: App.Models.Address
+                schema: 
+                  street_1: Text
+                  id: Hidden
+                  town: Text
 
   -
     name: subject_parent
     form_content:
-      person:  
-        model: App.Models.Person
-        as:  subject
+      responder_item:
+        model: App.Models.ResponderItem
         type: NestedModel
         schema:
-          id:  Hidden
-          firstname:  Text
-          inverse_relations:
-            type: App.FormEditors.NestedCollection
-            collection: App.Collections.Person 
-            as: responder_item.opposite_parent_relation
+          id: Text
+          subject:  
+            model: App.Models.Person
+            as: subject
+            type: NestedModel
             schema:
-              id:  Hidden
-              lastname:  Text
-              relationships:
+              id: Text
+              firstname: Text
+              inverse_relations:
                 type: App.FormEditors.NestedCollection
-                collection: App.Collections.Relationships
-                as: [responder_item.opposite_parent_relationship,responder_item.opposite_parent_guardian_relationship]
+                collection: App.Collections.Person 
+                as: responder_item.opposite_parent_relation
                 schema:
-                  parent:
-                    id: Hidden
-                    person_id: Hidden
-                    relation_id: Hidden
-                    name: Hidden
-                  guardian:
-                    id: Hidden 
-                    person_id: Hidden 
-                    relation_id: Hidden 
-                    name: Hidden 
-                    status:
-                      type: Checkbox
-              spouse_relationships:
-                type: App.FormEditors.NestedCollection
-                as: [responder_item.parents_relationship]
-                collection: App.Collections.Relationships
-                schema:
-                  id: Hidden 
-                  person_id: Hidden 
-                  relation_id: Hidden
-                  name: Hidden
-                  status:
-                    type: Checkbox
+                  id: Hidden
+                  lastname: Text
+                  relationships:
+                    type: App.FormEditors.NestedCollection
+                    collection: App.Collections.Relationships
+                    as: [responder_item.opposite_parent_relationship,responder_item.opposite_parent_guardian_relationship]
+                    schema:
+                      parent:
+                        id: Hidden
+                        person_id: Hidden
+                        relation_id: Hidden
+                        name: Hidden
+                      guardian:
+                        id: Hidden 
+                        person_id: Hidden 
+                        relation_id: Hidden 
+                        name: Hidden 
+                        status:
+                          type: Checkbox
+                  spouse_relationships:
+                    type: App.FormEditors.NestedCollection
+                    as: [responder_item.parents_relationship]
+                    collection: App.Collections.Relationships
+                    schema:
+                      id: Hidden 
+                      person_id: Hidden 
+                      relation_id: Hidden
+                      name: Hidden
+                      status:
+                        type: Checkbox
 
 
 

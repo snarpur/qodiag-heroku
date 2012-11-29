@@ -2,8 +2,6 @@ class App.Models.ResponderItem extends Backbone.Model
   urlRoot: "/responder_items"
   paramRoot: '/responder_items'
 
-  initialize:->
-  
   deadlineIsPassed:=>
    deadline = Date.parse(@.get('deadline'))
    deadline.isBefore(Date.today())

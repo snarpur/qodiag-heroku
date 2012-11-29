@@ -1,4 +1,4 @@
-class App.Views.PreRegistration extends Backbone.View
+class App.Views.FormRenderer extends Backbone.View
  
   id: "form-wizard"
 
@@ -6,7 +6,7 @@ class App.Views.PreRegistration extends Backbone.View
     "click button": "validateForm"
 
   initialize:()=>
-    @model = new App.Models.PreRegistration(@.options.model_attributes)
+    @model = new App.Models.FormRenderer(@.options.model_attributes)
     @model.on("change:current_step_no", @move)
     @
   
@@ -24,6 +24,7 @@ class App.Views.PreRegistration extends Backbone.View
 
   prepareSubmit:=>
     @model.off("destructionComplete")
+    console.warn @model.url()
     @model.get('rootModel').url = @model.url()
     @.trigger("submitForm",@model.url())
   
@@ -65,7 +66,7 @@ class App.Views.PreRegistration extends Backbone.View
   render:=>
     $(@el).html(@template()(@model.toJSON())) 
     @renderSteps()
-    @renderStepNavigation()
+    # @renderStepNavigation()
     @
   
 

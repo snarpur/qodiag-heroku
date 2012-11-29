@@ -26,17 +26,25 @@ class User < ActiveRecord::Base
     user.person = Person.new_as_guardian_by_invitation(params[:inviter].person)
     user
   end
-
+ 
   def self.invite_respondent_as_guardian(params)
       user = User.invite!(params) 
       user.set_role(:respondent)
       user.person.set_responder_item_subject
       user.update_attributes({:invited_by_id => params[:invited_by_id]})
   end
-
+  
+  def attributes
+    KK.log "in user attr #{self.invitation}",:r
+    invitation = {"invitation" => self.invitation}
+    super.merge!(invitation)
+  end 
+  
   def invitation?
+    KK.log self.invitation,:b
     self.invitation ||= false
   end
+  
 
   def role?(role)
     return !!self.roles.find_by_name(role.to_s)
@@ -56,3 +64,4 @@ class User < ActiveRecord::Base
 
 end
 
+  

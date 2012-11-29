@@ -1,28 +1,40 @@
 class Devise::InvitationsController < ApplicationController
 
-  before_filter :get_user, :only => [:index,:new]
+  before_filter :get_user
   before_filter :build_new_user, :only => [:new], :if => :logged_in?
   load_resource :user, :parent => false
   authorize_resource :user, :parent => false, :except => [:edit, :update]
-
+  respond_to :json
 
   def new
-    @user ||= User.new
-    respond_to do |format|
-      format.html
-    end
+    responder_item = ResponderItem.new({:caretaker_id => @current_user.person.id, :registration_identifier => "respondent_registration" })
+    params = {:root_object => responder_item,:step_no => 1, :form_template => 'guardian_invitation'}
+    @form_preprocessor = BackboneFormsPreprocessor::Base.new(params)
+
   end
 
   def create
-    @user = User.new(params[:user].merge!({:invitation => true}))
-    @user.valid?
-    if @user.errors.empty?
-      User.invite_respondent_as_guardian(params[:user])
-      flash[:notice] = I18n.t('devise.invitations.send_instructions',:email => @user.email)
-      redirect_to after_sign_in_path_for(User)
+    params.merge!({:form_template => 'guardian_invitation'})
+    @form_preprocessor =  BackboneFormsPreprocessor::UserInvitation.new(params)
+    @form_preprocessor.validate
+    KK.log "@form_preprocessor.errors.empty? #{@form_preprocessor.errors.empty?}",:g
+    if @form_preprocessor.errors.empty?
+      @form_preprocessor.root_object.save
+      @form_preprocessor.user.invite!(@current_user)
+      # flash[:notice] = I18n.t('devise.invitations.send_instructions',:email => @user.email)
+      # redirect_to after_sign_in_path_for(User)
     else
-      render :action => :new
+      KK.log "renderting in g elese #{@form_preprocessor.user}"
+      render 'devise/invitations/new'
     end
+
+    # if @user.errors.empty?
+    #   User.invite_respondent_as_guardian(params[:user])
+    #   flash[:notice] = I18n.t('devise.invitations.send_instructions',:email => @user.email)
+    #   redirect_to after_sign_in_path_for(User)
+    # else
+    #   render :action => :new
+    # end
   end
 
   def edit
@@ -54,7 +66,8 @@ class Devise::InvitationsController < ApplicationController
     end
 
     def build_new_user
-      @user = User.new_respondent_as_guardian_by_invitation({:role_ids => params[:role_ids], :inviter=> @current_user})
+      @user = User.new_respondent_as_guardian_by_invitation({ :role_ids => params[:role_ids],
+                                                              :inviter=> @current_user})
     end
 
 end

@@ -40,7 +40,7 @@ is:
       unlock_instructions:
         subject: 'Unlock Instructions breytt'
       invitation_instructions:
-        usersubject: 'Snarpur - Nýskráning'
+        user_subject: 'Snarpur - Nýskráning'
         body:
           greeting: "Sæl(l) %{name}"
           text: "Vinsamlegast klárið nýskráningu með því að fylgja eftirfarandi slóð"

@@ -1,0 +1,54 @@
+form_identifier: guardian_invitation
+steps:
+  - 
+    name: guardian_info
+    form_content:
+      responder_item:
+        model: App.Models.Base
+        type: NestedModel
+        schema: 
+          id: Text
+          registration_identifier: Text
+          caretaker_id: Text 
+          respondent:
+            model: App.Models.Person
+            type: NestedModel
+            schema:
+              id: Hidden
+              firstname: Text
+              lastname: Text
+              user:
+                as: user_invitation
+                model: App.Models.Base
+                type: NestedModel
+                schema: 
+                  email: Text
+                  invitation: Text
+              relationships:
+                type: App.FormEditors.NestedCollection
+                collection: App.Collections.Relationships
+                as: ['new_child_as_parent','new_child_as_guardian']
+                schema:
+                  parent:
+                    id: Hidden
+                    person_id: Hidden
+                    relation_id: Hidden
+                    name: Hidden
+                    status: 
+                      type: Checkbox
+                      editorAttrs: {checked: true}
+                  guardian:
+                    id: Hidden 
+                    person_id: Hidden 
+                    relation_id: Hidden 
+                    name: Text
+                    status: 
+                      type: Checkbox
+                      editorAttrs: {checked: true}
+
+
+
+
+
+
+

@@ -20,9 +20,9 @@ class App.Models.Relationship extends App.Models.Base
     selectWithTitle = _.map(select,((i)-> i.title = @.get('name')),@)
 
   setStatus:()=>
-    if @.get("name") == 'parent'
-      @.set('status',true)
-    else if @.isNew()
+    # if @.get("name") == 'parent'
+    #   @.set('status',true)
+    if @.isNew()
       @.set('status',false)
     else
       @.set('status',true)

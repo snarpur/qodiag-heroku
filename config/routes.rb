@@ -17,7 +17,6 @@ Snarpur::Application.routes.draw do
   resources :people
   resources :relationships
   resources :pre_registrations
-
   resources :responder_items do
       resources :people
   end
@@ -36,9 +35,13 @@ end
   match 'people/:subject_id/responder_items/responses/:respondent_id/:survey_id' => 'responder_items#responses', :via => :get
   match 'people/:subject_id/responder_items/survey/:survey_id' => 'responder_items#survey', :via => :get
 
-  match 'pre_registrations/:responder_item_id/edit/step/:step_no' => 'pre_registrations#edit', :via => :get
-  match 'pre_registrations/:responder_item_id/edit' => 'pre_registrations#edit', :via => :get
-  match 'pre_registrations/:responder_item_id/edit/step/:step_no' => 'pre_registrations#update', :via => [:post]
+  # match 'pre_registrations/:responder_item_id/edit/step/:step_no' => 'pre_registrations#edit', :via => :get
+  # match 'pre_registrations/:responder_item_id/edit' => 'pre_registrations#edit', :via => :get
+  # match 'pre_registrations/:responder_item_id/edit/step/:step_no' => 'pre_registrations#update', :via => [:post]
+  
+  match 'pre_registrations/:id/edit/step/:step_no' => 'pre_registrations#edit',:defaults => { :step_no => 1}, :via => [:get], :as => :pre_registration_step
+  match 'pre_registrations/:id/edit/step/:step_no' => 'pre_registrations#update',:defaults => { :step_no => 1}, :via => [:post]
+
 
   get "pages/error_401"
   get "pages/help"

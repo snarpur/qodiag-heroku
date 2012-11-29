@@ -21,9 +21,9 @@ class ResponderItem < ActiveRecord::Base
   scope :by_subject, lambda {|subject_id| where("subject_id = ?", subject_id)} 
   accepts_nested_attributes_for :respondent, :subject, :person
 
-  attr_accessible :registration_identifier, :id, :caretaker_id, :deadline, :completed, :complete_item, :respondent_id, :subject_id, :survey_id, :subject_attributes, :respondent_attributes
+  attr_accessible :registration_identifier, :id, :caretaker_id, :deadline, :completed, :complete_item, :respondent_id, :subject_id, :survey_id,:person_attributes, :subject_attributes, :respondent_attributes
   validates_presence_of :registration_identifier, :if => Proc.new { |a| a.survey_id.nil? }
-  # validates_associated :respondent
+  validates_associated :respondent, :subject
 
 
   def self.new_patient_item(params,caretaker)
@@ -62,9 +62,6 @@ class ResponderItem < ActiveRecord::Base
    if is_complete.to_i == 1 && self.completed.nil?
     self.completed = Time.zone.now
    end
-  end
-
-  def complete_item
   end
 
   def result
