@@ -16,6 +16,9 @@ $icn_m: 45px
   font-family: 'Entypo'
   &.small
     +icon-size($icn_s)
+  &.medium
+    +icon-size($icn_m)
+    font-size: 6em
   &.close
     font-size: 3em
     position: absolute
@@ -34,21 +37,18 @@ $icn_m: 45px
     display: block
   &.close, &.add-1
     cursor: pointer
-
-  &.medium
-    +icon-size($icn_m)
-    font-size: 6em
+  &.line-chart-icn,
+  &.column-chart-icn
+    +border-radius(5px)
+    background-color: #fff
     cursor: pointer
-    &.line-chart-icn,
-    &.column-chart-icn
-      +border-radius(5px)
-      background-color: #fff
-      &:hover
-        +opacity(0.6)
-    &.line-chart-icn:after
-      content: "\1F4C8"     
-    &.column-chart-icn:after
-      content: "\1F4CA"
+    &:hover
+      +opacity(0.6)
+  &.line-chart-icn:after
+    content: "\1F4C8"     
+  &.column-chart-icn:after
+    content: "\1F4CA"
+
 
 
 

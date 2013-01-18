@@ -2,30 +2,17 @@ class App.Models.Relationship extends App.Models.Base
 
   initialize:=>
     super
-    @setSelectFieldTitle()
-    @setStatus()
     @setFormModel()
 
-  setSchema:=>
-    if @.get('schema')?
-      @.get('schema')
-    else if !@.get('schema')? and @?.collection?.schema?
-      if @.collection.schema[@.get('name')]
-        $.extend(true,{},@.collection.schema[@.get('name')])
-      else
-        $.extend(true,{},@.collection.schema)
 
   setSelectFieldTitle:=>
     select = _.filter(@.schema,((v,k)->  v?.type?.search(/Select|Checkbox|Radio/) > -1))
     selectWithTitle = _.map(select,((i)-> i.title = @.get('name')),@)
 
-  setStatus:()=>
-    # if @.get("name") == 'parent'
-    #   @.set('status',true)
-    if @.isNew()
-      @.set('status',false)
-    else
-      @.set('status',true)
+  fieldTitle:(field)->
+    super
+    @i18nTitle("#{@.get('object_class')}.is_#{@.get('name')}")
+
 
   setFormModel:()=>
     if @.get("form")?
@@ -45,9 +32,9 @@ class App.Collections.Relationships extends App.Collections.Base
   
   setRelationship:(model)=>
     if model.get('status') == false and not model.isNew()
-      @.registrationModel.addToDestructionQueue(model)
+      @formRenderModel.addToDestructionQueue(model)
     else
-      @.registrationModel.removeFromDestructionQueue(model)
+      @formRenderModel.removeFromDestructionQueue(model)
 
   renewModel:(model)=>
     attrs = _.without(model.getSchemaFields(),'id')
@@ -56,7 +43,7 @@ class App.Collections.Relationships extends App.Collections.Base
     @.add(modelAttrs)
   
   isPendingDestruction:(model)=>
-    @.registrationModel.isPendingDestruction(model)
+    @.formRenderModel.isPendingDestruction(model)
   
   toJSON:=>
     _.chain(@.models)

@@ -1,0 +1,9 @@
+is:
+  forms:
+    parent_guardian: "foreldri/forræðishafi"
+    client: "skjólstæðingur"
+    guardian_invitation:
+      name: "Beiðni um skráningu"
+      steps:
+        guardian_info: "Foreldri/forráðamaður"
+        patient_info: "Upplýsingar um sjúkling"

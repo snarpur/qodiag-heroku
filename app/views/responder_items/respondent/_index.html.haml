@@ -1,6 +1,7 @@
 -@current_user.person.relations.guardian_of.each do |child|
   %h1= child.full_name
   -registrations = @current_user.person.responder_items_by_type_and_status(:registrations, [:uncompleted,:overdue])
+  =debug registrations
   -if registrations.length > 0
     =responder_item_partial_for(@current_user.person,registrations,:registrations)
   - pending = @current_user.person.responder_items_by_type_and_status(:surveys, [:uncompleted,:overdue])

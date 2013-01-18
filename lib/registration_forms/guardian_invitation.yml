@@ -6,49 +6,72 @@ steps:
       responder_item:
         model: App.Models.Base
         type: NestedModel
-        schema: 
-          id: Text
-          registration_identifier: Text
-          caretaker_id: Text 
+        schema:
+          deadline: Date
+          id: Hidden
+          registration_identifier: Hidden
+          caretaker_id: Hidden
           respondent:
-            model: App.Models.Person
+            model: App.Models.Base
             type: NestedModel
+            as: get_respondent
             schema:
               id: Hidden
-              firstname: Text
-              lastname: Text
+              firstname:
+                type: Text
+                template: field
+                validators: ['required']
+              lastname:
+                type: Text
+                template: field
+                validators: ['required']
               user:
                 as: user_invitation
                 model: App.Models.Base
                 type: NestedModel
                 schema: 
-                  email: Text
-                  invitation: Text
-              relationships:
-                type: App.FormEditors.NestedCollection
+                  email:
+                    type: Text
+                    template: field
+                    validators: ['required','email']
+                  invitation: Hidden
+  -
+    name: patient_info
+    form_content:
+      responder_item:
+        model: App.Models.Base
+        type: NestedModel 
+        schema:
+          id: Hidden
+          respondent:
+            model: App.Models.Base
+            type: NestedModel
+            as: get_respondent
+            title: "parent_guardian"
+            schema:
+              id: Hidden
+              firstname: Text
+              lastname: Text
+          subject:
+            model: App.Models.Base
+            type: NestedModel
+            as: get_subject
+            title: "client"
+            schema:
+              id: Hidden
+              firstname: Text
+              lastname: Text
+              inverse_relationships:
+                type: NestedCollection
                 collection: App.Collections.Relationships
-                as: ['new_child_as_parent','new_child_as_guardian']
+                as: ['inverse_parent_relationship_as_current_subject','inverse_guardian_relationship_as_current_subject']
                 schema:
-                  parent:
-                    id: Hidden
-                    person_id: Hidden
-                    relation_id: Hidden
-                    name: Hidden
-                    status: 
-                      type: Checkbox
-                      editorAttrs: {checked: true}
-                  guardian:
-                    id: Hidden 
-                    person_id: Hidden 
-                    relation_id: Hidden 
-                    name: Text
-                    status: 
-                      type: Checkbox
-                      editorAttrs: {checked: true}
-
-
-
-
-
+                  id: Hidden
+                  person_id: Hidden
+                  relation_id: Hidden
+                  name: Hidden
+                  status:
+                    type: Checkbox
+                    template: checkbox
 
 

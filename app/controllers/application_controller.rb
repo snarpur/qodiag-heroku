@@ -19,10 +19,14 @@ class ApplicationController < ActionController::Base
     render "pages/error_401", :status => 401
   end
   
-  private
+private
   def get_user
-      @current_user = current_user
-    end
+    @current_user = current_user
+   end
+
+  def logged_in?
+    !current_user.nil?
+  end
 
   def pick_params(params,class_name=nil)
    if class_name.nil?

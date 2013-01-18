@@ -9,7 +9,6 @@ class Person < ActiveRecord::Base
   
   #DEPRICATED: probably depricated
   #after_initialize :person_factory, :if => :new_record?
-  #attr_accessor :factory
 
   belongs_to :address
   has_one :user
@@ -104,25 +103,47 @@ class Person < ActiveRecord::Base
 
 
   attr_accessible :id, :firstname, :lastname, :sex, :ispatient, :dateofbirth, :cpr, :workphone, :mobilephone, :occupation, :workplace, :full_cpr,
-                  :address_id, :user_attributes, :relations_attributes, :inverse_relations_attributes, :relationships_attributes, :inverse_relationships_attributes,  :address_attributes, 
-                  :spouse_relationships_attributes, :respondent_responder_items_attributes, :patient_responder_items_attributes 
+                  :address_id, :relations_attributes, :inverse_relations_attributes, :relationships_attributes, :inverse_relationships_attributes,  :address_attributes, 
+                  :spouse_relationships_attributes, :respondent_responder_items_attributes, :patient_responder_items_attributes, :user_attributes
+  
+  validates_associated :relationships, :inverse_relationships, :address #:user,
 
-  validates_associated :user,:relationships, :inverse_relationships, :address
-
+  attr_accessor :current_responder_item
+  
+  #NOTE: Only used in cucumber features, to be considered when refactoring features  
   delegate :email,
            :to => :user, :prefix => true
 
 
-  def self.new_as_guardian_by_invitation(inviter)
-    person = Person.new
-    # child = person.relations.build
-    # person.relationships.build(:name => "guardian").inverse_relation  = child
-    person.respondent_responder_items.build( :registration_identifier => "respondent_registration",
-                                                        :caretaker_id => inviter.id,
-                                                        :deadline => Time.zone.now.advance(:weeks => 2))
-    # child.inverse_relationships.build(:name=> "patient", :person_id => inviter.id)
-    person
+  RELATIONSHIP_NAMES = %w{parent guardian}
+
+  def self.relationship_names
+    RELATIONSHIP_NAMES
   end
+
+   RELATIONSHIP_NAMES.each do |name|
+    define_method("inverse_#{name}_relationship_to_person") do |person|
+      self.inverse_relationships & Relationship.where(:person_id => person.id, :name => name)
+    end
+
+    define_method("build_inverse_#{name}_relationship_to_person") do |person|
+      self.inverse_relationships.build(:person_id => person.id, :name => name, :status => false)
+    end
+  end
+
+
+
+  #DELETE: test first if is in use
+  # def self.new_as_guardian_by_invitation(inviter)
+  #   person = Person.new
+  #   # child = person.relations.build
+  #   # person.relationships.build(:name => "guardian").inverse_relation  = child
+  #   person.respondent_responder_items.build( :registration_identifier => "respondent_registration",
+  #                                                       :caretaker_id => inviter.id,
+  #                                                       :deadline => Time.zone.now.advance(:weeks => 2))
+  #   # child.inverse_relationships.build(:name=> "patient", :person_id => inviter.id)
+  #   person
+  # end
 
   def responder_items
     self.send("#{self.role}_responder_items")
@@ -131,7 +152,6 @@ class Person < ActiveRecord::Base
   def responder_items_by_type_and_status(name,status=:all)
       status = status.is_a?(Array) ? status : [status]
       items = []
-
       status.each do |s|
         if name.eql?(:all)
           item_group = self.responder_items & ResponderItem.send(s)
@@ -171,11 +191,6 @@ class Person < ActiveRecord::Base
   def respondents
     self.inverse_relations.guardians
   end
-
-  def user_invitation
-    self.build_user({:invitation => true})    
-  end
-
   
   def presence_of_cpr
     errors.add(:cpr, "cannot be empty") if
@@ -216,6 +231,7 @@ class Person < ActiveRecord::Base
   def full_name
     "#{self.firstname} #{self.lastname}"
   end
+
 
   def mother
     self.inverse_relations.mother.first

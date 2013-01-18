@@ -27,6 +27,9 @@ gem 'newrelic_rpm'
 gem 'browsernizer'
 gem 'rabl'
 gem 'active_attr'
+gem 'draper'
+gem 'time_diff'
+
 
 group :assets do
   gem "sass-rails"

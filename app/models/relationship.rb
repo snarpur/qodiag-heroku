@@ -9,7 +9,7 @@ class Relationship < ActiveRecord::Base
   after_create :split_names
   validate :name_presence
   accepts_nested_attributes_for :person, :relation
-  attr_accessible :person_id, :relation_id, :name, :start, :end, :relation_attributes, :inverse_relation_attributes
+  attr_accessible :person_id, :relation_id, :name, :start, :end, :relation_attributes, :inverse_relation_attributes, :status
 
   def name_presence
     name.delete("") if name.is_a?(Array)
@@ -17,6 +17,18 @@ class Relationship < ActiveRecord::Base
       name.is_a?(Array) && name.empty?
   end
 
+  def status
+    if self.new_record?
+      read_attribute(:status)
+    else
+      (self.read_attribute(:end).nil?)
+    end
+  end
+
+  def status=(status)
+    write_attribute(:status, status)
+  end
+  
   private
   def delete_nameless
      self.destroy 
@@ -26,7 +38,7 @@ class Relationship < ActiveRecord::Base
     (name == nil)
   end
 
-  #IMPORTANT: Change forms no arrays with relationships names signifies create multiple relationships
+  #IMPORTANT: Change forms no arrays with relationships names signifies create multiple relationship
   def split_names
      self.name.delete("") if self.name.is_a?(Array)
     if self.name.is_a?(Array) && !self.name.empty?

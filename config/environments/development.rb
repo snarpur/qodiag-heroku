@@ -35,7 +35,7 @@ Snarpur::Application.configure do
   config.assets.compress = false
   # Expands the lines which load the assets
   config.assets.debug = false
-  config.sass.debug_info = false
+  config.sass.compressed=false
+  config.sass.debug_info = true
   config.sass.preferred_syntax = :sass
-
 end

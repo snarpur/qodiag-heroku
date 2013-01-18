@@ -1,40 +1,34 @@
 class Devise::InvitationsController < ApplicationController
-
   before_filter :get_user
-  before_filter :build_new_user, :only => [:new], :if => :logged_in?
-  load_resource :user, :parent => false
-  authorize_resource :user, :parent => false, :except => [:edit, :update]
+
+
+  #DELETE: build_new_user before filter
+  # before_filter :build_new_user, :only => [:new], :if => :logged_in?
+  before_filter :role_invitation, :only =>[:new,:create], :if => :logged_in?
+  authorize_resource :ResponderItem, :parent => false, :except => [:edit, :update]
+  load_resource :ResponderItem, :parent => false
   respond_to :json
 
   def new
-    responder_item = ResponderItem.new({:caretaker_id => @current_user.person.id, :registration_identifier => "respondent_registration" })
-    params = {:root_object => responder_item,:step_no => 1, :form_template => 'guardian_invitation'}
-    @form_preprocessor = BackboneFormsPreprocessor::Base.new(params)
-
+    root_params = {:registration_identifier => :respondent_registration, :id => params[:root_object_id], :caretaker_id => @current_user.person.id}
+    @root_object = ResponderItemDecorator.decorate(ResponderItem.find_or_initialize_by_id(root_params))
+    @form_object = BackboneFormsPreprocessor::UserInvitation.new(params.merge!({:form_template => "guardian_invitation", :root_object => @root_object, :invited_by => @current_user}))
   end
 
   def create
-    params.merge!({:form_template => 'guardian_invitation'})
-    @form_preprocessor =  BackboneFormsPreprocessor::UserInvitation.new(params)
-    @form_preprocessor.validate
-    KK.log "@form_preprocessor.errors.empty? #{@form_preprocessor.errors.empty?}",:g
-    if @form_preprocessor.errors.empty?
-      @form_preprocessor.root_object.save
-      @form_preprocessor.user.invite!(@current_user)
-      # flash[:notice] = I18n.t('devise.invitations.send_instructions',:email => @user.email)
-      # redirect_to after_sign_in_path_for(User)
+    @form_object = BackboneFormsPreprocessor::UserInvitation.new(params.merge({:form_template => "guardian_invitation" }))   
+    @form_object.validate   
+    if @form_object.errors.empty?
+      if @form_object.root_object.new_record?
+        @form_object.root_object.save
+      else
+        @form_object.save_step(pick_params(params[:form_content]).first)
+        # @form_object.root_object.reload
+      end
+      render 'devise/invitations/new'
     else
-      KK.log "renderting in g elese #{@form_preprocessor.user}"
       render 'devise/invitations/new'
     end
-
-    # if @user.errors.empty?
-    #   User.invite_respondent_as_guardian(params[:user])
-    #   flash[:notice] = I18n.t('devise.invitations.send_instructions',:email => @user.email)
-    #   redirect_to after_sign_in_path_for(User)
-    # else
-    #   render :action => :new
-    # end
   end
 
   def edit
@@ -57,12 +51,8 @@ class Devise::InvitationsController < ApplicationController
   end
 
   private
-    def logged_in?
-      !current_user.nil?
-    end
-
-    def get_user
-      @current_user = current_user
+    def role_invitation
+      @role_name = Role.find(params[:role_ids].first).name
     end
 
     def build_new_user

@@ -1,11 +1,14 @@
 /**
  * Include this file _after_ the main backbone-forms file to override the default templates.
  * You only need to include templates you want to override.
- * 
+ *
  * Requirements when customising templates:
  * - Each template must have one 'parent' element tag.
  * - "data-type" attributes are required.
  * - The main placeholder tags such as the following are required: fieldsets, fields
+        {{{#if title}}}\
+          <h2>{{title}}</h2>\
+        {{/if}}}\
  */
 ;(function() {
   var Form = Backbone.Form;
@@ -13,11 +16,13 @@
     
   //TWITTER BOOTSTRAP TEMPLATES
   //Requires Bootstrap 2.x
+
+
   Form.setTemplates({
 
     //HTML
     form: '\
-      <form class="form-horizontal">{{fieldsets}}</form>\
+      <form>{{fieldsets}}</form>\
     ',
 
     fieldset: '\
@@ -28,10 +33,10 @@
     ',
 
     field: '\
-      <div class="control-group field-{{key}}">\
+      <div class="control-group field-{{key}} {{typeClass}}">\
         <label class="control-label" for="{{id}}">{{title}}</label>\
         <div class="controls">\
-          <div class="input-xlarge">{{editor}}</div>\
+          <div>{{editor}}</div>\
           <div class="help-block">{{help}}</div>\
         </div>\
       </div>\
@@ -39,11 +44,20 @@
 
     nestedField: '\
       <div class="field-{{key}}">\
-        <div title="{{title}}" class="input-xlarge">{{editor}}</div>\
+        <div title="{{title}}">{{editor}}</div>\
         <div class="help-block">{{help}}</div>\
       </div>\
     ',
 
+   checkbox: '\
+      <div class="control-group field-{{key}} type-checkbox">\
+        <div class="controls">\
+          <label class="checkbox" for="{{id}}">{{editor}}{{title}}</label>\
+          <div class="help-block">{{help}}</div>\
+        </div>\
+      </div>\
+    ',
+    
     list: '\
       <div class="bbf-list">\
         <ul class="unstyled clearfix">{{items}}</ul>\

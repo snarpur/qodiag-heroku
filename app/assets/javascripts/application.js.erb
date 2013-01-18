@@ -1,22 +1,21 @@
 //= require jquery	  	
-//= require jquery_ujs	
+//= require jquery_ujs
+//= require js-templates/handlebars.js
 //= require jquery-ui/development-bundle/ui/jquery.ui.datepicker	
-//= require jquery-ui/development-bundle/ui/i18n/jquery-ui-i18n	
+//= require jquery-ui/development-bundle/ui/i18n/jquery-ui-i18n
 //= require underscore/underscore	
 //= require underscore/underscore.string	
 //= require backbone/backbone.js	
 //= require backbone/backboneCSRF.js
 //= require backbone-forms/distribution/backbone-forms.js
-//= require js-templates/handlebars.js	
 //= require date/build/date-is-IS.js	
 //= require XDate/XDate
 //= require Highcharts-2.2.1/js/highcharts.src
+//= require jquery.quicksearch
 //= require i18n
 //= require i18n/translations
-//= require jquery.quicksearch
 //= require app
 //= require controllers
-//= require i18n
 //= require lib
 //= require models
 //= require templates
@@ -27,6 +26,5 @@ $(document).ready(function(){
 	$.datepicker.setDefaults($.datepicker.regional[I18n.locale]);
 	$('input#patient-search').quicksearch('table tbody tr');
 	$("#flash > .notice").fadeOut(4000);
-
 });
 

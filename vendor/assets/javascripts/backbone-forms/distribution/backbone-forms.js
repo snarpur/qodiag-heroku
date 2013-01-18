@@ -95,7 +95,6 @@ var Form = (function() {
       var self = this,
           options = this.options,
           template = Form.templates[options.template];
-      
       //Create el from template
       var $form = $(template({
         fieldsets: '<b class="bbf-tmp"></b>'
@@ -179,12 +178,12 @@ var Form = (function() {
         
         field.editor.on('all', function(event) {
           // args = ["change", editor]
-          args = _.toArray(arguments);
+          var args = _.toArray(arguments);
           args[0] = key + ':' + event;
           args.splice(1, 0, this);
           // args = ["key:change", this=form, editor]
 
-          this.trigger.apply(this, args)
+          this.trigger.apply(this, args);
         }, self);
         
         field.editor.on('change', function() {
@@ -204,12 +203,12 @@ var Form = (function() {
           }, 0);
         }, self);
         
-        if (itemSchema.type != 'Hidden') {
+        if (itemSchema.type !== 'Hidden') {
           $fieldsContainer.append(fieldEl);
         }
       });
 
-      $fieldsContainer = $fieldsContainer.children().unwrap()
+      $fieldsContainer = $fieldsContainer.children().unwrap();
 
       return $fieldset;
     },
@@ -282,6 +281,7 @@ var Form = (function() {
               //Set error on field if there isn't one already
               if (self.fields[key] && !errors[key]) {
                 self.fields[key].setError(val);
+                errors[key] = val;
               }
               
               else {
@@ -341,11 +341,20 @@ var Form = (function() {
     
     /**
      * Update field values, referenced by key
-     * @param {Object} data     New values to set
+     * @param {Object|String} key     New values to set, or property to set
+     * @param val                     Value to set
      */
-    setValue: function(data) {
-      for (var key in data) {
-        if (_.has(this.fields, key)) {
+    setValue: function(prop, val) {
+      var data = {};
+      if (typeof prop === 'string') {
+        data[prop] = val;
+      } else {
+        data = prop;
+      }
+      
+      var key;
+      for (key in this.schema) {
+        if (data[key] !== undefined) {
           this.fields[key].setValue(data[key]);
         }
       }
@@ -372,7 +381,7 @@ var Form = (function() {
     blur: function() {
       if (!this.hasFocus) return;
       
-      focusedField = _.find(this.fields, function(field) { return field.editor.hasFocus; });
+      var focusedField = _.find(this.fields, function(field) { return field.editor.hasFocus; });
       
       if (focusedField) focusedField.editor.blur();
     },
@@ -392,10 +401,10 @@ var Form = (function() {
     
     
     trigger: function(event) {
-      if (event == 'focus') {
+      if (event === 'focus') {
         this.hasFocus = true;
       }
-      else if (event == 'blur') {
+      else if (event === 'blur') {
         this.hasFocus = false;
       }
       
@@ -429,7 +438,7 @@ Form.helpers = (function() {
       result = result[fields[i]];
     }
     return result;
-  }
+  };
   
   /**
    * This function is used to transform the key from a schema into the title used in a label.
@@ -460,17 +469,15 @@ Form.helpers = (function() {
   helpers.compileTemplate = function(str) {
       //Store user's template options
       var _interpolateBackup = _.templateSettings.interpolate;
-
       //Set custom template settings
       _.templateSettings.interpolate = /\{\{(.+?)\}\}/g;
 
       var template = _.template(str);
-
       //Reset to users' template settings
       _.templateSettings.interpolate = _interpolateBackup;
 
       return template;
-  }
+  };
 
   /**
    * Helper to create a template with the {{mustache}} style tags.
@@ -482,6 +489,7 @@ Form.helpers = (function() {
   helpers.createTemplate = function(str, context) {
     var template = helpers.compileTemplate(str);
     
+
     if (!context) {
       return template;
     } else {
@@ -496,7 +504,7 @@ Form.helpers = (function() {
    */
   helpers.setTemplateCompiler = function(compiler) {
     helpers.compileTemplate = compiler;
-  }
+  };
   
   
   /**
@@ -576,7 +584,7 @@ Form.helpers = (function() {
     args.push(callback);
     
     fn.apply(context, args);
-  }
+  };
   
   /**
    * Returns a validation function based on the type defined in the schema
@@ -633,7 +641,7 @@ Form.validators = (function() {
     email: 'Invalid email address',
     url: 'Invalid URL',
     match: 'Must match field "{{field}}"'
-  }
+  };
   
   validators.required = function(options) {
     options = _.extend({
@@ -649,7 +657,7 @@ Form.validators = (function() {
         message: Form.helpers.createTemplate(options.message, options)
       };
       
-      if (value === null || value === undefined || value === '') return err;
+      if (value === null || value === undefined || value === false || value === '') return err;
     };
   };
   
@@ -690,7 +698,7 @@ Form.validators = (function() {
     options = _.extend({
       type: 'url',
       message: this.errMessages.url,
-      regexp: /^(http|https):\/\/(([A-Z0-9][A-Z0-9_-]*)(\.[A-Z0-9][A-Z0-9_-]*)+)(:(\d+))?\/?/i
+      regexp: /^(http|https):\/\/(([A-Z0-9][A-Z0-9_\-]*)(\.[A-Z0-9][A-Z0-9_\-]*)+)(:(\d+))?\/?/i
     }, options);
     
     return validators.regexp(options);
@@ -715,8 +723,8 @@ Form.validators = (function() {
       //Don't check empty values (add a 'required' validator for this)
       if (value === null || value === undefined || value === '') return;
       
-      if (value != attrs[options.field]) return err;
-    }
+      if (value !== attrs[options.field]) return err;
+    };
   };
 
 
@@ -777,6 +785,29 @@ Form.Field = (function() {
       }, options.schema);
     },
 
+
+    /**
+     * Provides the context for rendering the field
+     * Override this to extend the default context
+     *
+     * @param {Object} schema
+     * @param {View} editor
+     *
+     * @return {Object}     Locals passed to the template
+     */
+    renderingContext: function(schema, editor) {
+      return {
+        key: this.key,
+        title: schema.title,
+        id: editor.id,
+        type: schema.type,
+        editor: '<b class="bbf-tmp-editor"></b>',
+        help: '<b class="bbf-tmp-help"></b>',
+        error: '<b class="bbf-tmp-error"></b>'
+      };
+    },
+
+
     /**
      * Renders the field
      */
@@ -804,14 +835,12 @@ Form.Field = (function() {
       var editor = this.editor = helpers.createEditor(schema.type, options);
       
       //Create the element
-      var $field = $(templates[schema.template]({
-        key: this.key,
-        title: schema.title,
-        id: editor.id,
-        type: schema.type,
-        editor: '<b class="bbf-tmp-editor"></b>',
-        help: '<b class="bbf-tmp-help"></b>'
-      }));
+      var $field = $(templates[schema.template](this.renderingContext(schema, editor)));
+
+      //Remove <label> if it's not wanted
+      if (schema.title === false) {
+        $field.find('label[for="'+editor.id+'"]').first().remove();
+      }
       
       //Render editor
       $field.find('.bbf-tmp-editor').replaceWith(editor.render().el);
@@ -820,7 +849,11 @@ Form.Field = (function() {
       this.$help = $('.bbf-tmp-help', $field).parent();
       this.$help.empty();
       if (this.schema.help) this.$help.html(this.schema.help);
-      
+
+      //Create error container
+      this.$error = $($('.bbf-tmp-error', $field).parent()[0]);
+      if (this.$error) this.$error.empty();
+
       //Add custom CSS class names
       if (this.schema.fieldClass) $field.addClass(this.schema.fieldClass);
       
@@ -885,7 +918,11 @@ Form.Field = (function() {
 
       this.$el.addClass(errClass);
       
-      if (this.$help) this.$help.html(msg);
+      if (this.$error) {
+        this.$error.html(msg);
+      } else if (this.$help) {
+        this.$help.html(msg);
+      }
     },
     
     /**
@@ -897,7 +934,9 @@ Form.Field = (function() {
       this.$el.removeClass(errClass);
       
       // some fields (e.g., Hidden), may not have a help el
-      if (this.$help) {
+      if (this.$error) {
+        this.$error.empty();
+      } else if (this.$help) {
         this.$help.empty();
       
         //Reset help text if available
@@ -951,6 +990,7 @@ Form.Field = (function() {
   });
 
 })();
+
 
 //========================================================================
 //EDITORS
@@ -1036,7 +1076,7 @@ Form.editors = (function() {
       var key = this.key || '';
 
       //Replace periods with underscores (e.g. for when using paths)
-      return key.replace(/\./g, '_')
+      return key.replace(/\./g, '_');
     },
     
     /**
@@ -1077,7 +1117,7 @@ Form.editors = (function() {
         _.every(validators, function(validator) {
           error = getValidator(validator)(value, formValues);
 
-          return continueLoop = error ? false : true;
+          return error ? false : true;
         });
       }
 
@@ -1086,10 +1126,10 @@ Form.editors = (function() {
     
     
     trigger: function(event) {
-      if (event == 'focus') {
+      if (event === 'focus') {
         this.hasFocus = true;
       }
-      else if (event == 'blur') {
+      else if (event === 'blur') {
         this.hasFocus = false;
       }
       
@@ -1151,7 +1191,7 @@ Form.editors = (function() {
     
     determineChange: function(event) {
       var currentValue = this.$el.val();
-      var changed = (currentValue != this.previousValue);
+      var changed = (currentValue !== this.previousValue);
       
       if (changed) {
         this.previousValue = currentValue;
@@ -1211,6 +1251,7 @@ Form.editors = (function() {
       editors.Text.prototype.initialize.call(this, options);
 
       this.$el.attr('type', 'number');
+      this.$el.attr('step', 'any');
     },
 
     /**
@@ -1222,10 +1263,10 @@ Form.editors = (function() {
             setTimeout(function() {
               self.determineChange();
             }, 0);
-          }
+          };
           
       //Allow backspace
-      if (event.charCode == 0) {
+      if (event.charCode === 0) {
         delayedDetermineChange();
         return;
       }
@@ -1352,7 +1393,6 @@ Form.editors = (function() {
 
     initialize: function(options) {
       editors.Text.prototype.initialize.call(this, options);
-      this.schema.title = "";
 
       this.$el.attr('type', 'hidden');
     },
@@ -1472,7 +1512,7 @@ Form.editors = (function() {
 
       //Or Backbone collection
       else if (options instanceof Backbone.Collection) {
-        html = this._collectionToHtml(options)
+        html = this._collectionToHtml(options);
       }
 
       //Insert options
@@ -1532,7 +1572,7 @@ Form.editors = (function() {
       //Generate HTML
       _.each(array, function(option) {
         if (_.isObject(option)) {
-          var val = option.val ? option.val : '';
+          var val = (option.val || option.val === 0) ? option.val : '';
           html.push('<option value="'+val+'">'+option.label+'</option>');
         }
         else {
@@ -1562,7 +1602,7 @@ Form.editors = (function() {
     className: 'bbf-radio',
     
     events: {
-      'click input[type=radio]:not(:checked)': function() {
+      'change input[type=radio]': function() {
         this.trigger('change', this);
       },
       'focus input[type=radio]': function() {
@@ -1589,6 +1629,7 @@ Form.editors = (function() {
     
     focus: function() {
       if (this.hasFocus) return;
+      
       var checked = this.$('input[type=radio]:checked');
       if (checked[0]) {
         checked.focus();
@@ -1617,13 +1658,13 @@ Form.editors = (function() {
       _.each(array, function(option, index) {
         var itemHtml = '<li>';
         if (_.isObject(option)) {
-          var val = option.val ? option.val : '';
-          itemHtml += ('<input type="radio" name="'+self.id+'" value="'+val+'" id="'+self.id+'-'+index+'" />')
-          itemHtml += ('<label for="'+self.id+'-'+index+'">'+option.label+'</label>')
+          var val = (option.val || option.val === 0) ? option.val : '';
+          itemHtml += ('<input type="radio" name="'+self.id+'" value="'+val+'" id="'+self.id+'-'+index+'" />');
+          itemHtml += ('<label for="'+self.id+'-'+index+'">'+option.label+'</label>');
         }
         else {
-          itemHtml += ('<input type="radio" name="'+self.id+'" value="'+option+'" id="'+self.id+'-'+index+'" />')
-          itemHtml += ('<label for="'+self.id+'-'+index+'">'+option+'</label>')
+          itemHtml += ('<input type="radio" name="'+self.id+'" value="'+option+'" id="'+self.id+'-'+index+'" />');
+          itemHtml += ('<label for="'+self.id+'-'+index+'">'+option+'</label>');
         }
         itemHtml += '</li>';
         html.push(itemHtml);
@@ -1651,7 +1692,7 @@ Form.editors = (function() {
     
     events: {
       'click input[type=checkbox]': function() {
-        this.trigger('change', this)
+        this.trigger('change', this);
       },
       'focus input[type=checkbox]': function() {
         if (this.hasFocus) return;
@@ -1705,13 +1746,13 @@ Form.editors = (function() {
       _.each(array, function(option, index) {
         var itemHtml = '<li>';
         if (_.isObject(option)) {
-          var val = option.val ? option.val : '';
-          itemHtml += ('<input type="checkbox" name="'+self.id+'" value="'+val+'" id="'+self.id+'-'+index+'" />')
-          itemHtml += ('<label for="'+self.id+'-'+index+'">'+option.label+'</label>')
+          var val = (option.val || option.val === 0) ? option.val : '';
+          itemHtml += ('<input type="checkbox" name="'+self.id+'" value="'+val+'" id="'+self.id+'-'+index+'" />');
+          itemHtml += ('<label for="'+self.id+'-'+index+'">'+option.label+'</label>');
         }
         else {
-          itemHtml += ('<input type="checkbox" name="'+self.id+'" value="'+option+'" id="'+self.id+'-'+index+'" />')
-          itemHtml += ('<label for="'+self.id+'-'+index+'">'+option+'</label>')
+          itemHtml += ('<input type="checkbox" name="'+self.id+'" value="'+option+'" id="'+self.id+'-'+index+'" />');
+          itemHtml += ('<label for="'+self.id+'-'+index+'">'+option+'</label>');
         }
         itemHtml += '</li>';
         html.push(itemHtml);
@@ -1768,14 +1809,13 @@ Form.editors = (function() {
       return this;
     },
 
-    getValue: function() {    
+    getValue: function() {
       if (this.form) return this.form.getValue();
 
       return this.value;
     },
     
     setValue: function(value) {
-
       this.value = value;
       
       this.render();
@@ -1806,11 +1846,11 @@ Form.editors = (function() {
     _observeFormEvents: function() {
       this.form.on('all', function() {
         // args = ["key:change", form, fieldEditor]
-        args = _.toArray(arguments);
+        var args = _.toArray(arguments);
         args[1] = this;
         // args = ["key:change", this=objectEditor, fieldEditor]
         
-        this.trigger.apply(this, args)
+        this.trigger.apply(this, args);
       }, this);
     }
 
@@ -1840,9 +1880,7 @@ Form.editors = (function() {
           nestedModel = this.schema.model;
 
       //Wrap the data in a model if it isn't already a model instance
-      var modelInstance = (data.constructor == nestedModel)
-        ? data
-        : new nestedModel(data);
+      var modelInstance = (data.constructor === nestedModel) ? data : new nestedModel(data);
 
       this.form = new Form({
         model: modelInstance,
@@ -1867,7 +1905,6 @@ Form.editors = (function() {
      * @return {Error|null} Validation error or null
      */
     commit: function() {
-      console.log("THIS FORM ",this.form)
       var error = this.form.commit();
       if (error) {
         this.$el.addClass('error');
@@ -1914,12 +1951,12 @@ Form.editors = (function() {
     },
 
     initialize: function(options) {
-      options = options || {}
+      options = options || {};
 
       editors.Base.prototype.initialize.call(this, options);
 
       var Self = editors.Date,
-          today = new Date;
+          today = new Date();
 
       //Option defaults
       this.options = _.extend({
@@ -1961,7 +1998,10 @@ Form.editors = (function() {
         return '<option value="'+month+'">' + value + '</option>';
       });
 
-      var yearsOptions = _.map(_.range(schema.yearStart, schema.yearEnd + 1), function(year) {
+      var yearRange = schema.yearStart < schema.yearEnd ? 
+        _.range(schema.yearStart, schema.yearEnd + 1) :
+        _.range(schema.yearStart, schema.yearEnd - 1, -1);
+      var yearsOptions = _.map(yearRange, function(year) {
         return '<option value="'+year+'">' + year + '</option>';
       });
 
@@ -2102,7 +2142,7 @@ Form.editors = (function() {
 
     render: function() {
       function pad(n) {
-        return n < 10 ? '0' + n : n
+        return n < 10 ? '0' + n : n;
       }
 
       var schema = this.schema;
@@ -2221,7 +2261,6 @@ Form.editors = (function() {
   //Add function shortcuts
   Form.setTemplates = Form.helpers.setTemplates;
   Form.setTemplateCompiler = Form.helpers.setTemplateCompiler;
-
   Form.templates = {};
 
 
@@ -2245,6 +2284,7 @@ Form.editors = (function() {
         <label for="{{id}}">{{title}}</label>\
         <div class="bbf-editor">{{editor}}</div>\
         <div class="bbf-help">{{help}}</div>\
+        <div class="bbf-error">{{error}}</div>\
       </li>\
     ',
 
@@ -2253,6 +2293,7 @@ Form.editors = (function() {
         <label for="{{id}}">{{title}}</label>\
         <div class="bbf-editor">{{editor}}</div>\
         <div class="bbf-help">{{help}}</div>\
+        <div class="bbf-error">{{error}}</div>\
       </li>\
     ',
 
@@ -2287,6 +2328,15 @@ Form.editors = (function() {
       </div>\
     ',
 
+   checkbox: '\
+      <div class="control-group field-{{key}} type-checkbox">\
+        <div class="controls">\
+          <label class="checkbox" for="{{id}}">{{editor}}{{title}}</label>\
+          <div class="help-block">{{help}}</div>\
+        </div>\
+      </div>\
+    ',
+
     'list.Modal': '\
       <div class="bbf-list-modal">\
         {{summary}}\
@@ -2307,5 +2357,4 @@ Form.editors = (function() {
 
   //Exports
   Backbone.Form = Form;
-
 })(this);

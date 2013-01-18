@@ -11,6 +11,7 @@ is:
     workplace: "Vinnustaður"
     yearofbirth: "Fæðingarár"
   relationship:
+    is_parent: "Er forldri"
     is_guardian: "Er forræðishafi"
     not_guardian: "Er ekki forræðishafi"
     not_spouse: "Fyrrverandi maki"
@@ -25,6 +26,8 @@ is:
     zip_code: "Póstnúmer"
     town: "Sveitarfélag"
     home_phone: "Sími heima"
+  responder_item:
+    deadline: "Skilafrestur"
   user:
     email: "Netfang"
     password: "Lykilorð"

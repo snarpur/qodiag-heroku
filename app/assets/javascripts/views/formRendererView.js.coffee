@@ -1,12 +1,14 @@
 class App.Views.FormRenderer extends Backbone.View
  
   id: "form-wizard"
+  className: "form-base"
 
   events:
     "click button": "validateForm"
 
   initialize:()=>
-    @model = new App.Models.FormRenderer(@.options.model_attributes)
+    @model = if @.options.model? then @.options.model else new App.Models.FormRenderer(@.options.model_attributes)
+    @router = @.options.router
     @model.on("change:current_step_no", @move)
     @
   
@@ -24,7 +26,6 @@ class App.Views.FormRenderer extends Backbone.View
 
   prepareSubmit:=>
     @model.off("destructionComplete")
-    console.warn @model.url()
     @model.get('rootModel').url = @model.url()
     @.trigger("submitForm",@model.url())
   
@@ -36,8 +37,11 @@ class App.Views.FormRenderer extends Backbone.View
     view = @
     callbacks=
       success:(model, response) ->
-        view.model.set(response) 
-        view.renderSteps()
+        if (!_.isEmpty(response.errors) || view.model.is_last_step())
+          view.model.set(response) 
+          view.renderSteps()
+        else
+          view.router.navigate("step/s#{response.next_step_no}/i#{response.root_object_id}",{trigger: true,replace: true})      
       error:(model, response) ->
         console.log "error", model
   
@@ -57,16 +61,14 @@ class App.Views.FormRenderer extends Backbone.View
     @bindForm(form,rootModel)  
 
   renderStepNavigation:=>
-    view = @
-    _.each(@model.get("steps"),(v,i)->
-      step = new App.Views.PreRegistrationNavigationStep({model: view.model, step_no: i + 1, step_name: v})
-      $(".wizard-nav",view.el).append(step.render().el)
-    )
+    step = new App.Views.PreRegistrationNavigationStep({model: @model})
+    $(@el).prepend(step.render().el)
+  
 
   render:=>
     $(@el).html(@template()(@model.toJSON())) 
     @renderSteps()
-    # @renderStepNavigation()
+    @renderStepNavigation()
     @
   
 

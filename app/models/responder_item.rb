@@ -7,7 +7,8 @@ class ResponderItem < ActiveRecord::Base
   belongs_to :response_set
 
   delegate :response_to_chart, :to => :response_set
-  before_save :set_response_set, :if => :is_uncompleted_survey?
+  # after_initialize :set_current_responder_item
+  #before_save :set_response_set, :if => :is_uncompleted_survey?
 
   scope :overdue, where("deadline < ? AND completed IS NULL", Time.zone.now)
   scope :uncompleted, where("deadline >= ? AND completed IS NULL", Time.zone.now)
@@ -19,12 +20,30 @@ class ResponderItem < ActiveRecord::Base
   scope :surveys_by_group, ResponderItem.surveys.order('survey_id')
   scope :by_respondent, lambda {|respondent_id| where("respondent_id = ?", respondent_id)}
   scope :by_subject, lambda {|subject_id| where("subject_id = ?", subject_id)} 
-  accepts_nested_attributes_for :respondent, :subject, :person
-
-  attr_accessible :registration_identifier, :id, :caretaker_id, :deadline, :completed, :complete_item, :respondent_id, :subject_id, :survey_id,:person_attributes, :subject_attributes, :respondent_attributes
-  validates_presence_of :registration_identifier, :if => Proc.new { |a| a.survey_id.nil? }
+  accepts_nested_attributes_for :respondent, :subject
+  
+  attr_accessible :registration_identifier, :id, :caretaker_id, :deadline, :completed, :complete_item, :respondent_id, :subject_id, :survey_id, :days_until_deadline,:subject_attributes, :respondent_attributes
   validates_associated :respondent, :subject
 
+  ACTORS = %w{caretaker subject respondent}
+
+  ACTORS.each do |role|
+    define_method("build_and_prepare_#{role}") do |*opt|
+      arg = opt.first || {}
+      person = Person.new(arg)
+      person.current_responder_item= self
+      send("#{role}=", person)
+    end
+  end
+
+  ACTORS.each do |role|
+    define_method("get_#{role}") do
+      return  send("build_and_prepare_#{role}") if send("#{role}_id").nil?
+      person = Person.find(send("#{role}_id"))
+      person.current_responder_item= self
+      person
+    end
+  end
 
   def self.new_patient_item(params,caretaker)
     ResponderItem.new(params.merge({:caretaker_id => caretaker.id}))
@@ -49,7 +68,25 @@ class ResponderItem < ActiveRecord::Base
   def parents_relationship
     subject.parents_relationship
   end
+
+  def days_until_deadline
+    return if deadline_is_passed?
+    if deadline.nil?
+       1
+    else
+      Time.diff(DateTime.current,read_attribute(:deadline))[:day] 
+    end
+  end
+
+  def days_until_deadline=(days)
+    self.deadline = DateTime.current.advance(:days => days)
+  end
   
+  def deadline_is_passed?
+      return false if deadline.nil? 
+      deadline < DateTime.current
+  end
+
   def access_code
     self.survey.nil? ? self.registration_identifier : self.survey.access_code
   end
@@ -75,5 +112,12 @@ class ResponderItem < ActiveRecord::Base
 
   def set_response_set
     self.response_set=(ResponseSet.create(:survey_id => self.survey_id, :user_id => self.respondent.user.id))
+  end
+
+  def set_current_responder_item
+    %w{caretaker respondent subject}.each do |i|
+      person = self.send(i)
+      person.current_responder_item=(self) unless person.nil?
+    end
   end
 end

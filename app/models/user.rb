@@ -34,14 +34,13 @@ class User < ActiveRecord::Base
       user.update_attributes({:invited_by_id => params[:invited_by_id]})
   end
   
-  def attributes
-    KK.log "in user attr #{self.invitation}",:r
-    invitation = {"invitation" => self.invitation}
-    super.merge!(invitation)
-  end 
+  #DELETE: Deprected selected attributes are fetched in form processing  
+  # def attributes
+  #   invitation = {"invitation" => self.invitation}
+  #   super.merge!(invitation)
+  # end 
   
   def invitation?
-    KK.log self.invitation,:b
     self.invitation ||= false
   end
   

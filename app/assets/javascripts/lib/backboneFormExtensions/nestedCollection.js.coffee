@@ -139,3 +139,5 @@ App.FormEditors.NestedCollection = Backbone.Form.editors.NestedModel.extend({
     @$el.blur()
 
 })
+
+Backbone.Form.editors['NestedCollection'] = App.FormEditors.NestedCollection

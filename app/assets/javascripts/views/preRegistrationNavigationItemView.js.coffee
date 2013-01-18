@@ -2,28 +2,30 @@ App.Views.PreRegistrationNavigationStep ||= {}
 
 class App.Views.PreRegistrationNavigationStep extends Backbone.View
 
-
-  events:
-    "click span": "setStep"
-
-  initialize:->
-    @.step_no = @.options.step_no
-    @step_name = @.options.step_name
-  
-
-  attributes: =>
-    @setClass()
-  
-  setStep:(e)=>
-    @model.set({current_step_no: @step_no})
-  
-  setClass:->
-    {class: "current-step"}  if @.options.step_no == @model.get("current_step_no")
+  tagName: 'ul'
+  className: 'wizard-nav'
 
   template:->
     JST['templates/preRegistrationNavigationStepTmpl']
+  
+  attributes: =>
+    @setClass()
 
+  setClass:(step_no)->
+    "current-step"  if step_no == @model.get("current_step_no")
+  
   render:=>
-    $(@el).html(@template()({step_no: @step_no, step_name: @step_name}))
+    opt= 
+      rootObjectId: @model.getFormRootObjectlId()
+      lastStepNo: @model.get('last_step_no')
+    
+    _.each(@model.get('step_names'),((item,index)->
+        opt.stepNo = index+1
+        opt.stepName = @model.i18nStepName(item)
+        opt.cssClass = @setClass(index+1)
+        $(@el).append(@template()(opt))
+      ),@)
+
+
     @
 
