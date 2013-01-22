@@ -69,24 +69,6 @@ class ResponderItem < ActiveRecord::Base
     subject.parents_relationship
   end
 
-  def days_until_deadline
-    return if deadline_is_passed?
-    if deadline.nil?
-       1
-    else
-      Time.diff(DateTime.current,read_attribute(:deadline))[:day] 
-    end
-  end
-
-  def days_until_deadline=(days)
-    self.deadline = DateTime.current.advance(:days => days)
-  end
-  
-  def deadline_is_passed?
-      return false if deadline.nil? 
-      deadline < DateTime.current
-  end
-
   def access_code
     self.survey.nil? ? self.registration_identifier : self.survey.access_code
   end

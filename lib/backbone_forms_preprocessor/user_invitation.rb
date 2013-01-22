@@ -13,7 +13,14 @@ class BackboneFormsPreprocessor::UserInvitation < BackboneFormsPreprocessor::Bas
   end
 
   def complete_callback
-    user.invite!(invited_by) if user.password.nil? && user.invitation_accepted_at.nil?
+    user.invite!(invited_by) if (user.password.nil? && user.invitation_accepted_at.nil? && user.invitation_token.nil?)
+    @complete = true
+  end
+
+  def redirect_url_on_complete
+    if @complete
+      Rails.application.routes.url_helpers.subject_responder_items_path(@root_object.subject.model.id)
+    end
   end
 
 end

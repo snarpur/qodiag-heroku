@@ -9,14 +9,10 @@ class App.Views.FormRenderer extends Backbone.View
   initialize:()=>
     @model = if @.options.model? then @.options.model else new App.Models.FormRenderer(@.options.model_attributes)
     @router = @.options.router
-    @model.on("change:current_step_no", @move)
     @
   
   template:->
     JST['templates/preRegistrationTmpl']
- 
-  move:=>
-    console.log "moving",arguments
 
   validateForm:=>
     errors = @model.get('form').commit()
@@ -37,9 +33,12 @@ class App.Views.FormRenderer extends Backbone.View
     view = @
     callbacks=
       success:(model, response) ->
-        if (!_.isEmpty(response.errors) || view.model.is_last_step())
+        if (!_.isEmpty(response.errors))
           view.model.set(response) 
           view.renderSteps()
+        else if view.model.is_last_step()
+          view.model.set(response)
+          window.location.href =  view.model.redirectUrl()
         else
           view.router.navigate("step/s#{response.next_step_no}/i#{response.root_object_id}",{trigger: true,replace: true})      
       error:(model, response) ->
@@ -55,6 +54,7 @@ class App.Views.FormRenderer extends Backbone.View
     form = new Backbone.Form({ model: rootModel}).render()
     @model.set("form",form)
     rootModel.set("formHandler",@)
+    console.log "rootMOdel :: ", rootModel
     rootModel.on("readyToSave",@submitForm)
     @.$('#wizard-fields').empty()
     @.$('#wizard-fields').append(form.el)
@@ -66,7 +66,7 @@ class App.Views.FormRenderer extends Backbone.View
   
 
   render:=>
-    $(@el).html(@template()(@model.toJSON())) 
+    $(@el).html(@template()(@model.toJSON()))
     @renderSteps()
     @renderStepNavigation()
     @

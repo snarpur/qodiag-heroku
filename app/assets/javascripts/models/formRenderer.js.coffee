@@ -37,6 +37,10 @@ class App.Models.FormRenderer extends Backbone.Model
   i18nStepName:(step_name)->
     I18n.translate("forms.#{@getFormTemplate()}.steps.#{step_name}")
 
+  redirectUrl:->
+      path = new RegExp("#{window.location.pathname}#{window.location.hash}")
+      redirectPath = "#{window.location.href}".replace(path,@get('redirect_url_on_complete'))
+  
   addToDestructionQueue:(model)=>
     @.destructionQueue.add(model)
 

@@ -3,8 +3,7 @@ class App.Models.Relationship extends App.Models.Base
   initialize:=>
     super
     @setFormModel()
-
-
+  
   setSelectFieldTitle:=>
     select = _.filter(@.schema,((v,k)->  v?.type?.search(/Select|Checkbox|Radio/) > -1))
     selectWithTitle = _.map(select,((i)-> i.title = @.get('name')),@)
@@ -12,7 +11,6 @@ class App.Models.Relationship extends App.Models.Base
   fieldTitle:(field)->
     super
     @i18nTitle("#{@.get('object_class')}.is_#{@.get('name')}")
-
 
   setFormModel:()=>
     if @.get("form")?
@@ -53,8 +51,6 @@ class App.Collections.Relationships extends App.Collections.Base
       ),@)
       .compact()
       .value()
-
-
 
 
 App.Models.Relationships = App.Models.Relationship

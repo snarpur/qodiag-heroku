@@ -29,7 +29,8 @@ steps:
                 as: user_invitation
                 model: App.Models.Base
                 type: NestedModel
-                schema: 
+                schema:
+                  id: Hidden 
                   email:
                     type: Text
                     template: field
@@ -47,7 +48,7 @@ steps:
             model: App.Models.Base
             type: NestedModel
             as: get_respondent
-            title: "parent_guardian"
+            title: parent_guardian
             schema:
               id: Hidden
               firstname: Text
@@ -56,7 +57,7 @@ steps:
             model: App.Models.Base
             type: NestedModel
             as: get_subject
-            title: "client"
+            title: client
             schema:
               id: Hidden
               firstname: Text
@@ -64,14 +65,33 @@ steps:
               inverse_relationships:
                 type: NestedCollection
                 collection: App.Collections.Relationships
-                as: ['inverse_parent_relationship_as_current_subject','inverse_guardian_relationship_as_current_subject']
+                as:
+                  - inverse_parent_relationship_as_current_subject 
+                  - inverse_guardian_relationship_as_current_subject
+                  - inverse_patient_relationship_as_current_subject
                 schema:
-                  id: Hidden
-                  person_id: Hidden
-                  relation_id: Hidden
-                  name: Hidden
-                  status:
-                    type: Checkbox
-                    template: checkbox
+                  -
+                    id: Hidden
+                    person_id: Hidden
+                    relation_id: Hidden
+                    name: Hidden
+                    status:
+                      type: Checkbox
+                      template: checkbox
+                  -
+                    id: Hidden
+                    person_id: Hidden
+                    relation_id: Hidden
+                    name: Hidden
+                    status:
+                      type: Checkbox
+                      template: checkbox
+                  -
+                    id: Hidden
+                    person_id: Hidden
+                    relation_id: Hidden
+                    name: Hidden
+
+
 
 

@@ -23,7 +23,7 @@ class Devise::InvitationsController < ApplicationController
         @form_object.root_object.save
       else
         @form_object.save_step(pick_params(params[:form_content]).first)
-        # @form_object.root_object.reload
+        KK.log "FORM IS COMPLETE  #{@form_object.complete}" 
       end
       render 'devise/invitations/new'
     else

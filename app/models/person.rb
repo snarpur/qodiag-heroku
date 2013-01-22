@@ -115,7 +115,7 @@ class Person < ActiveRecord::Base
            :to => :user, :prefix => true
 
 
-  RELATIONSHIP_NAMES = %w{parent guardian}
+  RELATIONSHIP_NAMES = %w{parent guardian patient}
 
   def self.relationship_names
     RELATIONSHIP_NAMES
@@ -130,20 +130,6 @@ class Person < ActiveRecord::Base
       self.inverse_relationships.build(:person_id => person.id, :name => name, :status => false)
     end
   end
-
-
-
-  #DELETE: test first if is in use
-  # def self.new_as_guardian_by_invitation(inviter)
-  #   person = Person.new
-  #   # child = person.relations.build
-  #   # person.relationships.build(:name => "guardian").inverse_relation  = child
-  #   person.respondent_responder_items.build( :registration_identifier => "respondent_registration",
-  #                                                       :caretaker_id => inviter.id,
-  #                                                       :deadline => Time.zone.now.advance(:weeks => 2))
-  #   # child.inverse_relationships.build(:name=> "patient", :person_id => inviter.id)
-  #   person
-  # end
 
   def responder_items
     self.send("#{self.role}_responder_items")
@@ -185,7 +171,7 @@ class Person < ActiveRecord::Base
   end
 
   def age
-    Date.current.year - self.dateofbirth.year
+    Date.current.year - dateofbirth.year if dateofbirth
   end
 
   def respondents
@@ -337,13 +323,6 @@ class Person < ActiveRecord::Base
 
   def get_association(name)
     self.send(:relationships).map {|r| r.name == name.to_s}
-  end
-
-  def set_responder_item_subject
-   responder_items = self.respondent_responder_items
-    unless responder_items.empty?
-      responder_items.last.update_attribute("subject_id", self.relations.guardian_of.last.id)
-    end
   end
   
   def spouse_relationships_attributes=(params)

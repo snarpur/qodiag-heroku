@@ -20,25 +20,6 @@ class User < ActiveRecord::Base
   validates_associated :person
 
   scope :by_role, lambda {|r| joins(:roles).where("roles.name" => r)}
-
-  def self.new_respondent_as_guardian_by_invitation(params)
-    user = User.new(:role_ids => params[:role_ids], :invited_by_id => params[:inviter].id)
-    user.person = Person.new_as_guardian_by_invitation(params[:inviter].person)
-    user
-  end
- 
-  def self.invite_respondent_as_guardian(params)
-      user = User.invite!(params) 
-      user.set_role(:respondent)
-      user.person.set_responder_item_subject
-      user.update_attributes({:invited_by_id => params[:invited_by_id]})
-  end
-  
-  #DELETE: Deprected selected attributes are fetched in form processing  
-  # def attributes
-  #   invitation = {"invitation" => self.invitation}
-  #   super.merge!(invitation)
-  # end 
   
   def invitation?
     self.invitation ||= false

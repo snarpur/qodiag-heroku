@@ -3,6 +3,7 @@ module BackboneFormsPreprocessor
   class Base
     include ActiveAttr::Model
     attr_accessor :root_object, :steps,:form_template
+    attr_reader :complete, :redirect_url_on_complete
 
     def initialize(params)
       @form_template = params[:form_template]
@@ -49,11 +50,13 @@ module BackboneFormsPreprocessor
           relation_obj = get_parent_relation(parent,item,settings)
           if relation_obj.is_a?(Array)
             content[item] = relation_obj.map do |i|
-              obj_attrs = schema_attributes(i,settings[:schema])
               if settings[:schema].is_a?(Array)
                 index = relation_obj.index(i)
+                obj_attrs = schema_attributes(i,settings[:schema].at(index))
+                obj_attrs[:schema] = settings[:schema].at(index) #NOTE: Schema hardcoded on has_many with different schemas
                 obj_attrs.merge(populate_nested_entry(settings[:schema].at(index),i))
               else
+                obj_attrs = schema_attributes(i,settings[:schema])
                 obj_attrs.merge(populate_nested_entry(settings[:schema],i))
               end
             end
@@ -184,9 +187,7 @@ module BackboneFormsPreprocessor
 
     def save_step(attributes)
       if update_attributes(attributes)
-        KK.log "attributes updated -- step_is_last#{last_step?}"
         if last_step? && respond_to?(:complete_callback)
-          KK.log "going into callback",:b
           complete_callback
         end
       end   
@@ -236,6 +237,7 @@ module BackboneFormsPreprocessor
 
     def schema_attributes_keys(schema)
       schema.select{|k,v| k unless type_is_nested_model?(v)}.keys
+
     end
 
     def schema_attributes(obj,schema)

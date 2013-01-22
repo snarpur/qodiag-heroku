@@ -13,7 +13,6 @@ class App.Controllers.Invitations.Guardian extends Backbone.Router
   index: ->
     invitationsView = new App.Views.FormRenderer({router: @, model_attributes: @form})
     $("#content").append(invitationsView.render().el)
-
  
   step:(step_no,root_object_id)->
     formRenderer = new App.Models.FormRenderer({root_url: @root_url, current_step_no: step_no, root_object_id: root_object_id})
