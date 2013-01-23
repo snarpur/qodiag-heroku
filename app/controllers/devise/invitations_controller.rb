@@ -53,7 +53,7 @@ class Devise::InvitationsController < ApplicationController
     def role_invitation
       @role_name = Role.find(params[:role_ids].first).name
     end
-
+    #DELETE: also callback declaration
     def build_new_user
       @user = User.new_respondent_as_guardian_by_invitation({ :role_ids => params[:role_ids],
                                                               :inviter=> @current_user})

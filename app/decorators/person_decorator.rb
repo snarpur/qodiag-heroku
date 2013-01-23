@@ -42,8 +42,6 @@ class PersonDecorator < Draper::Decorator
 
   def spouse_relationship_through_parenting_of_subject
    other_parent = model.other_parent_of(model.current_responder_item.subject)
-   KK.log "other_parent :: #{model.current_responder_item.subject}",:g
-   KK.log "other_parent :: #{other_parent}",:r
    spouse_relationship = (model.spouse_relationship_to(other_parent) + model.inverse_spouse_relationship_to(other_parent)).first
    spouse_relationship || model.build_spouse_relationship_to(other_parent)
   end

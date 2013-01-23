@@ -1,6 +1,6 @@
   source "http://rubygems.org"
 
-gem "rails", "3.1.3"
+gem "rails", "3.2.11"
 
 gem "sass","~> 3.1.11"
 gem "ejs"
@@ -19,7 +19,7 @@ gem "surveyor"
 gem "fastercsv", "~> 1.5.4"
 gem "formtastic", "< 2.0"
 gem "hash-deep-merge"
-gem 'rails-dev-tweaks', '~> 0.5.1'
+gem 'rails-dev-tweaks', '~> 0.6.1'
 gem "i18n-js"
 gem "factory_girl_rails", "~> 3.0"
 gem "faker"
@@ -32,12 +32,11 @@ gem 'time_diff'
 
 
 group :assets do
-  gem "sass-rails"
-  gem "coffee-rails", "~> 3.1.0"
-  gem "uglifier"
+  gem 'sass-rails', "  ~> 3.2.3"
+  gem 'coffee-rails', "~> 3.2.1"
+  gem 'uglifier', '>=1.0.3'
   gem 'closure-compiler'
   gem 'compass', :git => 'git://github.com/chriseppstein/compass.git', :tag => 'v0.12.alpha.0'
-  # gem "fancy-buttons", :require => 'fancy-buttons'
 end
 
 
@@ -59,7 +58,6 @@ group :development, :test do
   gem "awesome_print"
   gem "spork", "~> 0.9.0.rc"
   gem "watchr"
-  gem "populator"
   gem "syntax"
 
   gem "guard-haml"
@@ -68,6 +66,4 @@ group :development, :test do
 end
 
 #gem "rb-fsevent", :group => :test, :require => false if RUBY_PLATFORM =~ /darwin/i
-
-gem "rails-footnotes", ">= 3.7", :group => :development
 gem 'quiet_assets', :group => :development

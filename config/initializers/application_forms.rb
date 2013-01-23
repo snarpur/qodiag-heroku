@@ -17,7 +17,7 @@ module ApplicationForms
   end
   
   def ApplicationForms.load_forms
-    Dir.foreach(form_config_path) do |item|
+    Dir.foreach(FORM_PATH) do |item|
       next if item == '.' or item == '..'
         ApplicationForms.set_form_config(item)
     end
