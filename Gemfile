@@ -27,7 +27,7 @@ gem 'newrelic_rpm'
 gem 'browsernizer'
 gem 'rabl'
 gem 'active_attr'
-gem 'draper'
+gem 'draper', '~> 1.0'
 gem 'time_diff'
 
 

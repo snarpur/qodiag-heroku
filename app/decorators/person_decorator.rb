@@ -1,4 +1,5 @@
-class PersonDecorator < Draper::Base
+class PersonDecorator < Draper::Decorator
+  delegate_all
   decorates :person
   decorates_association :user
   decorates_association :relations
@@ -9,16 +10,41 @@ class PersonDecorator < Draper::Base
    UserDecorator.decorate(user_model)
   end
 
-  Person.relationship_names.each do |name|        
+  (Person.relationship_names - ["spouse"]).each do |name|        
     define_method("inverse_#{name}_relationship_as_current_subject") do 
       person = if name == 'patient' then model.current_responder_item.caretaker else model.current_responder_item.respondent end
-      relationship = model.send("inverse_#{name}_relationship_to_person",person)
+      relationship = model.send("inverse_#{name}_relationship_to",person)
       if relationship.empty?
-       relationship = model.send("build_inverse_#{name}_relationship_to_person", person)
+       relationship = model.send("build_inverse_#{name}_relationship_to", person)
       else
         relationship = relationship.first
       end
       relationship
     end
+
+    define_method("#{name}_relationship_to_current_subject") do
+      person = model.current_responder_item.subject
+      relationship = model.send("#{name}_relationship_to",person)
+      if relationship.empty?
+       relationship = model.send("build_#{name}_relationship_to", person)
+      else
+        relationship = relationship.first
+      end
+      relationship
+    end
+  end
+
+  def opposite_parent_relation
+    p = model.find_or_create_opposite_parent_relation(model.current_responder_item.respondent)
+    p.current_responder_item=(model.current_responder_item)
+    p
+  end
+
+  def spouse_relationship_through_parenting_of_subject
+   other_parent = model.other_parent_of(model.current_responder_item.subject)
+   KK.log "other_parent :: #{model.current_responder_item.subject}",:g
+   KK.log "other_parent :: #{other_parent}",:r
+   spouse_relationship = (model.spouse_relationship_to(other_parent) + model.inverse_spouse_relationship_to(other_parent)).first
+   spouse_relationship || model.build_spouse_relationship_to(other_parent)
   end
 end

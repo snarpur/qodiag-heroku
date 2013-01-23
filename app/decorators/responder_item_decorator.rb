@@ -1,15 +1,14 @@
-class ResponderItemDecorator < Draper::Base
+class ResponderItemDecorator < Draper::Decorator
+  delegate_all
   decorates :responder_item
   decorates_association :respondent
   decorates_association :subject
   
   def respondent
-    p = model.respondent || model.build_respondent
-    PersonDecorator.decorate(p)
+   model.get_respondent
   end
   
   def subject
-    p = model.subject || model.build_subject
-    PersonDecorator.decorate(p)
+    model.get_subject
   end
 end

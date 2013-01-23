@@ -39,8 +39,8 @@ end
   # match 'pre_registrations/:responder_item_id/edit' => 'pre_registrations#edit', :via => :get
   # match 'pre_registrations/:responder_item_id/edit/step/:step_no' => 'pre_registrations#update', :via => [:post]
   
-  match 'pre_registrations/:id/edit/step/:step_no' => 'pre_registrations#edit',:defaults => { :step_no => 1}, :via => [:get], :as => :pre_registration_step
-  match 'pre_registrations/:id/edit/step/:step_no' => 'pre_registrations#update',:defaults => { :step_no => 1}, :via => [:post]
+  match 'pre_registrations/edit/step/:step_no/:id' => 'pre_registrations#edit',:defaults => { :step_no => 1}, :via => [:get], :as => :pre_registration_step
+  match 'pre_registrations/edit/step/:step_no/:id' => 'pre_registrations#update',:defaults => { :step_no => 1}, :via => [:post]
 
 
   get "pages/error_401"

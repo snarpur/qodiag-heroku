@@ -1,18 +1,17 @@
-#TODO: Create registration form when respondent is guardian only
 module BackboneFormsPreprocessor
   class Base
     include ActiveAttr::Model
-    attr_accessor :root_object, :steps,:form_template
-    attr_reader :complete, :redirect_url_on_complete
+    attr_accessor :root_object, :steps,:form_identifier
+    attr_reader :complete, :redirect_url_on_complete, :root_url
 
     def initialize(params)
-      @form_template = params[:form_template]
+      @form_identifier = params[:form_template]
       @current_step_no = params[:step_no].nil? ? 1 : params[:step_no].to_i
       @root_object = get_root_object(@current_step_no,params)
     end
 
     def steps
-      @steps ||= load_steps
+      @steps ||= form_template['steps']
     end
 
     def get_root_object(step_no,params)
@@ -23,8 +22,8 @@ module BackboneFormsPreprocessor
       end
     end
 
-    def load_steps
-      Marshal::load(Marshal.dump(ApplicationForms.get(@form_template)['steps']))
+    def form_template
+      @form_template ||= Marshal::load(Marshal.dump(ApplicationForms.get(@form_identifier)))
     end
     
     #REFACTOR: Clarify initention for improved readability
@@ -71,6 +70,10 @@ module BackboneFormsPreprocessor
 
     def root_object_id
       @root_object.id
+    end
+
+    def root_url
+      @form_template[:root_url]
     end
     
     def responder_item_attributes
@@ -205,7 +208,6 @@ module BackboneFormsPreprocessor
       @root_object.errors.messages
     end
 
-
     private
     def get_parent_relation(parent, form_obj, form_content)
       if form_content[:as].is_a?(Array)
@@ -237,7 +239,6 @@ module BackboneFormsPreprocessor
 
     def schema_attributes_keys(schema)
       schema.select{|k,v| k unless type_is_nested_model?(v)}.keys
-
     end
 
     def schema_attributes(obj,schema)

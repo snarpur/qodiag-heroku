@@ -1,13 +1,13 @@
-class App.Controllers.PreRegistrationsController extends Backbone.Router
+ class App.Controllers.PreRegistrationsController extends Backbone.Router
 
   initialize:(options)->
-    @status = options 
+    @form = options 
 
 
   routes:
     "" : "index"
 
   index: ->
-    # preRegistrationModel = new App.Models.PreRegistration(@status)
-    preRegistrationView = new App.Views.PreRegistration({model_attributes: @status})
+    # preRegistrationView = new App.Views.PreRegistration({model_attributes: @form})
+    preRegistrationView = new App.Views.FormRenderer({router: @, model_attributes: @form})
     $("#content").append(preRegistrationView.render().el)

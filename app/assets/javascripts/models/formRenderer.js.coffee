@@ -3,8 +3,10 @@ class App.Models.FormRenderer extends Backbone.Model
   initialize:=>
     @.destructionQueue = new Backbone.Collection
     @.url = ()->
-      "#{@.get('root_url')}#{@step_url()}#{@root_object_url()}"
-
+      path = new RegExp("#{window.location.pathname}#{window.location.hash}")
+      url = "/#{@.get('root_url')}#{@step_url()}#{@root_object_url()}"
+      "#{window.location.href}".replace(path,url)
+      
   step_url:->
     if @.get('current_step_no') then "/step/#{@.get('current_step_no')}" else ""
 
@@ -26,7 +28,7 @@ class App.Models.FormRenderer extends Backbone.Model
     @get('rootModel').getFormRootObject().get('id')
 
   getFormTemplate:->
-    @.get('form_template')
+    @.get('form_identifier')
 
   getStepName:->
     @.get('current_step_name')
@@ -38,9 +40,14 @@ class App.Models.FormRenderer extends Backbone.Model
     I18n.translate("forms.#{@getFormTemplate()}.steps.#{step_name}")
 
   redirectUrl:->
-      path = new RegExp("#{window.location.pathname}#{window.location.hash}")
-      redirectPath = "#{window.location.href}".replace(path,@get('redirect_url_on_complete'))
+    return null unless @get('redirect_url_on_complete')?
+    path = new RegExp("#{window.location.pathname}#{window.location.hash}")
+    "#{window.location.href}".replace(path,@get('redirect_url_on_complete'))
   
+  rootUrlSegment:=>
+    path = new RegExp("#{window.location.pathname}#{window.location.hash}")
+    "#{window.location.href}".replace(path,@get('redirect_url_on_complete'))
+
   addToDestructionQueue:(model)=>
     @.destructionQueue.add(model)
 
@@ -63,14 +70,3 @@ class App.Models.FormRenderer extends Backbone.Model
       model.destroy(callbacks)
     ),@)
     
-
-
-
-
-
-
-
-
-
-
-

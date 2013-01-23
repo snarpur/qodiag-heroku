@@ -5,11 +5,11 @@ class BackboneFormsPreprocessor::UserInvitation < BackboneFormsPreprocessor::Bas
   attr_accessor :user
 
   def user
-    @root_object.respondent.user.model
+    @root_object.respondent.user
   end
 
   def invited_by
-    @root_object.model.caretaker.user
+    @root_object.caretaker.user
   end
 
   def complete_callback
@@ -19,7 +19,7 @@ class BackboneFormsPreprocessor::UserInvitation < BackboneFormsPreprocessor::Bas
 
   def redirect_url_on_complete
     if @complete
-      Rails.application.routes.url_helpers.subject_responder_items_path(@root_object.subject.model.id)
+      Rails.application.routes.url_helpers.subject_responder_items_path(@root_object.subject_id)
     end
   end
 

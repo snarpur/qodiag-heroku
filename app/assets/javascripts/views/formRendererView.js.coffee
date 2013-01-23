@@ -23,6 +23,7 @@ class App.Views.FormRenderer extends Backbone.View
   prepareSubmit:=>
     @model.off("destructionComplete")
     @model.get('rootModel').url = @model.url()
+    console.info @model.url()
     @.trigger("submitForm",@model.url())
   
   submitForm:(content)=>
@@ -36,7 +37,7 @@ class App.Views.FormRenderer extends Backbone.View
         if (!_.isEmpty(response.errors))
           view.model.set(response) 
           view.renderSteps()
-        else if view.model.is_last_step()
+        else if view.model.is_last_step() && view.model.redirectUrl()?
           view.model.set(response)
           window.location.href =  view.model.redirectUrl()
         else
@@ -54,7 +55,6 @@ class App.Views.FormRenderer extends Backbone.View
     form = new Backbone.Form({ model: rootModel}).render()
     @model.set("form",form)
     rootModel.set("formHandler",@)
-    console.log "rootMOdel :: ", rootModel
     rootModel.on("readyToSave",@submitForm)
     @.$('#wizard-fields').empty()
     @.$('#wizard-fields').append(form.el)

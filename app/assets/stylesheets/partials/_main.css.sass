@@ -128,18 +128,22 @@ ul.nav
   background-color: rgba(255,255,255,.85)
   +border-radius(1px)
   +box-shadow(0 0 0 13px rgba(255,255,255,.5), 0 0 0 14px rgba(0,0,0,.04), 1px 1px 12px 10px rgba(0, 0, 0, 0.1))
-  
-.alert,
-div.overdue
-  +error
 
+
+
+.alert, div.overdue, div.uncompleted, .recently_completed, .notice, .info
+  +border-radius(5px)
+
+.alert, div.overdue
+  +error
 div.uncompleted
   +notice
 
-.recently_completed,
-.notice
+.recently_completed, .notice
   +success
 
+.info
+  +info
 a
   text-decoration: none
   

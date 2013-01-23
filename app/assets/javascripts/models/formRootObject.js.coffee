@@ -42,6 +42,7 @@ class App.Models.FormRootObject extends App.Models.Base
     attrs = @formAttributes()
     @.get('formHandler').off()
     @.clear()
+    console.log "   URL  ",url
     @.set("url",url)
     @.trigger("readyToSave",attrs)
 

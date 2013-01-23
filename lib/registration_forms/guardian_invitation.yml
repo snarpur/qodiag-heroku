@@ -1,4 +1,5 @@
 form_identifier: guardian_invitation
+root_url: invitation/new/3
 steps:
   - 
     name: guardian_info
@@ -91,7 +92,3 @@ steps:
                     person_id: Hidden
                     relation_id: Hidden
                     name: Hidden
-
-
-
-

@@ -88,13 +88,13 @@ class Person < ActiveRecord::Base
   end
   
   #FIXME: ARE both of these associations in use
-  has_many :spouse_relationships, :class_name => "Relationship", :foreign_key => "person_id", :conditions => {:name => 'spouse'}
-  has_many :spouses_relationships, :class_name => "Relationship", :conditions => {:name => 'spouse'}
+  # has_many :spouse_relationships, :class_name => "Relationship", :foreign_key => "person_id", :conditions => {:name => 'spouse'}
+  # has_many :spouses_relationships, :class_name => "Relationship", :conditions => {:name => 'spouse'}
  
 
   accepts_nested_attributes_for :user, :allow_destroy => true
   accepts_nested_attributes_for :relations, :allow_destroy => true
-  accepts_nested_attributes_for :relationships, :allow_destroy => true #,  :reject_if => proc {|attributes| attributes['person_id'].blank?}
+  accepts_nested_attributes_for :relationships, :allow_destroy => true
   accepts_nested_attributes_for :inverse_relationships, :allow_destroy => true
   accepts_nested_attributes_for :inverse_relations, :allow_destroy => true
   accepts_nested_attributes_for :address, :allow_destroy => true
@@ -115,19 +115,27 @@ class Person < ActiveRecord::Base
            :to => :user, :prefix => true
 
 
-  RELATIONSHIP_NAMES = %w{parent guardian patient}
+  RELATIONSHIP_NAMES = %w{parent guardian patient spouse}
 
   def self.relationship_names
     RELATIONSHIP_NAMES
   end
 
    RELATIONSHIP_NAMES.each do |name|
-    define_method("inverse_#{name}_relationship_to_person") do |person|
+    define_method("inverse_#{name}_relationship_to") do |person|
       self.inverse_relationships & Relationship.where(:person_id => person.id, :name => name)
     end
+    
+    define_method("#{name}_relationship_to") do |person|
+      self.relationships & Relationship.where(:relation_id => person.id, :name => name)
+    end
 
-    define_method("build_inverse_#{name}_relationship_to_person") do |person|
+    define_method("build_inverse_#{name}_relationship_to") do |person|
       self.inverse_relationships.build(:person_id => person.id, :name => name, :status => false)
+    end
+
+    define_method("build_#{name}_relationship_to") do |person|
+      self.relationships.build(:relation_id => person.id, :name => name, :status => false)
     end
   end
 
@@ -218,7 +226,6 @@ class Person < ActiveRecord::Base
     "#{self.firstname} #{self.lastname}"
   end
 
-
   def mother
     self.inverse_relations.mother.first
   end
@@ -281,13 +288,12 @@ class Person < ActiveRecord::Base
       self.relationships.build({:name => 'guardian'})
   end
 
-  #REFACTOR: Change method name to opposite_parent_relation
-  def opposite_parent(parent)
+  def opposite_parent_relation(parent)
       self.parents.select{|i| i.id != parent.id}.first
   end
 
   def find_or_create_opposite_parent_relation(parent)
-    opposite_parent(parent) || self.inverse_relations.build() 
+    opposite_parent_relation(parent) || self.inverse_relations.build() 
   end
 
   def opposite_parent_relationship(parent)
@@ -305,8 +311,12 @@ class Person < ActiveRecord::Base
   def find_or_create_opposite_parent_guardian_relationship(parent)
      opposite_parent_guardian_relationship(parent).nil? ? self.inverse_relationships.build(:name => "guardian") : opposite_parent_guardian_relationship(parent)
   end
-
-
+  
+  def other_parent_of(child)
+    return child.parents.first if self.new_record?
+    Person.joins(:relationships).where('relationships.name = ? AND relationships.relation_id = ? AND relationships.person_id != ?', 'parent', child.id, self.id).first
+  end
+  
   def parents_relationship
     parents = self.parents
     if parents.size == 1

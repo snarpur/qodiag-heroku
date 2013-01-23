@@ -8,7 +8,7 @@ class ResponderItem < ActiveRecord::Base
 
   delegate :response_to_chart, :to => :response_set
   # after_initialize :set_current_responder_item
-  #before_save :set_response_set, :if => :is_uncompleted_survey?
+  before_save :set_response_set, :if => :is_uncompleted_survey?
 
   scope :overdue, where("deadline < ? AND completed IS NULL", Time.zone.now)
   scope :uncompleted, where("deadline >= ? AND completed IS NULL", Time.zone.now)

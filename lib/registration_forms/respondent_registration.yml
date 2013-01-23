@@ -1,4 +1,5 @@
 form_identifier: respondent_registration
+root_url: pre_registrations/edit
 steps:
   - 
     name: contact_info
@@ -7,67 +8,79 @@ steps:
         model: App.Models.Base
         type: NestedModel
         schema:
-          id: Text
+          id: Hidden
           respondent:
-            model: App.Models.Person
-            as: respondent
+            model: App.Models.Base
+            as: get_respondent
             type: NestedModel
             schema: 
               id: Hidden 
-              firstname: 
-                validators:
-                  - required
+              firstname: Text
               address: 
                 type: NestedModel
-                model: App.Models.Address
-                schema: 
-                  street_1: Text
+                model: App.Models.Base
+                schema:
                   id: Hidden
+                  street_1: Text
                   town: Text
 
   -
     name: subject_parent
     form_content:
       responder_item:
-        model: App.Models.ResponderItem
+        model: App.Models.Base
         type: NestedModel
         schema:
-          id: Text
+          id: Hidden
           subject:  
-            model: App.Models.Person
-            as: subject
+            model: App.Models.Base
             type: NestedModel
+            as: get_subject
             schema:
-              id: Text
-              firstname: Text
+              id: Hidden
+              firstname:
+                type: Text
+                template: field
+                validators: ['required']
               inverse_relations:
-                type: App.FormEditors.NestedCollection
-                collection: App.Collections.Person 
-                as: responder_item.opposite_parent_relation
+                type: NestedCollection
+                collection: App.Collections.Base
+                as: opposite_parent_relation
                 schema:
                   id: Hidden
-                  lastname: Text
+                  firstname:
+                    type: Text
+                    template: field
+                    validators: ['required']
+                  lastname:
+                    type: Text
+                    template: field
+                    validators: ['required']
                   relationships:
-                    type: App.FormEditors.NestedCollection
+                    type: NestedCollection
                     collection: App.Collections.Relationships
-                    as: [responder_item.opposite_parent_relationship,responder_item.opposite_parent_guardian_relationship]
+                    as: 
+                      - parent_relationship_to_current_subject
+                      - guardian_relationship_to_current_subject
                     schema:
-                      parent:
+                      -
                         id: Hidden
                         person_id: Hidden
                         relation_id: Hidden
                         name: Hidden
-                      guardian:
+                      -
                         id: Hidden 
                         person_id: Hidden 
                         relation_id: Hidden 
                         name: Hidden 
                         status:
                           type: Checkbox
+                          template: checkbox
                   spouse_relationships:
-                    type: App.FormEditors.NestedCollection
-                    as: [responder_item.parents_relationship]
+                    type: NestedCollection
                     collection: App.Collections.Relationships
+                    as: 
+                      - spouse_relationship_through_parenting_of_subject
                     schema:
                       id: Hidden 
                       person_id: Hidden 
@@ -75,6 +88,7 @@ steps:
                       name: Hidden
                       status:
                         type: Checkbox
+                        template: checkbox
 
 
 
