@@ -1,6 +1,0 @@
-chart_name: StackedColumn
-extends: Column
-chart_config:
-  plotOptions:
-    column:
-      stacking: normal
