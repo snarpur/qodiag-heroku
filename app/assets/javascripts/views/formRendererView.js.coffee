@@ -23,7 +23,6 @@ class App.Views.FormRenderer extends Backbone.View
   prepareSubmit:=>
     @model.off("destructionComplete")
     @model.get('rootModel').url = @model.url()
-    console.info @model.url()
     @.trigger("submitForm",@model.url())
   
   submitForm:(content)=>
@@ -34,11 +33,11 @@ class App.Views.FormRenderer extends Backbone.View
     view = @
     callbacks=
       success:(model, response) ->
+        view.model.set(response) 
         if (!_.isEmpty(response.errors))
-          view.model.set(response) 
           view.renderSteps()
         else if view.model.is_last_step() && view.model.redirectUrl()?
-          view.model.set(response)
+          #TODO: Set spinning icon to indicate redirect
           window.location.href =  view.model.redirectUrl()
         else
           view.router.navigate("step/s#{response.next_step_no}/i#{response.root_object_id}",{trigger: true,replace: true})      

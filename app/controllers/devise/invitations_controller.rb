@@ -1,22 +1,16 @@
 class Devise::InvitationsController < ApplicationController
   before_filter :get_user
+  before_filter :get_responder_item, :only =>[:new,:create]
+  load_and_authorize_resource :responder_item, :parent => false, :except => [:edit, :update]
 
-
-  #DELETE: build_new_user before filter
-  # before_filter :build_new_user, :only => [:new], :if => :logged_in?
-  before_filter :role_invitation, :only =>[:new,:create], :if => :logged_in?
-  authorize_resource :ResponderItem, :parent => false, :except => [:edit, :update]
-  load_resource :ResponderItem, :parent => false
   respond_to :json
 
   def new
-    root_params = {:registration_identifier => :respondent_registration, :id => params[:root_object_id], :caretaker_id => @current_user.person.id}
-    @root_object = ResponderItemDecorator.decorate(ResponderItem.find_or_initialize_by_id(root_params))
-    @form_object = BackboneFormsPreprocessor::UserInvitation.new(params.merge!({:form_template => "guardian_invitation", :root_object => @root_object, :invited_by => @current_user}))
+    @form_object = BackboneFormsPreprocessor::UserInvitation.new(params.merge!({:form_template => "guardian_invitation", :root_object => @responder_item}))
   end
 
   def create
-    @form_object = BackboneFormsPreprocessor::UserInvitation.new(params.merge({:form_template => "guardian_invitation" }))   
+    @form_object = BackboneFormsPreprocessor::UserInvitation.new(params.merge({:form_template => "guardian_invitation", :root_object => @responder_item}))   
     @form_object.validate   
     if @form_object.errors.empty?
       if @form_object.root_object.new_record?
@@ -24,9 +18,9 @@ class Devise::InvitationsController < ApplicationController
       else
         @form_object.save_step(pick_params(params[:form_content]).first)
       end
-      render 'devise/invitations/new'
+      render :template => 'devise/invitations/new.json.rabl'
     else
-      render 'devise/invitations/new'
+      render :template => 'devise/invitations/new.json.rabl'
     end
   end
 
@@ -50,13 +44,13 @@ class Devise::InvitationsController < ApplicationController
   end
 
   private
-    def role_invitation
-      @role_name = Role.find(params[:role_ids].first).name
+  def get_responder_item
+    if params[:root_object_id]
+      @responder_item = ResponderItem.find(params[:root_object_id])
+    else
+      @responder_item = ResponderItem.new({:caretaker_id => @current_user.person.id,:registration_identifier => :respondent_registration})
     end
-    #DELETE: also callback declaration
-    def build_new_user
-      @user = User.new_respondent_as_guardian_by_invitation({ :role_ids => params[:role_ids],
-                                                              :inviter=> @current_user})
-    end
+    ResponderItemDecorator.decorate(@responder_item)
+  end
 
 end
