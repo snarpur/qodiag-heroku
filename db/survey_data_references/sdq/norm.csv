@@ -1,13 +1,13 @@
 responder,sex,age,score[total-abnormal],score[total-borderline],score[total-normal],score[emotional-abnormal],score[emotional-borderline],score[emotional-normal],score[conduct-abnormal],score[conduct-borderline],score[conduct-normal],score[hyperactivity_inattention-abnormal],score[hyperactivity_inattention-borderline],score[hyperactivity_inattention-normal],score[peer_problem-abnormal],score[peer_problem-borderline],score[peer_problem-normal],score[prosocial_behaviour-abnormal],score[prosocial_behaviour-borderline],score[prosocial_behaviour-normal]
 parent,male,0-5,13-25,10-12,0-9,5-10,3-4,0-2,4-10,3-3,0-2,6-10,5-5,0-4,4-10,3-3,0-2,0-5,6-6,7-10
-parent,male,6-10,15-25,12-14,0-11,5-10,4-4,0-3,4-10,3-3,0-2,7-10,6-6,0-5,5-10,4-4,0-3,0-5,6-6,7-10
+parent,male,6-11,15-25,12-14,0-11,5-10,4-4,0-3,4-10,3-3,0-2,7-10,6-6,0-5,5-10,4-4,0-3,0-5,6-6,7-10
 parent,male,12-16,15-25,10-14,0-9,5-10,4-4,0-3,4-10,3-3,0-2,7-10,5-6,0-4,5-10,4-4,0-3,0-5,6-6,7-10
 teacher,male,0-5,15-25,13-14,0-12,4-10,3-3,0-2,4-10,3-3,0-2,9-10,7-8,0-6,5-10,4-4,0-3,0-2,4-4,5-10
-teacher,male,6-10,19-25,12-18,0-11,5-10,3-4,0-2,5-10,4-4,0-3,9-10,7-8,0-6,5-10,4-4,0-3,0-3,5-5,6-10
+teacher,male,6-11,19-25,12-18,0-11,5-10,3-4,0-2,5-10,4-4,0-3,9-10,7-8,0-6,5-10,4-4,0-3,0-3,5-5,6-10
 teacher,male,12-16,18-25,13-17,0-12,5-10,3-4,0-2,4-10,3-3,0-2,9-10,7-8,0-6,6-10,4-5,0-3,0-3,4-4,5-10
 parent,female,0-5,12-25,10-11,0-9,5-10,4-4,0-3,4-10,3-3,0-2,6-10,5-5,0-4,4-10,3-3,0-2,0-5,6-6,7-10
-parent,female,6-10,12-25,9-9,0-8,5-10,4-4,0-3,4-10,3-3,0-2,6-10,5-5,0-4,4-10,3-3,0-2,0-6,7-7,8-10
+parent,female,6-11,12-25,9-9,0-8,5-10,4-4,0-3,4-10,3-3,0-2,6-10,5-5,0-4,4-10,3-3,0-2,0-6,7-7,8-10
 parent,female,12-16,14-24,10-13,0-9,6-10,4-5,0-3,4-10,3-3,0-2,5-10,4-4,0-3,4-10,3-3,0-2,0-6,7-7,8-10
 teacher,female,0-5,13-25,11-12,0-10,4-10,3-3,0-2,4-10,2-3,0-1,6-10,5-5,0-4,4-10,3-3,0-2,0-4,5-6,7-10
-teacher,female,6-10,11-25,9-10,0-8,5-10,3-4,0-2,3-10,2-2,0-1,5-10,4-4,0-3,4-10,3-3,0-2,0-6,7-7,8-10
+teacher,female,6-11,11-25,9-10,0-8,5-10,3-4,0-2,3-10,2-2,0-1,5-10,4-4,0-3,4-10,3-3,0-2,0-6,7-7,8-10
 teacher,female,12-16,13-25,10-12,0-9,5-10,4-4,0-3,3-10,2-2,0-1,6-10,4-5,0-3,5-10,4-4,0-3,0-4,6-6,7-10

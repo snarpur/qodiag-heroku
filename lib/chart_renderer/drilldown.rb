@@ -22,9 +22,8 @@ class Chart
     series_config = {:cursor => 'pointer',:point => {:events => {:click =>'drilldown'}}}
     drilldown = results
     drilldown_data = []
-    KK.log @data,:b
     @data.each_with_index do |i,index|
-      KK.log "#{i} - #{index}",:r
+
       drilldown_data[index] = {
         :y => i, 
         :drilldown => {
@@ -37,8 +36,6 @@ class Chart
       }
 
       get_bar_chart_config.each do |k,v|
-        KK.log k,:r
-        KK.log v,:b
         drilldown_data[index][:drilldown][k] ||= {}
         drilldown_data[index][:drilldown][k].merge!(v)
       end

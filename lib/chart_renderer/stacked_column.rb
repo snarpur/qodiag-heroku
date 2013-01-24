@@ -9,6 +9,7 @@ class Chart < ChartRenderer::Column::Chart
   def reference_values
     ordered_series = []
     series = norm_reference.scores_by_names_and_result_names(reference_groups,get_content(:result_names))
+ 
     series.each do |i|
       group = {}
       group.merge!(:name  => i[0])

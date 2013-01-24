@@ -30,7 +30,6 @@ gem 'active_attr'
 gem 'draper', '~> 1.0'
 gem 'time_diff'
 
-
 group :assets do
   gem 'sass-rails', "  ~> 3.2.3"
   gem 'coffee-rails', "~> 3.2.1"
@@ -38,9 +37,6 @@ group :assets do
   gem 'closure-compiler'
   gem 'compass', :git => 'git://github.com/chriseppstein/compass.git', :tag => 'v0.12.alpha.0'
 end
-
-
-
 
 group :development, :test do
   gem "rspec-rails", "~> 2.4"
