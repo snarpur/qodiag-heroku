@@ -1,7 +1,7 @@
-/ window.controller = new App.Controllers.Invitations.Guardian(#{render template: "devise/invitations/#{@role_name}/step_#{@schema.current_step_no}/new.json.rabl"});
+/ window.controller = new App.Controllers.Forms.Multistep(#{render template: "devise/invitations/#{@role_name}/step_#{@schema.current_step_no}/new.json.rabl"});
 :javascript
   $(document).ready(function(){     
-    window.controller = new App.Controllers.Invitations.Guardian(#{render template: "devise/invitations/new.json.rabl"});
+    window.controller = new App.Controllers.Forms.Multistep(#{render template: "devise/invitations/new.json.rabl"});
     App.init(); 
   });
 

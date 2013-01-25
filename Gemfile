@@ -38,6 +38,11 @@ group :assets do
   gem 'compass', :git => 'git://github.com/chriseppstein/compass.git', :tag => 'v0.12.alpha.0'
 end
 
+group :development do
+  gem 'quiet_assets'
+  gem 'meta_request', '0.2.1'
+end
+
 group :development, :test do
   gem "rspec-rails", "~> 2.4"
   gem "shoulda-matchers"
@@ -55,11 +60,9 @@ group :development, :test do
   gem "spork", "~> 0.9.0.rc"
   gem "watchr"
   gem "syntax"
-
   gem "guard-haml"
   gem "guard-livereload"
   gem "letter_opener"
 end
 
 #gem "rb-fsevent", :group => :test, :require => false if RUBY_PLATFORM =~ /darwin/i
-gem 'quiet_assets', :group => :development
