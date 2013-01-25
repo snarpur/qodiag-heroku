@@ -12,7 +12,7 @@ class App.Views.FormRenderer extends Backbone.View
     @
   
   template:->
-    JST['templates/preRegistrationTmpl']
+    JST['templates/multistepFormTmpl']
 
   validateForm:=>
     errors = @model.get('form').commit()
@@ -60,7 +60,7 @@ class App.Views.FormRenderer extends Backbone.View
     @bindForm(form,rootModel)  
 
   renderStepNavigation:=>
-    step = new App.Views.PreRegistrationNavigationStep({model: @model})
+    step = new App.Views.MultistepFormNavigation({model: @model})
     $(@el).prepend(step.render().el)
   
 
