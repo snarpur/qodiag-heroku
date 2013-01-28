@@ -43,4 +43,5 @@
       #footer
         %span
           ="Snarpur #{Date.today.year}| Fallegt virkar betur"
-    / =render "shared/google_analytics"
+    - unless Rails.env['development'] || Rails.env['test']
+      =render "shared/google_analytics"
