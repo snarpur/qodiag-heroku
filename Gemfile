@@ -40,8 +40,9 @@ end
 
 group :development do
   gem 'quiet_assets'
+  gem 'better_errors'
+  gem 'binding_of_caller'
   gem 'meta_request', '0.2.1'
-  gem "unused_view"
 end
 
 group :development, :test do

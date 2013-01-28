@@ -1,4 +1,0 @@
-module PersonRelationFinders
-
-
-end

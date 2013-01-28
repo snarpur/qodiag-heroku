@@ -1,7 +1,0 @@
-.nested_item
-  -f ||= locals[:form_builder]
-  -parent = locals[:parent]
-  -relationship = f.object.inverse_relationships.build(:name => 'parent', :person_id => parent.id)
-  =f.fields_for :inverse_relationships, relationship, :child_index => 'NEW_RECORD' do |second_parent_relationship|
-    =second_parent_relationship.hidden_field :name
-    =second_parent_relationship.hidden_field :person_id

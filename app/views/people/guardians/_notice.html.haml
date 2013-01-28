@@ -1,7 +1,0 @@
-#guardian-notice.notice
-  %p
-    -if @patient.inverse_relations.guardians.size < 2
-      Ef aðrir en foreldrar eru með forræði skal skrá það hér
-      = link_to t('actions.add_guardian'), '#add_guardian', :class => "action_element {name : 'add_guardian'}"
-    -else
-      Þegar eru skráðir 2 forræðishafar, ef skráning forræðis er röng verður að breyta skráningu áður en hægt er að skrá nýjan forræðishafa
