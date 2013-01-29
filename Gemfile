@@ -29,6 +29,7 @@ gem 'rabl'
 gem 'active_attr'
 gem 'draper', '~> 1.0'
 gem 'time_diff'
+gem 'rb-readline'
 
 group :assets do
   gem 'sass-rails', "  ~> 3.2.3"
@@ -48,7 +49,7 @@ end
 group :development, :test do
   gem "rspec-rails", "~> 2.4"
   gem "shoulda-matchers"
-  gem "cucumber-rails", ">= 0.3.2"
+  #gem "cucumber-rails", ">= 0.3.2"
   gem "capybara"
   gem "database_cleaner"
   gem "pickle"
