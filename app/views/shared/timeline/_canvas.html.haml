@@ -6,8 +6,8 @@
 :javascript
   $(document).ready(function(){     
     window.controller = new App.Controllers.ResponderItemsController({
-      timeline: #{render template: "shared/timeline/timeline.json.rabl"}, 
-      responder_items: #{render template: "responder_items/index.json.rabl"}
+      timeline: #{render template: "shared/timeline/timeline",formats: [:json]}, 
+      responder_items: #{render template: "responder_items/index",formats: [:json]}
     }); 
     App.init(); 
   });

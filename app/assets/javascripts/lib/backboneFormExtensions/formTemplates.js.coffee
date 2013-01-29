@@ -35,6 +35,14 @@ App.Templates.Forms=
               </div>
             </div>"
   
+  radio: "<div class=\"control-group field-{{key}} type-radio\">
+            <div class=\"controls\">{{title}}
+              {{editor}}
+              <div class=\"help-block\">{{help}}</div>
+            </div>
+          </div>"
+
+
   list: "<div class=\"bbf-list\">
           <ul class=\"unstyled clearfix\">{{items}}</ul>
           <button type=\"button\" class=\"btn bbf-add\" data-action=\"add\">Add</div>

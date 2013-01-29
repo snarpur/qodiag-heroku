@@ -6,7 +6,7 @@ end
 node {|t|@timeline.timespan}
 
 node :subject do |timeline|
-  partial "people/show.json.rabl", :object => @timeline.subject
+  partial "people/show", :object => @timeline.subject
 end
 
 

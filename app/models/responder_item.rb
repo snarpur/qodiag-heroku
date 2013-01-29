@@ -7,7 +7,6 @@ class ResponderItem < ActiveRecord::Base
   belongs_to :response_set
 
   delegate :response_to_chart, :to => :response_set
-  # after_initialize :set_current_responder_item
   before_save :set_response_set, :if => :is_uncompleted_survey?
 
   scope :overdue, where("deadline < ? AND completed IS NULL", Time.zone.now)
@@ -53,22 +52,6 @@ class ResponderItem < ActiveRecord::Base
     ResponseSet.to_line_chart(params[:survey_id], params[:respondent_id])
   end
 
-  def opposite_parent_relation
-    subject.find_or_create_opposite_parent_relation(respondent)
-  end
-
-  def opposite_parent_relationship
-    subject.find_or_create_opposite_parent_relationship(respondent)
-  end
-
-  def opposite_parent_guardian_relationship
-    subject.find_or_create_opposite_parent_guardian_relationship(respondent)
-  end
-
-  def parents_relationship
-    subject.parents_relationship
-  end
-
   def access_code
     self.survey.nil? ? self.registration_identifier : self.survey.access_code
   end
@@ -94,12 +77,5 @@ class ResponderItem < ActiveRecord::Base
 
   def set_response_set
     self.response_set=(ResponseSet.create(:survey_id => self.survey_id, :user_id => self.respondent.user.id))
-  end
-
-  def set_current_responder_item
-    %w{caretaker respondent subject}.each do |i|
-      person = self.send(i)
-      person.current_responder_item=(self) unless person.nil?
-    end
   end
 end

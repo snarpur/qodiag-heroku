@@ -68,8 +68,6 @@ class Timeline
     @person.responder_items.surveys
   end
 
-
-  #NOTE: add responder ids to this when refactoring new patient Item
   def settings
     d = dimensions
     d.merge!(timespan)

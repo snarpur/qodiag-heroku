@@ -18,9 +18,9 @@ class Devise::InvitationsController < ApplicationController
       else
         @form_object.save_step(pick_params(params[:form_content]).first)
       end
-      render :template => 'devise/invitations/new.json.rabl'
+        render 'devise/invitations/new.json.rabl' 
     else
-      render :template => 'devise/invitations/new.json.rabl'
+      render 'devise/invitations/new.json.rabl' 
     end
   end
 

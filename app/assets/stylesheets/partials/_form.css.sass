@@ -25,9 +25,18 @@
     margin-top: .7em
   .type-hidden
     display: none
-  .type-checkbox label
+  .type-checkbox .controls label,
+  .type-radio .controls label
     color: #333
     margin-bottom: 0px
+    font-size: 1em
+  .type-radio li
+    position: relative
+    margin: .5em 0 .5em 0
+    label
+      position: absolute
+      top: 0
+      left: 1.5em
   input[type='checkbox'],
   input[type='radio']
     margin-top: 2px

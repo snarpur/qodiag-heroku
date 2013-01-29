@@ -1,4 +1,3 @@
-#TODO: Create registration form when respondent is guardian only
 class BackboneFormsPreprocessor::PreRegistration < BackboneFormsPreprocessor::Base
   include ActiveAttr::Model
   attr_accessor :responder_item

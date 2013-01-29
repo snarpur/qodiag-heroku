@@ -1654,7 +1654,6 @@ Form.editors = (function() {
     _arrayToHtml: function (array) {
       var html = [];
       var self = this;
-
       _.each(array, function(option, index) {
         var itemHtml = '<li>';
         if (_.isObject(option)) {

@@ -1,10 +1,14 @@
 Backbone.Form.Field::renderingContext = (schema, editor) -> 
   model = editor.model
-  
+
   title = model.fieldTitle(@key)
   nestedTitle = 
     nestedTitle: model.nestedFieldTitle(@key)
- 
+
+  if schema.type == "Radio"
+    _.each(schema.options,(item,index,list) -> item.label = model.fieldTitle(item.label))
+
+
   opt=
     key: this.key
     id: editor.id

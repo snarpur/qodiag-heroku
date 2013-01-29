@@ -42,6 +42,24 @@ steps:
                 type: Text
                 template: field
                 validators: ['required']
+              lastname:
+                type: Text
+                template: field
+                validators: ['required']
+              cpr:
+                type: Text
+                template: field
+                validators: ['required']
+              sex:
+                type: Radio
+                template: field
+                options:
+                  - 
+                    val: female
+                    label: girl
+                  -   
+                    val: male 
+                    label: boy
               inverse_relations:
                 type: NestedCollection
                 collection: App.Collections.Base

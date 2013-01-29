@@ -10,6 +10,9 @@ is:
     occupation: "Starfsheiti"
     workplace: "Vinnustaður"
     yearofbirth: "Fæðingarár"
+    sex: Kyn
+    boy: Drengur
+    girl: Stúlka
   relationship:
     is_parent: "Er forldri"
     is_guardian: "Er forræðishafi"

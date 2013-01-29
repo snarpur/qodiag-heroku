@@ -7,8 +7,6 @@ class Person < ActiveRecord::Base
   #validate :presence_of_parent_occupation
   #after_save :set_parents_address
   
-  #DEPRICATED: probably depricated
-  #after_initialize :person_factory, :if => :new_record?
 
   belongs_to :address
   has_one :user
@@ -24,10 +22,6 @@ class Person < ActiveRecord::Base
     def spouse
       where("name = 'spouse'")
     end
-
-    def guardian(id)
-      where("name = 'guardian' AND relation_id = #{id}")
-    end
   end
 
   has_many :inverse_relationships, :class_name => "Relationship", :foreign_key => "relation_id" do
@@ -37,12 +31,9 @@ class Person < ActiveRecord::Base
     def parents
       where("name = 'parent'")
     end
-    def patient
-      where("name = 'patient'")
-    end
 
     def guardians
-     where("name = 'guardian' AND end IS NULL")
+     where("name = 'guardian'")
     end
   end
 
@@ -62,7 +53,7 @@ class Person < ActiveRecord::Base
   end
 
   has_many :inverse_relations, :through => :inverse_relationships, :source => :person do
-    def caretaker
+    def caretakers
       where("name = 'patient'")
     end
 
@@ -83,14 +74,10 @@ class Person < ActiveRecord::Base
     end
 
     def guardians
-     where("name = 'guardian' AND end IS NULL")
+      where("name = 'guardian'")
     end
   end
   
-  #FIXME: ARE both of these associations in use
-  # has_many :spouse_relationships, :class_name => "Relationship", :foreign_key => "person_id", :conditions => {:name => 'spouse'}
-  # has_many :spouses_relationships, :class_name => "Relationship", :conditions => {:name => 'spouse'}
- 
 
   accepts_nested_attributes_for :user, :allow_destroy => true
   accepts_nested_attributes_for :relations, :allow_destroy => true
@@ -110,12 +97,12 @@ class Person < ActiveRecord::Base
 
   attr_accessor :current_responder_item
   
-  #NOTE: Only used in cucumber features, to be considered when refactoring features  
   delegate :email,
            :to => :user, :prefix => true
 
 
   RELATIONSHIP_NAMES = %w{parent guardian patient spouse}
+
 
   def self.relationship_names
     RELATIONSHIP_NAMES
@@ -138,6 +125,8 @@ class Person < ActiveRecord::Base
       self.relationships.build(:relation_id => person.id, :name => name, :status => false)
     end
   end
+
+
 
   def responder_items
     self.send("#{self.role}_responder_items")
@@ -181,10 +170,6 @@ class Person < ActiveRecord::Base
   def age
     Date.current.year - dateofbirth.year if dateofbirth
   end
-
-  def respondents
-    self.inverse_relations.guardians
-  end
   
   def presence_of_cpr
     errors.add(:cpr, "cannot be empty") if
@@ -196,14 +181,8 @@ class Person < ActiveRecord::Base
       !self.inverse_relationships.patient.empty? && (!valid_cpr? || dateofbirth.nil?)
   end
 
-
   def valid_cpr?
     cpr.to_s.length == 4 ? true : false
-  end
-
-  def presence_of_parent_occupation
-    errors.add(:occupation, "cannot be empty") if
-      !relationships.select{|v|v.name == "guardian" || "parent"}.empty? and occupation.try("empty?")
   end
 
   def full_cpr
@@ -226,44 +205,38 @@ class Person < ActiveRecord::Base
     "#{self.firstname} #{self.lastname}"
   end
 
-  def mother
-    self.inverse_relations.mother.first
-  end
-
-  def guardian_user
-    self.inverse_relations.guardians.first.user
-  end
-
-  def guardian_respondent
-    User.joins(:person => :relationships).
-    where("relationships.name = 'guardian' AND relationships.relation_id = #{self.id}").
-    first.person
-  end
-
-  def father
-    self.inverse_relations.father.first
-  end
-
   def parents
     self.inverse_relations.parents
+  end
+
+  def guardians
+    self.inverse_relations.guardians
+  end
+  
+  def caretakers
+    self.inverse_relations.caretakers
+  end
+  
+  def spouses
+    self.relations.spouse + self.inverse_relations.spouse
   end
 
   def spouse_relationships
     self.relationships.spouse + self.inverse_relationships.spouse
   end
 
-  def spouses
-    self.relations.spouse + self.inverse_relations.spouse
+  def mother
+    self.inverse_relations.mother.first
+  end
+
+  def father
+    self.inverse_relations.father.first
   end
 
   def full_siblings
     full_siblings = self.mother.relations.children & self.father.relations.children
     full_siblings.delete(self)
     full_siblings
-  end
-
-  def non_parent_guardians
-    self.inverse_relations.guardians - self.parents
   end
 
   def half_siblings(parent)
@@ -276,16 +249,14 @@ class Person < ActiveRecord::Base
     all - blood_related
   end
 
-  def is_person_parent(person)
-    self.parents.include?(person)
+  def respondents
+    self.guardians
   end
 
-  def new_child_as_parent
-    self.relationships.build({:name => 'parent'})
-  end
-
-  def new_child_as_guardian
-      self.relationships.build({:name => 'guardian'})
+  def guardian_respondent
+    User.joins(:person => :relationships).
+    where("relationships.name = 'guardian' AND relationships.relation_id = #{self.id}").
+    first.person
   end
 
   def opposite_parent_relation(parent)
@@ -296,22 +267,6 @@ class Person < ActiveRecord::Base
     opposite_parent_relation(parent) || self.inverse_relations.build() 
   end
 
-  def opposite_parent_relationship(parent)
-      parent_relationship = self.inverse_relationships.parents.select{|i| i.person_id != parent.id}.first
-  end
-
-  def find_or_create_opposite_parent_relationship(parent)
-    opposite_parent_relationship(parent).nil? ? self.inverse_relationships.build(:name => "parent") : opposite_parent_relationship(parent)
-  end
-
-  def opposite_parent_guardian_relationship(parent)
-      self.inverse_relationships.guardians.select{|i| i.person_id != parent.id}.first
-  end
-
-  def find_or_create_opposite_parent_guardian_relationship(parent)
-     opposite_parent_guardian_relationship(parent).nil? ? self.inverse_relationships.build(:name => "guardian") : opposite_parent_guardian_relationship(parent)
-  end
-  
   def other_parent_of(child)
     return child.parents.first if self.new_record?
     Person.joins(:relationships).where('relationships.name = ? AND relationships.relation_id = ? AND relationships.person_id != ?', 'parent', child.id, self.id).first
@@ -330,10 +285,6 @@ class Person < ActiveRecord::Base
        end
     end
   end
-
-  def get_association(name)
-    self.send(:relationships).map {|r| r.name == name.to_s}
-  end
   
   def spouse_relationships_attributes=(params)
     params.each do |i|
@@ -350,23 +301,4 @@ class Person < ActiveRecord::Base
       end
     end
   end
-
-  private
-  #DEPRICATED: probably depricated
-  # def person_factory
-  #   KK.log "PERSON FACTORY #{self.factory}"
-  #   unless self.factory.nil?
-  #     KK.log "OK inside factory"
-  #     case self.factory[:name]
-  #     when :patient
-  #       self.factory[:relation].relationships << self.inverse_relationships.build(:name => "patient")
-  #     when :child
-  #      self.factory[:relation].relationships.build(:name => "parent,guardian").inverse_relation  = self
-  #     end
-  #   end
-  #end
-
-
-
-
 end

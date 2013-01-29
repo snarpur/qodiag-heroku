@@ -6,12 +6,13 @@
 	%table
 		%tr
 			%th{:colspan => 2} Forræðishafi
-		%tr
-			%td Nafn:
-			%td= @person.guardian_user.person.full_name 
-		%tr
-			%td Netfang:
-			%td= @person.guardian_user.email 
+		-@person.guardians.each do |guardian|
+			%tr
+				%td Nafn:
+				%td= guardian.full_name 
+			%tr
+				%td Netfang:
+				%td= guardian.user_email
 		
 
 

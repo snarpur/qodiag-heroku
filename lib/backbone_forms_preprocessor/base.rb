@@ -52,7 +52,7 @@ module BackboneFormsPreprocessor
               if settings[:schema].is_a?(Array)
                 index = relation_obj.index(i)
                 obj_attrs = schema_attributes(i,settings[:schema].at(index))
-                obj_attrs[:schema] = settings[:schema].at(index) #NOTE: Schema hardcoded on has_many with different schemas
+                obj_attrs[:schema] = settings[:schema].at(index) 
                 obj_attrs.merge(populate_nested_entry(settings[:schema].at(index),i))
               else
                 obj_attrs = schema_attributes(i,settings[:schema])
