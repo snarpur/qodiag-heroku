@@ -29,7 +29,7 @@ gem 'rabl'
 gem 'active_attr'
 gem 'draper', '~> 1.0'
 gem 'time_diff'
-# gem 'rb-readline'
+gem 'rb-readline'
 
 group :assets do
   gem 'sass-rails', "  ~> 3.2.3"
