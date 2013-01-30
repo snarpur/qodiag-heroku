@@ -5,16 +5,14 @@ is:
     lastname: "Eftirnafn"
     dateofbirth: "Fæðingardagur"
     cpr: "Kennitala"
+    full_cpr: "Kennitala"
     mobilephone: "Sími GSM"
     workphone: "Sími vinna"
     occupation: "Starfsheiti"
     workplace: "Vinnustaður"
     yearofbirth: "Fæðingarár"
-    sex: Kyn
-    boy: Drengur
-    girl: Stúlka
   relationship:
-    is_parent: "Er forldri"
+    is_parent: "Forráðamaður er foreldri"
     is_guardian: "Er forræðishafi"
     not_guardian: "Er ekki forræðishafi"
     not_spouse: "Fyrrverandi maki"
