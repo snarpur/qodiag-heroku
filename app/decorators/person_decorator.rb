@@ -34,6 +34,15 @@ class PersonDecorator < Draper::Decorator
     end
   end
 
+  def get_parents
+    r = model.inverse_relationships.where(:name => :parent)
+    if r.empty?
+      [model.inverse_relationships.build(:name => :parent), model.inverse_relationships.build(:name => :parent)]
+    elsif r.count == 1
+      r + [model.inverse_relationships.build(:name => :parent)]
+    end
+  end
+
   def opposite_parent_relation
     p = model.find_or_create_opposite_parent_relation(model.current_responder_item.respondent)
     p.current_responder_item=(model.current_responder_item)

@@ -10,7 +10,7 @@ class Relationship < ActiveRecord::Base
 
   attr_accessor :status
   accepts_nested_attributes_for :person, :relation
-  attr_accessible :person_id, :relation_id, :name, :start, :end, :relation_attributes, :inverse_relation_attributes, :status
+  attr_accessible :person_id, :relation_id, :name, :start, :end, :relation_attributes, :inverse_relation_attributes, :status, :person_attributes
 
 
   def status

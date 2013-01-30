@@ -1,5 +1,7 @@
 is:
   forms:
+    personal_info: Persónuupplýsingar
+    address_info: Heimilisfang
     parent_guardian: "foreldri/forræðishafi"
     client: "skjólstæðingur"
     guardian_invitation:
@@ -12,3 +14,8 @@ is:
       steps:
         contact_info: "Helstsu upplýsingar (sími, heimilsfang ofl)"
         subject_parent: "Faðir/móðir"
+    pre_registration_as_guardian_and_parent:
+      steps:
+        subject: Skjólstæðingur
+        contact_info: Tengiliður skjólstæðings
+        subject_parent: Foreldri skjólstæðings

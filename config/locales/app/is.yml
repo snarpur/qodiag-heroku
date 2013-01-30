@@ -11,6 +11,9 @@ is:
     occupation: "Starfsheiti"
     workplace: "Vinnustaður"
     yearofbirth: "Fæðingarár"
+    boy: "Drengur"
+    girl: "Stúlka"
+    sex: "Kyn"
   relationship:
     is_parent: "Forráðamaður er foreldri"
     is_guardian: "Er forræðishafi"
@@ -26,7 +29,8 @@ is:
     street_2: "Heimlilsfang"
     zip_code: "Póstnúmer"
     town: "Sveitarfélag"
-    home_phone: "Sími heima"
+    home_phone: "Sími 2"
+    phone: "Sími 1"
   responder_item:
     deadline: "Skilafrestur"
   user:
