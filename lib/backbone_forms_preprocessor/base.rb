@@ -4,28 +4,29 @@ module BackboneFormsPreprocessor
     attr_accessor :root_object, :steps,:form_identifier
     attr_reader :complete, :redirect_url_on_complete, :root_url
 
+    DEFAULT_TEMPLATE = ""
+    
     def initialize(params)
-      @form_identifier = params[:form_template]
+      @root_object = params[:root_object]
+      @form_identifier = form_template_identifier(params[:form_template])
       @current_step_no = params[:step_no].nil? ? 1 : params[:step_no].to_i
-      @root_object = get_root_object(@current_step_no,params)
     end
 
     def steps
       @steps ||= form_template['steps']
     end
 
-    def get_root_object(step_no,params)
-      if params[:root_object] && params[:form_content].nil?
-        params[:root_object]
-      else
-        get_class_or_decorator(form_root_name(step_no)).send('find_or_initialize_by_id',params[:form_content][form_root_name(step_no)])
-      end
-    end
-
     def form_template
+      KK.log "form_template #{@form_identifier}"
       @form_template ||= Marshal::load(Marshal.dump(ApplicationForms.get(@form_identifier)))
     end
+
+    def form_template_identifier(template_name)
+      return template_name.to_s if DEFAULT_TEMPLATE.empty?
+      template_name.nil? ? DEFAULT_TEMPLATE : "#{DEFAULT_TEMPLATE}_#{template_name.to_s}"
+    end 
     
+
     #REFACTOR: Clarify initention for improved readability
     def populate_form(form_content,parent=nil)
       content = {}

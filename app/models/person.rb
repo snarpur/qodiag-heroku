@@ -117,6 +117,7 @@ class Person < ActiveRecord::Base
       self.relationships & Relationship.where(:relation_id => person.id, :name => name)
     end
 
+
     define_method("build_inverse_#{name}_relationship_to") do |person|
       self.inverse_relationships.build(:person_id => person.id, :name => name, :status => false)
     end
@@ -125,7 +126,6 @@ class Person < ActiveRecord::Base
       self.relationships.build(:relation_id => person.id, :name => name, :status => false)
     end
   end
-
 
 
   def responder_items
@@ -191,6 +191,7 @@ class Person < ActiveRecord::Base
     end
   end
 
+  #FIX: Exception on invalid date
   def full_cpr=(cpr)
     unless cpr.empty?
       day = cpr[0..1]
@@ -231,6 +232,18 @@ class Person < ActiveRecord::Base
 
   def father
     self.inverse_relations.father.first
+  end
+
+  def is_parent_of?(person)
+    !parent_relationship_to(person).empty?
+  end
+
+  def is_guardian_of?(person)
+    !guardian_relationship_to(person).empty?
+  end
+
+  def is_parent_and_guardian_of?(person)
+    (is_parent_of?(person) && is_guardian_of?(person))
   end
 
   def full_siblings

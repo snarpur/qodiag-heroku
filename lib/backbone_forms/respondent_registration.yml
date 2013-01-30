@@ -1,0 +1,113 @@
+form_identifier: respondent_registration
+root_url: pre_registrations/edit
+steps:
+  - 
+    name: contact_info
+    form_content:
+      responder_item:
+        model: App.Models.Base
+        type: NestedModel
+        schema:
+          id: Hidden
+          respondent:
+            model: App.Models.Base
+            as: get_respondent
+            type: NestedModel
+            schema: 
+              id: Hidden 
+              firstname: Text
+              address: 
+                type: NestedModel
+                model: App.Models.Base
+                schema:
+                  id: Hidden
+                  street_1: Text
+                  town: Text
+
+  -
+    name: subject_parent
+    form_content:
+      responder_item:
+        model: App.Models.Base
+        type: NestedModel
+        schema:
+          id: Hidden
+          subject:  
+            model: App.Models.Base
+            type: NestedModel
+            as: get_subject
+            schema:
+              id: Hidden
+              firstname:
+                type: Text
+                template: field
+                validators: ['required']
+              lastname:
+                type: Text
+                template: field
+                validators: ['required']
+              cpr:
+                type: Text
+                template: field
+                validators: ['required']
+              sex:
+                type: Radio
+                template: field
+                options:
+                  - 
+                    val: female
+                    label: girl
+                  -   
+                    val: male 
+                    label: boy
+              inverse_relations:
+                type: NestedCollection
+                collection: App.Collections.Base
+                as: opposite_parent_relation
+                schema:
+                  id: Hidden
+                  firstname:
+                    type: Text
+                    template: field
+                    validators: ['required']
+                  lastname:
+                    type: Text
+                    template: field
+                    validators: ['required']
+                  relationships:
+                    type: NestedCollection
+                    collection: App.Collections.Relationships
+                    as: 
+                      - parent_relationship_to_current_subject
+                      - guardian_relationship_to_current_subject
+                    schema:
+                      -
+                        id: Hidden
+                        person_id: Hidden
+                        relation_id: Hidden
+                        name: Hidden
+                      -
+                        id: Hidden 
+                        person_id: Hidden 
+                        relation_id: Hidden 
+                        name: Hidden 
+                        status:
+                          type: Checkbox
+                          template: checkbox
+                  spouse_relationships:
+                    type: NestedCollection
+                    collection: App.Collections.Relationships
+                    as: 
+                      - spouse_relationship_through_parenting_of_subject
+                    schema:
+                      id: Hidden 
+                      person_id: Hidden 
+                      relation_id: Hidden
+                      name: Hidden
+                      status:
+                        type: Checkbox
+                        template: checkbox
+
+
+
+

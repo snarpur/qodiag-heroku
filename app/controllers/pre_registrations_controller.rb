@@ -10,12 +10,13 @@ class PreRegistrationsController < ApplicationController
 
   def edit
     responder_item = ResponderItemDecorator.decorate(ResponderItem.find(params[:id]))
-    params.merge!({:form_template => 'respondent_registration', :root_object => responder_item})
+    params.merge!({:root_object => responder_item})
     @pre_registration = BackboneFormsPreprocessor::PreRegistration.new(params)
   end
 
   def update
-    @pre_registration = BackboneFormsPreprocessor::PreRegistration.new(params.merge({:form_template => 'respondent_registration'}))  
+    responder_item = ResponderItemDecorator.decorate(ResponderItem.find(params[:form_content][:responder_item][:id]))
+    @pre_registration = BackboneFormsPreprocessor::PreRegistration.new(params.merge({:root_object => responder_item}))
     @pre_registration.validate   
     if @pre_registration.errors.empty?
       if @pre_registration.root_object.new_record?
