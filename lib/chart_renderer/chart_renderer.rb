@@ -38,6 +38,7 @@ module ChartRenderer
       data = data.is_a?(Array) ? data : [data]
       
       if drilldown?
+        KK.log "in drillown"
         # series_config = {:cursor => 'pointer',:point => {:events => {:click =>'drilldown'}}}
         # ChartRenderer::Drilldown::Chart.new(@response_set,subject_groups,data)
         # drilldown = drilldown_results
