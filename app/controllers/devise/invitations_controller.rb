@@ -46,12 +46,11 @@ class Devise::InvitationsController < ApplicationController
 
   private
   def get_responder_item
-    if params[:root_object_id]
-      @responder_item = ResponderItem.find(params[:root_object_id])
+    if params.has_key?(:form_content)
+      @responder_item = ResponderItem.find_or_initialize_by_id(params[:form_content][:responder_item])
+      @responder_item.caretaker_id=(@current_user.person.id) if @responder_item.new_record?
     else
-      args = {:caretaker_id => @current_user.person.id,:registration_identifier => :respondent_registration}
-      args.merge!(params[:form_content][:responder_item]) if params.has_key?(:form_content)
-      @responder_item = ResponderItem.new(args)
+      @responder_item = ResponderItem.new({:caretaker_id => @current_user.person.id, :registration_identifier => "respondent_registration"})
     end
     ResponderItemDecorator.decorate(@responder_item)
   end
