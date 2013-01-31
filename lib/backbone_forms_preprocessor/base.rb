@@ -17,7 +17,6 @@ module BackboneFormsPreprocessor
     end
 
     def form_template
-      KK.log "form_template #{@form_identifier}"
       @form_template ||= Marshal::load(Marshal.dump(ApplicationForms.get(@form_identifier)))
     end
 
@@ -26,7 +25,6 @@ module BackboneFormsPreprocessor
       template_name.nil? ? DEFAULT_TEMPLATE : "#{DEFAULT_TEMPLATE}_#{template_name.to_s}"
     end 
     
-
     #REFACTOR: Clarify initention for improved readability
     def populate_form(form_content,parent=nil)
       content = {}
@@ -46,9 +44,10 @@ module BackboneFormsPreprocessor
     def populate_nested_entry(form_content,parent)
       content = {}
       form_content.each do |item,settings|
+
         if type_is_nested_model?(settings) || is_accociation?(parent,item)
           relation_obj = get_parent_relation(parent,item,settings)
-          if relation_obj.is_a?(Array)
+          if relation_obj.respond_to?(:size)
             content[item] = relation_obj.map do |i|
               if settings[:schema].is_a?(Array)
                 index = relation_obj.index(i)
@@ -226,8 +225,12 @@ module BackboneFormsPreprocessor
           end
           relation_obj
         else
+        
+          # if parent.respond_to
           relation_obj = parent.send(relation)
           relation_obj ||= parent.association(relation).build
+          
+
           if relation_obj.nil? || (relation_obj.is_a?(Array) && relation_obj.empty?)
             association = parent.class.reflect_on_association(relation.to_sym)
             relation_obj = parent.send(association.table_name).build(association.conditions).first
@@ -239,7 +242,10 @@ module BackboneFormsPreprocessor
     end
 
     def schema_attributes_keys(schema)
-      schema.select{|k,v| k unless type_is_nested_model?(v)}.keys
+      attributes = schema.select do |k,v|
+        k unless type_is_nested_model?(v)
+      end
+      attributes.keys
     end
 
     def schema_attributes(obj,schema)
@@ -260,8 +266,10 @@ module BackboneFormsPreprocessor
     end
 
     def type_is_nested_model?(field)
-      return if field.is_a?(String) || field[:type].nil?
-      (field.respond_to?(:has_key?) && (field[:type] == "NestedModel" || field[:type].include?("NestedCollection")))
+      # KK.log "field -- #{field}"
+      unless field.is_a?(String) || field[:type].nil?
+        field.respond_to?(:has_key?) && (field[:type] == "NestedModel" || field[:type] == "NestedCollection")
+      end
     end
 
     def is_accociation?(parent,item)
