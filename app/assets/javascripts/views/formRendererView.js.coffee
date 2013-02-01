@@ -4,7 +4,7 @@ class App.Views.FormRenderer extends Backbone.View
   className: "form-base"
 
   events:
-    "click button": "validateForm"
+    "click button.submit-btn": "validateForm"
 
   initialize:()=>
     @model = if @.options.model? then @.options.model else new App.Models.FormRenderer(@.options.model_attributes)
