@@ -29,6 +29,7 @@ class App.Collections.Relationships extends App.Collections.Base
     @
   
   setRelationship:(model)=>
+    @.trigger('statusUpdate',model)
     if model.get('status') == false and not model.isNew()
       @formRenderModel.addToDestructionQueue(model)
     else
