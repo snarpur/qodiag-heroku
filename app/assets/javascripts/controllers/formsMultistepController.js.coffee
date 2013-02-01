@@ -15,10 +15,12 @@ class App.Controllers.Forms.Multistep extends Backbone.Router
     $("#content").append(invitationsView.render().el)
  
   step:(step_no,root_object_id)->
+    console.log(arguments)
     formRenderer = new App.Models.FormRenderer({root_url: @root_url, current_step_no: step_no, root_object_id: root_object_id})
     formRenderer.fetch(@step_callbacks())
 
   step_callbacks: ->
+    console.log('callbacks')
     router = @ 
     callbacks=
       success:(model,response)->

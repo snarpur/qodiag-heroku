@@ -1,5 +1,6 @@
 is:
   forms:
+    relations: "Tengsl"
     personal_info: Persónuupplýsingar
     address_info: Heimilisfang
     parent_guardian: "foreldri/forræðishafi"

@@ -40,7 +40,11 @@ class App.Views.FormRenderer extends Backbone.View
           #TODO: Set spinning icon to indicate redirect
           window.location.href = view.model.redirectUrl()
         else
-          view.router.navigate("step/s#{response.next_step_no}/i#{response.root_object_id}",{trigger: true,replace: true})      
+          next_step = response.current_step_no + 1
+          if (next_step > response.last_step_no)
+            next_step = response.last_step_no
+
+          view.router.navigate("step/s#{next_step}/i#{response.root_object_id}",{trigger: true,replace: true})
       error:(model, response) ->
         console.log "error", model
   

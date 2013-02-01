@@ -94,83 +94,74 @@ steps:
             as: get_subject
             schema:
               id: Hidden
-              inverse_relationships:
+              inverse_relations:
+                title: personal_info
                 type: NestedCollection
                 collection: App.Collections.Base
-                as: get_parents
+                as: opposite_parent_relation
                 schema:
-                  -
-                    id: Hidden
-                    relation_id: Hidden
-                    person_id: Hidden
-                    name: Hidden
-                    person:
-                      title: personal_info
-                      model: App.Models.Base
-                      type: NestedModel
-                      schema:
+                  id: Hidden
+                  firstname:
+                    type: Text
+                    template: field
+                    validators: ['required']
+                  lastname:
+                    type: Text
+                    template: field
+                    validators: ['required']
+                  occupation:
+                    type: Text
+                    template: field
+                  workplace:
+                    type: Text
+                    template: field
+                  address:
+                    title: address_info
+                    type: NestedModel
+                    model: App.Models.Base
+                    schema:
+                      id: Hidden
+                      street_1: Text
+                      street_2: Text
+                      town: Text
+                      zip_code: Text
+                      phone: Text
+                      home_phone: Text
+                  relationships:
+                    title: relations
+                    type: NestedCollection
+                    collection: App.Collections.Relationships
+                    as:
+                      - parent_relationship_to_current_subject
+                      - guardian_relationship_to_current_subject
+                    schema:
+                      -
                         id: Hidden
-                        firstname:
-                          type: Text
-                          template: field
-                          validators: ['required']
-                        lastname:
-                          type: Text
-                          template: field
-                          validators: ['required']
-                        occupation:
-                          type: Text
-                          template: field
-                        workplace:
-                          type: Text
-                          template: field
-                        address:
-                          title: address_info
-                          type: NestedModel
-                          model: App.Models.Base
-                          schema:
-                            id: Hidden
-                            street_1: Text
-                            street_2: Text
-                            town: Text
-                            zip_code: Text
-                            phone: Text
-                            home_phone: Text
-                  -
-                    id: Hidden
-                    relation_id: Hidden
-                    person_id: Hidden
-                    name: Hidden
-                    person:
-                      title: personal_info
-                      model: App.Models.Base
-                      type: NestedModel
-                      schema:
+                        person_id: Hidden
+                        relation_id: Hidden
+                        name: Hidden
+                      -
                         id: Hidden
-                        firstname:
-                          type: Text
-                          template: field
-                        lastname:
-                          type: Text
-                          template: field
-                        occupation:
-                          type: Text
-                          template: field
-                        workplace:
-                          type: Text
-                          template: field
-                        address:
-                          title: address_info
-                          type: NestedModel
-                          model: App.Models.Base
-                          schema:
-                            id: Hidden
-                            street_1: Text
-                            street_2: Text
-                            town: Text
-                            zip_code: Text
-                            phone: Text
-                            home_phone: Text
+                        person_id: Hidden
+                        relation_id: Hidden
+                        name: Hidden
+                        status:
+                          type: Checkbox
+                          template: checkbox
+                  spouse_relationships:
+                    type: NestedCollection
+                    collection: App.Collections.Relationships
+                    as:
+                      - spouse_relationship_through_parenting_of_subject
+                    schema:
+                      -
+                        id: Hidden
+                        person_id: Hidden
+                        relation_id: Hidden
+                        name: Hidden
+                        status:
+                          type: Checkbox
+                          template: checkbox
 
 #                  spouse_relationships:
 #                    type: NestedCollection
