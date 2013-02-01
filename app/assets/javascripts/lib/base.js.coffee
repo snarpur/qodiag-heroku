@@ -6,10 +6,15 @@ class App.Models.Base extends Backbone.Model
     @
 
   setSchema:=>
-    if @.get('schema')?
-      @.get('schema')
+    
+    if @.schema?
+      @.schema
+    else if @.get('schema')?
+      @.get('schema')      
     else if !@.get('schema')? and @?.collection?.schema?
       $.extend(true,{},@.collection.schema)
+    
+
 
   fieldTemplate:(schemaType)->
     str = "#{schemaType[0].toLowerCase()}#{schemaType.substr(1)}"
@@ -50,6 +55,7 @@ class App.Models.Base extends Backbone.Model
   getOrCreateNestedModel:(modelName)=>
     nestedModel = @.get(modelName)
     unless nestedModel instanceof Backbone.Model or nestedModel instanceof Backbone.Collection
+      console.error @.schema, modelName
       console.error "CREATING NEW MODEL::",@.schema[modelName].model ," #{modelName}  :with attributes: ",@.get(modelName)
     else
       nestedModel
