@@ -1,5 +1,5 @@
 object @person
-attributes :id, :firstname, :lastname
+attributes :id, :firstname, :lastname, :address_id
 child(:address){ attributes :id,:street_1, :town}
 node :respondents do |u|
   @person.respondents.map do |r|
