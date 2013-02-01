@@ -3,10 +3,11 @@ class Relationship < ActiveRecord::Base
   belongs_to :relation, :class_name => "Person"
   belongs_to :inverse_relation, :class_name => "Person"
 
-  scope :parent, where(:name => :parent)
-  scope :guardian, where(:name => :guardian)
-  scope :patient, where(:name => :patient)
-  scope :spouse, where(:name => :spouse)
+  after_save :delete_nameless, :if => :is_nameless?
+  # scope :parent, where(:name => :parent)
+  # scope :guardian, where(:name => :guardian)
+  # scope :patient, where(:name => :patient)
+  # scope :spouse, where(:name => :spouse)
 
   attr_accessor :status
   accepts_nested_attributes_for :person, :relation
@@ -20,4 +21,13 @@ class Relationship < ActiveRecord::Base
       (self.read_attribute(:end).nil?)
     end
   end
+
+   private
+    def delete_nameless
+       self.destroy 
+    end
+    
+    def is_nameless?
+      (name == nil)
+    end
 end
