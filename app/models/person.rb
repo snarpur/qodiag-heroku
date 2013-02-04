@@ -91,7 +91,8 @@ class Person < ActiveRecord::Base
 
   attr_accessible :id, :firstname, :lastname, :sex, :ispatient, :dateofbirth, :cpr, :workphone, :mobilephone, :occupation, :workplace, :full_cpr,
                   :address_id, :relations_attributes, :inverse_relations_attributes, :relationships_attributes, :inverse_relationships_attributes,  :address_attributes, 
-                  :spouse_relationships_attributes, :respondent_responder_items_attributes, :patient_responder_items_attributes, :user_attributes
+                  :spouse_relationships_attributes, :respondent_responder_items_attributes, :patient_responder_items_attributes, :user_attributes,
+                  :full_siblings_attributes, :full_siblings, :half_siblings_attributes, :half_siblings, :inverse_half_siblings_attributes, :inverse_half_siblings
   
   validates_associated :relationships, :inverse_relationships, :address #:user,
 
@@ -246,20 +247,95 @@ class Person < ActiveRecord::Base
     (is_parent_of?(person) && is_guardian_of?(person))
   end
 
+  def full_siblings_relationships
+    relations = Relationship.where(:name => 'parent', :person_id => self.parents[0].id) + Relationship.where(:name => 'parent', :person_id => self.parents[1].id)
+  end
+
   def full_siblings
-    full_siblings = self.mother.relations.children & self.father.relations.children
+    full_siblings = self.parents[0].relations.children & self.parents[1].relations.children
     full_siblings.delete(self)
+
+    if full_siblings.empty?
+      full_siblings = self.parents[0].relations.build
+    end
+
     full_siblings
   end
 
-  def half_siblings(parent)
-    parent.relations.children - self.opposite_parent(parent).relations.children
+  def full_siblings_attributes=(siblings)
+    unless siblings.empty?
+      siblings.each do |i|
+        unless i['firstname'].nil?
+          p = Person.find_or_initialize_by_id(i)
+          p.save()
+          if p.parents.empty?
+            p.inverse_relationships.create([{:name => 'parent', :person_id => parents[0].id}, {:name => 'parent', :person_id => parents[1].id}])
+          end
+        end
+      end
+    end
+  end
+
+  def half_siblings
+    half_siblings = self.parents[0].relations.children - self.parents[1].relations.children
+
+    if half_siblings.empty?
+      half_siblings = self.parents[0].relations.build
+    end
+
+    half_siblings
+  end
+
+  def half_siblings_attributes=(siblings)
+    unless siblings.empty?
+      siblings = siblings - parents[1].relations.children
+      siblings.each do |i|
+        unless i['firstname'].nil?
+          p = Person.find_or_initialize_by_id(i)
+          p.save()
+          if p.parents.empty?
+            p.inverse_relationships.create([{:name => 'parent', :person_id => parents[0].id}])
+          end
+        end
+      end
+    end
+  end
+
+  def inverse_half_siblings
+    half_siblings = self.parents[1].relations.children - self.parents[0].relations.children
+
+    if half_siblings.empty?
+      half_siblings = self.parents[1].relations.build
+    end
+
+    half_siblings
+  end
+
+  def inverse_half_siblings_attributes=(siblings)
+    unless siblings.empty?
+      siblings = siblings - parents[0].relations.children
+      siblings.each do |i|
+        unless i['firstname'].nil?
+          p = Person.find_or_initialize_by_id(i)
+          p.save()
+          if p.parents.empty?
+            p.inverse_relationships.create([{:name => 'parent', :person_id => parents[1].id}])
+          end
+        end
+      end
+    end
   end
 
   def foster_siblings
     blood_related = self.parents.map {|i| i.relations.children}.flatten
-    all = (self.mother.spouses + self.father.spouses).map {|i| i.relations.children}.flatten
-    all - blood_related
+    all = self.parents[0].relations.children + self.parents[0].relations.children
+    foster_siblings = all - blood_related
+
+    if foster_siblings.empty?
+      foster_siblings = self.parents[0].relations.build
+    end
+
+    foster_siblings
   end
 
   def respondents

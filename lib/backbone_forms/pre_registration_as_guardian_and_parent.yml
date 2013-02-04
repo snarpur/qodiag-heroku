@@ -163,20 +163,72 @@ steps:
                           type: Checkbox
                           template: checkbox
 
-#                  spouse_relationships:
-#                    type: NestedCollection
-#                    collection: App.Collections.Relationships
-#                    as:
-#                      - spouse_relationship_through_parenting_of_subject
-#                    schema:
-#                      id: Hidden
-#                      person_id: Hidden
-#                      relation_id: Hidden
-#                      name: Hidden
-#                      status:
-#                        type: Checkbox
-#                        template: checkbox
+  -
+    name: subject_siblings
+    form_content:
+      responder_item:
+        model: App.Models.Base
+        type: NestedModel
+        schema:
+          id: Hidden
+          subject:
+            model: App.Models.Base
+            type: NestedModel
+            as: get_subject
+            schema:
+              id: Hidden
+              full_siblings:
+                title: full_siblings
+                type: NestedCollection
+                collection: App.Collections.Person
+                schema:
+                  id: Hidden
+                  firstname:
+                    type: Text
+                    template: field
+                  lastname:
+                    type: Text
+                    template: field
+                  dateofbirth: Date
 
+              half_siblings:
+                title: half_siblings
+                type: NestedCollection
+                collection: App.Collections.Person
+                schema:
+                  id: Hidden
+                  firstname:
+                    type: Text
+                    template: field
+                  lastname:
+                    type: Text
+                    template: field
+                  dateofbirth: Date
 
+              inverse_half_siblings:
+                title: inverse_half_siblings
+                type: NestedCollection
+                collection: App.Collections.Person
+                schema:
+                  id: Hidden
+                  firstname:
+                    type: Text
+                    template: field
+                  lastname:
+                    type: Text
+                    template: field
+                  dateofbirth: Date
 
-
+#              foster_siblings:
+#                title: foster_siblings
+#                type: NestedCollection
+#                collection: App.Collections.Person
+#                schema:
+#                  id: Hidden
+#                  firstname:
+#                    type: Text
+#                    template: field
+#                  lastname:
+#                    type: Text
+#                    template: field
+#                  dateofbirth: Date
