@@ -1,8 +1,7 @@
 .bundle
 db/*.sqlite3
-log/*.log
-tmp/**/*
-tmp/*
+/log/*
+/tmp/*
 app/assets/stylesheets/.sass-cache
 .DS_Store
 .watchr
