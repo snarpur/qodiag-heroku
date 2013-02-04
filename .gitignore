@@ -10,3 +10,5 @@ app/assets/stylesheets/.sass-cache
 public/assets
 yes
 yes.pub
+tmp/i18n-js.cache
+app/assets/javascripts/i18n/translations.js
