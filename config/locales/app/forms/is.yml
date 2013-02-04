@@ -1,5 +1,9 @@
 is:
   forms:
+    full_siblings: "Alsystkin"
+    half_siblings: "Hálf systkin - Börn tengiliðs"
+    inverse_half_siblings: "Hálf systkin - Börn hins foreldris"
+    foster_siblings: "Fóstursystkin"
     relations: "Tengsl"
     personal_info: Persónuupplýsingar
     address_info: Heimilisfang
@@ -20,3 +24,4 @@ is:
         subject: Skjólstæðingur
         contact_info: Tengiliður skjólstæðings
         subject_parent: Foreldri skjólstæðings
+        subject_siblings: Fjölskyldu samsetning
