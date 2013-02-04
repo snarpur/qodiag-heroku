@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130129135620) do
+ActiveRecord::Schema.define(:version => 20130204110837) do
 
   create_table "addresses", :force => true do |t|
     t.string   "street_1"
@@ -264,6 +264,7 @@ ActiveRecord::Schema.define(:version => 20130129135620) do
     t.integer  "person_id"
     t.integer  "invited_by_id"
     t.datetime "invitation_accepted_at"
+    t.string   "invited_by_type"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
