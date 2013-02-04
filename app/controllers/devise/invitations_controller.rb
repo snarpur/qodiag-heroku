@@ -16,7 +16,6 @@ class Devise::InvitationsController < ApplicationController
       if @form_object.root_object.new_record?
         @form_object.root_object.save
       else
-        KK.log "upadating #{@responder_item}", :g
         @form_object.save_step(pick_params(params[:form_content]).first)
       end
         render 'devise/invitations/new.json.rabl' 
@@ -49,6 +48,8 @@ class Devise::InvitationsController < ApplicationController
     if params.has_key?(:form_content)
       @responder_item = ResponderItem.find_or_initialize_by_id(params[:form_content][:responder_item])
       @responder_item.caretaker_id=(@current_user.person.id) if @responder_item.new_record?
+    elsif params.has_key?(:root_object_id)
+      @responder_item = ResponderItem.find(params[:root_object_id])
     else
       @responder_item = ResponderItem.new({:caretaker_id => @current_user.person.id, :registration_identifier => "respondent_registration"})
     end
