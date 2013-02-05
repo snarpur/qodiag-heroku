@@ -6,7 +6,6 @@ class App.Models.Person extends App.Models.Base
   initialize:->
     super
     spouseRelationship = @.get("spouse_relationships")
-    console.log "spouseRelationship  ",spouseRelationship
     spouseRelationship.on("statusUpdate", @setAddres) if spouseRelationship
     @.on("change:form",@setButton)
     @
