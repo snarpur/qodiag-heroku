@@ -6,8 +6,11 @@ class App.Models.Person extends App.Models.Base
   initialize:->
     super
     spouseRelationship = @.get("spouse_relationships")
-    spouseRelationship.on("statusUpdate", @setAddres) if spouseRelationship
-    @.on("change:form",@setButton)
+    console.log "spouseRelationship  ",spouseRelationship
+    if spouseRelationship
+      spouseRelationship.on("statusUpdate", @setAddres)
+      @.on("change:form",@setButton)
+
     @
 
 
@@ -41,9 +44,9 @@ class App.Models.Person extends App.Models.Base
     callbacks=
       success:(model, response) ->
         thisPerson.set('address_id', response.address_id)
-        console.log "Address id is set ",thisPerson
+        #console.log "Address id is set ",thisPerson
       error:(model, response) ->
-        console.warn "error", model
+        #console.warn "error", model
 
 
 

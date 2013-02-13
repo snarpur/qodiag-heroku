@@ -1,40 +1,18 @@
 root_url: pre_registrations/edit
 steps:
-  - 
-    name: contact_info
-    form_content:
-      responder_item:
-        model: App.Models.Base
-        type: NestedModel
-        schema:
-          id: Hidden
-          respondent:
-            model: App.Models.Base
-            as: get_respondent
-            type: NestedModel
-            schema: 
-              id: Hidden 
-              firstname: Text
-              address: 
-                type: NestedModel
-                model: App.Models.Base
-                schema:
-                  id: Hidden
-                  street_1: Text
-                  town: Text
-
   -
-    name: subject_parent
+    name: subject
     form_content:
       responder_item:
         model: App.Models.Base
         type: NestedModel
         schema:
           id: Hidden
-          subject:  
+          subject:
+            title: personal_info
             model: App.Models.Base
-            type: NestedModel
             as: get_subject
+            type: NestedModel
             schema:
               id: Hidden
               firstname:
@@ -45,7 +23,7 @@ steps:
                 type: Text
                 template: field
                 validators: ['required']
-              cpr:
+              full_cpr:
                 type: Text
                 template: field
                 validators: ['required']
@@ -53,16 +31,74 @@ steps:
                 type: Radio
                 template: field
                 options:
-                  - 
+                  -
                     val: female
                     label: girl
-                  -   
-                    val: male 
+                  -
+                    val: male
                     label: boy
-              inverse_relations:
-                type: NestedCollection
-                collection: App.Collections.Base
-                as: opposite_parent_relation
+
+  - 
+    name: contact_info
+    form_content:
+      responder_item:
+        model: App.Models.Base
+        type: NestedModel
+        schema:
+          id: Hidden
+          respondent:
+            title: personal_info
+            model: App.Models.Base
+            as: get_respondent
+            type: NestedModel
+            schema:
+              id: Hidden
+              firstname:
+                type: Text
+                template: field
+                validators: ['required']
+              lastname:
+                type: Text
+                template: field
+                validators: ['required']
+              occupation:
+                type: Text
+                template: field
+              workplace:
+                type: Text
+                template: field
+              address:
+                title: address_info
+                type: NestedModel
+                model: App.Models.Base
+                schema:
+                  id: Hidden
+                  street_1: Text
+                  street_2: Text
+                  town: Text
+                  zip_code: Text
+                  phone: Text
+                  home_phone: Text
+
+  -
+    name: subject_parent
+    form_content:
+      responder_item:
+        model: App.Models.Base
+        type: NestedModel
+        schema:
+          id: Hidden
+          subject:
+            model: App.Models.Base
+            type: NestedModel
+            as: get_subject
+            schema:
+              id: Hidden
+              parent0:
+                title: personal_info_parent1
+                type: NestedModel
+                model: App.Models.Person
+                as: parent0
                 schema:
                   id: Hidden
                   firstname:
@@ -76,37 +112,35 @@ steps:
                   relationships:
                     type: NestedCollection
                     collection: App.Collections.Relationships
-                    as: 
+                    as:
                       - parent_relationship_to_current_subject
-                      - guardian_relationship_to_current_subject
                     schema:
-                      -
-                        id: Hidden
-                        person_id: Hidden
-                        relation_id: Hidden
-                        name: Hidden
-                      -
-                        id: Hidden 
-                        person_id: Hidden 
-                        relation_id: Hidden 
-                        name: Hidden 
-                        status:
-                          type: Checkbox
-                          template: checkbox
-                  spouse_relationships:
-                    type: NestedCollection
-                    collection: App.Collections.Relationships
-                    as: 
-                      - spouse_relationship_through_parenting_of_subject
-                    schema:
-                      id: Hidden 
-                      person_id: Hidden 
+                      id: Hidden
+                      person_id: Hidden
                       relation_id: Hidden
                       name: Hidden
-                      status:
-                        type: Checkbox
-                        template: checkbox
-
-
-
-
+              parent1:
+                title: personal_info_parent2
+                type: NestedModel
+                model: App.Models.Person
+                as: parent1
+                schema:
+                  id: Hidden
+                  firstname:
+                    type: Text
+                    template: field
+                    validators: ['required']
+                  lastname:
+                    type: Text
+                    template: field
+                    validators: ['required']
+                  relationships:
+                    type: NestedCollection
+                    collection: App.Collections.Relationships
+                    as:
+                      - parent_relationship_to_current_subject
+                    schema:
+                      id: Hidden
+                      person_id: Hidden
+                      relation_id: Hidden
+                      name: Hidden

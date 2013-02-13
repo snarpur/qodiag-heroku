@@ -6,6 +6,8 @@ is:
     foster_siblings: "Fóstursystkin"
     relations: "Tengsl"
     personal_info: Persónuupplýsingar
+    personal_info_parent1: Persónuupplýsingar fyrri foreldris
+    personal_info_parent2: Persónuupplýsingar seinni foreldris
     address_info: Heimilisfang
     parent_guardian: "foreldri/forræðishafi"
     client: "skjólstæðingur"
@@ -13,11 +15,11 @@ is:
       name: "Beiðni um skráningu"
       steps:
         guardian_info: "Foreldri/forráðamaður"
-        patient_info: "Upplýsingar um sjúkling"
+        patient_info: "Upplýsingar um skjólstæðing"
     respondent_registration:
       name: "Forskráning grunnupplýsinga"
       steps:
-        contact_info: "Helstsu upplýsingar (sími, heimilsfang ofl)"
+        contact_info: "Helstu upplýsingar (sími, heimilsfang ofl)"
         subject_parent: "Faðir/móðir"
     pre_registration_as_guardian_and_parent:
       steps:
@@ -25,3 +27,9 @@ is:
         contact_info: Tengiliður skjólstæðings
         subject_parent: Foreldri skjólstæðings
         subject_siblings: Fjölskyldu samsetning
+    pre_registration_as_guardian:
+      steps:
+        subject: Skjólstæðingur
+        contact_info: Tengiliður skjólstæðings
+        subject_parent: Foreldrar skjólstæðings
+        subject_siblings: Systkin skjólstæðings
