@@ -9,4 +9,13 @@ chart_config:
     useHTML: true
     footerFormat: '</table>'
     shared: true
+  xAxis:
+    labels:
+      useHTML: true
+  plotOptions:
+    column:
+      cursor: pointer
+      point:
+        events:
+          click: drillToQuestion
     # formatter: true

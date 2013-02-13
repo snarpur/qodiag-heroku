@@ -7,7 +7,8 @@ class App.Views.Charts extends Backbone.View
 
   initialize:->
     @timeline = @.options.timeline
-    @item = @.options.item
+    @item = @.options.item 
+    #DELETE: not in use
     @model = new Backbone.Model()
   
   template:->
@@ -37,9 +38,9 @@ class App.Views.Charts extends Backbone.View
     formatter = new App.Lib.chartFormatters.column(chart)
     chart = formatter.setFormatters()
     chart = @setChartDiv(chart)
-  
-    new App.Views.DrilldownReset({chart:chart, chartEl:chartEl})
-    new Highcharts.Chart(chart)
+    drilldown = new App.Views.DrilldownReset({chart:chart, chartEl:chartEl})
+    rootChart = new Highcharts.Chart(chart)
+    
 
 
   renderCharts:=>

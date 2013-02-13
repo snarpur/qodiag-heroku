@@ -8,8 +8,7 @@ class Chart < ChartRenderer::Column::Chart
 
   def reference_values
     ordered_series = []
-    series = norm_reference.scores_by_names_and_result_names(reference_groups,get_content(:result_names))
- 
+    series = norm_reference.scores_by_names_and_result_names(categories,get_content(:result_names))
     series.each do |i|
       group = {}
       group.merge!(:name  => i[0])
@@ -39,15 +38,18 @@ class Chart < ChartRenderer::Column::Chart
   end
 
   def data_values(scores) 
-    scores.map{|s| {:y => s.get_value, :name=> {:data_label => data_label(s)}}}
-
+    data = []
+    scores.each do |s|
+      data[categories.index(s.name)] = {:y => s.get_value, :name=> {:data_label => data_label(s)}}
+    end
+    data
   end
 
   def data_label(score)
     if score.is_range_value?
       format_range_value(score)
     else
-        score.value
+      score.value
     end    
   end
 

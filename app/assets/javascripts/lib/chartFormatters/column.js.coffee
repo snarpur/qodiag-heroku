@@ -1,13 +1,13 @@
 class App.Lib.chartFormatters.column extends App.Lib.chartFormatters.chart
-
-  dataLabelsFormatter:()=>
+ 
+  plotOptionsColumnDataLabelsFormatter:()=>
     ()->
       if @point.config.name? and @point.config.name.data_label
         @point.config.name.data_label
       else
         @.y
-
-  labelsFormatter:=>
+ 
+  xAxisLabelsFormatter:=>
     accessCode = @chart.accessCode
     ()->
       if _.isNaN(parseInt(@.value))
@@ -17,7 +17,7 @@ class App.Lib.chartFormatters.column extends App.Lib.chartFormatters.chart
       str = @.value if _.includes(str,'missing')
       str.replace(/\s/,"\n")
       _.capitalize(str)
-
+ 
   tooltipFormatter:()=>
     ()->
       str = ""

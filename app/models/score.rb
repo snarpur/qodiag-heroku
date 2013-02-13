@@ -1,3 +1,4 @@
+
 class Score < ActiveRecord::Base
   belongs_to :norm_reference
   scope :by_result_name, lambda {|n| where(:result_name => n)} #.group_by{|i|i[:result_name]}

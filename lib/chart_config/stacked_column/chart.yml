@@ -5,4 +5,4 @@ chart_config:
     column:
       stacking: normal 
 content:
-  color: ['#6ddb00', '#ffff00', '#e20000']
+  colors: ['#6ddb00', '#ffff00', '#e20000']

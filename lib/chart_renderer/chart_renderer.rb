@@ -30,39 +30,32 @@ module ChartRenderer
 
     #IMPORTANT: refactor drilldown into method of class
     def subject_results
-      if total_for_custom_groups?
-        data = total_for_custom_groups
-      else
-        data = results_with_total_for_current_groups
+      data, point_events = {}, nil
+      KK.log @chart,:r
+      data[:data] = get_content(:question_groups).map do |i|
+        groups = i.is_a?(String) ? i : i[:total]
+        group_results = total_for_groups(groups)
+        if i.respond_to?(:has_key?) && i[:drilldown] == true
+          drilldown_config = Marshal::load(Marshal.dump(@chart)) 
+          drilldown_config[:content][:question_groups] = groups 
+          drilldown_chart = self.class.new(drilldown_config,@response_set)
+          # point_events = {:cursor => 'pointer',:point => {:events => {:click =>'drilldown'}}}
+          drilldown_series = [{:data => drilldown_chart.chart_data, :name => i[:name]}]
+          {:y => group_results, :drilldown => {:series => drilldown_chart.chart_data,:xAxis => {:categories => groups}}}
+        else
+          drilldown = ChartRenderer::Drilldown::Chart.new(@response_set,groups,[group_results])
+          drilldown.series_with_drill_down
+        end
       end
-      data = data.is_a?(Array) ? data : [data]
-      
-      if drilldown?
-        KK.log "in drillown"
-        # series_config = {:cursor => 'pointer',:point => {:events => {:click =>'drilldown'}}}
-        # ChartRenderer::Drilldown::Chart.new(@response_set,subject_groups,data)
-        # drilldown = drilldown_results
-        # drilldown_data = []
-        # data.each_with_index do |i,index|
-        #   drilldown_data[index] = {
-        #     :y => i, 
-        #     :drilldown => {
-        #       :series => [{
-        #           :data =>  drilldown[index],
-        #           :name => subject_groups[index] 
-        #       }],
-        #       :xAxis => {:categories => drilldown[index].map{|k| k[:name]}}
-        #     }
-        #   }
-        # end
-        drilldown = ChartRenderer::Drilldown::Chart.new(@response_set,subject_groups,data)
-        return drilldown.series_with_drill_down
-      end
-      {:data => data}
+
+
+      data.merge!(point_events) unless point_events.nil?
+
+      data
     end
 
     def reference_values
-      series = norm_reference.scores_by_names_and_result_names(get_content(:question_groups),get_content(:result_names)).map do |i|
+      series = norm_reference.scores_by_names_and_result_names(categories,get_content(:result_names)).map do |i|
         {:name => i[0], :data => i[1].map{|d| d.get_value}}
       end
       series
@@ -73,7 +66,7 @@ module ChartRenderer
     end
 
     def chart_size
-      reference_groups.size * 2
+      get_content(:question_groups).size * 2
     end
 
     def chart_data
@@ -81,7 +74,9 @@ module ChartRenderer
     end
 
     def categories
-      reference_groups
+      get_content(:question_groups).map do |i|
+        i.is_a?(String) ? i : i[:name]
+      end
     end
     
     def title
@@ -123,21 +118,27 @@ module ChartRenderer
     end
 
     private
-    def total_for_custom_groups?
-      get_content(:question_groups).is_a?(Hash) && get_content(:question_groups).has_key?(:total)
+    # def total_for_custom_groups?
+    #   get_content(:question_groups).is_a?(Hash) && get_content(:question_groups).has_key?(:total)
+    # end
+
+    def total_for_groups(groups)
+      @response_set.sum_of_group_result(groups)
     end
 
-    def total_for_custom_groups
-      @response_set.sum_of_group_result(subject_groups)
+    
+    def questions_by_group
+      get_content(:question_groups).map do |i|
+        groups = i.is_a?(String) ? i : i[:total]
+      end
     end
-
-    def results_with_total_for_current_groups
-      total = subject_groups.select{|g| g == "total"}
-      groups = subject_groups - total
-      data = groups.map{|g| @response_set.sum_of_group_result(g)}
-      data << data.sum unless total.empty?
-      data
-    end
+    # def results_with_total_for_current_groups
+    #   total = subject_groups.select{|g| g == "total"}
+    #   groups = subject_groups - total
+    #   data = groups.map{|g| @response_set.sum_of_group_result(g)}
+    #   data << data.sum unless total.empty?
+    #   data
+    # end
 
     def subject_groups
       total_for_custom_groups? ? get_content(:question_groups).values.flatten : get_content(:question_groups)
