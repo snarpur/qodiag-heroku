@@ -23,7 +23,7 @@ steps:
                 type: Text
                 template: field
                 validators: ['required']
-              cpr:
+              full_cpr:
                 type: Text
                 template: field
                 validators: ['required']
@@ -97,7 +97,7 @@ steps:
               inverse_relations:
                 title: personal_info
                 type: NestedCollection
-                collection: App.Collections.Base
+                collection: App.Collections.Person
                 as: opposite_parent_relation
                 schema:
                   id: Hidden

@@ -13,6 +13,8 @@ is:
     yearofbirth: "Fæðingarár"
     boy: "Drengur"
     girl: "Stúlka"
+    male: "Karl"
+    female: "Kona"
     sex: "Kyn"
   relationship:
     is_parent: "Forráðamaður er foreldri"

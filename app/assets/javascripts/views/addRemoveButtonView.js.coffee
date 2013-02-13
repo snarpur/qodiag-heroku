@@ -13,5 +13,5 @@ class App.Views.AddRemoveButton extends Backbone.View
     console.log "adding shit"
 
   render:->
-    console.warn @form
-    @form.$el.append($(@el).html(@template()({})))
+    if (@template()?)
+      @form.$el.append($(@el).html(@template()({})))

@@ -41,6 +41,16 @@ steps:
                 type: Text
                 template: field
                 validators: ['required']
+              sex:
+                type: Radio
+                template: field
+                options:
+                  -
+                    val: female
+                    label: female
+                  -
+                    val: male
+                    label: male
 
   -
     name: patient_info
@@ -84,6 +94,7 @@ steps:
                 as:
                   - inverse_parent_relationship_as_current_subject 
                   - inverse_patient_relationship_as_current_subject
+                  - inverse_guardian_relationship_as_current_subject
                 schema:
                   -
                     id: Hidden
@@ -93,6 +104,11 @@ steps:
                     status:
                       type: Checkbox
                       template: checkbox
+                  -
+                    id: Hidden
+                    person_id: Hidden
+                    relation_id: Hidden
+                    name: Hidden
                   -
                     id: Hidden
                     person_id: Hidden
