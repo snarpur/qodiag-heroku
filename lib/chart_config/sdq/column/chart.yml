@@ -14,7 +14,9 @@ charts:
     content:
       name: total
       question_groups:
-        total: [emotional, conduct, hyperactivity_inattention, peer_problem, prosocial_behaviour]
+        -
+          name: total
+          total: [emotional, conduct, hyperactivity_inattention, peer_problem, prosocial_behaviour]
     chart_config:
       legend:
           enabled: false

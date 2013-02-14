@@ -1,12 +1,41 @@
 chart_name: Bar
-extends: Column
+extends: Chart
 chart_config:
+  colors: ['#6ddb00', '#ffff00', '#e20000']
   chart:
-    type: bar
-  xAxis:
+    type: columnrange
+    inverted: true
+    marginBottom: 50
+    marginTop: 80
+  plotOptions:
+    columnrange:
+      groupPadding: 0
+      borderWidth: 0
+  # legend:
+  #   align: center
+  #   floating: true
+  #   labelFormatter: true
+  #   itemHoverStyle:
+  #     color: #CCC  
+  yAxis:
+    min: 0
+    max: 3
+    opposite: false
+    showLastLabel: false
     labels:
-      align: right
+      enabled: false
+      useHTML: true
       formatter: true
-
-# content:
-#   color: ['#6ddb00', '#ffff00', '#e20000']
+  legend:
+    enabled: true
+  xAxis:
+    alternateGridColor: rgba(255, 255, 255, .1)
+    tickLength: 0
+    labels:
+      useHTML: true
+      style:
+        width: 500px
+      align: right
+      y: 1
+      x: 0
+      formatter: true

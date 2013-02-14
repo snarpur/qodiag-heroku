@@ -1,4 +1,4 @@
-chart_name: YsrSyndromeScale
+chart_name: YsrSyndromeScale  
 chart_type: Column
 extends: StackedColumn
 
@@ -8,37 +8,42 @@ charts:
   -
     content:
       name:  score
+      drilldown_to_question: true
       question_groups: 
         - 
-          name: internal
+          name: internalizing
+          drilldown: true
           total:
-            anxious_or_depressed
-            withdrawn_or_depressed
-            somatic_complaints
+            - anxious_or_depressed
+            - withdrawn_or_depressed
+            - somatic_complaints
         - social_problems
         - thought_problems
         - attention_problems 
         - 
-          name: external
+          name: externalizing
+          drilldown: true
           total:
             - rule_breaking_behaviour 
             - aggressive_behaviour
-      # drilldown: true
-  # -   
-  #   content:
-  #     name: total
-  #     question_groups:
-  #       total: [anxious_or_depressed, withdrawn_or_depressed, somatic_complaints, social_problems, thought_problems, attention_problems, rule_breaking_behaviour, aggressive_behaviour]
-  #   chart_config:
-  #     legend:
-  #         enabled: false
-  #     xAxis:
-  #       title:
-  #         text: ~
-  #     yAxis:
-  #       opposite: true
-  #       maxPadding: 0.01
-  #     title:
-  #       text: ~
-  #     subtitle: 
-  #       text: ~
+          
+  -   
+    content:
+      name: total
+      question_groups:
+        -
+          name: total
+          total: [anxious_or_depressed, withdrawn_or_depressed, somatic_complaints, social_problems, thought_problems, attention_problems, rule_breaking_behaviour, aggressive_behaviour]
+    chart_config:
+      legend:
+          enabled: false
+      xAxis:
+        title:
+          text: ~
+      yAxis:
+        opposite: true
+        maxPadding: 0.01
+      title:
+        text: ~
+      subtitle: 
+        text: ~

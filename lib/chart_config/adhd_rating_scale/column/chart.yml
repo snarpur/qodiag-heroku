@@ -13,5 +13,12 @@ charts:
   -
     content:
       name:  score
-      question_groups: [inattention, impulsivity_hyperactivity, total]
+      question_groups: 
+        - inattention
+        - impulsivity_hyperactivity
+        - 
+          name: total
+          total: 
+            - inattention
+            - impulsivity_hyperactivity
 

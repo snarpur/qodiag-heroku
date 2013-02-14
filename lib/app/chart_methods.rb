@@ -1,7 +1,7 @@
 module ChartMethods 
 
   def result_color(result_name)
-    {:color => get_content(:color)[result_name.to_sym]}
+    {:color => get_content(:colors)[result_name.to_sym]}
   end
 
   def has_group_actions?
@@ -21,11 +21,11 @@ module ChartMethods
   end
 
   def color_of_opposite_result(result_name)
-    get_content(:color)[index_of_opposite_result(result_name)]
+    get_content(:colors)[index_of_opposite_result(result_name)]
   end
 
   def color_of_result(result_name)
-    get_content(:color)[index_of_result(result_name)]
+    get_content(:colors)[index_of_result(result_name)]
   end
 
   def index_of_opposite_result(result_name)

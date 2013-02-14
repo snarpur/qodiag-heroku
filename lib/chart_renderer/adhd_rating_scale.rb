@@ -21,7 +21,7 @@ module ChartRenderer::AdhdRatingScale
 
       #REFACTOR: Remove localized strings
       def count_high_values
-      	groups = subject_groups - ["total"]
+      	groups = categories - ['total']
       	tooltip_object = {:heading => "Fjöldi 2/3: ", :content => {:total =>[0,0]}}
       	groups.each do |g|
           result = tooltip_object[:content]
@@ -39,7 +39,7 @@ module ChartRenderer::AdhdRatingScale
 
       #REFACTOR: Remove localized strings
       def standard_deviation_from_average(data)
-      	groups = subject_groups
+      	groups = categories
     		standard_deviation = norm_reference.get_score_by_result_name('standard_deviation').map do |i|
            i[1].map{|d| d.get_value}
         end
