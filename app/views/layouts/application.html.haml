@@ -36,8 +36,15 @@
             Upplýsingar
         %ul.nav
           %li.home
-            %a{:href => "/users"}
-              = t('navigation.home')
+            %a{:class => 'c-icon', :href => "/users"} &#8962;
+
+          - if params[:controller] == 'people'
+            %li{:class => params[:action] == 'show' ? 'selected' : ''}
+              %a{:class => 'c-icon timeline', :href => '/people/' + @subject.id.to_s} &#57349;
+            %li{:class => params[:action] == 'history' ? 'selected' : ''}
+              %a{:class => 'c-icon history', :href => '/people/' + @subject.id.to_s + '/history'} &#128340;
+            %li{:class => params[:action] == 'information' ? 'selected' : ''}
+              %a{:class => 'c-icon information', :href => '/people/' + @subject.id.to_s + '/information'} &#59141;
         #content
           = yield
       #footer

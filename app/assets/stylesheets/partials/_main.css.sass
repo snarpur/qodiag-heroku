@@ -64,21 +64,28 @@ body
 ul.nav
   position: absolute
   top: 75px
-  left: 20px
+  left: 19px
   li
+    &.selected
+      a
+        background: #fff
+        border: 1px solid #ccc
+        border-right: 0
+        padding: 0
     a
       display: block
-      +box-shadow(0 0 2px 0 rgba(0,0,0,.2) inset)
-      border: 1px solid #fefefe
-      border-width: 0 1px 1px 0
       height: 32px
       width: 32px
-      +border-radius(5px)
+      padding: 1px 0 1px 1px
+      +border-radius(5px 0 0 5px)
+
       &:hover
         background-color: rgba(0,0,0,.1)
     &.home
+      margin: -10px 0 10px -10px
       a
-        +replace-text(unquote("/assets/black-gloss/32x32/home5.png"))
+        border: 1px solid #ccc
+        +border-radius(5px)
 
 .client-view ul.nav
   display: none
@@ -86,9 +93,11 @@ ul.nav
 #container
   +clearfix
   +container
-  margin: 20px 50px
+  margin: 0
+  padding: 20px 0 20px 50px
   border-width: 0 1px
   min-height: 600px
+  background: url("/assets/body-side.png") repeat-y
 
 #content
   +clearfix

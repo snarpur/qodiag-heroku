@@ -1,6 +1,7 @@
 is:
   # Models -------------------------------------------------------
   person:
+    name: "Nafn"
     firstname: "Fornafn"
     lastname: "Eftirnafn"
     dateofbirth: "Fæðingardagur"
@@ -57,6 +58,7 @@ is:
     father: "Faðir"
     mother: "Móðir"
     parent: "Foreldri"
+    parents: "Foreldrar"
     patient: "Sjúklingur"
     client: "Skjólstæðingur"
     spouse: "Maki"
