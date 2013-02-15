@@ -38,6 +38,8 @@ end
   match 'people/:subject_id/responder_items/responses/:survey_id' => 'responder_items#responses', :via => :get
   match 'people/:subject_id/responder_items/responses/:respondent_id/:survey_id' => 'responder_items#responses', :via => :get
   match 'people/:subject_id/responder_items/survey/:survey_id' => 'responder_items#survey', :via => :get
+  match 'people/:subject_id/history' => 'people#history'
+  match 'people/:subject_id/information' => 'people#information'
 
   # match 'pre_registrations/:responder_item_id/edit/step/:step_no' => 'pre_registrations#edit', :via => :get
   # match 'pre_registrations/:responder_item_id/edit' => 'pre_registrations#edit', :via => :get

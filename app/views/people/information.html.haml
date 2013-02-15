@@ -1,0 +1,52 @@
+%div{:id => 'person'}
+  %div{:class => 'sidebar'}
+    %div{:class => 'image'}
+      %img{:src => 'http://placehold.it/250x300'}
+    %div{:class => 'subject-information'}
+      %ul
+        %li
+          =t('person.name') + ': ' + @subject.firstname + ' ' + @subject.lastname
+        %li
+          =t('person.full_cpr') + ': ' + @subject.full_cpr
+        %li
+          =t('person.dateofbirth') + ': ' + @subject.dateofbirth.strftime('%d-%m-%y')
+  %div{:class => 'content'}
+    %h2
+      =t('terms.parents')
+    - @subject.parents.each do |parent|
+      %table
+        %tr
+          %td
+            =t('person.name') + ':'
+          %td
+            =parent.firstname + ' ' + parent.lastname
+        %tr
+          %td
+            =t('person.full_cpr') + ':'
+          %td
+            =parent.full_cpr
+        %tr
+          %td
+            =t('address.street_1') + ':'
+          %td
+            @todo
+        %tr
+          %td
+            =t('address.phone') + ':'
+          %td
+            @todo
+        %tr
+          %td
+            =t('address.home_phone') + ':'
+          %td
+            @todo
+        %tr
+          %td
+            =t('person.workplace') + ':'
+          %td
+            =parent.workplace
+        %tr
+          %td
+            =t('person.workphone') + ':'
+          %td
+            =parent.workphone

@@ -1,18 +1,3 @@
 .timeline-info-header
-	%span.placeholder.portrait.s-100
 	%h1.china-4
 		= "#{@person.full_name} #{@person.age} ára"
-
-	%table
-		%tr
-			%th{:colspan => 2} Forræðishafi
-		-@person.guardians.each do |guardian|
-			%tr
-				%td Nafn:
-				%td= guardian.full_name 
-			%tr
-				%td Netfang:
-				%td= guardian.user_email
-		
-
-

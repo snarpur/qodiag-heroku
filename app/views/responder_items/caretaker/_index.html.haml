@@ -19,7 +19,7 @@
       -@patients.each do |p|
         %tr
           %td
-            = link_to p.full_name, subject_responder_items_path(p) 
+            = link_to p.full_name, subject_path(p)
           %td.uncompleted
             - u = p.responder_items.surveys.uncompleted.count
             -unless u.zero?
