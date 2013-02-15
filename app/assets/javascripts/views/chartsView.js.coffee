@@ -7,12 +7,18 @@ class App.Views.Charts extends Backbone.View
 
   initialize:->
     @timeline = @.options.timeline
-    @item = @.options.item 
-    #DELETE: not in use
-    @model = new Backbone.Model()
+    @item = @.options.item
+    @item.on("change:dialogView",@unBindEvents)
+    App.Event.on("drilldown",@drilldown)
+
   
   template:->
     JST['templates/chartsTmpl']
+
+  unBindEvents:=>
+    unless @item.get("dialogView")?
+      App.Event.off()
+      @item.off()
 
   charts: (item) =>
     @item.get('charts')[item]
@@ -30,19 +36,25 @@ class App.Views.Charts extends Backbone.View
     chart.chart.renderTo = @.$el.find("\##{chart.chart.renderTo} > div")[0]
     chart
   
+  drilldown:(status)=>
+    @.$el.setCssState(status,"drilldown")
+
+
   renderChart:(chart)=>
     chartEl = $(@template()(chart))
     $(@el).append(chartEl)
     chartEl.width(@chartWidth(chart))
-    
     formatter = new App.Lib.chartFormatters.column(chart)
     chart = formatter.setFormatters()
     chart = @setChartDiv(chart)
-    drilldown = new App.Views.DrilldownReset({chart:chart, chartEl:chartEl})
-    rootChart = new Highcharts.Chart(chart)
-    
-
-
+    drilldownParams=
+      chart:chart, 
+      chartEl:chartEl, 
+      chartView: @,
+      responderItem: @item
+    drilldown = new App.Views.Drilldown(drilldownParams)
+    new Highcharts.Chart(chart)
+  
   renderCharts:=>
     _.each(@item.get('charts'), @renderChart)
   

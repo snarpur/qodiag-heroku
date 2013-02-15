@@ -9,5 +9,6 @@ window.App =
   Controllers: {}
   Views: {}
   Timeline: {}
+  Event: new Backbone.Model
   init:->
     Backbone.history.start();

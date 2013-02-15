@@ -7,6 +7,7 @@ class ResponderItem < ActiveRecord::Base
   belongs_to :response_set
 
   delegate :response_to_chart, :to => :response_set
+  delegate :group_result, :to => :response_set
   before_save :set_response_set, :if => :is_uncompleted_survey?
 
   scope :overdue, where("deadline < ? AND completed IS NULL", Time.zone.now)

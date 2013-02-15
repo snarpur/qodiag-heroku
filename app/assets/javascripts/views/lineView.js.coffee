@@ -16,6 +16,7 @@ class App.Views.Timeline.Line extends Backbone.View
     @model.bind("change:newItemOverlayState", @newItemOverlayState)
     @model.bind("change:menuItem", @removeItems)
     @model.bind("remove", @removeLine)
+    @model.on('change:currentChartHeight',@resizeLine)
     @model.get('items').bind("add", @renderLineItems)
 
   
@@ -30,8 +31,13 @@ class App.Views.Timeline.Line extends Backbone.View
       @model.clearDialogItem()
     else
       $(@el).setCssState("open")
-      $(@el).setCssState('charts','overlay')  
+      $(@el).setCssState('charts','overlay')   
       @renderDialog(@model.currentDialogItem())
+
+  resizeLine:(line)=>
+    height = line.get('currentChartHeight')
+    height = if height == '' then '' else height + App.Timeline.Dimensions.line_height 
+    @.$el.css("height", height)
 
   removeDialog:(item)=>
     if @model.previousDialogItem()?
@@ -42,6 +48,7 @@ class App.Views.Timeline.Line extends Backbone.View
     dialog = new App.Views.Timeline.ItemDialog(line: @model, model: item, timeline: @timeline)
     $(@el).append(dialog.render().el)
     dialog.renderCharts()
+    
   
   renderLineItems: => 
     @.$(".line-items").empty()

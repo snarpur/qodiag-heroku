@@ -20,6 +20,10 @@ Snarpur::Application.routes.draw do
   resources :responder_items do
       resources :people
   end
+  
+  match 'responder_items/:id/responses/question_group/:question_group_name' => 'responder_items/survey_responses#question_group', :via => :get
+
+
   resources :people, :as => 'subject' do
       resources :responder_items
   end

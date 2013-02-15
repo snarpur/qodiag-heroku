@@ -8,7 +8,6 @@ class App.Lib.ChartEvents.Drilldown extends Backbone.Model
     @chart.plotOptions.column.cursor = 'pointer'
     @chart.plotOptions.column.point.events.click = @drilldown
     @.on("drillup",@drillup)
-    # @.on("change:previousChart",@destroyPreviousChart)
 
   drillup:=>
     paramsHistory = _.initial(@.get('paramsHistory'))
@@ -22,16 +21,27 @@ class App.Lib.ChartEvents.Drilldown extends Backbone.Model
     if target.drilldown
       @.set({previousChart:target.series.chart})
       drilldown = $.extend(true,{},target.drilldown)
-      @addParamsToHistory(drilldown) 
+      @addChartToHistory(drilldown)
+    else if @isQuestionList(target.category)
+      @getQuestionList(target.category)
+      
+  # setFormatters:(params)=>
+  #   formatter = new App.Lib.chartFormatters.questionList(_.extend(params,{accessCode: @chart.accessCode}))
+  #   params = $.extend(true,{},formatter.setFormatters())
 
 
-  setFormatters:(params)=>
-    console.warn params
-    formatter = new App.Lib.chartFormatters.questionList(_.extend(params,{accessCode: @chart.accessCode}))
-    params = $.extend(true,{},formatter.setFormatters())
-
+  getQuestionList:(questionGroupName)=>
+    questionList = new App.Collections.QuestionResponse(questionGroupName, @get('responderItem'))
+    drilldown = @
+    callbacks= 
+      success: (model,response)->
+       drilldown.addQuestionListToHistory(questionList)
+      error: (model,response)->
+        throw "questions for #{questionGroupName} list failed "
+    
+    questionList.fetch(callbacks)
   mergeParamsFromRoot:(params)=>
-    inherited = ["chart","credits","legend","subtitle","title","tooltip","yAxis","plotOptions"]
+    inherited = ["chart","credits","legend","subtitle","title","tooltip","yAxis","xAxis","plotOptions"]
     _.each(inherited,((i)->
       target = params[i]
       target ?= {}
@@ -39,19 +49,20 @@ class App.Lib.ChartEvents.Drilldown extends Backbone.Model
     ),@)
     params
 
-  addParamsToHistory:(params)=>
-    params = @setFormatters(params)
+  isQuestionList:(category)->
+    _.contains(@chart.questionListDrilldown,category)
+
+  addQuestionListToHistory:(questionResponse)=>
+    paramsHistory = @.get("paramsHistory")
+    paramsHistory.push(questionResponse)
+    @.set('paramsHistory',paramsHistory)
+    @.trigger('change:paramsHistory')
+
+  addChartToHistory:(params)=>
     params = @mergeParamsFromRoot(params)
     paramsHistory = @.get("paramsHistory")
     paramsHistory.push(params)
     @.set('paramsHistory',paramsHistory)
     @.trigger('change:paramsHistory')
 
-  # destroyPreviousChart:=>
-  #   console.log "DESTROYING :: ",@.get('previousChart').xAxis[0].categories 
-  #   @.get('previousChart').destroy()
-
-  
-  # createDrilldownChart:(params)=>
-  #   @.set('drilldownChart',new Highcharts.Chart(params))
 

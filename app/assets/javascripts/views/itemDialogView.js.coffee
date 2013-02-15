@@ -10,6 +10,8 @@ class App.Views.Timeline.ItemDialog extends Backbone.View
   initialize:->
     @line = @options.line
     @timeline = @options.timeline
+    App.Event.on("chartHeight", @setLineHeight)
+    @line.on('change:currentChartHeight',@resizeDialog)
     @model.set({dialogView: @})
 
   template:->
@@ -17,7 +19,18 @@ class App.Views.Timeline.ItemDialog extends Backbone.View
 
   close:=>
     @line.trigger("updateDialog", null)
+    App.Event.off("chartHeight")
     @model.set({dialogView: null})
+
+  setLineHeight:(height)=>
+    if height? && height > App.Timeline.Dimensions.line_height_expanded
+      @line.set('currentChartHeight',height)
+    else
+      @line.set('currentChartHeight','')
+
+  resizeDialog:(line)=>
+    @.$el.css("height",line.get('currentChartHeight'))
+    
 
   viewLineChart:=>
     $(@el).setCssState("line")
@@ -33,8 +46,8 @@ class App.Views.Timeline.ItemDialog extends Backbone.View
         charts = new App.Views.Charts(item: model, timeline: @.options.timeline)
         @.$(".chart-wrapper").append(charts.render().el)
         charts.renderCharts()
-      error:->
-         "error"
+      error:()->
+          throw "could not get charts"
       )
   
   getLineChart:=>

@@ -5,14 +5,18 @@
 //= require jquery-ui/development-bundle/ui/i18n/jquery-ui-i18n
 //= require underscore/underscore	
 //= require underscore/underscore.string	
-//= require backbone/backbone.js	
-//= require backbone/backboneCSRF.js
+//= require backbone/backbone-9.10.js	
+//= require backbone/backbone_rails_sync.js
+//= require backbone.marionette/backbone.babysitter
+//= require backbone.marionette/backbone.wreqr
+//= require backbone.marionette/json2
+//= require backbone.marionette/backbone.marionette
 //= require backbone-forms/distribution/backbone-forms.js
 //= require date/build/date-is-IS.js	
 //= require XDate/XDate
 //= require highcharts/js/highcharts.src.js
-//= require highcharts/js/highcharts-more.src.js
 //= require jquery.quicksearch
+//= require stupidtable
 //= require i18n
 //= require i18n/translations
 //= require app
@@ -27,7 +31,5 @@ $(document).ready(function(){
 	$.datepicker.setDefaults($.datepicker.regional[I18n.locale]);
 	$('input#patient-search').quicksearch('table tbody tr');
 	$("#flash > .notice").fadeOut(4000);
-
-
 });
 

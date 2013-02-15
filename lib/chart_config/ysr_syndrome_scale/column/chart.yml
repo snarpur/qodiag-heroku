@@ -8,7 +8,7 @@ charts:
   -
     content:
       name:  score
-      drilldown_to_question: true
+      question_list_drilldown: true
       question_groups: 
         - 
           name: internalizing

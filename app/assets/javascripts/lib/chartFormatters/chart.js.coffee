@@ -38,7 +38,6 @@ class App.Lib.chartFormatters.chart
     if nestedKey?
       {key: nestedKey, value: nestedValue}
 
-
   setFormatters:() =>
     _.each(@formatters(),((f) ->
       target = @findKeyAndValue(@chart,f)
@@ -50,7 +49,6 @@ class App.Lib.chartFormatters.chart
   getFormatterFunction:(str)=>
     functionSting = _.camelize(str.replace(/\./g,"-"))
     @[functionSting].call()
-
 
   plotOptionsColumnDataLabelsFormatter:->
     () ->
