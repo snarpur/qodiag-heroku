@@ -7,10 +7,12 @@ chart_config:
   chart:
     marginBottom: 100
     marginTop: 80
+    animation: false
   plotOptions:
     column:
       groupPadding: 0.1
       pointPadding: 0.1
+      animation: false
       dataLabels:
         enabled: true
         color:  '#333'
@@ -21,10 +23,10 @@ chart_config:
         legendItemClick: false
   title:
     text: true
-    align: left
+    align: right
   subtitle:
     text: true
-    align: left
+    align: right
   legend:
     align: center
     floating: true

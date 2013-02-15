@@ -3,20 +3,15 @@ extends: Chart
 chart_config:
   colors: ['#6ddb00', '#ffff00', '#e20000']
   chart:
+    # type: bar
     type: columnrange
     inverted: true
-    marginBottom: 50
-    marginTop: 80
+    marginBottom: 40
+    marginTop: 40
   plotOptions:
     columnrange:
       groupPadding: 0
       borderWidth: 0
-  # legend:
-  #   align: center
-  #   floating: true
-  #   labelFormatter: true
-  #   itemHoverStyle:
-  #     color: #CCC  
   yAxis:
     min: 0
     max: 3
@@ -27,7 +22,7 @@ chart_config:
       useHTML: true
       formatter: true
   legend:
-    enabled: true
+    enabled: false
   xAxis:
     alternateGridColor: rgba(255, 255, 255, .1)
     tickLength: 0

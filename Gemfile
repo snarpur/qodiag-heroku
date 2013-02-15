@@ -5,7 +5,7 @@ gem "rails", "3.2.11"
 gem "sass","~> 3.1.11"
 gem "ejs"
 gem "jquery-rails"
-gem "backbone-rails"
+# gem "backbone-rails"
 gem 'mysql2', '~> 0.3.7'
 gem 'json'
 gem 'devise', '>= 2.0.0'
@@ -41,6 +41,7 @@ end
 
 group :development do
   gem 'quiet_assets'
+  gem 'sextant'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'meta_request', '0.2.1'

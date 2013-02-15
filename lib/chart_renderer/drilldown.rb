@@ -28,6 +28,7 @@ class Chart
                 :high => i.answer.weight+1, 
                 :name => i.answer.weight, 
                 :color => chart_config[:colors][i.answer.weight]}
+      
       drilldown[index] << params
     end
     drilldown

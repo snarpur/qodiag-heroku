@@ -13,6 +13,7 @@ class Ability
        !(u.role_names & ["caretaker","super_admin"]).empty? && (user.id == u.invited_by_id || user.id == u.id)
       end
       can :manage, Person do |p|
+        KK.log p.inspect,:r
         !(p.relation_ids & user.person.relation_ids).empty?
       end
       can :manage, ResponderItem do |ri|

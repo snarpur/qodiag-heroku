@@ -25,13 +25,12 @@ module ChartRenderer
     end
 
     def subject_series
-      { :name => @response_set.subject.full_name }.merge(subject_results)
+      {:name => @response_set.subject.full_name }.merge(subject_results)
     end
 
     #IMPORTANT: refactor drilldown into method of class
     def subject_results
-      data, point_events = {}, nil
-      KK.log @chart,:r
+      data= {}
       data[:data] = get_content(:question_groups).map do |i|
         groups = i.is_a?(String) ? i : i[:total]
         group_results = total_for_groups(groups)
@@ -39,18 +38,14 @@ module ChartRenderer
           drilldown_config = Marshal::load(Marshal.dump(@chart)) 
           drilldown_config[:content][:question_groups] = groups 
           drilldown_chart = self.class.new(drilldown_config,@response_set)
-          # point_events = {:cursor => 'pointer',:point => {:events => {:click =>'drilldown'}}}
           drilldown_series = [{:data => drilldown_chart.chart_data, :name => i[:name]}]
           {:y => group_results, :drilldown => {:series => drilldown_chart.chart_data,:xAxis => {:categories => groups}}}
         else
-          drilldown = ChartRenderer::Drilldown::Chart.new(@response_set,groups,[group_results])
-          drilldown.series_with_drill_down
+          {:y => group_results}
+          # drilldown = ChartRenderer::Drilldown::Chart.new(@response_set,groups,[group_results])
+          # drilldown.series_with_drill_down
         end
       end
-
-
-      data.merge!(point_events) unless point_events.nil?
-
       data
     end
 
@@ -71,6 +66,16 @@ module ChartRenderer
 
     def chart_data
       @reference_values.reverse.insert(0,@subject_series)
+    end
+
+    def question_list_drilldown
+      #START: Add question group_ids to json output the fetch question list in xhr request
+      if @chart[:content][:question_list_drilldown]
+        list = get_content(:question_groups).map do |i|
+          i.is_a?(String) ? i : i[:total]
+        end
+        list.flatten
+      end
     end
 
     def categories
