@@ -14,4 +14,15 @@ class PeopleController < ApplicationController
   def information
     @subject = Person.find(params[:subject_id])
   end
+
+  def upload
+    @subject = Person.find(params[:subject_id])
+  end
+
+  def update
+    @subject = Person.find(params[:id])
+    @subject.update_attributes({:avatar => params[:avatar]})
+
+    redirect_to :action => "show", :id => params[:id]
+  end
 end

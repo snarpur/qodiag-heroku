@@ -17,6 +17,7 @@ is:
     male: "Karl"
     female: "Kona"
     sex: "Kyn"
+    avatar: "Mynd"
   relationship:
     is_parent: "Forráðamaður er foreldri"
     is_guardian: "Er forræðishafi skjólstæðings"

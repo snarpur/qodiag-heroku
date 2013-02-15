@@ -1,0 +1,3 @@
+%div{:class => 'image'}
+  = image_tag @subject.avatar.url(:medium)
+  %a{:class => 'c-icon upload small', :href => '/people/'+@subject.id.to_s+'/upload'} &#128228;

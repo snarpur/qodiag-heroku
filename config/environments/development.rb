@@ -28,6 +28,9 @@ Snarpur::Application.configure do
   :authentication => :plain,
 }
 
+  #Paperclip
+  Paperclip.options[:command_path] = "/usr/bin/"
+
   config.colorize_logging = true
   config.active_support.deprecation = :log
 

@@ -1,0 +1,3 @@
+= form_for @subject, :html => {:multipart => true} do |f|
+  = f.file_field :avatar, :multiple => false
+  = f.submit
