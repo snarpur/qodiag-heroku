@@ -1,3 +1,6 @@
-= form_for @subject, :html => {:multipart => true} do |f|
+=content_for :subject_nav do
+  = render "people/patient/patient_nav"
+
+= form_for @person, :html => {:multipart => true} do |f|
   = f.file_field :avatar, :multiple => false
   = f.submit

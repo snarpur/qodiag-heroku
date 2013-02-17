@@ -1,11 +1,11 @@
-  source "http://rubygems.org"
+source "http://rubygems.org"
 
 gem "rails", "3.2.11"
 
 gem "sass","~> 3.1.11"
 gem "ejs"
 gem "jquery-rails"
-gem "backbone-rails"
+# gem "backbone-rails"
 gem 'mysql2', '~> 0.3.7'
 gem 'json'
 gem 'devise', '>= 2.0.0'
@@ -23,13 +23,15 @@ gem 'rails-dev-tweaks', '~> 0.6.1'
 gem "i18n-js"
 gem "factory_girl_rails", "~> 3.0"
 gem "faker"
-gem 'newrelic_rpm'
+# gem 'newrelic_rpm'
 gem 'browsernizer'
 gem 'rabl'
 gem 'active_attr'
 gem 'draper', '~> 1.0'
 gem 'time_diff'
 gem 'rb-readline'
+gem "paperclip", "~> 3.0"
+
 
 group :assets do
   gem 'sass-rails', "  ~> 3.2.3"
@@ -42,8 +44,8 @@ end
 group :development do
   gem 'quiet_assets'
   gem 'sextant'
-  gem 'better_errors'
-  gem 'binding_of_caller'
+  gem 'better_errors', :require => false if RUBY_PLATFORM =~ /darwin/i
+  gem 'binding_of_caller', :require => false if RUBY_PLATFORM =~ /darwin/i
   gem 'meta_request', '0.2.1'
 end
 

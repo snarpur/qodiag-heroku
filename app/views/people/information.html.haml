@@ -1,3 +1,6 @@
+=content_for :subject_nav do
+  = render "people/patient/patient_nav"
+
 %div{:id => 'person'}
   %div{:class => 'sidebar'}
     =render "people/image"
@@ -5,15 +8,15 @@
     %div{:class => 'subject-information'}
       %ul
         %li
-          =t('person.name') + ': ' + @subject.firstname + ' ' + @subject.lastname
+          =t('person.name') + ': ' + @person.firstname + ' ' + @person.lastname
         %li
-          =t('person.full_cpr') + ': ' + @subject.full_cpr
+          =t('person.full_cpr') + ': ' + @person.full_cpr
         %li
-          =t('person.dateofbirth') + ': ' + @subject.dateofbirth.strftime('%d-%m-%y')
+          =t('person.dateofbirth') + ': ' + @person.dateofbirth.strftime('%d-%m-%y')
   %div{:class => 'content'}
     %h2
       =t('terms.parents')
-    - @subject.parents.each do |parent|
+    - @person.parents.each do |parent|
       %table
         %tr
           %td

@@ -1,6 +1,6 @@
 class Person < ActiveRecord::Base
 
-  validates_presence_of :firstname #, :sex, :lastname
+  # validates_presence_of :firstname #, :sex, :lastname
   # validate :presence_of_full_cpr
   # validates_length_of :full_cpr, :is => 10, :allow_nil => true
   # validates_length_of :cpr, :is => 4
