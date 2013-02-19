@@ -44,8 +44,10 @@ end
 group :development do
   gem 'quiet_assets'
   gem 'sextant'
-  gem 'better_errors', :require => false if RUBY_PLATFORM =~ /darwin/i
-  gem 'binding_of_caller', :require => false if RUBY_PLATFORM =~ /darwin/i
+  gem 'better_errors', :require => RUBY_PLATFORM.include?('darwin') ? 'better_errors' : false
+  gem 'binding_of_caller', :require => RUBY_PLATFORM.include?('darwin') ? 'binding_of_caller' : false
+  gem 'better_errors'
+  gem 'binding_of_caller'
   gem 'meta_request', '0.2.1'
 end
 
