@@ -64,7 +64,6 @@ class PersonDecorator < Draper::Decorator
   end
 
   def parents
-    KK.log "model #{model.parents.map{|p| PersonDecorator.decorate(p)}}",:r
     model.parents.map{|p| PersonDecorator.decorate(p)}
   end
 

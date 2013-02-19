@@ -1,6 +1,6 @@
 class App.Models.ResponderItem extends Backbone.Model
   urlRoot: "/responder_items"
-  paramRoot: 'responder_items'
+
 
   deadlineIsPassed:=>
    deadline = Date.parse(@.get('deadline'))
