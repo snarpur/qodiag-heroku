@@ -1,3 +1,6 @@
-<li><%= firstname %></li>
-<li><%= lastname %></li>
-<li><span class="c-icon edit-item"></span></li>
+<span class="c-icon edit-item"></span>
+<ul>
+<li><%= I18n.t("person.name")%>: <%= firstname %> <%= lastname %></li>
+<li><%= I18n.t("person.full_cpr")%>: <%= full_cpr %></li>
+<li><%= I18n.t("person.dateofbirth")%>: <%= dateofbirth %></li>
+</ul>

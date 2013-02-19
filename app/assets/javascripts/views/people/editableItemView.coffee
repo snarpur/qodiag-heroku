@@ -1,6 +1,6 @@
 class App.Views.EditableItem extends App.Marionette.ItemView
   className: "editable-item"
-  tagName: 'ul'
+  tagName: 'div'
   events: 
     "click .edit-item": "itemEdit"
 

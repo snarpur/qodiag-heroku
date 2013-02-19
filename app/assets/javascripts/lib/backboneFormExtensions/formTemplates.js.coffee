@@ -1,6 +1,6 @@
 App.Templates ||= {}
 App.Templates.Forms=
-  form: "<form>
+  form: "<form class=\"form-base\">
           {{fieldsets}}
         </form>"
 

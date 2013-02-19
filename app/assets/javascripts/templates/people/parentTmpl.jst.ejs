@@ -1,3 +1,31 @@
-<li><%= I18n.t(i18n+".firstname") %>:<%= firstname %></li>
-<li><%= I18n.t(i18n+".lastname") %>:<%= lastname %></li>
-<li><span class="c-icon edit-item"></span></li>
+ <span class="c-icon edit-item"></span>
+ <table>
+   <tr>
+     <td><%= I18n.t("person.name") %>:</td>
+     <td><%= firstname + ' ' + lastname %></td>
+   </tr>
+   <tr>
+     <td><%= I18n.t("person.full_cpr") %>:</td>
+     <td><%= full_cpr %></td>
+   </tr>
+   <tr>
+     <td><%= I18n.t("address.street_1") %>:</td>
+     <td><%= address.street_1 %></td>
+   </tr>
+   <tr>
+     <td><%= I18n.t("address.phone") %>:</td>
+     <td><%= address.phone %></td>
+   </tr>
+   <tr>
+     <td><%= I18n.t("address.home_phone") %>:</td>
+     <td><%= address.home_phone %></td>
+   </tr>
+   <tr>
+     <td><%= I18n.t("person.workplace") %>:</td>
+     <td><%= workplace %></td>
+   </tr>
+   <tr>
+     <td><%= I18n.t("person.workphone") %>:</td>
+     <td><%= workphone %></td>
+   </tr>
+</table>

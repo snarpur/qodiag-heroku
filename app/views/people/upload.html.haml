@@ -1,6 +1,8 @@
 =content_for :subject_nav do
   = render "people/patient/patient_nav"
 
+%h2
+  =t('person.avatar')
 = form_for @person, :html => {:multipart => true} do |f|
   = f.file_field :avatar, :multiple => false
-  = f.submit
+  = f.submit :value => t('actions.upload')

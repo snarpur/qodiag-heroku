@@ -30,7 +30,7 @@ is:
     guardian_end: "Forræði lauk"
   address:
     street_1: "Heimilisfang"
-    street_2: "Heimlilsfang"
+    street_2: "Heimilisfang"
     zip_code: "Póstnúmer"
     town: "Sveitarfélag"
     home_phone: "Sími 2"
@@ -98,6 +98,7 @@ is:
     register: "Skrá"
     finish : "Klára"
     send: "Senda"
+    upload: Hlaða upp
     request_survey: "Senda spurningalista"
   time_to_words:
     until: "þangað til"

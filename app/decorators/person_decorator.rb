@@ -71,6 +71,10 @@ class PersonDecorator < Draper::Decorator
   def address
     model.address || model.build_address
   end
+
+  def avatar_medium
+    modal.avatar.url(:medium)
+  end
   
   def spouse_relationship_through_parenting_of_subject
     other_parent = model.other_parent_of(model.current_responder_item.subject)

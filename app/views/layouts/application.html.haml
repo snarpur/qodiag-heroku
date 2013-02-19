@@ -36,6 +36,10 @@
         #help
           %a{:href => "/pages/help"} 
             Upplýsingar
+        %ul.nav
+          %li.home
+            %a{:class => 'c-icon', :href => "/users"} &#8962;
+
         = yield :subject_nav
         #content
           = yield

@@ -1,3 +1,6 @@
 %div{:class => 'image'}
-  = image_tag @person.avatar.url(:medium)
+  - if (@person.avatar_file_name.nil?)
+    %img{:src => 'http://placehold.it/250x250'}
+  - else
+    = image_tag @person.avatar.url(:medium)
   %a{:class => 'c-icon upload small', :href => '/people/'+@person.id.to_s+'/upload'} &#128228;
