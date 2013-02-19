@@ -44,9 +44,10 @@ GEM
     addressable (2.3.2)
     arel (3.0.2)
     awesome_print (1.1.0)
-    backbone-rails (0.9.9)
-      rails (>= 3.0.0)
     bcrypt-ruby (3.0.1)
+    better_errors (0.6.0)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
     binding_of_caller (0.6.8)
     bourne (1.1.2)
       mocha (= 0.10.5)
@@ -174,7 +175,6 @@ GEM
       metaclass (~> 0.0.1)
     multi_json (1.5.0)
     mysql2 (0.3.11)
-    newrelic_rpm (3.5.6.46)
     nokogiri (1.5.6)
     orm_adapter (0.4.0)
     paperclip (3.4.0)
@@ -309,7 +309,7 @@ PLATFORMS
 DEPENDENCIES
   active_attr
   awesome_print
-  backbone-rails
+  better_errors
   binding_of_caller
   browsernizer
   cancan
@@ -339,7 +339,6 @@ DEPENDENCIES
   letter_opener
   meta_request (= 0.2.1)
   mysql2 (~> 0.3.7)
-  newrelic_rpm
   nokogiri
   paperclip (~> 3.0)
   pickle

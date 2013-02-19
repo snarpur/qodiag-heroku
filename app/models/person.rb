@@ -104,8 +104,8 @@ class Person < ActiveRecord::Base
         :small  => "150x150>",
         :medium => "250x250>",
         :large =>   "400x400>" }
-  validates :avatar, :attachment_presence => true
-  validates_with AttachmentPresenceValidator, :attributes => :avatar
+  # validates :avatar, :attachment_presence => true
+  # validates_with AttachmentPresenceValidator, :attributes => :avatar
 
   attr_accessor :current_responder_item
   

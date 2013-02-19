@@ -15,6 +15,10 @@ Snarpur::Application.routes.draw do
 
   resources :users
   resources :people
+  resources :people, :path => 'caretaker', :as => :caretaker do
+    resources :people,:controller => "people/caretaker", :path => "subjects", :as => :subjects
+  end
+  
   resources :relationships
   resources :pre_registrations
   resources :responder_items do

@@ -6,7 +6,6 @@ class App.Models.Base extends Backbone.Model
     @
 
   setSchema:=>
-    
     if @.schema?
       @.schema
     else if @.get('schema')?
@@ -14,8 +13,6 @@ class App.Models.Base extends Backbone.Model
     else if !@.get('schema')? and @?.collection?.schema?
       $.extend(true,{},@.collection.schema)
     
-
-
   fieldTemplate:(schemaType)->
     str = "#{schemaType[0].toLowerCase()}#{schemaType.substr(1)}"
     if App.Templates.Forms[str]? then str else false
@@ -55,8 +52,9 @@ class App.Models.Base extends Backbone.Model
   getOrCreateNestedModel:(modelName)=>
     nestedModel = @.get(modelName)
     unless nestedModel instanceof Backbone.Model or nestedModel instanceof Backbone.Collection
-      console.error @.schema, modelName
-      console.error "CREATING NEW MODEL::",@.schema[modelName].model ," #{modelName}  :with attributes: ",@.get(modelName)
+      nestedSchema = @schema[modelName].schema
+      nestedAttributes = _.extend(@.get(modelName),{schema: nestedSchema})
+      new @.schema[modelName].model(nestedAttributes)
     else
       nestedModel
   
@@ -90,8 +88,10 @@ class App.Models.Base extends Backbone.Model
       .compact().flatten().value()
 
   bindToForm:(form)=>
+    console.info "BINDING TO FORM", @,arguments
     model = @
     _.each(form.fields,((v,k)->
+    # _.each(@get('form').fields,((v,k)->
       if v.schema?.type?.match(/Nested(Model|Collection)/)
         if _.isArray(v.editor.form)
           _.each(v.editor.form,(i)-> i.model.bindToForm(i))
@@ -138,6 +138,9 @@ class App.Collections.Base extends Backbone.Collection
     @formRenderModel= options.formRenderModel if options?.formRenderModel?
     @.schema = options.schema if options?.schema?
     @
+  
+  bindToForm:(form)=>
+    console.warn "in in the CPÆÆ"
 
   getFormRenderModel:=>
     @formRenderModel
