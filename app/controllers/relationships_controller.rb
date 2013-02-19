@@ -73,7 +73,6 @@ class RelationshipsController < ApplicationController
   # DELETE /relationships/1
   # DELETE /relationships/1.xml
   def destroy
-    KK.log params.inspect, :r
     @relationship = Relationship.find(params[:id])
     @relationship.destroy
     render :json => {:ok => "ok"}
