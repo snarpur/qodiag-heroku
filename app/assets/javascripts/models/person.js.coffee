@@ -1,12 +1,16 @@
 class App.Models.Person extends App.Models.Base
 
+  defaults: 
+    "object_class": "person"
+    "i18n": "person"
+
   urlRoot: "/people"
-  paramRoot: '/people'
+  paramRoot: 'person'
+
 
   initialize:->
     super
     spouseRelationship = @.get("spouse_relationships")
-    console.log "spouseRelationship  ",spouseRelationship
     if spouseRelationship
       spouseRelationship.on("statusUpdate", @setAddres)
       @.on("change:form",@setButton)
@@ -50,17 +54,13 @@ class App.Models.Person extends App.Models.Base
 
 
 
-class App.Models.Subject extends App.Models.Person
-  
-  urlRoot: "/people"
-  paramRoot: '/people'
 
 
 
 
 class App.Collections.Person extends App.Collections.Base
   model: App.Models.Person
-
+  paramRoot: "people"
 
 
 

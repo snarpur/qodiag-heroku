@@ -3,6 +3,7 @@ class PersonDecorator < Draper::Decorator
   decorates :person
   decorates_association :user
   decorates_association :relations
+  decorates_association :address
 
   def user_invitation
    user_model = model.user || model.build_user({:invitation => true})
@@ -62,6 +63,15 @@ class PersonDecorator < Draper::Decorator
     p
   end
 
+  def parents
+    KK.log "model #{model.parents.map{|p| PersonDecorator.decorate(p)}}",:r
+    model.parents.map{|p| PersonDecorator.decorate(p)}
+  end
+
+  def address
+    model.address || model.build_address
+  end
+  
   def spouse_relationship_through_parenting_of_subject
     other_parent = model.other_parent_of(model.current_responder_item.subject)
     spouse_relationship = (model.spouse_relationship_to(other_parent) + model.inverse_spouse_relationship_to(other_parent)).first
