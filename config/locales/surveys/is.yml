@@ -104,6 +104,8 @@ is:
         withdrawn_or_depressed: hlédrægni/ þunglyndi
         anxious_or_depressed: kvíði/ depurð
         social_problems: félagsvandi
+        externalizing: utanaðkomandi þættir ?
+        internalizing: innri þættir ?
         total: samtals
       questions:
         - Ég haga mér barnalega miðað við aldur

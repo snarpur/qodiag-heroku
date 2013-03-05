@@ -1,34 +1,44 @@
 class PreRegistrationsController < ApplicationController
+  before_filter :get_user
+  before_filter :get_responder_item
+  before_filter :set_step, :onley => [:new,:show]
   load_and_authorize_resource :responder_item, :parent => false
 
   respond_to :json
 
 
-  def create
-
-  end
-
-  def edit
-    responder_item = ResponderItemDecorator.decorate(ResponderItem.find(params[:id]))
-    params.merge!({:root_object => responder_item})
-    @pre_registration = BackboneFormsPreprocessor::PreRegistration.new(params)
+  def show
+    @responder_item
   end
 
   def update
-    responder_item = ResponderItemDecorator.decorate(ResponderItem.find(params[:form_content][:responder_item][:id]))
-    @pre_registration = BackboneFormsPreprocessor::PreRegistration.new(params.merge({:root_object => responder_item}))
-    @pre_registration.validate   
-    if @pre_registration.errors.empty?
-      if @pre_registration.root_object.new_record?
-        @pre_registration.root_object.save
-      else
-        @pre_registration.save_step(pick_params(params[:form_content]).first)
-      end
-      render 'pre_registrations/edit'
-    else
-      render 'pre_registrations/edit'
-    end
+    @responder_item.update_attributes(params[:responder_item])
+    render "#{@responder_item.pre_registration_template}/show"
+  end
 
+  private
+  def set_step
+    @step_no = params[:step_no] || 1
+  end
+  
+  def get_responder_item
+    if params[:action] == 'new'
+      args = {:caretaker_id => @current_user.person.id, :registration_identifier => "respondent_registration"}
+      @responder_item = ResponderItem.new(args)
+    elsif params[:action] == 'create'
+      @responder_item = ResponderItem.new(params[:responder_item])
+    else
+      @responder_item = ResponderItem.find(params[:id])
+    end
+    @responder_item = ResponderItemDecorator.decorate(@responder_item)
+  end
+
+  def view_template
+    if parms[:step_no]
+      "#{@responder_item.pre_registration_template}/step_#{parms[:step_no]}/show"
+    else
+      "#{@responder_item.pre_registration_template}/show"
+    end
   end
 
 

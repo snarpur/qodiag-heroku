@@ -1,3 +1,5 @@
+# {{nestedClass}}
+                  # {{nestedTitle}}
 App.Templates ||= {}
 App.Templates.Forms=
   form: "<form class=\"form-base\">

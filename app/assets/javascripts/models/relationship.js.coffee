@@ -2,20 +2,18 @@ class App.Models.Relationship extends App.Models.Base
 
   initialize:=>
     super
-    @setFormModel()
+    @on("change:form",(model,form)-> model.trigger("change:status",model))
+
   
   setSelectFieldTitle:=>
     select = _.filter(@.schema,((v,k)->  v?.type?.search(/Select|Checkbox|Radio/) > -1))
     selectWithTitle = _.map(select,((i)-> i.title = @.get('name')),@)
 
+  
   fieldTitle:(field)->
     super
     @i18nTitle("#{@.get('object_class')}.is_#{@.get('name')}")
 
-  setFormModel:()=>
-    if @.get("form")?
-      @.get("form").model = @
-      @bindToForm(@.get("form"))
 
 
 class App.Collections.Relationships extends App.Collections.Base
@@ -26,28 +24,28 @@ class App.Collections.Relationships extends App.Collections.Base
     super
     @.on("change:status",@setRelationship)
     @.on("remove",@renewModel)
-    @
+
   
   setRelationship:(model)=>
     @.trigger('statusUpdate',model)
-    if model.get('status') == false and not model.isNew()
-      @formRenderModel.addToDestructionQueue(model)
-    else
-      @formRenderModel.removeFromDestructionQueue(model)
-
+    if model.changed.status?
+      if model.get('status') == false and not model.isNew()
+        App.Event.trigger("addToDestructionQueue",model)
+      else if model.get('status') == true
+        App.Event.trigger("removeFromDestructionQueue",model)
+   
+  
   renewModel:(model)=>
     attrs = _.without(model.getSchemaFields(),'id')
-    attrs.push("form")
+    attrs.push("form","schema")
     modelAttrs = _.pick(model.attributes,attrs)
     @.add(modelAttrs)
-  
-  isPendingDestruction:(model)=>
-    @.formRenderModel.isPendingDestruction(model)
+
   
   toJSON:=>
     _.chain(@.models)
       .map(((i)->
-        unless i.get('status') == false #|| @isPendingDestruction(i)
+        unless i.get('status') == false
           i.toJSON()
       ),@)
       .compact()

@@ -1,7 +1,8 @@
 .patient-search
   %h1
     Skjólstæðingar
-  =link_to "Skrá skjólstæðing", new_user_invitation_path(3), :class => 'z-icon add-user medium'
+  / =link_to "Skrá skjólstæðing", new_user_invitation_path(3), :class => 'z-icon add-user medium'
+  =link_to "Skrá skjólstæðing", new_invitation_item_path, :class => 'z-icon add-user medium'
   %div
     %form
       %input#patient-search

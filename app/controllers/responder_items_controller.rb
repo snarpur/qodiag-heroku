@@ -21,7 +21,9 @@ class ResponderItemsController < ApplicationController
   end
 
   def new
+    KK.log "in responderIterm"
     @responder_item ||= ResponderItem.new
+
   end
 
   def create

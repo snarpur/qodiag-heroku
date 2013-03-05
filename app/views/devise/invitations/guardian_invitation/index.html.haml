@@ -1,0 +1,5 @@
+:javascript
+  $(document).ready(function(){     
+    window.controller = new App.Controllers.Forms.Multistep(#{render template: "devise/invitations/guardian_invitation/index" ,formats: [:json]});
+    App.init(); 
+  });

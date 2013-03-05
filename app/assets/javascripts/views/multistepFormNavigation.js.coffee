@@ -5,22 +5,20 @@ class App.Views.MultistepFormNavigation extends Backbone.View
 
   template:->
     JST['templates/multistepFormNavigationTmpl']
-  
+
   attributes: =>
     @setClass()
 
   setClass:(step_no)->
-    "current-step"  if step_no == @model.get("current_step_no")
+    "current-step"  if step_no == @model.currentStepNo()
   
   render:=>
-    opt= 
-      rootObjectId: @model.getFormRootObjectlId()
-      lastStepNo: @model.get('last_step_no')
-    
-    _.each(@model.get('step_names'),((item,index)->
+    opt = {}
+    _.each(@model.get('formMetaData').get('stepNames'),((item,index)->
         opt.stepNo = index+1
         opt.stepName = @model.i18nStepName(item)
         opt.cssClass = @setClass(index+1)
+        opt.formModelId = @model.formModelId()
         $(@el).append(@template()(opt))
       ),@)
 

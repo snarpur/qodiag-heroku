@@ -1,75 +1,99 @@
 class App.Models.Base extends Backbone.Model
 
   initialize:=>
+    @on("change:form", @bindToForm)
     @.schema = @setSchema()
     @initializeNestedModels()
+    if @get("urlRoot")?
+      @.urlRoot = @get("urlRoot")
+
+    if @get('paramRoot')
+      @.paramRoot = @get("paramRoot")
     @
 
+  
   setSchema:=>
     if @.schema?
       @.schema
     else if @.get('schema')?
       @.get('schema')      
     else if !@.get('schema')? and @?.collection?.schema?
-      $.extend(true,{},@.collection.schema)
-    
+      ()->
+        schemaFromCollection = @collection.schemaForModel(@)
+        if _.isArray(@.get("schema")) and schemaFromCollection?
+          @set("schema",schemaFromCollection)
+          
+        @get("schema")
+  
+  
+  getSchema:=>
+    if  _.isFunction(@.schema) then @schema() else @schema
+
+  
   fieldTemplate:(schemaType)->
     str = "#{schemaType[0].toLowerCase()}#{schemaType.substr(1)}"
     if App.Templates.Forms[str]? then str else false
 
+  
   fieldTitle:(field)->
-    return "" if @.schema[field]?.type == "Hidden" or @.schema[field] == "Hidden" 
-    if _.isObject(@get(field)) then @nestedFieldTitle(field) else @i18nTitle("#{@.get('object_class')}.#{field}")
+    return "" if @getSchema()[field]?.type == "Hidden" or @getSchema()[field] == "Hidden" 
+    root = @.paramRoot || @get("object_class")
+    if _.isObject(@get(field)) then @nestedFieldTitle(field) else @i18nTitle("#{root}.#{field}")
 
+  
   nestedFieldTitle:(field)->
-    title = @.schema[field].title
+    title = @getSchema()[field].title
     return "" unless title?
     _.capitalize(@i18nTitle("forms.#{title}"))
 
+  
   i18nTitle:(str)->
     I18n.t(str,{defaultValue: str})
 
+  
   initializeNestedModels:=>
     model = @
-    _.each(@getNestedModelNames(), (i)->
-      nestedModel = model.getModelFromString(i.modelStr)
-      schema = model.schema[i.name]
-      schema.modelStr = i.modelStr
-      schema.model = nestedModel
-      nestedSchema = schema.schema
-      nestedAttributes = model.get(i.name)
-      unless nestedAttributes instanceof Backbone.Model or nestedAttributes instanceof Backbone.Collection
-        if _.isArray(nestedAttributes) 
-          collection = new nestedModel(nestedAttributes,{schema:nestedSchema,formRenderModel: model.getFormRenderModel()})
-          model.set(i.name, collection)
-        else
-          model.set(i.name, new nestedModel(_.extend(nestedAttributes,{schema:nestedSchema,formRenderModel: model.getFormRenderModel()}))) 
+    _.each(@getNestedFields(), (nestedModel)->
+      model.set(nestedModel, model.getOrCreateNestedModel(nestedModel),{silent: true})
     )
 
+  
   getModelFromString:(item)=>
     _.reduce(_.rest(item.split(".")),((mem,val) -> mem[val] ),App)
 
-  getOrCreateNestedModel:(modelName)=>
-    nestedModel = @.get(modelName)
-    unless nestedModel instanceof Backbone.Model or nestedModel instanceof Backbone.Collection
-      nestedSchema = @schema[modelName].schema
-      nestedAttributes = _.extend(@.get(modelName),{schema: nestedSchema})
-      new @.schema[modelName].model(nestedAttributes)
-    else
-      nestedModel
   
-  getFormRenderModel:=>
-    if @.get('formRenderModel')? then @.get('formRenderModel') else @.collection.getFormRenderModel()
+  getOrCreateNestedModel:(modelName)->
+    nestedModel = @.get(modelName)
+    unless @isModelOrCollection(nestedModel)
+      type =  @getSchema()[modelName].type.match(/Collection|Model/)[0].toLowerCase()
+      modelStr = if _.isString(@getSchema()[modelName][type]) then @getSchema()[modelName][type] else @getSchema()[modelName].modelStr
+      @getSchema()[modelName].modelStr = modelStr
+      schemaModel = @getModelFromString(modelStr)
+      @getSchema()[modelName].model = schemaModel
+      nestedSchema = @getSchema()[modelName].schema    
+      nestedAttributes = _.extend(@.get(modelName),{schema: nestedSchema})
+      if _.isArray(nestedAttributes)
+        nestedModel = new schemaModel(nestedAttributes,{schema:nestedSchema})
+      else
+        nestedModel = new schemaModel(_.extend(nestedAttributes,{schema:nestedSchema}))
+    nestedModel
+  
+  
+  isModelOrCollection:(obj)->
+    obj instanceof Backbone.Model or obj instanceof Backbone.Collection
+  
   
   getSchemaFields:=>
-    _.keys(@.schema)
+    _.keys(@getSchema())
+  
   
   getNonSchemaFields:=>
     _.difference(_.keys(@.attributes),@getSchemaFields())
 
+  
   getNestedModelNames:=>
     base = @
-    _.chain(@.schema)
+    _.chain(@getSchema())
       .map((v,k) ->
         if v?.type == "NestedModel" || v?.type == "NestedCollection"
           associationType =  if v?.type == "NestedCollection"  then 'collection' else 'model'
@@ -80,44 +104,64 @@ class App.Models.Base extends Backbone.Model
       .flatten()
       .value()
 
+  
   getNestedFields:=>
-    _.chain(@.schema)
+    _.chain(@getSchema())
       .map(((v,k) ->
         k if v?.type == "NestedModel" or v?.type == "NestedCollection"
       ),@)
       .compact().flatten().value()
 
-  bindToForm:(form)=>
-    console.info "BINDING TO FORM", @,arguments
-    model = @
-    _.each(form.fields,((v,k)->
-    # _.each(@get('form').fields,((v,k)->
+  
+  bindToForm:=>
+    _.each(@get('form').fields,((v,k)->
       if v.schema?.type?.match(/Nested(Model|Collection)/)
         if _.isArray(v.editor.form)
-          _.each(v.editor.form,(i)-> i.model.bindToForm(i))
+          _.each(v.editor.form,(i)-> i.model.set("form",i))
         else
-          v.editor.form.model.bindToForm(v.editor.form)
+          v.editor.form.model.set("form",v.editor.form)
       else
-        v.editor.model = @
+        @.on("change:#{k}",(model,value,options)->
+          if options?.formUpdate == true
+            @.get('form').setValue(k,value)
+        )
         v.editor.on("change",(form,editor)->
-          model.set(v.editor.key,v.editor.getValue())
+          v.editor.model.set(v.editor.key,v.editor.getValue())
         )
     ),@)
-    @.set("form", form)
+
+
+  clearFormAttributes:->
+    clearAttrs = _.map(@.get("form").fields,(v,k)-> [k,null])
+    @.set(_.object(clearAttrs),{formUpdate: true})
+
+
+  
+  disableFields:->
+    @get("form").$("input").attr("disabled","disabled")
+    @set("submitDisabled",true)
+
+  
+  enableFields:->
+    @get("form").$("input").removeAttr("disabled")
+    @unset("submitDisabled")
+
 
   jsonWithNestedSuffix:(json)=>
     nestedFields = @getNestedFields()
     _.each(nestedFields,((i)->
       nestedModel = @getOrCreateNestedModel(i)
-      if nestedModel instanceof Backbone.Collection
+      unless nestedModel.get("submitDisabled")
         nestedJson = nestedModel.toJSON() 
+        unless _.isEmpty(nestedJson)
+          json["#{i}_attributes"] = nestedJson
+          delete json["#{i}"]
       else
-        nestedJson = nestedModel.toJSON()
-      unless _.isEmpty(nestedJson)
-        json["#{i}_attributes"] = nestedJson
         delete json["#{i}"]
+
     ),@)
     json
+  
   
   removeNonSchemaFields:(json)=>
     _.each(@getNonSchemaFields(),((i)->
@@ -125,24 +169,45 @@ class App.Models.Base extends Backbone.Model
     ),@)
     json
   
+  
   toJSON:=>
     json = $.extend(true,{},@.attributes)
     json = @removeNonSchemaFields(json)
     @jsonWithNestedSuffix(json)
 
+
+
+
+
+
 class App.Collections.Base extends Backbone.Collection
   
   model: App.Models.Base
 
+
   initialize:(models,options)=>
-    @formRenderModel= options.formRenderModel if options?.formRenderModel?
     @.schema = options.schema if options?.schema?
+    @setModelSchema(models)
     @
   
-  bindToForm:(form)=>
-    console.warn "in in the CPÆÆ"
 
-  getFormRenderModel:=>
-    @formRenderModel
+  schemaForModel:(model)=>
+    @schema[_.pluck(@models,'cid').indexOf(model.cid)] 
+
+
+  setModelSchema:(models)=>
+    if @.schema
+      if _.isArray(@schema)
+        _.each(@schema,((item,index)-> models[index].schema = @schema[index]),@)
+      else
+        _.each(models,((item,index)-> item.schema = @schema ),@)
+
+
+  toJSON:=>
+    _.chain(@.models)
+      .map(((i)->i.toJSON()),@)
+      .compact()
+      .value()
+  
       
 

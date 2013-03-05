@@ -6,72 +6,70 @@ class App.Views.FormRenderer extends Backbone.View
   events:
     "click button.submit-btn": "validateForm"
 
+
   initialize:()=>
-    @model = if @.options.model? then @.options.model else new App.Models.FormRenderer(@.options.model_attributes)
     @router = @.options.router
+    @listenTo(@model,"destructionComplete",@submitForm)
     @
   
+
   template:->
     JST['templates/multistepFormTmpl']
 
+
   validateForm:=>
-    errors = @model.get('form').commit()
+    errors = @form.commit()
     if _.isEmpty(errors)
-      @model.on("destructionComplete",@prepareSubmit)
       @model.destroyInQueue()
+      
 
-  prepareSubmit:=>
-    @model.off("destructionComplete")
-    @model.get('rootModel').url = @model.url()
-    @.trigger("submitForm",@model.url())
-  
-  submitForm:(content)=>
-    @model.get("rootModel").off("readyToSave")
-    @model.get("rootModel").save(content,@submitCallbacks())
+  submitForm:()=> 
+    @model.save(@model.toJSON(),@submitCallbacks())
 
-  submitCallbacks:=>
+
+  submitCallbacks:->
     view = @
     callbacks=
-      success:(model, response) ->
-        view.model.set(response) 
-        if (!_.isEmpty(response.errors))
+      success:(model,response) ->
+        if !(_.isEmpty(response.errors))
           view.renderSteps()
-        else if view.model.is_last_step() && view.model.redirectUrl()?
-          #TODO: Set spinning icon to indicate redirect
-          window.location.href = view.model.redirectUrl()
+        else if view.model.onLastStep()
+          window.location.href = view.model.urlOnComplete()
         else
-          next_step = response.current_step_no + 1
-          if (next_step > response.last_step_no)
-            next_step = response.last_step_no
-
-          view.router.navigate("step/s#{next_step}/i#{response.root_object_id}",{trigger: true,replace: true})
+            view.model.nextStep()
       error:(model, response) ->
-        console.log "error", model
+        throw  "coudn not save #{model} error"
   
+
   bindForm:(form, model)=>
     _.each(form.fields, (v,k)->
       v.model.bindToForm(v.form)
     )
 
+
   renderSteps:=>
-    rootModel = @model.createRootModel()
-    form = new Backbone.Form({ model: rootModel}).render()
-    @model.set("form",form)
-    rootModel.set("formHandler",@)
-    rootModel.on("readyToSave",@submitForm)
+    rootModel = @model.get("formModel")
+    @form = new Backbone.Form({ model: rootModel}).render()
+    $(@form.el).addClass("form-horizontal")
     @.$('#wizard-fields').empty()
-    @.$('#wizard-fields').append(form.el)
-    @bindForm(form,rootModel)  
+    @.$('#wizard-fields').append(@form.el)
+    rootModel.set("form",@form)
+ 
+
 
   renderStepNavigation:=>
     step = new App.Views.MultistepFormNavigation({model: @model})
-    $(@el).prepend(step.render().el)
+    @$(".#{step.className}").remove()
+    $(@el).prepend(step.render().el) 
+
+
+  renderForm:()=>
+    @renderSteps()
+    @renderStepNavigation()
   
 
   render:=>
-    $(@el).html(@template()(@model.toJSON()))
-    @renderSteps()
-    @renderStepNavigation()
+    $(@el).html(@template()({}))
     @
   
 

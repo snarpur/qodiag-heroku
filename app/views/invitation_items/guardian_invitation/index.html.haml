@@ -1,0 +1,6 @@
+- form_template = "invitation_items/guardian_invitation/index"
+:javascript
+  $(document).ready(function(){
+    window.controller = new App.Controllers.Forms.Multistep(#{render template: form_template  ,formats: [:json]});
+    App.init(); 
+  });

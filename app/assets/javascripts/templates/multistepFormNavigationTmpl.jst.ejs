@@ -1,12 +1,11 @@
 <li class=<%=cssClass%>>
   <span><%=stepNo%></span>
-  <%if(rootObjectId == null) {%>
-    <a href=<%="#step/s"+stepNo%>>
+  <%if(formModelId == null) {%>
+    <a href="#">
       <%= stepName%>
     </a>
-  <%}%>
-  <%if(rootObjectId != null) {%>
-    <a href=<%="#step/s"+stepNo +"/i"+ rootObjectId%>>
+  <%}else{%>
+    <a href=<%="#step/s"+stepNo +"/i"+ formModelId%>>
       <%= stepName%>
     </a>
   <%}%>

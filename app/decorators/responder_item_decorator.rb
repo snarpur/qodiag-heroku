@@ -5,10 +5,29 @@ class ResponderItemDecorator < Draper::Decorator
   decorates_association :subject
   
   def respondent
-   model.get_respondent
+    PersonDecorator.decorate(model.get_respondent)
   end
   
   def subject
-    model.get_subject
+    PersonDecorator.decorate(model.get_subject)
   end
+
+  def respondent_registration_partial
+    if !model.respondent.parent_relationship_to(model.subject).empty?
+      "parent"
+    elsif !model.respondent.guardian_relationship_to(model.subject).empty?
+      "guardian"
+    end
+  end
+
+  def pre_registration_base_template
+    "pre_registrations/#{model.registration_identifier}"
+  end
+
+  def pre_registration_template
+    partial = "#{model.registration_identifier}_partial"
+    "#{pre_registration_base_template}/#{send(partial)}"
+  end
+
+
 end

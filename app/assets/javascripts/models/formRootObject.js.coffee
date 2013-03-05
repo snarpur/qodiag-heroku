@@ -34,7 +34,7 @@ class App.Models.FormRootObject extends App.Models.Base
     root[@getFormRootObjectName()] =  @getFormRootObject()
     model = @
     _.each(root,(v,k) ->
-      attributes.form_content[k] = $.extend(true, {}, v.toJSON())
+      attributes[k] = $.extend(true, {}, v.toJSON())
     )
     attributes
 

@@ -25,6 +25,9 @@ class User < ActiveRecord::Base
     self.invitation ||= false
   end
   
+  def is_invited?
+    !invitation_sent_at.nil?
+  end
 
   def role?(role)
     return !!self.roles.find_by_name(role.to_s)

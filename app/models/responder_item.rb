@@ -9,6 +9,7 @@ class ResponderItem < ActiveRecord::Base
   delegate :response_to_chart, :to => :response_set
   delegate :group_result, :to => :response_set
   before_save :set_response_set, :if => :is_uncompleted_survey?
+  after_save :send_respondent_invitation, :if => :invite_respondent_user
 
   scope :overdue, where("deadline < ? AND completed IS NULL", Time.zone.now)
   scope :uncompleted, where("deadline >= ? AND completed IS NULL", Time.zone.now)
@@ -21,8 +22,12 @@ class ResponderItem < ActiveRecord::Base
   scope :by_respondent, lambda {|respondent_id| where("respondent_id = ?", respondent_id)}
   scope :by_subject, lambda {|subject_id| where("subject_id = ?", subject_id)} 
   accepts_nested_attributes_for :respondent, :subject
-  
-  attr_accessible :registration_identifier, :id, :caretaker_id, :deadline, :completed, :complete_item, :respondent_id, :subject_id, :survey_id, :days_until_deadline,:subject_attributes, :respondent_attributes
+
+  attr_accessor :invite_respondent_user
+  attr_accessible :registration_identifier, :id, :caretaker_id, :deadline, :completed, 
+                  :complete_item, :respondent_id, :subject_id, :survey_id, :invite_respondent_user, 
+                  :days_until_deadline,:subject_attributes, :respondent_attributes
+
   validates_associated :respondent, :subject
 
   ACTORS = %w{caretaker subject respondent}
@@ -70,10 +75,16 @@ class ResponderItem < ActiveRecord::Base
   def result
     self.response_set.result_to_chart
   end
-
+  
   private
   def is_uncompleted_survey?
     (!self.survey_id.nil? && self.completed.nil?)
+  end
+
+  def send_respondent_invitation
+    unless respondent.user_is_invited?
+      respondent.user_invite!(caretaker.user)
+    end
   end
 
   def set_response_set

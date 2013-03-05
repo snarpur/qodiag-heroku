@@ -7,53 +7,54 @@ class App.Models.Person extends App.Models.Base
   urlRoot: "/people"
   paramRoot: 'person'
 
-
   initialize:->
     super
     spouseRelationship = @.get("spouse_relationships")
     if spouseRelationship
       spouseRelationship.on("statusUpdate", @setAddres)
-      @.on("change:form",@setButton)
 
     @
 
-
-  setButton:(model,form)->
-    console.log @, model
-    @.off("change")
-    new App.Views.AddRemoveButton({model:@,form:form}).render()
-
-
   setAddres:(model)=>
-    if model.get('status') is true
+    address = @get("address")
+    console.info "START #{address.cid}",address
+    unless model.changed.status?
+      if model.get("status") is true then address.set("submitDisabled",model.get("status"))
+      return
+
+    if model.get('status') is true 
+      address.disableFields()
       spouse_id = _.difference(_.filter(model.attributes,(v,k)-> k.search(/person|relation/) != -1), [@.get('id')])
-      spouse = new App.Models.Person({id: spouse_id})
-      spouse.url = "#{@.urlRoot}/#{spouse_id}"
-      spouse.fetch(@setAdressCallbacks())
+      address.set("person_id",spouse_id,{silent: true})
+      address.fetch(@commonAddressCallbacks())
     else
-     @.schema['address']= 
-        type: 'NestedModel'
-        model: 'App.Models.Base'
-      console.log "Adding address :: ",
-      address = new App.Models.Address()
-      @.set('address', address)
-      formEl = @.get("form").$el
-      form = new Backbone.Form({model: address}).render()
-      formEl.append(form.el)
+      address.set("person_id",@get('id'))
+      address.fetch(@separateAddressCallbacks())
 
 
 
-  setAdressCallbacks:->
-    thisPerson = @
+  commonAddressCallbacks:=>
+    thisModel = @
+    callbacks=
+      formUpdate: true
+      success:(model, response) ->
+        model.disableFields()
+        thisModel.set('address_id',model.get('id'))
+
+      error:(model, xhr, options) ->
+        throw "error in Person:commonAddressCallbacks"
+
+  separateAddressCallbacks:=>
+    thisModel = @
     callbacks=
       success:(model, response) ->
-        thisPerson.set('address_id', response.address_id)
-        #console.log "Address id is set ",thisPerson
-      error:(model, response) ->
-        #console.warn "error", model
+        if model.previous("id") == model.get("id")
+          model.clearFormAttributes()
 
-
-
+        thisModel.set('address_id',model.get('id'))
+        model.enableFields()
+      error:(model, xhr, options) ->
+        throw "error in Person:separateAddressCallbacks"
 
 
 
@@ -61,6 +62,7 @@ class App.Models.Person extends App.Models.Base
 class App.Collections.Person extends App.Collections.Base
   model: App.Models.Person
   paramRoot: "people"
+
 
 
 

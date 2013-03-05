@@ -1,52 +1,59 @@
 class App.Models.FormRenderer extends Backbone.Model
 
   initialize:=>
+    @createFormMetaData()
+    @createFormModel()
     @.destructionQueue = new Backbone.Collection
+
+    @listenTo(App.Event,"addToDestructionQueue",@addToDestructionQueue)
+    @listenTo(App.Event,"removeFromDestructionQueue",@removeFromDestructionQueue)
+
+    @on("change:formModel",@createFormModel)
+    @on("change:formMetaData",@createFormMetaData)
+    @.paramRoot = @.get("formModel").get("paramRoot")
+
     @.url = ()->
-      path = new RegExp("#{window.location.pathname}#{window.location.hash}")
-      url = "/#{@.get('root_url')}#{@step_url()}#{@root_object_url()}"
-      "#{window.location.href}".replace(path,url)
-      
-  step_url:->
-    if @.get('current_step_no') then "/step/#{@.get('current_step_no')}" else ""
+      "#{@.get('formModel').url()}/step/#{@currentStepNo()}"
 
-  is_last_step:->
-    @.get("current_step_no") == @.get('last_step_no')
-
-  root_object_url:->
-    if @.get('root_object_id') then "/#{@.get('root_object_id')}" else ""
-
-  createRootModel:=>
-    params = _.extend({schema: @.get("schema")},@.get("form_content"),formRenderModel:@)
-    @.set("rootModel",new App.Models.FormRootObject(params))
-    @.get('rootModel')
-
-  getRootModel:=>
-    @.get('rootModel')
-
-  getFormRootObjectlId:->
-    @get('rootModel').getFormRootObject().get('id')
-
-  getFormTemplate:->
-    @.get('form_identifier')
-
-  getStepName:->
-    @.get('current_step_name')
-  
-  getCurrentStepNo:->
-    @.get('current_step_no')
+  createFormModel:=>
+    formModel = new App.Models.Base(_.extend(@.get('formModel'),{schema: @get('schema')}))
+    @.set("formModel",formModel,{silent: true})
     
-  i18nStepName:(step_name)->
-    I18n.translate("forms.#{@getFormTemplate()}.steps.#{step_name}")
+  createFormMetaData:=>
+    @set('formMetaData',new Backbone.Model(@get("formMetaData")),{silent: true}) 
 
-  redirectUrl:->
-    return null unless @get('redirect_url_on_complete')?
-    path = new RegExp("#{window.location.pathname}#{window.location.hash}")
-    "#{window.location.href}".replace(path,@get('redirect_url_on_complete'))
+  nextStep:=>
+    @get("formMetaData").set("currentStep",@.currentStepNo() + 1) 
+    @trigger("change:step",@)
+
+  formModelId:=>
+    @get("formModel").get("id")
+
+  formTemplate:=>
+    @.get('formMetaData').get('formTemplate')
   
-  rootUrlSegment:=>
-    path = new RegExp("#{window.location.pathname}#{window.location.hash}")
-    "#{window.location.href}".replace(path,@get('redirect_url_on_complete'))
+  currentStepNo:=>
+    (Number)(@get('formMetaData').get('currentStep'))
+    
+  stepLength:=>
+    @.get("formMetaData").get('stepNames').length
+
+  onLastStep:=>
+    @currentStepNo() == @stepLength()
+
+  i18nStepName:(stepName)->
+    I18n.translate("forms.#{@formTemplate()}.steps.#{stepName}")
+
+  urlOnComplete:()->
+    location = "#{window.location.protocol}//#{window.location.host}"
+    if @formTemplate().match(/invitation/)
+      subjectId = @get("formModel").get("subject").get("id")
+      "#{location}/people/#{subjectId}"
+    else if @formTemplate().match(/registration/)
+      "#{location}/users"
+
+  toJSON:=>
+    @get("formModel").toJSON()
 
   addToDestructionQueue:(model)=>
     @.destructionQueue.add(model)
@@ -54,16 +61,19 @@ class App.Models.FormRenderer extends Backbone.Model
   removeFromDestructionQueue:(model)=>
     @.destructionQueue.remove(model)
 
-  destructionComplete:=>
-    @.trigger("destructionComplete")
+  triggerIfComplete:=>
+   if @.destructionQueue.length == 0
+      @.trigger("destructionComplete")
+
 
   destroyInQueue:=>
-    signalComplete = _.after(@.destructionQueue.length, @destructionComplete)
+    @.triggerIfComplete()
+    renderer = @
     callbacks = 
-      success: (model,response)->
-        signalComplete
+      success: (model,response)->  
+        renderer.triggerIfComplete()
       error: (model,response)->
-        console.warn "ERROR delete FAILED",response if console
+        throw "ERROR delete FAILED in formRenderer.js.coffee:destroyInQueue()" 
     
     @.destructionQueue.each(((i)->
       model = @.destructionQueue.pop()

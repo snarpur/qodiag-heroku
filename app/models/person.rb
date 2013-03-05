@@ -96,7 +96,7 @@ class Person < ActiveRecord::Base
                   :full_siblings_attributes, :full_siblings, :half_siblings_attributes, :half_siblings, :inverse_half_siblings_attributes, :inverse_half_siblings,
                   :parent0_attributes, :parent1_attributes
   
-  validates_associated :relationships, :inverse_relationships, :address #:user,
+  validates_associated :relationships, :inverse_relationships, :address #:user
 
   has_attached_file :avatar,
     :styles => {
@@ -109,7 +109,7 @@ class Person < ActiveRecord::Base
 
   attr_accessor :current_responder_item
   
-  delegate :email,
+  delegate :email, :is_invited?,:invite!,
            :to => :user, :prefix => true
 
 
@@ -129,13 +129,34 @@ class Person < ActiveRecord::Base
       self.relationships & Relationship.where(:relation_id => person.id, :name => name)
     end
 
-
-    define_method("build_inverse_#{name}_relationship_to") do |person|
-      self.inverse_relationships.build(:person_id => person.id, :name => name, :status => false)
+    define_method("build_inverse_#{name}_relationship_to") do |person,*arg|
+      status = arg[0] || {:status => true}
+      self.inverse_relationships.build({:person_id => person.id, :name => name}.merge(status))
     end
 
-    define_method("build_#{name}_relationship_to") do |person|
-      self.relationships.build(:relation_id => person.id, :name => name, :status => false)
+    define_method("build_#{name}_relationship_to") do |person,*arg|
+      status = arg[0] || {:status => true}
+      self.relationships.build({:relation_id => person.id, :name => name}.merge(status))
+    end
+
+    define_method("find_or_build_inverse_#{name}_relationship_to") do |person,*arg|
+      status = arg[0] || {:status => true}
+      relationship = self.inverse_relationships & Relationship.where(:person_id => person.id, :name => name)
+      if relationship.empty?
+        relationship = self.inverse_relationships.build({:person_id => person.id, :name => name}.merge(status))
+      else
+        relationship.first
+      end
+    end
+    
+    define_method("find_or_build_#{name}_relationship_to") do |person,*arg|
+      status = arg[0] || {:status => true}
+      relationship = self.relationships & Relationship.where(:relation_id => person.id, :name => name)
+      if relationship.empty?
+        relationship =  self.relationships.build({:relation_id => person.id, :name => name}.merge(status))
+      else
+        relationship.first
+      end
     end
   end
 

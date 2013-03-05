@@ -25,7 +25,7 @@ node :schema do
       :model => "App.Models.Base",
       :schema =>{
         :id => :Hidden,
-        :street_1 => :Text,
+        :street_1 => {:type => :Text, validators: ['required'],template: 'field'},
         :street_2 => :Text,
         :town => :Text,
         :zip_code => :Text,

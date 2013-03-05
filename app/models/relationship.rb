@@ -15,7 +15,7 @@
 
   def status
     if self.new_record?
-      @status || true      
+      @status
     else
       (self.read_attribute(:end).nil?)
     end
