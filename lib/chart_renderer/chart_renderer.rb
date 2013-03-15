@@ -25,10 +25,9 @@ module ChartRenderer
     end
 
     def subject_series
-      {:name => @response_set.subject.full_name }.merge(subject_results)
+      {:name => @response_set.subject.full_name}.merge(subject_results)
     end
 
-    #IMPORTANT: refactor drilldown into method of class
     def subject_results
       data= {}
       data[:data] = get_content(:question_groups).map do |i|
@@ -42,8 +41,6 @@ module ChartRenderer
           {:y => group_results, :drilldown => {:series => drilldown_chart.chart_data,:xAxis => {:categories => groups}}}
         else
           {:y => group_results}
-          # drilldown = ChartRenderer::Drilldown::Chart.new(@response_set,groups,[group_results])
-          # drilldown.series_with_drill_down
         end
       end
       data
@@ -69,7 +66,6 @@ module ChartRenderer
     end
 
     def question_list_drilldown
-      #START: Add question group_ids to json output the fetch question list in xhr request
       if @chart[:content][:question_list_drilldown]
         list = get_content(:question_groups).map do |i|
           i.is_a?(String) ? i : i[:total]
@@ -86,36 +82,60 @@ module ChartRenderer
     
     def title
       unless @chart[:chart_config][:title][:text].nil?
-        @chart[:chart_config][:title][:text] = norm_reference_group_name
+        @chart[:chart_config][:title].merge({:text => norm_reference_group_name})
       end
     end
 
-    def chart_settings
+    def chart
       @chart[:chart_config][:chart][:renderTo] = get_content(:name)
+      @chart[:chart_config][:chart]
     end
     
-    def x_axis_settings
-      x_axis = @chart[:chart_config][:xAxis]
-      x_axis.deep_merge!({:categories => categories})
+    def x_axis
+      x_axis = @chart[:chart_config][:xAxis].deep_merge!({:categories => categories})
+      # x_axis.deep_merge!({:categories => categories})
     end
 
     def subtitle
       unless @chart[:chart_config][:subtitle][:text].nil?
-        @chart[:chart_config][:subtitle][:text] = @response_set.completed_at
+        @chart[:chart_config][:subtitle].merge(:text => @response_set.completed_at) 
       end
     end
 
-    def y_axis_settings
+    def y_axis
       @chart[:chart_config][:yAxis]
     end
 
     def series
-      @chart[:chart_config][:series] = chart_data
+      # @chart[:chart_config][:series] = chart_data
+      chart_data
     end
 
+    def credits
+      @chart[:chart_config][:credits]
+    end
+    
+    def tooltip
+      @chart[:chart_config][:tooltip]
+    end
+
+    def legend
+      @chart[:chart_config][:legend]
+    end
+    
+    def plot_options
+      @chart[:chart_config][:plotOptions]
+    end
+    
+    def chart_metrics
+      @chart[:content][:chart_metrics]
+    end
+
+
+
     def chart_output
-      chart_settings
-      x_axis_settings
+      chart
+      x_axis
       series
       title
       subtitle
@@ -123,10 +143,6 @@ module ChartRenderer
     end
 
     private
-    # def total_for_custom_groups?
-    #   get_content(:question_groups).is_a?(Hash) && get_content(:question_groups).has_key?(:total)
-    # end
-
     def total_for_groups(groups)
       @response_set.sum_of_group_result(groups)
     end
@@ -137,16 +153,9 @@ module ChartRenderer
         groups = i.is_a?(String) ? i : i[:total]
       end
     end
-    # def results_with_total_for_current_groups
-    #   total = subject_groups.select{|g| g == "total"}
-    #   groups = subject_groups - total
-    #   data = groups.map{|g| @response_set.sum_of_group_result(g)}
-    #   data << data.sum unless total.empty?
-    #   data
-    # end
 
     def subject_groups
-      total_for_custom_groups? ? get_content(:question_groups).values.flatten : get_content(:question_groups)
+      questions_by_group
     end
 
     def reference_groups
@@ -157,17 +166,7 @@ module ChartRenderer
       get_content(:drilldown)
     end
     
-    def drilldown_results
-      responses = @response_set.group_result(subject_groups)
-      drilldown = []
-      responses.each do |i|
-        index = subject_groups.index(i.question.question_group.text)
-        drilldown[index] ||= []
-        drilldown[index] <<  {:y => i.answer.weight, :name => i.question.display_order}
-      end
-      drilldown
-    end
 
   end
-  %w{column adhd_rating_scale stacked_column bar}.each {|c| require_dependency "#{c}.rb"} if Rails.env.development?
+  %w{column adhd_rating_scale stacked_column bar standard_deviation}.each {|c| require_dependency "#{c}.rb"} if Rails.env.development?
 end

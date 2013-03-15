@@ -90,53 +90,8 @@ $answer-level-color-4: rgba(22,25,59,$level-opacity)
 
 
 .line .chart-dialog
-  .c-icon
-    z-index: 200
   overflow: hidden
-  &.state-column 
-    .chart-wrapper
-      left: 0
-    .column-chart-icn
-      +opacity(0.7)
-  &.state-line 
-    .chart-wrapper
-      left: -100%
-    .line-chart-icn
-      +opacity(0.7)
-  .chart-wrapper
-    // +transition-property(left)
-    // +transition-duration(.5s)
-    // +transition-timing-function(ease)
-    position: absolute
-    & > div
-      float: left
-    & > .drilldown-on .chart
-      +opacity(0.2)
-    & > .drilldown-on .chart.drilldown-on
-      +opacity(1)   
-  .chart
-    float: left
-    position: relative
-    &.drilldown-on .reset-drilldown-icn
-      display: block
-    .reset-drilldown-icn
-      font-family: "Entypo"
-      font-size: 8em
-      color: #fff
-      position: absolute
-      display: none
-      top: -10px 
-      left: 0
-      width: 35px
-      height: 35px
-      +opacity(0.5)
-      cursor: pointer
-      z-index: 200
-      &:hover
-        +opacity(0.7)
-      &:after
-        content: "\E759"  
-  ul
+  & > ul
     +horizontal-list
     position: absolute
     top: 20px
@@ -147,7 +102,78 @@ $answer-level-color-4: rgba(22,25,59,$level-opacity)
   h3
     padding: 5px
     font-size: 1.3em
+  .c-icon
+    z-index: 200
   .c-icon.close
     position: absolute
     right: 10px
     top: 10px
+  &.drilldown-on .chart,
+  &.drilldown-on > ul,
+  &.drilldown-on ul.chart-metrics
+    display: none
+  &.drilldown-on .chart.drilldown-on,
+  &.drilldown-on .chart.drilldown-on > div
+    display: block
+    width: inherit
+  &.state-column 
+    .chart-wrapper
+      left: 0
+    .column-chart-icn
+      +opacity(0.7)
+  &.state-line 
+    .chart-wrapper
+      left: -100%
+    .line-chart-icn
+      +opacity(0.7)
+ 
+  .chart-wrapper
+    // +transition-property(left)
+    // +transition-duration(.5s)
+    // +transition-timing-function(ease)
+    position: absolute
+    & > div
+      float: left 
+  .chart
+    float: left
+    position: relative
+    & > ul.nav
+      font-size: .8em
+    &.drilldown-on .reset-drilldown-icn
+      display: block
+    .reset-drilldown-icn
+      font-family: "Entypo"
+      font-size: 8em
+      color: #fff
+      position: absolute
+      display: none
+      top: -10px 
+      left: -.5em
+      width: 35px
+      height: 35px
+      +opacity(0.5)
+      cursor: pointer
+      z-index: 200
+      &:hover
+        +opacity(0.7)
+      &:after
+        content: "\E759"
+  
+  ul.chart-metrics
+    display: block
+    position: absolute
+    +horizontal-list(false)
+    z-index: 99
+    li
+      color: #999
+      border: rgba(0,0,0,0.2) 1px solid
+      +border-radius()
+      padding: .4em 1em
+      +box-shadow(0 0 2px 1px rgba(0,0,0,0.11) inset)
+      margin-right: .4em
+      cursor: pointer
+    li.active
+      background-color: rgba(250,250,250,.5)
+      color: #333
+      border-width: 0
+

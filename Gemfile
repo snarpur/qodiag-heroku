@@ -38,7 +38,7 @@ group :assets do
   gem 'coffee-rails', "~> 3.2.1"
   gem 'uglifier', '>=1.0.3'
   gem 'closure-compiler'
-  gem 'compass', :git => 'git://github.com/chriseppstein/compass.git', :tag => 'v0.12.alpha.0'
+  gem 'compass-rails' #, :git => 'git://github.com/chriseppstein/compass.git', :tag => 'v0.12.alpha.0'
 end
 
 group :development do

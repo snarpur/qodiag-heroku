@@ -1,7 +1,13 @@
 chart_name: YsrSyndromeScale  
 chart_type: Column
 extends: StackedColumn
-
+chart_metrics:
+   - 
+     name: average
+     query: raw_score_mean 
+   - 
+     name: standard_deviation
+     query: sd
 content:
   result_names: [raw_score_mean,borderline,clinical]
 charts:
@@ -43,6 +49,8 @@ charts:
       yAxis:
         opposite: true
         maxPadding: 0.01
+        minorTickInterVal: auto
+        tickInterval: null
       title:
         text: ~
       subtitle: 

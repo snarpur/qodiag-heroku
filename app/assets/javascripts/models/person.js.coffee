@@ -17,13 +17,11 @@ class App.Models.Person extends App.Models.Base
 
   setAddres:(model)=>
     address = @get("address")
-    console.info "START #{address.cid}",address
     unless model.changed.status?
       if model.get("status") is true then address.set("submitDisabled",model.get("status"))
       return
 
     if model.get('status') is true 
-      address.disableFields()
       spouse_id = _.difference(_.filter(model.attributes,(v,k)-> k.search(/person|relation/) != -1), [@.get('id')])
       address.set("person_id",spouse_id,{silent: true})
       address.fetch(@commonAddressCallbacks())

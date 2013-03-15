@@ -31,7 +31,7 @@ steps:
                   email:
                     type: Text
                     template: field
-                    validators: ['required','email']
+                    # validators: ['required','email']
                   invitation: Hidden
               firstname:
                 type: Text

@@ -1,5 +1,3 @@
-# App.Views.Timeline ||= {}
-
 class App.Views.Timeline.Line extends Backbone.View
   
   className: "line state-closed"
@@ -11,18 +9,19 @@ class App.Views.Timeline.Line extends Backbone.View
   initialize:->
     @timeline = @options.timeline
     @model.view = @
-    @model.bind("change:previousDialogItem", @removeDialog)
-    @model.bind("change:currentDialogItem", @changeLineState)
-    @model.bind("change:newItemOverlayState", @newItemOverlayState)
-    @model.bind("change:menuItem", @removeItems)
-    @model.bind("remove", @removeLine)
+    @model.on("change:previousDialogItem", @removeDialog)
+    @model.on("change:currentDialogItem", @changeLineState)
+    @model.on("change:newItemOverlayState", @newItemOverlayState)
+    @model.on("change:menuItem", @removeItems)
+    @model.on("remove", @removeLine)
     @model.on('change:currentChartHeight',@resizeLine)
-    @model.get('items').bind("add", @renderLineItems)
+    @model.get('items').on("add", @renderLineItems)
 
   
   template:->
     JST['templates/lineTmpl']
 
+  
   changeLineState:(item)=>
     currentDialog = @model.currentDialogItem()
     if currentDialog is null
@@ -34,46 +33,55 @@ class App.Views.Timeline.Line extends Backbone.View
       $(@el).setCssState('charts','overlay')   
       @renderDialog(@model.currentDialogItem())
 
+  
   resizeLine:(line)=>
     height = line.get('currentChartHeight')
     height = if height == '' then '' else height + App.Timeline.Dimensions.line_height 
     @.$el.css("height", height)
 
+  
   removeDialog:(item)=>
     if @model.previousDialogItem()?
       @model.previousDialogView().remove()
       @model.previousDialogItem().set({dialogView: null})
 
+  
   renderDialog:(item)=>
     dialog = new App.Views.Timeline.ItemDialog(line: @model, model: item, timeline: @timeline)
     $(@el).append(dialog.render().el)
-    dialog.renderCharts()
+    dialog.renderColumnCharts()
     
   
   renderLineItems: => 
     @.$(".line-items").empty()
     _.each(@model.get('items').models ,@renderLineItem)
   
+  
   renderLineItem:(item)=>
     lineItem = new App.Views.Timeline.LineItem(model: item, line: @model, timeline: @timeline)
     @.$(".line-items").append(lineItem.render().el)
 
+  
   newItemOverlayState:(self,state)=>
     overlayState = "new-item" if state is 'open'
     $(@el).setCssState(state)
     $(@el).setCssState(overlayState, 'overlay') 
   
+  
   renderAddItemOverlay:=>
     overlay = new App.Views.Timeline.NewItem(model: @model, timeline: @timeline)
     $(@el).append(overlay.render().el)
+  
   
   removeItems:=>
     if @model.get('menuItem') is null
       @model.removeItems()
   
+  
   removeLine:=>
     $(@el).remove()
 
+  
   render:=>
     $(@el).html(@template()(@model.toJSON()))
     @renderAddItemOverlay()

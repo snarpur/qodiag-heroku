@@ -2,46 +2,58 @@ class App.Models.Line extends Backbone.Model
 
   # urlRoot: "/people/:subject_id/"
   
-  initialize:->    
+  initialize:->
     @.urlRoot = "/people/:subject_id/responder_items/survey/"
     @timeline = @.get('timeline')
-    @.bind("updateDialog", @setCurrentDialogItem)
+    @.on("updateDialog", @setCurrentDialogItem)
+  
   
   url:()=>
     base = @.urlRoot.replace(/:subject_id/,@subjectId())
     "#{base}#{'' if _.endsWith(base,'/')}#{encodeURIComponent(@.get('survey_id'))}"
   
+  
   subjectId:()=>
     @.get("timeline").getSubjectId()
+  
   
   setCurrentDialogItem:(item)=>
     @setPreviousDialogItem(item) 
     @.set(currentDialogItem: item)
 
+  
   setPreviousDialogItem:=>
     @.set(previousDialogItem: @currentDialogItem()) if @currentDialogItem()?
+  
   
   currentDialogItem:=>
     @.get('currentDialogItem')
   
+  
   previousDialogItem:=>
     @.get('previousDialogItem')
+  
   
   currentDialogView:=>
     @currentDialogItem().get("dialogView")
 
+  
   previousDialogView:=>
     @previousDialogItem().get("dialogView")
     
+  
   hasDialog:=>
     @.get('currentDialogItem')?
+  
   
   clearDialogItem:=>
     @.set(previousDialogItem: null)
   
+  
   addItems:(items)=>
     @.get('items').add(items)
     
+  
   removeItems:()=>
     @.trigger('remove',@)
     @.collection.remove(@,{silent: true})
@@ -55,12 +67,15 @@ class App.Collections.LineCollection extends Backbone.Collection
     @.models = lines
     @.timeline = timeline
 
+  
   setSubjectId:(id)=>
     @.subjectId = id
 
+  
   subjectId:=>
     @.subjectId
 
+  
   addLine:(params) =>
     params.timeline = @.timeline
     line = new App.Models.Line(params)

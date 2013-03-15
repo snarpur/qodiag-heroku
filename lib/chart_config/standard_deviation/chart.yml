@@ -1,0 +1,60 @@
+chart_name: StandardDeviation
+extends: Chart
+chart_config:
+  chart:
+    type: areaspline
+  plotOptions:
+    areaspline:
+      stickyTracking: false
+      states:
+        hover: false
+      enableMouseTracking: false
+      lineWidth: 1
+      fillOpacity: 0.5
+      marker:
+        enabled: false
+    scatter:
+      dataLabels:
+        enabled: true
+        color: '#eaeaea'
+        formatter: true
+        backgroundColor: rgba(255,255,255,.1)
+        borderColor: '#555'
+        padding: 1
+        borderWidth: 1
+        borderRadius: 3
+        align: right
+        y: 0
+      marker:
+        symbol: circle
+        fillColor: rgba(200,250,234,0.6)
+        lineColor: '#222'
+        lineWidth: 2
+  legend:
+    enabled: false
+  xAxis:
+    maxPadding: 0
+    tickmarkPlacement: 'on'
+    showFirstLabel: false
+    showLastLabel: false
+    title:
+      text: ~
+    labels:
+      align: center
+      formatter: true
+    plotLines:
+      - 
+        color: '#FF0000'
+        width: 2
+        value: 4
+        zIndex: 100 
+  yAxis:
+    allowDecimals: true
+    max: 12
+    min: 0
+    tickInterval: 2
+    maxPadding: 0
+    labels:
+      enabled:false
+  title:
+    text: false

@@ -21,7 +21,7 @@ module ChartConfig
     end
     
     def has_base_renderer?
-      ChartRenderer.constants.include?(chart_name.to_sym)
+      ChartRenderer.constants.include?(chart_name.to_sym) && ChartRenderer.const_get(chart_name.to_sym).constants.include?(:Chart)
     end
       
     def base_renderer
@@ -29,6 +29,7 @@ module ChartConfig
     end
     
     def has_type_renderer?(chart_type)
+      return false if chart_type.nil?
       base_renderer.constants.include?(chart_type.to_sym)
     end
 
@@ -37,7 +38,9 @@ module ChartConfig
     end
 
     def get_renderer
-      if has_base_renderer? && has_type_renderer?(chart_type)
+      if (has_base_renderer? && !has_type_renderer?(chart_type))
+        base_renderer.const_get(:Chart)
+      elsif has_base_renderer? && has_type_renderer?(chart_type)
         type_renderer
       else
         eval("ChartRenderer::#{@config[:extends]}::Chart")
@@ -62,7 +65,6 @@ module ChartConfig
 
     def get_config_file
       yml = YAML::load(File.open(config_file_path(self.class.name))).symbolize_all_keys!
-      # extend_config(yml)
     end
     
     def raw_config
@@ -106,9 +108,14 @@ module ChartConfig
   
 
   module StackedColumn 
-    class Chart < ChartConfig::Column::Chart; end
+    class Chart < ChartConfig::Chart; end
   end
+
   module Line 
+    class Chart < ChartConfig::Chart; end
+  end
+
+  module StandardDeviation
     class Chart < ChartConfig::Chart; end
   end
   
@@ -118,6 +125,9 @@ module ChartConfig
     end
     module Line
       class  Chart < ChartConfig::Line::Chart;  end
+    end
+    module StandardDeviation
+      class  Chart < ChartConfig::StandardDeviation::Chart;  end
     end
   end
   module Sdq
@@ -134,6 +144,9 @@ module ChartConfig
     end
     module Line
       class  Chart < ChartConfig::Line::Chart;  end
+    end
+    module StandardDeviation
+      class  Chart < ChartConfig::StandardDeviation::Chart;  end
     end
   end
  

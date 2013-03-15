@@ -28,7 +28,16 @@ Snarpur::Application.routes.draw do
 
   resources :responder_items do
       resources :people
+     
   end
+  resources :survey_responses, :path => 'responder_items/responses', :module => "responder_items", :only => [:index] do
+    member do 
+      get "column(/:column_metrics)" => "survey_responses#column"
+      get "question_group/:question_group_name" => 'survey_responses#question_group'
+    end
+  end
+
+
 
 
   resources :people, :as => 'subject' do
@@ -36,11 +45,11 @@ Snarpur::Application.routes.draw do
   end
   
 
-
+  #REFACTOR: change match to memeber
   resources :pre_registrations
   match "pre_registrations/:id(/step/:step_no)" => 'pre_registrations#show',:defaults => {:step_no => 1}, :via => :get
   match "pre_registrations/:id(/step/:step_no)" => 'pre_registrations#update',:defaults => {:step_no => 1}, :via => :put
-
+  #REFACTOR: change match to memeber
   resources :responder_items, :path => 'invitation_items', :as => :invitation_items , :controller => "invitation_items" 
   match "invitation_items/:id(/step/:step_no)" => 'invitation_items#show',:defaults => {:step_no => 1}, :via => :get
   match "invitation_items(/step/:step_no)" => 'invitation_items#create',:defaults => {:step_no => 1}, :via => :post
@@ -52,7 +61,7 @@ Snarpur::Application.routes.draw do
   match 'people/:subject_id/responder_items/responses/:survey_id' => 'responder_items#responses', :via => :get
   match 'people/:subject_id/responder_items/responses/:respondent_id/:survey_id' => 'responder_items#responses', :via => :get
   match 'people/:subject_id/responder_items/survey/:survey_id' => 'responder_items#survey', :via => :get
-  match 'responder_items/:id/responses/question_group/:question_group_name' => 'responder_items/survey_responses#question_group', :via => :get
+  # match 'responder_items/:id/responses/question_group/:question_group_name' => 'responder_items/survey_responses#question_group', :via => :get
 
   match 'people/:subject_id/history' => 'people#history'
   match 'people/:subject_id/information' => 'people#information'

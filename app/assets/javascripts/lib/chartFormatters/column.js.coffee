@@ -1,4 +1,4 @@
-class App.Lib.chartFormatters.column extends App.Lib.chartFormatters.chart
+class App.Lib.ChartFormatters.Column extends App.Lib.ChartFormatters.Chart
  
   plotOptionsColumnDataLabelsFormatter:()=>
     ()->
@@ -9,11 +9,15 @@ class App.Lib.chartFormatters.column extends App.Lib.chartFormatters.chart
  
   xAxisLabelsFormatter:=>
     accessCode = @chart.accessCode
+    standardDeviation = (@chart.chart.type == 'areaspline')
     ()->
-      if _.isNaN(parseInt(@.value))
+      if standardDeviation
+        return @.value
+      else if _.isNaN(parseInt(@.value))
         str = I18n.t("surveys.#{accessCode}.terms.#{@.value }") 
       else
         str = I18n.t("surveys.#{accessCode}.terms.terms")[parseInt(@.value) - 1] 
+      
       str = @.value if _.includes(str,'missing')
       str.replace(/\s/,"\n")
       _.capitalize(str)

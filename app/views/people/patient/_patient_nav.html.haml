@@ -1,5 +1,5 @@
 - if params[:controller] == 'people'
-  %ul.nav.sub
+  %ul.patient-nav.sub
     %li{:class => params[:action] == 'show' ? 'selected' : ''}
       %a{:class => 'c-icon timeline', :href => '/people/' + @person.id.to_s} &#57349;
     %li{:class => params[:action] == 'history' ? 'selected' : ''}

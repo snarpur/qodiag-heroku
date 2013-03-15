@@ -4,6 +4,8 @@ is:
       age: "ára"
       male: "drengir"
       female: "stúlkur"
+      average: Meðaltal
+      standard_deviation: Staðalfrávik
       respondent:
         parent: "foreldri"
         teacher: "kennari"
@@ -90,7 +92,7 @@ is:
         - Að nokkru rétt
         - Örugglega rétt
     ysr-syndrome-scale:
-      name: "sjálfsmatslisti"
+      name: "Sjálfsmatslisti(YSR)"
       terms:
         clinical: yfir mörkum
         borderline: jaðarsvæði

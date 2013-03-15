@@ -17,7 +17,7 @@ class App.Views.LineCharts extends Backbone.View
   renderChart:(chart)=>
     chartEl = $(@template()(chart))
     $(@el).append(chartEl)
-    formatter = new App.Lib.chartFormatters.line(chart,@)
+    formatter = new App.Lib.ChartFormatters.Line(chart,@)
     formatter.setFormatters()
     chartEl.width(@chartWidth(chart))
     high = new Highcharts.Chart(chart)

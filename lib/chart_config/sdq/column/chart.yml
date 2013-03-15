@@ -7,6 +7,7 @@ charts:
   -
     content:
       name: score
+      question_list_drilldown: true
       question_groups: [emotional, conduct, hyperactivity_inattention, peer_problem, prosocial_behaviour]
       group_actions:
         prosocial_behaviour: reverse_stack

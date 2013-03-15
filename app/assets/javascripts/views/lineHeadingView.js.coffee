@@ -11,14 +11,18 @@ class App.Views.Timeline.LineHeading extends Backbone.View
     @model.headingView = @
     @model.bind("remove", @removeHeader)
   
+  
   newItem:=>
     @model.set(newItemOverlayState:'open')
 
+  
   removeHeader:(line)=>
     $(@el).remove()
   
+
   template:->
     JST['templates/headingsTmpl']
+  
   	
   render:->
     $(@el).html(@template()(@model.toJSON()))

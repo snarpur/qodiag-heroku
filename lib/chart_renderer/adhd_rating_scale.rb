@@ -1,22 +1,21 @@
-  # encoding: utf-8 
+# encoding: utf-8 
 module ChartRenderer::AdhdRatingScale 
   module Column
     class Chart < ChartRenderer::Column::Chart
     	
     	def initialize(chart_options,response_set)
         super(chart_options,response_set)
-
       end
 
       def reference_values
         series = super
-        series.first.merge!({:tooltip => standard_deviation_from_average(series.first[:data])})
+        # series.first.merge!({:tooltip => standard_deviation_from_average(series.first[:data])})
         series
     	end
       
       def subject_series
     		series = super
-    		series.merge({:tooltip => count_high_values})
+    		# series.merge({:tooltip => count_high_values})
       end
 
       #REFACTOR: Remove localized strings

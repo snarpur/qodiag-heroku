@@ -2,23 +2,16 @@ class App.Models.QuestionResponse extends Backbone.Model
 
   initialize:->
     @.set('surveyAccessCode', @collection.surveyAccessCode())
-    
-
-
-
-
-
-
 
 
 class App.Collections.QuestionResponse extends Backbone.Collection
   
   model: App.Models.QuestionResponse
-  urlRoot: "/responder_items/:id/responses/question_group/:question_group_name"
+  urlRoot: "/responder_items/responses/:id/question_group/:question_group_name"
   
-  initialize:(questionGroupName,responderItem) ->
+  initialize:(questionGroupName,chart) ->
     @questionGroupName = questionGroupName
-    @responderItem = responderItem
+    @responderItem = chart.responderItem()
 
     @url = ()->
       url = @.urlRoot.replace(/\:id/,@responderItem.get('id'))
