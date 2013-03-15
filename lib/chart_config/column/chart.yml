@@ -6,16 +6,25 @@ chart_config:
     type: column
   tooltip:
     enabled: false
-    useHTML: true
-    footerFormat: '</table>'
-    shared: true
   xAxis:
     labels:
       useHTML: true
   plotOptions:
     column:
       cursor: pointer
+      groupPadding: 0.1
+      pointPadding: 0.1
+      dataLabels:
+        enabled: true
+        formatter: true
+        borderRadius: 5
+        color: '#eaeaea'
+        backgroundColor: 'rgba(255, 255, 255, 0.1)'
+        borderWidth: 1
+        borderColor: '#555'
+        y: -6
       point:
         events:
-          click: drillToQuestion
-    # formatter: true
+          click: drillToQuestion     
+      events:
+        legendItemClick: false

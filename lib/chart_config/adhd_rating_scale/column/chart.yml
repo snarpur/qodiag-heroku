@@ -1,24 +1,38 @@
 chart_name: AdhdRatingScale
 chart_type: Column
 extends: Column
+chart_metrics:
+   - 
+     name: average
+     query: average 
+   - 
+     name: standard_deviation
+     query: standard_deviation
 chart_config:
   title:
     text: true
-  tooltip:
-    enabled: true
-    formatter: true
 content:
   result_names: [average]
 charts:
   -
     content:
       name:  score
+      question_list_drilldown: true
+      question_groups: [inattention, impulsivity_hyperactivity] 
+  -
+    content:
+      name:  total
       question_groups: 
-        - inattention
-        - impulsivity_hyperactivity
-        - 
+        -
           name: total
-          total: 
-            - inattention
-            - impulsivity_hyperactivity
-
+          total: [inattention, impulsivity_hyperactivity]
+    chart_config:
+      legend:
+          enabled: false
+      yAxis:
+        opposite: true
+        maxPadding: 0.01
+      title: 
+        text: ~
+      subtitle:
+        text: ~

@@ -16,14 +16,11 @@ class Chart
   end
 
   
-  
   def results
     drilldown = []
     responses.each do |i|
       index = @groups.index(i.question.question_group.text)
-      drilldown[index] ||= []
-      # drilldown[index] <<  {:y => i.answer.weight, :name => i.question.display_order}
-      
+      drilldown[index] ||= []      
       params = {:low =>i.answer.weight, 
                 :high => i.answer.weight+1, 
                 :name => i.answer.weight, 
@@ -35,7 +32,7 @@ class Chart
   end
 
   def series_with_drill_down
-    series_config = {}#{:cursor => 'pointer',:point => {:events => {:click =>'drilldown'}}}
+    series_config = {}
     drilldown = results
     drilldown_data = []
     @data.each_with_index do |i,index|
@@ -60,7 +57,6 @@ class Chart
         
       end
     end
-    # return series_config.merge({:data => drilldown_data})
     drilldown_data.first
   end
 

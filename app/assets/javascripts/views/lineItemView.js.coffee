@@ -15,23 +15,29 @@ class App.Views.Timeline.LineItem extends Backbone.View
    @setStatus()
    @model.bind("change:dialogView", @highlight)
 
+  
   template:->
     JST['templates/lineItemTmpl']
+  
   
   show:=>
     if @model.status() is "completed"
       @line.trigger("updateDialog", @model)
 
+  
   setStatus:=>
     $(@el).addClass(@model.status())
     
+  
   statusPosition:=>
     if @model.status() is "completed" then @model.get("completed")
     else @model.get("deadline")
   
+  
   setPosition:=>
     pos = @timeline.positionOnLine(new Date(@statusPosition()))
     $(@el).css('left', "#{pos}px")
+  
   
   highlight:=>
     if @model.get("dialogView")
@@ -39,6 +45,7 @@ class App.Views.Timeline.LineItem extends Backbone.View
     else
       $(@el).removeClass('open-dialog')
 
+  
   render:->
     $(@el).html(@template()(@model.toJSON()))
     @

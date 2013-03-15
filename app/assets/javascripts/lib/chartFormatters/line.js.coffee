@@ -1,4 +1,4 @@
-class App.Lib.chartFormatters.line extends App.Lib.chartFormatters.chart
+class App.Lib.ChartFormatters.Line extends App.Lib.ChartFormatters.Chart
 
 
   formatters:-> 
@@ -9,6 +9,6 @@ class App.Lib.chartFormatters.line extends App.Lib.chartFormatters.chart
     ]
 
 
-  labelsFormatter:()=>
+  xAxisLabelsFormatter:()=>
     () ->
       I18n.l("date.formats.default",new Date(@.value))

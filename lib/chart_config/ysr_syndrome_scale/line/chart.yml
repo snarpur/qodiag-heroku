@@ -1,0 +1,14 @@
+chart_name: Sdq
+chart_type: Line
+extends: Line
+content:
+  result_names: [normal, borderline, abnormal]
+
+
+charts:
+  -
+    chart_config:
+      chart: 
+        renderTo: score
+    content:
+      question_groups: [emotional, conduct, hyperactivity_inattention, peer_problem, prosocial_behaviour]

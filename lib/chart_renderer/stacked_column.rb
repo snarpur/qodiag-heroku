@@ -1,5 +1,5 @@
 module ChartRenderer::StackedColumn 
-class Chart < ChartRenderer::Column::Chart
+class Chart < ChartRenderer::Chart
 
   def initialize(chart_options,response_set)
     super(chart_options,response_set)
@@ -15,6 +15,7 @@ class Chart < ChartRenderer::Column::Chart
       group.merge!(:data  => data_values(i[1]))
       group.merge!(:stack => "reference_values")
       group.merge!(:color => color_of_result(i[0]))
+      group.merge!({:dataLabels => {:x => 15, :align => 'left' }})
       ordered_series[index_of_result(i[0])] = group
     end
     ordered_series

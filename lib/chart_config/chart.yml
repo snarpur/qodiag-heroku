@@ -5,36 +5,24 @@ chart_config:
   tooltip:
     enabled: false
   chart:
-    marginBottom: 100
+    marginBottom: 75
     marginTop: 80
     animation: false
-  plotOptions:
-    column:
-      groupPadding: 0.1
-      pointPadding: 0.1
-      animation: false
-      dataLabels:
-        enabled: true
-        color:  '#333'
-        formatter: true
-        style:
-          fontSize: 8px
-      events:
-        legendItemClick: false
   title:
     text: true
-    align: right
+    align: left
   subtitle:
     text: true
-    align: right
+    align: left
   legend:
-    align: center
+    enabled: true
+    align: left
     floating: true
     labelFormatter: true
     itemHoverStyle:
       color: '#CCC'
   yAxis:
-    allowDecimals: false
+    allowDecimals: true
     title:
       text: ~
     tickPosition: inside

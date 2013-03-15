@@ -1,9 +1,10 @@
-App.Lib.chartFormatters ||= {}
-class App.Lib.chartFormatters.chart 
+App.Lib.ChartFormatters ||= {}
+class App.Lib.ChartFormatters.Chart 
     
   formatters: ->
     [ 
       "plotOptions.column.dataLabels.formatter",
+      "plotOptions.scatter.dataLabels.formatter",
       "xAxis.labels.formatter",
       "yAxis.labels.formatter",
       "legend.labelFormatter",
@@ -47,8 +48,8 @@ class App.Lib.chartFormatters.chart
     @chart
      
   getFormatterFunction:(str)=>
-    functionSting = _.camelize(str.replace(/\./g,"-"))
-    @[functionSting].call()
+    functionString = _.camelize(str.replace(/\./g,"-"))
+    @[functionString].call()
 
   plotOptionsColumnDataLabelsFormatter:->
     () ->
@@ -56,6 +57,13 @@ class App.Lib.chartFormatters.chart
         @point.config.name.data_label
       else
         @.y
+
+
+  plotOptionsScatterDataLabelsFormatter:=>
+    accessCode = @chart.accessCode
+    () ->
+      _.capitalize(I18n.t("surveys.#{accessCode}.terms.#{@series.name}"))
+      
 
   xAxisLabelsFormatter: =>
     () ->
@@ -71,7 +79,6 @@ class App.Lib.chartFormatters.chart
       str = @.name if _.includes(str,'missing')
       _.capitalize(str)
   
-  tooltipFormatter: =>
   
   subtitleText: =>
     I18n.l("date.formats.long",@chart.subtitle.text)

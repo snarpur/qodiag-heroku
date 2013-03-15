@@ -67,8 +67,8 @@ module ResponseSetCustomMethods
   def validate_mandatory_questions
     errors.add(:base, "can't be in the past") unless
         self.mandatory_questions_complete?
-    end
   end
+end
 
 class ResponseSet < ActiveRecord::Base
   include Surveyor::Models::ResponseSetMethods
@@ -87,5 +87,5 @@ class ResponseSet < ActiveRecord::Base
     responses = ResponseSet.completed.by_survey(survey_id).by_respondent(respondent_id)
     ResponseSet.responses_to_chart(responses)
   end
-
+  %w{chart_methods response_set_chart_renderer}.each {|c| require_dependency "#{c}.rb"} if Rails.env.development?
 end

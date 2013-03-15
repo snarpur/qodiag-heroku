@@ -9,7 +9,7 @@ class App.Views.Charts extends Backbone.View
     @timeline = @.options.timeline
     @item = @.options.item
     @item.on("change:dialogView",@unBindEvents)
-    App.Event.on("drilldown",@drilldown)
+
 
   
   template:->
@@ -26,27 +26,25 @@ class App.Views.Charts extends Backbone.View
   #REFACTOR: Equal width columns in adjescent charts calculate fixed column width and set plotOptions.pointWidth 
   chartWidth:(chart)=>
     total_size = 0
-    _.each(@item.get('charts'), (n)->
-      total_size += n.size
-    )
+    _.each(@item.get('charts'),(n)->total_size += n.size)
     width =  @timeline.get('canvas_width') * (chart.size/total_size)
     (width * 0.8) + 22
+
+  chartHeight:->
+    App.Timeline.Dimensions.line_height_expanded * 0.8
 
   setChartDiv:(chart)=>
     chart.chart.renderTo = @.$el.find("\##{chart.chart.renderTo} > div")[0]
     chart
   
-  drilldown:(status)=>
-    @.$el.setCssState(status,"drilldown")
-
 
   renderChart:(chart)=>
     chartEl = $(@template()(chart))
     $(@el).append(chartEl)
-    chartEl.width(@chartWidth(chart))
-    formatter = new App.Lib.chartFormatters.column(chart)
+    formatter = new App.Lib.ChartFormatters.column(chart)
     chart = formatter.setFormatters()
     chart = @setChartDiv(chart)
+    chart.chart.width = @chartWidth(chart)
     drilldownParams=
       chart:chart, 
       chartEl:chartEl, 

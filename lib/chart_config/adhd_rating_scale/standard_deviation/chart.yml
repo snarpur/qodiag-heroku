@@ -1,0 +1,15 @@
+chart_name: AdhdRatingScale
+chart_type: StandardDeviation
+extends: StandardDeviation
+charts:
+  -
+    content:
+      name:  score
+      question_groups: 
+        - inattention 
+        - impulsivity_hyperactivity
+        -
+          name: 'total'
+          total:
+            - inattention 
+            - impulsivity_hyperactivity

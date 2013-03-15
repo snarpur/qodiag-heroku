@@ -11,35 +11,49 @@ class App.Views.Timeline.ItemDialog extends Backbone.View
     @line = @options.line
     @timeline = @options.timeline
     App.Event.on("chartHeight", @setLineHeight)
+    App.Event.on("drilldown", @setDrilldown)
     @line.on('change:currentChartHeight',@resizeDialog)
     @model.set({dialogView: @})
 
+  
   template:->
     JST['templates/itemDialogTmpl']
 
+  
   close:=>
+    @line.set('currentChartHeight','')
     @line.trigger("updateDialog", null)
     App.Event.off("chartHeight")
+    App.Event.off("drilldown")
+    @line.off('change:currentChartHeight')
     @model.set({dialogView: null})
 
+  
   setLineHeight:(height)=>
     if height? && height > App.Timeline.Dimensions.line_height_expanded
       @line.set('currentChartHeight',height)
     else
       @line.set('currentChartHeight','')
 
+  
   resizeDialog:(line)=>
     @.$el.css("height",line.get('currentChartHeight'))
     
+  
+  setDrilldown:(state)=>
+    @.$el.setCssState(state, "drilldown")
 
+  
   viewLineChart:=>
     $(@el).setCssState("line")
     if @.$(".line-chart").size() is 0
       @getLineChart()
 
+  
   viewColumnChart:=>
     $(@el).setCssState("column")
   
+
   renderCharts:=>
     @model.fetch(
       success:(model,response)=>
@@ -49,6 +63,17 @@ class App.Views.Timeline.ItemDialog extends Backbone.View
       error:()->
           throw "could not get charts"
       )
+
+  renderColumnCharts: =>
+    charts = new App.Collections.ColumnChart([],{responderItem: @model})
+    charts.fetch(
+      success:(collection, response, options)->
+        collection.reset(response.charts,{chartMetrics: response.chartMetrics})
+        chartView = new App.Views.ColumnChartCollection({collection: collection})
+        @.$(".chart-wrapper").append(chartView.render().el)
+      error:(collection, xhr, options)->         
+    )
+    
   
   getLineChart:=>
     [id, subject_id] = [@line.get("survey_id"),@timeline.getSubjectId()]
@@ -62,6 +87,7 @@ class App.Views.Timeline.ItemDialog extends Backbone.View
       error:(response)->
     )
 
+  
   render:->
     $(@el).html(@template()(@model.toJSON()))
     @

@@ -2,6 +2,7 @@ require 'ostruct'
 class ResponderItemsController < ApplicationController
   before_filter :create_responder_item, :only => [:new,:create]
   load_and_authorize_resource
+  respond_to :json
 
   def index
     @person = Person.find(params[:subject_id])
@@ -13,15 +14,11 @@ class ResponderItemsController < ApplicationController
   end
 
   def show
-    @chart = ResponderItem.find(params[:id]).response_to_chart
-    respond_to do |format|
-      format.html
-      format.json
-    end
+  
+    @chart = ResponderItem.find(params[:id]).response_to_chart(params.slice(:result_name))
   end
 
   def new
-    KK.log "in responderIterm"
     @responder_item ||= ResponderItem.new
 
   end
@@ -64,16 +61,13 @@ class ResponderItemsController < ApplicationController
     end
   end
   
+ 
   def survey
     @person = Person.find(params[:subject_id])
     @responder_items = @person.responder_items.surveys_by_id(params[:survey_id])
-    respond_to do |format|
-      format.html
-      format.json {render :json => @responder_items}
-    end
   end
   
-
+  
   private
   def create_responder_item
     args = params.with_indifferent_access.slice(*ResponderItem.attribute_names)

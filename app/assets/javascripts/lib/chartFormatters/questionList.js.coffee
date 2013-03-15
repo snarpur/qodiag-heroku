@@ -1,4 +1,4 @@
-class App.Lib.chartFormatters.questionList extends App.Lib.chartFormatters.column
+class App.Lib.ChartFormatters.QuestionList extends App.Lib.ChartFormatters.Column
 
 
   xAxisLabelsFormatter:=>

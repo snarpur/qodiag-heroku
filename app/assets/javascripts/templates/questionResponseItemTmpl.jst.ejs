@@ -1,7 +1,7 @@
-<td><span><%= question %></span></td>
+<td data-sortAs="<%= question %>"><%= question %></td>
 <td><%= I18n.t("surveys."+surveyAccessCode+"."+"questions")[question] %></td>
-<td><span class="answer-signal"><%= I18n.t("surveys."+surveyAccessCode+"."+"answers")[answer] %></span></td>
-<td><span><%= answer %></span></td>
+<td data-sortAs="<%= answer + 1 %>"><span class="answer-signal"><%= I18n.t("surveys."+surveyAccessCode+"."+"answers")[answer] %></span></td>
+
 
 
 

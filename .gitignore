@@ -17,3 +17,8 @@ app/assets/javascripts/i18n/translations.js
 sketch.rb
 xiki.notes
 
+
+/app/assets/stylesheets/.sass-cache/
+/app/assets/stylesheets/*/*/config.rb
+/app/assets/stylesheets/*/config.rb
+/app/assets/stylesheets/config.rb
