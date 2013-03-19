@@ -1,7 +1,7 @@
 require "#{Rails.root}/lib/util/survey_DSL_helpers.rb"
 survey_name = 'YSR Syndrome Scale'
 namespace = SurveyDSLHelpers.access_code(survey_name)
-params = {:common_namespace => namespace, :pick => :one, :display_type => :inline}
+params = {:common_namespace => namespace, :pick => :one, :display_type => :inline, :custom_class => 'survey-question pick-one'}
 ratings =  ["not true",  "somewhat true or sometimes true",  "very true often true"]
 
 questionnaire_definition = [
@@ -22,7 +22,7 @@ survey survey_name do
     questionnaire_definition.each do |s|
       group s[:question_group], :common_identifier => s[:common_identifier] do
         s[:order].each do |order|
-         q namespace, params.merge({:display_order => order})
+         q namespace, params.merge({:display_order => order - 1})
            ratings.each_index { |r| a ratings[r], :weight => r, :common_namespace => params[:common_namespace] }
          end
       end

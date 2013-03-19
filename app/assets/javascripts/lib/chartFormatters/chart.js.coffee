@@ -62,7 +62,8 @@ class App.Lib.ChartFormatters.Chart
   plotOptionsScatterDataLabelsFormatter:=>
     accessCode = @chart.accessCode
     () ->
-      _.capitalize(I18n.t("surveys.#{accessCode}.terms.#{@series.name}"))
+      nameI18n = _.capitalize(I18n.t("surveys.#{accessCode}.terms.#{@series.name.name}"))
+      "#{@series.name.value} #{nameI18n}"
       
 
   xAxisLabelsFormatter: =>

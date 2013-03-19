@@ -1,11 +1,11 @@
 $(document).ready( () ->
 
-	answers = $(".survey_section fieldset fieldset ol")
+	answers = $(".survey_section .pick-one > ol")
 	$("input[type = submit]").bind('click', (e) ->
 		invalid = []
 		answers.each(() ->
-			fieldset = $(@).parents("fieldset.g_default")
-			if $(@).find("input:checked").size() is 0
+			fieldset = $(@).parents("fieldset.pick-one")
+			if $(@).find("input[type='radio']:checked").size() is 0
 				invalid.push(fieldset)
 				fieldset.setCssState("invalid")
 			else
@@ -17,7 +17,7 @@ $(document).ready( () ->
 	)
 	
 	$(".survey_section").delegate(".state-invalid input[type=radio]", "click", (e) ->
-		$(@).parents("fieldset.g_default").setCssState("valid")
+		$(@).parents("fieldset.pick-one").setCssState("valid")
 	)
 
 )

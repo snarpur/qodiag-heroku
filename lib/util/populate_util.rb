@@ -63,6 +63,7 @@ class PopulateUtil
     end
 
     def generate_surveys
+      [Survey, SurveySection, Question, QuestionGroup, Answer, ResponderItem, ResponseSet, Response].each(&:delete_all)
       @surveys.each do |survey|
         system "bundle exec rake surveyor FILE=surveys/#{survey}.rb --trace"
         NormReferenceCSVParser.new(survey)
@@ -126,12 +127,13 @@ class PopulateUtil
       survey_sections.each do |section|
         questions = Question.where("survey_section_id = #{section.id}")
         questions_size = questions.size
-        questions.each do |question|
-          answers = question.answers 
+        questions.each_with_index do |question,index|
+          answers = question.answers
+          random_answer_no = index % 3 == 0 ? rand(answers.size) : rand(answers.size - 1)  
           FactoryGirl.create(:response, 
                          :response_set => item.response_set, 
                          :question_id => question.id,
-                         :answer_id => answers[rand(answers.size)].id 
+                         :answer_id => answers[random_answer_no].id 
                         )
         end
       end

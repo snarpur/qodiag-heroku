@@ -15,9 +15,9 @@ gem "hpricot"
 gem "ruby_parser"
 gem "simple_form"
 gem "rainbow"
-gem "surveyor"
+gem "surveyor",:github => "NUBIC/surveyor"
 gem "fastercsv", "~> 1.5.4"
-gem "formtastic", "< 2.0"
+gem "formtastic"
 gem "hash-deep-merge"
 gem 'rails-dev-tweaks', '~> 0.6.1'
 gem "i18n-js"
@@ -38,7 +38,7 @@ group :assets do
   gem 'coffee-rails', "~> 3.2.1"
   gem 'uglifier', '>=1.0.3'
   gem 'closure-compiler'
-  gem 'compass-rails' #, :git => 'git://github.com/chriseppstein/compass.git', :tag => 'v0.12.alpha.0'
+  gem 'compass-rails'
 end
 
 group :development do
@@ -52,8 +52,8 @@ group :development do
 end
 
 group :development, :test do
-  gem "rspec-rails", "~> 2.4"
-  gem "shoulda-matchers"
+  gem "rspec-rails"
+  # gem "shoulda-matchers"
   #gem "cucumber-rails", ">= 0.3.2"
   gem "capybara"
   gem "database_cleaner"

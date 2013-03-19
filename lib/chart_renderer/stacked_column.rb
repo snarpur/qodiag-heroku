@@ -21,6 +21,7 @@ class Chart < ChartRenderer::Chart
     ordered_series
   end
 
+
   def subject_series
     series = super
     series.merge(:stack => 'subject')

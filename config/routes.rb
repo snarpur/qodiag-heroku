@@ -1,5 +1,7 @@
 Snarpur::Application.routes.draw do
 
+  mount Surveyor::Engine => "/surveys", :as => "surveyor"
+
   devise_for :users
   devise_scope :user do
     get "/login" => "devise/sessions#new"

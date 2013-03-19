@@ -7,7 +7,6 @@ body
 .surveys #header
   width: $blueprint_container_size
   margin: 5px auto
-
   h1
     font-size: 1.6em
     padding: .5em 0 .2em 1.6em
@@ -25,9 +24,8 @@ body
   padding-top: 1.2em
   background-color: #fff
 
-
 #content
-  +container
+  +container  
 
 .surveyor_menu,
 .survey_title,
@@ -35,61 +33,36 @@ body
 .survey_section > fieldset > legend
   display: none
 
-.survey_section > fieldset:nth-child(even)
-  background-color: $china2
-  color: #fff
-  border: $china1 solid 1px
-  .surveyor_radio
-    background-color: lighten($china2, 5%)
-
-.survey_section > fieldset:nth-child(odd)
-  background-color: $china4
-  color: #111
-  border: $china2 solid 1px
-  .surveyor_radio
-    background-color: lighten($china4, 5%)
-
-.survey_section > fieldset.state-invalid .q_default_inline > ol:before
-  content: "!"
-  font-size: 1.3em
-  position: absolute
-  top: .2em
-  left: .2em
-  height: 1.2em
-  width: 1.2em
-  line-height: 1.2em
-  text-align: center
-  background-color: red
-  +border-radius(.6em)
-  +box-shadow(0px 0px 0px 1px rgba(255,0,0,.6))
-  +highlight
-  color: #222
-  background-color: red
-
-.g_default
-  +border-radius 
-  margin-bottom: 5px
+.q_default_inline.pick-one
   position: relative
-
-.q_default_inline
-  padding: 2px
-  position: relative
+  margin-bottom: .8em
+  padding: .5em
+  border-bottom: 2px dashed #eaeaea
+  &.state-invalid
+    background-color: rgba(255,0,0,0.3)
+    border-width: 0
   legend
+    float: right
+    padding: .5em
+    width: $blueprint_container_size * 0.7
+    color: #222
+    font-size: 1.2em
+  legend span
     float: left
-    padding: .8em
-
-.q_default_inline ol
-  +horizontal-list(false)
-  position: absolute
-  top: .5em
-  right: .4em
-  padding-left: 2em
-  li
-    +border-radius(3px)
-    padding: .3em .5em .5em .3em
-    margin-left: .6em
-    font-size: .8em
-    font-weight: bold
+  & > ol 
+    +horizontal-list(false)
+    float: right
+    padding-left: 2em
+    li.quiet
+      display: none
+    li.surveyor_radio
+      display: block
+      +border-radius(3px)
+      background-color: rgba(155,155,155,0.2)
+      padding: .3em .5em .5em .3em
+      margin-left: .6em
+      font-size: .8em
+      font-weight: bold
 
 .next_section
   float: right

@@ -29,20 +29,17 @@ class Chart < ChartRenderer::Chart
     reference = norm_reference.scores_by_names_and_result_names(question_groups,queries.values.map{|q| q[0][:query]})
     center = (BELL_CURVE - 1)/2
     data = []
-    series[:data].each_with_index do |item,index|
     
+    series[:data].each_with_index do |item,index|
       
-      average = reference[queries['average'][0][:query]][index]
-      standard_deviation = reference[queries['standard_deviation'][0][:query]][index]
-      average_value = average.start_value.nil? ? average.value : average.start_value
+      average = reference[queries['average'][0][:query]].select{|i| i.name == question_groups[index]}.first
+      standard_deviation = reference[queries['standard_deviation'][0][:query]].select{|i| i.name == question_groups[index]}.first
+      average_value = average.end_value.nil? ? average.value : average.end_value
       
-      item[:y] = (item[:y] - average_value)/ standard_deviation.value
-      
-
-      xAxis = center - item[:y]
-      yAxis = (11 - (xAxis.abs.ceil ** 2)) + index
-
-      data << {:name => question_groups[index], :type => 'scatter', :data =>[[xAxis,yAxis]]}
+      sd_value = -((item[:y] - average_value)/ standard_deviation.value)
+      x_axis = center + sd_value
+     
+      data << {:name => {:name => question_groups[index],:value => sd_value.round(2)}, :type => 'scatter', :data =>[[x_axis,index+1]]}
     end
 
     data    
