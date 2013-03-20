@@ -73,7 +73,7 @@ class PopulateUtil
     def create_caretaker(name)
       caretaker_person = FactoryGirl.create(:person, person_attributes(rand(10)+40))
       caretaker_user = FactoryGirl.create(:user, 
-                                      :email => "#{name}@snarpur.is", 
+                                      :email => "#{name}@qodiag.com", 
                                       :roles => [@caretaker_role], 
                                       :person => caretaker_person
                                      )

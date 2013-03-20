@@ -20,12 +20,13 @@
     =yield :backbone_bootstrap
     
     %title
-      Snarpur
+      Qodiag - Quality of diagnosis
 
   %body{:class => yield(:body_class)}
     #wrapper{:class => role_view}
       #header
-        %h2 Snarpur
+        %h2 
+          Qodiag
         %div
           =render 'shared/log_in_out'
       #flash
@@ -45,6 +46,6 @@
           = yield
       #footer
         %span
-          ="Snarpur #{Date.today.year}| Fallegt virkar betur"
+          ="Qodiag #{Date.today.year}| Quality of Diagnosis"
     - unless Rails.env['development'] || Rails.env['test']
       =render "shared/google_analytics"
