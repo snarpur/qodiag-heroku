@@ -27,7 +27,6 @@ module ResponseSetCustomMethods
 
   def group_result(group_name)
     self.responses.joins(:answer,:question => :question_group).
-      includes(:answer,:question => :question_group).
       where(:question_groups => {:text => group_name})
   end
 

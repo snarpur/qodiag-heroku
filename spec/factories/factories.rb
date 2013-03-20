@@ -82,7 +82,6 @@ FactoryGirl.define do
 
 
   factory :responder_item do
-    registration_identifier "some_registration"
     deadline {generate(:random_deadline)}
     created_at Time.zone.now
     completed nil

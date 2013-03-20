@@ -24,6 +24,7 @@ class ResponderItem < ActiveRecord::Base
   accepts_nested_attributes_for :respondent, :subject
 
   attr_accessor :invite_respondent_user
+  
   attr_accessible :registration_identifier, :id, :caretaker_id, :deadline, :completed, 
                   :complete_item, :respondent_id, :subject_id, :survey_id, :invite_respondent_user, 
                   :days_until_deadline,:subject_attributes, :respondent_attributes

@@ -27,7 +27,7 @@ $answer-level-color-4: rgba(22,25,59,$level-opacity)
     visibility: hidden
     position: absolute
     z-index: -1
-    background-color: rgba(0, 0, 0, 0.78)
+    background-color: rgba(15, 15, 15, 0.87)
     border: 1px #eaeaea solid
     +border-radius(13px)
     +box-shadow(0 0 0px 9px rgba(0, 0, 0, 0.9), rgba(0,0,0,.4) 0 0 9px 9px)
@@ -43,24 +43,21 @@ $answer-level-color-4: rgba(22,25,59,$level-opacity)
     left: 10%
   .left
     text-align: center
-    button
-      display: none
+    .btn-controls
       position: absolute
       bottom: 0px
       left: 25%
       width: 50%
-  &.state-selected button
-    &.send
-      +inline-block()
-    &.disabled
-      display: none
-  &.state-success button, 
-  &.state-idle button,
-  &.state-error button
-    &.send
-      display: none
-    &.disabled
-      +inline-block()
+  h3
+    +text-shadow(none)
+    color: #c8c8c8 
+  &.state-idle .btn-submit,
+  &.state-success .btn-submit,
+  &.state-error .btn-submit
+    background-image: none
+    box-shadow: none
+    cursor: default
+    +opacity(0.65)    
   & .state-msg 
     position: absolute
     width: 80%
@@ -68,22 +65,9 @@ $answer-level-color-4: rgba(22,25,59,$level-opacity)
     top: 17%
     li
       display: none
-      font-size: 1.4em
-      em
-        display: block
-        padding: 5px
-        margin: 0 auto 1.3em
-        color: rgba(0, 0, 0, 0.78)
-  .m-success
-    color: #{$m-success}
-    em
-      background-color: #{$m-success} 
-  .m-selected, .m-idle
-    color: #{$m-selected}
-    em
-      background-color: #{$m-selected} 
-  .m-error
-    color: #{$m-error}
+    h4
+      border-width: 0
+      background-image: none
 @each $state in idle, selected, success, error
   .new-item.state-#{$state} .state-msg .m-#{$state}
     display: block 

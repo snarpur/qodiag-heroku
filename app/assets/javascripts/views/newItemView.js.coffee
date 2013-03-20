@@ -4,7 +4,8 @@ class App.Views.Timeline.NewItem extends Backbone.View
 
   className: "line-overlay new-item state-idle"
   events:
-    "click button": "saveItem"
+    "click .btn-submit": "saveItem"
+    "click .btn-cancel": "close"
     "click span.close": "close"
 
   
@@ -12,7 +13,9 @@ class App.Views.Timeline.NewItem extends Backbone.View
   
   initialize:->
     @timeline = @options.timeline
+    @createAndListenToNewItem()
     @model.bind("change:newItemOverlayState",@setIdle)
+    
   
   template:->
     JST['templates/newItemTmpl']
@@ -24,39 +27,53 @@ class App.Views.Timeline.NewItem extends Backbone.View
     if @model.get("newItemOverlayState") is "closed"
       $(@el).setCssState("idle")
   
+  createAndListenToNewItem:->
+    @newItem = new App.Models.ResponderItem()
+    @listenTo(@newItem,"change:deadline",@renderSelectedAlert)
+    @listenTo(@newItem,"change:deadline",@setLineState)
+
   saveItem:=>
-    $(@el).setCssState("sending")
+    @$el.setCssState("sending")
     params = 
       subject_id: @timeline.getSubjectId()
       survey_id: @model.get('survey_id')
-      deadline: @.selectedDate.toString()
       respondent_id: @getSelectedRespondent()
-    item = new App.Models.ResponderItem
-    item.save(params, @saveCallbacks())
+    @newItem.set(params)
+    @newItem.save(@newItem.attributes, @saveCallbacks())
       
   saveCallbacks:=>
-    that = @
+    view = @
     callbacks =
-      success: (model,response) -> 
-        that.model.addItems(model)
-        $(that.el).setCssState("success")
-      error: (model,response) -> 
-        $(that.el).setCssState("error")
+      success: (model,response) ->
+        view.model.addItems(model)
+        view.createAndListenToNewItem()
+        view.$el.setCssState("success")
+      error: (model,xhr) -> 
+        $(view.el).setCssState("error")
    
   getSelectedRespondent:=>
     _.first(@timeline.get("subject").get("respondents")).id
-
-
-  setDate:=>
-    that = @
-    (txt,d) ->
-      $(that.el).setCssState("selected")
-      that.selectedDate = $.datepicker.parseDate("dd/mm/yy",txt)
-      that.$(".state-msg .m-selected").html(JST['templates/newItemMsgTmpl']({date: that.selectedDate}))
       
+  
+  renderSelectedAlert:(item,date)->
+    if _.isString(date) then return
+    @$(".state-msg .m-selected").html(JST['templates/newItemMsgTmpl']({date: item.get('deadline')}))
+
+
+  setLineState:->
+    @$el.setCssState("selected")
+
+  setDeadline:->
+    view = @
+    (txt,d) ->
+
+      view.newItem.set('deadline',$.datepicker.parseDate("dd/mm/yy",txt))
+      
+
+
   renderCalendar:=>
     options = 
-      onSelect: @setDate()
+      onSelect: @setDeadline()
       minDate: Date.today()
 
     @.$('.calendar').datepicker(options)   
