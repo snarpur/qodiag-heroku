@@ -68,7 +68,7 @@ $answer-level-color-4: rgba(22,25,59,$level-opacity)
     h4
       border-width: 0
       background-image: none
-@each $state in idle, selected, success, error
+@each $state in idle, selected, success, sending, error
   .new-item.state-#{$state} .state-msg .m-#{$state}
     display: block 
 

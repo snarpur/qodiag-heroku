@@ -44,8 +44,11 @@
         = yield :subject_nav
         #content
           = yield
-      #footer
-        %span
-          ="Qodiag #{Date.today.year}| Quality of Diagnosis"
+          
+    #wrapper_footer
+      
+    #footer
+      %span
+        ="Qodiag #{Date.today.year}| Quality of Diagnosis"
     - unless Rails.env['development'] || Rails.env['test']
       =render "shared/google_analytics"

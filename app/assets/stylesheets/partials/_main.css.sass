@@ -1,4 +1,8 @@
 @import partials/base
+$tab_dark_border: linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,.1) 5%,rgba(0,0,0,.1) 65%,rgba(0,0,0,0) 100%)
+$tab_shadow: linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,.065) 25%,rgba(0,0,0,.065) 75%,rgba(0,0,0,0) 100%)
+$tab_border_shadow: radial-gradient(center, ellipse cover, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 70%)
+
 @font-face 
   font-family: 'Entypo'
   src: font_url('Entypo/entypo.woff') format('woff'), font_url('Entypo/entypo.ttf') format('truetype')
@@ -10,15 +14,53 @@ body
   // font-family: Helvetica, Arial, sans-serif
   font-size: 12px
   font-weight: 400
-  +background-image(linear-gradient(left top , rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.2) 50%),url("/assets/bg-pattern-1.png"))
+  +background-image(linear-gradient(left top, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.2) 50%),url("/assets/bg-pattern-1.png"))
   background-repeat: no-repeat, repeat
   +background-size(100% 200%, auto)
 
+#container
+  +clearfix
+  +container
+  margin: 0
+  padding: 20px 0 20px $navigation_width
+  border-width: 0 1px
+  min-height: 600px
+
+
+#content
+  +clearfix
+  +prepend(1)
+  +append(1)
+  margin-bottom: 40px
+  padding-bottom: 40px
+
+#flash
+  position: absolute
+  top: 0px
+
+#flash div
+  +column(24)
+  width: $blueprint_container_size / 2
+  margin-left: $blueprint_container_size / 4
+  text-align: center
+
+#footer
+  padding: 1em 0 1em 0
+  background-color: #000
+  +background-image($highlight_center)
+  border-top: 1px #fff solid
+  span
+    display: block
+    margin-top: 25px
+    +prepend(12)
+    color: #999
+    
 
 #header
   position: relative
   +clearfix
   border-bottom: 1px solid #fff
+  background-color: #000
   +box-shadow(0px 1px 0 0px $china1)
   +background-image($highlight_center)
   & > div
@@ -60,77 +102,66 @@ body
       color: #fff
 
 
-ul.main-nav,
-ul.patient-nav
-  position: absolute
-  top: 75px
-  left: 19px
-  li
-    &.selected
-      a
-        background: #fff
-        border: 1px solid #ccc
-        border-right: 0
-        padding: 0
-    a
-      display: block
-      height: 32px
-      width: 32px
-      padding: 1px 0 1px 1px
-      +border-radius(5px 0 0 5px)
 
-      &:hover
-        background-color: rgba(0,0,0,.1)
-    &.home
-      margin: -10px 0 10px -10px
-      a
-        border: 1px solid #ccc
-        +border-radius(5px)
+ul.main-nav
+  position: absolute
+  top: 80px
+  left: 10px
+  z-index: 8
+  a
+    border: 1px solid #ccc
+    +box-shadow(0 0 1px 1px rgba(0,0,0,0.07) inset)
+    +border-radius(5px)
+    display: block
+    height: 32px
+    width: 32px
+    text-align: center
+    &:hover
+      background-color: rgba(0,0,0,.1)
 
 ul.patient-nav.sub
-  top: 110px
+  position: absolute
+  left: 0px
+  top: 50px
+  width: $navigation_width
+  padding: 200px 2px 300px 4px
+  +background-image($tab_dark_border, $tab_border_shadow ,$tab_shadow)
+  background-repeat: no-repeat
+  background-position: 100% 100%, 57px 50%, 0
+  background-size: 1px 100%, 6px 95%, 100%
+  li
+    width: $navigation_width
+    position: relative
+    border: rgba(0,0,0,.08) solid
+    border-width: 1px 0px 1px 1px
+    border-radius: 4px 0 0 4px
+    margin-bottom: 3px
+    height: 41px
+    a
+      display: block
+      position: relative
+      height: 41px
+      color: #888
+      width: 100%
+      font-size: .8em
+      text-align: center
+      &:hover
+        background-color: rgba(255,255,255,.3)
+  li.selected
+    +box-shadow(-1px -1px 2px 0px rgba(0,0,0,.1))
+    border-color: rgba(0,0,0,.16)
+    a
+      +background-image(linear-gradient(right, rgba(255, 255, 255, .7) 0%, rgba(255, 255, 255, .45) 100%),url("/assets/bg-pattern-1.png"))
+      // background-color: blue
+      margin-left: 2px
+      border-radius: 4px 0 0 4px
+      color: #333
 
 .client-view ul.nav
   display: none
 
-#container
-  +clearfix
-  +container
-  margin: 0
-  padding: 20px 0 20px 50px
-  border-width: 0 1px
-  min-height: 600px
-  background: url("/assets/body-side.png") repeat-y
 
-#content
-  +clearfix
-  +prepend(1)
-  +append(1)
-  margin-bottom: 40px
-  padding-bottom: 40px
 
-#flash
-  position: absolute
-  top: 0px
-
-#flash div
-  +column(24)
-  width: $blueprint_container_size / 2
-  margin-left: $blueprint_container_size / 4
-  text-align: center
-
-#footer
-  padding: 1em 0 3em 0
-  +background-image(linear-gradient(top, rgba(0,0,0,.1)0%, rgba(0,0,0,0) 3px))
-  background-repeat: no-repeat
-  +background-size(100% 3px)
-  background-position: 0 0
-  span
-    display: block
-    margin-top: 25px
-    +prepend(12)
-    color: #777
-    +text-shadow(0 1px 0 rgba(255,255,255,.9))
 
 .sn-box
   position: relative

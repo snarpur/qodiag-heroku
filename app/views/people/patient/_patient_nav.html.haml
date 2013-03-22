@@ -1,8 +1,18 @@
 - if params[:controller] == 'people'
   %ul.patient-nav.sub
     %li{:class => params[:action] == 'show' ? 'selected' : ''}
-      %a{:class => 'c-icon timeline', :href => '/people/' + @person.id.to_s} &#57349;
+      %a{:alt => "Mælingar", :href => '/people/' + @person.id.to_s}
+        %span.c-icon.timeline
+          &#128255;
+        Mælingar
     %li{:class => params[:action] == 'history' ? 'selected' : ''}
-      %a{:class => 'c-icon history', :href => '/people/' + @person.id.to_s + '/history'} &#128340;
+      %a{:alt => "Sjúkraskrá", :href => '/people/' + @person.id.to_s + '/history'} 
+        %span.c-icon.history
+          &#128203;
+        Saga
+
     %li{:class => params[:action] == 'information' ? 'selected' : ''}
-      %a{:class => 'c-icon information', :href => '/people/' + @person.id.to_s + '/information'} &#59141;
+      %a{:alt => "Fjölskylda", :href => '/people/' + @person.id.to_s + '/information'} 
+        %span.c-icon.information
+          &#128101;
+        Fjölskylda

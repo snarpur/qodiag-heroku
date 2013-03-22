@@ -34,6 +34,7 @@ class App.Views.Timeline.NewItem extends Backbone.View
 
   saveItem:=>
     @$el.setCssState("sending")
+    App.Lib.Spinner.spin(@$(".state-msg .m-sending")[0])
     params = 
       subject_id: @timeline.getSubjectId()
       survey_id: @model.get('survey_id')
@@ -47,6 +48,7 @@ class App.Views.Timeline.NewItem extends Backbone.View
       success: (model,response) ->
         view.model.addItems(model)
         view.createAndListenToNewItem()
+        App.Lib.Spinner.stop()
         view.$el.setCssState("success")
       error: (model,xhr) -> 
         $(view.el).setCssState("error")

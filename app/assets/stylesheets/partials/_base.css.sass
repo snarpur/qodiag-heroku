@@ -29,13 +29,17 @@ $blueprint_grid_margin: 5px
 $blueprint_grid_width: ($blueprint_container_size + $blueprint_grid_margin) / $blueprint_grid_columns - $blueprint_grid_margin
 
 
-
++sticky-footer(39px, "#wrapper","#wrapper_footer", "#footer")
 $m-success: rgba(0,255,0,.7)
 $m-selected: rgba(255,255,0,.7)
 $m-error: rgba(255,0,0,.6)
 
 
 // =============== Constants =======================
+$navigation_width: 55px
+
+
+
 $table_even: #ebebeb
 $table_odd: #dbe7ff
 $border_lightblue: 1px solid #dfe2ff
@@ -70,7 +74,8 @@ $china5: rgb(250,248,249)
 
 $gradient_ch_1to2: linear-gradient(left top, rgba(0,58,133,1) 0%,rgba(20,25,54,1) 100%)
 $gradient_ch_2: linear-gradient(left top, rgba(20,25,54,.9)0%,rgba(20,25,54,1) 100%)
-$highlight_center: linear-gradient(left top, rgba(38,38,38,1) 0%,rgba(53,53,53,1) 25%,rgba(58,58,58,1) 46%,rgba(53,53,53,1) 67%,rgba(38,38,38,1) 100%)
+$dark_banner: linear-gradient(left top, rgba(38,38,38,1) 0%,rgba(53,53,53,1) 25%,rgba(58,58,58,1) 46%,rgba(53,53,53,1) 67%,rgba(38,38,38,1) 100%)
+$highlight_center: linear-gradient(left top, rgba(255,255,255,0) 0%,rgba(255,255,255,.15) 15%,rgba(255,255,255,.22) 46%,rgba(255,255,255,.15) 67%,rgba(255,255,255,.01) 100%)
 $bg_gradient: linear-gradient(bottom right, rgba(255,255,255,.8) 0%,rgba(255,255,255,0) 100%)
 $bg_pattern: url("/assets/bg-pattern-1.png")
 

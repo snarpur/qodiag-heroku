@@ -3,7 +3,7 @@ $sign_in_top: 120px
 $sign_in_height: 300px
 
 body.sign-in
-	+background-image($highlight_center, $highlight_center, $highlight_center, $bg_pattern, $bg_gradient)
+	+background-image($dark_banner, $dark_banner, $dark_banner, $bg_pattern, $bg_gradient)
 	background-position: 0 $sign_in_top, 0 $sign_in_top - 2px, 0 ($sign_in_top + $sign_in_height + 1px), 0, 0
 	background-repeat: no-repeat, no-repeat, no-repeat, repeat, no-repeat
 	+background-size(100% $sign_in_height, 100% 1px, 100% 1px, auto, auto)
@@ -11,7 +11,7 @@ body.sign-in
 		border: none
 	#header,
 	#footer,
-	ul.nav,
+	ul.main-nav,
 	#help
 		display: none	
 	#container
