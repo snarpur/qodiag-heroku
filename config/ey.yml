@@ -25,4 +25,4 @@
 environments:
   alfa:
     migrate: true
-    migration_command: db:migrate
+    migration_command: rake db:migrate
