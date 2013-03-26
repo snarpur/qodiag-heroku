@@ -2,10 +2,10 @@ App.Views.SurveyMenuItem ||= {}
 
 class App.Views.SurveyMenuItem extends Backbone.View  
   tagName: "li"
-  className: "state-hidden"
+  className: 'state-hidden'
   
   events:
-    "click input": "setVisibility"
+    "click": "setVisibility"
 
   initialize:()->
     @model.view = @

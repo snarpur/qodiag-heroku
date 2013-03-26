@@ -18,6 +18,8 @@ chart_config:
         color: '#222'
         backgroundColor: 'rgba(255, 255, 255, 0.3)'
         borderWidth: 0
+      events:
+        legendItemClick: false
       point:
         events:
           click: drillToQuestion

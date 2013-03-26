@@ -66,12 +66,6 @@ class App.Lib.ChartFormatters.Chart
       "#{@series.name.value} #{nameI18n}"
       
 
-  xAxisLabelsFormatter: =>
-    () ->
-      if @point.config.name? and @point.config.name.data_label
-        @point.config.name.data_label
-      else
-        @.y
 
   legendLabelFormatter: =>
     accessCode = @chart.accessCode

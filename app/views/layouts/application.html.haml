@@ -33,6 +33,7 @@
         -flash.each do |name, msg|
           %div{:class => name}
             =msg
+      
       #container{:class => yield(:css_hook)}
         #help
           %a{:href => "/pages/help"} 
@@ -45,10 +46,10 @@
         #content
           = yield
           
-    #wrapper_footer
+      #wrapper_footer
       
     #footer
       %span
-        ="Qodiag #{Date.today.year}| Quality of Diagnosis"
+        ="Qodiag #{Date.today.year}  |  Quality of Diagnosis"
     - unless Rails.env['development'] || Rails.env['test']
       =render "shared/google_analytics"

@@ -168,5 +168,5 @@ module ChartRenderer
     
 
   end
-  %w{column adhd_rating_scale stacked_column bar standard_deviation}.each {|c| require_dependency "#{c}.rb"} if Rails.env.development?
+  %w{column stacked_column bar standard_deviation}.each {|c| require_dependency "#{c}.rb"} if Rails.env.development?
 end

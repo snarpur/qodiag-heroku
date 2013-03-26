@@ -1,12 +1,14 @@
 @import partials/base
 $tab_dark_border: linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,.1) 5%,rgba(0,0,0,.1) 65%,rgba(0,0,0,0) 100%)
-$tab_shadow: linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,.065) 25%,rgba(0,0,0,.065) 75%,rgba(0,0,0,0) 100%)
+$tab_shadow: linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,.050) 25%,rgba(0,0,0,.050) 75%,rgba(0,0,0,0) 100%)
 $tab_border_shadow: radial-gradient(center, ellipse cover, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 70%)
 
 @font-face 
   font-family: 'Entypo'
   src: font_url('Entypo/entypo.woff') format('woff'), font_url('Entypo/entypo.ttf') format('truetype')
 
+
++sticky-footer(39px, "#wrapper","#wrapper_footer", "#footer")
 // =============== General =======================
 
 body
@@ -14,9 +16,13 @@ body
   // font-family: Helvetica, Arial, sans-serif
   font-size: 12px
   font-weight: 400
+
+
+#wrapper
   +background-image(linear-gradient(left top, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.2) 50%),url("/assets/bg-pattern-1.png"))
   background-repeat: no-repeat, repeat
   +background-size(100% 200%, auto)
+
 
 #container
   +clearfix
@@ -102,7 +108,6 @@ body
       color: #fff
 
 
-
 ul.main-nav
   position: absolute
   top: 80px
@@ -124,15 +129,18 @@ ul.patient-nav.sub
   left: 0px
   top: 50px
   width: $navigation_width
-  padding: 200px 2px 300px 4px
+  padding: 100px 2px 500px 4px
   +background-image($tab_dark_border, $tab_border_shadow ,$tab_shadow)
   background-repeat: no-repeat
-  background-position: 100% 100%, 57px 50%, 0
-  background-size: 1px 100%, 6px 95%, 100%
+  background-position: 100% 100%, 57px -50px, 0 -50px
+  background-size: 1px 100%, 6px 100%, 100% 95%
+  li:last-child
+    margin-bottom: -500px
   li
     width: $navigation_width
     position: relative
     border: rgba(0,0,0,.08) solid
+    +box-shadow(1px -1px 1px 0 rgba(255,255,255,.4) inset)
     border-width: 1px 0px 1px 1px
     border-radius: 4px 0 0 4px
     margin-bottom: 3px
@@ -145,13 +153,14 @@ ul.patient-nav.sub
       width: 100%
       font-size: .8em
       text-align: center
+      +text-shadow(-1px 1px 0 rgba(255,255,255,.6))
       &:hover
         background-color: rgba(255,255,255,.3)
   li.selected
     +box-shadow(-1px -1px 2px 0px rgba(0,0,0,.1))
     border-color: rgba(0,0,0,.16)
     a
-      +background-image(linear-gradient(right, rgba(255, 255, 255, .7) 0%, rgba(255, 255, 255, .45) 100%),url("/assets/bg-pattern-1.png"))
+      +background-image(linear-gradient(right, rgba(255, 255, 255, .8) 0%, rgba(255, 255, 255, .45) 100%),url("/assets/bg-pattern-1.png"))
       // background-color: blue
       margin-left: 2px
       border-radius: 4px 0 0 4px
