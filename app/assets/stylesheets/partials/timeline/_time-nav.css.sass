@@ -3,11 +3,21 @@
 #canvas > nav 
   position: absolute
   z-index: 100
+  top: -39px
   & > ul
     +horizontal-list($padding: 0, $direction: right)
     li
       text-align: center
-      button
+      span
+        font-family: Entypo
+        font-size: 4em
+        color: #000
+        +text-shadow(1px 1px 0 rgba(255,255,255,.8))
+        border-width: 0
+        background-image: none
         width: 37px
         letter-spacing: -.2em
-        line-height: 1em
+        cursor: pointer
+        +opacity(.6)
+      span:hover
+        +opacity(.8)

@@ -1,8 +1,6 @@
 @import partials/base
 .form-base
-  //float: left
   .wizard-fields
-    margin-left: -180px
     +background-image(linear-gradient(bottom,rgba(0,0,0,.3) 0%, rgba(0,0,0,0) 2px),linear-gradient(bottom,rgba(0,0,0,.3) 0%, rgba(0,0,0,0) 2px))
     background-position: 0 100%, 0 0%
     background-size: 100% 1px
@@ -13,8 +11,11 @@
   h2
     color: lighten($china2,10%)
     +background-image(linear-gradient(bottom,rgba(0,0,0,.13) 0%, rgba(0,0,0,0) 2px))
-  .controls
-    // margin-right: 180px
+  .type-nestedmodel 
+    & > .controls
+      margin-left: 0
+    & > label
+      float: none 
   button
     float: right
     margin-top: .7em

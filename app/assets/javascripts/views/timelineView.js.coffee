@@ -28,6 +28,7 @@ class App.Views.Timeline.Canvas extends Backbone.View
     $(@el).setCssState(state)
   
   appendLine:(line)=>
+    @$el.setCssState('')
     lineView = new App.Views.Timeline.Line({model: line, timeline: @model})
     @.$("#tml-history").append(lineView.render().el)
 
@@ -37,7 +38,7 @@ class App.Views.Timeline.Canvas extends Backbone.View
     
   renderSurveyMenu:()=>
     surveyMenuView = new App.Views.SurveyMenu(lines: @lines, timeline: @model)
-    @.$("#tml-body").prepend(surveyMenuView.render().el)
+    @$el.prepend(surveyMenuView.render().el)
     surveyMenuView.renderMenuItems()
   
   renderHeadingsList:()=>
@@ -76,5 +77,6 @@ class App.Views.Timeline.Canvas extends Backbone.View
     @renderSurveyMenu()
     @renderHeadingsList()
     @lines.add(@createSortedLinesCollection())
+    if @lines.size() is 0 then @$el.setCssState('empty')
     @model.set(current_date: Date.today())
     @
