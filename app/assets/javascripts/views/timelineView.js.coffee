@@ -77,6 +77,6 @@ class App.Views.Timeline.Canvas extends Backbone.View
     @renderSurveyMenu()
     @renderHeadingsList()
     @lines.add(@createSortedLinesCollection())
-    if @lines.size() is 0 then @$el.setCssState('empty')
+    # if @lines.size() is 0 then @$el.setCssState('empty')
     @model.set(current_date: Date.today())
     @

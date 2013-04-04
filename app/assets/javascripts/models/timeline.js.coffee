@@ -5,10 +5,11 @@ class App.Models.Timeline extends Backbone.Model
     @.set(years)
     @.set(subject: new App.Models.Subject(@.get('subject')))
     @.set({lines: new App.Collections.LineCollection([],@)})
-    #REFACTOR: possibley redundant subject id in lines
+    #REFACTOR: possibly redundant subject id in lines
     @.get('lines').setSubjectId(@getSubjectId())
     @.set({surveyMenu: new App.Collections.SurveyMenuItemCollection([])})
- 
+
+    
   fillSurveyMenu:()=>
     @.get('surveyMenu').add(@.get('surveys'))
 

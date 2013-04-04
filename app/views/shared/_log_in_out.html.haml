@@ -1,7 +1,8 @@
 %ul.login
   -if user_signed_in?
     %li
-      %a="#{t('devise.sessions.signed_in_as')}: #{current_user.email}"
+      %em="#{t('devise.sessions.signed_in_as')}:"
+      %i="#{current_user.email}"
     %li
       %a{:href => destroy_user_session_path}
         = t('actions.sign_out')

@@ -1,6 +1,8 @@
 =content_for :subject_nav do
   = render "people/patient/patient_nav"
 
+=content_for :content_css_hook, 'under-construction'
+
 %div{:id => 'person'}
   %div{:class => 'sidebar'}
     =render "people/image"

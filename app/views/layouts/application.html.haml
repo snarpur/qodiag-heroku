@@ -43,7 +43,7 @@
             %a{:class => 'c-icon', :href => "/users"} &#8962;
 
         = yield :subject_nav
-        #content
+        #content{:class => yield(:content_css_hook)}
           = yield
           
       #wrapper_footer
