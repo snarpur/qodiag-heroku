@@ -23,7 +23,8 @@ gem 'rails-dev-tweaks', '~> 0.6.1'
 gem "i18n-js"
 gem "factory_girl_rails", "~> 3.0"
 gem "faker"
-# gem 'newrelic_rpm'
+gem 'newrelic_rpm'
+gem 'ey_config'
 gem 'browsernizer'
 gem 'rabl'
 gem 'active_attr'
@@ -46,9 +47,7 @@ group :development do
   gem 'sextant'
   gem 'better_errors', :require => RUBY_PLATFORM.include?('darwin') ? 'better_errors' : false
   gem 'binding_of_caller', :require => RUBY_PLATFORM.include?('darwin') ? 'binding_of_caller' : false
-  gem 'better_errors'
-  gem 'binding_of_caller'
-  gem 'meta_request', '0.2.1'
+  gem 'meta_request', '0.2.1', :require => RUBY_PLATFORM.include?('darwin') ? 'binding_of_caller' : false
 end
 
 group :development, :test do
