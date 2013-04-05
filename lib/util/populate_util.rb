@@ -91,7 +91,7 @@ class PopulateUtil
     def create_parent(patient)
       parent_person = FactoryGirl.create(:person, person_attributes(rand(20)+40))
       parent_user = FactoryGirl.create(:user, 
-                                   :email => "user_#{parent_person.id}@qodiag.is", 
+                                   :email => "user_#{parent_person.id}@qodiag.com", 
                                    :roles => [@respondent_role], 
                                    :person => parent_person
                                   )
