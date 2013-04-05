@@ -23,7 +23,7 @@ gem 'rails-dev-tweaks', '~> 0.6.1'
 gem "i18n-js"
 gem "factory_girl_rails", "~> 3.0"
 gem "faker"
-# gem 'newrelic_rpm'
+gem 'newrelic_rpm'
 gem 'browsernizer'
 gem 'rabl'
 gem 'active_attr'
