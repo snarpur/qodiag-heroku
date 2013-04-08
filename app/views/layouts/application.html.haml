@@ -3,8 +3,6 @@
   %head
     = yield(:head)
     =csrf_meta_tag
-    %meta{:name=>"google-site-verification", :content=>"mO7szk36fHNwg1nh6VBdFd06pvxWmpUlbMe3PZ8T3BY"}
-    / = stylesheet_link_tag "http://fonts.googleapis.com/css?family=Droid+Sans:400,700"
     = javascript_include_tag "application"
     = stylesheet_link_tag "application"
     %script{:type => 'text/javascript'}
@@ -51,5 +49,5 @@
     #footer
       %span
         ="Qodiag #{Date.today.year}  |  Quality of Diagnosis"
-    - unless Rails.env['development'] || Rails.env['test']
-      =render "shared/google_analytics"
+    
+    =render "shared/google_analytics"
