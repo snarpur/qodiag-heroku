@@ -3,16 +3,13 @@
   %head
     = yield(:head)
     =csrf_meta_tag
-    %meta{:name=>"google-site-verification", :content=>"mO7szk36fHNwg1nh6VBdFd06pvxWmpUlbMe3PZ8T3BY"}
-    / = stylesheet_link_tag "http://fonts.googleapis.com/css?family=Droid+Sans:400,700"
     = stylesheet_link_tag "simple_styles"
-    / = javascript_include_tag "application"
     / %script{:type => 'text/javascript'}
     /   ="I18n.defaultLocale = '#{I18n.default_locale}';"
     /   ="I18n.locale = '#{I18n.locale}';"
 
     %title
-      Snarpur
+      Qodiag
 
   %body{:class => yield(:css_hook)}
     #wrapper
@@ -21,5 +18,5 @@
           = yield
       #footer
         %span
-          ="Snarpur #{Date.today.year}| Fallegt virkar betur"
+          ="Qodiag #{Date.today.year}| Quality of Diagnosis"
     =render "shared/google_analytics"
