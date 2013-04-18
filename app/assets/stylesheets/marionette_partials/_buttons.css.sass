@@ -1,0 +1,161 @@
+@import partials/base
+
+.button
+  background: #222222 url(buttons/overlay-button.png) repeat-x
+  border-width: 0
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25)
+  color: #fff
+  cursor: pointer
+  display: inline-block
+  -moz-border-radius: 5px
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5)
+  padding: 5px 10px 6px
+  position: relative
+  text-decoration: none
+  text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25)
+  -webkit-border-radius: 5px
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5)
+  &:visited
+    background: #222222 url(buttons/overlay-button.png) repeat-x
+    border-width: 0
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25)
+    color: #fff
+    cursor: pointer
+    display: inline-block
+    -moz-border-radius: 5px
+    -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5)
+    padding: 5px 10px 6px
+    position: relative
+    text-decoration: none
+    text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25)
+    -webkit-border-radius: 5px
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5)
+  &:hover
+    background-color: #111
+    color: #fff
+  &:active
+    margin-top: 1px
+    margin-bottom: -1px
+
+
+.x-small.button
+  font-size: 9px
+  padding: 3px 6px 3px
+  &:visited
+    font-size: 9px
+    padding: 3px 6px 3px
+
+.small.button
+  font-size: 11px
+  &:visited
+    font-size: 11px
+
+.button, .medium.button
+  font-size: 13px
+  font-weight: bold
+  line-height: 1
+  text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25)
+  &:visited
+    font-size: 13px
+    font-weight: bold
+    line-height: 1
+    +text-shadow(0 -1px 1px rgba(0, 0, 0, 0.25))
+
+.large.button
+  font-size: 14px
+  padding: 8px 14px 9px
+  &:visited
+    font-size: 14px
+    padding: 8px 14px 9px
+
+.disabled
+  &.button,
+  &.button:visited,
+  &.button:hover
+    background-color: #666
+    color: #999
+
+.black.button
+  background-color: #222
+  &:visited
+    background-color: #222
+  &:hover
+    background-color: #111
+
+.green.button
+  background-color: #498e04
+  &:visited
+    background-color: #498e04
+  &:hover
+    background-color: #749a02
+
+.blue.button
+  background-color: #2daebf
+  &:visited
+    background-color: #2daebf
+  &:hover
+    background-color: #007d9a
+
+.red.button
+  background-color: #e33100
+  &:visited
+    background-color: #e33100
+  &:hover
+    background-color: #872300
+
+.magenta.button
+  background-color: #a9014b
+  &:visited
+    background-color: #a9014b
+  &:hover
+    background-color: #630030
+
+.orange.button
+  background-color: #ff5c00
+  &:visited
+    background-color: #ff5c00
+  &:hover
+    background-color: #d45500
+
+.yellow.button
+  background-color: #ffb515
+  &:visited
+    background-color: #ffb515
+  &:hover
+    background-color: #fc9200
+
+ 
+$btn-hover: linear-gradient(top, rgba(0,0,0,.1) 0%,rgba(0,0,0,0.09) 100%)
+$btn-china-2: linear-gradient(top, lighten($china2,25%) 0%,lighten($china2,17%) 50%, lighten($china2, 5%) 51%, lighten($china2, 10%) 100%)
+$btn-china-3: linear-gradient(top, lighten($china3,7%) 0%,lighten($china3,4%) 50%, $china3 51%, lighten($china3, 1%) 100%)
+$btn-china-4: linear-gradient(top, lighten($china4,7%) 0%,lighten($china4,4%) 50%, $china4 51%, lighten($china4, 1%) 100%)
+
+
+a.btn-china
+  text-decoration: none
+
+.btn-china
+  padding: .2em .5em
+  color: #fff
+  font-weight: bold
+  +border-radius(4px)
+  +box-shadow(1px 1px 2px 0 rgba(0,0,0,.4) inset, 1px 1px 0 0px rgba(250, 250, 250, 0.8))
+  +text-shadow(0.01em 0.01em 0 rgba(0, 0, 0, 0.2))
+  border: none
+  cursor: pointer
+  &.color-4
+    +background-image($btn-china-4)
+  &.color-3
+    +background-image($btn-china-3)
+  &.color-2
+    +background-image($btn-china-2)
+
+.btn-china
+  &.color-3:hover
+    +background-image($btn-hover,$btn-china-3)
+  &.color-4:hover
+    +background-image($btn-hover,$btn-china-4)
+  &.color-2:hover
+    +background-image($btn-hover,$btn-china-2)
+
+

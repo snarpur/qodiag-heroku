@@ -1,0 +1,33 @@
+@import partials/base
+.wizard-nav
+  +horizontal-list(false)
+  margin: 40px 0 20px 0
+  li, a
+    color: #999
+  li
+    position: relative
+    padding: 1em
+    margin: 0 2em
+    border: solid 1px #eaeaea
+    +border-radius(5px)
+    &:last-child
+      margin-left: 0
+    span
+      position: absolute
+      left: .4em
+      top: .4em
+      display: block
+      font-size: 1em
+      line-height: 2em
+      height: 2em
+      width: 2em
+      text-align: center
+      +border-radius(2em)
+      border: 1px solid #999
+    &.current-step
+      +box-shadow(0 0 3px 0px rgba(0, 0, 0, 0.05) inset)
+      a,span
+        color: $china2
+    a
+      margin-left: 2.5em
+

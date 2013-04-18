@@ -3,7 +3,7 @@
   %head
     = yield(:head)
     =csrf_meta_tag
-    = javascript_include_tag "application"
+    = javascript_include_tag "backbone_application"
     = stylesheet_link_tag "application"
     %script{:type => 'text/javascript'}
       ="I18n.defaultLocale = '#{I18n.default_locale}';"

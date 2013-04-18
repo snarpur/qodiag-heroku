@@ -1,5 +1,8 @@
 Snarpur::Application.routes.draw do
 
+  resources :entry_sets
+
+
   mount Surveyor::Engine => "/surveys", :as => "surveyor"
 
   devise_for :users
@@ -78,7 +81,7 @@ Snarpur::Application.routes.draw do
   get "pages/help"
   get "pages/browser_update"
 
-  root :to => 'users#show'
+  root :to => 'application#index'
 
 
 

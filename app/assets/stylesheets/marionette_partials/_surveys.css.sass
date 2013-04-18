@@ -1,0 +1,65 @@
+@import partials/base
+body
+  font-family: 'Droid Sans', sans-serif
+  font-size: 12px
+  background-color: $china5
+ 
+.surveys #header
+  width: $blueprint_container_size
+  margin: 5px auto
+  h1
+    font-size: 1.6em
+    padding: .5em 0 .2em 1.6em
+    background: url("/assets/black-gloss/32x32/document3.png") no-repeat
+  ul
+    +horizontal-list(padding)
+    b
+      font-weight: bold
+    li:nth-child(2)
+      float: right
+
+
+#container
+  border-top: $china3 solid 1px
+  padding-top: 1.2em
+  background-color: #fff
+
+#content
+  +container  
+
+.surveyor_menu,
+.survey_title,
+.survey_section > .title,
+.survey_section > fieldset > legend
+  display: none
+
+.next_section
+  float: right
+
+.q_default_inline.pick-one
+  position: relative
+  margin-bottom: .8em
+  padding: .5em
+  border-bottom: 2px dashed #eaeaea
+  &.state-invalid
+    background-color: rgba(255,0,0,0.3)
+    border-width: 0
+  legend
+    float: left
+    width: $blueprint_container_size * 0.6
+    color: #222
+    font-size: 1.4em
+  legend span
+    float: left
+    padding: 10px
+    background-color: rgba(44,255,44,.2)
+  & > ol 
+    float: left
+    margin-left: 2px
+    li.quiet
+      display: none
+    li.surveyor_radio
+      display: block
+      background-color: rgba(155,155,155,0.2)
+      padding: .3em 2em .5em 2em
+      margin-bottom: 1px

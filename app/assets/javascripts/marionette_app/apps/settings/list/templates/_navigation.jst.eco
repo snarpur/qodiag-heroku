@@ -1,0 +1,3 @@
+<a href=<%="#settings/#{@name}"%>><%= @name %></a>
+
+  

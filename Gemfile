@@ -32,6 +32,9 @@ gem 'draper', '~> 1.0'
 gem 'time_diff'
 gem 'rb-readline'
 gem "paperclip", "~> 3.0"
+gem 'oj'
+gem 'gon'
+gem 'js-routes'
 
 
 group :assets do
@@ -40,6 +43,7 @@ group :assets do
   gem 'uglifier', '>=1.0.3'
   gem 'closure-compiler'
   gem 'compass-rails'
+  gem 'eco'
 end
 
 group :development do

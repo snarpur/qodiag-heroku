@@ -1,0 +1,119 @@
+@import blueprint/grid
+@import blueprint/interaction
+@import blueprint/form
+
+@import compass/typography/lists/horizontal-list
+@import compass/typography/text/replacement
+@import compass/layout/stretching
+@import compass/layout/sticky-footer
+@import compass/utilities/general/clearfix
+@import compass/utilities/tables/borders
+
+@import compass/css3
+
+
+
+ 
+// Here is where you can define your constants for your application and to configure the blueprint framework.
+// Feel free to delete these if you want keep the defaults:
+$blueprint_font_size: 12px
+$blueprint_button_border_color: #dedede
+$blueprint_button_background_color: #f5f5f5
+
+$blueprint_grid_columns: 24
+$blueprint_container_size: 1040px
+$blueprint_grid_margin: 5px
+
+// Use this to calculate the width based on the total width.
+// Or you can set !blueprint_grid_width to a fixed value and unset !blueprint_container_size -- it will be calculated for you.
+$blueprint_grid_width: ($blueprint_container_size + $blueprint_grid_margin) / $blueprint_grid_columns - $blueprint_grid_margin
+
+
+
+$m-success: rgba(0,255,0,.7)
+$m-selected: rgba(255,255,0,.7)
+$m-error: rgba(255,0,0,.6)
+
+
+// =============== Constants =======================
+$navigation_width: 55px
+
+
+
+$table_even: #ebebeb
+$table_odd: #dbe7ff
+$border_lightblue: 1px solid #dfe2ff
+$grey_ultralightest: #fcfcfc
+$grey_ultralight: #f9f9f9
+$grey_lightest: #f4f4f4
+$grey_lighter: #eaeaea
+
+
+
+$grey_light: #dfdfdf
+$grey: #bcbcba
+$grey_dark: #7c7c7c
+$grey_darker: #636362
+$orange_light: #ffca6f
+$orange: #ff981f
+$green_ultralight: #deffdd
+$green_lightest: #dfffe0
+$green_light: #a4efa7
+$green_dark: #158f00
+$yellow_lightest: #fffbcf
+$yellow_light: #fff79f
+$blue_lightest: #dfe2ff
+$blue_light: #afb6ff
+$blue_dark: #3b4991
+
+$china1: desaturate(rgb(20,25,54),30%)
+$china2: desaturate(rgb(20,58,133),30%)
+$china3: desaturate(rgb(188,198,214),20%)
+$china4: rgb(228,220,231)
+$china5: rgb(250,248,249)
+
+$gradient_ch_1to2: linear-gradient(left top, rgba(0,58,133,1) 0%,rgba(20,25,54,1) 100%)
+$gradient_ch_2: linear-gradient(left top, rgba(20,25,54,.9)0%,rgba(20,25,54,1) 100%)
+$dark_banner: linear-gradient(left top, rgba(38,38,38,1) 0%,rgba(53,53,53,1) 25%,rgba(58,58,58,1) 46%,rgba(53,53,53,1) 67%,rgba(38,38,38,1) 100%)
+$highlight_center: linear-gradient(left top, rgba(255,255,255,0) 0%,rgba(255,255,255,.15) 15%,rgba(255,255,255,.22) 46%,rgba(255,255,255,.15) 67%,rgba(255,255,255,.01) 100%)
+$bg_gradient: linear-gradient(bottom right, rgba(255,255,255,.8) 0%,rgba(255,255,255,0) 100%)
+$bg_pattern: url("/assets/bg-pattern-1.png")
+
+$header_border_lightblue: 1px solid #dfe2ff
+$h2_border_width: 1px 0 1px 0
+$h2_font_size: 1.4em
+
+=highlight($brightness: 0.7, $direction: top left)
+  +background-image(linear-gradient($direction, rgba(255,255,255,$brightness) 0%,rgba(255,255,255,0) 100%))
+
+=sn-heading($color: $china1, $size: 1, $brightness: 0)
+  background-color: $color
+  @if $brightness > 0
+    +highlight($brightness, $direction: top)
+  +border-radius(3px)
+  border: 1px solid rgba(255,255,255,.85)
+  +box-shadow(0 0 0 1px $color)
+  font-size: #{$size}em
+  color: grayscale(invert($color))
+  +text-shadow(0 1px 0 rgba(255,255,255,.8))
+  padding: .3em .8em
+  margin-top: .1em
+
+=dimensions($height, $width)
+  height: $height
+  width: $width
+
+=debug($color: red)
+  border: $color 1px solid
+
+=sn-btn($bg-color, $color)
+  +border-radius(11px)
+  background: $bg-color url("/images/add-grey-12.png") 7px 6px no-repeat
+  padding: 5px 14px 5px 24px
+  margin-left: 10px
+  color: $color
+  text-decoration: none
+  border: solid 1px $color
+  color: #333333
+  &:hover
+    background-color: $bg-color * 2

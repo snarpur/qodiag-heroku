@@ -1,0 +1,10 @@
+<div id="header">
+	<h2>Qodiag</h2>
+	<div>
+	<div class="current-user">
+		<b><%=I18n.t("devise.sessions.signed_in_as")%>:</b>
+		<em> <%=@currentUser.email %></em>
+	</div>
+	<ul class="controls"></ul>
+	</div>
+</div>

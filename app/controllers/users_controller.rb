@@ -25,6 +25,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def index
+
+  end
+
 
   private
   def accessible_roles

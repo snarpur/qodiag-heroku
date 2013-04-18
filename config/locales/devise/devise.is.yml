@@ -18,6 +18,7 @@ is:
       signed_in: 'Innskráining tókst'
       signed_out: 'Útskráning tókst'
       signed_in_as: 'Skráður in sem'
+      sign_out: "Skrá mig út"
     passwords:
       send_instructions: 'You will receive an email with instructions about how to reset your password in a few minutes.'
       updated: 'Your password was changed successfully. You are now signed in.'

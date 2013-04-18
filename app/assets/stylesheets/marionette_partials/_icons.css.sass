@@ -1,0 +1,187 @@
+@import partials/base
+
+$icn_s: 18px
+$icn_m: 45px
+=icon-size($size)
+  height: $size
+  width: $size
+  line-height: $size
+  text-align: center
+.icon-wrap
+  position: relative
+ 
+.c-icon
+  display: block
+  position: relative
+  font-family: 'Entypo'
+  &.small
+    +icon-size($icn_s)
+    font-size: 4em
+  &.medium
+    +icon-size($icn_m)
+    font-size: 6em
+  
+  &.close
+    font-size: 3em
+    position: absolute
+    display: block
+    text-indent: 1px
+    right: 1em
+    top: 1em
+    +opacity(.8)
+  &.close:hover
+    +opacity(1) 
+  &.close:before
+    content: "\274E"
+    color: rgb(255,16,50)
+  
+  &.sort
+    font-size: 2em
+    cursor: pointer
+    +icon-size(1em)
+  &.sort:after
+    content: "\E4B0"
+  &.sort:before
+    content: "\2630"
+  
+  &.edit-item
+    position: absolute
+    font-size: 2em
+    +icon-size($icn_s)
+    color: #666
+    cursor: pointer
+    border: 1px solid #888
+    +border-radius()
+  &.edit-item:after 
+    content: "\270E"
+  
+  &.add-1:after
+    content: "\2295"
+    display: block
+  &.close, &.add-1
+    cursor: pointer
+  &.line-chart-icn,
+  &.column-chart-icn
+    +border-radius(5px)
+    background-color: #fff
+    cursor: pointer
+    &:hover
+      +opacity(0.6)
+  &.line-chart-icn:after
+    content: "\1F4C8"     
+  &.column-chart-icn:after
+    content: "\1F4CA"
+
+
+a.c-icon
+  text-decoration: none
+  color: #333
+
+.main-nav,
+.patient-nav
+  .c-icon
+    font-size: 3em
+    margin-bottom: -3px
+
+
+
+.z-icon.add-user
+  position: absolute
+  background-image: url("/assets/cc/blacks/16x16/user.png")
+  background-position: 8px 2px
+  background-repeat: no-repeat 
+  color: #000
+  font-size: .7em
+  padding: 5px 5px  5px 28px
+  +border-radius(3px)
+  +opacity(0.7)
+  cursor: pointer
+  &.big
+    font-size: 1.5em
+  &.medium
+    font-size: 1em
+  &.small
+    font-size: .7em
+  &::after
+    content: "+"
+    position: absolute
+    top: 1px
+    left: 1px 
+    height: 12px
+    width: 12px
+  &:hover
+    background-color: rgba(0,0,0,.05)
+
+.placeholder
+  display: block
+  background-repeat: no-repeat
+
+.placeholder.portrait
+  position: absolute
+  +opacity(.4)
+  background-color: $china5
+  border: $china4 1px solid
+  +border-radius(3px)
+      
+.placeholder.portrait.s-50
+  background-image: url("/assets/placeholders/portrait-placeholder50x50.png")
+  +dimensions(50px,50px)
+
+.placeholder.portrait.s-100
+  background-image: url("/assets/placeholders/portrait-placeholder100x100.png")
+  +dimensions(100px,100px)
+
+.placeholder.portrait.s-150
+  background-image: url("/assets/placeholders/portrait-placeholder150x150.png")
+  +dimensions(150px,150px)
+
+.placeholder.portrait.s-200
+  background-image: url("/assets/placeholders/portrait-placeholder200x200.png")
+  +dimensions(200px,200px)
+
+$icon-16-c2: unquote("/images/16/color2/")
+$icon-12-c2: unquote("/images/12/color2/")
+
+=icon($size, $color, $action: true)
+  display: block
+  width: $size + px
+  height: $size + px
+  padding: 1px
+  text-indent: -99999px
+  @if $action == true
+    cursor: pointer
+    opacity: 0.8
+    &:hover
+      opacity: 1
+
+=icon-image($type, $name)
+  background: url($type + $name + ".png") 0 0 no-repeat
+
+.icon-16-c2
+  +icon(16, color2)
+  &.delete
+    +icon-image($icon-16-c2, trash)
+  &.edit
+    +icon-image($icon-16-c2, edit)
+
+.icon-12-c2
+  +icon(12, color2)
+  &.delete
+    +icon-image($icon-12-c2, trash)
+  &.edit
+    +icon-image($icon-12-c2, edit)
+
+.icon.partner
+  background: url("/images/partner.png") no-repeat
+  padding-left: 45px
+
+.icon.delete
+  padding: 6px 0 4px 20px
+  background: url("/images/trash.png") 3px 3px no-repeat
+  color: #bcbfd6
+  opacity: 0.7
+  font-size: 0.9em
+  cursor: pointer
+
+.icon.delete:hover
+  opacity: 1
