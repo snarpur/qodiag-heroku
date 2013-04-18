@@ -2,6 +2,7 @@ class App.Models.Base extends Backbone.Model
 
   initialize:=>
     @on("change:form", @bindToForm)
+    @on 'change:full_cpr', @getCprFields
     @.schema = @setSchema()
     @initializeNestedModels()
     if @get("urlRoot")?
@@ -11,7 +12,20 @@ class App.Models.Base extends Backbone.Model
       @.paramRoot = @get("paramRoot")
     @
 
-  
+
+  getCprFields:(Person)=>
+    cpr =  Person.get('full_cpr')
+    formModel = @
+    if cpr.length == 10
+      lookup = new App.Models.CprLookup({cpr:cpr})
+      lookup.fetch
+        success:(model, response) ->
+          console.log(response)
+          formModel.set(response, {formUpdate: true})
+
+        error:(model, xhr, options) ->
+          throw "error in Base:getCprFields"
+
   setSchema:=>
     if @.schema?
       @.schema

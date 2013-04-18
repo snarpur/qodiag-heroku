@@ -16,8 +16,8 @@ Snarpur::Application.routes.draw do
   namespace :admin do
     resources :users
   end
-  
 
+  resources :national_register
   resources :users
   resources :people do
     resources :address, :only => [:index]

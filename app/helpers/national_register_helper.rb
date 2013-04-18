@@ -1,0 +1,2 @@
+module NationalRegisterHelper
+end

@@ -7,7 +7,7 @@ node do
    :caretaker_id=>"Hidden",
    :respondent=>
    {
-    :model=>"App.Models.Base",
+    :model=>"App.Models.Person",
     :type=>"NestedModel",
     :as=>"get_respondent",
     :schema=>

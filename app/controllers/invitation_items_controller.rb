@@ -1,7 +1,7 @@
 class InvitationItemsController < ApplicationController
   before_filter :get_user
   before_filter :get_responder_item
-  before_filter :set_step, :onley => [:new,:show]
+  before_filter :set_step, :only => [:new,:show,:create]
   load_and_authorize_resource :responder_item, :parent => false
 
   respond_to :json
@@ -35,9 +35,11 @@ class InvitationItemsController < ApplicationController
  private
   def set_step
     @step_no = params[:step_no] || 1
+    KK.log @step_no
   end
   
   def get_responder_item
+    KK.log params[:action]
     if params[:action] == 'new'
       args = {:caretaker_id => @current_user.person.id, :registration_identifier => "respondent_registration"}
       @responder_item = ResponderItem.new(args)
@@ -50,8 +52,8 @@ class InvitationItemsController < ApplicationController
   end
 
   def view_template
-    if parms[:step_no]
-      "invitation_items/guardian_invitation/step_#{parms[:step_no]}/index"
+    if params[:step_no]
+      "invitation_items/guardian_invitation/step_#{params[:step_no]}/index"
     else
       "invitation_items/guardian_invitation/index"
     end

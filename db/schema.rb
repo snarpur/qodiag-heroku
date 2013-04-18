@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130318145764) do
+ActiveRecord::Schema.define(:version => 20130417142534) do
 
   create_table "addresses", :force => true do |t|
     t.string   "street_1"
@@ -75,6 +75,24 @@ ActiveRecord::Schema.define(:version => 20130318145764) do
     t.string   "response_other"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "national_registers", :id => false, :force => true do |t|
+    t.integer "rownumber"
+    t.string  "kennitala"
+    t.string  "fjolskyldunumer"
+    t.string  "bannmerki"
+    t.string  "nafn"
+    t.integer "postnumer"
+    t.string  "heimili"
+    t.integer "sveitarfelag"
+    t.integer "lastchanged"
+    t.string  "kyn"
+    t.string  "hjuskaparstada"
+    t.string  "ktmaka"
+    t.string  "rikisfang"
+    t.string  "faedingarstadur"
+    t.integer "latinn"
   end
 
   create_table "norm_references", :force => true do |t|
@@ -272,6 +290,30 @@ ActiveRecord::Schema.define(:version => 20130318145764) do
 
   add_index "surveys", ["access_code", "survey_version"], :name => "surveys_access_code_version_idx", :unique => true
   add_index "surveys", ["api_id"], :name => "uq_surveys_api_id", :unique => true
+
+  create_table "thjodskra", :primary_key => "kennitala", :force => true do |t|
+    t.integer "rownumber",       :limit => 8,                    :null => false
+    t.string  "fjolskyldunumer", :limit => 10,                   :null => false
+    t.string  "bannmerki",       :limit => 3,  :default => "",   :null => false
+    t.string  "nafn",            :limit => 31,                   :null => false
+    t.integer "postnumer",                                       :null => false
+    t.string  "heimili",         :limit => 21,                   :null => false
+    t.integer "sveitarfelag",                                    :null => false
+    t.integer "lastchanged",                                     :null => false
+    t.integer "kyn",             :limit => 1,  :default => 0,    :null => false
+    t.string  "hjuskaparstada",  :limit => 1,  :default => "",   :null => false
+    t.string  "ktmaka",          :limit => 10,                   :null => false
+    t.string  "rikisfang",       :limit => 2,  :default => "IS", :null => false
+    t.string  "faedingarstadur", :limit => 4,  :default => "",   :null => false
+    t.integer "latinn",          :limit => 1,  :default => 0,    :null => false
+  end
+
+  add_index "thjodskra", ["fjolskyldunumer"], :name => "fjolskyldunumer"
+  add_index "thjodskra", ["heimili"], :name => "heimili"
+  add_index "thjodskra", ["kennitala"], :name => "kennitala", :unique => true
+  add_index "thjodskra", ["ktmaka"], :name => "ktmaka"
+  add_index "thjodskra", ["postnumer"], :name => "postnumer"
+  add_index "thjodskra", ["sveitarfelag"], :name => "sveitarfelag"
 
   create_table "users", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
