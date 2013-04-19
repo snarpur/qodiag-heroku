@@ -30,7 +30,8 @@ node do
             :email=>
             {
               :type=>"Text",
-              :template=>"field"
+              :template=>"field",
+              :validators=>["required"]
               },
             :invitation=>"Hidden"
           }
