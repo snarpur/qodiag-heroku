@@ -5,11 +5,15 @@ class ResponderItemDecorator < Draper::Decorator
   decorates_association :subject
   
   def respondent
-    PersonDecorator.decorate(model.get_respondent)
+    person = model.respondent || model.build_respondent
+    person.current_responder_item= model
+    PersonDecorator.decorate(person)
   end
   
   def subject
-    PersonDecorator.decorate(model.get_subject)
+    person = model.subject || model.build_subject
+    person.current_responder_item= model
+    PersonDecorator.decorate(person)
   end
 
   def respondent_registration_partial

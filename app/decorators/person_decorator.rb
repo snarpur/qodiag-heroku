@@ -12,30 +12,6 @@ class PersonDecorator < Draper::Decorator
    UserDecorator.decorate(user_model)
   end
 
-  (Person.relationship_names - ["spouse"]).each do |name|        
-    define_method("inverse_#{name}_relationship_as_current_subject") do 
-      person = if name == 'patient' then model.current_responder_item.caretaker else model.current_responder_item.get_respondent end
-      relationship = model.send("inverse_#{name}_relationship_to",person)
-      if relationship.empty?
-        relationship = model.send("build_inverse_#{name}_relationship_to", person)
-      else
-        relationship = relationship.first
-      end
-
-      relationship
-    end
-
-    define_method("#{name}_relationship_to_current_subject") do
-      person = model.current_responder_item.subject
-      relationship = model.send("#{name}_relationship_to",person)
-      if relationship.empty?
-       relationship = model.send("build_#{name}_relationship_to", person)
-      else
-        relationship = relationship.first
-      end
-      relationship
-    end
-  end
 
   def parent0
     p = model.parent0
