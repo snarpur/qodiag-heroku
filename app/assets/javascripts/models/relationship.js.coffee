@@ -1,6 +1,6 @@
 class App.Models.Relationship extends App.Models.Base
 
-  initialize:=>
+  initialize:->
     super
     @on("change:form",(model,form)-> model.trigger("change:status",model))
 
@@ -20,7 +20,7 @@ class App.Collections.Relationships extends App.Collections.Base
   model: App.Models.Relationship
   url: '/relationships'
 
-  initialize:(models,options)=>
+  initialize:(models,options)->
     super
     @.on("change:status",@setRelationship)
     @.on("remove",@renewModel)

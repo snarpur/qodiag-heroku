@@ -170,7 +170,7 @@ class App.Models.Base extends Backbone.Model
     json
   
   
-  toJSON:=>
+  toJSON:->
     json = $.extend(true,{},@.attributes)
     json = @removeNonSchemaFields(json)
     @jsonWithNestedSuffix(json)
@@ -185,7 +185,7 @@ class App.Collections.Base extends Backbone.Collection
   model: App.Models.Base
 
 
-  initialize:(models,options)=>
+  initialize:(models,options)->
     @.schema = options.schema if options?.schema?
     @setModelSchema(models)
     @
@@ -203,7 +203,7 @@ class App.Collections.Base extends Backbone.Collection
         _.each(models,((item,index)-> item.schema = @schema ),@)
 
 
-  toJSON:=>
+  toJSON:->
     _.chain(@.models)
       .map(((i)->i.toJSON()),@)
       .compact()

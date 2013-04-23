@@ -33,10 +33,11 @@ class App.Views.FormRenderer extends Backbone.View
       success:(model,response) ->
         if !(_.isEmpty(response.errors))
           view.renderSteps()
+          alert("server error #{JSON.stringify response.errors}")
         else if view.model.onLastStep()
           window.location.href = view.model.urlOnComplete()
         else
-            view.model.nextStep()
+          view.model.nextStep()
       error:(model, response) ->
         throw  "coudn not save #{model} error"
   
