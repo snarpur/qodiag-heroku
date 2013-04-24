@@ -4,7 +4,7 @@ node :formMetaData do
     :currentStep => @step_no,
     :stepLength => 2,
     :formTemplate => 'guardian_invitation',
-    :stepNames => ['guardian_info','patient_info']
+    :stepNames => ['patient_info','guardian_info']
  }
 end
 

@@ -33,13 +33,15 @@ class App.Models.Person extends App.Models.Base
 
   
   getCprFields:(person)=>
+    thisModel = @
+    address = @get("address")
     cpr =  person.get('full_cpr')
-    formModel = @
     if cpr.length == 10
       entry = new App.Models.NationalRegisterEntry({cpr:cpr})
       entry.fetch
         success:(model, response) ->
-          formModel.set(response, {formUpdate: true})
+          thisModel.set(response, {formUpdate: true})
+          address.set(response, {formUpdate: true})
         error:(model, xhr, options) ->
           throw "error in Person:getCprFields"
 

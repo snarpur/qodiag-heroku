@@ -5,7 +5,7 @@ node do
   :invite_respondent_user => "Hidden",
   :subject=>
   {
-    :model=>"App.Models.Base",
+    :model=>"App.Models.Person",
     :type=>"NestedModel",
     :as=>"get_subject",
     :schema=>
@@ -34,7 +34,7 @@ node do
         :type=>"Radio",
         :template=>"field",
         :options=>[{:val=>"female", :label=>"girl"}, {:val=>"male", :label=>"boy"}]
-      }, 
+      },
       :inverse_relationships=>
       {
         :type=>"NestedCollection",
@@ -66,6 +66,22 @@ node do
             :name=>"Hidden"
           }
         ]
+      },
+      :address=>
+      {
+        :title=>"address_info",
+        :type=>"NestedModel",
+        :model=>"App.Models.Base",
+        :schema=>
+        {
+          :id=>"Hidden",
+          :street_1=>"Text",
+          :street_2=>"Text",
+          :town=>"Text",
+          :zip_code=>"Text",
+          :phone=>"Text",
+          :home_phone=>"Text"
+        }
       }
     }
   }

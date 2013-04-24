@@ -53,6 +53,22 @@ node do
           :type=>"Radio",
           :template=>"field",
           :options=>[{:val=>"female",:label=>"female"},{:val=>"male",:label=>"male"}]
+        },
+        :address=>
+        {
+          :title=>"address_info",
+          :type=>"NestedModel",
+          :model=>"App.Models.Base",
+          :schema=>
+          {
+            :id=>"Hidden",
+            :street_1=>"Text",
+            :street_2=>"Text",
+            :town=>"Text",
+            :zip_code=>"Text",
+            :phone=>"Text",
+            :home_phone=>"Text"
+          }
         }
       }
     }

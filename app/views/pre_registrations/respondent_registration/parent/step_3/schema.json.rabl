@@ -18,6 +18,12 @@ node do
         :schema=>
         {
           :id=>"Hidden",
+          :full_cpr=>
+          {
+            :type=>"Text",
+            :template=>"field",
+            :validators=>["required"]
+          },
           :firstname=>
           {
             :type=>"Text",
