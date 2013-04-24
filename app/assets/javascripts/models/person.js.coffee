@@ -28,9 +28,12 @@ class App.Models.Person extends App.Models.Base
       address.set("person_id",spouse_id,{silent: true})
       address.fetch(@commonAddressCallbacks())
     else
-      address.set("person_id",@get('id'))
-      address.fetch(@separateAddressCallbacks())
-
+      if @get('id')
+        address.set("person_id",@get('id'))
+        address.fetch(@separateAddressCallbacks())
+      else
+        address.clearFormAttributes()
+        address.enableFields()
   
   getCprFields:(person)=>
     thisModel = @
@@ -53,7 +56,6 @@ class App.Models.Person extends App.Models.Base
       success:(model, response) ->
         model.disableFields()
         thisModel.set('address_id',model.get('id'))
-
       error:(model, xhr, options) ->
         throw "error in Person:commonAddressCallbacks"
 
@@ -63,7 +65,6 @@ class App.Models.Person extends App.Models.Base
       success:(model, response) ->
         if model.previous("id") == model.get("id")
           model.clearFormAttributes()
-
         thisModel.set('address_id',model.get('id'))
         model.enableFields()
       error:(model, xhr, options) ->
