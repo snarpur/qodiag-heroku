@@ -3,8 +3,9 @@
   List.Controller =
     
     listEntrySets: (options) ->
+      
+      @region = App.request("settings:content:region")
       App.request "entrySets:entities", (entrySets)=>
-        @region = options.region
         entrySetsView = @getEntrySetsView(entrySets)
         @showEntrySets(entrySetsView)
         

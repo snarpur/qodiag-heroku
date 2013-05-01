@@ -1,6 +1,18 @@
 Snarpur::Application.routes.draw do
 
-  resources :entry_sets
+
+
+  resources :entry_sets do
+    resources :sections  
+  end
+
+  resources :sections do  
+    resources :entry_fields, :controller => 'sections/entry_fields'
+    resources :sections_entry_fields, :controller => 'sections/sections_entry_fields'
+  end
+
+  resources :entry_fields
+  
 
 
   mount Surveyor::Engine => "/surveys", :as => "surveyor"

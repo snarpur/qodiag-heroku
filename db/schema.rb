@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130411154923) do
+ActiveRecord::Schema.define(:version => 20130423151529) do
 
   create_table "addresses", :force => true do |t|
     t.string   "street_1"
@@ -77,6 +77,16 @@ ActiveRecord::Schema.define(:version => 20130411154923) do
     t.datetime "updated_at"
   end
 
+  create_table "entry_fields", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "help_text"
+    t.string   "field_type"
+    t.integer  "parent_field_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
   create_table "entry_sets", :force => true do |t|
     t.string   "name"
     t.integer  "created_by_id"
@@ -84,6 +94,13 @@ ActiveRecord::Schema.define(:version => 20130411154923) do
     t.string   "type"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+  end
+
+  create_table "entry_sets_sections", :force => true do |t|
+    t.integer  "entry_set_id"
+    t.integer  "section_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "norm_references", :force => true do |t|
@@ -236,6 +253,20 @@ ActiveRecord::Schema.define(:version => 20130411154923) do
     t.float    "end_value"
     t.string   "result_name"
     t.float    "value"
+  end
+
+  create_table "sections", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "sections_entry_fields", :force => true do |t|
+    t.integer  "entry_field_id"
+    t.integer  "section_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "survey_sections", :force => true do |t|

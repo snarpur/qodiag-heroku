@@ -1,6 +1,6 @@
 class EntrySetsController < ApplicationController
-  # GET /entry_sets
-  # GET /entry_sets.json
+  respond_to :json
+
   def index
     @entry_sets = EntrySet.all
 
@@ -14,11 +14,6 @@ class EntrySetsController < ApplicationController
   # GET /entry_sets/1.json
   def show
     @entry_set = EntrySet.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @entry_set }
-    end
   end
 
   # GET /entry_sets/new

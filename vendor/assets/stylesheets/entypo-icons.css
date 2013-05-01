@@ -1,5 +1,5 @@
 .entypo {
-  font-family: 'EntypoRegular';
+  font-family: 'Entypo';
   font-size: 2em;
   font-weight: normal;
   line-height: 0;
@@ -89,7 +89,7 @@
 .entypo.music:before{ content:'\0072'; }
 .entypo.folder:before{ content:'\0073'; }
 .entypo.cabinet:before{ content:'\0074'; }
-.entypo.trash:before{ content:'\0075'; }
+.entypo.trash:before{ content:'\E729'; }
 .entypo.upload:before{ content:'\0076'; }
 .entypo.download:before{ content:'\0077'; }
 .entypo.hdd:before{ content:'\0078'; }

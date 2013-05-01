@@ -1,0 +1,1 @@
+<%- @linkTo(@name,"settings#{@routeTo.entry_set_section_path(@entrySetId,@id)}")%>

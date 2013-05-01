@@ -18,7 +18,8 @@ class PopulateUtil
     end
 
     def reset_level
-      Rake::Task["db:reset"].invoke
+      Rake::Task["db:drop"].invoke
+      Rake::Task["db:setup"].invoke
       self.generate_surveys
     end
 

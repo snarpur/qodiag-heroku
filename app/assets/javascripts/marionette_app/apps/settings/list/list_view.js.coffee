@@ -11,11 +11,14 @@
   class List.NavigationItem extends App.Views.ItemView
     template: "settings/list/templates/_navigation"
     tagName: 'li'
+    className: ->
+      if @options.currentRoute == @model.get('name')
+        "active"
+     
+
 
   class List.Navigation extends App.Views.CollectionView
     itemView: List.NavigationItem
     className: 'nav nav-tabs'
     tagName: 'ul'
-  
-  class List.Setting extends App.Views.ItemView
-    template: "settings/list/templates/setting"
+
