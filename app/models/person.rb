@@ -1,9 +1,10 @@
 class Person < ActiveRecord::Base
 
-  # validates_presence_of :firstname #, :sex, :lastname
-  # validate :presence_of_full_cpr
-  # validates_length_of :full_cpr, :is => 10, :allow_nil => true
-  # validates_length_of :cpr, :is => 4
+  validate :uniqueness_of_full_cpr
+  #validates_presence_of :firstname , :sex, :lastname
+  #validate :presence_of_full_cpr
+  #validates_length_of :full_cpr, :is => 10, :allow_nil => true
+  #validates_length_of :cpr, :is => 4
   #validate :presence_of_parent_occupation
   #after_save :set_parents_address
   
@@ -214,6 +215,11 @@ class Person < ActiveRecord::Base
       !self.inverse_relationships.patient.empty? && (!valid_cpr? || dateofbirth.nil?)
   end
 
+  def uniqueness_of_full_cpr
+    errors.add(:full_cpr, I18n.t("activerecord.errors.messages.taken")) if
+      Person.exists?(:dateofbirth => dateofbirth, :cpr => cpr) && id.nil?
+  end
+
   def valid_cpr?
     cpr.to_s.length == 4 ? true : false
   end
@@ -234,7 +240,28 @@ class Person < ActiveRecord::Base
       self.cpr = cpr[6..9]
     end
   end
-  
+
+  def family
+    unless cpr.empty?
+      r = [0 => '--']
+      entry = NationalRegister.find_by_kennitala(full_cpr)
+      family = NationalRegister.where(:fjolskyldunumer => entry.fjolskyldunumer)
+
+      family.each do |member|
+        day = member.kennitala[0..1]
+        month = member.kennitala[2..3]
+        year = member.kennitala[4..5].to_i > 10 ? "19" << member.kennitala[4..5] : "20" << member.kennitala[4..5]
+        dob = Date.civil(year.to_i,month.to_i,day.to_i)
+        age = Date.today.strftime("%Y").to_i - dob.year
+
+        if age <= 18
+          r.push(member.kennitala => "#{member.nafn} [#{member.kennitala}]")
+        end
+      end
+      r
+    end
+  end
+
   def full_name
     "#{self.firstname} #{self.lastname}"
   end

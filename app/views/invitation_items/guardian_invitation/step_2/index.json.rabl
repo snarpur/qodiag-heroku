@@ -4,7 +4,7 @@ node do
   {:invite_respondent_user => true}
 end
 child :respondent => :respondent do
-  attributes :id
+  attributes :id, :family
   child :user do
     attributes :id
   end

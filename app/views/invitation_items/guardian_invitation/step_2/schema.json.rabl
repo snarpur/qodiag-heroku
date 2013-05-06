@@ -3,8 +3,25 @@ node do
 {
   :id=>"Hidden",
   :invite_respondent_user => "Hidden",
+  :respondent=>{
+    :title=>"information_from_national_registry",
+    :model=>"App.Models.Person",
+    :type=>"NestedModel",
+    :fieldClass=>"floating-right",
+    :schema=>
+    {
+      :family=>
+      {
+        :type=>"Select",
+        :help=>"Fylla út upplýsingar miðað við upplýsingar frá Þjóðskrá",
+        :template=>"field",
+        :options=>[]
+      },
+    }
+  },
   :subject=>
   {
+    :title=>"personal_info",
     :model=>"App.Models.Person",
     :type=>"NestedModel",
     :as=>"get_subject",
@@ -66,22 +83,6 @@ node do
             :name=>"Hidden"
           }
         ]
-      },
-      :address=>
-      {
-        :title=>"address_info",
-        :type=>"NestedModel",
-        :model=>"App.Models.Base",
-        :schema=>
-        {
-          :id=>"Hidden",
-          :street_1=>"Text",
-          :street_2=>"Text",
-          :town=>"Text",
-          :zip_code=>"Text",
-          :phone=>"Text",
-          :home_phone=>"Text"
-        }
       }
     }
   }

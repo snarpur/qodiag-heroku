@@ -1,5 +1,15 @@
 @import partials/base
 .form-base
+  .hidden
+    display: none
+  .floating-right
+    float: right
+    width: 320px
+    & > .control-label
+      border-bottom: 0 !important
+      background-image: none !important
+    .controls
+      margin-left: 0
   .wizard-fields
     +background-image(linear-gradient(bottom,rgba(0,0,0,.3) 0%, rgba(0,0,0,0) 2px),linear-gradient(bottom,rgba(0,0,0,.3) 0%, rgba(0,0,0,0) 2px))
     background-position: 0 100%, 0 0%
@@ -11,7 +21,17 @@
   h2
     color: lighten($china2,10%)
     +background-image(linear-gradient(bottom,rgba(0,0,0,.13) 0%, rgba(0,0,0,0) 2px))
-  .type-nestedmodel 
+  .type-nestedmodel
+    & > .control-label
+      color: lighten($china2,10%)
+      +background-image(linear-gradient(bottom,rgba(0,0,0,.13) 0%, rgba(0,0,0,0) 2px))
+      padding: .5em 0
+      margin: .1em 0 .6em
+      font-size: 1.4em
+      border-bottom: 1px solid rgba(255, 255, 255, 0.55)
+      display: block
+      text-align: left
+      width: auto
     & > .controls
       margin-left: 0
     & > label
@@ -38,8 +58,10 @@
     margin-top: 2px
 
   .help-block
-    margin: 0
+    margin: .5em
 
+  .nested-fields
+    margin-top: 30px
 
 .editable-items
   +clearfix

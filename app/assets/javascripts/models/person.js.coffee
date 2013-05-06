@@ -7,13 +7,33 @@ class App.Models.Person extends App.Models.Base
   urlRoot: "/people"
   paramRoot: 'person'
 
+  blacklist: ["family"]
+
   initialize:->
     super
     spouseRelationship = @.get("spouse_relationships")
     if spouseRelationship
       spouseRelationship.on("statusUpdate", @setAddres)
 
+    @on('change:family', (model, attribute)=>
+      App.Event.trigger('person:cpr:populate_from_select', attribute)
+    )
+
     @on('change:full_cpr', @getCprFields)
+    @on('change:form', ()=>
+      family = @get('family')
+      if family
+        options = _.map(family,((v)->
+          { val: _.keys(v)[0], label: _.values(v)[0] }
+        ),@)
+
+        @get('form').fields.family.editor.setOptions(options)
+
+      if _.has(@attributes, 'full_cpr')
+        App.Event.on('person:cpr:populate_from_select', (attribute)=>
+          @set('full_cpr', attribute, {formUpdate: true})
+        )
+    )
 
     @
 
@@ -37,14 +57,15 @@ class App.Models.Person extends App.Models.Base
   
   getCprFields:(person)=>
     thisModel = @
-    address = @get("address")
+    address = thisModel.get("address");
     cpr =  person.get('full_cpr')
     if cpr.length == 10
       entry = new App.Models.NationalRegisterEntry({cpr:cpr})
       entry.fetch
         success:(model, response) ->
           thisModel.set(response, {formUpdate: true})
-          address.set(response, {formUpdate: true})
+          if _.isFunction(address.set)
+            address.set(response, {formUpdate: true})
         error:(model, xhr, options) ->
           throw "error in Person:getCprFields"
 

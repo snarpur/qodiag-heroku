@@ -12,7 +12,7 @@ App.Templates.Forms=
             </fieldset>"
   
   field: "<div class=\"control-group field-{{key}} {{typeClass}}\"> 
-            <label class=\"control-label\" for=\"{{id}}\">{{title}}</label> 
+            <label class=\"control-label\" for=\"{{id}}\">{{title}}</label>
             <div class=\"controls\">
               <div>
                 {{editor}}

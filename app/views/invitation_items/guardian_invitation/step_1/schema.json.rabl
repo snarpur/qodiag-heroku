@@ -7,6 +7,7 @@ node do
    :caretaker_id=>"Hidden",
    :respondent=>
    {
+    :title=>"personal_info",
     :model=>"App.Models.Person",
     :type=>"NestedModel",
     :as=>"get_respondent",
@@ -31,7 +32,7 @@ node do
             {
               :type=>"Text",
               :template=>"field",
-              :validators=>["required"]
+              :validators=>["required", "email"]
               },
             :invitation=>"Hidden"
           }

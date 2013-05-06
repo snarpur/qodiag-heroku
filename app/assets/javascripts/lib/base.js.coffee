@@ -1,6 +1,8 @@
 class App.Models.Base extends Backbone.Model
 
   initialize:->
+
+    @on("change:formErrors", @setFormErrors)
     @on("change:form", @bindToForm)
     @.schema = @setSchema()
     @initializeNestedModels()
@@ -90,7 +92,7 @@ class App.Models.Base extends Backbone.Model
   getNonSchemaFields:=>
     _.difference(_.keys(@.attributes),@getSchemaFields())
 
-  
+
   getNestedModelNames:=>
     base = @
     _.chain(@getSchema())
@@ -147,6 +149,22 @@ class App.Models.Base extends Backbone.Model
     @unset("submitDisabled")
 
 
+  setFormErrors:(model, errors)=>
+    _.each(errors,((v,k)->
+      options = {}
+      if k.search(/\./) == -1
+        unless _.isObject(@get(k))
+          if _.has(@get('form').fields, k)
+            @get('form').fields[k].setError(v);
+          else
+            console.error 'field not found ',k
+      else
+        type = k.split('.')[0]
+        options[k.split(".").slice(1).join('.')] = v
+        @get(type).set('formErrors', options)
+    ),@)
+
+
   jsonWithNestedSuffix:(json)=>
     nestedFields = @getNestedFields()
     _.each(nestedFields,((i)->
@@ -168,11 +186,21 @@ class App.Models.Base extends Backbone.Model
       delete json["#{i}"]
     ),@)
     json
-  
+
+  removeBlacklistedFields:(json)=>
+    if _.size(@blacklist) < 1
+      json
+
+    _.each(@getSchemaFields(),((i)->
+      if _.contains(@blacklist, i)
+        delete json["#{i}"]
+    ),@)
+    json
   
   toJSON:->
     json = $.extend(true,{},@.attributes)
     json = @removeNonSchemaFields(json)
+    json = @removeBlacklistedFields(json)
     @jsonWithNestedSuffix(json)
 
 
