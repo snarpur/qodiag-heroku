@@ -1,66 +1,54 @@
 @Qapp.module "EntrySetSectionsApp.List", (List, App, Backbone, Marionette, $, _) ->
   
-  
+  List.vent = new Backbone.Wreqr.EventAggregator()
+  List.vent.on("new:section",()-> List.Controller.newSection())
   List.Controller =
-    resetListEvent: "settings:entrySets:sections:reset"
-    listSections:(entrySetId,sectionId) ->
-      App.EntrySetSectionsApp.vent.on("drop:entryField",=> @addEntryToSection())
-      App.EntrySetSectionsApp.vent.on("save:sectionFields",(options)=> @saveSectionFields(options))
-      @currentEntrySetId = entrySetId
-      @currentSectionId = sectionId
+    listSections:(options) ->
+      @currentEntrySetId = options.entrySetId
+      @sectionNo = options.sectionNo
       @getSettingsContentRegion().show @getLayout()
+      @getSections()
+  
       
+    getSections:->
       options=
-        sectionId: @currentSectionId
+        sectionNo: @sectionNo
         entrySetId: @currentEntrySetId
         callback: (collection) =>
+          @sectionCollection = collection
+          @currentSection = _.first(collection.where({display_order: @sectionNo}))
           @showSectionsNavigation(collection)
-          @currentSectionId ?= collection.first().id
-          @currentSection = collection.get(@currentSectionId)
-          # @getSectionEntryFields()
-      
+          App.vent.trigger "show:settings:section:fields", {section: @currentSection}
+          @showTitle()
 
-      
-      App.request "entrySetSections:entities", options
-    
-    
+      App.request "entry:set:sections:entities", options
+
     showSectionsNavigation: (sections) ->
       @getNavigationRegion().show @getNavigationView(sections)
     
-    
-    showSection: (view)->
-      @getContentRegion().show view
+    showTitle: ->
+      view = new List.Title model: @currentSection
+      @getLayout().sectionTitleRegion.show view
 
-    
-    getSectionEntryFields:()->
-      @currentSection.getSectionEntryFields((collection) =>
-        @entriesCollection = collection
-        view = @getContentView(collection)
-        @showSection(view)
-        @updateSidebarApp()
-      )
-
-
-    getNavigationRegion: ()->
+    getNavigationRegion: ->
       @getLayout().navigationRegion
     
     
-    getContentRegion: ()->
+    getContentRegion: ->
       @getLayout().sectionContentRegion
 
 
+    getSidebarRegion: ->
+      @getLayout().entryFieldsSidebarRegion
+    
+    
     getNavigationView: (collection)->
       new List.SectionsNav 
         collection: collection
+        model: @currentSection
         itemViewOptions: 
           entrySetId: @currentEntrySetId
-
-
-    getContentView: (collection)->
-      view = new List.Sections
-        collection: collection
-        model: @currentSection
-
+    
     
     getLayout: ()->
       @layout ?= new List.Layout
@@ -69,33 +57,6 @@
     getSettingsContentRegion: ()->
       App.request("settings:content:region")
 
-
-    updateSidebarApp: () ->
-      resetEvent = "settings:entrySets:sections:reset"
-      options=
-        region: @getLayout().entryFieldsSidebarRegion
-        sectionId: @currentSectionId
-        entrySetId: @currentEntrySetId
-        resetEvent:  @resetListEvent
-      
-      App.vent.trigger(@resetListEvent,options)
-      App.EntryFieldsSidebarApp.start(options)
-      @listenToSidebar()
-      
-    saveSectionFields:(section)->
-      callbacks=
-        error: ->
-          throw "error in entry_sections/list/list_controller.js.coffee:saveSectionFields()"
-      section.save(section.toJSON(), callbacks)
-     
-
-    addEntryToSection: ->
-      @currentSection.addEntryField(@newEntryField)
-    
-    
-    listenToSidebar:->
-      App.EntryFieldsSidebarApp.vent.on "settings:entryField:dragged",(entryField) => 
-        @newEntryField = entryField
 
 
 

@@ -20,6 +20,8 @@
   App.vent.on("show:settings",(options)->
     API.showSettingsRegion(options)
   )
+  
+
   App.addInitializer ->
     new SettingsApp.Router
       controller: API

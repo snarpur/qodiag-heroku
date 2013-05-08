@@ -6,9 +6,18 @@ class Sections::SectionsEntryFieldsController < ApplicationController
   end
 
 
+  def update
+    @section = Section.find(params[:section_id])
+    @section.update_attributes(params[:section])
+    @entry_fields = @section.sections_entry_fields
+    render "index"
+  end
+
+
   def destroy
     @section_entry_field = SectionsEntryField.find(params[:id])
     @section_entry_field.destroy
   end
+
 end
 

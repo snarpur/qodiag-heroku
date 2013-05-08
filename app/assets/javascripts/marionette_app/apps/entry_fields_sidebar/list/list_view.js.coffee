@@ -11,20 +11,28 @@
   class List.EntryField extends App.Views.ItemView
     template: "entry_fields_sidebar/list/templates/_entry_field"
     tagName: "li"
-    className: "sidebar"
-    onRender: ->
+ 
+
+    connectToSortable:(sortable) ->
       _this = @
+      # @model.set('dropTarget',sortable)
       options=
         revert: 'invalid'
         revertDuration: 100
         helper: 'clone'
         opacity: .4
         addClasses: false
-        connectToSortable: App.request "get:section:element"
-        start: ->
-          _this.model.collection.trigger("drag:start",_this.model)
+        connectToSortable: "#entry-section"
+        start: (e,ui)->
+          $("#entry-section").trigger("item:selected",_this.model)
+
+
       
       @$el.draggable(options)
+
+
+
+
 
   class List.Search extends App.Views.ItemView
     template: "entry_fields_sidebar/list/templates/_search"
@@ -39,5 +47,9 @@
   class List.EntryFields extends App.Views.CollectionView
     itemView: List.EntryField
     tagName: "ul"
+    
+    onRender: ->
+      # sortable = App.request("settings:section:sortable:list")
+      @children.each (i)-> i.connectToSortable()
 
 

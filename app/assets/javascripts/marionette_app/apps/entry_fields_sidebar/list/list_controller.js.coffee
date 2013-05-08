@@ -4,7 +4,7 @@
   List.Controller = 
 
     listSections: (options) ->
-      @region = options.region
+      @region =  App.request("settings:sections:sidebar:region")
       @region.show @getLayout()
       @showEntryFields()
       @showSearchField()
@@ -15,11 +15,10 @@
           @collection = collection
           @searchCollection = @collection.createSearchCollection()
           @layout.listRegion.show @getEntryFieldsView(@searchCollection)
-          @collection.on("drag:start",@entryDragged)
+
 
       App.request "entryFields:entities", options
       
-
 
     getEntryFieldsView: (collection) ->
       new List.EntryFields collection: collection
@@ -35,7 +34,4 @@
 
     getLayout: ->
       @layout ?= new List.Layout
-
-    entryDragged:(entryField)->
-      App.EntryFieldsSidebarApp.vent.trigger("settings:entryField:dragged",entryField)
         

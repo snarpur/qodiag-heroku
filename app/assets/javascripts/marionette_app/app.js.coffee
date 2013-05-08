@@ -13,7 +13,7 @@
   App.addRegions
     headerRegion: "#header-region"
     contentRegion: "#content"
-
+    dialogRegion: Marionette.Region.Dialog.extend el: "#dialog-region"
   
   App.addInitializer ->
     App.module("HeaderApp").start()

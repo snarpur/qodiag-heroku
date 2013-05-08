@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130423151529) do
+ActiveRecord::Schema.define(:version => 20130502092958) do
 
   create_table "addresses", :force => true do |t|
     t.string   "street_1"
@@ -99,8 +99,9 @@ ActiveRecord::Schema.define(:version => 20130423151529) do
   create_table "entry_sets_sections", :force => true do |t|
     t.integer  "entry_set_id"
     t.integer  "section_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.integer  "display_order"
   end
 
   create_table "norm_references", :force => true do |t|
@@ -267,6 +268,7 @@ ActiveRecord::Schema.define(:version => 20130423151529) do
     t.integer  "section_id"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
+    t.integer  "display_order"
   end
 
   create_table "survey_sections", :force => true do |t|

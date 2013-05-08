@@ -1,1 +1,5 @@
-<%- @linkTo(@name,"settings#{@routeTo.entry_set_section_path(@entrySetId,@id)}")%>
+<% if @id: %>
+  <%- @linkTo(@name,"settings#{@routeTo.entry_set_section_path(@entrySetId,@display_order)}")%>
+<% else: %>
+  <%- @linkTo(@name,"")%>
+<% end %>

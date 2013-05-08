@@ -1,12 +1,12 @@
-# encoding: UTF-8
-users = ["super_admin", "caretaker", "respondent"]
+#encoding: UTF-8
+# users = ["super_admin", "caretaker", "respondent"]
 
-users.each do |u|
-  user = User.create(:email => "#{u}@orrigautur.com", :password => "asdfkj", :password_confirmation => "asdfkj")
-  user.save
-  user.roles.create(:name => u)
-  user.create_person(:firstname => "Per #{u}", :lastname => "Mc#{u.capitalize}")
-end
+# users.each do |u|
+#   user = User.create(:email => "#{u}@orrigautur.com", :password => "asdfkj", :password_confirmation => "asdfkj")
+#   user.save
+#   user.roles.create(:name => u)
+#   user.create_person(:firstname => "Per #{u}", :lastname => "Mc#{u.capitalize}")
+# end
 seed_question  = [
 "Hver var síðasta manneskja sem þú texted?",
 "Þegar er afmæli?",
@@ -110,13 +110,16 @@ seed_question  = [
 "Vissir þú alltaf finnst eins og þú ert ekki nógu góður?"
 ]
 
-question_seed_count = 0
+question_seed_count = 1
 4.times do |i|
   entry_set = EntrySet.create(:name => "EntrySet_#{i}")
   4.times do |s|
-    section = entry_set.sections.create(:name => "EntrySet #{i} Section #{s}")
+    section = Section.create(:name => "EntrySet #{i} Section #{s}")
+    entry_set.entry_sets_sections.create(:display_order => s+1,:section_id => section.id)
+
     4.times do |f|
-      section.entry_fields.create(:title => seed_question[question_seed_count])
+      entry_field = EntryField.create(:title => seed_question[question_seed_count],:field_type => :text)
+      section.sections_entry_fields.create(:display_order => f+1, :entry_field_id => entry_field.id)
       question_seed_count += 1
     end
   end

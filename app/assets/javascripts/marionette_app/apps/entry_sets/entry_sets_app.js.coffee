@@ -1,5 +1,5 @@
 @Qapp.module "EntrySetsApp", (EntrySetsApp, App, Backbone, Marionette, $, _) ->
-
+  # @startWithParent = false
   class EntrySetsApp.Router extends Marionette.AppRouter
     appRoutes:
        "settings/entry_sets" : "listEntrySets"

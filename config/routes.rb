@@ -7,11 +7,12 @@ Snarpur::Application.routes.draw do
   end
 
   resources :sections do  
-    resources :entry_fields, :controller => 'sections/entry_fields'
-    resources :sections_entry_fields, :controller => 'sections/sections_entry_fields'
+    resources :entry_fields, :controller => 'sections/entry_fields'  
+    resources :sections_entry_fields, :controller => 'sections/sections_entry_fields' 
   end
-
+  match 'sections/:section_id/sections_entry_fields' => 'sections/sections_entry_fields#update', :via => :put
   resources :entry_fields
+  resources :section_entry_fields, :only => [:destroy]
   
 
 

@@ -5,6 +5,7 @@
     
     regions:
       navigationRegion: "#sections-navigation-region"
+      sectionTitleRegion: "#section-title-region"
       sectionContentRegion: "#section-content-region"
       entryFieldsSidebarRegion: "#entry-fields-sidebar-region"
     
@@ -12,50 +13,33 @@
   class List.SectionNav extends App.Views.ItemView
     template: "entry_set_sections/list/templates/_section_nav"
     tagName: "li"
+    className:->
+      if @model.isCurrentSection()
+        "active"
 
     initialize: (options) ->
+      @model.on("change:name",@render)
       @model.set("entrySetId",options.entrySetId)
 
   
-  class List.SectionsNav extends App.Views.CollectionView
+  class List.SectionsNav extends App.Views.CompositeView
+    template: "entry_set_sections/list/templates/section_nav"
     itemView: List.SectionNav
-    tagName: "ul"
-    className: "nav nav-tabs nav-stacked"
-
-  class List.Section extends App.Views.ItemView
-    template: "entry_set_sections/list/templates/_section"
-    tagName: "li"
-    events:
-      "click span.trash" : "removeEntry"
-
-    removeEntry:()->
-      @model.collection.trigger("itemview:remove:entry",@model)
-
-
-  class List.Sections extends App.Views.CompositeView
-    itemView: List.Section
-    template: "entry_set_sections/list/templates/section"
     itemViewContainer: "ul"
-    
-    onCompositeCollectionRendered: ->
-      _this = @
-      listEl = @$('ul')
-      App.reqres.addHandler "get:section:element", => 
-        listEl
-      
-      options=
-        receive: (e,ui) ->
-          App.EntrySetSectionsApp.vent.trigger("drop:entryField",_this.collection)
-      
-      listEl.sortable(options)
 
     events:
-      "click button": "save"
-    
-      
-    save: (callback) =>
-      App.EntrySetSectionsApp.vent.trigger("save:sectionFields",@model)
+      "click button": "addSection"
 
-        
+
+    addSection:->
+      App.EntrySetSectionsApp.vent.trigger("new:section", @collection)
+
+
+  class List.Title extends App.Views.ItemView
+    template: "entry_set_sections/list/templates/title"
+
+
+
+
 
     
