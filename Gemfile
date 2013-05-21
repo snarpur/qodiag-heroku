@@ -35,6 +35,7 @@ gem "paperclip", "~> 3.0"
 gem 'oj'
 gem 'gon'
 gem 'js-routes'
+gem 'acts_as_commentable', '3.0.1'
 
 
 group :assets do

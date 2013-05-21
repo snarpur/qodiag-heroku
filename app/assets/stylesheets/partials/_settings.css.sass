@@ -1,2 +1,59 @@
-#sections-navigation-region > ul
-  width: 240px
+@import partials/base
+#setting-content-region > div
+  +clearfix
+
+#sections-navigation-region
+  float: left
+  width: 200px
+
+.settings-content
+  float: left
+  width: 480px
+  margin: 0 2px
+  padding: 5px 3px
+  background-color: #fff
+  
+#section-content-region
+  ul
+    margin-top: 10px
+    li
+      position: relative
+      font-size: 1.2em
+      margin-bottom: 5px
+      padding: 1em .5em
+      background-color: #eaeaea
+    span.trash
+      position: absolute
+      top: 3px
+      right: 4px
+      color: #eaeaea
+      background-color: #666
+      width: .7em
+      height: .7em
+      line-height: .7em
+      text-align: center
+      +border-radius(2px)
+      cursor: pointer
+
+
+
+#entry-fields-sidebar-region
+  float: left
+  width: 230px
+
+#entry-fields-list-region
+  ul
+    min-height: 500px
+    max-height: 500px
+    // overflow-x: scroll
+  li
+    margin: 3px 0
+    padding: 8px 2px
+    background-color: #eaeaea
+    cursor: pointer
+  li:hover
+    background-color: darken(#eaeaea, 5%)
+  .ui-draggable-dragging
+    border: 1px dotted 
+    background-color: #eaeaea
+    width: 200px

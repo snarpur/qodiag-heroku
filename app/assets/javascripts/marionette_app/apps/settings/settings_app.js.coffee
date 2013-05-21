@@ -9,11 +9,13 @@
   
   API =
     listRootSettings: () ->
-      SettingsApp.List.Controller.listSettings()
+      ctrl = new SettingsApp.List.Controller
+      ctrl.listSettings()
       SettingsApp.app.navigate(SettingsApp.rootRoute, trigger: true)
 
     showSettingsRegion: (options) ->
-      SettingsApp.List.Controller.listSettings(options)
+      ctrl = new SettingsApp.List.Controller
+      ctrl.listSettings(options)
 
 
 

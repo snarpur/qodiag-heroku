@@ -48,14 +48,15 @@
       fields = new Entities.EntryFieldsCollection([],_.omit(options,'callback'))
       callback = options.callback
       fields.fetch
+        reset: true
         success: ->
           callback fields
 
   
-  App.reqres.addHandler "sectionEntryFields:entities", (options) ->
+  App.reqres.setHandler "sectionEntryFields:entities", (options) ->
     API.getEntryFieldEntities options
 
-  App.reqres.addHandler "entryFields:entities", (options) ->
+  App.reqres.setHandler "entryFields:entities", (options) ->
     API.getEntryFieldEntities options
 
 

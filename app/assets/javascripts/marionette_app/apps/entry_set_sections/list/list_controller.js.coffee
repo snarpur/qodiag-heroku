@@ -1,11 +1,18 @@
 @Qapp.module "EntrySetSectionsApp.List", (List, App, Backbone, Marionette, $, _) ->
   
-  List.vent = new Backbone.Wreqr.EventAggregator()
-  List.vent.on("new:section",()-> List.Controller.newSection())
-  List.Controller =
+
+  class List.Controller extends App.Controllers.Base
+    
+    initialize:()->
+      App.vent.trigger("show:settings")
+      App.reqres.setHandler("settings:sections:content:region", => @getContentRegion())
+      App.reqres.setHandler("settings:sections:sidebar:region", => @getSidebarRegion())
+   
+    
     listSections:(options) ->
       @currentEntrySetId = options.entrySetId
       @sectionNo = options.sectionNo
+
       @getSettingsContentRegion().show @getLayout()
       @getSections()
   
@@ -14,22 +21,23 @@
       options=
         sectionNo: @sectionNo
         entrySetId: @currentEntrySetId
-        callback: (collection) =>
-          @sectionCollection = collection
-          @currentSection = _.first(collection.where({display_order: @sectionNo}))
-          @showSectionsNavigation(collection)
-          App.vent.trigger "show:settings:section:fields", {section: @currentSection}
-          @showTitle()
+      @sectionCollection = App.request "entry:set:sections:entities", options
+      App.execute "when:fetched", @sectionCollection, =>
+        @currentSection = _.first(@sectionCollection.where({display_order: @sectionNo}))
+        @showSectionsNavigation(@sectionCollection)
+        App.vent.trigger "show:settings:section:fields", {section: @currentSection}
+        @showTitle()
 
-      App.request "entry:set:sections:entities", options
 
     showSectionsNavigation: (sections) ->
       @getNavigationRegion().show @getNavigationView(sections)
+    
     
     showTitle: ->
       view = new List.Title model: @currentSection
       @getLayout().sectionTitleRegion.show view
 
+    
     getNavigationRegion: ->
       @getLayout().navigationRegion
     

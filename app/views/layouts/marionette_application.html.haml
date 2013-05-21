@@ -41,7 +41,8 @@
           %li.home
             %a{:class => 'c-icon', :href => "/users"} &#8962;
 
-        = yield :subject_nav
+        #secondary-navigation-region
+        
         #content{:class => yield(:content_css_hook)}
           = yield
           

@@ -3,11 +3,10 @@
   class Entities.EntrySetSection extends Entities.Model
     paramRoot: 'section'
     nestedAttributeList: ['sections_entry_fields','entry_sets_sections']
-    # defaults:
-    #   name: ""
-    #   description: ""
+
 
     initialize: () ->
+      @set("responseId",@collection.responseId) if @collection.responseId
       @url= ()->
         if @isNew()
           Routes.sections_path()
@@ -20,12 +19,8 @@
       unless @isNew()
         @set('sections_entry_fields',entryFields)
         entryFields.fetch
-          success:->
-            callback entryFields
-          error:->
-            throw "error in entry_set_section.js.coffee:getEntryFields()"
-      else
-        callback entryFields
+          reset: true
+        entryFields
 
 
     addSelectedEntry:(display_order) ->
@@ -51,7 +46,9 @@
       fields.save(fields.toJSON(),callbacks)
 
     isCurrentSection:->
-      @get('display_order') == @collection.currentSection
+      @get('display_order') == @collection.sectionNo
+
+
 
   
 
@@ -69,10 +66,9 @@
     
     
     initialize:(models,options)->
-      @entrySetId = options.entrySetId 
-      @currentSection = options.sectionNo     
+      {@entrySetId,@responseId,@sectionNo} = options
       @url = -> 
-        Routes.entry_set_sections_path(options.entrySetId)
+        Routes.entry_set_sections_path(@entrySetId)
 
     
     comparator:->
@@ -91,8 +87,14 @@
 
     
     setCurrentToLast:->
-      @currentSection = @last().get("display_order")
+      @sectionNo = @last().get("display_order")
 
+
+    isCurrentLast:->
+      @size() == @sectionNo
+
+    isCurrentFirst:->
+      @sectionNo == 1
 
     addNewSection:->
       section = @newSection()
@@ -107,15 +109,15 @@
 
   API =
     getSectionEntities: (options) ->
-      sections = new Entities.EntrySetSectionsCollection([],_.omit(options,'callback'))
-      callback = options.callback
-      sections.fetch
-        success:(models,response)->
-          callback sections
+      sections = new Entities.EntrySetSectionsCollection([],options)
+      sections.fetch({reset: true})
+      sections
 
   
-  App.reqres.addHandler "entry:set:sections:entities", (options) ->
+  App.reqres.setHandler "entry:set:sections:entities", (options) ->
     API.getSectionEntities options
+
+
 
 
 

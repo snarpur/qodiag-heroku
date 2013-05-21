@@ -10,9 +10,11 @@
     getEntrySetsEntities: (callBack) ->
       entrySets = new Entities.EntrySetsCollection
       entrySets.fetch
-        success: ->
-          callBack entrySets
+        reset: true
+      entrySets
 
   
-  App.reqres.addHandler "entrySets:entities", (callBack) ->
+  App.reqres.setHandler "entry:sets:entities", (callBack) ->
     API.getEntrySetsEntities callBack
+
+  

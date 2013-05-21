@@ -1,12 +1,13 @@
 @Qapp.module "EntrySetsApp.List", (List, App, Backbone, Marionette, $, _) ->
   
-  List.Controller =
-    
-    listEntrySets: (options) ->
+  class List.Controller extends App.Controllers.Base
+
       
+    listEntrySets: (options) ->      
       @region = App.request("settings:content:region")
-      App.request "entrySets:entities", (entrySets)=>
-        entrySetsView = @getEntrySetsView(entrySets)
+      @entrySets = App.request "entry:sets:entities"
+      App.execute "when:fetched", @entrySets, =>
+        entrySetsView = @getEntrySetsView()
         @showEntrySets(entrySetsView)
         
     
@@ -14,7 +15,7 @@
       @region.show entrySetsView
     
 
-    getEntrySetsView: (entrySets) ->
+    getEntrySetsView: ->
       new List.EntrySets
-        collection: entrySets
+        collection: @entrySets
     

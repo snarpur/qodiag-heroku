@@ -2,6 +2,12 @@ Snarpur::Application.routes.draw do
 
 
 
+  resources :entry_set_responses 
+  match "person/:person_id/entry_set_responder_items(/:id)" => "people/entry_set_responder_items#index", :via => :get, :as => :person_entry_set_items
+
+  resources :entry_values
+  match 'entry_values/:entry_set_response_id/:section_id(/:id)' => 'entry_values#index', :via => :get
+
   resources :entry_sets do
     resources :sections  
   end
@@ -45,9 +51,14 @@ Snarpur::Application.routes.draw do
   resources :relationships
 
   resources :responder_items do
-      resources :people
-     
+    resources :people  
   end
+
+  resources :people do
+    resources :responder_items, :controller => 'people/responder_items'
+  end
+
+
   resources :survey_responses, :path => 'responder_items/responses', :module => "responder_items", :only => [:index] do
     member do 
       get "column(/:column_metrics)" => "survey_responses#column"

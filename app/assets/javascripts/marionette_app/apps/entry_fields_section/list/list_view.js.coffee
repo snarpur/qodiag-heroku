@@ -13,11 +13,8 @@
     
     events:
       "click span.trash" : "removeEntry"
-      "update" : "updateDisplayOrder" 
+      "update:display:order" : (e,order)-> @model.trigger("update:display:order",order) 
 
-    updateDisplayOrder:(e, display_order)=>
-      squeeze = if (display_order - @model.get('display_order')) > 0 then 0.5 else -0.5
-      @model.set("display_order",display_order+squeeze)
     
     removeEntry:()->
       @model.collection.trigger("itemview:remove:entry",@model)
@@ -35,14 +32,12 @@
       listEl = @$('ul')
       options=
         update: (e,ui) ->
-          display_order = $('li',this).index(ui.item)
-          _this.model.addSelectedEntry(display_order)
-          ui.item.trigger("update",display_order)
-          _this.collection.setDisplayOrder()
+          displayOrder = $('li',this).index(ui.item)
+          ui.item.trigger("update:display:order",displayOrder)
+          _this.trigger("section:entries:updated", {displayOrder: displayOrder})
         
         change: (e,ui) ->
           _this.placeHolderElement = ui.item
-        
         deactivate: (e,ui) ->
           _this.model.unset("selectedEntry")
 
@@ -51,8 +46,7 @@
         _this.model.set("selectedEntry",model)
 
     initialize: (options) ->
-      options.collection.on("add",@removePlaceHolder)
-      @listenTo(@collection,"new:order",()-> _this.renderCollection())
+      @listenTo @collection, "add",@removePlaceHolder
       
     removePlaceHolder: () =>
       @placeHolderElement.remove()

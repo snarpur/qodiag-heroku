@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130502092958) do
+ActiveRecord::Schema.define(:version => 20130518111253) do
 
   create_table "addresses", :force => true do |t|
     t.string   "street_1"
@@ -87,6 +87,13 @@ ActiveRecord::Schema.define(:version => 20130502092958) do
     t.datetime "updated_at",      :null => false
   end
 
+  create_table "entry_set_responses", :force => true do |t|
+    t.integer  "entry_set_id"
+    t.integer  "responder_item_id"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
   create_table "entry_sets", :force => true do |t|
     t.string   "name"
     t.integer  "created_by_id"
@@ -102,6 +109,17 @@ ActiveRecord::Schema.define(:version => 20130502092958) do
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
     t.integer  "display_order"
+  end
+
+  create_table "entry_values", :force => true do |t|
+    t.integer  "entry_field_id"
+    t.integer  "entry_set_response_id"
+    t.string   "string_value"
+    t.text     "text_value"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+    t.integer  "person_id"
+    t.integer  "commentable_id"
   end
 
   create_table "norm_references", :force => true do |t|
@@ -197,6 +215,7 @@ ActiveRecord::Schema.define(:version => 20130502092958) do
     t.datetime "updated_at"
     t.integer  "caretaker_id"
     t.integer  "response_set_id"
+    t.integer  "entry_set_response_id"
   end
 
   create_table "response_sets", :force => true do |t|

@@ -3,3 +3,6 @@
 	class Views.ItemView extends Marionette.ItemView
     serializeData:->
       @.model.attributes
+
+    # initialize:->
+      

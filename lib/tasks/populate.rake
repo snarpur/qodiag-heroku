@@ -39,6 +39,9 @@ namespace :db do
         3.times do |t|
           pop.create_requests({:people => people, :number => 5, :survey_id => t+1})
         end
+        3.times do |e|
+          pop.create_entry_set_request(people,e)
+        end
       end
     end
   end

@@ -1,0 +1,2 @@
+<span class="badge"><%- @display_order %></span>
+<%- @linkTo(@name,"#{@routeTo.entry_set_response_path(@responseId)}/#{@entry_set_id}/sections/#{@display_order}")%>

@@ -6,7 +6,6 @@ class ApplicationController < ActionController::Base
     gon.rabl
     @user = get_user
     gon.rabl "app/views/users/show.json.rabl", as: "current_user"
-
   end
 
   rescue_from CanCan::AccessDenied do |exception|

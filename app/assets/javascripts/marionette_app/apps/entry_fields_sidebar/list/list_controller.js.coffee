@@ -1,7 +1,8 @@
 @Qapp.module "EntryFieldsSidebarApp.List", (List, App, Backbone, Marionette, $, _) ->
 
  
-  List.Controller = 
+  class List.Controller extends App.Controllers.Base
+
 
     listSections: (options) ->
       @region =  App.request("settings:sections:sidebar:region")

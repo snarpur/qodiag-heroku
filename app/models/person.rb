@@ -91,7 +91,7 @@ class Person < ActiveRecord::Base
 
   attr_accessible :id, :firstname, :lastname, :sex, :ispatient, :dateofbirth, :cpr, :workphone, :mobilephone, :occupation, :workplace, :full_cpr,
                   :avatar,
-                  :address_id, :relations_attributes, :inverse_relations_attributes, :relationships_attributes, :inverse_relationships_attributes,  :address_attributes, 
+                  :address_id, :relations_attributes, :inverse_relations_attributes, :relationships_attributes, :inverse_relationships_attributes, :address_attributes, 
                   :spouse_relationships_attributes, :respondent_responder_items_attributes, :patient_responder_items_attributes, :user_attributes,
                   :full_siblings_attributes, :full_siblings, :half_siblings_attributes, :half_siblings, :inverse_half_siblings_attributes, :inverse_half_siblings,
                   :parent0_attributes, :parent1_attributes

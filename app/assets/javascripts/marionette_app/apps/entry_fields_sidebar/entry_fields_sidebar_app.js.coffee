@@ -4,11 +4,10 @@
 
   API =
     listEntryFields: ()->
-      EntryFieldsSidebarApp.List.Controller.listSections()
+      ctrl = new EntryFieldsSidebarApp.List.Controller
+      ctrl.listSections()
 
   App.vent.on "show:settings:section:fields",(options)=>
     API.listEntryFields()
   
 
-  EntryFieldsSidebarApp.on "start",(options) ->
-    @vent = new Backbone.Wreqr.EventAggregator()

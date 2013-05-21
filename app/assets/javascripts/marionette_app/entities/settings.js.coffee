@@ -14,8 +14,8 @@
       settings = new Entities.SettingsCollection([{name: 'entry_sets'},{name: 'entry_fields'}])
       callBack settings
 
-  App.reqres.addHandler "set:current:setting", (currentSetting) ->
+  App.reqres.setHandler "set:current:setting", (currentSetting) ->
     API.setCurrentSetting currentSetting
   
-  App.reqres.addHandler "get:settings", (callBack) ->
+  App.reqres.setHandler "get:settings", (callBack) ->
     API.getSettingsEntities callBack

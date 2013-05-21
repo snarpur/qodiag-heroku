@@ -1,3 +1,4 @@
+
 - if params[:controller] == 'people'
   %ul.patient-nav.sub
     %li{:class => params[:action] == 'show' ? 'selected' : ''}
@@ -6,7 +7,7 @@
           &#128255;
         Mælingar
     %li{:class => params[:action] == 'history' ? 'selected' : ''}
-      %a{:alt => "Sjúkraskrá", :href => '/people/' + @person.id.to_s + '/history'} 
+      %a{:alt => "Saga", :href => "/#people/#{@person.id.to_s}/entries"} 
         %span.c-icon.history
           &#128203;
         Saga

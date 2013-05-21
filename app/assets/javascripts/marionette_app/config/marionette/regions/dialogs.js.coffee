@@ -29,7 +29,6 @@ do (Backbone, Marionette) ->
       @listenTo view, "dialog:title", @titleizeDialog
     
     closeDialog: ->
-      console.log "closing ::"
       @stopListening()
       @close()
       @$el.dialog("destroy")

@@ -1,0 +1,8 @@
+<td><%- @item_type %></td>
+<td><%- @id %></td>
+<td>
+<% if @item_type == "survey": %> 
+  <%- @linkTo(@survey.access_code,@routeTo.surveyor_edit_my_survey_path(@survey.access_code,@response_set_access_code),{external: true}) %>
+<% else:%>
+  <%- @linkTo(@entry_set_response.entry_set_name,"#{@routeTo.entry_set_response_path(@entry_set_response_id)}/#{@entry_set_response.entry_set_id}") %>
+</td>

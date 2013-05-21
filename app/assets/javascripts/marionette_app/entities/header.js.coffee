@@ -7,10 +7,11 @@
 	
 	API =
 		getHeaders: ->
+
 			new Entities.HeaderCollection [
 				{ name: I18n.t("navigation.settings"), url: "settings" }
-				{ name: I18n.t("devise.sessions.sign_out"), url: Routes.destroy_user_session_path() }
+				{ name: I18n.t("devise.sessions.sign_out"), url: Routes.destroy_user_session_path(), options:{ external: true}}
 			]
 	
-	App.reqres.addHandler "header:entities", ->
+	App.reqres.setHandler "header:entities", ->
 		API.getHeaders()

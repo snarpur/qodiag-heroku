@@ -1,31 +1,40 @@
 @Qapp.module "EntryFieldsSectionApp.List", (List, App, Backbone, Marionette, $, _) ->
   
-  List.Controller =
-    
+  class List.Controller extends App.Controllers.Base
+
+
     listFields: (options) ->
-      App.EntryFieldsSectionApp.vent.on("save:sectionFields",(options)=> @saveSectionFields(options))
+      App.vent.on("save:sectionFields",(options)=> 
+        @saveSectionFields(options)
+      )
       @section = options.section
       @getSectionEntryFields()
       
       
     getSectionEntryFields:()->
-      @section.getSectionEntryFields((collection) =>
-        @entriesCollection = collection
-        view = @getEntriesView(collection)
+      @entriesCollection = @section.getSectionEntryFields()
+      App.execute "when:fetched",@entriesCollection, =>
+        view = @getEntriesView()
+        
+        @listenTo view, "section:entries:updated", (options) =>
+          @section.addSelectedEntry(options.displayOrder)
+          @entriesCollection.setDisplayOrder()
+        
+
         @showSection(view)
-      )
+
 
     
     showSection: (view)->
       @getContentRegion().show view
 
     
-    getContentRegion: ()->
+    getContentRegion: ->
       App.request "settings:sections:content:region"
 
     
-    getEntriesView: (collection)->
+    getEntriesView: ->
       @entriesView = new List.Fields
-        collection: collection
+        collection: @entriesCollection
         model: @section
 

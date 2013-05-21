@@ -1,12 +1,15 @@
 #encoding: UTF-8
-# users = ["super_admin", "caretaker", "respondent"]
+users = ["super_admin", "caretaker", "respondent"]
 
-# users.each do |u|
-#   user = User.create(:email => "#{u}@orrigautur.com", :password => "asdfkj", :password_confirmation => "asdfkj")
-#   user.save
-#   user.roles.create(:name => u)
-#   user.create_person(:firstname => "Per #{u}", :lastname => "Mc#{u.capitalize}")
-# end
+users.each do |u|
+  user = User.create(:email => "#{u}@orrigautur.com", :password => "asdfkj", :password_confirmation => "asdfkj")
+  user.save
+  user.roles.create(:name => u)
+  user.create_person(:firstname => "Per #{u}", :lastname => "Mc#{u.capitalize}")
+end
+
+
+
 seed_question  = [
 "Hver var síðasta manneskja sem þú texted?",
 "Þegar er afmæli?",
@@ -107,20 +110,31 @@ seed_question  = [
 "Hefur þú fundið sanna ást þína?",
 "Hvað ættir þú að gera núna?",
 "Nafn eitt ex-boyfriends/ex-girlfriends þínum.",
-"Vissir þú alltaf finnst eins og þú ert ekki nógu góður?"
+"Vissir þú alltaf finnst eins og þú ert ekki nógu góður?",
+"Hefur þú stundum löngun til setjast að í Sasskatsjavan",
+"Vaknarður stundum í Asíu og mannst ekki hvernig þú komst þangað ?"
 ]
-
+entry_set_names = ["Spurningar um hitt of þetta", "Allskonar spurningar", "Líðan og heilsa"]
+section_names = [["Hvernig er..","Hver er...","Upplýsingar um.."],["Saga", "Heimili","Skóli"],["Í gær","Í dag","Á morgun"]]
 question_seed_count = 1
-4.times do |i|
-  entry_set = EntrySet.create(:name => "EntrySet_#{i}")
-  4.times do |s|
-    section = Section.create(:name => "EntrySet #{i} Section #{s}")
-    entry_set.entry_sets_sections.create(:display_order => s+1,:section_id => section.id)
 
+3.times do |i|
+  
+  entry_set = EntrySet.create(:name => entry_set_names[i])
+  
+  3.times do |s|
+    
+    section = Section.create(:name => section_names[i][s])
+    entry_set.entry_sets_sections.create(:display_order => s+1,:section_id => section.id)
+    
     4.times do |f|
-      entry_field = EntryField.create(:title => seed_question[question_seed_count],:field_type => :text)
+      
+      entry_field = EntryField.create(:title => seed_question[question_seed_count],:field_type => :text, :help_text => seed_question[(rand(10)*rand(10))])
       section.sections_entry_fields.create(:display_order => f+1, :entry_field_id => entry_field.id)
       question_seed_count += 1
+    
     end
+
   end
+  
 end
