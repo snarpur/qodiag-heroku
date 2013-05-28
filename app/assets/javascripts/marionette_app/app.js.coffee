@@ -15,8 +15,8 @@
     secondaryNavigationRegion: "#secondary-navigation-region"
     dialogRegion: Marionette.Region.Dialog.extend el: "#dialog-region"
   
-  App.addInitializer () ->
-    App.module("HeaderApp").start()
+  # App.addInitializer () ->
+  #   App.module("HeaderApp").start()
 
 
   App.reqres.setHandler "default:region", ->

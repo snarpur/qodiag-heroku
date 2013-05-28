@@ -13,6 +13,7 @@
 
 
 ActiveRecord::Schema.define(:version => 20130518111253) do
+  
   create_table "addresses", :force => true do |t|
     t.string   "street_1"
     t.string   "street_2"
@@ -94,6 +95,7 @@ ActiveRecord::Schema.define(:version => 20130518111253) do
     t.string  "rikisfang"
     t.string  "faedingarstadur"
     t.integer "latinn"
+  end
 
   create_table "entry_fields", :force => true do |t|
     t.string   "title"

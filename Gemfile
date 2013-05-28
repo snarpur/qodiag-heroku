@@ -67,7 +67,7 @@ group :development, :test do
   gem "email_spec"
   #  gem "ruby-debug"
   gem "nokogiri"
-  gem "launchy"
+  # gem "launchy"
   gem "wirble"
   gem "hirb-unicode"
   gem "awesome_print"
