@@ -2,10 +2,13 @@
 %html
   %head
     = include_gon
-    = yield(:head)
+    =yield(:head)
     =csrf_meta_tag
+
+    %link{:href => 'http://fonts.googleapis.com/css?family=Asap:400,700,700italic,400italic', :rel => 'stylesheet', :type => 'text/css'}
+    =stylesheet_link_tag "application"
     = javascript_include_tag "marionette_application"
-    = stylesheet_link_tag "marionette_application"
+
     %script{:type => 'text/javascript'}
       ="I18n.defaultLocale = '#{I18n.default_locale}';"
       ="I18n.locale = '#{I18n.locale}';"
@@ -22,34 +25,47 @@
       Qodiag - Quality of diagnosis
 
   %body{:class => yield(:body_class)}
-    #wrapper{:class => role_view}
-      #header-region
-        %h2 
-          Qodiag
-        %div
-          =render 'shared/log_in_out'
-      #flash
-        -flash.each do |name, msg|
-          %div{:class => name}
-            =msg
-      
-      #container{:class => yield(:css_hook)}
-        #help
-          %a{:href => "/pages/help"} 
-            Upplýsingar
-        %ul.main-nav
-          %li.home
-            %a{:class => 'c-icon', :href => "/users"} &#8962;
+    #page{:class => 'container'}
 
-        #secondary-navigation-region
-        
-        #content{:class => yield(:content_css_hook)}
-          = yield
+      #header{:class => 'row'}
+        %h1{:class => 'logo span2'}
+          Qodiag
+        %div{:class => 'span10'}
+          =render 'shared/log_in_out'
+
+      #navigation{:class => 'row'}
+        %ul{:class => 'primary span6'}
+          %li
+            %a{:href => "/users"}
+              %span{:class => 'icon-user'}
+              Skjólstæðingar
+        %ul{:class => 'secondary span6'}
+          %li
+            %a{:href => "/pages/help"}
+              %span{:class => 'icon-information'}
+              Upplýsingar
+          %li
+            %a{:href => "/#settings"}
+              %span{:class => 'icon-settings'}
+              Stillingar
+
+      #wrapper
+        #subject
+
+        #content
+          =yield
           
-      #wrapper_footer
-      
-    #footer
-      %span
-        ="Qodiag #{Date.today.year}  |  Quality of Diagnosis"
+      #footer
+        %span
+          ="Qodiag #{Date.today.year}  |  Quality of Diagnosis"
+
+    #footerwrap
+
+    #flash
+      -flash.each do |name, msg|
+        %div{:class => name}
+          =msg
+
     #dialog-region
     =render "shared/google_analytics"
+

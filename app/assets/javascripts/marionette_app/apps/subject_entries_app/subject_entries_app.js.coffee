@@ -8,7 +8,8 @@
 
   API =
     list:(personId,entrySetResponseId,sectionId)->
-      App.vent.trigger "show:subject:navigation",{app:"SubjectEntriesApp",personId: personId}
+      App.vent.trigger "show:subject:navigation",{app:"SubjectEntriesApp",personId: personId, currentItemName: 'entries'}
+     
       args = _.map _.compact(arguments), (i) -> (Number)(i)
       options = _.object(['personId','entrySetResponseId','sectionId'],args)
 

@@ -9,7 +9,7 @@
 
 
     getNavigationRegion:->
-      App.request "secondary:navigation:region"
+      App.request "subject:header:region"
 
 
     getNavigationView:->

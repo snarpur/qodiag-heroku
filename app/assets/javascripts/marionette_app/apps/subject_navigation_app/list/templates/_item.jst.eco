@@ -1,1 +1,4 @@
-<%- @linkTo(@name,@url,@options) %>
+<a class="button second" href="<%- @url %>" alt="<%- @text %>">
+  <span class="<%- @iconClass %>"></span>
+  <%- @text %>
+</a>
