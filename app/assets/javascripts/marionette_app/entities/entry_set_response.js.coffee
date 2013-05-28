@@ -6,15 +6,13 @@
     urlRoot: () ->
       Routes.entry_set_responses_path()
 
+    
     getSectionEntries:->
       entries = App.request "entry:values:entities",
                   entrySetResponseId: @id
-                  sectionId: @get('section_id')
+                  sectionId: @get('sectionId')
 
      
-
-
-
 
   class Entities.EntrySetResponses extends Entities.Collection
     model: Entities.EntrySetResponse

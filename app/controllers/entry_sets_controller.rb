@@ -3,34 +3,13 @@ class EntrySetsController < ApplicationController
 
   def index
     @entry_sets = EntrySet.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @entry_sets }
-    end
   end
 
-  # GET /entry_sets/1
-  # GET /entry_sets/1.json
   def show
     @entry_set = EntrySet.find(params[:id])
   end
 
-  # GET /entry_sets/new
-  # GET /entry_sets/new.json
-  def new
-    @entry_set = EntrySet.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @entry_set }
-    end
-  end
-
-  # GET /entry_sets/1/edit
-  def edit
-    @entry_set = EntrySet.find(params[:id])
-  end
 
   # POST /entry_sets
   # POST /entry_sets.json
@@ -52,16 +31,10 @@ class EntrySetsController < ApplicationController
   # PUT /entry_sets/1.json
   def update
     @entry_set = EntrySet.find(params[:id])
+    @entry_set.update_attributes(params[:entry_set])
 
-    respond_to do |format|
-      if @entry_set.update_attributes(params[:entry_set])
-        format.html { redirect_to @entry_set, notice: 'Entry set was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @entry_set.errors, status: :unprocessable_entity }
-      end
-    end
+    render 'show'
+    
   end
 
   # DELETE /entry_sets/1

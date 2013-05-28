@@ -11,13 +11,20 @@
     template: "entry_fields_section/list/templates/_field"
     tagName: 'li'
     
-    events:
-      "click span.trash" : "removeEntry"
-      "update:display:order" : (e,order)-> @model.trigger("update:display:order",order) 
+    triggers:
+      "click span.trash" : "remove:field"
 
-    
-    removeEntry:()->
-      @model.collection.trigger("itemview:remove:entry",@model)
+    events:
+      'update:display:order': 'setDisplayOrder'
+
+
+
+    setDisplayOrder:(e,displayOrder)->
+      @model.updateDisplayOrder(displayOrder)
+
+    onRemoveField: ->
+      @model.collection.removeField(@model)
+ 
 
 
   class List.Fields extends App.Views.CompositeView
@@ -30,20 +37,27 @@
     onCompositeCollectionRendered: ->
       _this = @
       listEl = @$('ul')
+      @model.trigger "change:current:dropzone", listEl    
+      
+
       options=
         update: (e,ui) ->
           displayOrder = $('li',this).index(ui.item)
           ui.item.trigger("update:display:order",displayOrder)
-          _this.trigger("section:entries:updated", {displayOrder: displayOrder})
+          _this.trigger("section:entries:updated", {displayOrder: displayOrder, field: _this.newField})
         
         change: (e,ui) ->
           _this.placeHolderElement = ui.item
+        
         deactivate: (e,ui) ->
-          _this.model.unset("selectedEntry")
+          _this.newField = null
+
+            
 
       listEl.sortable(options)
+      
       listEl.on "item:selected",(e,model) ->
-        _this.model.set("selectedEntry",model)
+        _this.newField = model
 
     initialize: (options) ->
       @listenTo @collection, "add",@removePlaceHolder

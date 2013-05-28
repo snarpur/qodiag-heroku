@@ -3,6 +3,7 @@
 	class Entities.Model extends Backbone.Model
     attributeList: []
     nestedAttributeList: []
+    blacklist:[]
 
     destroy: (options = {}) ->
       _.defaults options,
@@ -41,6 +42,7 @@
 
 
 
+
     _isBackbone:(attribute)->
       (attribute instanceof Backbone.Model or attribute instanceof Backbone.Collection)
     
@@ -52,17 +54,20 @@
     
     _inAttributeList:(key)->
        _.contains(@attributeList, key)
-    
+  
+    _inBlacklist:(key)->
+        _.contains(@blacklist, key)
+
     toJSON:=>
       json = $.extend(true,{},@.attributes)
       _.each(json,((v,k)->
-        if @_inNestedAttributeList(k) 
-          if @_isBackbone(v)
+        if @_inNestedAttributeList(k) and !(_.isNull(v) or v?.length is 0)
+          if @_isBackbone(v) and 
             json["#{k}_attributes"] = v.toJSON()
           else
             json["#{k}_attributes"] = v
           delete json[k]
-        else if @_isHelper(k,v)
+        else if @_isHelper(k,v) or @_inBlacklist(k)
           delete json[k]
 
       ),@)

@@ -3,11 +3,11 @@
   
 
   API =
-    listEntryFields: ()->
+    listEntryFields: (options)->
       ctrl = new EntryFieldsSidebarApp.List.Controller
-      ctrl.listSections()
+      ctrl.list(options)
 
-  App.vent.on "show:settings:section:fields",(options)=>
-    API.listEntryFields()
+  App.commands.setHandler "show:settings:sidebar:fields",(options)=>
+    API.listEntryFields(options)
   
 

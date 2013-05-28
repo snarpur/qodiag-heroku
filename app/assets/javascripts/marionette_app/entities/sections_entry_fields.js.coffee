@@ -3,12 +3,12 @@
   class Entities.SectionsEntryFields extends Entities.Model
     
     initialize:->
-      @on("update:display:order",@updateDisplayOrder)
       @url= ->
         Routes.section_sections_entry_fields_path(@id)
      
 
     updateDisplayOrder:(displayOrder)=>
+      console.log displayOrder
       displayOrder += 1
       squeeze = if (displayOrder - @get('display_order')) > 0 then 0.5 else -0.5
       @.set("display_order",displayOrder+squeeze)
@@ -16,21 +16,23 @@
     destroy:->
       @url = "section_entry_fields/#{@id}"
       super
-  
-  
-
 
   class Entities.SectionsEntryFieldsCollection extends Entities.Collection
     model: Entities.SectionsEntryFields
     
     
     initialize:(models,options)->
-      @on("itemview:remove:entry",@removeFromSection)
 
-      @sectionId = options.sectionId
-      @url = -> 
-        if @sectionId
-          Routes.section_sections_entry_fields_path(@sectionId)
+      @section = options.section
+      
+      @on "add remove", (model,collection,opt) => 
+        action = if opt.add then 'add' else 'remove'
+        @section.trigger "#{action}:fields",{model: model}
+              
+
+      @url = ->
+        if @section
+          Routes.section_sections_entry_fields_path(@section.id)
 
     
     comparator: (entry) ->
@@ -43,19 +45,23 @@
       @trigger("reset")
 
     
-    removeFromSection: (model) ->
+    removeField: (model) ->
       _this = @
-      model.destroy
-        success:->
-          _this.setDisplayOrder()
-        error:->
-          throw "error in - entities/sections_entry_fields.js.coffee:removeFromSection()"
+      if model.id
+        model.destroy
+          success:->
+            _this.setDisplayOrder()
+          error:->
+            throw "error in - entities/sections_entry_fields.js.coffee:removeFromSection()"
+      else
+        @remove(model)
+        @setDisplayOrder()
 
 
 
   API =
     getEntryFieldEntities: (options) ->
-      fields = new Entities.EntryFieldsCollection([],_.omit(options,'callback'))
+      fields = new Entities.EntryFields([],_.omit(options,'callback'))
       callback = options.callback
       fields.fetch
         reset: true

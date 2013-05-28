@@ -2,28 +2,32 @@
   
   class Show.Layout extends App.Views.Layout
     template: "subject_entries_app/show/show_layout"
+    templateHelpers:->
+      helpers=
+        regionId:()=>
+          @options.regionId  
 
-     
 
     regions: (options)->
-      entryValueId = options.model.id
+      regionId = options.regionId
       regions=
-        entryRegion: "#entry-region-#{entryValueId}"
-        commentsRegion: "#comments-region-#{entryValueId}"
-        newCommentRegion: "#new-comment-region-#{entryValueId}"
+        entryRegion: "#entry-region-#{regionId}"
+        commentsRegion: "#comments-region-#{regionId}"
+        newCommentRegion: "#new-comment-region-#{regionId}"
 
 
 
 
   class Show.Comment extends App.Views.ItemView
     template: "subject_entries_app/show/_comment"
-    tagName: 'tr'
+    emptyView: Show.EmptyEntry
+    tagName: 'li'
 
 
   class Show.Comments extends App.Views.CompositeView
     template: "subject_entries_app/show/comments"
     itemView: Show.Comment
-    itemViewContainer: 'tbody'
+    itemViewContainer: 'ul'
 
     events:
       "click button": "newComment"
@@ -49,8 +53,21 @@
     template: "subject_entries_app/show/_entry"
     tagName: "p"
 
+  class Show.EmptyEntry extends App.Views.ItemView
+    template: "subject_entries_app/show/_entryEmpty"
+    tagName: "p"
+
+
    
   class Show.Entries extends App.Views.CollectionView
     itemView: Show.Entry
+    emptyView: Show.EmptyEntry
+    # buildItemView:(item, ItemViewType, itemViewOptions) ->
+    #   console.log arguments
+    #   options = _.extend({model: item}, itemViewOptions)
+    #   view = new ShowEntry(options)
+
+
+    # emptyView: Show.EmptyEntry
 
 

@@ -1,2 +1,1 @@
-<% console.log @ %>
-<%- @linkTo(@name,"#{@routeTo.person_path(@person_id)}/entries/item/#{@entry_set_id}/sections/#{@display_order}")%>
+<%- @linkTo(@name,"")%>

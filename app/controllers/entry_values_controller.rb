@@ -13,7 +13,6 @@ class EntryValuesController < ApplicationController
 
   def show
     @entry_value = EntryValue.find(params[:id])
-    KK.log @entry_value.inspect
   end
 
 end

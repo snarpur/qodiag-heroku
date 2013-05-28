@@ -1,9 +1,4 @@
-<table>
-  <thead>
-    <tr>
-      <th>skrifað af</th>
-    </tr>
-  </thead>
-  <tbody></tbody>
-</table>
+<ul>
+</ul>
+<hr>
 <button class="btn btn-success btn-mini">Bæta við</button>

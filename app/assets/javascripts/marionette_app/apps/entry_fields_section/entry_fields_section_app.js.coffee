@@ -4,10 +4,8 @@
   API =
     listFields: (options)->
       ctrl = new EntryFieldsSectionApp.List.Controller
-      ctrl.listFields(options)
+      ctrl.list(options)
 
   
-  # App.reqres.setHandler("settings:section:sortable:list", => EntryFieldsSectionApp.List.Controller.getSortable())
-
-  App.vent.on "show:settings:section:fields",(options)=>
+  App.commands.setHandler "show:settings:section:fields",(options)=>
     API.listFields(options)

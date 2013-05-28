@@ -3,10 +3,10 @@ Snarpur::Application.routes.draw do
 
 
   resources :entry_set_responses 
-  match "person/:person_id/entry_set_responder_items(/:id)" => "people/entry_set_responder_items#index", :via => :get, :as => :person_entry_set_items
+  get "person/:person_id/entry_set_responder_items(/:id)" => "people/entry_set_responder_items#index", :as => :person_entry_set_items
 
   resources :entry_values
-  match 'entry_values/:entry_set_response_id/:section_id(/:id)' => 'entry_values#index', :via => :get
+  get 'entry_set_responses/:entry_set_response_id/section/:section_id' => 'entry_set_responses/sections#index', :as => :entry_set_response_section
 
   resources :entry_sets do
     resources :sections  

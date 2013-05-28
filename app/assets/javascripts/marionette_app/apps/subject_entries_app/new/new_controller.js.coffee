@@ -5,7 +5,7 @@
 
     initialize:(options)->
       {@region,@entry} = options
-    
+
     newEntry:->
       formView = @showForm()
       @listenTo formView, "form:cancel",=>
@@ -22,9 +22,8 @@
 
     createModel:->
       attributes =
-        entry_field_id: @entry.get('entry_field_id')
+        entry_field_id: @entry.get('id')
         entry_set_response_id:  @entry.get('entry_set_response_id')
-        commentable_id: @entry.get('id')
         person_id: App.request("get:current:user").get('person_id')
         text_value: ""
 
@@ -37,6 +36,7 @@
       entry
 
     getFormView:->
+      console.log @entry.get('caretaker_entry_values')
       new New.Entry 
         model: @createModel() 
-        collection: @entry.get('comments')
+        collection: @entry.get('caretaker_entry_values')

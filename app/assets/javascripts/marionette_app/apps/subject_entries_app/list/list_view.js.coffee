@@ -11,6 +11,9 @@
   class List.SelectItem extends App.Views.ItemView
     template: "subject_entries_app/list/_select_item"
     tagName: "option"
+
+    triggers:
+      "click": "select:response"
  
 
   class List.SelectItems extends App.Views.CollectionView
@@ -23,26 +26,22 @@
     template: "subject_entries_app/list/_section"
     tagName: "li"
     className: ->
-      "active"  if @model.isCurrentSection()
+      "active"  if @model.collection.isCurrentSection(@model)
 
-    initialize:->
-      console.log @
-      itemViewOptions = _.omit(@options,'model')
-      console.log "itemViewOptions", itemViewOptions
-      unless _.isEmpty(itemViewOptions)
-        helpers = @templateHelpers()
-        _.each(itemViewOptions,((v,k)->
-          console.warn v,k
-          helpers[k] = () -> _.result(v)
-          ),@)
-        @templateHelpers = ()-> helpers
+    triggers:
+      "click a" : "set:current:section"
+  
 
-      console.log helpers
 
   class List.Sections extends App.Views.CollectionView
     itemView: List.Section
     tagName: "ul"
     className: "nav nav-tabs"
+
+    initialize:->
+      @on "childview:set:current:section", (view)->
+        @collection.currentSectionId = view.model.id
+        @collection.trigger("reset")
 
 
 
@@ -55,7 +54,8 @@
       @model.set('entryValueRegionName',@entryValueRegionName())
 
     entryValueRegionName: ->
-      "entry-value-region-#{@model.get("entry_value").id}"
+      # "entry-value-region-#{@model.get("entry_value").id}"
+      "entry-value-region-#{@cid}"
  
 
   class List.Entries extends App.Views.CollectionView

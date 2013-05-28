@@ -3,38 +3,34 @@
   class List.Controller extends App.Controllers.Base
 
 
-    listFields: (options) ->
-      App.vent.on("save:sectionFields",(options)=> 
-        @saveSectionFields(options)
-      )
-      @section = options.section
-      @getSectionEntryFields()
+    list: (options) ->
+      # App.vent.on("save:sectionFields",(options)=> 
+      #   @saveSectionFields(options)
+      # )
+
+      @getSectionEntryFields(options)
       
       
-    getSectionEntryFields:()->
-      @entriesCollection = @section.getSectionEntryFields()
-      App.execute "when:fetched",@entriesCollection, =>
-        view = @getEntriesView()
-        
+    getSectionEntryFields:(options)->
+      {model,region} = options
+      entries = model.getSectionEntryFields()
+      
+      App.execute "when:fetched",entries, =>
+        view = @getEntriesView(entries,model)
+        model.collection.trigger("fields:fetched")
+
         @listenTo view, "section:entries:updated", (options) =>
-          @section.addSelectedEntry(options.displayOrder)
-          @entriesCollection.setDisplayOrder()
+          model.addSelectedField options if options.field 
+          entries.setDisplayOrder()
         
-
-        @showSection(view)
-
-
-    
-    showSection: (view)->
-      @getContentRegion().show view
+        region.show view
+   
 
     
-    getContentRegion: ->
-      App.request "settings:sections:content:region"
+    getEntriesView:(entries,section)->
+      entriesView = new List.Fields
+        collection: entries
+        model: section
 
-    
-    getEntriesView: ->
-      @entriesView = new List.Fields
-        collection: @entriesCollection
-        model: @section
+
 

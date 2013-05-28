@@ -11,7 +11,7 @@
       {personId} = options
       models = [
         {name: "Mælingar", url: "#{Routes.person_path(personId)}", options: {external: true} }
-        {name: "Saga", url: "#{Routes.person_path(personId)}/entries"}
+        {name: "Saga", url: "#{Routes.person_path(personId)}/entrySetResponses"}
         {name: "Persónu upplýsingar", url: "#{Routes.person_path(personId)}/information", options: {external: true}}
       ]
 

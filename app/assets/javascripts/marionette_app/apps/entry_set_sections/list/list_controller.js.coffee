@@ -3,68 +3,134 @@
 
   class List.Controller extends App.Controllers.Base
     
-    initialize:()->
+    initialize:->
       App.vent.trigger("show:settings")
-      App.reqres.setHandler("settings:sections:content:region", => @getContentRegion())
-      App.reqres.setHandler("settings:sections:sidebar:region", => @getSidebarRegion())
-   
-    
-    listSections:(options) ->
-      @currentEntrySetId = options.entrySetId
-      @sectionNo = options.sectionNo
+     
 
+    
+    list:(options) ->
       @getSettingsContentRegion().show @getLayout()
-      @getSections()
-  
+
+      @getContentRegion().once "show", (region)=> 
+
+        @executeSidebar 
+          droppableCollection: region.model.collection
+          droppableElement: region.$itemViewContainer
+
+      @getEntrySet(options.entrySetId)
+      @getSections(options)
+    
+
+
+    getEntrySet:(id)->
+      entrySet = App.request "entry:set:entity", {id: id}
       
-    getSections:->
-      options=
-        sectionNo: @sectionNo
-        entrySetId: @currentEntrySetId
-      @sectionCollection = App.request "entry:set:sections:entities", options
-      App.execute "when:fetched", @sectionCollection, =>
-        @currentSection = _.first(@sectionCollection.where({display_order: @sectionNo}))
-        @showSectionsNavigation(@sectionCollection)
-        App.vent.trigger "show:settings:section:fields", {section: @currentSection}
-        @showTitle()
+      App.execute "when:fetched", entrySet, =>
+        @showEntrySetTitle entrySet
+
+
+
+    getSections:(options)->
+      sections = App.request "entry:set:sections:entities", options
+      
+      App.execute "when:fetched", sections, =>
+        @showSectionsNavigation(sections)
+        
+        unless sections.length is 0
+          @executeFields(model: sections.getCurrentSection())
+        
+    
+
+
+    executeFields:(options)->
+      App.execute "show:settings:section:fields", 
+        _.extend options, region: @getContentRegion()
+
+      @showTitle(options.model)
+        
+
+
+    executeSidebar:(options) ->
+      App.execute "show:settings:sidebar:fields",
+        _.extend options, region: @getSidebarRegion()
+        
 
 
     showSectionsNavigation: (sections) ->
-      @getNavigationRegion().show @getNavigationView(sections)
+      view = @getNavigationView(sections)
+      @getNavigationRegion().show view
+      
+      @listenTo sections ,"change:current:section", (options)=>
+        @executeFields options
+        App.navigate @sectionUrl(options.model),{replace:true}
+
+      @listenTo view, "add:new:section:clicked", (view)=>
+        App.execute "create:section", 
+          model: view.collection.newSection()
+          collection: view.collection
+          activeView: @getLayout()
+
+
     
-    
-    showTitle: ->
-      view = new List.Title model: @currentSection
+    showTitle:(section) ->
+      view = new List.Title model: section
       @getLayout().sectionTitleRegion.show view
 
+      @listenTo view, "edit:title",(options) =>
+        
+        App.execute "edit:section", 
+          model: options.model
+          activeView: @getLayout()
+
+    
+    
+    showEntrySetTitle:(entrySet)->
+      view = new List.Title model: entrySet
+      @getLayout().entrySetTitleRegion.show view
+
+      @listenTo view, "edit:title",(options) =>
+        
+        App.execute "edit:section", 
+          model: entrySet
+          activeView: @getLayout()
+   
+    
+    
+    getNavigationView: (collection)->
+      new List.SectionsNav 
+        collection: collection
+        model: collection.getCurrentSection()
+
+     
     
     getNavigationRegion: ->
       @getLayout().navigationRegion
+    
     
     
     getContentRegion: ->
       @getLayout().sectionContentRegion
 
 
+    
     getSidebarRegion: ->
-      @getLayout().entryFieldsSidebarRegion
+      @getLayout().entryFieldsSidebarRegion    
     
     
-    getNavigationView: (collection)->
-      new List.SectionsNav 
-        collection: collection
-        model: @currentSection
-        itemViewOptions: 
-          entrySetId: @currentEntrySetId
-    
-    
+
     getLayout: ()->
       @layout ?= new List.Layout
 
     
+
     getSettingsContentRegion: ()->
       App.request("settings:content:region")
 
+
+    
+    sectionUrl:(section)->
+      params = _.values(section.pick("entry_set_id","id"))
+      "settings#{Routes.entry_set_section_path(params...)}"
 
 
 

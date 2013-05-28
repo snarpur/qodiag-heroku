@@ -2,20 +2,32 @@
   
   class Entities.EntrySetSection extends Entities.Model
     paramRoot: 'section'
+    blacklist: ['entry_set_id', 'display_order']
     nestedAttributeList: ['sections_entry_fields','entry_sets_sections']
 
 
     initialize: () ->
-      @set("responseId",@collection.responseId) if @collection.responseId
+      @set("responseId",@collection.responseId) if @collection?.responseId?
+
       @url= ()->
         if @isNew()
           Routes.sections_path()
         else
           Routes.section_path(@get('id'))
+    
+
+
+    getSectionEntryResponses:->
+      entries = new App.Entities.EntryFields([],{})
+      entries.url = Routes.entry_set_response_section_path(@get('responseId'),@id)
+      entries.fetch
+        reset: true
+      entries
 
     
+    
     getSectionEntryFields: (callback)->
-      entryFields = new App.Entities.SectionsEntryFieldsCollection([],{sectionId: @get('id')})
+      entryFields = new App.Entities.SectionsEntryFieldsCollection([],{section: @})
       unless @isNew()
         @set('sections_entry_fields',entryFields)
         entryFields.fetch
@@ -23,14 +35,19 @@
         entryFields
 
 
-    addSelectedEntry:(display_order) ->
-      if @get('selectedEntry')
-        model= 
-          entry_field_id: @get('selectedEntry').get('id')
-          section_id: @get('id')
-          display_order: display_order
-          entry_field: @get('selectedEntry').toJSON()
-        @get("sections_entry_fields").add [model],{at: display_order}
+    
+    addSelectedField:(options) ->
+      {displayOrder, field} = options
+      
+      model= 
+        entry_field_id: field.get('id')
+        section_id: @get('id')
+        display_order: displayOrder
+        entry_field: field.toJSON()
+      
+      fields = @get("sections_entry_fields")
+      fields.add [model],{at: displayOrder}
+
 
 
     saveEntryFields: ->
@@ -45,56 +62,90 @@
           throw "error in entities/entry_set_sections.js.coffee:saveEntryFields()"
       fields.save(fields.toJSON(),callbacks)
 
-    isCurrentSection:->
-      @get('display_order') == @collection.sectionNo
 
+
+    isCurrentSection:->
+      @collection.isCurrentSection(@)
+    
+
+
+    entryFieldIds:->
+      if  @get("sections_entry_fields")
+        @get("sections_entry_fields").pluck('entry_field_id')
+      else
+        @get('entry_field_ids')
 
 
   
-
-
-
-
-
-
-
-
-
 
   class Entities.EntrySetSectionsCollection extends Entities.Collection
     model: Entities.EntrySetSection
     
     
+
     initialize:(models,options)->
-      {@entrySetId,@responseId,@sectionNo} = options
+      {@entrySetId,@responseId,@currentSectionId,@sectionNo} = options
+      
       @url = -> 
         Routes.entry_set_sections_path(@entrySetId)
+
+      @on "change:current:section", (options)->
+        @currentSectionId = options.model.id
+        @currentSection = options.model
+      
+      
+
+    entryFieldIds:->
+      _.flatten _.map @.models, (i)->  i.entryFieldIds()
+
+
+    
+    hasFieldWithId: (id) ->
+      _.contains(@entryFieldIds(), id)
+
+
+
+    getCurrentSection: ->
+      if @currentSectionId then @get(@currentSectionId) else @first()
+
+
+    
+    isCurrentSection:(section) ->
+      section.id == @getCurrentSection().id
+
 
     
     comparator:->
       @get('display_order')
 
+
     
     newSection:()->
       attributes= 
-        entry_sets_sections: [_.pick(@last().attributes,"display_order","entry_set_id")]
-      attributes.entry_sets_sections[0].display_order++
+        entry_sets_sections: [{entry_set_id: @entrySetId, display_order: @length + 2 }]
       new @model(attributes)
+
     
     
     getLastDisplayNo:->
       @last().get("display_order")
+
 
     
     setCurrentToLast:->
       @sectionNo = @last().get("display_order")
 
 
+
     isCurrentLast:->
       @size() == @sectionNo
 
+
+
     isCurrentFirst:->
       @sectionNo == 1
+
+
 
     addNewSection:->
       section = @newSection()

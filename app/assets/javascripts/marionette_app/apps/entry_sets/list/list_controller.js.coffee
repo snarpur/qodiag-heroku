@@ -11,11 +11,25 @@
         @showEntrySets(entrySetsView)
         
     
+    
     showEntrySets: (entrySetsView) ->
       @region.show entrySetsView
+
+      @listenTo entrySetsView, "create:entry:set", =>
+        
+        newEntrySet = App.request "create:entry:set:entity"
+       
+        @listenTo newEntrySet,'created', => 
+          App.navigate(@newEntrySetPath(newEntrySet),{trigger: true})
+
     
 
     getEntrySetsView: ->
       new List.EntrySets
         collection: @entrySets
+
+    
+
+    newEntrySetPath:(entrySet)->
+      "settings#{Routes.entry_set_sections_path(entrySet.get('id'))}"
     

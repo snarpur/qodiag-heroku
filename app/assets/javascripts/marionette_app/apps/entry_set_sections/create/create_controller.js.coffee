@@ -2,20 +2,42 @@
   
   Create.Controller =
 
-    new:(sections)->
-      newSection = sections.newSection()
-      dialogView = new Create.Section model: newSection
-      App.dialogRegion.show dialogView
+    create:(options)->
+      options.action = 'create'
+      @showDialog(options)
 
-      dialogView.on "save:section", ()=>
-        _this = @
-        newSection.save newSection.attributes,
-          success: ->
-            sections.add(newSection)
-            dialogView.trigger("dialog:close")
-            App.navigate(_this.successPath(newSection), trigger: true)
-          error: ->
-            throw "entry_set_sections/create/create_controller.js.coffee:new()"
+
+    edit:(options)->
+      options.action = 'edit'
+      @showDialog(options)
+
+    
+    showDialog:(options)->
+      @dialogView = new Create.Section model: options.model
+      App.dialogRegion.show @dialogView
+
+      @dialogView.on "save:section", => @saveSection(options)
+
    
+    saveSection:(options)->
+      {model,collection,activeView,action} = options
+      _this = @
+      model.save model.attributes,
+        success: ->
+          if action is 'create'
+            collection.add(model)
+            collection.trigger("change:current:section", {model: model})
+            App.navigate(_this.successPath(model))
+          else if action is 'edit'
+            model.trigger('edit:complete')
+
+
+          _this.dialogView.trigger("dialog:close")
+          activeView.trigger("section:#{action}:complete")
+          
+        error: ->
+          throw "entry_set_sections/create/create_controller.js.coffee:new()"
+
+
     successPath: (section) ->
-      "settings#{Routes.entry_set_section_path(section.get('entry_set_id'),section.get('display_order'))}"
+      "settings#{Routes.entry_set_section_path(section.get('entry_set_id'),section.id)}"

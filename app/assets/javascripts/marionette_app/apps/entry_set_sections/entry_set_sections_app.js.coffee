@@ -1,31 +1,35 @@
  @Qapp.module "EntrySetSectionsApp", (EntrySetSectionsApp, App, Backbone, Marionette, $, _) ->
-  # @startWithParent = false
+
   class EntrySetSectionsApp.Router extends Marionette.AppRouter
     appRoutes:
-      "settings/entry_sets/:entry_set_id/sections(/:id)" : "listSections"
+      "settings/entry_sets/:entry_set_id/sections(/:section_id)" : "list"
 
 
   API =
-    listSections: (entrySetId,sectionNo) ->
-      sectionNo ?= 1
+    list: (entrySetId,sectionId) ->
       options=
         entrySetId: (Number)(entrySetId)
-        sectionNo: (Number)(sectionNo)
+        currentSectionId: (Number)(sectionId) if sectionId
       ctrl = new EntrySetSectionsApp.List.Controller
-      ctrl.listSections(options)
+      ctrl.list(options)
   
-    newSection:(sections)->
-      EntrySetSectionsApp.Create.Controller.new(sections)
+    
+    createSection:(section)->
+      EntrySetSectionsApp.Create.Controller.create(section)
 
-  EntrySetSectionsApp.on "start", (options)->
-    @vent = new Backbone.Wreqr.EventAggregator()
+    editSection:(section)->
+      EntrySetSectionsApp.Create.Controller.edit(section)
 
-    @vent.on "new:section",(sections) ->
-      API.newSection(sections) 
 
-  
-  # App.reqres.setHandler("settings:sections:content:region", => EntrySetSectionsApp.List.Controller.getContentRegion())
-  # App.reqres.setHandler("settings:sections:sidebar:region", => EntrySetSectionsApp.List.Controller.getSidebarRegion())
+  App.commands.setHandler "create:section",(section) ->
+    API.createSection(section) 
+
+
+  App.commands.setHandler "edit:section",(section) ->
+    API.editSection(section) 
+
+
+
   
   App.addInitializer ->
     new EntrySetSectionsApp.Router

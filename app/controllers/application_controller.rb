@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   layout :application_layout
-
+  before_filter :get_user
   def index
     gon.rabl
     @user = get_user

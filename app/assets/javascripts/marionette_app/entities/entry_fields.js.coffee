@@ -2,13 +2,12 @@
   
   class Entities.EntryField extends Entities.Model
   
-  class Entities.EntryFieldsCollection extends Entities.Collection
+  class Entities.EntryFields extends Entities.Collection
     model: Entities.EntryField
     
     
     initialize:(models,options)->
-      @sectionId = options.sectionId
-      @entrySetId = options.entrySetId
+      {@sectionId,@entrySetId} = options
 
 
       @url = -> 
@@ -24,7 +23,10 @@
     getLiveCollection:->
       @liveCollection
     
-    createSearchCollection:->
+    createSearchCollection:(disabledIds = [])->
+      unless _.isEmpty(disabledIds)
+        @remove @filter (model)-> _.contains(disabledIds,model.id)
+      
       @liveCollection = window.queryEngine.createLiveCollection(@models)
       @on("search:update",(searchString)-> 
         @updateSearchCollection(searchString)
@@ -45,18 +47,14 @@
 
   API =
     getEntryFieldEntities: (options) ->
-      fields = new Entities.EntryFieldsCollection([],_.omit(options,'callback'))
-      callback = options.callback
+      fields = new Entities.EntryFields([],_.omit(options,'callback'))
       fields.fetch
         reset: true
-        success: ->
-          callback fields
+      fields
 
-  
-  App.reqres.setHandler "sectionEntryFields:entities", (options) ->
-    API.getEntryFieldEntities options
+ 
 
-  App.reqres.setHandler "entryFields:entities", (options) ->
+  App.reqres.setHandler "entry:fields:entities", (options = {}) ->
     API.getEntryFieldEntities options
 
 

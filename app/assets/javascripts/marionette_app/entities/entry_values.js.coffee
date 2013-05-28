@@ -6,27 +6,31 @@
 
     initialize:->
       if @get('comments')
-        @set("comments", new Entities.Values(@get('comments')))
+        @set("comments", new Entities.EntryValues(@get('comments')))
 
     entrySetResponseId:->
       @.get('entry_set_response_id') or @collection?.entrySetResponseId
       
       
-  class Entities.Values extends Entities.Collection
+  class Entities.EntryValues extends Entities.Collection
     model: Entities.EntryValue
     
     
     initialize:(models,options)->
       if options
-        {@entrySetResponseId,@sectionId} = options
+        {@entrySetResponseId,@sectionId,@personId} = options
         @url= ->
           "#{Routes.entry_values_path()}/#{@entrySetResponseId}/#{@sectionId}"
 
-
+    buildEntryValue:(field)->
+      new Entities.EntryValue
+        person_id: @personId
+        entry_set_response_id: @entrySetResponseId
+        entry_field_id: field.get('id')
 
   API = 
     getEntryValues:(options)->
-      values = new Entities.Values([],options)
+      values = new Entities.EntryValues([],options)
       values.fetch
         reset: true
       values

@@ -11,8 +11,9 @@
   
   class List.EntrySets extends App.Views.CompositeView
     template: "entry_sets/list/templates/entrySets"
-    tagName: 'table'
-    className: 'table table-stiped table-bordered'
     itemView: List.EntrySet
     emptyView: List.Empty
     itemViewContainer: "tbody"
+
+    triggers:
+      'click button.btn': 'create:entry:set'

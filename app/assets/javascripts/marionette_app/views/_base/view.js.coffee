@@ -32,13 +32,19 @@
       routeTo:
         Routes
       
+      t:(path)->
+
+      l:(option, string)->
+        I18n.l(option,string)
+      
+
       currentUser: ->
         App.request("get:current:user").toJSON()
       
       linkTo: (name, url, options = {}) ->
         _.defaults options,
           external: false
-        if options.external isnt true and url.startsWith("/")
+        if options.external isnt true and _(url).startsWith("/")
           url = url.slice(1)
         url = "#" + url unless options.external
         

@@ -3,16 +3,16 @@
   class SubjectEntriesApp.Router extends Marionette.AppRouter
     appRoutes:
        "people/:personId/entries" : "list"
-       "people/:personId/entries/item/:responderItemId(/section/:sectionNo)" : "list"
+       "people/:personId/entries/:entry_set_response_id(/section/:section_id)" : "list"
   
 
   API =
-    list:(personId,responderItemId,sectionNo)->
+    list:(personId,entrySetResponseId,sectionId)->
       App.vent.trigger "show:subject:navigation",{app:"SubjectEntriesApp",personId: personId}
       args = _.map _.compact(arguments), (i) -> (Number)(i)
-      options = _.object(['personId','responderItemId','sectionNo'],args)
+      options = _.object(['personId','entrySetResponseId','sectionId'],args)
 
-      ctrl = new SubjectEntriesApp.List.Controller
+      ctrl = new SubjectEntriesApp.List.Controller()
       ctrl.list(options)
 
     create:(options)->
@@ -20,9 +20,8 @@
       ctrl.newEntry()
   
     show:(options)->
-
-      ctrl = new SubjectEntriesApp.Show.Controller(options)
-      ctrl.show()
+      ctrl = new SubjectEntriesApp.Show.Controller()
+      ctrl.show(options)
 
   App.commands.setHandler "new:entry:comment", (options) ->
     API.create options
