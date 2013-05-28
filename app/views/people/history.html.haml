@@ -1,7 +1,11 @@
+=content_for :content_title, "#{@person.full_name}"
+=content_for :content_title_sub, "#{@person.age} ára"
+
 =content_for :subject_nav do
   = render "people/patient/patient_nav"
 
-=content_for :content_css_hook, 'under-construction'
+=content_for :subject_content do
+  =render "shared/content_title"
 
 %div{:id => 'person'}
   %div{:class => 'sidebar'}

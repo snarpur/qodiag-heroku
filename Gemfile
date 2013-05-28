@@ -40,6 +40,7 @@ group :assets do
   gem 'uglifier', '>=1.0.3'
   gem 'closure-compiler'
   gem 'compass-rails'
+  gem 'compass_twitter_bootstrap'
 end
 
 group :development do
@@ -47,7 +48,8 @@ group :development do
   gem 'sextant'
   gem 'better_errors', :require => RUBY_PLATFORM.include?('darwin') ? 'better_errors' : false
   gem 'binding_of_caller', :require => RUBY_PLATFORM.include?('darwin') ? 'binding_of_caller' : false
-  gem 'meta_request', '0.2.1', :require => RUBY_PLATFORM.include?('darwin') ? 'binding_of_caller' : false
+  #gem 'meta_request', '0.2.1', :require => RUBY_PLATFORM.include?('darwin') ? 'binding_of_caller' : false
+  gem 'meta_request'
 end
 
 group :development, :test do

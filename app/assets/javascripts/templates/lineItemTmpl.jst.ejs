@@ -1,4 +1,4 @@
-<ul>
-<li><em>Beiðni send:</em><b><%= I18n.strftime(new Date(created_at),"%A %-d %B %Y")%></b></li>
-<li><em>Skiladagur:</em><b><%= I18n.strftime(new Date(deadline),"%A %-d %B %Y") %></b></li>
+<ul class="reset">
+<li><em>Beiðni send: <%= I18n.strftime(new Date(created_at),"%-d %B %Y")%></em></li>
+<li><em>Skiladagur: <%= I18n.strftime(new Date(deadline),"%-d %B %Y") %></em></li>
 </ul>

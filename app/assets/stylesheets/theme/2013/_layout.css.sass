@@ -1,0 +1,144 @@
+html
+  background: url("2013/body-bg.jpg")
+
+body
+  background: url("2013/header-bg.jpg") repeat-x
+
+#header
+  .logo
+    @include replace-text("2013/logo.png", 0, 50%)
+
+  .login
+    font-size: 0 //whitespace fix
+    text-align: right
+
+    li
+      @include ctb-ie7-inline-block()
+      display: inline-block
+      color: #fff
+      font-size: $baseFontSize
+      border-left: 2px ridge rgba(62, 110, 159, 0.5)
+      white-space: nowrap
+      line-height: 60px
+      padding: 0 10px
+
+      &:last-child
+        border-right: 2px ridge rgba(62, 110, 159, 0.5)
+
+      em
+        text-decoration: underline
+        font-style: normal
+
+      a
+        display: block
+        color: #fff
+        padding: 0 10px
+        margin: 0 -10px
+
+        span
+          vertical-align: middle
+
+        &:hover
+          background: rgba(0, 0, 0, 0.15)
+
+#navigation
+  ul
+    margin-bottom: 0
+    list-style: none
+    font-size: 0 //whitespace fix
+
+    li
+      @include ctb-ie7-inline-block()
+      display: inline-block
+      border-left: 2px ridge rgba(177, 177, 177, 0.5)
+      border-right: 2px ridge rgba(177, 177, 177, 0.5)
+
+      a
+        display: block
+        line-height: 39px
+        padding: 0 10px
+        color: #fff
+        text-transform: uppercase
+        font-size: $baseFontSize
+
+        &:hover
+          background: rgba(0, 0, 0, 0.15)
+          text-decoration: none
+
+  .primary
+    .icon-user
+      margin: -1px 5px 0 0
+
+  .secondary
+    .icon-information, .icon-settings
+      margin: -1px 5px 0 0
+
+    text-align: right
+
+    li
+      border-right: 0
+
+      &:last-child
+        border-right: 2px ridge rgba(177, 177, 177, 0.5)
+
+
+#subject
+  padding: 50px 0 30px
+
+  body.sign-in &
+    padding: 0
+
+  .content_title
+    font-size: $fontSizeLarge
+    font-weight: 400
+    margin: 0
+    float: left
+
+  .content_title_sub
+    float: left
+    border-left: 2px solid #333
+    margin-left: 10px
+    padding-left: 10px
+    font-size: $fontSizeLarge
+    font-weight: 400
+    color: $grayLight
+    text-transform: uppercase
+
+#content
+  background: #fff
+  position: relative
+  z-index: 2
+  border: 1px solid #ccc
+  margin: $baseLineHeight 0
+  padding: 30px
+
+  .subject
+    .avatar
+      float: left
+      position: relative
+      margin: 0 20px 20px 0
+
+      img
+        max-width: 200px
+
+      a
+        position: absolute
+        bottom: 1px
+        right: 1px
+
+  .parents
+    clear: both
+
+
+#footer
+  position: relative
+  z-index: 2
+  text-align: center
+  color: #fff
+
+#footerwrap
+  background: url("2013/footer-bg.jpg") repeat-x
+  position: relative
+  margin-top: -70px
+  height: 84px
+

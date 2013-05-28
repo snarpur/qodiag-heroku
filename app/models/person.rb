@@ -245,17 +245,19 @@ class Person < ActiveRecord::Base
     unless cpr.empty?
       r = [0 => '--']
       entry = NationalRegister.find_by_kennitala(full_cpr)
-      family = NationalRegister.where(:fjolskyldunumer => entry.fjolskyldunumer)
+      unless entry.nil?
+        family = NationalRegister.where(:fjolskyldunumer => entry.fjolskyldunumer)
 
-      family.each do |member|
-        day = member.kennitala[0..1]
-        month = member.kennitala[2..3]
-        year = member.kennitala[4..5].to_i > 10 ? "19" << member.kennitala[4..5] : "20" << member.kennitala[4..5]
-        dob = Date.civil(year.to_i,month.to_i,day.to_i)
-        age = Date.today.strftime("%Y").to_i - dob.year
+        family.each do |member|
+          day = member.kennitala[0..1]
+          month = member.kennitala[2..3]
+          year = member.kennitala[4..5].to_i > 10 ? "19" << member.kennitala[4..5] : "20" << member.kennitala[4..5]
+          dob = Date.civil(year.to_i,month.to_i,day.to_i)
+          age = Date.today.strftime("%Y").to_i - dob.year
 
-        if age <= 18
-          r.push(member.kennitala => "#{member.nafn} [#{member.kennitala}]")
+          if age <= 18
+            r.push(member.kennitala => "#{member.nafn} [#{member.kennitala}]")
+          end
         end
       end
       r

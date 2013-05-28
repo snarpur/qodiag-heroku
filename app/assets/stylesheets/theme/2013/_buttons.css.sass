@@ -1,0 +1,50 @@
+a.button
+  @include border-radius()
+  display: inline-block
+  font-size: $baseFontSize
+  padding: 5px 10px
+
+  &:hover
+    text-decoration: none
+
+  &.prime
+    background: $themeBlue
+    color: #fff
+
+  &.second
+    background: #fff
+    color: $themeBlue
+    border: 1px solid #c7d1db
+
+    &.active
+      @include ctb-gradient-vertical(#2a68a8, #144f8d)
+      border-color: #144f8d
+      color: #fff
+
+      span.icon-meter
+        background-position: 0 -800px
+      span.icon-history
+        background-position: 0 -849px
+      span.icon-profile
+        background-position: 0 -900px
+
+    &:hover
+      @extend a.button.second.active
+
+    span.icon-meter
+      background-position: 0 -1100px
+    span.icon-history
+      background-position: 0 -1149px
+    span.icon-profile
+      background-position: 0 -1200px
+
+  & > span[class^="icon-"]
+    background-image: image-url("2013/sprites-icons.png")
+    margin-right: 5px
+
+
+
+li.active a.button.second
+  @extend a.button.second.active
+
+

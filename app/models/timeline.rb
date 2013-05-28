@@ -2,7 +2,8 @@ class Timeline
   attr_accessor :dimensions, :timespan, :surveys, :subject, :responder_items
 
   DIMENSIONS = {
-    :month_width => 70,
+    :gutter_width => 110,
+    :month_width => 64,
     :line_height => 80,
     :item_size => 15,
     :line_height_expanded => 400
@@ -34,7 +35,7 @@ class Timeline
   end
 
   def gutter_width
-    DIMENSIONS[:month_width] * 2
+    DIMENSIONS[:gutter_width]
   end
 
   def history_width

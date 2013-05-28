@@ -4,7 +4,7 @@ class App.Views.PatientInformationView extends Backbone.Marionette.ItemView
 
 
   onRender:()->
-    @renderItemView(new App.Models.Person(@options.subject),".patient")
+    @renderItemView(new App.Models.Person(@options.subject),".subject .information")
     @renderCollectionView(new App.Collections.Person(@options.parents),".parents")
     @renderAvatar(".avatar")
 
@@ -21,7 +21,7 @@ class App.Views.PatientInformationView extends Backbone.Marionette.ItemView
   renderAvatar:(container)=>
     avatar = @options.subject.avatar
     id = @options.subject.id
-    html = '<img src="'+avatar+'" ><a class="c-icon upload small" href="/people/'+id+'/upload">&#128228;</a>'
+    html = '<img src="'+avatar+'" ><a href="/people/'+id+'/upload"><span class="icon-edit"></span></a>'
     @.$(container).html(html)
 
 

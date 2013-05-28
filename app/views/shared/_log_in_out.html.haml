@@ -1,10 +1,12 @@
-%ul.login
+%ul{:class => 'reset login'}
   -if user_signed_in?
     %li
-      %em="#{t('devise.sessions.signed_in_as')}:"
-      %i="#{current_user.email}"
+      %span{:class => 'icon-big-user'}
+      #{t('devise.sessions.signed_in_as')}
+      %em="#{current_user.email}"
     %li
       %a{:href => destroy_user_session_path}
+        %span{:class => 'icon-big-logout'}
         = t('actions.sign_out')
   -else
     %li

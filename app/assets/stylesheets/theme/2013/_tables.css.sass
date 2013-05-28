@@ -1,0 +1,57 @@
+table.table
+  border-collapse: separate
+  border: 1px solid #ccc
+  padding: 20px
+
+  thead
+    th:first-child
+      text-transform: uppercase
+      font-size: $baseFontSize
+      font-weight: 700
+    th
+      font-size: $fontSizeMini
+      font-weight: 400
+
+  tbody
+    tr
+      background: #f3f6f9
+    tr:nth-child(even)
+      background: #dce5ee
+
+    td
+      border-color: #fff
+
+  .thin
+    width: 1%
+
+  .nowrap
+    white-space: nowrap
+
+  .center
+    text-align: center
+
+  .right
+    text-align: right
+
+  .left
+    text-align: left
+
+  .incomplete
+    span
+      @include border-radius(20px)
+      margin: 0 auto
+      background: #f90
+      text-align: center
+      padding: 5px 8px
+      font-size: 10px
+      color: #fff
+
+  .overdue
+    span
+      @include border-radius(20px)
+      margin: 0 auto
+      background: #c00
+      text-align: center
+      padding: 5px 8px
+      font-size: 10px
+      color: #fff

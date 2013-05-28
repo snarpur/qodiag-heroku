@@ -1,3 +1,4 @@
-.timeline-info-header
-	%h1.china-4
-		= "#{@person.full_name} #{@person.age} ára"
+=content_for :content_title, "#{@person.full_name}"
+=content_for :content_title_sub, "#{@person.age} ára"
+=content_for :subject_content do
+  =render "shared/content_title"

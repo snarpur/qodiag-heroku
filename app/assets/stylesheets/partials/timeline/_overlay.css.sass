@@ -10,13 +10,13 @@ $answer-level-color-4: rgba(22,25,59,$level-opacity)
   &.overlay-new-item
     .new-item
       +opacity(1)
-      z-index: 200     
-      visibility: visible
+      z-index: 500
+      display: block
   &.overlay-charts 
     .chart-dialog
       +opacity(1)
-      z-index: 200
-      visibility: visible
+      z-index: 500
+      display: block
   
 
 .line
@@ -24,7 +24,7 @@ $answer-level-color-4: rgba(22,25,59,$level-opacity)
     +transition-timing-function(ease-out)
     +transition-duration(.2s)
     +opacity(0)
-    visibility: hidden
+    display: none
     position: absolute
     z-index: -1
     background-color: rgba(15, 15, 15, 0.87)
