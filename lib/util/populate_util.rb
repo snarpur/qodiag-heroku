@@ -11,6 +11,8 @@ class PopulateUtil
     	@sex = ['male','female']
     	@password_params = {:password => "asdfkj", :password_confirmation => "asdfkj"}
     	@survey_ids = Survey.select(:id)
+      @entries = YAML::load(File.open("#{Rails.root}/lib/util/entry_values.yml")).symbolize_all_keys![:entries]
+      @entry_set_ids = EntrySet.select(:id)
   end
 
     def reset_db(reset)
@@ -18,7 +20,8 @@ class PopulateUtil
     end
 
     def reset_level
-      Rake::Task["db:reset"].invoke
+      Rake::Task["db:drop"].invoke
+      Rake::Task["db:setup"].invoke
       self.generate_surveys
     end
 
@@ -32,7 +35,7 @@ class PopulateUtil
     end
 
     def clear_user_tables
-      [Person, User, Right, Relationship, ResponderItem, ResponseSet, Response].each(&:delete_all)
+      [Person, User, Right, Relationship, ResponderItem, ResponseSet, Response, EntryValue, EntrySetResponse].each(&:delete_all)
     end
     
     def random_date(years_back=5)
@@ -101,14 +104,15 @@ class PopulateUtil
     
   end
 
-    def create_responder_item(survey_id ,people,created_at)
+    def create_responder_item(survey_id ,people,created_at,entry_set_response_id=nil)
       responder_item = FactoryGirl.create( :item_with_people, 
                       :respondent_id => people[:parent][:person].id, 
                       :subject_id => people[:patient].id, 
                       :caretaker_id => people[:caretaker][:person].id,
                       :survey_id => survey_id,
                       :created_at => created_at,
-                      :deadline => created_at.advance(:weeks =>2)
+                      :deadline => created_at.advance(:weeks =>2),
+                      :entry_set_response_id => entry_set_response_id
                       )
       
 
@@ -154,5 +158,33 @@ class PopulateUtil
     		create_responder_item(opt[:survey_id],opt[:people],Time.zone.now - (rand(10) + 1).days) if rand(2).odd?
     		create_responder_item(opt[:survey_id],opt[:people],Time.zone.now - (rand(50) + 15).days) if rand(2).odd?
   	end
+
+    def create_entry_set_request(people,entry_set_no)
+      entry_set_response = FactoryGirl.create(:entry_set_response,:entry_set_id =>  @entry_set_ids[entry_set_no].id, :responder_item_id => nil)
+      responder_item = create_responder_item(nil,people,Time.zone.now,entry_set_response.id)
+      entry_set_response.entry_set.sections.each_with_index do |section, section_index|
+        random_entry = rand(32)
+        section.entry_fields.each_with_index do |entry_field, ef_index|
+          random_index = random_entry + ef_index
+          entry_value = entry_field.entry_values.create({
+                                                          :text_value => @entries[random_entry + ef_index],
+                                                          :person_id => people[:parent][:person].id,
+                                                          :entry_set_response_id => entry_set_response.id
+                                                        })
+          
+          random_comment = random_index > 13 ? rand(0..13) : rand(15..33)
+
+          2.times do |t|
+            entry_value.comments.create({
+              :text_value =>  @entries[random_comment + t+1],
+              :person_id => people[:caretaker][:person].id, 
+              :entry_field_id => entry_field.id,
+              :entry_set_response_id => entry_set_response.id
+              })
+            
+          end
+        end
+      end
+    end
 
 end

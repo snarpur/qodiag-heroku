@@ -1,0 +1,1 @@
+<td><%- @linkTo(@name, "settings#{@routeTo.entry_set_sections_path @id}") %></a></td>

@@ -1,5 +1,27 @@
 Snarpur::Application.routes.draw do
 
+
+
+  resources :entry_set_responses 
+  get "person/:person_id/entry_set_responder_items(/:id)" => "people/entry_set_responder_items#index", :as => :person_entry_set_items
+
+  resources :entry_values
+  get 'entry_set_responses/:entry_set_response_id/section/:section_id' => 'entry_set_responses/sections#index', :as => :entry_set_response_section
+
+  resources :entry_sets do
+    resources :sections  
+  end
+
+  resources :sections do  
+    resources :entry_fields, :controller => 'sections/entry_fields'  
+    resources :sections_entry_fields, :controller => 'sections/sections_entry_fields' 
+  end
+  match 'sections/:section_id/sections_entry_fields' => 'sections/sections_entry_fields#update', :via => :put
+  resources :entry_fields
+  resources :section_entry_fields, :only => [:destroy]
+  
+
+
   mount Surveyor::Engine => "/surveys", :as => "surveyor"
 
   devise_for :users
@@ -29,9 +51,14 @@ Snarpur::Application.routes.draw do
   resources :relationships
 
   resources :responder_items do
-      resources :people
-     
+    resources :people  
   end
+
+  resources :people do
+    resources :responder_items, :controller => 'people/responder_items'
+  end
+
+
   resources :survey_responses, :path => 'responder_items/responses', :module => "responder_items", :only => [:index] do
     member do 
       get "column(/:column_metrics)" => "survey_responses#column"
@@ -78,7 +105,7 @@ Snarpur::Application.routes.draw do
   get "pages/help"
   get "pages/browser_update"
 
-  root :to => 'users#show'
+  root :to => 'application#index'
 
 
 

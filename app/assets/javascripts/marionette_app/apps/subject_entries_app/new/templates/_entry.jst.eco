@@ -1,0 +1,4 @@
+<% console.log @ %>
+<textarea class="input-xxlarge" name="text_value" id="entry_field_value_for_<%- @entry_field_id %>">
+<%- @text_value %>
+</textarea>

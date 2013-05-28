@@ -1,15 +1,19 @@
+
 - if params[:controller] == 'people'
-  %ul{:class => 'reset subnav'}
-    %li{:class => params[:action] == 'show' ? 'active' : ''}
-      %a{:alt => "Mælingar", :href => '/people/' + @person.id.to_s, :class => 'button second'}
-        %span{:class => 'icon-meter'}
+  %ul.patient-nav.sub
+    %li{:class => params[:action] == 'show' ? 'selected' : ''}
+      %a{:alt => "Mælingar", :href => '/people/' + @person.id.to_s}
+        %span.c-icon.timeline
+          &#128255;
         Mælingar
-    %li{:class => params[:action] == 'history' ? 'active' : ''}
-      %a{:alt => "Sjúkraskrá", :href => '/people/' + @person.id.to_s + '/history', :class => 'button second'}
-        %span{:class => 'icon-history'}
+    %li{:class => params[:action] == 'history' ? 'selected' : ''}
+      %a{:alt => "Saga", :href => "/#people/#{@person.id.to_s}/entries"} 
+        %span.c-icon.history
+          &#128203;
         Saga
 
-    %li{:class => params[:action] == 'information' ? 'active' : ''}
-      %a{:alt => "Fjölskylda", :href => '/people/' + @person.id.to_s + '/information', :class => 'button second'}
-        %span{:class => 'icon-profile'}
+    %li{:class => params[:action] == 'information' ? 'selected' : ''}
+      %a{:alt => "Fjölskylda", :href => '/people/' + @person.id.to_s + '/information'} 
+        %span.c-icon.information
+          &#128101;
         Upplýsingar

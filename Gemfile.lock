@@ -45,7 +45,12 @@ GEM
     activesupport (3.2.11)
       i18n (~> 0.6)
       multi_json (~> 1.0)
+<<<<<<< HEAD
     addressable (2.3.4)
+=======
+    acts_as_commentable (3.0.1)
+    addressable (2.3.3)
+>>>>>>> refs/heads/patient_journal
     arel (3.0.2)
     awesome_print (1.1.0)
     bcrypt-ruby (3.0.1)
@@ -109,6 +114,11 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       request_store (~> 1.0.3)
+    eco (1.0.0)
+      coffee-script
+      eco-source
+      execjs
+    eco-source (1.1.0.rc.1)
     ejs (1.1.1)
     em-websocket (0.5.0)
       eventmachine (>= 0.12.9)
@@ -134,11 +144,21 @@ GEM
     formtastic (2.1.1)
       actionpack (~> 3.0)
     fssm (0.2.10)
+<<<<<<< HEAD
     gherkin (2.12.0)
       multi_json (~> 1.3)
     guard (1.8.0)
       formatador (>= 0.2.4)
       listen (>= 1.0.0)
+=======
+    gherkin (2.11.6)
+      json (>= 1.7.6)
+    gon (4.0.2)
+      actionpack (>= 2.3.0)
+      json
+    guard (1.6.2)
+      listen (>= 0.6.0)
+>>>>>>> refs/heads/patient_journal
       lumberjack (>= 1.0.2)
       pry (>= 0.9.10)
       thor (>= 0.14.6)
@@ -166,8 +186,15 @@ GEM
     jquery-rails (2.2.1)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
+<<<<<<< HEAD
     json (1.8.0)
     launchy (2.3.0)
+=======
+    js-routes (0.8.4)
+      rails (>= 3.2)
+    json (1.7.7)
+    launchy (2.2.0)
+>>>>>>> refs/heads/patient_journal
       addressable (~> 2.3)
     letter_opener (1.1.1)
       launchy (~> 2.2)
@@ -189,8 +216,14 @@ GEM
     multi_json (1.7.4)
     mustache (0.99.4)
     mysql2 (0.3.11)
+<<<<<<< HEAD
     newrelic_rpm (3.6.2.96)
     nokogiri (1.5.9)
+=======
+    newrelic_rpm (3.5.5.38)
+    nokogiri (1.5.6)
+    oj (2.0.7)
+>>>>>>> refs/heads/patient_journal
     orm_adapter (0.4.0)
     paperclip (3.4.2)
       activemodel (>= 3.0.0)
@@ -308,6 +341,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_attr
+  acts_as_commentable (= 3.0.1)
   awesome_print
   better_errors
   binding_of_caller
@@ -322,6 +356,7 @@ DEPENDENCIES
   devise (>= 2.0.0)
   devise_invitable (~> 1.0.0)
   draper (~> 1.0)
+  eco
   ejs
   email_spec
   ey_config
@@ -329,6 +364,7 @@ DEPENDENCIES
   faker
   fastercsv (~> 1.5.4)
   formtastic
+  gon
   guard-haml
   guard-livereload
   hash-deep-merge
@@ -336,6 +372,7 @@ DEPENDENCIES
   hpricot
   i18n-js
   jquery-rails
+  js-routes
   json
   launchy
   letter_opener
@@ -343,6 +380,7 @@ DEPENDENCIES
   mysql2 (~> 0.3.7)
   newrelic_rpm
   nokogiri
+  oj
   paperclip (~> 3.0)
   pickle
   quiet_assets

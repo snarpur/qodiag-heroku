@@ -1,11 +1,11 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  layout 'application'
-
+  layout :application_layout
+  before_filter :get_user
   def index
-    respond_to do |format|
-      format.html # index.html.erb
-    end
+    gon.rabl
+    @user = get_user
+    gon.rabl "app/views/users/show.json.rabl", as: "current_user"
   end
 
   rescue_from CanCan::AccessDenied do |exception|
@@ -26,6 +26,10 @@ private
 
   def logged_in?
     !current_user.nil?
+  end
+
+  def application_layout
+    params[:action] == 'index' ? 'marionette_application' : 'application'
   end
 
   def pick_params(params,class_name=nil)

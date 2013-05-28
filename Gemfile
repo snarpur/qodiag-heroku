@@ -32,6 +32,10 @@ gem 'draper', '~> 1.0'
 gem 'time_diff'
 gem 'rb-readline'
 gem "paperclip", "~> 3.0"
+gem 'oj'
+gem 'gon'
+gem 'js-routes'
+gem 'acts_as_commentable', '3.0.1'
 
 
 group :assets do
@@ -41,6 +45,8 @@ group :assets do
   gem 'closure-compiler'
   gem 'compass-rails'
   gem 'compass_twitter_bootstrap'
+  gem 'eco'
+
 end
 
 group :development do
@@ -48,7 +54,6 @@ group :development do
   gem 'sextant'
   gem 'better_errors', :require => RUBY_PLATFORM.include?('darwin') ? 'better_errors' : false
   gem 'binding_of_caller', :require => RUBY_PLATFORM.include?('darwin') ? 'binding_of_caller' : false
-  #gem 'meta_request', '0.2.1', :require => RUBY_PLATFORM.include?('darwin') ? 'binding_of_caller' : false
   gem 'meta_request'
 end
 

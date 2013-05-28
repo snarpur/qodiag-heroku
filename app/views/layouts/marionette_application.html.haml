@@ -1,0 +1,55 @@
+!!!
+%html
+  %head
+    = include_gon
+    = yield(:head)
+    =csrf_meta_tag
+    = javascript_include_tag "marionette_application"
+    = stylesheet_link_tag "marionette_application"
+    %script{:type => 'text/javascript'}
+      ="I18n.defaultLocale = '#{I18n.default_locale}';"
+      ="I18n.locale = '#{I18n.locale}';"
+
+
+    %style{:type => 'text/css'}
+      =yield(:style_header)
+    =javascript_tag do
+      = yield(:jstemplates)
+
+    =yield :backbone_bootstrap
+    
+    %title
+      Qodiag - Quality of diagnosis
+
+  %body{:class => yield(:body_class)}
+    #wrapper{:class => role_view}
+      #header-region
+        %h2 
+          Qodiag
+        %div
+          =render 'shared/log_in_out'
+      #flash
+        -flash.each do |name, msg|
+          %div{:class => name}
+            =msg
+      
+      #container{:class => yield(:css_hook)}
+        #help
+          %a{:href => "/pages/help"} 
+            Upplýsingar
+        %ul.main-nav
+          %li.home
+            %a{:class => 'c-icon', :href => "/users"} &#8962;
+
+        #secondary-navigation-region
+        
+        #content{:class => yield(:content_css_hook)}
+          = yield
+          
+      #wrapper_footer
+      
+    #footer
+      %span
+        ="Qodiag #{Date.today.year}  |  Quality of Diagnosis"
+    #dialog-region
+    =render "shared/google_analytics"

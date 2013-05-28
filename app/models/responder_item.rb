@@ -5,9 +5,11 @@ class ResponderItem < ActiveRecord::Base
   belongs_to :subject, :class_name => "Person"
   belongs_to :survey
   belongs_to :response_set
+  belongs_to :entry_set_response
 
   delegate :response_to_chart, :to => :response_set
   delegate :group_result, :to => :response_set
+  delegate :access_code, :to => :response_set, :prefix => true
   before_save :set_response_set, :if => :is_uncompleted_survey?
   after_save :send_respondent_invitation, :if => :invite_respondent_user
 
@@ -18,9 +20,11 @@ class ResponderItem < ActiveRecord::Base
   scope :surveys, where("survey_id IS NOT NULL").joins(:survey).select("surveys.access_code, responder_items.*")
   scope :surveys_by_id, lambda {|survey_id| where("survey_id = ?", survey_id).joins(:survey).select("surveys.access_code, responder_items.*")}
   scope :registrations, where("registration_identifier IS NOT NULL").order(:id)
+  scope :entry_request, where("entry_set_response_id IS NOT NULL")
   scope :surveys_by_group, ResponderItem.surveys.order('survey_id')
   scope :by_respondent, lambda {|respondent_id| where("respondent_id = ?", respondent_id)}
   scope :by_subject, lambda {|subject_id| where("subject_id = ?", subject_id)} 
+  scope :entry_set_responses, where("entry_set_response_id IS NOT NULL")
   accepts_nested_attributes_for :respondent, :subject
 
   attr_accessor :invite_respondent_user
@@ -64,12 +68,17 @@ class ResponderItem < ActiveRecord::Base
   end
 
   def item_type
-    self.survey.nil? ? 'registration' : 'survey'
+    self.survey.nil? ? 'entry_set' : 'survey'
+  end
+
+  def is_survey?
+    !self.survey.nil?
   end
 
   def complete_item=(is_complete)
+   KK.log "out"
    if is_complete.to_i == 1 && self.completed.nil?
-    self.completed = Time.zone.now
+    write_attribute :completed, Time.zone.now
    end
   end
 

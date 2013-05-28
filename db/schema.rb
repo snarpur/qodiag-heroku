@@ -11,8 +11,8 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130417142534) do
 
+ActiveRecord::Schema.define(:version => 20130518111253) do
   create_table "addresses", :force => true do |t|
     t.string   "street_1"
     t.string   "street_2"
@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(:version => 20130417142534) do
     t.datetime "updated_at"
   end
 
+
   create_table "national_registers", :id => false, :force => true do |t|
     t.integer "rownumber"
     t.string  "kennitala"
@@ -93,6 +94,51 @@ ActiveRecord::Schema.define(:version => 20130417142534) do
     t.string  "rikisfang"
     t.string  "faedingarstadur"
     t.integer "latinn"
+
+  create_table "entry_fields", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "help_text"
+    t.string   "field_type"
+    t.integer  "parent_field_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  create_table "entry_set_responses", :force => true do |t|
+    t.integer  "entry_set_id"
+    t.integer  "responder_item_id"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  create_table "entry_sets", :force => true do |t|
+    t.string   "name"
+    t.integer  "created_by_id"
+    t.string   "description"
+    t.string   "type"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  create_table "entry_sets_sections", :force => true do |t|
+    t.integer  "entry_set_id"
+    t.integer  "section_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.integer  "display_order"
+  end
+
+  create_table "entry_values", :force => true do |t|
+    t.integer  "entry_field_id"
+    t.integer  "entry_set_response_id"
+    t.string   "string_value"
+    t.text     "text_value"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+    t.integer  "person_id"
+    t.integer  "commentable_id"
+
   end
 
   create_table "norm_references", :force => true do |t|
@@ -188,6 +234,7 @@ ActiveRecord::Schema.define(:version => 20130417142534) do
     t.datetime "updated_at"
     t.integer  "caretaker_id"
     t.integer  "response_set_id"
+    t.integer  "entry_set_response_id"
   end
 
   create_table "response_sets", :force => true do |t|
@@ -245,6 +292,21 @@ ActiveRecord::Schema.define(:version => 20130417142534) do
     t.float    "end_value"
     t.string   "result_name"
     t.float    "value"
+  end
+
+  create_table "sections", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "sections_entry_fields", :force => true do |t|
+    t.integer  "entry_field_id"
+    t.integer  "section_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.integer  "display_order"
   end
 
   create_table "survey_sections", :force => true do |t|

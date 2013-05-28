@@ -1,0 +1,3 @@
+<em><%- @display_order%></em>
+<%- @entry_field.title  %>
+<span class="entypo trash"></span>

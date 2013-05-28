@@ -1,0 +1,3 @@
+<div id="entry-region-<%- @regionId() %>"></div>
+<div id="comments-region-<%- @regionId() %>"></div>
+<div id="new-comment-region-<%- @regionId() %>"></div>
