@@ -4,17 +4,51 @@
 
 
     list:(options)->
-      @items = App.request "get:subject:navigation", options
-      @showNavigation()
+      items = App.request "get:subject:navigation", options
+      @showLayout()
+      @showNavigation(items)  
+      @showSubject(options.personId)
+      
 
 
-    getNavigationRegion:->
+    showSubject:(id) ->
+      subject = App.request "get:person:entity",id
+      App.execute "when:fetched", subject, =>
+        @showSubjectDetails(subject)
+
+ 
+
+    getNavigationView:(items)->
+      new List.Navigation collection: items
+
+    
+
+    showNavigation:(items)->
+      view = @getNavigationView(items)
+      @getLayout().subjectNavigationRegion.show view
+
+
+
+    getSubjectView:(subject) ->
+      new List.SubjectDetails model: subject
+
+
+
+    showSubjectDetails:(subject) ->
+      view = @getSubjectView(subject) 
+      @getLayout().subjectDetailsRegion.show view
+    
+
+
+    showLayout:->
+      @getHeaderRegion().show @getLayout()
+
+    
+
+    getLayout:->
+      @layout ?= new List.Layout
+
+    
+
+    getHeaderRegion:->
       App.request "subject:header:region"
-
-
-    getNavigationView:->
-      new List.Navigation
-        collection: @items
-
-    showNavigation:->
-      @getNavigationRegion().show @getNavigationView()

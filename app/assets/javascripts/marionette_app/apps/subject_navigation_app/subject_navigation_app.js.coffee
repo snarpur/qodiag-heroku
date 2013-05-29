@@ -5,5 +5,5 @@
       ctrl = new SubjectNavigationApp.List.Controller()
       ctrl.list(options)
 
-  App.vent.on "show:subject:navigation",(options)->
+  App.commands.setHandler "show:subject:navigation",(options)->
     API.list(options)

@@ -30,7 +30,7 @@ gem 'rabl'
 gem 'active_attr'
 gem 'draper', '~> 1.0'
 gem 'time_diff'
-gem 'rb-readline'
+gem 'rb-readline', '~> 0.4.2'
 gem "paperclip", "~> 3.0"
 gem 'oj'
 gem 'gon'
@@ -41,6 +41,7 @@ gem 'acts_as_commentable', '3.0.1'
 group :assets do
   gem 'sass-rails', "  ~> 3.2.3"
   gem 'coffee-rails', "~> 3.2.1"
+  gem 'coffee-rails-source-maps'
   gem 'uglifier', '>=1.0.3'
   gem 'closure-compiler'
   gem 'compass-rails'
@@ -74,9 +75,9 @@ group :development, :test do
   gem "spork", "~> 0.9.0.rc"
   gem "watchr"
   gem "syntax"
-  gem "guard-haml"
-  gem "guard-livereload"
-  gem "letter_opener"
+  # gem "guard-haml"
+  # gem "guard-livereload"
+  # gem "letter_opener"
 end
 
 #gem "rb-fsevent", :group => :test, :require => false if RUBY_PLATFORM =~ /darwin/i

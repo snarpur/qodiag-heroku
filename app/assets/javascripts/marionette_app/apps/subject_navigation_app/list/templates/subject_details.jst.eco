@@ -1,0 +1,2 @@
+<h1 class="content_title"><%- @firstname %> <%- @lastname %></h1>
+<h5 class="content_title_sub"><%- @ageInYears %> ára</h5>

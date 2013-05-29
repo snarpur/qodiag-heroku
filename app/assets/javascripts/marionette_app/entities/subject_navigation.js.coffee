@@ -7,7 +7,6 @@
 
   class Entities.SubjectNavigationCollection extends Entities.Collection
     model: Entities.SubjectNavigaion
-    # url: -> Routes.settings_path()
     initialize: (models,options) ->
       @currentItemName = options.currentItemName  
   

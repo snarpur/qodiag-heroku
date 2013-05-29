@@ -14,6 +14,7 @@
         @getSections(currentItem,sectionId) 
 
     
+
     getSections:(currentItem,sectionId)->
       options=
         entrySetId: currentItem.get("entry_set_response").entry_set_id
@@ -27,18 +28,19 @@
         @getEntries(sections.getCurrentSection())
 
     
+     
      getEntries:(section)->
       entries = section.getSectionEntryResponses()
       App.execute "when:fetched", entries, =>
         @showEntryFields(entries)
       
     
+    
     showEntrySetSelect:(items)->
       selectView = new List.SelectItems(collection: items)
       @getEntrySetSelectRegion().show selectView
 
       @listenTo selectView, "childview:select:response",(view)=>
-        console.log view.model
         @getSections(view.model)
 
 
@@ -70,23 +72,31 @@
       @getEntrySetValuesRegion().show entriesView
 
 
+    
     getEntrySetValuesRegion:->
       @getLayout().entrySetValuesRegion
 
     
+    
     getEntrySetSelectRegion:->
       @getLayout().entrySetSelectRegion
     
+    
+
     getSectionRegion:->
       @getLayout().entrySetSectionsRegion
 
+    
     
     showLayout: ->
       App.request("default:region").show @getLayout()
 
     
+    
     getLayout:->
       @layout ?= new List.Layout
+
+    
 
     entriesUrl:(entry)->
       _("#{Routes.person_path(@personId)}/entries/#{entry.get('responseId')}/section/#{entry.id}").ltrim('/')

@@ -8,6 +8,7 @@
   
   API =
     edit: (responseId, entrySetId,sectionNo) ->
+
       sectionNo ?= 1
       options=
         sectionNo: (Number)(sectionNo)

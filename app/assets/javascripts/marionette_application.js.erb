@@ -26,6 +26,8 @@
 //= require js-routes
 //= require i18n
 //= require i18n/translations
+//= require moment/moment
+//= require moment/lang/is
 //= require_tree ./marionette_app/config
 //= require marionette_app/app
 //= require_tree ./marionette_app/entities
@@ -33,3 +35,10 @@
 //= require_tree ./marionette_app/views
 //= require_tree ./marionette_app/components
 //= require_tree ./marionette_app/apps
+
+
+
+$(document).ready(function(){
+  moment.lang('is')
+});
+
