@@ -6,6 +6,8 @@ class PeopleController < ApplicationController
   def show
     @person = Person.find(params[:id])
     @responder_items = @person.responder_items.surveys
+    # @user = User.find params[:id]
+    # render 'users/show'
   end
 
   def history

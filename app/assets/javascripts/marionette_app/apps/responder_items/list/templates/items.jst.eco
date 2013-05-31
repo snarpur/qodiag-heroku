@@ -1,8 +1,12 @@
 <table class="table table-bordered">
   <thead>
     <tr>
-      <th>...</th>
-      <th>...</th>
+      <th colspan="3">Beiðnir</th>
+    </tr>
+    <tr>
+      <th>Heiti</th>
+      <th>Varðar</th>
+      <th>Skiladagur</th>
     </tr>
   </thead>
   <tbody>

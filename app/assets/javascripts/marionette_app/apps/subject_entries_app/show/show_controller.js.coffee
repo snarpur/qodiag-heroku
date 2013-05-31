@@ -5,21 +5,22 @@
 
 
     show: (options) -> 
-
       {@region,@entryField,@entries} = options
-      values = _.compact(@entryField.get('entry_values'))
-      @entryValue =  new App.Entities.EntryValues().add(values)
-      @entryField.set('entry_values',@entryValue)
+
+      @entryValue = @entryField.get('entry_values')
+      # @entryField.set('entry_values',@entryValue)
       @region.show @getLayout()
       @showEntryValue()
       @showComments()
-# 
 
-    showEntryValue:->      
+    
+
+    showEntryValue:-> 
+      # console.log @entryValue  
       entryView = new Show.Entries collection: @entryValue
       @getEntryRegion().show entryView
-      @listenTo entryView,"childview:rendered",=>
-        console.log arguments
+
+    
 
     showComments:->
       comments =  new App.Entities.EntryValues(@entryField.get('caretaker_entry_values'))
@@ -41,14 +42,22 @@
     getEntryRegion:->
       @getLayout().entryRegion
 
+    
+
     getCommentsRegion:->
       @getLayout().commentsRegion
+
+    
 
     getNewCommentRegion:->
       @getLayout().newCommentRegion
 
+    
+
     getRegionId:->
       _.first(@region.el.match(/view[0-9]*/))
     
+    
+
     getLayout:()->
       @layout ?= new Show.Layout {regionId: @getRegionId()}

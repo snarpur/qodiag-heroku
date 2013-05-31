@@ -7,7 +7,8 @@
 
 
     initialize: () ->
-      @set("responseId",@collection.responseId) if @collection?.responseId?
+      if @collection?.entrySetResponseId? or @collection?.entrySetResponse?
+        @set("entrySetResponseId",@collection.entrySetResponseId ? @collection.entrySetResponse.id) 
 
       @url= ()->
         if @isNew()
@@ -19,7 +20,7 @@
 
     getSectionEntryResponses:->
       entries = new App.Entities.EntryFields([],{})
-      entries.url = Routes.entry_set_response_section_path(@get('responseId'),@id)
+      entries.url = Routes.entry_set_response_section_path(@get('entrySetResponseId'),@id)
       entries.fetch
         reset: true
       entries
@@ -78,14 +79,14 @@
 
   
 
-  class Entities.EntrySetSectionsCollection extends Entities.Collection
+  class Entities.EntrySetSections extends Entities.Collection
     model: Entities.EntrySetSection
     
     
 
     initialize:(models,options)->
-      {@entrySetId,@responseId,@currentSectionId,@sectionNo} = options
-      
+      {@entrySetId,@entrySetResponse,@currentSectionId,@sectionNo} = options
+
       @url = -> 
         Routes.entry_set_sections_path(@entrySetId)
 
@@ -104,16 +105,6 @@
       _.contains(@entryFieldIds(), id)
 
 
-
-    getCurrentSection: ->
-      if @currentSectionId then @get(@currentSectionId) else @first()
-
-
-    
-    isCurrentSection:(section) ->
-      section.id == @getCurrentSection().id
-
-
     
     comparator:->
       @get('display_order')
@@ -125,10 +116,15 @@
         entry_sets_sections: [{entry_set_id: @entrySetId, display_order: @length + 2 }]
       new @model(attributes)
 
+
     
+    getCurrentSection: ->
+      if @currentSectionId then @get(@currentSectionId) else @first()
+
+
     
-    getLastDisplayNo:->
-      @last().get("display_order")
+    isCurrentSection:(section) ->
+      section.id == @getCurrentSection().id
 
 
     
@@ -138,12 +134,33 @@
 
 
     isCurrentLast:->
-      @size() == @sectionNo
+      @currentDisplayNo() == @size()
 
 
 
     isCurrentFirst:->
-      @sectionNo == 1
+      @currentDisplayNo() == 1
+
+
+
+    getNextSection:->
+      @findWhere(display_order: @currentDisplayNo() + 1)
+
+
+
+    getPreviousSection:->
+      @findWhere(display_order: @currentDisplayNo() - 1)
+
+
+    
+    currentDisplayNo:->
+      @getCurrentSection().get('display_order')
+
+
+
+    getLastDisplayNo:->
+      @last().get("display_order")
+
 
 
 
@@ -160,7 +177,7 @@
 
   API =
     getSectionEntities: (options) ->
-      sections = new Entities.EntrySetSectionsCollection([],options)
+      sections = new Entities.EntrySetSections([],options)
       sections.fetch({reset: true})
       sections
 

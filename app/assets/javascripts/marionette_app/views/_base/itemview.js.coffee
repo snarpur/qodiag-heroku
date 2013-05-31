@@ -4,13 +4,13 @@
     serializeData:->
       @.model.attributes
 
-    # initialize:->
-    #   templateOptions = @options.templateOptions
-    #   unless _.isEmpty(itemViewOptions)
-    #     helpers = @templateHelpers()
+    initialize:->
+      templateOptions = _.omit @options, ['model','collection']
+      unless _.isEmpty(templateOptions)
+        helpers = @templateHelpers()
 
-    #     _.each(itemViewOptions,((v,k)->
-    #       helpers[k] = () -> v
-    #       ),@)
-    #     @templateHelpers = ()-> helpers
-    #   
+        _.each templateOptions, (v,k,l)->
+          helpers[k] = _.result(l,k)
+          
+        @templateHelpers = ()-> helpers
+      

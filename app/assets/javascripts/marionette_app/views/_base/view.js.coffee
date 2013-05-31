@@ -36,7 +36,12 @@
 
       l:(option, string)->
         I18n.l(option,string)
-      
+
+      m:(params = [])->
+        if _.isEmpty(params)
+          moment()
+        else
+          moment(params...)
 
       currentUser: ->
         App.request("get:current:user").toJSON()

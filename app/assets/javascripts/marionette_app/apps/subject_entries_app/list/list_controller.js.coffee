@@ -18,7 +18,7 @@
     getSections:(currentItem,sectionId)->
       options=
         entrySetId: currentItem.get("entry_set_response").entry_set_id
-        responseId: currentItem.get("entry_set_response").id
+        entrySetResponse: currentItem.get("entry_set_response")
         currentSectionId: sectionId
 
       sections = App.request "entry:set:sections:entities", options
@@ -29,7 +29,7 @@
 
     
      
-     getEntries:(section)->
+    getEntries:(section)->
       entries = section.getSectionEntryResponses()
       App.execute "when:fetched", entries, =>
         @showEntryFields(entries)
@@ -99,5 +99,5 @@
     
 
     entriesUrl:(entry)->
-      _("#{Routes.person_path(@personId)}/entries/#{entry.get('responseId')}/section/#{entry.id}").ltrim('/')
+      _("#{Routes.person_path(@personId)}/entries/#{entry.get('entrySetResponseId')}/section/#{entry.id}").ltrim('/')
 

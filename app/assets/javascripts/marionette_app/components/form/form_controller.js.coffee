@@ -11,9 +11,12 @@
 			@listenTo @formLayout, "form:cancel", @formCancel
 
 		
+		
 		formCancel: ->
 			@contentView.triggerMethod "form:cancel"
 		
+		
+
 		formSubmit: (options) ->
 			@contentView.triggerMethod("form:submit")
 			model = @contentView.model
@@ -22,17 +25,24 @@
 			@formLayout.addErrors(model.validationError)
 			@processFormSubmit model, collection
 		
+		
+
 		processFormSubmit: (model, collection) ->
 			model.save model.toJSON(),
 				collection: collection
 		
+		
+
 		onClose: ->
 			
+		
 		
 		formContentRegion: ->
 			@region = @formLayout.formContentRegion
 			@show @contentView
 		
+		
+
 		getFormLayout: (options = {}) ->
 			config = @getDefaultConfig _.result(@contentView, "form")
 			_.extend config, options
@@ -43,6 +53,8 @@
 				model: @contentView.model
 				buttons: buttons
 		
+		
+
 		getDefaultConfig: (config = {}) ->
 			_.defaults config,
 				footer: true
@@ -50,9 +62,15 @@
 				errors: true
 				syncing: true
 		
+		
+
 		getButtons: (buttons = {}) ->
 			App.request("form:button:entities", buttons, @contentView.model) unless buttons is false
 	
+	
+
+
+
 	App.reqres.setHandler "form:wrapper", (contentView, options = {}) ->
 		throw new Error "No model found inside of form's contentView" unless contentView.model
 		formController = new Form.Controller

@@ -14,8 +14,9 @@
       items = new Entities.ResponderItems([],options)
       items.fetch
         reset: true
+      items
 
-    getResponderItemsForPerson:(options)->
+    getEntrySetResponderItemsForPerson:(options)->
       item = new Entities.ResponderItems([],options)
       item.url = Routes.person_entry_set_items_path(options.personId)
       item.fetch
@@ -27,6 +28,6 @@
 
 
   App.reqres.setHandler "get:person:entry:set:responder:items", (options) ->
-    API.getResponderItemsForPerson options
+    API.getEntrySetResponderItemsForPerson options
 
   

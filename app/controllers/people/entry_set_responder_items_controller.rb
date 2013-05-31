@@ -3,6 +3,7 @@ class People::EntrySetResponderItemsController < ApplicationController
   respond_to :json
 
    def index
-    @responses = ResponderItem.entry_set_responses.by_subject(params[:person_id]).includes(:entry_set_response)
+    person_ids = params[:person_id].split(',')
+    @responses = ResponderItem.entry_set_responses.by_subject(person_ids).includes(:entry_set_response)
    end
 end

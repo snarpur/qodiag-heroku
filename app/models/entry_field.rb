@@ -1,7 +1,7 @@
 class EntryField  < ActiveRecord::Base
   has_many :entry_values do
-   def caretaker(caretaker_id,entry_set_response_id)
-      where(:person_id => caretaker_id, :entry_set_response_id => entry_set_response_id)
+   def person(person_id)
+      where(:person_id => person_id)
     end
   end 
   has_many :sections_entry_fields

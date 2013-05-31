@@ -6,6 +6,9 @@ class PersonDecorator < Draper::Decorator
   decorates_association :relations
   decorates_association :address
 
+  
+
+
   def user_invitation
    user_model = model.user || model.build_user({:invitation => true})
    user_model.set_role(:respondent) unless user_model.role?(:respondent)

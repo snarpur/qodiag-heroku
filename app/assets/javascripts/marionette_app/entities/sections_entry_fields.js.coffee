@@ -1,7 +1,7 @@
 @Qapp.module "Entities", (Entities, App, Backbone, Marionette, $, _) ->
   
   class Entities.SectionsEntryFields extends Entities.Model
-    
+    blacklist: ['index']
     initialize:->
       @url= ->
         Routes.section_sections_entry_fields_path(@id)

@@ -1,7 +1,21 @@
 @Qapp.module "Entities", (Entities, App, Backbone, Marionette, $, _) ->
   
   class Entities.EntryField extends Entities.Model
+
+    initialize:->
+      @initializeEntryValues()
+
+
+    initializeEntryValues:->
+      unless @get('entry_values') instanceof Backbone.Collection
+        @set 'entry_values', new Entities.EntryValues(@get('entry_values'), {entryField: @}, {silent: true})
+      
+      @on "change:entry_values", @initializeEntryValues
   
+
+
+
+
   class Entities.EntryFields extends Entities.Collection
     model: Entities.EntryField
     
@@ -17,12 +31,22 @@
           Routes.entry_fields_path()
 
 
+    mergeEntryValues:->
+      new App.Entities.EntryValues _.flatten @pluck('entry_values').map (i)-> i.toJSON()
+
+
+
+    
     getSearchCollection:->
       @searchCollection
     
+    
+
     getLiveCollection:->
       @liveCollection
     
+    
+
     createSearchCollection:(disabledIds = [])->
       unless _.isEmpty(disabledIds)
         @remove @filter (model)-> _.contains(disabledIds,model.id)
@@ -42,8 +66,15 @@
         )
         .query()
 
+    
+
     updateSearchCollection:(searchString)->
       @searchCollection.setSearchString(searchString).query()
+
+  
+
+
+
 
   API =
     getEntryFieldEntities: (options) ->

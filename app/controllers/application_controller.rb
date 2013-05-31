@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   before_filter :get_user
   def index
     gon.rabl
-    @user = get_user
+    @user = UserDecorator.decorate(get_user)
     gon.rabl "app/views/users/show.json.rabl", as: "current_user"
   end
 

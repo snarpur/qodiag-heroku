@@ -10,6 +10,8 @@ class ResponderItem < ActiveRecord::Base
   delegate :response_to_chart, :to => :response_set
   delegate :group_result, :to => :response_set
   delegate :access_code, :to => :response_set, :prefix => true
+  delegate :full_name, :to => :subject, :prefix => true
+  delegate :full_name, :to => :respondent, :prefix => true
   before_save :set_response_set, :if => :is_uncompleted_survey?
   after_save :send_respondent_invitation, :if => :invite_respondent_user
 
@@ -23,16 +25,18 @@ class ResponderItem < ActiveRecord::Base
   scope :entry_request, where("entry_set_response_id IS NOT NULL")
   scope :surveys_by_group, ResponderItem.surveys.order('survey_id')
   scope :by_respondent, lambda {|respondent_id| where("respondent_id = ?", respondent_id)}
-  scope :by_subject, lambda {|subject_id| where("subject_id = ?", subject_id)} 
+  scope :by_subject, lambda {|subject_id| where(:subject_id => subject_id)} 
   scope :entry_set_responses, where("entry_set_response_id IS NOT NULL")
+  scope :subject_ids, select(:subject_id).uniq
+
   accepts_nested_attributes_for :respondent, :subject
 
   attr_accessor :invite_respondent_user
+
   
   attr_accessible :registration_identifier, :id, :caretaker_id, :deadline, :completed, 
                   :complete_item, :respondent_id, :subject_id, :survey_id, :invite_respondent_user, 
                   :days_until_deadline,:subject_attributes, :respondent_attributes
-
   validates_associated :respondent, :subject
 
   ACTORS = %w{caretaker subject respondent}

@@ -24,6 +24,8 @@
     tagName: 'li'
 
 
+  
+
   class Show.Comments extends App.Views.CompositeView
     template: "subject_entries_app/show/comments"
     itemView: Show.Comment

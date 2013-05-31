@@ -10,24 +10,41 @@
       formWrapperRegion: "#form-wrapper-region"
 
 
+      
+
+
   class Edit.FormStep extends App.Views.ItemView
     template: "entry_set_responses/edit/templates/_form_step"
     tagName: 'li'
+
+    triggers:
+      'click a': "set:current:section"
+
+    onSetCurrentSection:->
+      @model.trigger("change:current:section", model: @model)
+
     className:->
       if @model.isCurrentSection()
         "active"
+
+
+  
+
 
   class Edit.FormSteps extends App.Views.CollectionView
     itemView: Edit.FormStep
     className: 'nav nav-pills'
     tagName: 'ul'
 
+    collectionEvents: 
+        'change:current:section' : ()-> @render()
 
-  class Edit.Item extends App.Views.ItemView
-    template: "entry_set_responses/edit/templates/_item"
-    tagName: 'li'
+  
 
-    
+  class Edit.EntryValue extends App.Views.ItemView
+    template: "entry_set_responses/edit/templates/_entryValue"
+
+
     onShow:(options)->
       @bindings = {}
       fieldType = @model.get('field_type')+"_value"
@@ -36,8 +53,11 @@
      
 
 
-  class Edit.Items extends App.Views.CompositeView
-    template: "entry_set_responses/edit/templates/items"
-    itemView: Edit.Item
-    itemViewContainer: 'ul'
+  
+
+
+  class Edit.EntryValues extends App.Views.CompositeView
+    template: "entry_set_responses/edit/templates/entryValues"
+    itemView: Edit.EntryValue
+
 

@@ -3,19 +3,14 @@
   
   class EntrySetResponsesApp.Router extends Marionette.AppRouter
     appRoutes:
-      "entry_set_responses/:responseId/:entrySetId(/sections/:sectionNo)" : "edit"
+      "entry_set_responses/:entry_set_response_id(/section/:section_id)" : "edit"
 
   
   API =
-    edit: (responseId, entrySetId,sectionNo) ->
-
-      sectionNo ?= 1
-      options=
-        sectionNo: (Number)(sectionNo)
-        responseId: (Number)(responseId)
-        entrySetId: (Number)(entrySetId)
-      
-      new EntrySetResponsesApp.Edit.Controller(options).edit()  
+    edit: (entrySetResponseId,sectionId) ->
+      console.log "REFRESHING", arguments
+      options = _.object ['entrySetResponseId','sectionId'], _.map(arguments ,(i)-> (Number)(i) if i)
+      new EntrySetResponsesApp.Edit.Controller().edit(options)  
     
   
 

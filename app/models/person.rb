@@ -14,7 +14,9 @@ class Person < ActiveRecord::Base
   has_many :respondent_responder_items, :class_name => "ResponderItem", :foreign_key => "respondent_id"
   has_many :patient_responder_items, :class_name => "ResponderItem", :foreign_key => "subject_id"
   has_many :caretaker_responder_items, :class_name => "ResponderItem", :foreign_key => "caretaker_id"
- 
+  
+
+
   has_many  :relationships,:dependent => :destroy do
     def child
       where("name = 'parent'")
@@ -45,6 +47,7 @@ class Person < ActiveRecord::Base
     def guardian_of
       where("relationships.name = 'guardian'")
     end
+
     def spouse
       where("relationships.name = 'spouse'")
     end
@@ -79,6 +82,8 @@ class Person < ActiveRecord::Base
     end
   end
   
+
+
 
   accepts_nested_attributes_for :user, :allow_destroy => true
   accepts_nested_attributes_for :relations, :allow_destroy => true
@@ -161,7 +166,14 @@ class Person < ActiveRecord::Base
     end
   end
 
-
+  def respondent_subject_ids
+    ResponderItem.by_respondent(self.id).subject_ids.to_a
+  end
+  
+  def guardianship_relations
+    self.relations.guardian_of
+  end
+  
   def responder_items
     self.send("#{self.role}_responder_items")
   end

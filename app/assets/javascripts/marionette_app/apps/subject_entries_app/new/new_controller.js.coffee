@@ -6,6 +6,8 @@
     initialize:(options)->
       {@region,@entry} = options
 
+    
+
     newEntry:->
       formView = @showForm()
       @listenTo formView, "form:cancel",=>
@@ -13,6 +15,7 @@
         @region.close()
 
 
+    
     showForm:->
       editView = @getFormView()
       formView = App.request "form:wrapper", editView
@@ -20,6 +23,7 @@
       formView
 
 
+    
     createModel:->
       attributes =
         entry_field_id: @entry.get('id')
@@ -28,15 +32,16 @@
         text_value: ""
 
       entry = new App.Entities.EntryValue attributes
+      
       @listenTo entry,"sync:stop",(model) ->
         @region.close()
         @region.trigger("form:close")
 
-
       entry
 
+    
+
     getFormView:->
-      console.log @entry.get('caretaker_entry_values')
       new New.Entry 
         model: @createModel() 
         collection: @entry.get('caretaker_entry_values')

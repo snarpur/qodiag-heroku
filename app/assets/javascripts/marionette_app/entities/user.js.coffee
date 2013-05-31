@@ -1,6 +1,9 @@
 @Qapp.module "Entities", (Entities, App, Backbone, Marionette, $, _) ->
 	
 	class Entities.User extends Entities.Model
+
+		subjectIds:->
+			_.map @get('subjects'), (i)-> i.id
 	
 	class Entities.UsersCollection extends Entities.Collection
 		model: Entities.User

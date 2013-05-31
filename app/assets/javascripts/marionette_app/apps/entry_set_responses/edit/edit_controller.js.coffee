@@ -3,53 +3,51 @@
   class Edit.Controller extends App.Controllers.Base
     
     initialize: (options) ->
-      {@entrySetId,@responseId,@sectionNo} = options
       App.contentRegion.show @getLayout()
             
     
-    edit: ()->
-      @getSections()
+
+    edit: (options)->
+      @getSections(options)
    
     
-    getSections:->
-      options=
-        sectionNo: @sectionNo
-        entrySetId: @entrySetId
-        responseId: @responseId
 
-      @sectionCollection = App.request "entry:set:sections:entities", options
+    getSections:(options)->
+      {entrySetResponseId,sectionId} = options
+    
+      @entrySetResponse = App.request "entry:set:response:entities", id: entrySetResponseId
       
-      App.execute "when:fetched", @sectionCollection, =>
-        @currentSection = _.first(@sectionCollection.where({display_order: @sectionNo}))
+      App.execute "when:fetched", @entrySetResponse, =>
+        @sections = @entrySetResponse.get("entry_sets_sections")
+        
+        if sectionId
+          @sections.trigger("change:current:section", model: @sections.get(sectionId))
+        
         @showFormSteps()
+
+        @listenTo @sections, "change:current:section", () =>          
+          App.navigate(@sectionUrl(),{replace: true})
+          @getEntries()
+  
         @getEntries()
 
     
-    getEntries:->
-      options=
-        section_id: @currentSection.get("id")
-        id: @responseId
 
-      @responseSet = new App.Entities.EntrySetResponse(options)
-      entries = @responseSet.getSectionEntries()
+    getEntries:->
+      entries = @entrySetResponse.getSectionResponses()
+
       App.execute "when:fetched", entries, =>
-        
-        @responseSet.set('entry_values',entries)
-        
-        if @sectionCollection.isCurrentLast()
-          @responseSet.set("complete_item",1)
-        
+        @entrySetResponse.set('entry_values',entries.mergeEntryValues())
+          
         @showForm()
 
-      @listenTo @responseSet, "updated",() -> 
-        unless @sectionCollection.isCurrentLast()
-          App.vent.trigger "form:step:navigate", @forwardParams()
-        else
       
     
+    
     showFormSteps:->
-      view = @getFormStepsView()
+      view = @getFormStepsView(collection: @sections)
       @getFormStepsRegion().show view
+
 
     
     showForm:->
@@ -57,39 +55,89 @@
       formView = App.request "form:wrapper", editView, @buttonsConfig() 
       @getFormWrapperRegion().show formView
 
-      @listenTo formView, "form:back", ->
-        App.vent.trigger "form:step:navigate", @backParams()
+      @listenTo formView, "form:back", =>
+        @sections.trigger("change:current:section",{model: @sections.getPreviousSection()})
+        
+      @listenTo formView, "form:save", => @triggerSuccessMessage(formView)
+
+      @listenTo formView, "form:saveAndContinue", => @saveAndMoveToNextSection(formView)
+      
+      @listenTo formView, "form:saveAndComplete", => @saveAsCompleteAndRedirect(formView)
     
+
+     saveAndMoveToNextSection:(formView)->
+      formView.trigger('form:submit')
+      @listenToOnce @entrySetResponse, 'updated', =>
+        @sections.trigger("change:current:section",model: @sections.getNextSection())
+     
+      
+
+    triggerSuccessMessage:(formView)->
+      formView.trigger('form:submit')
+      @listenToOnce @entrySetResponse, 'updated', =>
+        toastr.success "Færsla hefur vistast"
+
     
-    getFormStepsView:->
-      new Edit.FormSteps collection: @sectionCollection
+
+    saveAsCompleteAndRedirect:(formView) ->
+      @entrySetResponse.set("complete_item",1)
+      formView.trigger('form:submit')
+      @listenToOnce @entrySetResponse, 'updated', =>
+        App.navigate "/items", {trigger: true}
+      
+      # unless @sections.isCurrentLast()
+      #   console.warn "updateCurrentSection :: ",@entrySetResponse
+      #   @sections.trigger("change:current:section",model: @sections.getNextSection())
+      # else
+      #   consol.warn "should go back to #itmes"
+
+
+    
+    getFormStepsView:(options)->
+      new Edit.FormSteps _.extend options
+
 
     
     getFormView:->
-      new Edit.Items 
-        collection: @responseSet.get('entry_values')
-        model: @responseSet
+      new Edit.EntryValues 
+        collection: @entrySetResponse.get('entry_values')
+        model: @entrySetResponse
+
 
 
     getFormStepsRegion:->
       @getLayout().formStepsRegion
     
     
+
     getFormWrapperRegion:->
       @getLayout().formWrapperRegion
+
 
     
     buttonsConfig:->
       options =
         buttons: 
-          primary: {text: 'Áfram og vista >>',order: 2}
+          primary: 
+            text: 'Áfram og vista >>'
+            order: 3
+            buttonType: 'button'
+            type: 'saveAndContinue'
+          save:
+            order: 2
+            text: "Vista"
+            buttonType: 'button'
+            type: 'save'
+            className: 'btn btn-success'
           cancel: false
+
       
-      if @sectionCollection.isCurrentLast()
-        options.buttons.primary.text =
-          "Vista og klára"
-      
-      unless @sectionCollection.isCurrentFirst() 
+      if @sections.isCurrentLast()
+        options.buttons.primary = _.extend options.buttons.primary , {text: "Vista og klára", type: 'saveAndComplete'}
+ 
+
+            
+      unless @sections.isCurrentFirst() 
         options.buttons.back =
           order: 1
           buttonType: 'button'
@@ -100,16 +148,12 @@
       options
 
     
-    forwardParams:->
-      @sectionNo = @sectionNo + 1
-      _.toArray(_.pick(@,"responseId","entrySetId","sectionNo"))
-    
-    
-    backParams:->
-      @sectionNo = @sectionNo - 1
-      _.toArray(_.pick(@,"responseId","entrySetId","sectionNo"))
-    
     
     getLayout:->
       @layout ?= new Edit.Layout
+
+
+
+    sectionUrl:->
+      Routes.entry_set_response_section_path(@entrySetResponse.id,@sections.getCurrentSection().id)
         

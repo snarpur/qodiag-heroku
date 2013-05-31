@@ -19,17 +19,22 @@
       if @model.isCurrentSection()
         "active"
   
+    
+
     modelEvents:
       'edit:complete': ()-> @render()
+
+    
 
     onSetCurrentSection:(options)->
       options.model.trigger("change:current:section", options)
     
+    
+
     triggers:
       "click a" : "set:current:section"
 
-  
-
+    
 
     initialize: (options) ->
       @model.set("entrySetId",options.entrySetId)
@@ -42,9 +47,9 @@
           @$el.removeClass('active')
           
 
-    setActiveStatus:->
-     
   
+  
+
   class List.SectionsNav extends App.Views.CompositeView
     template: "entry_set_sections/list/templates/section_nav"
     itemView: List.SectionNav
@@ -54,6 +59,9 @@
       "click button": "add:new:section:clicked"
 
     
+
+  
+
 
   class List.Title extends App.Views.ItemView
     template: "entry_set_sections/list/templates/title"

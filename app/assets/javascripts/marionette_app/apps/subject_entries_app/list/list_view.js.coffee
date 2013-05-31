@@ -8,6 +8,10 @@
       entrySetSectionsRegion: "#entry-set-sections-region"
       entrySetValuesRegion: "#entry-set-values-region"
 
+  
+
+  
+
   class List.SelectItem extends App.Views.ItemView
     template: "subject_entries_app/list/_select_item"
     tagName: "option"
@@ -16,11 +20,16 @@
       "click": "select:response"
  
 
+  
+
+
   class List.SelectItems extends App.Views.CollectionView
     itemView: List.SelectItem
     tagName: "select"
     
 
+
+  
 
   class List.Section extends App.Views.ItemView
     template: "subject_entries_app/list/_section"
@@ -32,6 +41,8 @@
       "click a" : "set:current:section"
   
 
+
+  
 
   class List.Sections extends App.Views.CollectionView
     itemView: List.Section
@@ -45,6 +56,8 @@
 
 
 
+  
+
   class List.Entry extends App.Views.ItemView
     template: "subject_entries_app/list/_entry"
     tagName: "li"
@@ -57,6 +70,9 @@
       # "entry-value-region-#{@model.get("entry_value").id}"
       "entry-value-region-#{@cid}"
  
+
+  
+
 
   class List.Entries extends App.Views.CollectionView
     itemView: List.Entry
