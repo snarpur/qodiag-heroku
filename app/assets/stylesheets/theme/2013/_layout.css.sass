@@ -13,7 +13,7 @@ body
     text-align: right
 
     li
-      @include ctb-ie7-inline-block()
+      +ctb-ie7-inline-block()
       display: inline-block
       color: #fff
       font-size: $baseFontSize
@@ -29,14 +29,14 @@ body
         text-decoration: underline
         font-style: normal
 
+      span
+        vertical-align: middle
+
       a
         display: block
         color: #fff
         padding: 0 10px
         margin: 0 -10px
-
-        span
-          vertical-align: middle
 
         &:hover
           background: rgba(0, 0, 0, 0.15)
@@ -94,6 +94,13 @@ body
     margin: 0
     float: left
 
+    .avatar
+      float: left
+      margin: -28px 10px 0 0
+      border: 1px solid #ccc
+      +box-shadow(0 0 10px rgba(0, 0, 0, 0.15))
+
+
   .content_title_sub
     float: left
     border-left: 2px solid #333
@@ -104,6 +111,13 @@ body
     color: $grayLight
     text-transform: uppercase
 
+  .subnav
+    font-size: 0
+
+    li
+      font-size: $baseFontSize
+      margin-left: 5px
+
 #content
   background: #fff
   position: relative
@@ -113,6 +127,10 @@ body
   padding: 30px
 
   .subject
+    .information
+      h4
+        margin-top: 0
+
     .avatar
       float: left
       position: relative
@@ -126,8 +144,7 @@ body
         bottom: 1px
         right: 1px
 
-  .parents
-    clear: both
+
 
 
 #footer
@@ -142,3 +159,97 @@ body
   margin-top: -70px
   height: 84px
 
+
+
+/*
+/* Subsections
+/*
+
+.fullwidth
+  margin: -30px
+
+.comments-region
+  border: 1px solid #bfcad5
+  background: #eef2f7
+  padding: 10px
+  margin-bottom: 20px
+
+  li
+    border-color: #bfcad5
+
+
+
+
+/*/ Entry sets
+
+#entryset-title-region
+  background: #104c89
+
+  h2
+    font-size: 14px
+    font-weight: 400
+    color: #fff
+    margin-top: 0
+    padding: 0 10px
+
+#sections-navigation-region
+  margin-bottom: 20px
+
+#section-title-region
+  h2
+    font-size: 14px
+    font-weight: 400
+    margin-top: 0
+    padding: 0 10px
+
+#settings-content
+  float: left
+  border: 1px solid #ccc
+
+  .settings-content
+    float: left
+    width: 575px
+    padding: 20px
+
+#entry-fields-sidebar-region
+  float: left
+  width: 260px
+  border-left: 1px solid #ccc
+  border-bottom: 1px solid #ccc
+
+#entry-fields-search-region
+  padding: 20px 2px 10px
+
+#entry-fields-list-region
+  > ul
+    min-height: 500px
+    max-height: 500px
+    font-size: 0
+    overflow-x: hidden
+    overflow-y: scroll
+
+    > li
+      border-top: 1px solid #ccc
+      padding: 5px 10px 5px 24px
+      background: #fff url("2013/icon-list.png") no-repeat 5px 50%
+      cursor: pointer
+      font-size: $baseFontSize
+    > li:hover
+      background-color: darken(#fff, 5%)
+
+#entry-fields-search-region
+  width: 260px
+
+#entry-section
+  > li
+    position: relative
+    background: #f4f4f4
+    border: 1px solid #ccc
+    padding: 20px
+    margin-bottom: 5px
+
+    > em
+      display: block
+      float: left
+      clear: left
+      padding: 0 10px

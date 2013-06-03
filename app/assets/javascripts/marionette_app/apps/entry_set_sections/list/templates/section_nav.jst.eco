@@ -1,2 +1,4 @@
-<ul class="nav nav-pills nav-stacked"></ul>
-<button class="btn btn-small">Bæta við skrefi</button>
+<div class="pull-right">
+    <a href="#" class="button prime"><span class="icon-add"></span> Bæta við skrefi</a>
+</div>
+<ul class="stepper"></ul>

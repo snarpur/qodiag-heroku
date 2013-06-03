@@ -47,7 +47,7 @@
   class List.Sections extends App.Views.CollectionView
     itemView: List.Section
     tagName: "ul"
-    className: "nav nav-tabs"
+    className: "stepper"
 
     initialize:->
       @on "childview:set:current:section", (view)->
@@ -77,5 +77,6 @@
   class List.Entries extends App.Views.CollectionView
     itemView: List.Entry
     tagName: 'ul'
+    className: "entryset"
 
 

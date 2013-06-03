@@ -24,13 +24,22 @@ $answer-level-color-4: rgba(22,25,59,$level-opacity)
     +transition-timing-function(ease-out)
     +transition-duration(.2s)
     +opacity(0)
+    +box-shadow(0 0 1px rgba(0,0,0,0.7))
+    border: 2px solid #fff
     display: none
     position: absolute
     z-index: -1
     background-color: rgba(15, 15, 15, 0.87)
-    border: 1px #eaeaea solid
-    +border-radius(13px)
-    +box-shadow(0 0 0px 9px rgba(0, 0, 0, 0.9), rgba(0,0,0,.4) 0 0 9px 9px)
+
+    .icon-close
+      position: absolute
+      z-index: 200
+      right: -2px
+      top: -3px
+      border: 2px solid #fff
+      +opacity(1)
+
+
 #canvas.state-new-item .line-overlay 
   z-index: 300
 .line .new-item
@@ -86,12 +95,7 @@ $answer-level-color-4: rgba(22,25,59,$level-opacity)
   h3
     padding: 5px
     font-size: 1.3em
-  .c-icon
-    z-index: 200
-  .c-icon.close
-    position: absolute
-    right: 10px
-    top: 10px
+
   &.drilldown-on .chart,
   &.drilldown-on > ul,
   &.drilldown-on ul.chart-metrics

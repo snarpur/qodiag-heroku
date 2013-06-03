@@ -19,6 +19,6 @@
 
   class List.Navigation extends App.Views.CollectionView
     itemView: List.NavigationItem
-    className: 'nav nav-tabs'
+    className: 'tabs fullwidth'
     tagName: 'ul'
 

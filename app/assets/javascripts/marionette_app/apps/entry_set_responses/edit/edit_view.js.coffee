@@ -33,7 +33,7 @@
 
   class Edit.FormSteps extends App.Views.CollectionView
     itemView: Edit.FormStep
-    className: 'nav nav-pills'
+    className: 'wizard-nav'
     tagName: 'ul'
 
     collectionEvents: 

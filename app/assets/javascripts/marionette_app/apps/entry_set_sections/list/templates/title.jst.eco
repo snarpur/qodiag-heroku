@@ -1,2 +1,1 @@
-<button class="btn btn-mini">Breyta</button>
-<h2><%- @name %></h2>
+<h2><%- @name %> <span class="icon-edit edit-item"></span></h2>

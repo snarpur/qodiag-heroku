@@ -1,4 +1,2 @@
-<ul>
-</ul>
-<hr>
-<button class="btn btn-success btn-mini">Bæta við</button>
+<ul class="comments"></ul>
+<button class="btn"><span class="icon-comment"></span> Skrifa ummæli</button>

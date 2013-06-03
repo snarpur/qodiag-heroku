@@ -12,10 +12,11 @@ $fadeout-top: 0 0
 
 #canvas
   position: relative
-  margin-bottom: 17px
-  border: 1px solid #ccc
+  margin: 0 0 0 -30px
+  border-top: 1px solid #ccc
+  border-bottom: 1px solid #ccc
   background-color: #fff
-  +ctb-box-shadow(inset 0 0 10px rgba(0, 0, 0, 0.1))
+  +ctb-box-shadow(inset 0 0 10px rgba(0, 0, 0, 0.2))
 
 #canvas #tml-body:after
   content: "."
@@ -40,7 +41,7 @@ $fadeout-top: 0 0
   +transition-duration(0.2s)
   +transition-timing-function(ease)
   +background-image($year-divider-l,$year-divider-r,$month-divider)
-  +background-size(840px,840px,128px)
+  +background-size(840px,840px,130px)
   background-position: 0, 1px 4px, 0
   background-repeat:repeat-x, repeat-x, repeat
 

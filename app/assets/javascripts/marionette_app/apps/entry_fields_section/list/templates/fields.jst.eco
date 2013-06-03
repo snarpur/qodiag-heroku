@@ -1,2 +1,2 @@
-<ul id="entry-section"></ul>
-<button class="btn">Vista</button>
+<ul id="entry-section" class="reset"></ul>
+<button class="btn btn-primary">Vista</button>

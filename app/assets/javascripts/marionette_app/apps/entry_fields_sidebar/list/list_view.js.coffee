@@ -12,14 +12,8 @@
     template: "entry_fields_sidebar/list/templates/_entry_field"
     tagName: "li"
 
-
-    
-
     triggers:
       'mouseenter' : 'connect:to:sortable'
-
-
-
 
     onConnectToSortable:() ->
       droppableEl = @model.collection.droppableElement
@@ -58,6 +52,7 @@
   class List.EntryFields extends App.Views.CollectionView
     itemView: List.EntryField
     tagName: "ul"
+    className: "reset"
 
 
 

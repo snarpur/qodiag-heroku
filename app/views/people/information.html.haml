@@ -1,8 +1,10 @@
 =content_for :content_title, "#{@person.full_name}"
 =content_for :content_title_sub, "#{@person.age} ára"
+=content_for :content_title_image do
+  =image_tag @person.avatar.url(:tiny), {:class => 'avatar'}
 
 =content_for :subject_nav do
-  = render "people/patient/patient_nav"
+  =render "people/patient/patient_nav"
 
 =content_for :subject_content do
   =render "shared/content_title"

@@ -1,11 +1,13 @@
 
 <div id='entryset-title-region'></div>
 <div id="sections-navigation-region"></div>
-<div class="settings-content">
-  <div id="section-title-region"></div>
-  <div id="section-content-region"></div>
+<div id="settings-content">
+  <div class="settings-content">
+    <div id="section-title-region"></div>
+    <div id="section-content-region"></div>
+  </div>
+  <div id="entry-fields-sidebar-region"></div>
 </div>
-<div id="entry-fields-sidebar-region"></div>
 
 
-  
+

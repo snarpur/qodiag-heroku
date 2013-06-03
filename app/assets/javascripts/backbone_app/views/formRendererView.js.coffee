@@ -1,7 +1,7 @@
 class App.Views.FormRenderer extends Backbone.View
  
   id: "form-wizard"
-  className: "form-base"
+  className: "form-base form-horizontal"
 
   events:
     "click button.submit-btn": "validateForm"
