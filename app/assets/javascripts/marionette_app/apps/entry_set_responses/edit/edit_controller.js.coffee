@@ -38,7 +38,6 @@
 
       App.execute "when:fetched", entries, =>
         @entrySetResponse.set('entry_values',entries.mergeEntryValues())
-          
         @showForm()
 
       
@@ -58,12 +57,16 @@
       @listenTo formView, "form:back", =>
         @sections.trigger("change:current:section",{model: @sections.getPreviousSection()})
         
-      @listenTo formView, "form:save", => @triggerSuccessMessage(formView)
-
-      @listenTo formView, "form:saveAndContinue", => @saveAndMoveToNextSection(formView)
+      @listenTo formView, "form:save", => 
+        @triggerSuccessMessage(formView)
       
-      @listenTo formView, "form:saveAndComplete", => @saveAsCompleteAndRedirect(formView)
+      @listenTo formView, "form:saveAndContinue", => 
+        @saveAndMoveToNextSection(formView)
+      
+      @listenTo formView, "form:saveAndComplete", => 
+        @saveAsCompleteAndRedirect(formView)
     
+
 
      saveAndMoveToNextSection:(formView)->
       formView.trigger('form:submit')
@@ -84,12 +87,6 @@
       formView.trigger('form:submit')
       @listenToOnce @entrySetResponse, 'updated', =>
         App.navigate "/items", {trigger: true}
-      
-      # unless @sections.isCurrentLast()
-      #   console.warn "updateCurrentSection :: ",@entrySetResponse
-      #   @sections.trigger("change:current:section",model: @sections.getNextSection())
-      # else
-      #   consol.warn "should go back to #itmes"
 
 
     
@@ -118,33 +115,17 @@
     buttonsConfig:->
       options =
         buttons: 
-          primary: 
-            text: 'Áfram og vista >>'
-            order: 3
-            buttonType: 'button'
-            type: 'saveAndContinue'
-          save:
-            order: 2
-            text: "Vista"
-            buttonType: 'button'
-            type: 'save'
-            className: 'btn btn-success'
+          primary: {text: 'Áfram og vista >>', buttonType: 'saveAndContinue', order: 3} 
+          save: {text: "Vista", buttonType: 'save', order: 2,  className: 'btn btn-success'} 
           cancel: false
-
-      
+     
       if @sections.isCurrentLast()
-        options.buttons.primary = _.extend options.buttons.primary , {text: "Vista og klára", type: 'saveAndComplete'}
- 
-
-            
+        options.buttons.primary = _.extend options.buttons.primary , {text: "Vista og klára", buttonType: 'saveAndComplete'}
+      
       unless @sections.isCurrentFirst() 
-        options.buttons.back =
-          order: 1
-          buttonType: 'button'
-          type: 'back'
-          className: "btn"
-          text: "<< Tilbaka"
-
+        _.extend options.buttons, back: {text: "<< Tilbaka", buttonType: 'back', className: "btn",order: 1}
+          
+      
       options
 
     
