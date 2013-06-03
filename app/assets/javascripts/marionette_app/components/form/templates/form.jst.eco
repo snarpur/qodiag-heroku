@@ -5,7 +5,7 @@
 			<% if @buttons: %>
 				<div class="form-actions">
 					<% for button in @buttons: %>
-						<button type="<%= button.buttonType %>" data-form-button="<%= button.type %>" class="<%= button.className %>"><%= button.text %></button>
+						<button type="button" data-form-button="<%= button.buttonType %>" class="<%= button.className %>"><%= button.text %></button>
 					<% end %>
 			<% end %>
 			</div>

@@ -56,6 +56,7 @@ group :development do
   gem 'better_errors', :require => RUBY_PLATFORM.include?('darwin') ? 'better_errors' : false
   gem 'binding_of_caller', :require => RUBY_PLATFORM.include?('darwin') ? 'binding_of_caller' : false
   gem 'meta_request'
+  gem 'xray-rails'
 end
 
 group :development, :test do
