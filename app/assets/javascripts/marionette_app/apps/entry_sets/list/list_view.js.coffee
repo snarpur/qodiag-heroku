@@ -1,6 +1,12 @@
 @Qapp.module "EntrySetsApp.List", (List, App, Backbone, Marionette, $, _) ->
   
-  
+  class List.Layout extends App.Views.Layout
+    template: "entry_sets/list/templates/list_layout"
+
+    regions:
+      settingsNavigationRegion: "#settings-navigation-region"
+      listRegion: "#list-region"
+
   class List.EntrySet extends App.Views.ItemView
     template: "entry_sets/list/templates/_entrySet"
     tagName: "tr"

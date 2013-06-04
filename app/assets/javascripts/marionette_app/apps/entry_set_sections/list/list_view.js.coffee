@@ -4,7 +4,8 @@
     template: "entry_set_sections/list/templates/list_layout"
     
     regions:
-      entrySetTitleRegion: "#entryset-title-region"
+      settingsNavigationRegion: "#settings-navigation-region"
+      entrySetTitleRegion: "#entry-set-title-region"
       navigationRegion: "#sections-navigation-region"
       sectionTitleRegion: "#section-title-region"
       sectionContentRegion: "#section-content-region"

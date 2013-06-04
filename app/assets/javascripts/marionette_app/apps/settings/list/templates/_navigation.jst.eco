@@ -1,4 +1,1 @@
-
-<a href=<%="#settings/#{@name}"%>><%= @name %></a>
-
-  
+<a href=<%="#settings/#{@name}"%>><%= @text %></a>

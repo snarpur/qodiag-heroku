@@ -14,7 +14,7 @@
       SettingsApp.app.navigate(SettingsApp.rootRoute, trigger: true)
 
     showSettingsRegion: (options) ->
-      ctrl = new SettingsApp.List.Controller
+      ctrl = new SettingsApp.List.Controller()
       ctrl.listSettings(options)
 
 
@@ -23,6 +23,8 @@
     API.showSettingsRegion(options)
   )
   
+  App.commands.setHandler "show:settings:navigation", (options)->
+   API.showSettingsRegion(options) 
 
   App.addInitializer ->
     new SettingsApp.Router

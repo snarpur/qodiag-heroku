@@ -4,19 +4,17 @@
   class List.Controller extends App.Controllers.Base
     
     initialize:->
-      App.vent.trigger("show:settings")
-     
+      App.contentRegion.show @getLayout()
 
     
+    
     list:(options) ->
-      @getSettingsContentRegion().show @getLayout()
-
       @getContentRegion().once "show", (region)=> 
 
         @executeSidebar 
           droppableCollection: region.model.collection
           droppableElement: region.$itemViewContainer
-
+      
       @getEntrySet(options.entrySetId)
       @getSections(options)
     
@@ -26,7 +24,8 @@
       entrySet = App.request "entry:set:entity", {id: id}
       
       App.execute "when:fetched", entrySet, =>
-        @showEntrySetTitle entrySet
+        @showEntrySetTitle(entrySet)
+        @executeSettingsNavigation(entrySet)
 
 
 
@@ -40,7 +39,6 @@
           @executeFields(model: sections.getCurrentSection())
         
     
-
 
     executeFields:(options)->
       App.execute "show:settings:section:fields", 
@@ -87,21 +85,25 @@
     showEntrySetTitle:(entrySet)->
       view = new List.Title model: entrySet
       @getLayout().entrySetTitleRegion.show view
-
-      @listenTo view, "edit:title",(options) =>
-        
+      
+      @listenTo view, "edit:title",(options) =>  
         App.execute "edit:section", 
           model: entrySet
           activeView: @getLayout()
    
     
-    
+    executeSettingsNavigation:(entrySet) ->
+      App.execute "show:settings:navigation", 
+        currentSetting: 'entry_sets' 
+        subView: entrySet.get('name')
+        region: @getLayout().settingsNavigationRegion
+
+
     getNavigationView: (collection)->
       new List.SectionsNav 
         collection: collection
         model: collection.getCurrentSection()
 
-     
     
     getNavigationRegion: ->
       @getLayout().navigationRegion
@@ -121,12 +123,7 @@
     getLayout: ()->
       @layout ?= new List.Layout
 
-    
-
-    getSettingsContentRegion: ()->
-      App.request("settings:content:region")
-
-
+  
     
     sectionUrl:(section)->
       params = _.values(section.pick("entry_set_id","id"))

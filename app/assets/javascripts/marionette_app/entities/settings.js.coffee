@@ -1,21 +1,42 @@
 @Qapp.module "Entities", (Entities, App, Backbone, Marionette, $, _) ->
-  
+
   class Entities.Setting extends Entities.Model
   
+  
+
+
+
   class Entities.SettingsCollection extends Entities.Collection
     model: Entities.Setting
-    # url: -> Routes.settings_path()
+    rootSetting: 'entry_sets'
+    
+    initialize:(models,options)->
+      {@currentSetting, @subView} = options
+
+
+
+    getCurrentSetting:()->
+      setting = @findWhere({name: @currentSetting ? @rootSetting})
+      setting.set 'subView', @subView if @subView
+      setting
   
+
+
+
+
   API =
     setCurrentSetting: (currentSetting) ->
       new Entities.Setting currentSetting
     
-    getSettingsEntities: (callBack) ->
-      settings = new Entities.SettingsCollection([{name: 'entry_sets'},{name: 'entry_fields'}])
-      callBack settings
+    getSettingsEntities: (options) ->
+      settings = new Entities.SettingsCollection [
+        {name: 'entry_sets', text: "Eyðublöð"},
+        {name: 'entry_fields', text: "Spurningar"}
+      ], options
+      
+      settings
 
-  App.reqres.setHandler "set:current:setting", (currentSetting) ->
-    API.setCurrentSetting currentSetting
+
   
-  App.reqres.setHandler "get:settings", (callBack) ->
-    API.getSettingsEntities callBack
+  App.reqres.setHandler "get:settings", (options) ->
+    API.getSettingsEntities options
