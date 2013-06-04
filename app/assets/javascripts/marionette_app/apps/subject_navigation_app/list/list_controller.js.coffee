@@ -51,4 +51,4 @@
     
 
     getHeaderRegion:->
-      App.request "subject:header:region"
+      App.request "content:header:region"

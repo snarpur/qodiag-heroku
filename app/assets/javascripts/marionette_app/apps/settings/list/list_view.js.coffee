@@ -17,11 +17,15 @@
 
   class List.Breadcrumb extends App.Views.ItemView
     template: "settings/list/templates/breadcrumb"
-    tagName: 'until'
+    tagName: 'ul'
     className: 'breadcrumb'
     triggers:
       'click a' : "back"
 
+  class List.Header extends App.Views.ItemView
+    template: "settings/list/templates/header"
+    className: 'content_title'
+    tagName: "h1"
 
   class List.Navigation extends App.Views.CollectionView
     itemView: List.NavigationItem

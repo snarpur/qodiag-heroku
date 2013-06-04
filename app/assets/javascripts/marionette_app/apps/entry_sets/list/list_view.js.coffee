@@ -22,4 +22,4 @@
     itemViewContainer: "tbody"
 
     triggers:
-      'click button.btn': 'create:entry:set'
+      'click .button.prime': 'create:entry:set'

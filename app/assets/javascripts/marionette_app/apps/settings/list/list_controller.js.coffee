@@ -5,10 +5,8 @@
     listSettings: (options)->
       {subView,@region} = options
       settings = App.request "get:settings", options
-      # @layout = @getLayoutView()
-      # App.contentRegion.show(@layout)
-      # @setContentRegion()
-        
+
+      @showHeader(settings.getCurrentSetting())
       if options.subView
         @showBackNavigationView settings.getCurrentSetting()
       else
@@ -30,15 +28,13 @@
         App.navigate("/settings/#{model.get('name')}",{trigger: true})
   
     
-
-    setContentRegion: ->
-      App.reqres.setHandler "settings:content:region", =>
-        @layout.settingsContentRegion
+    showHeader:(model)->
+      headerRegion = App.request "content:header:region"
+      headerRegion.show new List.Header model: model
 
       
     
     getNavigationView: (settings) ->
-      console.log "settings :: ", settings
       new List.Navigation
         collection: settings
         itemViewOptions: 

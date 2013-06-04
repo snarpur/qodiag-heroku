@@ -12,7 +12,7 @@
   App.addRegions
     headerRegion: "#header-region"
     contentRegion: "#content"
-    subjectHeaderRegion: "#subject"
+    contentHeaderRegion: "#content-header"
     dialogRegion: Marionette.Region.Dialog.extend el: "#dialog-region"
   
   # App.addInitializer () ->
@@ -21,8 +21,8 @@
   App.reqres.setHandler "default:region", ->
     App.contentRegion
   
-  App.reqres.setHandler "subject:header:region", ->
-    App.subjectHeaderRegion
+  App.reqres.setHandler "content:header:region", ->
+    App.contentHeaderRegion
   
   App.commands.setHandler "register:instance", (instance, id) ->
     App.register instance, id if App.environment is "development"

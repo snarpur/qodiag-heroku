@@ -7,11 +7,12 @@
       "settings" : "listRootSettings"
 
   
+  
   API =
     listRootSettings: () ->
-      ctrl = new SettingsApp.List.Controller
-      ctrl.listSettings()
       SettingsApp.app.navigate(SettingsApp.rootRoute, trigger: true)
+
+    
 
     showSettingsRegion: (options) ->
       ctrl = new SettingsApp.List.Controller()
@@ -19,12 +20,17 @@
 
 
 
-  App.vent.on("show:settings",(options)->
+
+
+  App.vent.on "show:settings",(options)->
     API.showSettingsRegion(options)
-  )
+
+
   
   App.commands.setHandler "show:settings:navigation", (options)->
    API.showSettingsRegion(options) 
+
+
 
   App.addInitializer ->
     new SettingsApp.Router

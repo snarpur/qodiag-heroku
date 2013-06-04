@@ -6,7 +6,6 @@
 <thead>
   <tr>
     <th>Heiti</th>
-    <th>Tegund</th>
   </tr>
 </thead>
 <tbody>
@@ -15,4 +14,3 @@
 <div class="pull-right">
     <a href="#" class="button prime"><span class="icon-add"></span>Búa til nýjan lista</a>
 </div>
-<button class="btn btn-mini">Búa til nýjan lista</button>
