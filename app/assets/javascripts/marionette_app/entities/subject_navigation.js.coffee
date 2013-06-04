@@ -31,7 +31,7 @@
         {
           name: "profile"
           text: "Persónu upplýsingar"
-          url: "#{Routes.person_path(personId)}/information" 
+          url: "#{Routes.person_path(personId)}/edit"
           iconClass:'icon-profile'
         }
       ]

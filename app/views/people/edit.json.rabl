@@ -1,8 +1,9 @@
-object @person => :person
-attributes :id, :firstname
-node :schema do
-  {
-    :id => :Hidden,
-    :firstname => :Text
-  }
+object @person
+
+node do 
+  {:subject => partial("people/caretaker/subject", :object => @person) }
+end
+
+node do 
+  {:parents => partial("people/caretaker/parents", :object => @person.parents) }
 end

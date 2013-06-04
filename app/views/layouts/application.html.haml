@@ -55,11 +55,9 @@
         #content
           =yield
           
-      #footer
-        %span
-          ="Qodiag #{Date.today.year}  |  Quality of Diagnosis"
-
     #footerwrap
+      %span
+        ="Qodiag #{Date.today.year}  |  Quality of Diagnosis"
 
     #flash
       -flash.each do |name, msg|

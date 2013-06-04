@@ -32,6 +32,7 @@ gem 'draper', '~> 1.0'
 gem 'time_diff'
 gem 'rb-readline', '~> 0.4.2'
 gem "paperclip", "~> 3.0"
+gem 'dropzonejs-rails'
 gem 'oj'
 gem 'gon'
 gem 'js-routes'
@@ -47,7 +48,6 @@ group :assets do
   gem 'compass-rails'
   gem 'compass_twitter_bootstrap'
   gem 'eco'
-
 end
 
 group :development do
