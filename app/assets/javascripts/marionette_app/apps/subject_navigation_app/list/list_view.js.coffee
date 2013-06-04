@@ -17,7 +17,7 @@
       @model.set('ageInYears', @model.ageInYears())
 
 
-  
+
 
 
   class List.Item extends App.Views.ItemView

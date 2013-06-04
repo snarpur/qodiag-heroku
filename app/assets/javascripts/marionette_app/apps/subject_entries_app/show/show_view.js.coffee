@@ -53,11 +53,12 @@
 
   class Show.Entry extends App.Views.ItemView
     template: "subject_entries_app/show/_entry"
-    tagName: "p"
+    tagName: "div"
+    className: "entry"
 
   class Show.EmptyEntry extends App.Views.ItemView
     template: "subject_entries_app/show/_entryEmpty"
-    tagName: "p"
+    tagName: "div"
 
 
    

@@ -57,7 +57,7 @@
     itemViewContainer: "ul"
 
     triggers:
-      "click button": "add:new:section:clicked"
+      "click .button": "add:new:section:clicked"
 
     
 
@@ -68,7 +68,7 @@
     template: "entry_set_sections/list/templates/title"
 
     triggers:
-      "click button" : "edit:title"
+      "click .edit-item" : "edit:title"
 
     modelEvents:
       'edit:complete': ()-> @render()

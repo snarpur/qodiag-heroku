@@ -10,6 +10,7 @@ class App.Views.SimpleForm extends Backbone.Marionette.ItemView
     @form = new Backbone.Form({ model: @model}).render()
     # @model.set("form",@form)
     @.$el.prepend(@form.el)
+    @form.$el.addClass('form-horizontal')
   
   validateForm:=>
     errors = @form.commit()

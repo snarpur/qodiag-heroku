@@ -1,6 +1,7 @@
-<button class="btn btn-mini edit-item">Breyta</button>
-<ul>
-<li><%= I18n.t("person.name")%>: <%= firstname %> <%= lastname %></li>
-<li><%= I18n.t("person.full_cpr")%>: <%= full_cpr %></li>
-<li><%= I18n.t("person.dateofbirth")%>: <%= dateofbirth %></li>
+
+<h4><span class="icon-edit edit-item"></span> <%= firstname %> <%= lastname %></h4>
+<ul class="reset">
+    <li><%= I18n.t("person.full_cpr")%>: <%= full_cpr %></li>
+    <li><%= I18n.t("person.dateofbirth")%>: <%= dateofbirth %></li>
+
 </ul>

@@ -1,4 +1,3 @@
-<hr>
 <p><strong><%- @person.full_name %></strong>   sett inn: <%- @l("date.formats.long",@created_at) %></p>
-<%- @text_value %>
+<p><%- @text_value %></p>
 
