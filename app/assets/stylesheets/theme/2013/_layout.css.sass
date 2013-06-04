@@ -1,3 +1,5 @@
++sticky-footer(84px, '#page', '#footerwrap')
+
 html
   background: url("2013/body-bg.jpg")
 
@@ -120,10 +122,8 @@ body
 
 #content
   background: #fff
-  position: relative
-  z-index: 2
   border: 1px solid #ccc
-  margin: $baseLineHeight 0
+  margin: $baseLineHeight 0 92px
   padding: 30px
 
   .subject
@@ -147,17 +147,12 @@ body
 
 
 
-#footer
-  position: relative
-  z-index: 2
-  text-align: center
-  color: #fff
-
 #footerwrap
   background: url("2013/footer-bg.jpg") repeat-x
-  position: relative
-  margin-top: -70px
-  height: 84px
+  text-align: center
+  color: #fff
+  padding: 20px 0
+  height: 44px
 
 
 

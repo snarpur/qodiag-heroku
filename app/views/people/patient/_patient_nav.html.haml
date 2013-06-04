@@ -9,8 +9,8 @@
         %span{:class => 'icon-history'}
         Saga
 
-    %li{:class => params[:action] == 'information' ? 'active' : ''}
-      %a{:alt => "Fjölskylda", :href => '/people/' + @person.id.to_s + '/information', :class => 'button second'}
+    %li{:class => params[:action] == 'edit' ? 'active' : ''}
+      %a{:alt => "Fjölskylda", :href => '/people/' + @person.id.to_s + '/edit', :class => 'button second'}
         %span{:class => 'icon-profile'}
-        Upplýsingar
+        Persónu upplýsingar
 

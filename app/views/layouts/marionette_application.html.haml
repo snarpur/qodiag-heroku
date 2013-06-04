@@ -7,7 +7,7 @@
 
     %link{:href => 'http://fonts.googleapis.com/css?family=Asap:400,700,700italic,400italic', :rel => 'stylesheet', :type => 'text/css'}
     =stylesheet_link_tag "application"
-    = javascript_include_tag "marionette_application"
+    =javascript_include_tag "marionette_application"
 
     %script{:type => 'text/javascript'}
       ="I18n.defaultLocale = '#{I18n.default_locale}';"
@@ -55,11 +55,10 @@
         #content
           =yield
           
-      #footer
-        %span
-          ="Qodiag #{Date.today.year}  |  Quality of Diagnosis"
 
     #footerwrap
+      %span
+        ="Qodiag #{Date.today.year}  |  Quality of Diagnosis"
 
     #flash
       -flash.each do |name, msg|

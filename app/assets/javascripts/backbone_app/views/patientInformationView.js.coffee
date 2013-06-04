@@ -7,6 +7,7 @@ class App.Views.PatientInformationView extends Backbone.Marionette.ItemView
     @renderItemView(new App.Models.Person(@options.subject),".subject .information")
     @renderCollectionView(new App.Collections.Person(@options.parents),".parents")
     @renderAvatar(".avatar")
+    @renderAvatarUpload(".upload")
 
   renderItemView:(model,container)=>
     subjectView = new App.Views.EditableItem({model: model})
@@ -20,10 +21,15 @@ class App.Views.PatientInformationView extends Backbone.Marionette.ItemView
 
   renderAvatar:(container)=>
     avatar = @options.subject.avatar
-    id = @options.subject.id
-    html = '<img src="'+avatar+'" ><a href="/people/'+id+'/upload"><span class="icon-edit"></span></a>'
+    html = '<img src="'+avatar+'" ><a href="#" onclick="$(\'#avatarUploadModal\').toggle();"><span class="icon-edit dialog"></span></a>'
     @.$(container).html(html)
 
+  renderAvatarUpload:(container)=>
+    id = @options.subject.id
+    token = $("meta[name=\"csrf-token\"]").attr("content")
+    form = @.$('#avatarUploadForm', container)
+    form.attr('action', '/people/'+id)
+    form.find('.authenticity_token').val(token)
 
   insertHtml:(view,container)=>
     if _.isString(container)

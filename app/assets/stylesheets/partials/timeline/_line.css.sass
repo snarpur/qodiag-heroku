@@ -12,7 +12,8 @@ $completed-color: #0a0
     position: relative
     height: 100%
     width: 100%
-#tml-history  .line-items > .item
+
+#tml-history .line-items > .item
   display: block
   position: absolute
   margin-left: -.14em
@@ -70,3 +71,14 @@ $completed-color: #0a0
     background-color: transparentize($pending-color, .5)
   & li:nth-child(2) em
     background-color: transparentize($overdue-color, .5)
+
+//flip the tooltip in the first line
+#tml-history ul.reset + .line .item ul
+  top: 16px
+
+  & li:nth-child(1):after
+    color: #f1f1f2
+    content: "\25B2"
+    top: -14px
+    text-shadow: 0 0 0
+

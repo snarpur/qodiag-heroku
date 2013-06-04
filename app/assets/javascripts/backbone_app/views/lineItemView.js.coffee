@@ -6,6 +6,7 @@ class App.Views.Timeline.LineItem extends Backbone.View
   className: "item"
   events:
     "click": "show"
+    "mouseover": "tooltip"
 
   initialize:->
    @line = @options.line
@@ -15,7 +16,10 @@ class App.Views.Timeline.LineItem extends Backbone.View
    @setStatus()
    @model.bind("change:dialogView", @highlight)
 
-  
+
+  tooltip:->
+    console.log @
+
   template:->
     JST['backbone_app/templates/lineItemTmpl']
   

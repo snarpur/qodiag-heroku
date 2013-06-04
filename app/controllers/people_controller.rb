@@ -14,8 +14,8 @@ class PeopleController < ApplicationController
     @person = Person.find(params[:subject_id])
   end
 
-  def information
-    @person = PersonDecorator.decorate(Person.find(params[:subject_id]))
+  def edit
+    @person = PersonDecorator.decorate(Person.find(params[:id]))
   end
 
   def upload
@@ -27,7 +27,7 @@ class PeopleController < ApplicationController
     @person= Person.find(params[:id])
     respond_to do |format|
       if @person.update_attributes(params[:person])
-        format.html {redirect_to :action => "show", :id => params[:id]}
+        format.html {redirect_to :action => "edit", :id => params[:id]}
         format.json {render :template => "people/edit"}
       else
         format.html { render :action => "upload" }
