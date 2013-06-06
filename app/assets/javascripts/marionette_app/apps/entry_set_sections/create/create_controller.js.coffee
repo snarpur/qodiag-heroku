@@ -1,5 +1,6 @@
 @Qapp.module "EntrySetSectionsApp.Create", (Create, App, Backbone, Marionette, $, _) ->
   
+  #NOTE: Change from object literal to Controller
   Create.Controller =
 
     create:(options)->

@@ -6,7 +6,9 @@
     serializeData:->
       _.map @.collection.models, (i)->
         i.attributes
-    
+  
+
+    #REFACTOR: make index a function to avoid JSON serialization
     itemViewOptions: (model,index) ->
       options = 
         index: index

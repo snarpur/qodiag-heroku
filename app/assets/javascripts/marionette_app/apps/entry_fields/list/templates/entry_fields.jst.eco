@@ -1,0 +1,15 @@
+<thead>
+  <tr>
+    <th>
+      Spurning
+    </th>
+    <th>
+      &nbsp;
+    </th>
+    <th>
+      <button class="btn btn-primary">Ný spurning</button>
+    </th>
+  </tr>
+</thead>
+<tbody>
+</tbody>

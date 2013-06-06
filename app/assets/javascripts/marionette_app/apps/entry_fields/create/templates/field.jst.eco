@@ -1,0 +1,12 @@
+<form>
+  <fieldset>
+    <label>Titill</label>
+    <input class="input-xlarge" type="text" id="title" placeholder="Name">
+     <label>Lýsing</label>
+     <textarea class="input-xlarge" rows="3" id="description" placeholder="Description..."></textarea>
+  </fieldset>
+</form>
+<div class="form-actions">
+  <button class="btn btn-primary save">Vista</button>
+  <button class="btn cancel">Hætta við</button>
+</div>
