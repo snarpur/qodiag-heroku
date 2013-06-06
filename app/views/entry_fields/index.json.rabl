@@ -1,2 +1,2 @@
-object @entry_fields
-attributes :id,:title
+collection @entry_fields
+extends('entry_fields/show')

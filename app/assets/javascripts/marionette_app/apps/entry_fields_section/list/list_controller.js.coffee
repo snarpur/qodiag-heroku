@@ -4,11 +4,8 @@
 
 
     list: (options) ->
-      # App.vent.on("save:sectionFields",(options)=> 
-      #   @saveSectionFields(options)
-      # )
-
       @getSectionEntryFields(options)
+      
       
       
     getSectionEntryFields:(options)->
@@ -24,7 +21,12 @@
           entries.setDisplayOrder()
         
         region.show view
-   
+
+        @listenTo view, "save:clicked", (options)=>
+          model.saveEntryFields()
+          
+        @listenTo model.collection, "updated", =>
+          toastr.success("Skref #{model.get('name')} hefur verið vistað")
 
     
     getEntriesView:(entries,section)->

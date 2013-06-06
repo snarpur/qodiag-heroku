@@ -1,0 +1,13 @@
+<td>
+  <%- @title %>
+</td>
+<td>
+  <% if @editable: %>
+  <button class="btn btn-mini edit">Breyta</button>
+  <% end %>
+</td>
+<td>
+   <% if @editable: %>
+  <button class="btn btn-danger btn-mini destroy">Eyða</button>
+  <% end %>
+</td>

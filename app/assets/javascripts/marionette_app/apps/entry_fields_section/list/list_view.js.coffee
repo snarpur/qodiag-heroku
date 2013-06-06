@@ -66,11 +66,8 @@
     removePlaceHolder: () =>
       @placeHolderElement.remove()
 
-    events:
-      "click button": "save"
+    triggers:
+      "click button": "save:clicked"
     
-   
-    save: =>
-      @model.saveEntryFields()
 
 
