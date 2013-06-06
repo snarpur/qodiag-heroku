@@ -37,7 +37,7 @@
     itemView: List.EntryField
     itemViewContainer: 'tbody'
     tagName: "table"
-    className: "table table-striped"
+    className: "table"
 
     triggers:
       "click th button.btn": "create:field:clicked"

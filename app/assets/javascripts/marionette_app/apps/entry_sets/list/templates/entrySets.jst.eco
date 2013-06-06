@@ -11,6 +11,6 @@
 <tbody>
 </tbody>
 </table>
-<div class="pull-right">
-    <a href="#" class="button prime"><span class="icon-add"></span>Búa til nýjan lista</a>
-</div>
+<ul class="reset toolbar">
+    <li class="right"><a href="#" class="button prime"><span class="icon-add"></span>Búa til nýjan lista</a></li>
+</ul>

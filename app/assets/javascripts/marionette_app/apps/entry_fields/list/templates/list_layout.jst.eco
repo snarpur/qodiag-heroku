@@ -1,7 +1,14 @@
 <div id="settings-navigation-region"></div>
-<div id="search-region"></div>
+<ul class="toolbar">
+    <li class="left"><div id="search-region"></div></li>
+    <li class="right"><a href="#" class="button prime"><span class="icon-add"></span>Ný spurning</a></li>
+</ul>
+
 <div id="list-region"></div>
 
+<ul class="toolbar">
+    <li class="right"><a href="#" class="button prime"><span class="icon-add"></span>Ný spurning</a></li>
+</ul>
 
 
-  
+

@@ -1,5 +1,4 @@
 <h2>
-    <%  console.log @ %>
     <%- @name %>
     <% if @display_order > 0: %>
     <span class="icon-edit edit-item">

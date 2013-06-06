@@ -1,13 +1,11 @@
 <td>
   <%- @title %>
 </td>
-<td>
+<td class="thin nowrap">
   <% if @editable: %>
-  <button class="btn btn-mini edit">Breyta</button>
+  <a href="#" class="edit"><span class="icon-edit"></span></a>
   <% end %>
-</td>
-<td>
-   <% if @editable: %>
-  <button class="btn btn-danger btn-mini destroy">Eyða</button>
+  <% if @editable: %>
+  <a href="#" class="destroy"><span class="icon-trash"></span></a>
   <% end %>
 </td>

@@ -6,9 +6,6 @@
     <th>
       &nbsp;
     </th>
-    <th>
-      <button class="btn btn-primary">Ný spurning</button>
-    </th>
   </tr>
 </thead>
 <tbody>
