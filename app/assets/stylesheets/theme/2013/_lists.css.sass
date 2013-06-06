@@ -67,14 +67,24 @@ ul.stepper
     +ctb-opacity(50)
     margin-right: 5px
 
-    &.current-step, &.active, &:hover
-      +ctb-opacity(100)
+    &.current-step, &.active
+      @extend .btn-primary
+      +opacity(1)
+
+      .badge
+        @extend .badge-info
+
+      a
+        color: #fff
+
+    &:hover
+      +opacity(1)
 
     a
       color: #000
+
       &:hover
         text-decoration: none
-
     span
       margin-right: 4px
 

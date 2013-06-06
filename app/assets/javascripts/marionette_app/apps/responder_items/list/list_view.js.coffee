@@ -1,12 +1,11 @@
 @Qapp.module "ResponderItemsApp.List", (List, App, Backbone, Marionette, $, _) ->
   
-  # class List.Layout extends App.Views.Layout
-  #   template: "patient_home/list/templates/list_layout"
+  class List.Layout extends App.Views.Layout
+    template: "patient_home/list/templates/list_layout"
     
-  #   regions:
-  #     navigationRegion: "#navigation-region"
-  #     settingsContentRegion: "#setting-content-region"
-    
+    regions:
+      contentHeader: "#content-header"
+
     
   class List.Item extends App.Views.ItemView
     template: "responder_items/list/templates/_item"

@@ -27,20 +27,33 @@ form
 //stepper
 ul.wizard-nav
   list-style: none
-  margin: 0
+  margin: 0 0 30px
   padding-bottom: 30px
   border-bottom: 1px solid #ccc
 
   li
     @extend .btn
-    @include ctb-opacity(50)
+    +opacity(0.5)
     margin-right: 5px
 
-    &.current-step, &:hover
-      @include ctb-opacity(100)
+    &.current-step, &.active
+      @extend .btn-primary
+      +opacity(1)
+
+      .badge
+        @extend .badge-info
+
+      a
+        color: #fff
+
+    &:hover
+      +opacity(1)
 
     a
       color: #000
+
+      &:hover
+        text-decoration: none
 
     span
       margin-right: 4px
@@ -48,8 +61,6 @@ ul.wizard-nav
 
 //elements
 .wizard-fields
-  padding-top: 30px
-
   > form
     padding-bottom: 30px
     border-bottom: 1px solid #ccc
@@ -116,3 +127,23 @@ ul.wizard-nav
     padding: 30px 0
     float: right
 
+.form-actions
+  margin-bottom: 0
+
+#form-content-region
+  label
+    display: block
+    font-size: 15px
+    font-weight: 400
+    text-transform: uppercase
+    border: 1px solid #6e90b3
+    background: #cfdbe7
+    line-height: 1
+    padding: 6px 10px
+    margin-bottom: 10px
+    cursor: default
+
+  textarea
+    width: 844px
+    height: 60px
+    padding: 8px 16px

@@ -9,6 +9,7 @@
       App.execute "when:fetched", items, =>
         itemsView = new List.Items {collection: items}
         App.contentRegion.show itemsView
+        #$(App.contentHeaderRegion.el).html('<h1 class="content-title">Beiðnir</h1>')
 
 
 
