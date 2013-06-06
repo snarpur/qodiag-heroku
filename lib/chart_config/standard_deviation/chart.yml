@@ -16,13 +16,13 @@ chart_config:
     scatter:
       dataLabels:
         enabled: true
-        color: '#eaeaea'
+        color: '#333'
         formatter: true
-        backgroundColor: rgba(255,255,255,.1)
-        borderColor: '#555'
+        backgroundColor: rgba(255,255,255,.5)
+        borderColor: '#999'
         padding: 1
         borderWidth: 1
-        borderRadius: 3
+        borderRadius: 4
         align: right
         y: 0
       marker:

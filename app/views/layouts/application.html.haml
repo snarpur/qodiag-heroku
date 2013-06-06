@@ -54,15 +54,15 @@
 
         #content
           =yield
-          
+
+      #flash
+        -flash.each do |name, msg|
+          %div{:class => name}
+            =msg
+
     #footerwrap
       %span
         ="Qodiag #{Date.today.year}  |  Quality of Diagnosis"
-
-    #flash
-      -flash.each do |name, msg|
-        %div{:class => name}
-          =msg
 
 
     =render "shared/google_analytics"

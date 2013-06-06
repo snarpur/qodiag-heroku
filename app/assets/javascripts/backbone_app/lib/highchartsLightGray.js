@@ -3,7 +3,7 @@
  * @author Torstein Hønsi
  */
 
-Highcharts.theme = {
+Highcharts.themelight = {
 colors: ['#058DC7', '#50B432', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4'],
    chart: {
       backgroundColor: null,
@@ -22,29 +22,29 @@ colors: ['#058DC7', '#50B432', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9
    },
    title: {
       style: { 
-         color: '#FFF',
+         color: '#111',
          font: '16px Lucida Grande, Lucida Sans Unicode, Verdana, Arial, Helvetica, sans-serif'
       }
    },
    subtitle: {
       style: { 
-         color: '#DDD',
+         color: '#666',
          font: '12px Lucida Grande, Lucida Sans Unicode, Verdana, Arial, Helvetica, sans-serif'
       }
    },
    xAxis: {
       gridLineWidth: 0,
-      lineColor: '#999',
-      tickColor: '#999',
+      lineColor: '#333',
+      tickColor: '#333',
       labels: {
          style: {
-            color: '#999',
+            color: '#111',
             fontWeight: 'bold'
          }
       },
       title: {
          style: {
-            color: '#AAA',
+            color: '#333',
             font: 'bold 12px Lucida Grande, Lucida Sans Unicode, Verdana, Arial, Helvetica, sans-serif'
          }            
       }
@@ -52,36 +52,36 @@ colors: ['#058DC7', '#50B432', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9
    yAxis: {
       alternateGridColor: null,
       minorTickInterval: null,
-      gridLineColor: 'rgba(255, 255, 255, .1)',
+      gridLineColor: 'rgba(0, 0, 0, .3)',
       lineWidth: 0,
       tickWidth: 0,
       labels: {
          style: {
-            color: '#999',
+            color: '#111',
             fontWeight: 'bold'
          }
       },
       title: {
          style: {
-            color: '#AAA',
+            color: '#333',
             font: 'bold 12px Lucida Grande, Lucida Sans Unicode, Verdana, Arial, Helvetica, sans-serif'
          }            
       }
    },
    legend: {
       itemStyle: {
-         color: '#CCC'
+         color: '#333'
       },
       itemHoverStyle: {
-         color: '#FFF'
+         color: '#111'
       },
       itemHiddenStyle: {
-         color: '#888'
+         color: '#444'
       }
    },
    labels: {
       style: {
-         color: '#CCC'
+         color: '#111'
       }
    },
    tooltip: {
@@ -94,7 +94,7 @@ colors: ['#058DC7', '#50B432', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9
       },
       borderWidth: 0,
       style: {
-         color: '#FFF'
+         color: '#333'
       }
    },
    
@@ -102,7 +102,7 @@ colors: ['#058DC7', '#50B432', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9
    plotOptions: {
       line: {
          dataLabels: {
-            color: '#CCC'
+            color: '#666'
          },
          marker: {
             lineColor: '#333'
@@ -119,12 +119,12 @@ colors: ['#058DC7', '#50B432', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9
          }
       },
       candlestick: {
-         lineColor: 'white'
+         lineColor: '#111'
       },
       column: {
          dataLabels: {
             color: '#111'
-         },
+         }
       }
    },
    
@@ -145,7 +145,7 @@ colors: ['#058DC7', '#50B432', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9
          },
          borderColor: '#000000',
          symbolStroke: '#C0C0C0',
-         hoverSymbolStroke: '#FFFFFF'
+         hoverSymbolStroke: '#333'
       }
    },
    
@@ -264,4 +264,4 @@ colors: ['#058DC7', '#50B432', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9
 };
 
 // Apply the theme
-//var highchartsOptions = Highcharts.setOptions(Highcharts.theme);
+var highchartsOptions = Highcharts.setOptions(Highcharts.themelight);

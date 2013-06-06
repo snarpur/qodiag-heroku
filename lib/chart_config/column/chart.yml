@@ -17,11 +17,11 @@ chart_config:
       dataLabels:
         enabled: true
         formatter: true
-        borderRadius: 5
-        color: '#eaeaea'
-        backgroundColor: 'rgba(255, 255, 255, 0.1)'
+        borderRadius: 4
+        color: '#333'
+        backgroundColor: 'rgba(255, 255, 255, 0.5)'
         borderWidth: 1
-        borderColor: '#555'
+        borderColor: '#999'
         y: -6
       point:
         events:

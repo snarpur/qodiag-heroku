@@ -1,0 +1,163 @@
+#tml-body
+
+  .overlay-new-item
+    .line-overlay
+      +opacity(1)
+      z-index: 500
+      display: block
+
+  .overlay-charts
+    .chart-dialog
+      +opacity(1)
+      z-index: 500
+      display: block
+
+  .line-overlay
+    +transition-timing-function(ease-out)
+    +transition-duration(.2s)
+    +opacity(0)
+    +box-shadow(0 0 1px rgba(0,0,0,0.7))
+    +text-shadow(0 1px 1px rgba(240, 240, 240, 0.8))
+    border: 2px solid #fff
+    display: none
+    position: absolute
+    z-index: -1
+    background-color: rgba(240, 240, 240, 0.87)
+
+    .window
+      padding: 30px
+
+    .icon-close
+      position: absolute
+      z-index: 200
+      right: -2px
+      top: -3px
+      border: 2px solid #fff
+      +opacity(1)
+
+    .c-icon //backwards compat
+      z-index: 200
+
+    .btn-controls
+      clear: both
+      margin: 20px 0 0
+      border-top: 1px solid #ccc
+      padding-top: 20px
+
+      .btn-submit
+        float: right
+
+    .left
+      float: left
+      width: 400px
+      padding: 0 12px
+
+    .right
+      float: right
+      width: 400px
+      padding: 0 12px
+
+    h3
+      color: #111
+
+    &.state-idle .btn-submit,
+    &.state-success .btn-submit,
+    &.state-error .btn-submit
+      background-image: none
+      box-shadow: none
+      cursor: default
+      +opacity(0.65)
+    & .state-msg
+      margin: 0
+      li
+        display: none
+        text-align: center
+      h4
+        border-width: 0
+        background-image: none
+  @each $state in idle, selected, success, sending, error
+    .new-item.state-#{$state} .state-msg .m-#{$state}
+      display: block
+
+  .chart-dialog
+    overflow: hidden
+    & > ul
+      +horizontal-list
+      position: absolute
+      top: 20px
+      right: 100px
+      span
+        +opacity(.2)
+        display: block
+    h3
+      padding: 5px
+      font-size: 1.3em
+
+    &.drilldown-on .chart,
+    &.drilldown-on > ul,
+    &.drilldown-on ul.chart-metrics
+      display: none
+    &.drilldown-on .chart.drilldown-on,
+    &.drilldown-on .chart.drilldown-on > div
+      display: block
+      width: inherit
+    &.state-column
+      .chart-wrapper
+        left: 0
+      .column-chart-icn
+        +opacity(0.7)
+    &.state-line
+      .chart-wrapper
+        left: -100%
+      .line-chart-icn
+        +opacity(0.7)
+
+    .chart-wrapper
+      // +transition-property(left)
+      // +transition-duration(.5s)
+      // +transition-timing-function(ease)
+      position: absolute
+      & > div
+        float: left
+    .chart
+      float: left
+      position: relative
+      & > ul.nav
+        font-size: .8em
+      &.drilldown-on .reset-drilldown-icn
+        display: block
+      .reset-drilldown-icn
+        font-family: "Entypo"
+        font-size: 8em
+        color: #fff
+        position: absolute
+        display: none
+        top: -10px
+        left: -.5em
+        width: 35px
+        height: 35px
+        +opacity(0.5)
+        cursor: pointer
+        z-index: 200
+        &:hover
+          +opacity(0.7)
+        &:after
+          content: "\E759"
+
+    ul.chart-metrics
+      display: block
+      position: absolute
+      +horizontal-list(false)
+      z-index: 99
+      li
+        color: #999
+        border: rgba(0,0,0,0.2) 1px solid
+        +border-radius()
+        padding: .4em 1em
+        +box-shadow(0 0 2px 1px rgba(0,0,0,0.11) inset)
+        margin-right: .4em
+        cursor: pointer
+      li.active
+        background-color: rgba(250,250,250,.5)
+        color: #333
+        border-width: 0

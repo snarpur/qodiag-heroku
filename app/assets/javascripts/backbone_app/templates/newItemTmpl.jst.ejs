@@ -1,28 +1,30 @@
-<span class="icon-close close"></span>
-<div class="left">
-  <h3><%= I18n.t("surveys."+name+".name")%></h3>
-  <ul class="state-msg">
-    <li class="m-idle">
-      <div class="alert">Veldu dagsetningu til að senda beinðni</div>
-    </li>
-    <li class="m-selected"></li>
-    <li class="m-sending"></li>
-    <li class="m-success">
-      <div class="alert alert-block alert-success">
-        <h4>Beiðni hefur verið send</h4>
-         Veldu dagsetningu til að senda aðra beiðni
-      </div>
-    </li>
-    <li class="m-error">
-      <div class="alert alert-block alert-error">
-        <h4>Villa !</h4>
-        Kerfisstjóri hefur fengið meldingu um villu.
-      </div>
-    </li>
-  </ul>
-<ul class="btn-controls">
-  <button class="btn btn-success btn-submit">Senda</button>
-  <button class="btn btn-inverse btn-cancel">Hætta við</button>
-</ul>
+<div class="window">
+    <span class="icon-close close"></span>
+    <div class="left">
+      <h3><%= I18n.t("surveys."+name+".name")%></h3>
+      <ul class="state-msg">
+        <li class="m-idle">
+          <div class="alert alert-info">Veldu dagsetningu til að senda beiðni</div>
+        </li>
+        <li class="m-selected"></li>
+        <li class="m-sending"></li>
+        <li class="m-success">
+          <div class="alert alert-block alert-success">
+            <h4>Beiðni hefur verið send</h4>
+             Veldu dagsetningu til að senda aðra beiðni
+          </div>
+        </li>
+        <li class="m-error">
+          <div class="alert alert-block alert-error">
+            <h4>Villa !</h4>
+            Kerfisstjóri hefur fengið meldingu um villu.
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="calendar right"></div>
+    <ul class="btn-controls">
+      <button class="btn btn-cancel">Hætta við</button>
+      <button class="btn btn-success btn-submit">Senda</button>
+    </ul>
 </div>
-<div class="calendar right"></div>

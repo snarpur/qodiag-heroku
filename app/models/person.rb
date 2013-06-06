@@ -215,7 +215,15 @@ class Person < ActiveRecord::Base
   end
 
   def age
-    Date.current.year - dateofbirth.year if dateofbirth
+    if dateofbirth
+      if Date.current.month > dateofbirth.month
+        Date.current.year - dateofbirth.year
+      elsif Date.current.month >= dateofbirth.month && Date.current.day >= dateofbirth.day
+        Date.current.year - dateofbirth.year
+      else
+        Date.current.year - dateofbirth.year - 1
+      end
+    end
   end
   
   def presence_of_cpr

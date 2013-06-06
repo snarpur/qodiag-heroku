@@ -177,7 +177,7 @@ body
 
 /*/ Entry sets
 
-#entryset-title-region
+#entry-set-title-region
   background: #104c89
 
   h2
@@ -186,6 +186,9 @@ body
     color: #fff
     margin-top: 0
     padding: 0 10px
+
+    span
+      margin: -2px 0 0 6px
 
 #sections-navigation-region
   margin-bottom: 20px
@@ -196,6 +199,9 @@ body
     font-weight: 400
     margin-top: 0
     padding: 0 10px
+
+    span
+      margin: -2px 0 0 6px
 
 #settings-content
   float: left
@@ -242,6 +248,11 @@ body
     border: 1px solid #ccc
     padding: 20px
     margin-bottom: 5px
+
+    &.dropzone
+      @extend .alert
+      border-style: dashed
+      padding: 20px
 
     > em
       display: block

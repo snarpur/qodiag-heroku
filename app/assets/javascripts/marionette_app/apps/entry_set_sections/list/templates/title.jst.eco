@@ -1,1 +1,11 @@
-<h2><%- @name %> <span class="icon-edit edit-item"></span></h2>
+<h2>
+    <%  console.log @ %>
+    <%- @name %>
+    <% if @display_order > 0: %>
+    <span class="icon-edit edit-item">
+    </span><span class="icon-trash remove-item"></span>
+    <% else: %>
+    <span class="icon-blue-edit edit-item">
+    </span><span class="icon-blue-trash remove-item"></span>
+    <% end %>
+</h2>

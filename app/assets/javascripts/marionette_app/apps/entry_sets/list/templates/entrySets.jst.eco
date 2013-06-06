@@ -2,7 +2,7 @@
     <li class="right"><a href="#" class="button prime"><span class="icon-add"></span>Búa til nýjan lista</a></li>
 </ul>
 
-<table class="table table-striped table-bordered">
+<table class="table">
 <thead>
   <tr>
     <th>Heiti</th>

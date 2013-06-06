@@ -13,14 +13,14 @@ span.icon-big-user
 span.icon-big-prev
   background-image: image-url("2013/sprites-icons.png")
   background-position: 0 -2950px
-  height: 28px
-  width: 28px
+  height: 24px
+  width: 24px
 
 span.icon-big-next
   background-image: image-url("2013/sprites-icons.png")
   background-position: 0 -2900px
-  height: 28px
-  width: 28px
+  height: 24px
+  width: 24px
 
 
 span.icon-close
@@ -35,9 +35,21 @@ span.icon-trash
   height: 18px
   width: 18px
 
+span.icon-blue-trash
+  background-image: image-url("2013/sprites-icons.png")
+  background-position: -46px -2050px
+  height: 18px
+  width: 18px
+
 span.icon-edit
   background-image: image-url("2013/sprites-icons.png")
   background-position: 0 -2000px
+  height: 18px
+  width: 18px
+
+span.icon-blue-edit
+  background-image: image-url("2013/sprites-icons.png")
+  background-position: -46px -2000px
   height: 18px
   width: 18px
 
@@ -108,3 +120,80 @@ span.icon-tiny-add
 
 span.edit-item
   cursor: pointer
+
+
+
+/** BACKWARDS COMPAT **/
+@font-face
+  font-family: 'Entypo'
+  src: font_url('Entypo/entypo.woff') format('woff'), font_url('Entypo/entypo.ttf') format('truetype')
+
+$icn_s: 18px
+$icn_m: 45px
+=icon-size($size)
+  height: $size
+  width: $size
+  line-height: $size
+  text-align: center
+
+.c-icon
+  display: block
+  position: relative
+  font-family: 'Entypo'
+  &.small
+    +icon-size($icn_s)
+    font-size: 4em
+  &.medium
+    +icon-size($icn_m)
+    font-size: 6em
+
+  &.close
+    font-size: 3em
+    position: absolute
+    display: block
+    text-indent: 1px
+    right: 1em
+    top: 1em
+    +opacity(.8)
+  &.close:hover
+    +opacity(1)
+  &.close:before
+    content: "\274E"
+    color: rgb(255,16,50)
+
+  &.sort
+    font-size: 2em
+    cursor: pointer
+    +icon-size(1em)
+  &.sort:after
+    content: "\E4B0"
+  &.sort:before
+    content: "\2630"
+
+  &.edit-item
+    position: absolute
+    font-size: 2em
+    +icon-size($icn_s)
+    color: #666
+    cursor: pointer
+    border: 1px solid #888
+    +border-radius()
+  &.edit-item:after
+    content: "\270E"
+
+  &.add-1:after
+    content: "\2295"
+    display: block
+  &.close, &.add-1
+    cursor: pointer
+  &.line-chart-icn,
+  &.column-chart-icn
+    +border-radius(5px)
+    background-color: #fff
+    cursor: pointer
+    &:hover
+      +opacity(0.6)
+  &.line-chart-icn:after
+    content: "\1F4C8"
+  &.column-chart-icn:after
+    content: "\1F4CA"

@@ -29,7 +29,7 @@ $answer-level-color-4: rgba(22,25,59,$level-opacity)
     display: none
     position: absolute
     z-index: -1
-    background-color: rgba(15, 15, 15, 0.87)
+    background-color: rgba(240, 240, 240, 0.87)
 
     .icon-close
       position: absolute
@@ -39,9 +39,21 @@ $answer-level-color-4: rgba(22,25,59,$level-opacity)
       border: 2px solid #fff
       +opacity(1)
 
+    .c-icon //backwards compat
+      z-index: 200
+
+    .btn-controls
+      clear: both
+      border-top: 1px solid #ccc
+      padding-top: 20px
+
+      .btn-submit
+        float: right
+
 
 #canvas.state-new-item .line-overlay 
   z-index: 300
+  +text-shadow(0 1px 1px rgba(240, 240, 240, 0.8))
 .line .new-item
   z-index: 101
   .left, .right
@@ -58,8 +70,7 @@ $answer-level-color-4: rgba(22,25,59,$level-opacity)
       left: 25%
       width: 50%
   h3
-    +text-shadow(none)
-    color: #c8c8c8 
+    color: #111
   &.state-idle .btn-submit,
   &.state-success .btn-submit,
   &.state-error .btn-submit

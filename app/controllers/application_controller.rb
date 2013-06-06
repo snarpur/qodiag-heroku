@@ -1,7 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  layout :application_layout
+  layout :set_layout
   before_filter :get_user
+  before_filter :set_layout
   def index
     gon.rabl
     @user = UserDecorator.decorate(get_user)
@@ -22,7 +23,16 @@ class ApplicationController < ActionController::Base
 private
   def get_user
     @current_user = current_user
-   end
+  end
+
+  def set_layout
+    if logged_in?
+      application_layout
+    else
+      'login'
+    end
+
+  end
 
   def logged_in?
     !current_user.nil?

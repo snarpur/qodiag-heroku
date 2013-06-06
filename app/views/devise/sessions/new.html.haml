@@ -4,13 +4,12 @@
 		Velkomin á vinnusvæði Qodiag !
 	%p
 		Vinsamlegast skráðu þig inn með lykilorði sem þú hefur fengið sent í tölvupósti.
-	%a{:href=>'mailto:qodiag@qodiag.com?Subject=Fyrirspurn - Qodiag'} 
-		Hafðu samband
+
 .main-login
-	%h2= t('headers.sign_in')
 	= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
 		= render "shared/error_messages", :locals => {:form_builder => f}
 		= f.input :email
 		= f.input :password
 		= f.button :submit, t('actions.sign_in'), :class => "btn"
-%hr.break
+	%a{:href=>'mailto:qodiag@qodiag.com?Subject=Fyrirspurn - Qodiag'}
+		Hafa samband

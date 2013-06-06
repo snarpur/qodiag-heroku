@@ -33,7 +33,6 @@
     emptyView: List.Empty
     itemViewContainer: "ul"
 
-
     onCompositeCollectionRendered: ->
       _this = @
       listEl = @$('ul')
@@ -51,6 +50,8 @@
         
         deactivate: (e,ui) ->
           _this.newField = null
+
+        placeholder: "dropzone"
 
             
 

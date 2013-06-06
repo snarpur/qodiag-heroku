@@ -1,25 +1,37 @@
 table.table
   border-collapse: separate
   border: 1px solid #ccc
-  padding: 20px
 
   thead
-    th:first-child
+    th
+      +ctb-gradient-vertical(#eeeeee, #ffffff)
       text-transform: uppercase
       font-size: $baseFontSize
       font-weight: 700
-    th
-      font-size: $fontSizeMini
-      font-weight: 400
+      vertical-align: middle
 
   tbody
     tr
-      background: #f3f6f9
-    tr:nth-child(even)
-      background: #dce5ee
+      background: #fff
+      td
+        border: 0
+        border-top: 1px solid #c9c9c9
+        border-bottom: 1px solid #c9c9c9
 
-    td
-      border-color: #fff
+    tr:nth-child(even)
+      background: #e5e5e5
+      td
+        border-color: #fff
+
+    tr:last-child
+      td
+        border-bottom: 0
+
+  .small
+    font-size: $fontSizeMini
+    font-weight: 400
+    text-transform: none
+    line-height: 1.2
 
   .thin
     width: 1%

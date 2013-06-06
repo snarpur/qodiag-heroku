@@ -1,0 +1,59 @@
+.ui-datepicker
+  background: transparent
+  border: 0
+  font-family: $baseFontFamily
+  color: #111
+  text-shadow: 0 1px 1px #fff
+
+  .ui-datepicker-header
+    background: transparent
+    border: 0
+    border-bottom: 1px solid #ccc
+    +border-radius(0)
+
+  .ui-datepicker-title
+    color: #111
+
+  .ui-datepicker-prev
+    @extend span.icon-big-prev
+
+    &.ui-state-hover
+      background-color: transparent
+      border: 0
+      +box-shadow(0 0 10px rgba(0, 0, 0, 0.4))
+
+    &.ui-state-disabled
+      +box-shadow(0 0 0)
+
+  .ui-datepicker-next
+    @extend span.icon-big-next
+
+    &.ui-state-hover
+      background-color: transparent
+      border: 0
+      +box-shadow(0 0 10px rgba(0, 0, 0, 0.4))
+
+    &.ui-state-disabled
+      +box-shadow(0 0 0)
+
+  .ui-icon
+    display: none
+
+  .ui-state-default
+    background: #666
+    border: 0
+    color: #fff
+    text-shadow: 0 0 0
+
+  .ui-state-highlight
+    background: #f60
+    border: 0
+    color: #fff
+
+  .ui-state-active
+    background: #444
+
+  td
+    a
+      text-align: center
+
