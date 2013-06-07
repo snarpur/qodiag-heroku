@@ -44,17 +44,17 @@
         &.state-closed
           height: $line_height
         &.state-open.overlay-charts
-          height: $line_height_expanded + $line_height + $header_height
+          min-height: $line_height_expanded
         &.state-open.overlay-new-item
-          height: $line_height_expanded + $header_height
+          min-height: $line_height_expanded
       .item
         top: $line_height/3 
     .line-overlay
       height: $line_height_expanded
       width: $overlay_width
       left: 15px
+      top: $line_height /2 
       &.chart-dialog
-        margin-top: $line_height
         .chart-wrapper
           width: $overlay_width * 2
           height: $line_height_expanded

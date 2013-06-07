@@ -3,10 +3,15 @@ class ApplicationController < ActionController::Base
   layout :set_layout
   before_filter :get_user
   before_filter :set_layout
+
   def index
-    gon.rabl
-    @user = UserDecorator.decorate(get_user)
-    gon.rabl "app/views/users/show.json.rabl", as: "current_user"
+    if logged_in?
+      gon.rabl
+      @user = UserDecorator.decorate(get_user)
+      gon.rabl "app/views/users/show.json.rabl", as: "current_user"
+    else
+      redirect_to new_user_session_path()
+    end
   end
 
   rescue_from CanCan::AccessDenied do |exception|

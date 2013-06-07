@@ -22,10 +22,17 @@ $completed-color: #0a0
   width: 12px
   &.completed
     background: $completed-color
+    cursor: pointer
+  &.completed:hover
+    +box-shadow(0 0 0px 2px #FFFFFF,0 0 0px 3px $completed-color)
   &.pending
     background: $pending-color
+  &.pending:hover
+    +box-shadow(0 0 0px 2px #FFFFFF,0 0 0px 3px $pending-color)
   &.overdue
     background: $overdue-color
+  &.overdue:hover
+    +box-shadow(0 0 0px 2px #FFFFFF,0 0 0px 3px $overdue-color)
   &.pending:hover ul,
   &.overdue:hover ul   
     display: block

@@ -43,6 +43,7 @@ class App.Views.PatientInformationView extends Backbone.Marionette.ItemView
     editableItem.$el.replaceWith(form.el)
     editableItem.close()
   
+
   reset:(formView)=>
      @renderItemView(formView.model, formView.$el)
      formView.close()

@@ -33,7 +33,6 @@
     
 
     saveSuccess: (isNew, collection) =>
-
       if isNew ## model is being created
         collection.add @ if collection
         collection.trigger "model:created", @ if collection

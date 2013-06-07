@@ -22,16 +22,17 @@ class App.Views.Timeline.Line extends Backbone.View
     JST['backbone_app/templates/lineTmpl']
 
   
-  changeLineState:(item)=>
-    currentDialog = @model.currentDialogItem()
-    if currentDialog is null
-      $(@el).setCssState("closed")
-      $(@el).setCssState('','overlay')  
-      @model.clearDialogItem()
-    else
-      $(@el).setCssState("open")
-      $(@el).setCssState('charts','overlay')   
+  changeLineState:(line,item)=>
+    overlayState = "charts" if item
+    state = if item then 'open' else 'closed'
+    $(@el).setCssState(state)
+    $(@el).setCssState(overlayState, 'overlay')
+
+    if item
       @renderDialog(@model.currentDialogItem())
+    else
+      @model.clearDialogItem()
+
 
   
   resizeLine:(line)=>
@@ -62,6 +63,8 @@ class App.Views.Timeline.Line extends Backbone.View
     @.$(".line-items").append(lineItem.render().el)
 
   
+  # itemDetailDialog:() =>
+
   newItemOverlayState:(self,state)=>
     overlayState = "new-item" if state is 'open'
     $(@el).setCssState(state)

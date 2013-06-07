@@ -76,7 +76,8 @@
 
       @searchCollection = @liveCollection.createLiveChildCollection()
         .setFilter('search', (model,searchString) ->
-          return true  unless searchString?
+          return true  if !searchString? or searchString?.length < 3       
+          
           searchRegex = queryEngine.createSafeRegex(searchString)
           pass = searchRegex.test(model.get('title'))
           return pass

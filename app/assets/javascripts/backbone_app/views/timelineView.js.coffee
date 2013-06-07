@@ -17,11 +17,13 @@ class App.Views.Timeline.Canvas extends Backbone.View
   template:->
     JST["backbone_app/templates/timelineTmpl"]
   
-  updateOpenLine:(line)=>
-    unless line is null or !@model.getOpenLine()?
-      if line.cid isnt @model.getOpenLine()?.cid
-        @model.getOpenLine().trigger("updateDialog",null)
-    @model.setOpenLine(line)
+  updateOpenLine:(line,item)=>
+    state = 'open' if item 
+    @focusNewItem(null, state)
+    # unless line is null or !@model.getOpenLine()?
+    #   if line.cid isnt @model.getOpenLine()?.cid
+    #     @model.getOpenLine().trigger("updateDialog",null)
+    # @model.setOpenLine(line)
   
   focusNewItem:(obj, value)=>
     state = if value is "open" then "new-item" else ""
