@@ -26,8 +26,9 @@
         @listenTo searchCollection, "add", (model, collection)=>
           toastr.success("Spurningu bætt við", model.get('title'))
 
-        @showSearchField(fields)
+
         @showEntryFieldsView searchCollection
+        @showSearchField(fields)
 
 
 

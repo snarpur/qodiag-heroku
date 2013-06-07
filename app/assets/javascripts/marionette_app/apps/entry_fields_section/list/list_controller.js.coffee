@@ -25,7 +25,7 @@
         @listenTo view, "save:clicked", (options)=>
           model.saveEntryFields()
           
-        @listenTo model.collection, "updated", =>
+        @listenTo model, "updated", =>
           toastr.success("Skref #{model.get('name')} hefur verið vistað")
 
     

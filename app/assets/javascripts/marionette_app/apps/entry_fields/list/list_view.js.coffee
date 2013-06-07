@@ -13,9 +13,10 @@
   class List.EntryField extends App.Views.ItemView
     template: "entry_fields/list/templates/_entry_field"
     tagName: 'tr'
+    
     triggers:
-      'click button.edit' : 'edit:clicked'
-      'click button.destroy' : 'destroy:clicked'
+      'click a.edit' : 'edit:clicked'
+      'click a.destroy' : 'destroy:clicked'
 
     modelEvents:
       'updated' : 'highlight'
@@ -36,11 +37,10 @@
     template: "entry_fields/list/templates/entry_fields"
     itemView: List.EntryField
     itemViewContainer: 'tbody'
-    tagName: "table"
-    className: "table"
+
 
     triggers:
-      "click th button.btn": "create:field:clicked"
+      "click a.button.prime": "create:field:clicked"
 
 
 

@@ -21,7 +21,7 @@
       
     save: (data, options = {}) ->
       isNew = @isNew()
-      
+
       _.defaults options,
         wait: true
         success:  _.bind(@saveSuccess, @, isNew, options.collection)
@@ -33,6 +33,7 @@
     
 
     saveSuccess: (isNew, collection) =>
+
       if isNew ## model is being created
         collection.add @ if collection
         collection.trigger "model:created", @ if collection

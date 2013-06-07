@@ -1,12 +1,23 @@
-<thead>
-  <tr>
-    <th>
-      Spurning
-    </th>
-    <th>
-      &nbsp;
-    </th>
-  </tr>
-</thead>
-<tbody>
-</tbody>
+<ul class="toolbar">
+  <li class="left"><div id="search-region"></div></li>
+  <li class="right"><a href="#" class="button prime"><span class="icon-add"></span>Ný spurning</a></li>
+</ul>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>
+        Spurning
+      </th>
+      <th>
+        &nbsp;
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
+<ul class="toolbar">
+  <li class="right"><a href="#" class="button prime"><span class="icon-add"></span>Ný spurning</a></li>
+</ul>

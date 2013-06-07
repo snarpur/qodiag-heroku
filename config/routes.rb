@@ -105,7 +105,7 @@ Snarpur::Application.routes.draw do
   get "pages/help"
   get "pages/browser_update"
 
-  root :to => 'application#index'
+  root :to => 'users#show'
 
 
 

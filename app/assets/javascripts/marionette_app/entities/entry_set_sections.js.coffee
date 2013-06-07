@@ -52,17 +52,9 @@
 
 
     saveEntryFields: ->
-      _this = @
-      fields = new Entities.EntrySetSection(_.pick(@attributes,'id','sections_entry_fields'))
-      fields.url = @get('sections_entry_fields').url()
-      
-      callbacks=
-        success:(model, response)->
-          _this.get("sections_entry_fields").reset(response)
-        error:->
-          throw "error in entities/entry_set_sections.js.coffee:saveEntryFields()"
-      fields.save(fields.toJSON(),callbacks)
-
+      @.url = @get('sections_entry_fields').url()
+      @save @pick('id','sections_entry_fields')
+    
 
 
     isCurrentSection:->
