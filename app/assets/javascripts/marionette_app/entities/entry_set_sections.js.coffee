@@ -29,11 +29,13 @@
     
     getSectionEntryFields: (callback)->
       entryFields = new App.Entities.SectionsEntryFieldsCollection([],{section: @})
+      @set('sections_entry_fields',entryFields)
+
       unless @isNew()
-        @set('sections_entry_fields',entryFields)
         entryFields.fetch
           reset: true
-        entryFields
+      
+      entryFields
 
 
     
@@ -103,10 +105,10 @@
 
 
     
-    newSection:()->
+    newSection:(args)->
       attributes= 
         entry_sets_sections: [{entry_set_id: @entrySetId, display_order: @length + 2 }]
-      new @model(attributes)
+      new @model(_.extend attributes, args)
 
 
     
@@ -156,8 +158,8 @@
 
 
 
-    addNewSection:->
-      section = @newSection()
+    addNewSection:(args)->
+      section = @newSection(args)
       @add(section,{silent:true})
       @setCurrentToLast()
       @trigger("reset")

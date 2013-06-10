@@ -2,7 +2,9 @@
   
   class List.Layout extends App.Views.Layout
     template: "entry_set_sections/list/templates/list_layout"
-    
+    className: ()->
+      "uneditable-entry-set" if @model.get('editable') is false
+  
     regions:
       settingsNavigationRegion: "#settings-navigation-region"
       entrySetTitleRegion: "#entry-set-title-region"
@@ -49,11 +51,16 @@
           
 
   
-  
+  class List.EmptySectionNav extends App.Views.ItemView
+    template: "entry_set_sections/list/templates/_empty_section_nav"
+    tagName: "li"
+    className: "active"
+
 
   class List.SectionsNav extends App.Views.CompositeView
     template: "entry_set_sections/list/templates/section_nav"
     itemView: List.SectionNav
+    emptyView: List.EmptySectionNav
     itemViewContainer: "ul"
 
     triggers:

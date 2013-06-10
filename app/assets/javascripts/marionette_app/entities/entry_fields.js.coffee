@@ -15,8 +15,10 @@
     
 
     initializeEntryValues:->
+
       return unless @get('entry_values')? 
       unless @get('entry_values') instanceof Backbone.Collection
+        entryValues = if _.isArray(@get('entry_values')) then @get('entry_values') else [@get('entry_values')]
         @set 'entry_values', new Entities.EntryValues(@get('entry_values'), {entryField: @}, {silent: true})
       
       @on "change:entry_values", @initializeEntryValues
@@ -44,7 +46,6 @@
       _(entryField.get('title')).capitalize()
 
 
-    #NOTE: check use
     mergeEntryValues:->
       new App.Entities.EntryValues _.flatten @pluck('entry_values').map (i)-> i.toJSON()
 

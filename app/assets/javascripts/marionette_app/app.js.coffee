@@ -18,6 +18,7 @@
   # App.addInitializer () ->
   #   App.module("HeaderApp").start()
 
+  
   App.reqres.setHandler "default:region", ->
     App.contentRegion
   

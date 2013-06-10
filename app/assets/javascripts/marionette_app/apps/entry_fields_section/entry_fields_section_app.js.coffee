@@ -3,7 +3,7 @@
   
   API =
     listFields: (options)->
-      ctrl = new EntryFieldsSectionApp.List.Controller
+      ctrl = new EntryFieldsSectionApp.List.Controller()
       ctrl.list(options)
 
   

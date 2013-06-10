@@ -6,37 +6,17 @@ do (Backbone, Marionette) ->
       _.extend @, Backbone.Events
     
     onShow: (view) ->
-      @setupBindings view     
+      view.$el.modal('show')
+      view.$el.on "hidden", => @close()
+      @setupBindings view  
       
-      options = @getDefaultOptions _.result(view, "dialog")
-      @$el.dialog options,
-        close: (e, ui) =>
-          @closeDialog()
-    
-    getDefaultOptions: (options = {}) ->
-      _.defaults options,
-        title: "default title"
-        dialogClass: options.className
-        buttons: [
-          text: options.button ? "Ok"
-          click: =>
-            @currentView.triggerMethod "dialog:button:clicked" #onDialogButtonClicked
-        ]
     
     setupBindings: (view) ->
       @listenTo view, "dialog:close", @closeDialog
-      @listenTo view, "dialog:resize", @resizeDialog
-      @listenTo view, "dialog:title", @titleizeDialog
+  
     
     closeDialog: ->
       @stopListening()
-      @close()
-      @$el.dialog("destroy")
+      @currentView.$el.modal('hide')
+
     
-    resizeDialog: ->
-      @$el.dialog "option",
-        position: "center"
-    
-    titleizeDialog: (title) ->
-      @$el.dialog "option",
-        title: title

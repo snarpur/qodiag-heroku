@@ -3,29 +3,31 @@
 
   class List.Controller extends App.Controllers.Base
     
-    initialize:->
-      App.contentRegion.show @getLayout()
-
-    
-    
+        
     list:(options) ->
+      @getEntrySet(options.entrySetId)
+ 
+    
+    
+    showSidebarOnce:->
       @getContentRegion().once "show", (region)=> 
 
         @executeSidebar 
           droppableCollection: region.model.collection
           droppableElement: region.$itemViewContainer
-      
-      @getEntrySet(options.entrySetId)
-      @getSections(options)
+
     
-
-
+    
     getEntrySet:(id)->
       entrySet = App.request "entry:set:entity", {id: id}
       
       App.execute "when:fetched", entrySet, =>
+        App.contentRegion.show @getLayout(entrySet)
+        
+        @showSidebarOnce()
         @showEntrySetTitle(entrySet)
         @executeSettingsNavigation(entrySet)
+        @getSections(entrySetId: id)
 
 
 
@@ -33,10 +35,13 @@
       sections = App.request "entry:set:sections:entities", options
       
       App.execute "when:fetched", sections, =>
+        section = sections.getCurrentSection()
         @showSectionsNavigation(sections)
         
+
         unless sections.length is 0
           @executeFields(model: sections.getCurrentSection())
+        else
         
     
 
@@ -68,6 +73,9 @@
           collection: view.collection
           activeView: @getLayout()
 
+      if sections.length is 0
+        view.trigger "add:new:section:clicked", view
+
 
     
     showTitle:(section) ->
@@ -80,8 +88,8 @@
           model: options.model
           activeView: @getLayout()
 
-    
-    
+
+
     showEntrySetTitle:(entrySet)->
       view = new List.Title model: entrySet
       @getLayout().entrySetTitleRegion.show view
@@ -91,6 +99,7 @@
           model: entrySet
           activeView: @getLayout()
    
+
     
     executeSettingsNavigation:(entrySet) ->
       App.execute "show:settings:navigation", 
@@ -105,6 +114,7 @@
         model: collection.getCurrentSection()
 
     
+   
     getNavigationRegion: ->
       @getLayout().navigationRegion
     
@@ -120,8 +130,8 @@
     
     
 
-    getLayout: ()->
-      @layout ?= new List.Layout
+    getLayout: (entrySet)->
+      @layout ?= new List.Layout(model: entrySet)
 
   
     

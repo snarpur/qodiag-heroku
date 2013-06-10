@@ -1,7 +1,7 @@
-@Qapp.module "EntrySetSectionsApp.Create", (Create, App, Backbone, Marionette, $, _) ->
+@Qapp.module "EntrySetSectionsApp.EditCreate", (EditCreate, App, Backbone, Marionette, $, _) ->
   
   #NOTE: Change from object literal to Controller
-  Create.Controller =
+  EditCreate.Controller =
 
     create:(options)->
       options.action = 'create'
@@ -14,9 +14,8 @@
 
     
     showDialog:(options)->
-      @dialogView = new Create.Section model: options.model
+      @dialogView = new EditCreate.Section model: options.model
       App.dialogRegion.show @dialogView
-
       @dialogView.on "save:section", => @saveSection(options)
 
    

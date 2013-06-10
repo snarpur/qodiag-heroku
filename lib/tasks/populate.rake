@@ -29,19 +29,29 @@ namespace :db do
     puts users.inspect
     pop = PopulateUtil.new
     users.each do |u|
+      
       puts "createing caretaker #{u}"
       caretaker = pop.create_caretaker(u)
       2.times do |p|
+        
         patient = pop.create_patient(caretaker[:person])
         parent = pop.create_parent(patient)
         people = {:caretaker => caretaker, :patient => patient, :parent => parent}
         puts "patient created - #{patient.firstname}"
+        
         3.times do |t|
           pop.create_requests({:people => people, :number => 5, :survey_id => t+1})
         end
+        
+
         3.times do |e|
-          pop.create_entry_set_request(people,e)
+          if e == 2
+            pop.create_entry_set_request(people,e,false)
+          else
+            pop.create_entry_set_request(people,e)
+          end
         end
+      
       end
     end
   end

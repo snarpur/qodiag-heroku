@@ -8,9 +8,15 @@ class EntryField  < ActiveRecord::Base
  
   has_many :sections, :through => :sections_entry_fields
   
+  scope :include_or_initialize_entry_values, 
+
 
   def get_or_initialize_entry_value(entry_set_response_id)
     self.entry_values.by_response(entry_set_response_id).first #_or_initialize
+  end
+
+  def response_values_for_person(person,entry_set_response)
+    self.entry_values.person(person.id).by_response(entry_set_response.id)
   end
 
 end

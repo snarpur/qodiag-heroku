@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   before_filter :accessible_roles, :only => [:new, :edit, :show, :update, :create]
   before_filter :create_user_with_role, :only => [:new]
   before_filter :redirect_if_admin, :only => [:show]
+  before_filter :redirect_to_respontent_home, :only => [:show]
   load_and_authorize_resource :only => [:new,:destroy,:edit,:update]
 
 
@@ -51,4 +52,13 @@ class UsersController < ApplicationController
    unless current_user.nil?
     redirect_to admin_users_path if current_user.role?('super_admin') end
   end
+
+  def is_respondent?
+    @current_user.role_names.include? 'respondent'
+  end
+
+  def redirect_to_respontent_home
+    redirect_to "/#items" if is_respondent?
+  end
+
 end

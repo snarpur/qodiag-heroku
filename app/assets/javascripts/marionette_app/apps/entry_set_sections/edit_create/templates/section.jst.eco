@@ -1,18 +1,18 @@
-
 <div class="modal-header">
   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  <h3><%- @dialogTitle() %></h3>
 </div>
 <div class="modal-body">
   <form class="form-horizontal">
     <div class="control-group">
-      <label class="control-label" for="title">Titill</label>
+      <label class="control-label" for="section_name">Titill</label>
       <div class="controls">
-        <input class="input-xlarge" type="text" id="title" placeholder="Titill">
+        <input class="input-xlarge" type="text" id="section_name" placeholder="Titill">
       </div>
     </div>
-    <label class="control-label" for="description">Lýsing</label>
+    <label class="control-label" for="section_description">Lýsing</label>
       <div class="controls">
-        <textarea class="input-xlarge" rows="3" id="description" placeholder="Lýsing..."></textarea>
+        <textarea class="input-xlarge" rows="3" id="section_description" placeholder="Lýsing..."></textarea>
       </div>
     </div>
   </form>

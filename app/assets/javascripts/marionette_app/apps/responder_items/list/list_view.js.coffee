@@ -1,23 +1,18 @@
 @Qapp.module "ResponderItemsApp.List", (List, App, Backbone, Marionette, $, _) ->
   
-  class List.Layout extends App.Views.Layout
-    template: "patient_home/list/templates/list_layout"
-    
-    regions:
-      contentHeader: "#content-header"
-
     
   class List.Item extends App.Views.ItemView
     template: "responder_items/list/templates/_item"
     tagName: 'tr'
-
-    itemLink:->
-      "sls"
-     
 
 
   class List.Items extends App.Views.CompositeView
     template: "responder_items/list/templates/items"
     itemView: List.Item
     itemViewContainer: 'tbody'
+
+  class List.Header extends App.Views.ItemView
+    template: "responder_items/list/templates/header"
+    tagName: 'h1'
+    className: 'content_title'
 
