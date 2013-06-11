@@ -1,2 +1,11 @@
-<p><strong><%- @person.full_name %></strong>   sett inn: <%- @l("date.formats.long",@created_at) %></p>
-<p><%- @text_value %></p>
+<div class="entry-info">
+    <%- @person.full_name %> <span class="entry-date"><%- @l("date.formats.long",@created_at) %></span>
+</div>
+<div class="entry-details">
+    <div class="entry-avatar">
+        <img src="<%= @avatar %>">
+    </div>
+</div>
+<div class="entry-content">
+    <p><%- @text_value %></p>
+</div>

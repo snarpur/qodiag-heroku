@@ -1,10 +1,5 @@
 <h2>
     <%- @name %>
-    <% if @display_order > 0: %>
-    <span class="icon-edit edit-item">
-    </span><span class="icon-trash remove-item"></span>
-    <% else: %>
-    <span class="icon-blue-edit edit-item">
-    </span><span class="icon-blue-trash remove-item"></span>
-    <% end %>
+    <span class="btn btn-mini edit-item"><i class="icon-edit"></i></span>
+    <span class="btn btn-mini remove-item"><i class="icon-trash"></i></span>
 </h2>

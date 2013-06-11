@@ -1,0 +1,15 @@
+-if (@current_user.is_superadmin? || @current_user.is_caretaker?)
+  %ul{:class => 'primary'}
+    %li
+      %a{:href => "/users"}
+        %span{:class => 'icon-user'}
+        Skjólstæðingar
+  %ul{:class => 'secondary'}
+    %li
+      %a{:href => "/pages/help"}
+        %span{:class => 'icon-information'}
+        Upplýsingar
+    %li
+      %a{:href => "/#settings"}
+        %span{:class => 'icon-settings'}
+        Stillingar

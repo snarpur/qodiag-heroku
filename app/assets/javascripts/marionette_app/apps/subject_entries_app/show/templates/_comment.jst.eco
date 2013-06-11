@@ -1,3 +1,11 @@
-<p><strong><%- @person.full_name %></strong>   sett inn: <%- @l("date.formats.long",@created_at) %></p>
-<p><%- @text_value %></p>
-
+<div class="comment-info">
+    <%- @person.full_name %> <span class="comment-date"><%- @l("date.formats.long",@created_at) %></span>
+</div>
+<div class="comment-details">
+    <div class="comment-avatar">
+        <img src="<%= @avatar %>">
+    </div>
+</div>
+<div class="comment-content">
+    <p><%- @text_value %></p>
+</div>

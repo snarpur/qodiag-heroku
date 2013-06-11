@@ -27,11 +27,17 @@ class PeopleController < ApplicationController
     @person= Person.find(params[:id])
     respond_to do |format|
       if @person.update_attributes(params[:person])
-        format.html {redirect_to :action => "edit", :id => params[:id]}
-        format.json {render :template => "people/edit"}
+        if !params[:subject_id].nil?
+          id = params[:subject_id]
+          params.except!(:subject_id)
+        else
+          id = params[:id]
+        end
+        format.html {redirect_to :action => "edit", :id => id}
+        format.json {render json: {:ok => 'ok'}}
       else
-        format.html { render :action => "upload" }
-        format.json {render :template => "people/edit"}
+        format.html {render :action => "upload" }
+        format.json {render json: @person.errors}
       end
     end
 

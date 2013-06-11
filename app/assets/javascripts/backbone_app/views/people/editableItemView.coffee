@@ -1,5 +1,5 @@
 class App.Views.EditableItem extends App.Marionette.ItemView
-  className: "editable-item"
+  className: "editable-item parent"
   tagName: 'div'
   events: 
     "click .edit-item": "itemEdit"

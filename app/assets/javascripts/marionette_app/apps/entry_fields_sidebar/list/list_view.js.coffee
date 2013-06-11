@@ -52,7 +52,7 @@
   class List.EntryFields extends App.Views.CollectionView
     itemView: List.EntryField
     tagName: "ul"
-    className: "reset"
+    className: "reset content"
 
 
 

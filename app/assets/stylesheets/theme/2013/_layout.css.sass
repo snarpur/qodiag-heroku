@@ -9,6 +9,7 @@ body
 #header
   .logo
     @include replace-text("2013/logo.png", 0, 50%)
+    float: left
 
   .login
     font-size: 0 //whitespace fix
@@ -68,10 +69,16 @@ body
           text-decoration: none
 
   .primary
+    @extend ul.reset
+    float: left
+    width: 50%
     .icon-user
       margin: -1px 5px 0 0
 
   .secondary
+    @extend ul.reset
+    float: right
+    width: 50%
     .icon-information, .icon-settings
       margin: -1px 5px 0 0
 
@@ -85,6 +92,7 @@ body
 
 
 #content-header
+  clear: both
   padding: 50px 0 30px
 
   body.sign-in &
@@ -121,6 +129,7 @@ body
       margin-left: 5px
 
 #content
+  clear: both
   background: #fff
   border: 1px solid #ccc
   margin: $baseLineHeight 0 92px
@@ -143,7 +152,19 @@ body
       a
         position: absolute
         bottom: 1px
-        right: 1px
+        left: 1px
+
+  .parents
+    .editable-item
+      float: left
+      width: 50%
+      .avatar
+        position: relative
+        width: 150px
+        a
+          position: absolute
+          bottom: 1px
+          left: 1px
 
 
 
@@ -164,6 +185,45 @@ body
 .fullwidth
   margin: -30px
 
+.entry-region
+  .entry
+    margin-bottom: 10px
+    clear: both
+    overflow: auto
+
+    .entry-avatar
+      border: 4px solid #ccc
+      margin-bottom: 10px
+
+    .entry-info
+      float: left
+      font-weight: 700
+      font-size: 12px
+      background: #777
+      color: #fff
+      padding: 0 6px
+      margin-bottom: 5px
+
+      .entry-date
+        font-weight: 400
+        font-size: 11px
+        color: #eee
+
+    .entry-details
+      clear: left
+      float: left
+      width: 64px
+      padding-right: 10px
+      border-right: 1px solid #ccc
+      margin: 0 10px 0 0
+      font-size: 11px
+      text-align: center
+      line-height: 1.1
+
+    .entry-content
+      float: left
+      width: 755px
+
 .comments-region
   border: 1px solid #bfcad5
   background: #eef2f7
@@ -174,9 +234,9 @@ body
     border-color: #bfcad5
 
 
-
-Entry sets
-/*/ 
+/*
+/* Entry sets
+/*
 
 #entry-set-title-region
   background: #104c89
@@ -187,6 +247,7 @@ Entry sets
     color: #fff
     margin-top: 0
     padding: 0 10px
+    line-height: 30px
 
     span
       margin: -2px 0 0 6px
@@ -195,15 +256,23 @@ Entry sets
   margin-bottom: 20px
 
 #section-title-region
+  border-bottom: 1px solid #ccc
+  margin-bottom: 10px
+
   h2
     font-size: 14px
     font-weight: 400
-    margin-top: 0
+    margin: 0
     padding: 0 10px
+    line-height: 30px
 
     span
       margin: -2px 0 0 6px
 
+
+#section-content-region
+  .btn-success
+    float: right
 
 #settings-content
   float: left
@@ -214,6 +283,11 @@ Entry sets
     width: 575px
     padding: 20px
 
+.uneditable-entry-set
+  .settings-content
+    .btn
+      display: none
+
 #entry-fields-sidebar-region
   float: left
   width: 260px
@@ -223,13 +297,16 @@ Entry sets
 #entry-fields-search-region
   padding: 20px 2px 10px
 
+  input
+    width: 180px
+    margin: 0 10px 10px
+
 #entry-fields-list-region
+  height: 600px
+  overflow: hidden
+
   > ul
-    min-height: 500px
-    max-height: 500px
     font-size: 0
-    overflow-x: hidden
-    overflow-y: scroll
 
     > li
       border-top: 1px solid #ccc
@@ -260,4 +337,7 @@ Entry sets
       display: block
       float: left
       clear: left
-      padding: 0 10px
+      padding: 20px
+      margin: -20px 20px -20px -20px
+      background: #fff
+      border-right: 1px solid #ccc

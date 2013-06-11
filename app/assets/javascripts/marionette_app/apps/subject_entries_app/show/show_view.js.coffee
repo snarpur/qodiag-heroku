@@ -22,6 +22,7 @@
     template: "subject_entries_app/show/_comment"
     emptyView: Show.EmptyEntry
     tagName: 'li'
+    className: 'comment'
 
 
   
