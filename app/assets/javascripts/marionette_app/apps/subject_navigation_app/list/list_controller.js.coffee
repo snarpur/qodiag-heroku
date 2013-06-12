@@ -14,6 +14,7 @@
     showSubject:(id) ->
       subject = App.request "get:person:entity",id
       App.execute "when:fetched", subject, =>
+        @setCurrentSubject(subject)
         @showSubjectDetails(subject)
 
  
@@ -52,3 +53,8 @@
 
     getHeaderRegion:->
       App.request "content:header:region"
+
+
+
+    setCurrentSubject:(subject)->
+      App.reqres.setHandler "get:current:subject", -> subject 

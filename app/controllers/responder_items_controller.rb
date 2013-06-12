@@ -60,17 +60,17 @@ class ResponderItemsController < ApplicationController
       format.json {render "show"}
     end
   end
-  
  
   def survey
     @person = Person.find(params[:subject_id])
     @responder_items = @person.responder_items.surveys_by_id(params[:survey_id])
   end
   
-  
   private
   def create_responder_item
-    args = params.with_indifferent_access.slice(*ResponderItem.attribute_names)
+    params_without_root = params[:responder_item] || params
+    attr_ok = ResponderItem._accessible_attributes[:default].to_a
+    args = params_without_root.slice(*attr_ok)
     @responder_item = ResponderItem.new_patient_item(args,current_user.person)
   end
 

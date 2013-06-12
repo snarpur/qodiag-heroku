@@ -11,11 +11,11 @@
       ctrl.list()
 
     create:(options)->
-      ctrl = new EntryFieldsApp.Create.Controller(options)
+      ctrl = new EntryFieldsApp.EditCreate.Controller(options)
       ctrl.create()
       
     edit:(options)->
-      ctrl = new EntryFieldsApp.Create.Controller(options)
+      ctrl = new EntryFieldsApp.EditCreate.Controller(options)
       ctrl.edit()
 
   App.commands.setHandler "create:entry:field",(options) ->

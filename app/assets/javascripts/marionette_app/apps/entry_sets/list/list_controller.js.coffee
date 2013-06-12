@@ -8,7 +8,7 @@
       @entrySets = App.request "entry:sets:entities"
       
       App.execute "when:fetched", @entrySets, =>
-        
+        window.testy = @entrySets  
         entrySetsView = @getEntrySetsView()
         @showEntrySets(entrySetsView)
         @executeSettingsNavigation()
@@ -26,10 +26,13 @@
     
 
     getEntrySetsView: ->
-      new List.EntrySets
+      view = new List.EntrySets
         collection: @entrySets
 
+      @listenTo view, "childview:delete:entry:set", (view)=> @confirmDelete(view)
+      
 
+      view
     
     executeSettingsNavigation:->
       App.execute "show:settings:navigation", 
@@ -37,6 +40,10 @@
         region: @getLayout().settingsNavigationRegion
     
 
+    confirmDelete:(view)->
+      bootbox.confirm "Ertu viss um að þú viljir eyða eyðublaði #{view.model.get('name')}", (result) ->
+        if result
+          view.model.destroy()
 
     getLayout:=>
       @layout ?= new List.Layout

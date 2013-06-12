@@ -1,13 +1,21 @@
 @Qapp.module "Entities", (Entities, App, Backbone, Marionette, $, _) ->
   
   class Entities.Person extends Entities.Model
-    urlRoot: () -> Routes.people_path()
-    paramRoot: () -> 'person' 
+    urlRoot: Routes.people_path()
+    paramRoot: 'person' 
+    
+            
+    initialize:->
+      @on "change:respondents", @setRespondents
+      
+
+    setRespondents:(model,value,options)->
+      unless value instanceof Backbone.Collection
+        @set('respondents',new Entities.People(value),{silent:true})
 
     ageInYears:->
       moment().diff(moment(@get('dateofbirth')),'years')
 
-  
 
 
 

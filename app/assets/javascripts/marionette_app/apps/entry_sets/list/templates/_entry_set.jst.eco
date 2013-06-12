@@ -1,0 +1,6 @@
+<td><%- @linkTo(@name, "settings#{@routeTo.entry_set_sections_path @id}") %></a></td>
+<td class="thin nowrap">
+  <% if @editable: %>
+  <a href="#" class="destroy"><span class="icon-trash"></span></a>
+  <% end %>
+</td>

@@ -8,15 +8,17 @@
       listRegion: "#list-region"
 
   class List.EntrySet extends App.Views.ItemView
-    template: "entry_sets/list/templates/_entrySet"
+    template: "entry_sets/list/templates/_entry_set"
     tagName: "tr"
+    triggers:
+      "click a.destroy" : 'delete:entry:set'
   
   class List.Empty extends App.Views.ItemView
     template: "entry_sets/list/templates/_empty"
     tagName: "tr"
   
   class List.EntrySets extends App.Views.CompositeView
-    template: "entry_sets/list/templates/entrySets"
+    template: "entry_sets/list/templates/entry_sets"
     itemView: List.EntrySet
     emptyView: List.Empty
     itemViewContainer: "tbody"

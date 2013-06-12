@@ -2,8 +2,11 @@
   
   class List.Layout extends App.Views.Layout
     template: "subject_entries_app/list/list_layout"
+    triggers:
+      "click .btn.add-item"  : "add:item:clicked"
     
     regions:
+      createItemRegion: "#create-item-region"
       entrySetSelectRegion: "#enty-set-select-region"
       entrySetSectionsRegion: "#entry-set-sections-region"
       entrySetValuesRegion: "#entry-set-values-region"
@@ -17,7 +20,8 @@
     tagName: "option"
 
     triggers:
-      "click": "select:response"
+      "click" : "select:response"
+
  
 
   
@@ -26,6 +30,7 @@
   class List.SelectItems extends App.Views.CollectionView
     itemView: List.SelectItem
     tagName: "select"
+    className: "span6"
     
 
 

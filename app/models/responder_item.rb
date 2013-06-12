@@ -29,14 +29,15 @@ class ResponderItem < ActiveRecord::Base
   scope :entry_set_responses, where("entry_set_response_id IS NOT NULL")
   scope :subject_ids, select(:subject_id).uniq
 
-  accepts_nested_attributes_for :respondent, :subject
+  accepts_nested_attributes_for :respondent, :subject, :entry_set_response
 
   attr_accessor :invite_respondent_user
 
   
   attr_accessible :registration_identifier, :id, :caretaker_id, :deadline, :completed, 
                   :complete_item, :respondent_id, :subject_id, :survey_id, :invite_respondent_user, 
-                  :days_until_deadline,:subject_attributes, :respondent_attributes
+                  :days_until_deadline,:subject_attributes, :respondent_attributes, :entry_set_response_attributes
+  
   validates_associated :respondent, :subject
 
   ACTORS = %w{caretaker subject respondent}
@@ -80,7 +81,6 @@ class ResponderItem < ActiveRecord::Base
   end
 
   def complete_item=(is_complete)
-   KK.log "out"
    if is_complete.to_i == 1 && self.completed.nil?
     write_attribute :completed, Time.zone.now
    end

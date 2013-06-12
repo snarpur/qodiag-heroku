@@ -4,13 +4,15 @@
     urlRoot: Routes.entry_sets_path()
     paramRoot: 'entry_set'
 
+
   class Entities.EntrySetsCollection extends Entities.Collection
     model: Entities.EntrySet
-    url: -> Routes.entry_sets_path()
+    initialize:->
+      @url= ()-> Routes.entry_sets_path()
   
   API =
     getEntrySets: (callBack) ->
-      entrySets = new Entities.EntrySetsCollection
+      entrySets = new Entities.EntrySetsCollection([])
       entrySets.fetch reset: true
       entrySets
 
@@ -24,11 +26,11 @@
       entrySet.save entrySet.attributes 
       entrySet
   
-  App.reqres.setHandler "entry:sets:entities", (callBack) ->
-    API.getEntrySets callBack
+  App.reqres.setHandler "entry:sets:entities", (options = {}) ->
+    API.getEntrySets options
 
 
-  App.reqres.setHandler "entry:set:entity", (options) ->
+  App.reqres.setHandler "entry:set:entity", (options = {}) ->
     API.getEntrySet options
 
 

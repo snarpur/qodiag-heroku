@@ -3,15 +3,24 @@
  
   class List.Controller extends App.Controllers.Base
     
+    initialize:(options)->
+      App.execute "show:subject:navigation",{personId: options.personId, currentItemName: 'entries'}
+      @list(options)    
+    
 
     list:(options) ->
       {@personId, entrySetResponseId, sectionId} = options
       @showLayout()
+
       @items = App.request "get:person:entry:set:responder:items", options
       App.execute "when:fetched", @items, =>
         @showEntrySetSelect(@items)
         currentItem = if entrySetResponseId then @items.where(entry_set_response_id: entrySetResponseId)[0] else @items.first()
-        @getSections(currentItem,sectionId) 
+        @getSections(currentItem,sectionId)
+
+        
+        @listenTo @getLayout(), "add:item:clicked", => @createItemSetup()
+        
 
     
 
@@ -70,7 +79,10 @@
             entries: entries
       
       @getEntrySetValuesRegion().show entriesView
+      
 
+    createItemSetup:()->
+      App.execute "create:responder:item:view"
 
     
     getEntrySetValuesRegion:->

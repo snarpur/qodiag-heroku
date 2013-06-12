@@ -1,6 +1,6 @@
-@Qapp.module "EntryFieldsApp.Create", (Create, App, Backbone, Marionette, $, _) ->
+@Qapp.module "EntryFieldsApp.EditCreate", (EditCreate, App, Backbone, Marionette, $, _) ->
   
-  class Create.Controller extends App.Controllers.Base
+  class EditCreate.Controller extends App.Controllers.Base
 
     initialize:(options)->
       {@activeView,@collection,@model} = options
@@ -18,7 +18,7 @@
     
   
     showDialog:(field)->
-      dialogView = new Create.Field model: field
+      dialogView = new EditCreate.Field model: field
       App.dialogRegion.show dialogView
       
       

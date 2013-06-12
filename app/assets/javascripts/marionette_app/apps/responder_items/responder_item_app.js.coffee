@@ -11,7 +11,18 @@
     listRequests: () ->
       ResponderItemsApp.List.Controller.items()
 
+    create:(options)->
+      ctrl = new ResponderItemsApp.Create.Controller(options)
+      ctrl.create()
+
+
+
+  App.commands.setHandler "create:responder:item:view", (options) ->
+    API.create(options)
+
 
   App.addInitializer ->
     new ResponderItemsApp.Router
       controller: API
+
+

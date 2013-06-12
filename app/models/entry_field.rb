@@ -8,7 +8,6 @@ class EntryField  < ActiveRecord::Base
  
   has_many :sections, :through => :sections_entry_fields
   
-  scope :include_or_initialize_entry_values, 
 
 
   def get_or_initialize_entry_value(entry_set_response_id)

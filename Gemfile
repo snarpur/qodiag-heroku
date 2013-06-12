@@ -56,6 +56,7 @@ group :development do
   gem 'binding_of_caller', :require => RUBY_PLATFORM.include?('darwin') ? 'binding_of_caller' : false
   gem 'meta_request'
   gem 'xray-rails'
+  gem 'yaml_db'
 end
 
 group :development, :test do

@@ -1,6 +1,10 @@
 @Qapp.module "Entities", (Entities, App, Backbone, Marionette, $, _) ->
   
+
   class Entities.ResponderItem extends Entities.Model
+    nestedAttributeList: ['entry_set_response']
+    urlRoot: Routes.responder_items_path()
+    paramRoot: 'responder_item'
 
   class Entities.ResponderItems extends Entities.Collection
   
@@ -29,5 +33,6 @@
 
   App.reqres.setHandler "get:person:entry:set:responder:items", (options) ->
     API.getEntrySetResponderItemsForPerson options
+
 
   

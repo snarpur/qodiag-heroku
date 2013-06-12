@@ -10,13 +10,13 @@
 
   API =
     list:(personId,entrySetResponseId,sectionId)->
-      App.execute "show:subject:navigation",{personId: personId, currentItemName: 'entries'}
+ 
       
       args = _.map _.compact(arguments), (i) -> (Number)(i)
       options = _.object(['personId','entrySetResponseId','sectionId'],args)
 
-      ctrl = new SubjectEntriesApp.List.Controller()
-      ctrl.list(options)
+      ctrl = new SubjectEntriesApp.List.Controller(options)
+      # ctrl.list(options)
     
 
     create:(options)->

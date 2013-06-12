@@ -2,6 +2,7 @@ do (Backbone) ->
   _sync = Backbone.sync
 
   Backbone.sync = (method, entity, options = {}) ->
+
     _.defaults options,
       type: _helper.methodMap[method]
       dataType: 'json'
@@ -51,9 +52,8 @@ do (Backbone) ->
         options.processData = false
 
     setUrl:(entity,options)->
-      if !options.url
+      if !options.url      
         options.url = @getUrl(entity) || @urlError()  
-
 
     getUrl: (object) ->
       return null  unless object and object.url

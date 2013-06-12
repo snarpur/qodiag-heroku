@@ -1,1 +1,6 @@
-<%- @entry_set_response.name %>
+<%- @entry_set_response.name %> - 
+<% if @completed: %>
+  svarað: <%- @m([@completed]).format("Do MMMM YYYY") %>
+<% else: %>
+  ósvarað
+<% end %>

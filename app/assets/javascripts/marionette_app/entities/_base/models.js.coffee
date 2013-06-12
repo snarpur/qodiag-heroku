@@ -5,6 +5,11 @@
     nestedAttributeList: []
     blacklist:[]
 
+    initialize:->
+      super
+      @url = ()->
+        base = _.result(@, 'urlRoot') ? @collection.url()
+        if @id then "#{base}/#{@id}" else base
 
     destroy: (options = {}) ->
       _.defaults options,

@@ -1,0 +1,5 @@
+<label class="radio" for="respondent-<%- @id %>">
+  <input type="radio" name="respondents" id="respondent-<%- @id %>" value="<%- @id %>">
+  <%- @firstname+" "+@lastname%>
+</label>
+
