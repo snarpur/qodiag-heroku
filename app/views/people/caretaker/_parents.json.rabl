@@ -1,5 +1,8 @@
 collection @person.parents
 attributes :id, :firstname, :lastname, :full_cpr, :workplace, :workphone
+node do |person|
+  {:avatar => person.avatar.url(:small), :subject_id => @person.id}
+end
 node :address do |p|
   {
     :street_1 => p.address.street_1,

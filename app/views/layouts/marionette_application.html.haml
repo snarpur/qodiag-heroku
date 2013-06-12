@@ -27,27 +27,14 @@
   %body{:class => yield(:body_class)}
     #page{:class => 'container'}
 
-      #header{:class => 'row'}
-        %h1{:class => 'logo span2'}
+      #header{}
+        %h1{:class => 'logo'}
           Qodiag
-        %div{:class => 'span10'}
+        %div{:class => 'usernav'}
           =render 'shared/log_in_out'
 
-      #navigation{:class => 'row'}
-        %ul{:class => 'primary span6'}
-          %li
-            %a{:href => "/users"}
-              %span{:class => 'icon-user'}
-              Skjólstæðingar
-        %ul{:class => 'secondary span6'}
-          %li
-            %a{:href => "/pages/help"}
-              %span{:class => 'icon-information'}
-              Upplýsingar
-          %li
-            %a{:href => "/#settings"}
-              %span{:class => 'icon-settings'}
-              Stillingar
+      #navigation
+        =yield :site_navigation
 
       #wrapper
         #content-header

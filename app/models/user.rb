@@ -45,6 +45,13 @@ class User < ActiveRecord::Base
     self.roles << Role.find_by_name(name.to_sym)
   end
 
+  def is_superadmin?
+    role?('super_admin')
+  end
+
+  def is_caretaker?
+    role?('caretaker')
+  end
+
 end
 
-  
