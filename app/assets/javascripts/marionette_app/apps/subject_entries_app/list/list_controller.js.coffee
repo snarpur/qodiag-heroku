@@ -15,18 +15,21 @@
       @items = App.request "get:person:entry:set:responder:items", options
       App.execute "when:fetched", @items, =>
         @showEntrySetSelect(@items)
-        currentItem = if entrySetResponseId then @items.where(entry_set_response_id: entrySetResponseId)[0] else @items.first()
-        @getSections(currentItem,sectionId)
+        unless @items.size() is 0
+          currentItem = if entrySetResponseId then @items.where(entry_set_response_id: entrySetResponseId)[0] else @items.first()
+          @getSections(currentItem,sectionId)
+        else
+
 
         
-        @listenTo @getLayout(), "add:item:clicked", => @createItemSetup()
+        @listenTo @getLayout(), "add:item:clicked", => @createItemSetup(collection: @items)
         
 
     
 
     getSections:(currentItem,sectionId)->
       options=
-        entrySetId: currentItem.get("entry_set_response").entry_set_id
+        entrySetId: currentItem.get("entry_set_response").get('entry_set_id')
         entrySetResponse: currentItem.get("entry_set_response")
         currentSectionId: sectionId
 
@@ -46,12 +49,12 @@
     
     
     showEntrySetSelect:(items)->
-      selectView = new List.SelectItems(collection: items)
-      @getEntrySetSelectRegion().show selectView
+      selectView = new List.SelectItems(collection: items, layout: @getLayout())
 
       @listenTo selectView, "childview:select:response",(view)=>
         @getSections(view.model)
 
+      @getEntrySetSelectRegion().show selectView
 
 
     showSections:(sections,currentSectionId)->
@@ -81,8 +84,9 @@
       @getEntrySetValuesRegion().show entriesView
       
 
-    createItemSetup:()->
-      App.execute "create:responder:item:view"
+    createItemSetup:(options = {})->
+      view = App.request "create:responder:item:view", options
+
 
     
     getEntrySetValuesRegion:->

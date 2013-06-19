@@ -10,6 +10,13 @@ do (Backbone) ->
       frag = Backbone.history.fragment
       if _.isEmpty(frag) then null else frag
     
+
+    rootUrl:->
+      rootUrls =
+        caretaker: "settings"
+        respondent: "items"
+      rootUrls[App.currentUser.get('role_name')]
+    
     startHistory: ->
       if Backbone.history
         Backbone.history.start()

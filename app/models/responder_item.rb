@@ -16,7 +16,8 @@ class ResponderItem < ActiveRecord::Base
   after_save :send_respondent_invitation, :if => :invite_respondent_user
 
   scope :overdue, where("deadline < ? AND completed IS NULL", Time.zone.now)
-  scope :uncompleted, where("deadline >= ? AND completed IS NULL", Time.zone.now)
+  # scope :uncompleted, where("deadline >= ? AND completed IS NULL", Time.zone.now)
+  scope :uncompleted, where("deadline >= ? AND completed IS NULL", DateTime.now.at_midnight)
   scope :recently_completed, where("completed IS NOT NULL")
   scope :completed, where("completed IS NOT NULL")
   scope :surveys, where("survey_id IS NOT NULL").joins(:survey).select("surveys.access_code, responder_items.*")
@@ -73,7 +74,13 @@ class ResponderItem < ActiveRecord::Base
   end
 
   def item_type
-    self.survey.nil? ? 'entry_set' : 'survey'
+    if !self.survey.nil?
+      'survey'
+    elsif !self.entry_set_response.nil?
+      'entry_set'
+    elsif !self.registration_identifier.nil?
+      'pre_registration'
+    end
   end
 
   def is_survey?

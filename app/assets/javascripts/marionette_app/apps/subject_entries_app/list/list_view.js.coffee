@@ -4,12 +4,20 @@
     template: "subject_entries_app/list/list_layout"
     triggers:
       "click .btn.add-item"  : "add:item:clicked"
+    ui:
+      sendRequest : "a.add-item"
     
     regions:
       createItemRegion: "#create-item-region"
       entrySetSelectRegion: "#enty-set-select-region"
       entrySetSectionsRegion: "#entry-set-sections-region"
       entrySetValuesRegion: "#entry-set-values-region"
+
+
+    initialize:->
+      @entrySetSelectRegion.on "show",(view) => 
+        if view.isEmpty()
+          @ui.sendRequest.popover('show')
 
   
 
@@ -18,23 +26,48 @@
   class List.SelectItem extends App.Views.ItemView
     template: "subject_entries_app/list/_select_item"
     tagName: "option"
-
+    templateHelpers: ->
+      responseDetails:=>
+       if @model.get('completed')
+        "svarað: #{moment(@model.get('completed')).format('Do MMMM YYYY')}"
+       else if moment().isSame(moment(@model.get('deadline')),'day')
+         "skilafrestur rennur út ídag"
+       else
+        "skilafrestur: #{moment(@model.get('deadline')).fromNow()}"
+         
     triggers:
       "click" : "select:response"
 
- 
+
 
   
 
 
-  class List.SelectItems extends App.Views.CollectionView
+  class List.SelectItems extends App.Views.CompositeView
+    template: "subject_entries_app/list/select_items"
     itemView: List.SelectItem
     tagName: "select"
     className: "span6"
-    
+    attributes:->
+      'disabled' : => 'disabled' if @isEmpty()
 
+
+    collectionEvents:
+      "add" : "triggerAdd"
+  
+    triggerAdd:->
+      @$el.removeAttr('disabled')
+
+
+    appendHtml:(collectionView, itemView, index)->
+      child = if itemView.model.get('completed') then 1 else 2
+      @$("optgroup:nth-child(#{child})").append(itemView.el)
+
+    isEmpty:->
+      @collection.size() is 0
 
   
+
 
   class List.Section extends App.Views.ItemView
     template: "subject_entries_app/list/_section"
@@ -46,8 +79,6 @@
       "click a" : "set:current:section"
   
 
-
-  
 
   class List.Sections extends App.Views.CollectionView
     itemView: List.Section

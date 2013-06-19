@@ -51,6 +51,7 @@ end
 
 group :development do
   gem 'quiet_assets'
+  gem 'thin'
   gem 'sextant'
   gem 'better_errors', :require => RUBY_PLATFORM.include?('darwin') ? 'better_errors' : false
   gem 'binding_of_caller', :require => RUBY_PLATFORM.include?('darwin') ? 'binding_of_caller' : false
@@ -76,6 +77,7 @@ group :development, :test do
   gem "spork", "~> 0.9.0.rc"
   gem "watchr"
   gem "syntax"
+  gem 'debugger'
   # gem "guard-haml"
   # gem "guard-livereload"
   # gem "letter_opener"

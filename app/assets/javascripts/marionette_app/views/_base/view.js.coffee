@@ -8,6 +8,7 @@
       @$el.toggleWrapper
         className: "opacity"
       , init
+ 
     
     setInstancePropertiesFor: (args...) ->
       for key, val of _.pick(@options, args...)
@@ -17,7 +18,8 @@
       if @model?.isDestroyed?()
         wrapper = @$el.toggleWrapper
           className: "opacity"
-          backgroundColor: "red"
+          backgroundColor: "rgba(255,0,0,0.7)"
+          spinner: false
         
         wrapper.fadeOut 400, ->
           $(@).remove()
@@ -33,6 +35,7 @@
         Routes
       
       t:(path)->
+        I18n.t(path)
 
       l:(option, string)->
         I18n.l(option,string)

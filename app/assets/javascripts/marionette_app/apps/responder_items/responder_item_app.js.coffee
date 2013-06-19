@@ -17,7 +17,7 @@
 
 
 
-  App.commands.setHandler "create:responder:item:view", (options) ->
+  App.reqres.setHandler "create:responder:item:view", (options) ->
     API.create(options)
 
 

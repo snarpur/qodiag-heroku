@@ -18,7 +18,7 @@
     
     
     initializeSections:->
-      sections = @get('entry_sets_sections') 
+      sections = @get('entry_sets_sections')
       unless sections instanceof Backbone.Collection
         @set("entry_sets_sections", new Entities.EntrySetSections(sections,{entrySetResponse: @}),{silent: true})
     

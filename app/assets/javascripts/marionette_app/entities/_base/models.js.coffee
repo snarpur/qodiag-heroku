@@ -1,6 +1,11 @@
+do (Backbone) ->
+  _.extend Backbone.Model::,Backbone.Validation.mixin
+
 @Qapp.module "Entities", (Entities, App, Backbone, Marionette, $, _) ->
-	
-	class Entities.Model extends Backbone.Model
+	 
+
+  
+  class Entities.Model extends Backbone.Model
     attributeList: []
     nestedAttributeList: []
     blacklist:[]
@@ -53,6 +58,16 @@
       ## set errors directly on the model unless status returned was 500 or 404
       @set _errors: $.parseJSON(xhr.responseText)?.errors unless xhr.status is 500 or xhr.status is 404
 
+    
+    _getEntityClass:(name)->
+      Entities[_(name).chain().capitalize().camelize().value()]
+
+
+    _createNestedEntity:(key,value)->
+      unless @_isBackbone(@get('key')) and value?
+        entity = new (@_getEntityClass(key))(value)
+        @set(key, entity,{silent:true})
+        @listenTo entity, "change", => @trigger("change:#{key}",key,entity)
 
 
     _isBackbone:(attribute)->

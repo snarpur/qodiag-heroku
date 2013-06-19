@@ -1,4 +1,1 @@
-<label class="radio" for="entry-set-<%- @id %>">
-  <input type="radio" name="entry-set" id="entry-set-<%- @id %>" value="<%- @id %>">
-  <%- @name %>
-</label>
+<%- @name %>

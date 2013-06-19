@@ -4,6 +4,7 @@
     
     
     initialize:(options)->
+      @collection = options.collection
       @entrySets = App.request "entry:sets:entities"
       
 
@@ -12,46 +13,45 @@
       @showSelectItem()
       @showRespondents()
       @showItem()
+      @getLayout()
     
 
     
     showItem:->
       view = new Create.ItemControl model: @getItem()
       @getLayout().itemControlRegion.show view
+      view
    
     
 
     showRespondents:->
       respondents = @getSubject().get('respondents')
-      view = new Create.Respondents collection: respondents
+      view = new Create.Respondents collection: respondents, model: @getItem()
       @getItem().set('respondents',respondents)
       @getLayout().respondentsRegion.show view
 
-      @listenTo view, "respondent:selected", (id)=>
-        @getItem().set("respondent_id", id)
+      @listenTo view, "childview:respondent:selected", (view,options)=>
+        @getItem().set("respondent_id", view.model.id)
 
     
 
     showSelectItem:->
-      view = new Create.Items collection: @entrySets
+      view = new Create.Items collection: @entrySets, model: @getItem()
       @getLayout().itemSelectRegion.show view
 
-      @listenTo view, "entry:set:selected", (id)=>
-        @getEntrySetResponse().set('entry_set_id', id)
-
+      @listenTo view, "childview:item:selected", (view,options)=>
+        entrySetResponse = 
+          entry_set_id: view.model.id
+          name: view.model.get('name')
+        @getItem().get('entry_set_response').set(entrySetResponse)
+        
     
 
     getItem:->
       @item ?= new App.Entities.ResponderItem
         caretaker_id: App.request("get:current:user").get('person_id')
         subject_id: @getSubject().id
-        entry_set_response: @getEntrySetResponse()
 
-    
-    
-    getEntrySetResponse:->
-      @entrySetResponse ?= new App.Entities.EntrySetResponse()
-    
 
 
     getSubject:->
@@ -63,10 +63,14 @@
       App.dialogRegion.show @getLayout()
       @listenTo @getLayout(), "dialog:save", =>
         item = @getItem()
-        item.save(item.toJSON())
-        @listenTo item, 'created', =>
-          @getLayout().trigger "dialog:close"
-          toastr.success("Beiðni hefur verið send")
+        errors = item.validate()
+        unless errors
+          @getLayout().addOpacityWrapper()
+          item.save(item.attributes)
+          @listenTo item, 'created', =>
+            @collection.add item
+            @getLayout().trigger "dialog:close"
+            toastr.success("Beiðni hefur verið send")
     
     
 

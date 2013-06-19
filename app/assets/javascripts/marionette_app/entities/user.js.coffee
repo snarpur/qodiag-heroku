@@ -4,6 +4,7 @@
 
 		subjectIds:->
 			_.map @get('subjects'), (i)-> i.id
+
 	
 	class Entities.UsersCollection extends Entities.Collection
 		model: Entities.User

@@ -14,7 +14,6 @@ class ResponderItemsController < ApplicationController
   end
 
   def show
-  
     @chart = ResponderItem.find(params[:id]).response_to_chart(params.slice(:result_name))
   end
 

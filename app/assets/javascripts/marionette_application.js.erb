@@ -12,6 +12,7 @@
 //= require backbone.marionette/backbone.marionette
 //= require syphon/syphon
 //= require backbone-forms/distribution/backbone-forms.js
+//= require backbone-validation/backbone-validation.js
 //= require query-engine/query-engine.js
 //= require date/build/date-is-IS.js  
 //= require XDate/XDate
@@ -41,5 +42,6 @@
 
 $(document).ready(function(){
   moment.lang('is')
-});
+  $.datepicker.setDefaults($.datepicker.regional[I18n.locale]);
 
+});
