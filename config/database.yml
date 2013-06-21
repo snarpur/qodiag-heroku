@@ -37,6 +37,18 @@ test: &test
   password:
   socket: /tmp/mysql.sock
 
+
+staging:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: snarpur_staging
+  pool: 5
+  username: root
+  password:
+  socket: /tmp/mysql.sock
+
+
 production:
   adapter: mysql2
   encoding: utf8
@@ -46,6 +58,10 @@ production:
   username: root
   password:
   socket: /tmp/mysql.sock
+
+
+
+
 
 cucumber:
   <<: *test

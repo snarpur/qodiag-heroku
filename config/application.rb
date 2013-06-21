@@ -11,7 +11,8 @@ module Snarpur
   class Application < Rails::Application
 
     # stylesheets_directory = "#{Rails.root}/app/assets/stylesheets"
-    config.assets.precompile << /(^[^_]|\/[^_])[^\/]*/
+    # config.assets.precompile << /(^[^_]|\/[^_])[^\/]*/
+    config.assets.precompile << /(^[^_\/]|\/[^_])[^\/]*$/
     config.assets.enabled = true
     config.assets.paths << Rails.root.join("app", "assets", "fonts")
     

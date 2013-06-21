@@ -1,5 +1,7 @@
 production:
   chart_config_path: '/lib/chart_config'
+staging:
+  chart_config_path: '/lib/chart_config'
 development:
   chart_config_path: '/lib/chart_config'
 test:
