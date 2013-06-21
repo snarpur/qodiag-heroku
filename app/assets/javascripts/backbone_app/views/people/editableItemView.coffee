@@ -5,8 +5,6 @@ class App.Views.EditableItem extends App.Marionette.ItemView
     "click .edit-item": "itemEdit"
 
   getTemplate:=>
-    App.T ||= {}
-    App.T[@.cid] = @
     @model.get("formTemplate")
 
   renderForm:->

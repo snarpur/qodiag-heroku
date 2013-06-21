@@ -21,18 +21,18 @@ class App.Views.SimpleForm extends Backbone.Marionette.ItemView
     view = @
     callbacks= 
       success:(model,response)->
-        view.triggerDestroy(model,response)
+        view.destroyForm()
       error:(model, xhr)->
         throw "could not save model with id : #{view.model.get('id')}"
-    
-    @model.save(@model.toJSON(),callbacks)
+        
+    @model.save(@model.attributes,callbacks)
 
   triggerDestroy:(model,response)=>
     #FIX: parent edit fix bug on response
     console.log model, response
     paramRoot = @model.paramRoot
-    params = if _.has(response, paramRoot) then response[paramRoot] else response
-    @trigger("destroy", @)
+    # params = if _.has(response, paramRoot) then response[paramRoot] else response
+    # @trigger("destroy", @)
   
   container:=>
     @.$el.parent()

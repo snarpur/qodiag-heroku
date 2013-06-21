@@ -25,7 +25,7 @@ node :schema do
     :full_cpr => :Text,
     :address => {
       :type => :NestedModel,
-      :model => "App.Models.Base",
+      :model => "App.Models.Address",
       :schema =>{
         :id => :Hidden,
         :street_1 => {:type => :Text, validators: ['required'],template: 'field'},
