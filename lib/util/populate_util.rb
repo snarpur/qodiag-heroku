@@ -165,6 +165,8 @@ class PopulateUtil
       
 
       if completed == true
+        completed_at = responder_item.created_at.advance(:days => (rand(5)+1))
+        responder_item.update_attribute("completed",completed_at)
         entry_set_response.entry_set.sections.each_with_index do |section, section_index|
           
           random_entry = rand(32)

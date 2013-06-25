@@ -3,7 +3,7 @@ require File.expand_path('../boot', __FILE__)
 require 'rails/all'
 
 if defined?(Bundler)
-    Bundler.require *Rails.groups(:assets => %w(development test))
+    Bundler.require *Rails.groups(:assets => %w(development test staging))
 end
 
 
@@ -13,6 +13,7 @@ module Snarpur
     # stylesheets_directory = "#{Rails.root}/app/assets/stylesheets"
     # config.assets.precompile << /(^[^_]|\/[^_])[^\/]*/
     config.assets.precompile << /(^[^_\/]|\/[^_])[^\/]*$/
+    
     config.assets.enabled = true
     config.assets.paths << Rails.root.join("app", "assets", "fonts")
     

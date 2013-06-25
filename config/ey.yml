@@ -24,5 +24,4 @@
 ---
 environments:
   alfa:
-    migrate: true
-    migration_command: rake db:migrate
+    migrate: false

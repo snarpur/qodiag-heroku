@@ -10,6 +10,5 @@
       field = new Entities.Search search: search
   
   App.reqres.setHandler "get:search:field", (options) ->
-    console.warn options
     API.getSearchField options
   

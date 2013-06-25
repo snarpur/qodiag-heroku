@@ -157,7 +157,7 @@ class App.Models.Base extends Backbone.Model
           if _.has(@get('form').fields, k)
             @get('form').fields[k].setError(v);
           else
-            console.error 'field not found ',k
+            throw 'field not found #{k}'
       else
         type = k.split('.')[0]
         options[k.split(".").slice(1).join('.')] = v

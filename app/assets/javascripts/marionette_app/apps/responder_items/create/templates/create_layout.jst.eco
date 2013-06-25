@@ -7,7 +7,6 @@
   <form>
     <div id='item-select-region' class="row"></div>
     <div id="respondents-region" class="row"></div>
-  
     <div id="item-control-region"></div>
   
   </form>      

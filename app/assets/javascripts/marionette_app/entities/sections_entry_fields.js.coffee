@@ -8,7 +8,6 @@
      
 
     updateDisplayOrder:(displayOrder)=>
-      console.log displayOrder
       displayOrder += 1
       squeeze = if (displayOrder - @get('display_order')) > 0 then 0.5 else -0.5
       @.set("display_order",displayOrder+squeeze)

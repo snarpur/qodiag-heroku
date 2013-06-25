@@ -1,4 +1,3 @@
-#ber db:data:load_dir dir=data
 ---
 national_registers:
   columns:

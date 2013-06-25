@@ -98,7 +98,6 @@
 		addError: (name, error) ->
 			el = @$("[name='#{name}']")
 			sm = $("<small>").text(error)
-			console.log name,error,sm
 			el.after(sm).closest(".row").addClass("error")
 		
 		

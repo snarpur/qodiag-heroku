@@ -87,5 +87,5 @@ class App.Collections.LineCollection extends Backbone.Collection
         line = new App.Models.Line(params)
         that.add(line)
       error:(response)->
-        console.log("ERROR: in fetching line with id:", params)
+        throw "ERROR: in fetching line with id: #{params}"
     )

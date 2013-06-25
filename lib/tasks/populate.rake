@@ -7,6 +7,8 @@ namespace :db do
     #db:populate_reset[reset] -- regenerates surveys, regenerates user data
     #db:populate_reset[user] -- clears users does not regenerate data, to regenerate users call  db:populate_users[some_user_name]
     
+    # !IMPORTANT national register setup => ber db:data:load_dir dir=data
+
   Rake::Task[:environment].invoke
     require 'faker'
     require "#{Rails.root}/lib/util/populate_util.rb"

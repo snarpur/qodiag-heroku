@@ -39,7 +39,6 @@ class App.Views.FormRenderer extends Backbone.View
         else
           view.model.nextStep()
       error:(model, response) ->
-        console.log response
         throw  "could not save #{model} error"
 
   

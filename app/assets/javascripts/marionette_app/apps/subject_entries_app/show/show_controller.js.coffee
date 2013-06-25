@@ -15,8 +15,7 @@
 
     
 
-    showEntryValue:-> 
-      # console.log @entryValue  
+    showEntryValue:->   
       entryView = new Show.Entries collection: @entryValue
       @getEntryRegion().show entryView
 

@@ -29,7 +29,6 @@ class App.Views.SimpleForm extends Backbone.Marionette.ItemView
 
   triggerDestroy:(model,response)=>
     #FIX: parent edit fix bug on response
-    console.log model, response
     paramRoot = @model.paramRoot
     # params = if _.has(response, paramRoot) then response[paramRoot] else response
     # @trigger("destroy", @)
