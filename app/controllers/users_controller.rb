@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   before_filter :get_user, :only => [:index,:new,:edit,:show]
+  before_filter :redirect_to_sign_in
   before_filter :accessible_roles, :only => [:new, :edit, :show, :update, :create]
   before_filter :create_user_with_role, :only => [:new]
   before_filter :redirect_if_admin, :only => [:show]
@@ -16,13 +17,9 @@ class UsersController < ApplicationController
   end
 
   def show
-    unless user_signed_in?
-      redirect_to new_user_session_url 
-    else
-      @patients = @current_user.person.relations.patients
-      respond_to do |format|
-        format.html
-      end
+    @patients = @current_user.person.relations.patients
+    respond_to do |format|
+      format.html
     end
   end
 

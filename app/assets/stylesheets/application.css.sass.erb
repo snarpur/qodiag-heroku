@@ -1,7 +1,14 @@
 @import compass
 @import compass/layout/sticky-footer
-
 @import partials/twitter_bootstrap
+
+
+@import jquery-nanoscroller/nanoscroller
+@import ui-themes/base/jquery.ui.core
+@import ui-themes/base/jquery.ui.theme
+@import ui-themes/base/jquery.ui.datepicker
+@import toastr
+
 
 @import theme/2013/layout
 @import theme/2013/type
@@ -15,43 +22,94 @@
 @import theme/2013/flash
 
 @import partials/timeline
-//@import partials/timeline/overlay
 @import partials/timeline/month-view-guides
 @import partials/timeline/line-headings
 @import partials/timeline/line
 @import partials/timeline/time-nav
 @import partials/timeline/_info-header
 @import partials/timeline/survey-menu
-//@import partials/temporary_settings
 @import partials/charts
 
-@import jquery-nanoscroller/nanoscroller.css
-@import ui-themes/base/jquery.ui.core.css
-@import ui-themes/base/jquery.ui.base.css
-@import ui-themes/base/jquery.ui.theme.css
-@import ui-themes/base/jquery.ui.dialog.css
-@import toastr
+// REFACTOR: set shared timeline variables accross css and js
 
-//@import partials/temporarynav
-//@import partials/form
-//@import partials/wizard
-//@import partials/buttons
-//@import partials/bootstrap_button_colors
-//@import partials/tables
-//@import partials/user_login
-//@import partials/headings
-//@import partials/help
-//@import partials/person
+#canvas
+  width: 938px
+  margin-top: 39px
+  > nav
+    left: 158px
+    li
+      width: 390px
 
-//@import partials/ui-datepicker
-//@import ui-themes/base/jquery.ui.datepicker
 
-//@import iphone-toggle
 
-//@import backbone-forms/bootstrap
+#line-headings
+  padding: 50px 0
+  width: 158px
+  li
+    height: 80px
+  &.state-closed
+    left: -474px
+  &.state-open
+    left: 0
 
-//@import bootstrap/bootstrap-forms
-//@import bootstrap/bootstrap-buttons
-//@import bootstrap/bootstrap-alert
-//@import bootstrap/bootstrap-dropdown
-//@import bootstrap/bootstrap-tooltips_popovers
+
+
+#tml-history
+  width: 18720px
+  min-height: 160px
+  padding: 50px 0
+  > ul
+    top: -50px
+    margin-bottom: -130px
+    li
+      height: 120px
+      width: 780px
+    span
+      height: 40px
+    b
+      height: 80px
+      line-height: 24px
+  .line
+    &.state-closed
+      height: 80px
+    &.state-open
+      &.overlay-charts, &.overlay-new-item
+        min-height: 400px
+  .item
+    top: 26.667px
+
+
+.line-overlay
+  height: 400px
+  width: 908px
+  left: 15px
+  top: 40px
+  &.chart-dialog .chart-wrapper
+    width: 1816px
+    height: 400px
+    .column-chart, .line-chart
+      width: 858px
+      margin-left: 50px
+    .chart
+      height: 400px
+  &.new-item
+    .left, .right
+      width: 40%
+  ul.chart-metrics
+    left: 363.2px
+
+
+.line
+  &:nth-child(1) .line-overlay
+    top: -40px
+  &:nth-child(2) .line-overlay
+    top: 40px
+  &:nth-child(3) .line-overlay
+    top: 120px
+  &:nth-child(4) .line-overlay
+    top: 200px
+  &:nth-child(5) .line-overlay
+    top: 280px
+  &:nth-child(6) .line-overlay
+    top: 360px
+

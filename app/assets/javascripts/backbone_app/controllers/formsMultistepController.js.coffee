@@ -31,4 +31,4 @@ class App.Controllers.Forms.Multistep extends Backbone.Router
       success:(model,response)->
         router.invitationsView.renderForm()
       error:(model,response)->
-        console.warn "Error"
+        throw "Error in App.Controllers.Forms.Multistep:step_callbacks()"

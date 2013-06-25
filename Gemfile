@@ -4,7 +4,7 @@ gem "rails", "3.2.11"
 
 gem "sass","~> 3.1.11"
 gem "ejs"
-gem "jquery-rails"
+# gem "jquery-rails"
 # gem "backbone-rails"
 gem 'mysql2', '~> 0.3.7'
 gem 'json'
@@ -36,12 +36,15 @@ gem 'oj'
 gem 'gon'
 gem 'js-routes'
 gem 'acts_as_commentable', '3.0.1'
+gem 'yaml_db'
 
 
 group :assets do
   gem 'sass-rails', "  ~> 3.2.3"
   gem 'coffee-rails', "~> 3.2.1"
   gem 'coffee-rails-source-maps'
+  gem 'yui-compressor'
+  gem 'turbo-sprockets-rails3'
   gem 'uglifier', '>=1.0.3'
   gem 'closure-compiler'
   gem 'compass-rails'
@@ -57,7 +60,7 @@ group :development do
   gem 'binding_of_caller', :require => RUBY_PLATFORM.include?('darwin') ? 'binding_of_caller' : false
   gem 'meta_request'
   gem 'xray-rails'
-  gem 'yaml_db'
+
 end
 
 group :development, :test do

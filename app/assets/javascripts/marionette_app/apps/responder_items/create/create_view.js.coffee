@@ -122,8 +122,8 @@
     
     modelEvents:
       "change:deadline" : ()->
-        @ui.heading.html("skilast fyrir #{@formatDeadline()}")
-        @ui.heading.effect('highlight')
+        @ui.heading.html("Skilast fyrir #{@formatDeadline()}")
+        @ui.heading.effect('highlight',2000)
       
       "change:_errors":(model,errors)->
         if errors?.deadline

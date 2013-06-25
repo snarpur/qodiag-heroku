@@ -10,7 +10,7 @@ class App.Views.AddRemoveButton extends Backbone.View
      JST['backbone_app/templates/siblingsControllsTmpl']
 
   addRemove:=>
-    console.log "adding shit"
+
 
   render:->
     if (@template()?)

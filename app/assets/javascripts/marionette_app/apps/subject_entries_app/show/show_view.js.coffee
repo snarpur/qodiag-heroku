@@ -66,12 +66,4 @@
   class Show.Entries extends App.Views.CollectionView
     itemView: Show.Entry
     emptyView: Show.EmptyEntry
-    # buildItemView:(item, ItemViewType, itemViewOptions) ->
-    #   console.log arguments
-    #   options = _.extend({model: item}, itemViewOptions)
-    #   view = new ShowEntry(options)
-
-
-    # emptyView: Show.EmptyEntry
-
-
+    

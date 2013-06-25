@@ -25,7 +25,6 @@ class ApplicationController < ActionController::Base
     render "pages/error_401", :status => 401
   end
   
-private
   def get_user
     @current_user = current_user
   end
@@ -42,6 +41,11 @@ private
   def logged_in?
     !current_user.nil?
   end
+
+  def redirect_to_sign_in
+    redirect_to new_user_session_path() unless logged_in? 
+  end
+
 
   def application_layout
     params[:action] == 'index' ? 'marionette_application' : 'application'

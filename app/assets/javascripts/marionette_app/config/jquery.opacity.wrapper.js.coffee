@@ -24,6 +24,7 @@ do ($) ->
 								zIndex: obj.zIndex + 1
 								backgroundColor: obj.backgroundColor
 			wrapper.spinner() if obj.spinner
+			wrapper
 		else
 			$("[data-wrapper]").remove()
 

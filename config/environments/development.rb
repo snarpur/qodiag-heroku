@@ -21,12 +21,14 @@ Snarpur::Application.configure do
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
-  :user_name => "zodiac",
-  :password => "a626669318b120ca",
-  :address => "mailtrap.io",
-  :port => 2525,
-  :authentication => :plain,
+    :user_name => "zodiac",
+    :password => "a626669318b120ca",
+    :address => "mailtrap.io",
+    :port => 2525,
+    :authentication => :plain,
 }
+
+
 
   #Paperclip
   Paperclip.options[:command_path] = "/usr/bin/"
@@ -36,10 +38,11 @@ Snarpur::Application.configure do
 
   config.assets.enabled = true
   config.assets.compress = false
+  config.assets.debug = true
   # Expands the lines which load the assets
 
-  config.assets.debug = true
-  config.sass.compressed= false
+
+  config.sass.compressed = false
   config.sass.debug_info = true
   config.sass.preferred_syntax = :sass
 #  config.after_initialize do
