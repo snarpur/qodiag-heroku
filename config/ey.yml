@@ -25,3 +25,4 @@
 environments:
   alfa:
     migrate: false
+    precompile_assets: true
