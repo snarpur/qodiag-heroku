@@ -35,11 +35,9 @@ class InvitationItemsController < ApplicationController
  private
   def set_step
     @step_no = params[:step_no] || 1
-    KK.log @step_no
   end
   
   def get_responder_item
-    KK.log params[:action]
     if params[:action] == 'new'
       args = {:caretaker_id => @current_user.person.id, :registration_identifier => "respondent_registration"}
       @responder_item = ResponderItem.new(args)

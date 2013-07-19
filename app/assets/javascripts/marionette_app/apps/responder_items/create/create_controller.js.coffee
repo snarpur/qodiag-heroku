@@ -30,8 +30,8 @@
       @getItem().set('respondents',respondents)
       @getLayout().respondentsRegion.show view
 
-      @listenTo view, "childview:respondent:selected", (view,options)=>
-        @getItem().set("respondent_id", view.model.id)
+      @listenTo view, "respondent:selected", (view,options)=>
+        @getItem().set("respondent_id",  view?.model?.id)
 
     
 
@@ -39,10 +39,10 @@
       view = new Create.Items collection: @entrySets, model: @getItem()
       @getLayout().itemSelectRegion.show view
 
-      @listenTo view, "childview:item:selected", (view,options)=>
+      @listenTo view, "item:selected", (view,options)=>
         entrySetResponse = 
-          entry_set_id: view.model.id
-          name: view.model.get('name')
+          entry_set_id: view?.model?.id
+          name: view?.model?.get('name')
         @getItem().get('entry_set_response').set(entrySetResponse)
         
     

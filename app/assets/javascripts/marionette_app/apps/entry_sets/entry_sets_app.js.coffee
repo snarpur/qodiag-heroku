@@ -12,8 +12,13 @@
       list.listEntrySets(options)
       
 
+    create:(options)->
+      ctrl = new EntrySetsApp.EditCreate.Controller(options)
+      ctrl.create()
+      
+  App.commands.setHandler "create:entry:set",(options) ->
+    API.create(options) 
   
-
   App.addInitializer ->
     new EntrySetsApp.Router
       controller: API

@@ -25,6 +25,10 @@
       entrySet = new Entities.EntrySet name: 'Untitled'
       entrySet.save entrySet.attributes 
       entrySet
+
+    newEntrySet:(options)->
+      new Entities.EntrySet options
+
   
   App.reqres.setHandler "entry:sets:entities", (options = {}) ->
     API.getEntrySets options
@@ -36,4 +40,8 @@
 
   App.reqres.setHandler "create:entry:set:entity",(options = {}) ->
     API.createEntrySet(options)
+
+
+  App.reqres.setHandler "new:entry:set:entity",(options = {}) ->
+    API.newEntrySet(options)
   

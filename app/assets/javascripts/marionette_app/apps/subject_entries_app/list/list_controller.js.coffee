@@ -51,7 +51,7 @@
     showEntrySetSelect:(items)->
       selectView = new List.SelectItems(collection: items, layout: @getLayout())
 
-      @listenTo selectView, "childview:select:response",(view)=>
+      @listenTo selectView, "select:response",(view)=>
         @getSections(view.model)
 
       @getEntrySetSelectRegion().show selectView

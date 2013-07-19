@@ -35,9 +35,7 @@
        else
         "skilafrestur: #{moment(@model.get('deadline')).fromNow()}"
          
-    triggers:
-      "click" : "select:response"
-
+   
 
 
   
@@ -51,9 +49,17 @@
     attributes:->
       'disabled' : => 'disabled' if @isEmpty()
 
+    events:
+      'change' : 'triggerSelectResponse'
+
 
     collectionEvents:
       "add" : "triggerAdd"
+
+
+    triggerSelectResponse: (event)=>
+      @trigger "select:response", @children.findByIndex(event.currentTarget.selectedIndex)
+
   
     triggerAdd:->
       @$el.removeAttr('disabled')

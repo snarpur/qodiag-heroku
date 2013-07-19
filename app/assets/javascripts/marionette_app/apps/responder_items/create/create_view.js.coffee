@@ -24,8 +24,6 @@
     template: "responder_items/create/templates/_respondent"
     tagName: 'option'
 
-    triggers:
-      "click" : "respondent:selected"
 
 
   class Create.Respondents extends App.Views.CompositeView
@@ -33,9 +31,16 @@
     template: "responder_items/create/templates/respondents"
     itemViewContainer: 'select'
     className: 'control-group'
-    triggers:
-      "click option:first" : "childview:respondent:selected"
     
+    events:
+      "change select" : "triggerSelect"
+
+
+    triggerSelect:(event)->
+      selectedIndex = event.currentTarget.selectedIndex
+      selected = if selectedIndex is 0 then {} else @children.findByIndex(selectedIndex-1)
+      @trigger "respondent:selected", selected
+
     ui:
       validationError: "span.help-inline"
 
@@ -63,21 +68,27 @@
     template: "responder_items/create/templates/_item"
     tagName: 'option'
     
-    triggers:
-      "click" : "item:selected"
-
 
   class Create.Items extends App.Views.CompositeView
     template: "responder_items/create/templates/items"
     itemView: Create.Item
     itemViewContainer: 'select'
     className: 'control-group'
-    triggers:
-      "click option:first" : "childview:item:selected"
+  
+    events:
+      "change select" : "triggerSelect"
     
     ui:
       validationError: "span.help-inline"
 
+ 
+
+
+    triggerSelect:(event)->
+      selectedIndex = event.currentTarget.selectedIndex
+      selected = if selectedIndex is 0 then {} else @children.findByIndex(selectedIndex-1)
+      @trigger "item:selected", selected
+    
 
     modelEvents:
       "change:_errors":(model,errors)->

@@ -9,7 +9,9 @@ body
 #header
   .logo
     @include replace-text("2013/logo.png", 0, 50%)
-    float: left
+    position: absolute
+    width: 150px
+    left: 15px
 
   .login
     font-size: 0 //whitespace fix
@@ -170,11 +172,24 @@ body
 
 
 #footerwrap
-  background: url("2013/footer-bg.jpg") repeat-x
+  background-image: url("2013/footer-bg.jpg")
+  background-repeat: repeat-x
+  background-position: auto
   text-align: center
   color: #fff
   padding: 20px 0
   height: 44px
+  &:before
+    content: "."
+    display: block
+    margin: 0 auto -32px auto
+    width: $gridRowWidth
+    height: 32px
+    text-indent: -9999px
+    background-image: url("rannis_96.png")
+    background-repeat: no-repeat
+    background-position: $gridRowWidth - 100px 0
+
 
 
 .visibility-hidden
