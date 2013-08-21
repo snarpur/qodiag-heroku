@@ -6,16 +6,23 @@ do (Backbone) ->
       Backbone.history.navigate route, options
   
 
+    routeToCaretakerBackboneApp:(currentUser)-> 
+      if currentUser.get('role_name') is 'caretaker' and @getCurrentRoute() is null
+        true
+      else
+        false
+
+
     getCurrentRoute: ->
       frag = Backbone.history.fragment
       if _.isEmpty(frag) then null else frag
     
 
-    rootUrl:->
+    rootUrl:(user)->
       rootUrls =
         caretaker: "settings"
         respondent: "items"
-      rootUrls[App.currentUser.get('role_name')]
+      rootUrls[user.get('role_name')]
     
     startHistory: ->
       if Backbone.history
