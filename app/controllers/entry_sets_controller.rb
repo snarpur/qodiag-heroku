@@ -2,7 +2,7 @@ class EntrySetsController < ApplicationController
   respond_to :json
 
   def index
-    @entry_sets = EntrySet.all
+    @entry_sets = EntrySet.by_author_or_public(@current_user.person_id)
   end
 
   def show
@@ -14,14 +14,13 @@ class EntrySetsController < ApplicationController
   # POST /entry_sets
   # POST /entry_sets.json
   def create
-    @entry_set = EntrySet.new(params[:entry_set])
+    #Change by Ata: Code refactoring that use the relationship between person and Entry Sets
+    @entry_set = @current_user.person.entry_sets.build(params[:entry_set])
 
     respond_to do |format|
       if @entry_set.save
-        format.html { redirect_to @entry_set, notice: 'Entry set was successfully created.' }
         format.json { render json: @entry_set, status: :created, location: @entry_set }
       else
-        format.html { render action: "new" }
         format.json { render json: @entry_set.errors, status: :unprocessable_entity }
       end
     end

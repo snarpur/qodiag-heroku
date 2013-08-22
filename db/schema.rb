@@ -11,9 +11,8 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+ActiveRecord::Schema.define(:version => 20130821152446) do
 
-ActiveRecord::Schema.define(:version => 20130518111253) do
-  
   create_table "addresses", :force => true do |t|
     t.string   "street_1"
     t.string   "street_2"
@@ -78,33 +77,16 @@ ActiveRecord::Schema.define(:version => 20130518111253) do
     t.datetime "updated_at"
   end
 
-
-  create_table "national_registers", :id => false, :force => true do |t|
-    t.integer "rownumber"
-    t.string  "kennitala"
-    t.string  "fjolskyldunumer"
-    t.string  "bannmerki"
-    t.string  "nafn"
-    t.integer "postnumer"
-    t.string  "heimili"
-    t.integer "sveitarfelag"
-    t.integer "lastchanged"
-    t.string  "kyn"
-    t.string  "hjuskaparstada"
-    t.string  "ktmaka"
-    t.string  "rikisfang"
-    t.string  "faedingarstadur"
-    t.integer "latinn"
-  end
-
   create_table "entry_fields", :force => true do |t|
     t.string   "title"
     t.text     "description"
     t.string   "help_text"
     t.string   "field_type"
     t.integer  "parent_field_id"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.integer  "visibility",      :default => 0, :null => false
+    t.integer  "created_by_id"
   end
 
   create_table "entry_set_responses", :force => true do |t|
@@ -119,8 +101,9 @@ ActiveRecord::Schema.define(:version => 20130518111253) do
     t.integer  "created_by_id"
     t.string   "description"
     t.string   "type"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+    t.integer  "visibility",    :default => 0, :null => false
   end
 
   create_table "entry_sets_sections", :force => true do |t|
@@ -140,7 +123,24 @@ ActiveRecord::Schema.define(:version => 20130518111253) do
     t.datetime "updated_at",            :null => false
     t.integer  "person_id"
     t.integer  "commentable_id"
+  end
 
+  create_table "national_registers", :id => false, :force => true do |t|
+    t.integer "rownumber"
+    t.string  "kennitala"
+    t.string  "fjolskyldunumer"
+    t.string  "bannmerki"
+    t.string  "nafn"
+    t.integer "postnumer"
+    t.string  "heimili"
+    t.integer "sveitarfelag"
+    t.integer "lastchanged"
+    t.string  "kyn"
+    t.string  "hjuskaparstada"
+    t.string  "ktmaka"
+    t.string  "rikisfang"
+    t.string  "faedingarstadur"
+    t.integer "latinn"
   end
 
   create_table "norm_references", :force => true do |t|

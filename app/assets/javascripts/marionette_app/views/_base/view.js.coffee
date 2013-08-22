@@ -47,8 +47,17 @@
           moment(params...)
 
       currentUser: ->
-        App.request("get:current:user").toJSON()
+        App.request("get:current:user").toJSON({acceptsNested: false})
       
+      hasRole:(role)->
+        _.contains(@currentUser().role_names, role)
+
+      dialogTitle: ->
+        #DELETE: Fix this helper method to get the correct Dialog Title
+       "Ný/Breyta spurning/spurningu eda eyðublað/eyðublaði"
+         
+
+
       linkTo: (name, url, options = {}) ->
         _.defaults options,
           external: false

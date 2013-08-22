@@ -7,7 +7,7 @@ do (Backbone) ->
   
 
     routeToCaretakerBackboneApp:(currentUser)-> 
-      if currentUser.get('role_name') is 'caretaker' and @getCurrentRoute() is null
+      if _.contains currentUser.get('role_names'), 'caretaker' and @getCurrentRoute() is null
         true
       else
         false
@@ -22,7 +22,10 @@ do (Backbone) ->
       rootUrls =
         caretaker: "settings"
         respondent: "items"
-      rootUrls[user.get('role_name')]
+
+      roles = user.get('role_names')
+      currentRole = _.filter(roles,(s)-> s == "caretaker" or s == "respondent")
+      rootUrls[_.first(currentRole)]
     
     startHistory: ->
       if Backbone.history

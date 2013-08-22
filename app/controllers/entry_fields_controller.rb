@@ -2,7 +2,8 @@ class EntryFieldsController < ApplicationController
   respond_to :json
 
   def index
-    @entry_fields = EntryField.all
+    #@entry_fields = EntryField.all
+    @entry_fields = EntryField.by_author_or_public(@current_user.person_id)
   end
 
   def show
@@ -10,7 +11,9 @@ class EntryFieldsController < ApplicationController
   end
   
   def create
-    @entry_field = EntryField.new(params[:entry_field])
+    #Change by Ata: Code refactoring that use the relationship between person and Entry Fields
+    @entry_field = @current_user.person.entry_fields.build(params[:entry_field])
+
     if @entry_field.save
       render :show
     end

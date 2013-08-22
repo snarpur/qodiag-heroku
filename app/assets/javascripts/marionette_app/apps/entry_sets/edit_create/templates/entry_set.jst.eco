@@ -14,7 +14,13 @@
       <div class="controls">
         <textarea class="input-xlarge" rows="3" id="description" placeholder="Lýsing..."></textarea>
       </div>
-    </div>
+    <% if @hasRole('caretaker_admin'): %>
+      <label class="control-label" for="visibility">Opinber?</label>
+        <div class="controls">
+          <input type="checkbox" id="visibility">        
+        </div>
+    <% end %>
+    </div>    
   </form>
 </div>
 <div class="modal-footer">

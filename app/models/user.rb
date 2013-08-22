@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   has_many :rights
   has_many :roles, :through => :rights
   belongs_to :person
+
+
   attr_accessor  :invitation
 
 
