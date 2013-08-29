@@ -1,0 +1,4 @@
+<div class="patient-view">
+  <div id="subject-profile-region"></div>
+  <div id="guardian-profile-region"></div>
+</div>

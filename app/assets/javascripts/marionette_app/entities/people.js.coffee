@@ -3,7 +3,7 @@
   class Entities.Person extends Entities.Model
     urlRoot: Routes.people_path()
     paramRoot: 'person' 
-    
+    nestedAttributeList: ['relationships']
             
     initialize:->
       @on "change:respondents", @setRespondents
@@ -15,6 +15,13 @@
 
     ageInYears:->
       moment().diff(moment(@get('dateofbirth')),'years')
+
+    getParents:->
+      parents = new Entities.People([])
+      parents.url = "#{Routes.inverse_relation_path(@id)}?relationship_name=parents"
+      parents.fetch()
+      parents
+
 
 
 

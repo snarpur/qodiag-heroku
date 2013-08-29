@@ -1,0 +1,27 @@
+<div class="span4 well">
+  <div class="row">
+    <div class="span2 text-center">
+        <img class="avatar" src="<%= @image_url %>">
+        <a onclick="$('.avatarUploadModal_3').toggle();return false;" href="#">
+          <button class="btn btn-small add-avatar">Edit photo</button>
+        </a>
+    </div>
+    <div class="span2">
+        <div class="row pull-right">
+          <address>
+            <strong><%= @firstname + " " + @lastname %></strong><br>
+            <abbr title="Kennitala">K:</abbr> <%= @full_cpr %> <br> 
+            <% if @address_id?: %>
+              <br>
+              <abbr title="Heimilisfang">H:</abbr><%= @address.street_1 %><br>
+              <%= @address.town %> <%=@address.zip_code%><br>
+              <%= @address.country %><br>
+              <abbr title="Sími 1">S:</abbr> <%= @address.home_phone %><br>
+              <abbr title="Sími 2">S:</abbr> <%= @address.phone %><br>
+            <% end %>
+          </address>
+          <button class="btn btn-info edit-item">Edit</button>
+        </div>
+    </div>
+  </div>
+</div>

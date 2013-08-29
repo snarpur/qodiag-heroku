@@ -1,0 +1,6 @@
+<div>
+  <h2>Foreldrar</h2>
+  <div  class="editable-items">
+    <div id="foreldrar" class="row"></div>
+  </div>
+</div>

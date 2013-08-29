@@ -4,6 +4,7 @@ class PersonDecorator < Draper::Decorator
   decorates :person
   decorates_association :user
   decorates_association :relations
+  # decorates_association :inverse_relations
   decorates_association :address
 
   

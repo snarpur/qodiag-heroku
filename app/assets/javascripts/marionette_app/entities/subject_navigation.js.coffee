@@ -29,9 +29,9 @@
           iconClass:'icon-history'
         },
         {
-          name: "profile"
+          name: "profiles"
           text: "Persónu upplýsingar"
-          url: "#{Routes.person_path(personId)}/edit"
+          url: "\##{Routes.person_path(personId)}/profiles"
           iconClass:'icon-profile'
         }
       ]

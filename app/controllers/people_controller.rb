@@ -18,6 +18,10 @@ class PeopleController < ApplicationController
     @person = PersonDecorator.decorate(Person.find(params[:id]))
   end
 
+  def create
+    @person = PersonDecorator.decorate(Person.create(params[:person]))    
+  end
+
   def upload
     @person = Person.find(params[:subject_id])
   end

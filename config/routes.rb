@@ -48,6 +48,8 @@ Snarpur::Application.routes.draw do
     resources :people,:controller => "people/caretaker", :path => "subjects", :as => :subjects
   end
   
+  resources :inverse_relations
+
   resources :relationships
 
   resources :responder_items do

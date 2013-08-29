@@ -1,0 +1,19 @@
+<div class="span4 well">
+  <div class="row">
+    <div class="span2 text-center">
+        <img class="avatar" src="<%= @image_url %>"><br/>
+        <button class="btn btn-small add-avatar">Edit photo</button>
+    </div>
+    <div class="span2">
+        <div class="row pull-right">
+          <address>
+            <strong><%= @firstname + " " + @lastname %></strong><br>
+            <abbr title="Kennitala">K:</abbr> <%= @full_cpr %> <br>
+            <abbr title="Fæðingardagur">F:</abbr> <%= @dateofbirth %>
+          </address>
+          <button class="btn btn-info edit-item">Edit</button>
+        </div>
+    </div>
+  </div>
+</div>
+<hr class="fullbreak">
