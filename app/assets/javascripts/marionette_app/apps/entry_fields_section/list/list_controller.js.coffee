@@ -6,11 +6,16 @@
     list: (options) ->
       @getSectionEntryFields(options)
       
+
+
+    XgetSectionEntryFields:(options)->  
+      {model,region} = options
+      sectionEntryFields = model
       
-      
+
+
     getSectionEntryFields:(options)->
       {model,region} = options
-
       entries = model.getSectionEntryFields()
 
       App.execute "when:fetched",entries, =>
@@ -30,7 +35,9 @@
           toastr.success("Skref #{model.get('name')} hefur verið vistað")
 
     
+
     getEntriesView:(entries,section)->
+      
       entriesView = new List.Fields
         collection: entries
         model: section

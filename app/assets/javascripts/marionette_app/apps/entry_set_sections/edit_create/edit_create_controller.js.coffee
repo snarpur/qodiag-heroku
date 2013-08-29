@@ -13,20 +13,21 @@
       @showDialog(options)
 
     
-    showDialog:(options)->
-      @dialogView = new EditCreate.Section model: options.model
+    showDialog:(options)->      
+      @dialogView = new EditCreate.Section model: options.section
       App.dialogRegion.show @dialogView
-      @dialogView.on "save:section", => @saveSection(options)
+      @dialogView.on "save:section", => @saveSection(options) #console.log options.section.attributes 
 
    
     saveSection:(options)->
-      {model,collection,activeView,action} = options
+      {section,collection,activeView,action} = options
       _this = @
-      model.save model.attributes,
-        success: ->
+      section.save section.attributes,
+        success: (model,response)->
           if action is 'create'
-            collection.add(model)
-            collection.trigger("change:current:section", {model: model})
+            collection.add(response)
+            console.log  "collection.last", collection.last()
+            collection.trigger("change:current:section", {model: collection.last()})
             App.navigate(_this.successPath(model))
           else if action is 'edit'
             model.trigger('edit:complete')

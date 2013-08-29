@@ -9,3 +9,4 @@
   <a href="#" class="destroy"><span class="icon-trash"></span></a>
   <% end %>
 </td>
+

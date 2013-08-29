@@ -54,7 +54,6 @@
 
 
     saveEntryFields: ->
-      @.url = @get('sections_entry_fields').url()
       @save @pick('id','sections_entry_fields')
     
 
@@ -107,7 +106,7 @@
     
     newSection:(args)->
       attributes= 
-        entry_sets_sections: [{entry_set_id: @entrySetId, display_order: @length + 2 }]
+        entry_sets_sections: [{entry_set_id: @entrySetId, display_order: @length + 1 }]
       new @model(_.extend attributes, args)
 
 

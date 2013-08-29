@@ -33,6 +33,8 @@ Snarpur::Application.configure do
   #Paperclip
   Paperclip.options[:command_path] = "/usr/bin/"
 
+  config.serve_static_assets = false
+
   config.colorize_logging = true
   config.active_support.deprecation = :log
 
