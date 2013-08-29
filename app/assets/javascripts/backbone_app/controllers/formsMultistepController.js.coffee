@@ -4,7 +4,7 @@ class App.Controllers.Forms.Multistep extends Backbone.Router
   routes:
     "" : "index",
     "step/s:step_no" : "step" 
-    "step/s:step_no/i:itemId" : "step"
+    "step/s:step_no/i:itemId" : "step" # e.g. /invitation_items/new#step/s2/i66P
 
   initialize:(options)->
     @formRenderer = new App.Models.FormRenderer(options)

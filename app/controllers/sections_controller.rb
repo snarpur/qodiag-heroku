@@ -17,7 +17,4 @@ class SectionsController < ApplicationController
     @section.update_attributes(params[:section])
     render "show"
   end
-
-
 end
-

@@ -5,7 +5,7 @@
     
         
     list:(options) ->
-      @getEntrySet(options.entrySetId)
+      @getEntrySet(options)
  
     
     
@@ -18,8 +18,8 @@
 
     
     
-    getEntrySet:(id)->
-      entrySet = App.request "entry:set:entity", {id: id}
+    getEntrySet:(options)->
+      entrySet = App.request "entry:set:entity", {id: options.entrySetId}
       
       App.execute "when:fetched", entrySet, =>
         App.contentRegion.show @getLayout(entrySet)
@@ -27,7 +27,7 @@
         @showSidebarOnce()
         @showEntrySetTitle(entrySet)
         @executeSettingsNavigation(entrySet)
-        @getSections(entrySetId: id)
+        @getSections(_.extend(options,{entrySet: entrySet}))
 
 
 
@@ -36,7 +36,7 @@
       
       App.execute "when:fetched", sections, =>
         section = sections.getCurrentSection()
-        @showSectionsNavigation(sections)
+        @showSectionsNavigation(sections, options.entrySet)
         
 
         unless sections.length is 0
@@ -59,7 +59,7 @@
         
 
 
-    showSectionsNavigation: (sections) ->
+    showSectionsNavigation: (sections,entrySet) ->
       view = @getNavigationView(sections)
       @getNavigationRegion().show view
       
@@ -69,12 +69,15 @@
 
       @listenTo view, "add:new:section:clicked", (view)=>
         App.execute "create:section", 
-          model: view.collection.newSection()
+          entrySet: entrySet
+          #ISSUE: #17
+          section:  view.collection.newSection()
           collection: view.collection
           activeView: @getLayout()
 
-      if sections.length is 0
-        view.trigger "add:new:section:clicked", view
+      # NOTE: Temporarily disabled
+      # if sections.length is 0
+        # view.trigger "add:new:section:clicked", view
 
 
     
@@ -85,7 +88,7 @@
       @listenTo view, "edit:title",(options) =>
         
         App.execute "edit:section", 
-          model: options.model
+          section: options.model
           activeView: @getLayout()
 
 

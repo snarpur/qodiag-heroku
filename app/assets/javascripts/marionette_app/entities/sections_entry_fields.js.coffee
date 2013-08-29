@@ -1,20 +1,27 @@
 @Qapp.module "Entities", (Entities, App, Backbone, Marionette, $, _) ->
   
   class Entities.SectionsEntryFields extends Entities.Model
+    #ISSUE: #17 Accossiation and naming structure/convention on front-end side should be re considered on many to many relationships     
     blacklist: ['index']
     initialize:->
       @url= ->
         Routes.section_sections_entry_fields_path(@id)
      
 
+    
     updateDisplayOrder:(displayOrder)=>
       displayOrder += 1
       squeeze = if (displayOrder - @get('display_order')) > 0 then 0.5 else -0.5
       @.set("display_order",displayOrder+squeeze)
 
+    
+
     destroy:->
       @url = "section_entry_fields/#{@id}"
       super
+
+  
+
 
   class Entities.SectionsEntryFieldsCollection extends Entities.Collection
     model: Entities.SectionsEntryFields
