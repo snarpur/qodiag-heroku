@@ -26,7 +26,6 @@
         success: (model,response)->
           if action is 'create'
             collection.add(response)
-            console.log  "collection.last", collection.last()
             collection.trigger("change:current:section", {model: collection.last()})
             App.navigate(_this.successPath(model))
           else if action is 'edit'

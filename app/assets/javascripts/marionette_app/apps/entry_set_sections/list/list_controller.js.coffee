@@ -5,7 +5,7 @@
     
         
     list:(options) ->
-      @getEntrySet(options.entrySetId)
+      @getEntrySet(options)
  
     
     
@@ -18,8 +18,8 @@
 
     
     
-    getEntrySet:(id)->
-      entrySet = App.request "entry:set:entity", {id: id}
+    getEntrySet:(options)->
+      entrySet = App.request "entry:set:entity", {id: options.entrySetId}
       
       App.execute "when:fetched", entrySet, =>
         App.contentRegion.show @getLayout(entrySet)
@@ -27,7 +27,7 @@
         @showSidebarOnce()
         @showEntrySetTitle(entrySet)
         @executeSettingsNavigation(entrySet)
-        @getSections(entrySetId: id,entrySet: entrySet)
+        @getSections(_.extend(options,{entrySet: entrySet}))
 
 
 
