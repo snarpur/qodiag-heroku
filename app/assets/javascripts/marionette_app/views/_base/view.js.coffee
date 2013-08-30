@@ -55,7 +55,9 @@
       dialogTitle: ->
         #DELETE: Fix this helper method to get the correct Dialog Title
        "Ný/Breyta spurning/spurningu eda eyðublað/eyðublaði"
-         
+       
+      getCSRFToken: ->
+        token = $("meta[name=\"csrf-token\"]").attr("content")   
 
 
       linkTo: (name, url, options = {}) ->
