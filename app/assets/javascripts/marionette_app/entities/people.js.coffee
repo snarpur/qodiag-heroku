@@ -18,6 +18,7 @@
       
 
     setRespondents:(model,value,options)->
+      console.warn " Setting respondents ", value
       unless value instanceof Backbone.Collection
         @set('respondents',new Entities.People(value),{silent:true})
 
