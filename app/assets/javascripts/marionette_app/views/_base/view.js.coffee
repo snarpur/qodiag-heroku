@@ -62,7 +62,10 @@
       
       hasRole:(role)->
         _.contains(@currentUser().role_names, role)
-         
+
+       
+      getCSRFToken: ->
+        token = $("meta[name=\"csrf-token\"]").attr("content")   
 
 
       linkTo: (name, url, options = {}) ->

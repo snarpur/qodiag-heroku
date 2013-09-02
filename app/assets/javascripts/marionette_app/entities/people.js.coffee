@@ -4,6 +4,14 @@
     urlRoot: Routes.people_path()
     paramRoot: 'person' 
     nestedAttributeList: ['relationships']
+
+    defaults: {
+      "image_url_tiny":  "/assets/avatars/tiny/missing.png",
+      "image_url_thumb":  "/assets/avatars/thumb/missing.png",
+      "image_url_small":  "/assets/avatars/small/missing.png",
+      "image_url_medium":  "/assets/avatars/medium/missing.png",
+      "image_url_large":  "/assets/avatars/large/missing.png"
+    }
             
     initialize:->
       @on "change:respondents", @setRespondents

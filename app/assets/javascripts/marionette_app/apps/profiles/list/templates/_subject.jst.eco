@@ -1,8 +1,10 @@
 <div class="span4 well">
   <div class="row">
     <div class="span2 text-center">
-        <img class="avatar" src="<%= @image_url %>"><br/>
-        <button class="btn btn-small add-avatar">Edit photo</button>
+        <img class="avatar" src="<%= @image_url_medium %>"><br/>
+         <a onclick="$('.avatarUploadModal_<%= @id %>').toggle();return false;" href="#">
+           <button class="btn btn-small add-avatar">Edit photo</button>
+         </a>
     </div>
     <div class="span2">
         <div class="row pull-right">
@@ -17,3 +19,19 @@
   </div>
 </div>
 <hr class="fullbreak">
+<div class="upload modal hide avatarUploadModal_<%= @id %>" style="display: none;">
+    <div class="modal-header"><h3>Hlaða upp mynd</h3></div>
+    <div class="modal-body">
+        <form action="people/<%= @id %>/image_upload/" id="avatarUploadForm_<%= @id %>" method="post" enctype="multipart/form-data" class="edit_person" accept-charset="UTF-8">
+            <input type="hidden" value="✓" name="utf8">
+            <input type="hidden" value="put" name="_method">
+            <input type="hidden" value="<%= @getCSRFToken() %>" class="authenticity_token" name="authenticity_token">
+            <input type="hidden" value="<%= window.location.href %>" name="redirect_path">
+            <input type="file" name="person[avatar]" id="person_avatar">
+        </form>
+    </div>
+    <div class="modal-footer">
+        <a onclick="$('.avatarUploadModal_<%= @id %>').toggle();return false;" class="btn" href="#">Hætta við</a>
+        <a onclick="document.forms.avatarUploadForm_<%= @id %>.submit();return false;" class="btn btn-primary" href="#">Senda</a>
+    </div>
+</div>

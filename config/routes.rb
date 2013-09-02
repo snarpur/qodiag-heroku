@@ -96,7 +96,7 @@ Snarpur::Application.routes.draw do
 
   match 'people/:subject_id/history' => 'people#history'
   match 'people/:subject_id/information' => 'people#information'
-  match 'people/:subject_id/upload' => 'people#upload'
+  match 'people/:id/image_upload' => 'people#image_upload', :via => :put , :as => :image_upload
 
   
   # match 'pre_registrations/edit/step/:step_no/:id' => 'pre_registrations#edit',:defaults => { :step_no => 1}, :via => [:get], :as => :pre_registration_step

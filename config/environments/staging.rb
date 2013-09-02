@@ -27,7 +27,7 @@ Snarpur::Application.configure do
 
   #Paperclip
   Paperclip.options[:command_path] = "/usr/bin/"
-
+  
   # Code is not reloaded between requests
   config.cache_classes = true
 

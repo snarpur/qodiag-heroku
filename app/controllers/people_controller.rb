@@ -15,6 +15,7 @@ class PeopleController < ApplicationController
   end
 
   def edit
+  
     @person = PersonDecorator.decorate(Person.find(params[:id]))
   end
 
@@ -22,8 +23,10 @@ class PeopleController < ApplicationController
     @person = PersonDecorator.decorate(Person.create(params[:person]))    
   end
 
-  def upload
-    @person = Person.find(params[:subject_id])
+  def image_upload
+    @person = Person.find(params[:id])
+    @person.update_attributes(params[:person])
+    redirect_to params[:redirect_path]
   end
 
   
