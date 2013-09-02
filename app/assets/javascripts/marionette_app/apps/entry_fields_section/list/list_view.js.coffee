@@ -45,15 +45,13 @@
           ui.item.trigger("update:display:order",displayOrder)
           _this.trigger("section:entries:updated", {displayOrder: displayOrder, field: _this.newField})
         
-        change: (e,ui) ->
+        over: (e,ui) ->
           _this.placeHolderElement = ui.item
-        
+         
         deactivate: (e,ui) ->
           _this.newField = null
 
-        placeholder: "dropzone"
-
-            
+        placeholder: "dropzone"        
 
       listEl.sortable(options)
       
