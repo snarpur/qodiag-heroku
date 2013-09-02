@@ -1,5 +1,8 @@
 @Qapp.module "Views", (Views, App, Backbone, Marionette, $, _) ->
  
+
+
+
   _remove = Marionette.View::remove
   _.extend Marionette.View::,
   
@@ -29,6 +32,14 @@
       else
         _remove.apply @, args
 
+    extendTemplateHelpers:(instanceHelpers)->
+      instanceKeys = _.keys(instanceHelpers())
+      baseKeys = _.keys(Marionette.View::templateHelpers())
+      helpers = _.difference(baseKeys,instanceKeys)
+      unless _.isEmpty(helpers)
+        @templateHelpers = ()-> 
+          _.extend(instanceHelpers(),_.pick(Marionette.View::templateHelpers(),helpers...))
+
     templateHelpers: ->
         
       routeTo:
@@ -51,10 +62,6 @@
       
       hasRole:(role)->
         _.contains(@currentUser().role_names, role)
-
-      dialogTitle: ->
-        #DELETE: Fix this helper method to get the correct Dialog Title
-       "Ný/Breyta spurning/spurningu eda eyðublað/eyðublaði"
          
 
 
@@ -67,6 +74,8 @@
         
         className = options.className ? ''
         "<a href='#{url}' class='#{className}'>#{@escape(name)}</a>"
+
+
 
 
 

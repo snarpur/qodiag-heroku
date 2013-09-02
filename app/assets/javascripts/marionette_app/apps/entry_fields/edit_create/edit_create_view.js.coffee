@@ -6,16 +6,16 @@
     template: "entry_fields/edit_create/templates/field"
     className: 'modal'
 
-    # templateHelpers: ->
-    #   dialogTitle: =>
-    #     action = if @model.isNew() then 'ný' else 'breyta'
-    #     entity = if @model.isNew() then 'spurning' else 'spurningu'
-    #     _("#{action} #{entity}").capitalize()
-    
+    templateHelpers: =>
+        dialogTitle: =>
+          action = if @model.isNew() then 'ný' else 'breyta'
+          entity = if @model.isNew() then 'spurning' else 'spurningu'
+          _("#{action} #{entity}").capitalize()
+      
     triggers:
       "click button.save" : "save:clicked"
       "click button.cancel" : "dialog:close"
-    
+
     bindings:
       '#title' : 'title',
       '#description' : 'description',

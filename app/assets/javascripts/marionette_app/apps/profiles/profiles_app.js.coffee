@@ -5,7 +5,6 @@
        "people/:id/profiles" : "listProfile"
   
   
-
   API =
     listProfile: (subjectId)->
       list = new ProfilesApp.List.Controller

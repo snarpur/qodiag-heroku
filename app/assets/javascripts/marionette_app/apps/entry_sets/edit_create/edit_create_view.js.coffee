@@ -6,11 +6,11 @@
     template: "entry_sets/edit_create/templates/entry_set"
     className: 'modal'
 
-    # templateHelpers: ->
-    #   dialogTitle: =>
-    #     action = if @model.isNew() then 'nýtt' else 'breyta'
-    #     entity = if @model.isNew() then 'eyðublað' else 'eyðublaði'
-    #     _("#{action} #{entity}").capitalize()
+    templateHelpers: =>
+      dialogTitle: =>
+        action = if @model.isNew() then 'nýtt' else 'breyta'
+        entity = if @model.isNew() then 'eyðublað' else 'eyðublaði'
+        _("#{action} #{entity}").capitalize()
     
     triggers:
       "click button.save" : "save:clicked"

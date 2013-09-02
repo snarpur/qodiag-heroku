@@ -16,8 +16,8 @@
       '#section_description' : 'description'
 
 
-    templateHelpers: ->
-        dialogTitle:()=>
+    templateHelpers: =>
+        dialogTitle: =>
           type = if @model instanceof App.Entities.EntrySet then "eyðublað" else "skref"
           action = if @model.isNew() then "nýtt" else "breyta"
           suffix = if @model.isNew() then "" else "i"
