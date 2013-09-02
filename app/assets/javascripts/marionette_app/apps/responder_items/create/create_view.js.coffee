@@ -23,8 +23,7 @@
   class Create.Respondent extends App.Views.ItemView
     template: "responder_items/create/templates/_respondent"
     tagName: 'option'
-
-
+  
 
   class Create.Respondents extends App.Views.CompositeView
     itemView: Create.Respondent

@@ -8,12 +8,15 @@ class Person < ActiveRecord::Base
   #validate :presence_of_parent_occupation
   #after_save :set_parents_address
   
+  
 
   belongs_to :address
   has_one :user
   has_many :respondent_responder_items, :class_name => "ResponderItem", :foreign_key => "respondent_id"
   has_many :patient_responder_items, :class_name => "ResponderItem", :foreign_key => "subject_id"
   has_many :caretaker_responder_items, :class_name => "ResponderItem", :foreign_key => "caretaker_id"
+
+  scope :with_valid_user, where("EXISTS(SELECT 1 from users where users.id = relationships.relation_id)")
   
   # Added in order to reflect the relationship between  entry_sets and users
   has_many :entry_sets, :foreign_key => "created_by_id"
@@ -85,6 +88,10 @@ class Person < ActiveRecord::Base
     def guardians
       where("name = 'guardian'")
     end
+
+    def respondents
+      where("name = 'respondent'")
+    end
   end
   
 
@@ -126,7 +133,7 @@ class Person < ActiveRecord::Base
            :to => :user, :prefix => true
 
 
-  RELATIONSHIP_NAMES = %w{parent guardian patient spouse}
+  RELATIONSHIP_NAMES = %w{parent respondent guardian patient spouse}
 
 
   def self.relationship_names
@@ -426,9 +433,10 @@ class Person < ActiveRecord::Base
     foster_siblings
   end
 
-  def respondents
-    self.guardians
-  end
+   def respondents
+      self.inverse_relations.respondents.with_valid_user
+   end
+  
 
   def guardian_respondent
     User.joins(:person => :relationships).
