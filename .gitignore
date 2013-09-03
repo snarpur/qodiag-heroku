@@ -1,6 +1,7 @@
 .bundle
 db/*.sqlite3
 /log/*
+tmp
 /tmp/*
 /tmp/i18n-js.cache
 app/assets/stylesheets/**/*.sass-cache
@@ -10,6 +11,8 @@ app/assets/stylesheets/**/*.sass-cache
 .rspec
 *.log
 public/assets
+public/source_maps/
+.sass-cache
 yes
 yes.pub
 
