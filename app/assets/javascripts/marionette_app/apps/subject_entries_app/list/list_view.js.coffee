@@ -26,7 +26,7 @@
   class List.SelectItem extends App.Views.ItemView
     template: "subject_entries_app/list/_select_item"
     tagName: "option"
-    templateHelpers: ->
+    templateHelpers: =>
       responseDetails:=>
        if @model.get('completed')
         "svarað: #{moment(@model.get('completed')).format('Do MMMM YYYY')}"

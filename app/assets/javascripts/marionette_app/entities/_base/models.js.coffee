@@ -5,10 +5,11 @@ do (Backbone) ->
 	 
 
   
-  class Entities.Model extends Backbone.Model
+  class Entities.Model extends Backbone.AssociatedModel
     attributeList: []
     nestedAttributeList: []
     blacklist:[]
+    
 
     initialize:->
       super
@@ -75,6 +76,10 @@ do (Backbone) ->
     
     
 
+    _isBackboneAssociation:(key)->
+      _.contains(_.pluck(@relations,'key'), key)
+
+    
     _isHelper:(key,value)->
       (_.isObject(value) and !@_inNestedAttributeList(key) and !_.endsWith(key,"_attributes")) or _.isFunction(value) 
     
@@ -101,7 +106,7 @@ do (Backbone) ->
       else
         json = $.extend(true,{},@.attributes)
         _.each(json,((v,k)->
-          if @_inNestedAttributeList(k) and !(_.isNull(v) or v?.length is 0)
+          if (@_inNestedAttributeList(k) or@_isBackboneAssociation(k)) and !(_.isNull(v) or v?.length is 0)
             if @_isBackbone(v) and 
               json["#{k}_attributes"] = v.toJSON()
             else
