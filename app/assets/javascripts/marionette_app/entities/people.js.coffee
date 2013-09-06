@@ -2,7 +2,14 @@
   
   class Entities.Person extends Entities.Model
     urlRoot: Routes.people_path()
-    paramRoot: 'person' 
+    paramRoot: 'person'
+    relations: [
+      {
+        type: Backbone.One
+        key: 'address'
+        relatedModel: App.Entities.Address
+      }
+    ]
     nestedAttributeList: ['relationships']
 
     defaults: {
@@ -14,9 +21,10 @@
     }
             
     initialize:->
+      @blacklist = _.keys(@defaults)
       @on "change:respondents", @setRespondents
       
-
+    #FIX: Add 'respondents to the relations array'
     setRespondents:(model,value,options)->
       unless value instanceof Backbone.Collection
         @set('respondents',new Entities.People(value),{silent:true})

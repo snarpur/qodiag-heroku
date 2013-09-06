@@ -3,6 +3,10 @@
   class EditCreate.Guardian extends App.Views.ItemView
       template: "profiles/edit_create/templates/guardian"
       className: 'modal'
+
+      templateHelpers: =>
+        dialogTitle: =>
+          if @model.isNew() then "Skrá upplýsingar" else "Breyta upplýsingum"
       
       triggers:
         "click button.save" : "save:clicked"
@@ -19,11 +23,13 @@
         '#phone' : 'phone',
         '#home_phone' : 'home_phone',
         '#work_address' : 'work_address',
-        '#work_phone' : 'work_phone'
+        '#work_phone' : 'work_phone',
+        "#street_1": "address.street_1"
 
       dialog:
         title: ""
         buttons: []
+
 
       onShow:->
         @.stickit()

@@ -8,5 +8,5 @@ node do |p|
    :image_url_large => p.avatar.url(:large)}
 end
 child :address do
-  attributes :street_1, :street_2, :zip_code, :town, :country, :home_phone, :phone
+  attributes :id, :street_1, :street_2, :zip_code, :town, :country, :home_phone, :phone
 end
