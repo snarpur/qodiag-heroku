@@ -26,7 +26,7 @@
   class List.SelectItem extends App.Views.ItemView
     template: "subject_entries_app/list/_select_item"
     tagName: "option"
-    templateHelpers: ->
+    templateHelpers: =>
       responseDetails:=>
        if @model.get('completed')
         "svarað: #{moment(@model.get('completed')).format('Do MMMM YYYY')}"
@@ -82,7 +82,7 @@
       "active"  if @model.collection.isCurrentSection(@model)
 
     triggers:
-      "click a" : "set:current:section"
+      "click " : "set:current:section"
   
 
 
@@ -95,9 +95,6 @@
       @on "childview:set:current:section", (view)->
         @collection.currentSectionId = view.model.id
         @collection.trigger("reset")
-
-
-
   
 
   class List.Entry extends App.Views.ItemView

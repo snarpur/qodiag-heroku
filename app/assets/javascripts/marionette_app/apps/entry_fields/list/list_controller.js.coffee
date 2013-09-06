@@ -20,16 +20,11 @@
 
     showEntryFields: (options) ->
       fields = App.request "entry:fields:entities"
+      # NOTE: try to delete the when:fetch - to avoid the tiem it takes to show he spinner
       App.execute "when:fetched", fields, =>
         searchCollection = fields.createSearchCollection()     
-        
-        @listenTo searchCollection, "add", (model, collection)=>
-          toastr.success("Spurningu bætt við", model.get('title'))
-
-
-        @showEntryFieldsView searchCollection
-        @showSearchField(fields)
-
+    
+        @showEntryFieldsView searchCollection, fields
 
 
     getEntryFieldsView: (collection) ->
@@ -38,9 +33,21 @@
 
 
 
-    showEntryFieldsView: (collection) ->
+    showEntryFieldsView: (collection, fields) ->
       view = @getEntryFieldsView(collection)
-      @layout.listRegion.show view  
+
+      @getLayout().listRegion.on "show", () =>
+        @showSearchField(fields)
+
+        @listenTo collection, "add", (model, collection)=>
+          toastr.success("Spurningu bætt við", model.get('title'))
+       
+      
+      #DELETE: When we are totally sure that the loading views works
+      #@layout.listRegion.show view  
+      @show view,
+         region: @getLayout().listRegion
+         loading:true 
 
       @listenTo view, "create:field:clicked", (view)=>
         App.execute "create:entry:field", collection: view.collection
@@ -57,8 +64,12 @@
 
 
     showSearchField:(collection) ->
-      @layout.searchRegion.show @getSearchFieldView(collection)
+      #DELETE: When we are totally sure that the loading views works
+      #@layout.searchRegion.show @getSearchFieldView(collection)
 
+      @show @getSearchFieldView(collection),
+         region: @layout.searchRegion
+         loading:false 
     
     
     getSearchFieldView:(collection) ->

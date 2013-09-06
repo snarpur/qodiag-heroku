@@ -1,4 +1,2 @@
-:javascript
-  $(function(){
-    Qapp.start({currentUser: gon.current_user});
-  });
+=javascript_tag do
+  $(function(){Qapp.start({currentUser: gon.current_user,environment: gon.environment});});

@@ -4,6 +4,7 @@ do (Marionette) ->
     lookups: ["marionette_app/apps/", "marionette_app/components/"]
     
     render: (template, data) ->
+      return if template is false
       path = @getTemplate(template)
       throw "Template #{template} not found!" unless path
       path(data)

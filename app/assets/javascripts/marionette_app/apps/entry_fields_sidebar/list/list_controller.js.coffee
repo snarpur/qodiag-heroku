@@ -49,7 +49,8 @@
           collection.remove(options.model)
       
 
-      @layout.listRegion.show view      
+      @layout.listRegion.show view     
+
 
 
 

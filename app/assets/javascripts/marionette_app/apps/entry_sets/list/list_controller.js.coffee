@@ -3,20 +3,26 @@
   class List.Controller extends App.Controllers.Base
 
       
-    listEntrySets: (options) ->      
+    listEntrySets: (options) ->    
       App.contentRegion.show @getLayout()
       @entrySets = App.request "entry:sets:entities"
       
-      App.execute "when:fetched", @entrySets, =>
+      #App.execute "when:fetched", @entrySets, =>
          
-        entrySetsView = @getEntrySetsView()
-        @showEntrySets(entrySetsView)
-        @executeSettingsNavigation()
+      entrySetsView = @getEntrySetsView()
+      @showEntrySets(entrySetsView)
+      @executeSettingsNavigation()
         
     
     
     showEntrySets: (entrySetsView) ->
-      @getLayout().listRegion.show entrySetsView
+      
+      #DELETE: When we are totally sure that the loading views works
+      #@getLayout().listRegion.show entrySetsView
+
+      @show entrySetsView,
+         region: @getLayout().listRegion
+         loading:true 
       
       @listenTo entrySetsView, "new:entry:set", =>
         App.execute "create:entry:set", {activeView: entrySetsView}

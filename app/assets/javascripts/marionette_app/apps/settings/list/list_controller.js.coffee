@@ -16,7 +16,11 @@
     
     showNavigation: (settings) ->
       navigationView = @getNavigationView(settings)
-      @region.show(navigationView)
+      #@region.show(navigationView)
+
+      @show navigationView,
+         region: @region
+         loading:false 
     
     
 
@@ -25,7 +29,7 @@
       @region.show(view)
 
       @listenTo view, 'back', =>
-        App.navigate("/settings/#{model.get('name')}",{trigger: true})
+        #App.navigate("/settings/#{model.get('name')}",{trigger: true})
   
     
     showHeader:(model)->

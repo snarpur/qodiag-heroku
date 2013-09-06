@@ -38,6 +38,9 @@ gem 'js-routes'
 gem 'acts_as_commentable', '3.0.1'
 gem 'yaml_db'
 
+# Gem to show the spinner when change the view
+gem 'spinjs-rails'
+
 
 group :assets do
   gem 'sass-rails', "  ~> 3.2.3"

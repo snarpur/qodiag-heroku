@@ -10,7 +10,8 @@
 
     list:(options) ->
       {@personId, entrySetResponseId, sectionId} = options
-      @showLayout()
+
+      @showLayout @items     
 
       @items = App.request "get:person:entry:set:responder:items", options
       App.execute "when:fetched", @items, =>
@@ -20,12 +21,9 @@
           @getSections(currentItem,sectionId)
         else
 
-
-        
         @listenTo @getLayout(), "add:item:clicked", => @createItemSetup(collection: @items)
         
-
-    
+          
 
     getSections:(currentItem,sectionId)->
       options=
@@ -43,46 +41,61 @@
      
     getEntries:(section)->
       entries = section.getSectionEntryResponses()
-      App.execute "when:fetched", entries, =>
-        @showEntryFields(entries)
-      
+      @showEntryFields(entries)
+        
     
-    
+
     showEntrySetSelect:(items)->
       selectView = new List.SelectItems(collection: items, layout: @getLayout())
+
+      #DELETE: When we are totally sure that the loading views works
+      #@getEntrySetSelectRegion().show selectView
+
+      @show selectView,
+         region: @getEntrySetSelectRegion()
+         loading:false 
 
       @listenTo selectView, "select:response",(view)=>
         @getSections(view.model)
 
-      @getEntrySetSelectRegion().show selectView
-
+    
 
     showSections:(sections,currentSectionId)->
       sectionsView = new List.Sections
         collection: sections
-            
-      @getSectionRegion().show sectionsView
 
       @listenTo sectionsView, "childview:set:current:section", (view)=>
         @getEntries(view.model)
         App.navigate(@entriesUrl(view.model),{replace: false})
-
-    
+            
+      @show sectionsView,
+        region: @getSectionRegion()
+        loading:false     
+      
+     #DELETE: When we are totally sure that the loading views works
+     #@getSectionRegion().show sectionsView 
 
     showEntryFields:(entries)->
       entriesView = new List.Entries(collection: entries)
+
       
       @getEntrySetValuesRegion().on "show", () =>
         entriesView.children.each (view) =>
-
           region = @layout.addRegion view.entryValueRegionName(),"\##{view.entryValueRegionName()}" 
           App.execute "show:entry:values", 
             region: region 
             entryField: view.model
             entries: entries
+
+      #DELETE: When we are totally sure that the loading views works
+      #@getEntrySetValuesRegion().show entriesView 
       
-      @getEntrySetValuesRegion().show entriesView
-      
+      @show entriesView, 
+        loading:
+          # I use the spinner effect here because the opacity-spinner here doesn't look like good 
+          loadingType: "spinner"
+        region: @getEntrySetValuesRegion()
+        
 
     createItemSetup:(options = {})->
       view = App.request "create:responder:item:view", options
@@ -104,9 +117,8 @@
 
     
     
-    showLayout: ->
+    showLayout: (items) ->
       App.request("default:region").show @getLayout()
-
     
     
     getLayout:->

@@ -10,8 +10,8 @@
     
     
     showSidebarOnce:->
-      @getContentRegion().once "show", (region)=> 
-
+      
+      @getEntryFieldsRegion().on "show", (region)=> 
         @executeSidebar 
           droppableCollection: region.model.collection
           droppableElement: region.$itemViewContainer
@@ -20,11 +20,13 @@
     
     getEntrySet:(options)->
       entrySet = App.request "entry:set:entity", {id: options.entrySetId}
-      
-      App.execute "when:fetched", entrySet, =>
+
+      App.execute "when:fetched", entrySet, =>           
         App.contentRegion.show @getLayout(entrySet)
+        window.sectionregion = @getSectionContentRegion()
         
         @showSidebarOnce()
+
         @showEntrySetTitle(entrySet)
         @executeSettingsNavigation(entrySet)
         @getSections(_.extend(options,{entrySet: entrySet}))
@@ -37,22 +39,19 @@
       App.execute "when:fetched", sections, =>
         section = sections.getCurrentSection()
         @showSectionsNavigation(sections, options.entrySet)
-        
-
         unless sections.length is 0
           @executeFields(model: sections.getCurrentSection())
         else
-        
+          
     
 
     executeFields:(options)->
       App.execute "show:settings:section:fields", 
-        _.extend options, region: @getContentRegion()
+        _.extend options, region: @getSectionContentRegion(), loaderRegion: @getEntryFieldsRegion()
 
       @showTitle(options.model)
-        
 
-
+      
     executeSidebar:(options) ->
       App.execute "show:settings:sidebar:fields",
         _.extend options, region: @getSidebarRegion()
@@ -61,7 +60,13 @@
 
     showSectionsNavigation: (sections,entrySet) ->
       view = @getNavigationView(sections)
-      @getNavigationRegion().show view
+
+      @show view,
+        region: @getNavigationRegion()
+        loading: false
+
+      #DELETE: When we are totally sure that the loading views works
+      #@getNavigationRegion().show view
       
       @listenTo sections ,"change:current:section", (options)=>
         @executeFields options
@@ -77,13 +82,19 @@
 
       # NOTE: Temporarily disabled
       # if sections.length is 0
-        # view.trigger "add:new:section:clicked", view
+      #   view.trigger "add:new:section:clicked", view
 
 
     
     showTitle:(section) ->
       view = new List.Title model: section
-      @getLayout().sectionTitleRegion.show view
+      @show view,
+        region: @getLayout().sectionTitleRegion
+        loading: 
+          loadingType: "opacity"
+
+      #DELETE: When we are totally sure that the loading views works
+      #@getLayout().sectionTitleRegion.show view
 
       @listenTo view, "edit:title",(options) =>
         
@@ -95,11 +106,19 @@
 
     showEntrySetTitle:(entrySet)->
       view = new List.Title model: entrySet
-      @getLayout().entrySetTitleRegion.show view
+
+      @show view,
+        region: @getLayout().entrySetTitleRegion
+        loading: false
+
+      #DELETE: When we are totally sure that the loading views works
+      #@getLayout().entrySetTitleRegion.show view
       
       @listenTo view, "edit:title",(options) =>  
         App.execute "edit:section", 
-          model: entrySet
+          #ISSUE: #17 section argument should be refactored according to issue 
+          # model: entrySet see comment above
+          section: entrySet
           activeView: @getLayout()
    
 
@@ -123,7 +142,7 @@
     
     
     
-    getContentRegion: ->
+    getSectionContentRegion: ->
       @getLayout().sectionContentRegion
 
 
@@ -131,7 +150,8 @@
     getSidebarRegion: ->
       @getLayout().entryFieldsSidebarRegion    
     
-    
+    getEntryFieldsRegion: ->
+      @getLayout().entryFieldsRegion
 
     getLayout: (entrySet)->
       @layout ?= new List.Layout(model: entrySet)
