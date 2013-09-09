@@ -13,11 +13,12 @@
             <abbr title="Kennitala">K:</abbr> <%= @full_cpr %> <br> 
             <% if @address.get("id")?: %>
               <br>
-              <abbr title="Heimilisfang">H:</abbr><%= @address.get('street_1') %><br>
-              <%= @address.town %> <%=@address.zip_code%><br>
-              <%= @address.country %><br>
-              <abbr title="Sími 1">S:</abbr> <%= @address.home_phone %><br>
-              <abbr title="Sími 2">S:</abbr> <%= @address.phone %><br>
+              <abbr title="Heimilisfang">H: </abbr><%= @address.get('street_1') %><br>
+              <%= @address.get('street_2') %><br>
+              <%= @address.get('town') %> <%=@address.get('zip_code')%><br>
+              <%= @address.get('country') %><br>
+              <abbr title="Sími 1">S: </abbr> <%= @address.get('phone') %><br>
+              <abbr title="Sími 2">S: </abbr> <%= @address.get('home_phone') %><br>
             <% end %>
           </address>
           <button class="btn btn-info edit-item">Edit</button>

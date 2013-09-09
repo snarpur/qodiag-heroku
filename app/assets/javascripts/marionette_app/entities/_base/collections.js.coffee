@@ -2,11 +2,11 @@
 	
 	class Entities.Collection extends Backbone.Collection
     
-    toJSON:=>
+    toJSON:(options)=>
       if options?.acceptsNested == false
         super
       else
       _.chain(@.models)
-        .map(((i)->i.toJSON()),@)
+        .map(((i)->i.toJSON(options)),@)
         .compact()
         .value()

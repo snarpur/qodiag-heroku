@@ -1,0 +1,30 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  <h3> <%- @dialogTitle() %></h3>
+</div>
+<div class="modal-body">
+  <form class="form-horizontal">
+    <div class="control-group">
+      <label class="control-label" for="firstname"><%- @t("person.firstname") %></label>
+      <div class="controls">
+        <input class="input-xlarge" type="text" id="firstname" placeholder="<%- @t("person.firstname") %>">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="lastname"><%- @t("person.lastname") %></label>
+      <div class="controls">
+        <input class="input-xlarge" type="text" id="lastname" placeholder="<%- @t("person.lastname") %>">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="full_cpr"><%- @t("person.cpr") %></label>
+      <div class="controls">
+        <input class="input-xlarge" type="text" id="full_cpr" placeholder="<%- @t("person.cpr") %>">
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary save"><%- @t("actions.save") %></button>
+  <button class="btn cancel"><%- @t("actions.save") %></button>
+</div>

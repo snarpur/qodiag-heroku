@@ -5,74 +5,62 @@
 <div class="modal-body">
   <form class="form-horizontal">
     <div class="control-group">
-      <label class="control-label" for="firstname">Fornafn</label>
+      <label class="control-label" for="firstname"><%- @t("person.firstname") %></label>
       <div class="controls">
-        <input class="input-xlarge" type="text" id="firstname" placeholder="Fornafn">
+        <input class="input-xlarge" type="text" id="firstname" placeholder="<%- @t("person.firstname") %>">
       </div>
     </div>
     <div class="control-group">
-      <label class="control-label" for="lastname">Eftirnafn</label>
+      <label class="control-label" for="lastname"><%- @t("person.lastname") %></label>
       <div class="controls">
-        <input class="input-xlarge" type="text" id="lastname" placeholder="Eftirnafn">
+        <input class="input-xlarge" type="text" id="lastname" placeholder="<%- @t("person.lastname") %>">
       </div>
     </div>
     <div class="control-group">
-      <label class="control-label" for="full_cpr">Kennitala</label>
+      <label class="control-label" for="full_cpr"><%- @t("person.cpr") %></label>
       <div class="controls">
-        <input class="input-xlarge" type="text" id="full_cpr" placeholder="Kennitala">
+        <input class="input-xlarge" type="text" id="full_cpr" placeholder="<%- @t("person.cpr") %>">
       </div>
     </div>
     <div class="control-group">
-      <label class="control-label" for="street_1">Heimilisfang</label>
+      <label class="control-label" for="street_1"><%- @t("address.street_1") %></label>
       <div class="controls">
-        <input class="input-xlarge" type="text" id="street_1" placeholder="Heimilisfang">
+        <input class="input-xlarge" type="text" id="street_1" placeholder="<%- @t("address.street_1") %>">
       </div>
     </div>
     <div class="control-group">
-      <label class="control-label" for="street_2">Heimilisfang</label>
+      <label class="control-label" for="street_2"><%- @t("address.street_2") %></label>
       <div class="controls">
-        <input class="input-xlarge" type="text" id="street_2" placeholder="Heimilisfang">
+        <input class="input-xlarge" type="text" id="street_2" placeholder="<%- @t("address.street_2") %>">
       </div>
     </div>
     <div class="control-group">
-      <label class="control-label" for="town">Sveitarfélag</label>
+      <label class="control-label" for="town"><%- @t("address.town") %></label>
       <div class="controls">
-        <input class="input-xlarge" type="text" id="town" placeholder="Sveitarfélag">
+        <input class="input-xlarge" type="text" id="town" placeholder="<%- @t("address.town") %>">
       </div>
     </div>
     <div class="control-group">
-      <label class="control-label" for="zip_code">Póstnúmer</label>
+      <label class="control-label" for="zip_code"><%- @t("address.zip_code") %></label>
       <div class="controls">
-        <input class="input-xlarge" type="text" id="zip_code" placeholder="Póstnúmer">
+        <input class="input-xlarge" type="text" id="zip_code" placeholder="<%- @t("address.zip_code") %>">
       </div>
     </div>
     <div class="control-group">
-      <label class="control-label" for="phone">Sími 1</label>
+      <label class="control-label" for="phone"><%- @t("address.phone") %></label>
       <div class="controls">
-        <input class="input-xlarge" type="text" id="phone" placeholder="Sími 1">
+        <input class="input-xlarge" type="text" id="phone" placeholder="<%- @t("address.phone") %>">
       </div>
     </div>
     <div class="control-group">
-      <label class="control-label" for="home_phone">Sími 2</label>
+      <label class="control-label" for="home_phone"><%- @t("address.home_phone") %></label>
       <div class="controls">
-        <input class="input-xlarge" type="text" id="home_phone" placeholder="Sími 2">
-      </div>
-    </div>
-    <div class="control-group">
-      <label class="control-label" for="work_address">Vinnustaður</label>
-      <div class="controls">
-        <input class="input-xlarge" type="text" id="work_address" placeholder="Vinnustaður">
-      </div>
-    </div>
-    <div class="control-group">
-      <label class="control-label" for="work_phone">Sími vinna</label>
-      <div class="controls">
-        <input class="input-xlarge" type="text" id="work_phone" placeholder="Sími vinna">
+        <input class="input-xlarge" type="text" id="home_phone" placeholder="<%- @t("address.home_phone") %>">
       </div>
     </div>
   </form>
 </div>
 <div class="modal-footer">
-  <button class="btn btn-primary save">Vista</button>
-  <button class="btn cancel">Hætta við</button>
+  <button class="btn btn-primary save"><%- @t("actions.save") %></button>
+  <button class="btn cancel"><%- @t("actions.cancel") %></button>
 </div>

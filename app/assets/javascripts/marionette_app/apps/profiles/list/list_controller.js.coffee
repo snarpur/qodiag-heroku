@@ -26,8 +26,8 @@
       parents = person.getParents()
 
       App.execute "when:fetched", parents, =>
-
-        #We should have always two parents, for that reason if we have only one, we will add the other one empty
+        parents = new App.Entities.People(parents.toJSON(acceptsNested: false))
+        #NOTE: We should have always two parents, for that reason if we have only one, we will add the other one empty
         @addEmptyParent parents
         
         guardianView = @getGuardianView parents
