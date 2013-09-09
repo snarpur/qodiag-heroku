@@ -12,12 +12,11 @@
 
   class List.SubjectDetails extends App.Views.ItemView
     template: "subject_navigation_app/list/subject_details"
+    modelEvents:
+      "change" : "dataChanged"
 
-    onBeforeRender:->
-      @model.set('ageInYears', @model.ageInYears())
-
-
-
+    dataChanged:->
+      @render()
 
 
   class List.Item extends App.Views.ItemView
@@ -27,11 +26,7 @@
     className:->
       'active' if @model.isActive()
   
-
   
-
-
-
   class List.Navigation extends App.Views.CollectionView
     itemView: List.Item
     tagName: "ul"

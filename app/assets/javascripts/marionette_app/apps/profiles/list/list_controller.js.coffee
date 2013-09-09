@@ -3,11 +3,11 @@
   class List.Controller extends App.Controllers.Base
 
     showProfile:(subjectId)->
-      App.execute "show:subject:navigation",{personId: subjectId, currentItemName: 'profiles'}
+      #App.execute "show:subject:navigation",{personId: subjectId, currentItemName: 'profiles'}
       @person = App.request "get:person:entity", subjectId
-      
+
       App.execute "when:fetched", @person, =>
-        
+        App.execute "show:subject:navigation",{person: @person, personId: subjectId, currentItemName: 'profiles'}        
         @showSubject @person
         @showGuardian @person
 

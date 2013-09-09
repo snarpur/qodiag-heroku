@@ -1,5 +1,5 @@
 object @person
-attributes :id, :firstname, :lastname, :address_id, :sex, :full_cpr, :dateofbirth
+attributes :id, :firstname, :lastname, :address_id, :sex, :full_cpr
 node do |p|
   {:image_url_tiny => p.avatar.url(:tiny),
    :image_url_thumb => p.avatar.url(:thumb),

@@ -26,5 +26,5 @@
 </div>
 <div class="modal-footer">
   <button class="btn btn-primary save"><%- @t("actions.save") %></button>
-  <button class="btn cancel"><%- @t("actions.save") %></button>
+  <button class="btn cancel"><%- @t("actions.cancel") %></button>
 </div>

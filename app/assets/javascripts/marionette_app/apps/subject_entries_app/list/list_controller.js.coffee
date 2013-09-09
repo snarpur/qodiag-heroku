@@ -4,7 +4,11 @@
   class List.Controller extends App.Controllers.Base
     
     initialize:(options)->
-      App.execute "show:subject:navigation",{personId: options.personId, currentItemName: 'entries'}
+      @person = App.request "get:person:entity", options.personId
+
+      App.execute "when:fetched", @person, =>
+        App.execute "show:subject:navigation",{person: @person, personId: options.personId, currentItemName: 'entries'}
+        
       @list(options)    
     
 

@@ -7,17 +7,9 @@
       items = App.request "get:subject:navigation", options
       @showLayout()
       @showNavigation(items)  
-      @showSubject(options.personId)
+      @setCurrentSubject(options.person)
+      @showSubjectDetails(options.person)
       
-
-
-    showSubject:(id) ->
-      subject = App.request "get:person:entity",id
-      App.execute "when:fetched", subject, =>
-        @setCurrentSubject(subject)
-        @showSubjectDetails(subject)
-
- 
 
     getNavigationView:(items)->
       new List.Navigation collection: items
