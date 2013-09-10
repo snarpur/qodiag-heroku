@@ -116,6 +116,8 @@ class Person < ActiveRecord::Base
   
   validates_associated :relationships, :inverse_relationships, :address #:user
 
+  
+
   has_attached_file :avatar,
     :styles => {
         :tiny=> "64x64#",
@@ -123,9 +125,12 @@ class Person < ActiveRecord::Base
         :small  => "150x150>",
         :medium => "250x250>",
         :large =>   "400x400>" },
-    :default_url => "/assets/avatars/:style/missing.png"
-  # validates :avatar, :attachment_presence => true
-  # validates_with AttachmentPresenceValidator, :attributes => :avatar
+    :default_url => "/avatars/:style/:sex.png"
+
+
+  def sex?
+    self.sex == nil
+  end
 
   attr_accessor :current_responder_item
   
@@ -521,4 +526,4 @@ class Person < ActiveRecord::Base
       end
     end
   end
-end
+end    

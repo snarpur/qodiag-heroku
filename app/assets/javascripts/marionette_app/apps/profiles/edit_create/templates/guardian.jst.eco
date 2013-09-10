@@ -23,6 +23,19 @@
       </div>
     </div>
     <div class="control-group">
+     <label class="control-label" for="sex"><%- @t("person.sex") %></label>
+      <div class="controls">
+        <label class="radio">
+          <input type="radio" class="sex" name="sex" value="male">
+          <%- @t("person.male") %>
+        </label>
+        <label class="radio">
+          <input type="radio" class="sex" name="sex" value="female">
+          <%- @t("person.female") %>
+        </label>
+      </div>
+    </div>
+    <div class="control-group">
       <label class="control-label" for="street_1"><%- @t("address.street_1") %></label>
       <div class="controls">
         <input class="input-xlarge" type="text" id="street_1" placeholder="<%- @t("address.street_1") %>">

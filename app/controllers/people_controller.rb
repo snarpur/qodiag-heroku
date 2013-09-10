@@ -15,7 +15,6 @@ class PeopleController < ApplicationController
   end
 
   def edit
-  
     @person = PersonDecorator.decorate(Person.find(params[:id]))
   end
 
@@ -31,6 +30,7 @@ class PeopleController < ApplicationController
 
   
   def update
+    KK.log params[:person]
     @person= Person.find(params[:id])
     respond_to do |format|
       if @person.update_attributes(params[:person])

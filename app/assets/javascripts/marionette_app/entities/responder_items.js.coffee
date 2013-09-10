@@ -29,8 +29,10 @@
     
 
     initialize: (models,options) ->
-      #NOTE: mode to _base.models
+      
       @initAttributes()
+      
+      #NOTE: mode to _base.models
       @validateOnChange()
       @on("validated:valid",@onValid)
       @on("validated:invalid",@onInvalid)
@@ -53,7 +55,7 @@
         changed = _.invert(@changed)[value]
         @_createNestedEntity(changed,@get(changed)) if _.contains @nestedAttributeList, changed
 
-    
+    #NOTE: mode to _base.models
     validateOnChange:->
       eventStr = _.map(_.keys(@validation),(i)-> "change:#{i}").join(" ")
       @on eventStr, => @validate() if @get('_errors')?

@@ -16,6 +16,7 @@
         '#firstname' : 'firstname',
         '#lastname' : 'lastname',
         '#full_cpr' : 'full_cpr',
+        '.sex' : 'sex',
         '#street_1' : 'address.street_1',
         '#street_2' : 'address.street_2',
         '#town' : 'address.town',
@@ -29,6 +30,7 @@
 
 
       onShow:->
+        console.warn "@", @
         @.stickit()
 
   class EditCreate.Subject extends App.Views.ItemView
@@ -42,7 +44,7 @@
       triggers:
         "click button.save" : "save:clicked"
         "click button.cancel" : "dialog:close"
-      
+
       bindings:
         '#firstname' : 'firstname',
         '#lastname' : 'lastname',
@@ -51,6 +53,9 @@
       dialog:
         title: ""
         buttons: []
+
+
+
 
 
       onShow:->
