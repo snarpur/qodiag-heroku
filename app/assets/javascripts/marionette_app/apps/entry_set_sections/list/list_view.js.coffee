@@ -4,13 +4,14 @@
     template: "entry_set_sections/list/templates/list_layout"
     className: ()->
       "uneditable-entry-set" if @model.get('editable') is false
-  
+
     regions:
       settingsNavigationRegion: "#settings-navigation-region"
       entrySetTitleRegion: "#entry-set-title-region"
       navigationRegion: "#sections-navigation-region"
       sectionTitleRegion: "#section-title-region"
       sectionContentRegion: "#section-content-region"
+      entryFieldsRegion: "#entry-fields-region"
       entryFieldsSidebarRegion: "#entry-fields-sidebar-region"
     
 
@@ -35,7 +36,7 @@
     
 
     triggers:
-      "click a" : "set:current:section"
+      "click " : "set:current:section"
 
     
 

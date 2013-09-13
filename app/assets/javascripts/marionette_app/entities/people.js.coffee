@@ -23,6 +23,8 @@
     initialize:->
       @blacklist = _.keys(@defaults)
       @on "change:respondents", @setRespondents
+      @on "change:full_cpr", @ageInYears
+
       
     #FIX: Add 'respondents to the relations array'
     setRespondents:(model,value,options)->
@@ -30,7 +32,7 @@
         @set('respondents',new Entities.People(value),{silent:true})
 
     ageInYears:->
-      moment().diff(moment(@get('dateofbirth')),'years')
+      @set("ageInYears",moment().diff(moment(@get('full_cpr').substr(0,6),"DDMMYY"),'years'))
 
     getParents:->
       parents = new Entities.People([])

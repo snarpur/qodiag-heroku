@@ -18,7 +18,7 @@
     tagName: 'li'
 
     triggers:
-      'click a': "set:current:section"
+      'click': "set:current:section"
 
     onSetCurrentSection:->
       @model.trigger("change:current:section", model: @model)

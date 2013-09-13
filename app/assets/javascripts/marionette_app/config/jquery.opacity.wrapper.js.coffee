@@ -2,7 +2,7 @@ do ($) ->
 	$.fn.toggleWrapper = (obj = {}, init = true) ->
 		_.defaults obj,
 			className: ""
-			backgroundColor: 'rgba(255,255,255,0.7)'
+			backgroundColor: 'rgba(255,255,255,0.8)'
 			zIndex: if @css("zIndex") is "auto" or 0 then 1000 else (Number) @css("zIndex")
 			spinner: true
 

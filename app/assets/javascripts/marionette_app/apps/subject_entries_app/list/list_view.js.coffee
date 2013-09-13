@@ -82,7 +82,7 @@
       "active"  if @model.collection.isCurrentSection(@model)
 
     triggers:
-      "click a" : "set:current:section"
+      "click " : "set:current:section"
   
 
 
@@ -95,9 +95,6 @@
       @on "childview:set:current:section", (view)->
         @collection.currentSectionId = view.model.id
         @collection.trigger("reset")
-
-
-
   
 
   class List.Entry extends App.Views.ItemView

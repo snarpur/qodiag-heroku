@@ -7,7 +7,13 @@
 
 
     showGuardian:(guardian)->
-      dialogView = new EditCreate.Guardian model: guardian
+      #NOTE: Try to refector these
+      #Depends on the template we use either Subject or Guardian View
+      if @activeView.template.indexOf("guardian") isnt -1
+        dialogView = new EditCreate.Guardian model: guardian
+      else
+        dialogView = new EditCreate.Subject model: guardian
+
       App.dialogRegion.show dialogView
 
       @listenTo dialogView, "save:clicked", (options) => 

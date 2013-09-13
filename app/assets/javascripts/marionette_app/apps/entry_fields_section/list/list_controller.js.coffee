@@ -15,24 +15,32 @@
 
 
     getSectionEntryFields:(options)->
-      {model,region} = options
+      {model,region,loaderRegion} = options
+
       entries = model.getSectionEntryFields()
 
-      App.execute "when:fetched",entries, =>
-        view = @getEntriesView(entries,model)
-        model.collection.trigger("fields:fetched")
+      #App.execute "when:fetched",entries, =>
+      view = @getEntriesView(entries,model)
+      #model.collection.trigger("fields:fetched")
 
-        @listenTo view, "section:entries:updated", (options) =>
-          model.addSelectedField options if options.field 
-          entries.setDisplayOrder()
+
+      @listenTo view, "section:entries:updated", (options) =>
+        model.addSelectedField options if options.field 
+        entries.setDisplayOrder()
+
+      @show view,
+       region: region
+       loaderRegion: loaderRegion
+       loading: true
+
+      #DELETE: When we are totally sure that the loading views works
+      #region.show view
+
+      @listenTo view, "save:clicked", (options)=>
+        model.saveEntryFields()
         
-        region.show view
-
-        @listenTo view, "save:clicked", (options)=>
-          model.saveEntryFields()
-          
-        @listenTo model, "updated", =>
-          toastr.success("Skref #{model.get('name')} hefur verið vistað")
+      @listenTo model, "updated", =>
+        toastr.success("Skref #{model.get('name')} hefur verið vistað")
 
     
 

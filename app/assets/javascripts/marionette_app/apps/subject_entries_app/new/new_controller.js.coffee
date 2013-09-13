@@ -36,7 +36,6 @@
       @listenTo entry,"sync:stop",(model) ->
         @region.close()
         @region.trigger("form:close")
-
       entry
 
     

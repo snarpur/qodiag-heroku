@@ -10,8 +10,7 @@
         <div class="row pull-right">
           <address>
             <strong><%= @firstname + " " + @lastname %></strong><br>
-            <abbr title="Kennitala">K:</abbr> <%= @full_cpr %> <br>
-            <abbr title="Fæðingardagur">F:</abbr> <%= @dateofbirth %>
+            <abbr title="Kennitala">K:</abbr> <%= @full_cpr %>
           </address>
           <button class="btn btn-info edit-item">Edit</button>
         </div>

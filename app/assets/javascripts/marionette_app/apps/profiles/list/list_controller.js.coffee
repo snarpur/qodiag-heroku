@@ -3,11 +3,11 @@
   class List.Controller extends App.Controllers.Base
 
     showProfile:(subjectId)->
-      App.execute "show:subject:navigation",{personId: subjectId, currentItemName: 'profiles'}
+      #App.execute "show:subject:navigation",{personId: subjectId, currentItemName: 'profiles'}
       @person = App.request "get:person:entity", subjectId
-      
+
       App.execute "when:fetched", @person, =>
-        
+        App.execute "show:subject:navigation",{person: @person, personId: subjectId, currentItemName: 'profiles'}        
         @showSubject @person
         @showGuardian @person
 
@@ -26,8 +26,8 @@
       parents = person.getParents()
 
       App.execute "when:fetched", parents, =>
-
-        #We should have always two parents, for that reason if we have only one, we will add the other one empty
+        parents = new App.Entities.People(parents.toJSON(acceptsNested: false))
+        #NOTE: We should have always two parents, for that reason if we have only one, we will add the other one empty
         @addEmptyParent parents
         
         guardianView = @getGuardianView parents
