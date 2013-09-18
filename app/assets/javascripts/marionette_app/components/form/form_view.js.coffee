@@ -1,35 +1,45 @@
 @Qapp.module "Components.Form", (Form, App, Backbone, Marionette, $, _) ->
 	
 	class Form.FormWrapper extends App.Views.Layout
-		template: "form/form"
+		getTemplate: () ->
+			if @options.config.modal
+				"form/modal-form"
+			else
+				"form/form"
+
+		tagName: 		"form"
 		
-		tagName: "form"
+		className: ()->
+			@options.config.formClass
+
+
 		attributes: ->
 			"data-type": @getFormDataType()
-		
+			 
+
+			
 		regions:
 			formContentRegion: "#form-content-region"
 		
-		
-
 		ui:
 			buttonContainer: "ul.inline-list"
 		
-		
-
-		# triggers:
-			# "submit"														: "form:submit"
-			# "click [data-form-button='cancel']"	: "form:cancel"
-			# "click [data-form-button='back']"		: "form:back"
-		
 		events:
 			"click button[data-form-button]" : "formButtonClick"
+			"click button[data-dismiss]" : "closeButtonClick"
+			"keyup" : "keypressed"
 
 		formButtonClick:(event)->
 			buttonType = $(event.target).attr('data-form-button')
 			@trigger("form:#{buttonType}",{sourceButton: buttonType})
 			
-		
+		keypressed: (e)->
+			#NOTE: We sunmit the form when we press Enter and the focus is not in a textarea
+			if e.which is 13 and e.target.type isnt "textarea"
+				@trigger("form:submit")
+
+		closeButtonClick:->
+			@trigger("form:cancel")
 
 		modelEvents:
 			"change:_errors" 	: "changeErrors"
@@ -40,9 +50,7 @@
 
 		initialize:(options)->
 			@addOpacityWrapper(false)
-			# @setFormContentRegion(options.region)
 			@setInstancePropertiesFor "config", "buttons"
-		
 		
 		
 		setFormContentRegion:(region)->
@@ -52,6 +60,8 @@
 
 		serializeData: ->
 			footer: @config.footer
+			modal: @config.modal
+			title: @config.title or false
 			buttons: @buttons?.toJSON() ? false
 		
 		
@@ -60,7 +70,7 @@
 			_.defer =>
 				@focusFirstInput() if @config.focusFirstInput
 				@buttonPlacement() if @buttons
-		
+			
 		
 
 		buttonPlacement: ->
@@ -69,39 +79,37 @@
 		
 
 		focusFirstInput: ->
-			@$(":input:visible:enabled:first").focus()
-		
+			@$el.find('input[type=text],textarea,select').filter(':visible:first').focus()
 		
 
 		getFormDataType: ->
 			if @model.isNew() then "new" else "edit"
-		
-		
 
 		changeErrors: (model, errors, options) ->
 			if @config.errors
-				if _.isEmpty(errors) then @removeErrors() else @addErrors errors
+				@removeErrors()
+				@addErrors errors
 		
 		
 
 		removeErrors: ->
-			@$(".error").removeClass("error").find("small").remove()
+			@$el.find(".error").removeClass("error")
+			@$el.find(".help-inline").text("")
+
 		
 		
 
 		addErrors: (errors = {}) ->
 			for name, array of errors
-				@addError name, array[0]
+				@addError name, array
 		
 		
 
 		addError: (name, error) ->
-			el = @$("[name='#{name}']")
-			sm = $("<small>").text(error)
-			el.after(sm).closest(".row").addClass("error")
-		
-		
-
+			el = @$el.find("[id='#{name}_error']")
+			el.closest(".control-group").addClass("error")
+			el.text(error)
+			
 		syncStart: (model) ->
 			@addOpacityWrapper() if @config.syncing
 		

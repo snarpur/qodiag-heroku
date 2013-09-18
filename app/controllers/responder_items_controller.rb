@@ -25,13 +25,15 @@ class ResponderItemsController < ApplicationController
   def create
     if @responder_item.save!
       RequestNotice.request_survey(@responder_item).deliver
-      respond_to do |format|
-        format.json {render :json => @responder_item}
-      end 
+      #respond_to do |format|
+        #format.json {render :json => @responder_item}
+        render "create"
+      #end 
     else
-      respond_to do |format|
-        format.json {render :json => {:errors => @responder_item.errors}}
-      end
+      #respond_to do |format|
+        #format.json {render :json => {:errors => @responder_item.errors}}
+        render :json => {:errors => @responder_item.errors}
+      #end
     end
   end
 

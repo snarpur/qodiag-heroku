@@ -5,6 +5,7 @@ class Person < ActiveRecord::Base
   #validate :presence_of_full_cpr
   #validates_length_of :full_cpr, :is => 10, :allow_nil => true
   #validates_length_of :cpr, :is => 4
+  #validates_length_of :firstname, :minimum => 4
   #validate :presence_of_parent_occupation
   #after_save :set_parents_address
   
@@ -255,8 +256,19 @@ class Person < ActiveRecord::Base
   end
 
   def uniqueness_of_full_cpr
-    errors.add(:full_cpr, I18n.t("activerecord.errors.messages.taken")) if
-      Person.exists?(:dateofbirth => dateofbirth, :cpr => cpr) && id.nil?
+    if self.id?
+      if (Person.where(:dateofbirth => dateofbirth, :cpr => cpr).where('id != ?', id).exists?)
+        errors.add(:full_cpr, I18n.t("activerecord.errors.messages.taken"))
+        return false
+      end
+      return true
+    else
+      if (Person.where(:dateofbirth => dateofbirth, :cpr => cpr).exists?)
+        errors.add(:full_cpr, I18n.t("activerecord.errors.messages.taken"))
+        return false
+      end
+      return true
+    end
   end
 
   def valid_cpr?

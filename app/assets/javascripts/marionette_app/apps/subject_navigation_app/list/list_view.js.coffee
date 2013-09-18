@@ -12,12 +12,8 @@
 
   class List.SubjectDetails extends App.Views.ItemView
     template: "subject_navigation_app/list/subject_details"
-    modelEvents:
-      "change" : "dataChanged"
-
-    dataChanged:->
-      @render()
-
+    # modelEvents:
+    #   "change" : "dataChanged"
 
   class List.Item extends App.Views.ItemView
     template: "subject_navigation_app/list/_item"

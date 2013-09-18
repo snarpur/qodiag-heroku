@@ -3,12 +3,10 @@
 	<% if @footer: %>
 		<footer>
 			<% if @buttons: %>
-				<div class="form-actions">
-					<% for button in @buttons: %>
-						<button type="button" data-form-button="<%= button.buttonType %>" class="<%= button.className %>"><%= button.text %></button>
-					<% end %>
+				<% for button in @buttons: %>
+					<button type="button" data-form-button="<%= button.buttonType %>" class="<%= button.className %>"><%= button.text %></button>
+				<% end %>
 			<% end %>
-			</div>
 		</footer>
 	<% end %>
 </div>

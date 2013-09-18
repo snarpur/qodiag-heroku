@@ -46,7 +46,6 @@
         #TODO: We should change this way to do it       
         parent = parents.first().clone().clear()
         parent.set(address: {})
-        console.info "new parent: ", parent
         parents.add parent, at: 1
 
 

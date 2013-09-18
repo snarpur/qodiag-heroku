@@ -11,17 +11,19 @@ do (Backbone, Marionette) ->
         keyboard: true
       })
 
-      view.$el.find('input:text:visible:first').focus() if view.$el.find('input:text:visible:first')?
+      @listenTo view.model, "created updated", ()=>
+        @closeDialog
 
       view.$el.on "hidden", => @close()
       @setupBindings view 
     
     setupBindings: (view) ->
       @listenTo view, "dialog:close", @closeDialog
-
     
     closeDialog: ->
       @stopListening()
-      @currentView.$el.modal('hide')
+      #NOTE: When valdate against the server closeDialog is called and the next time currentView doesn't exists
+      if @currentView?
+        @currentView.$el.modal('hide')
 
     

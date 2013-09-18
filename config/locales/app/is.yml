@@ -37,6 +37,8 @@ is:
     phone: "Sími 1"
   responder_item:
     deadline: "Skilafrestur"
+    respondent: "Viðtakenda"
+    entry_set: "Eyðublað"
   user:
     email: "Netfang"
     password: "Lykilorð"

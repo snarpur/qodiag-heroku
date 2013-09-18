@@ -21,8 +21,8 @@
 		getDefaultButtons: (buttons, model) ->
 			defaultButtons = 
 				buttons:
-					primary: {text: "Save", className: "btn btn-primary", order: 1, buttonType: 'submit'}
-					cancel: {text: "Cancel", className: "btn", order: 2, buttonType: "cancel"} 
+					primary: {text: I18n.t("actions.save"), className: "btn btn-primary", order: 1, buttonType: 'submit'}
+					cancel: {text: I18n.t("actions.cancel"), className: "btn", order: 2, buttonType: "cancel"} 
 				config:
 					placement: "right"
 
