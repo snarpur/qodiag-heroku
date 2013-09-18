@@ -1,9 +1,0 @@
-  <div class="row">
-  <span class="span1 help-inline"></span>
-  <p class="span5">
-    <strong>Veldu skiladag</strong>
-  </p>
-</div>
-<div class="row">
-<div class="span5 offset1" data-date-wrapper='true'>
-</div>
