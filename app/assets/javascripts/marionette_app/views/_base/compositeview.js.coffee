@@ -13,4 +13,5 @@
       options = 
         index: index
 
-  
+    initialize: ->
+      @extendTemplateHelpers(@templateHelpers)

@@ -1,10 +1,22 @@
 <td>
 <% if @item_type == "survey": %> 
-<%- @linkTo(@survey.access_code,@routeTo.surveyor_edit_my_survey_path(@survey.access_code,@response_set_access_code),{external: true}) %>
+  <% if not @completed?: %> 
+  <%- @linkTo(@survey.access_code,@routeTo.surveyor_edit_my_survey_path(@survey.access_code,@response_set_access_code),{external: true}) %>
+  <% else: %> 
+  <%= @survey.access_code %>
+  <% end %>
 <% else if @item_type == "entry_set": %>
-<%- @linkTo(@entry_set_response.get('entry_set_name'),"#{@routeTo.entry_set_response_path(@entry_set_response_id)}") %>
+  <% if not @completed?: %>
+    <%- @linkTo(@entry_set_response.get('entry_set_name'),"#{@routeTo.entry_set_response_path(@entry_set_response_id)}") %>
+  <% else: %> 
+    <%=@entry_set_response.get('entry_set_name')%>
+  <% end %>
 <% else if @item_type == "pre_registration": %>
-<%- @linkTo(@t('forms.respondent_registration.name'),"#{@routeTo.pre_registration_path(@id)}",{external:true}) %>
+  <% if not @completed?: %>
+    <%- @linkTo(@t('forms.respondent_registration.name'),"#{@routeTo.pre_registration_path(@id)}",{external:true}) %>
+  <% else: %> 
+    <%=@t('forms.respondent_registration.name')%>
+  <% end %>
 <% end %>
 </td>
 <td><%- @subject_full_name %></td>

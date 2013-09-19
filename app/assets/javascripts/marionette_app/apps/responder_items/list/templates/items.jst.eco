@@ -1,9 +1,10 @@
+<h3 class="muted text-right"><%= @tableTitle() %></h3>
 <table class="table">
   <thead>
     <tr>
-      <th>Heiti</th>
-      <th>Varðar</th>
-      <th>Skiladagur</th>
+      <th><%- @t('responder_item.headers.name')%></th>
+      <th><%- @t('responder_item.headers.patient')%></th>
+      <th><%- @t('responder_item.headers.due_date')%></th>
     </tr>
   </thead>
   <tbody>

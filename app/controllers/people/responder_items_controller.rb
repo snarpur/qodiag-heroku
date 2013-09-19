@@ -5,6 +5,7 @@ class People::ResponderItemsController < ApplicationController
   respond_to :json
 
    def index
-    @responder_items = ResponderItem.by_respondent(params[:person_id]).uncompleted
+    #@responder_items = ResponderItem.by_respondent(params[:person_id]).uncompleted
+    @responder_items = ResponderItem.by_respondent(params[:person_id])
    end
 end

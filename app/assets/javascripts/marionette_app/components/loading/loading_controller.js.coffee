@@ -47,7 +47,9 @@
           when "spinner"
             return realView.close() if activeRegion.currentView isnt loadingView
             
-        if config?.callback then config.callback()
+        if config?.callback
+          config.callback()
+        
         @show realView
 
     getEntities: (view) ->

@@ -61,7 +61,6 @@
       @url= ()->
         Routes.person_responder_items_path(@personId)  
 
-    
 
 
 

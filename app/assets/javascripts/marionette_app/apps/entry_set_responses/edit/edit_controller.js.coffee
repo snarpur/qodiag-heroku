@@ -62,7 +62,7 @@
 
       #DELETE: When we are totally sure that the loading views works
       #@getFormWrapperRegion().show formView
-      @show editView,
+      @show formView,
          region: @getFormWrapperRegion()
          loading:true 
 
@@ -99,6 +99,7 @@
       formView.trigger('form:submit')
       @listenToOnce @entrySetResponse, 'updated', =>
         App.navigate "/items", {trigger: true}
+        toastr.success "Færsla hefur vistast"
 
 
     

@@ -17,7 +17,7 @@ class Person < ActiveRecord::Base
   has_many :patient_responder_items, :class_name => "ResponderItem", :foreign_key => "subject_id"
   has_many :caretaker_responder_items, :class_name => "ResponderItem", :foreign_key => "caretaker_id"
 
-  scope :with_valid_user, where("EXISTS(SELECT 1 from users where users.id = relationships.relation_id)")
+  scope :with_valid_user, where("EXISTS(SELECT 1 from users where users.person_id = relationships.person_id)")
   
   # Added in order to reflect the relationship between  entry_sets and users
   has_many :entry_sets, :foreign_key => "created_by_id"

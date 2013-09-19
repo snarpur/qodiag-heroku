@@ -39,6 +39,7 @@ is:
     deadline: "Skilafrestur"
     respondent: "Viðtakenda"
     entry_set: "Eyðublað"
+      
   user:
     email: "Netfang"
     password: "Lykilorð"
