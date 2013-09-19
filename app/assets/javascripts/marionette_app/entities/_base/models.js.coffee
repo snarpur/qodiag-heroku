@@ -9,6 +9,7 @@ do (Backbone) ->
     attributeList: []
     nestedAttributeList: []
     blacklist:[]
+    validation: {}
     
 
     initialize:->
@@ -16,6 +17,11 @@ do (Backbone) ->
       @url = ()->
         base = _.result(@, 'urlRoot') ? @collection.url()
         if @id then "#{base}/#{@id}" else base
+
+      #Validation
+      @validateOnChange()
+      @on("validated:valid",@onValid)
+      @on("validated:invalid",@onInvalid)
 
     destroy: (options = {}) ->
       _.defaults options,
@@ -97,6 +103,18 @@ do (Backbone) ->
 
     _inBlacklist:(key)->
         _.contains(@blacklist, key)
+
+    #Validation functions
+
+    onValid:(model,errors)->
+      model.set("_errors",null)
+
+    onInvalid:(model,errors)->
+      model.set("_errors",errors)
+
+    validateOnChange:->
+      eventStr = _.map(_.keys(@validation),(i)-> "change:#{i}").join(" ")
+      @on eventStr, => @validate() if @get('_errors')?
 
     
 

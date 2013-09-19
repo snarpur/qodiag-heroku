@@ -12,6 +12,7 @@ class ResponderItem < ActiveRecord::Base
   delegate :access_code, :to => :response_set, :prefix => true
   delegate :full_name, :to => :subject, :prefix => true
   delegate :full_name, :to => :respondent, :prefix => true
+  # delegate :entry_set_id, :to => :entry_set_response
   before_save :set_response_set, :if => :is_uncompleted_survey?
   after_save :send_respondent_invitation, :if => :invite_respondent_user
 
@@ -85,6 +86,10 @@ class ResponderItem < ActiveRecord::Base
 
   def is_survey?
     !self.survey.nil?
+  end
+
+  def is_entry_set_response?
+    !self.entry_set_response.nil?
   end
 
   def complete_item=(is_complete)

@@ -1,5 +1,5 @@
 collection @inverse_relations
-  attributes :id, :firstname, :lastname, :full_cpr, :dateofbirth
+  attributes :id, :firstname, :lastname, :full_cpr, :sex, :address_id, :full_name
 node do |p|
   {:image_url_tiny => p.avatar.url(:tiny),
    :image_url_thumb => p.avatar.url(:thumb),

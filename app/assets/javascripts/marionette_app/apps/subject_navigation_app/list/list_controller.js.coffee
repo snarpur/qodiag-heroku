@@ -9,7 +9,7 @@
       @showNavigation(items)  
       @setCurrentSubject(options.person)
       @showSubjectDetails(options.person)
-      
+
 
     getNavigationView:(items)->
       new List.Navigation collection: items
@@ -30,7 +30,9 @@
     showSubjectDetails:(subject) ->
       view = @getSubjectView(subject) 
       @getLayout().subjectDetailsRegion.show view
-    
+
+      @listenTo subject, "created updated", ()=>
+        view.render()
 
 
     showLayout:->

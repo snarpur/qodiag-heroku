@@ -5,6 +5,7 @@ class Person < ActiveRecord::Base
   #validate :presence_of_full_cpr
   #validates_length_of :full_cpr, :is => 10, :allow_nil => true
   #validates_length_of :cpr, :is => 4
+  #validates_length_of :firstname, :minimum => 4
   #validate :presence_of_parent_occupation
   #after_save :set_parents_address
   
@@ -16,7 +17,7 @@ class Person < ActiveRecord::Base
   has_many :patient_responder_items, :class_name => "ResponderItem", :foreign_key => "subject_id"
   has_many :caretaker_responder_items, :class_name => "ResponderItem", :foreign_key => "caretaker_id"
 
-  scope :with_valid_user, where("EXISTS(SELECT 1 from users where users.id = relationships.relation_id)")
+  scope :with_valid_user, where("EXISTS(SELECT 1 from users where users.person_id = relationships.person_id)")
   
   # Added in order to reflect the relationship between  entry_sets and users
   has_many :entry_sets, :foreign_key => "created_by_id"
@@ -116,6 +117,8 @@ class Person < ActiveRecord::Base
   
   validates_associated :relationships, :inverse_relationships, :address #:user
 
+  
+
   has_attached_file :avatar,
     :styles => {
         :tiny=> "64x64#",
@@ -123,9 +126,12 @@ class Person < ActiveRecord::Base
         :small  => "150x150>",
         :medium => "250x250>",
         :large =>   "400x400>" },
-    :default_url => "/assets/avatars/:style/missing.png"
-  # validates :avatar, :attachment_presence => true
-  # validates_with AttachmentPresenceValidator, :attributes => :avatar
+    :default_url => "/avatars/:style/:sex.png"
+
+
+  def sex?
+    self.sex == nil
+  end
 
   attr_accessor :current_responder_item
   
@@ -250,8 +256,19 @@ class Person < ActiveRecord::Base
   end
 
   def uniqueness_of_full_cpr
-    errors.add(:full_cpr, I18n.t("activerecord.errors.messages.taken")) if
-      Person.exists?(:dateofbirth => dateofbirth, :cpr => cpr) && id.nil?
+    if self.id?
+      if (Person.where(:dateofbirth => dateofbirth, :cpr => cpr).where('id != ?', id).exists?)
+        errors.add(:full_cpr, I18n.t("activerecord.errors.messages.taken"))
+        return false
+      end
+      return true
+    else
+      if (Person.where(:dateofbirth => dateofbirth, :cpr => cpr).exists?)
+        errors.add(:full_cpr, I18n.t("activerecord.errors.messages.taken"))
+        return false
+      end
+      return true
+    end
   end
 
   def valid_cpr?
@@ -521,4 +538,4 @@ class Person < ActiveRecord::Base
       end
     end
   end
-end
+end    

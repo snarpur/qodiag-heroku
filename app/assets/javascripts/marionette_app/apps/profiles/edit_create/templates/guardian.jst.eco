@@ -1,66 +1,72 @@
-<div class="modal-header">
-  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-  <h3> <%- @dialogTitle() %></h3>
-</div>
-<div class="modal-body">
-  <form class="form-horizontal">
-    <div class="control-group">
-      <label class="control-label" for="firstname"><%- @t("person.firstname") %></label>
-      <div class="controls">
-        <input class="input-xlarge" type="text" id="firstname" placeholder="<%- @t("person.firstname") %>">
-      </div>
+
+  <div class="control-group">
+    <label class="control-label" for="firstname"><%- @t("person.firstname") %></label>
+    <div class="controls">
+      <input class="input-xlarge" type="text" id="firstname" placeholder="<%- @t("person.firstname") %>">
     </div>
-    <div class="control-group">
-      <label class="control-label" for="lastname"><%- @t("person.lastname") %></label>
-      <div class="controls">
-        <input class="input-xlarge" type="text" id="lastname" placeholder="<%- @t("person.lastname") %>">
-      </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="lastname"><%- @t("person.lastname") %></label>
+    <div class="controls">
+      <input class="input-xlarge" type="text" id="lastname" placeholder="<%- @t("person.lastname") %>">
+      <span id="lastname_error" class="help-inline"></span>
     </div>
-    <div class="control-group">
-      <label class="control-label" for="full_cpr"><%- @t("person.cpr") %></label>
-      <div class="controls">
-        <input class="input-xlarge" type="text" id="full_cpr" placeholder="<%- @t("person.cpr") %>">
-      </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="full_cpr"><%- @t("person.cpr") %></label>
+    <div class="controls">
+      <input class="input-xlarge" type="text" id="full_cpr" placeholder="<%- @t("person.cpr") %>">
+      <span id="full_cpr_error" class="help-inline"></span>
     </div>
-    <div class="control-group">
-      <label class="control-label" for="street_1"><%- @t("address.street_1") %></label>
-      <div class="controls">
-        <input class="input-xlarge" type="text" id="street_1" placeholder="<%- @t("address.street_1") %>">
-      </div>
+  </div>
+  <div class="control-group">
+   <label class="control-label" for="sex"><%- @t("person.sex") %></label>
+    <div class="controls">
+      <label class="radio">
+        <input type="radio" class="sex" name="sex" value="male">
+        <%- @t("person.male") %>
+      </label>
+      <label class="radio">
+        <input type="radio" class="sex" name="sex" value="female">
+        <%- @t("person.female") %>
+      </label>
+      <span id="sex_error" class="help-inline"></span>
     </div>
-    <div class="control-group">
-      <label class="control-label" for="street_2"><%- @t("address.street_2") %></label>
-      <div class="controls">
-        <input class="input-xlarge" type="text" id="street_2" placeholder="<%- @t("address.street_2") %>">
-      </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="street_1"><%- @t("address.street_1") %></label>
+    <div class="controls">
+      <input class="input-xlarge" type="text" id="street_1" placeholder="<%- @t("address.street_1") %>">
     </div>
-    <div class="control-group">
-      <label class="control-label" for="town"><%- @t("address.town") %></label>
-      <div class="controls">
-        <input class="input-xlarge" type="text" id="town" placeholder="<%- @t("address.town") %>">
-      </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="street_2"><%- @t("address.street_2") %></label>
+    <div class="controls">
+      <input class="input-xlarge" type="text" id="street_2" placeholder="<%- @t("address.street_2") %>">
     </div>
-    <div class="control-group">
-      <label class="control-label" for="zip_code"><%- @t("address.zip_code") %></label>
-      <div class="controls">
-        <input class="input-xlarge" type="text" id="zip_code" placeholder="<%- @t("address.zip_code") %>">
-      </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="town"><%- @t("address.town") %></label>
+    <div class="controls">
+      <input class="input-xlarge" type="text" id="town" placeholder="<%- @t("address.town") %>">
     </div>
-    <div class="control-group">
-      <label class="control-label" for="phone"><%- @t("address.phone") %></label>
-      <div class="controls">
-        <input class="input-xlarge" type="text" id="phone" placeholder="<%- @t("address.phone") %>">
-      </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="zip_code"><%- @t("address.zip_code") %></label>
+    <div class="controls">
+      <input class="input-xlarge" type="text" id="zip_code" placeholder="<%- @t("address.zip_code") %>">
     </div>
-    <div class="control-group">
-      <label class="control-label" for="home_phone"><%- @t("address.home_phone") %></label>
-      <div class="controls">
-        <input class="input-xlarge" type="text" id="home_phone" placeholder="<%- @t("address.home_phone") %>">
-      </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="phone"><%- @t("address.phone") %></label>
+    <div class="controls">
+      <input class="input-xlarge" type="text" id="phone" placeholder="<%- @t("address.phone") %>">
     </div>
-  </form>
-</div>
-<div class="modal-footer">
-  <button class="btn btn-primary save"><%- @t("actions.save") %></button>
-  <button class="btn cancel"><%- @t("actions.cancel") %></button>
-</div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="home_phone"><%- @t("address.home_phone") %></label>
+    <div class="controls">
+      <input class="input-xlarge" type="text" id="home_phone" placeholder="<%- @t("address.home_phone") %>">
+    </div>
+  </div>
+ 

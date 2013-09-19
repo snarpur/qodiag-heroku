@@ -4,29 +4,31 @@
 
     initialize:(options)->
       {@activeView,@collection,@model,@subjectId} = options
+      #App.dialogRegion.show @getLayout(),model: @model
 
 
     showGuardian:(guardian)->
+
       #NOTE: Try to refector these
       #Depends on the template we use either Subject or Guardian View
       if @activeView.template.indexOf("guardian") isnt -1
-        dialogView = new EditCreate.Guardian model: guardian
+        dialogView = new EditCreate.Guardian model: @model
       else
-        dialogView = new EditCreate.Subject model: guardian
+        dialogView = new EditCreate.Subject model: @model
 
-      App.dialogRegion.show dialogView
+      
+      formView = App.request "form:wrapper", dialogView, @buttonsConfig()
+      App.dialogRegion.show formView
 
-      @listenTo dialogView, "save:clicked", (options) => 
-        guardian.save guardian.attributes
+      @listenTo formView.model, "created updated", =>
         @activeView.render()
-
-      @listenTo guardian, "created", =>
-        dialogView.trigger("dialog:close")
-        @activeView.render()
-
-
-      @listenTo guardian, "updated", =>
-        dialogView.trigger("dialog:close")
+     
+    buttonsConfig:->
+      options =
+        modal: true
+        title: if @model.isNew() then "Skrá upplýsingar" else "Breyta upplýsingum"
+        formClass: "form-horizontal"
+      options
 
     edit:->
       @showGuardian(@model)
@@ -39,4 +41,9 @@
 
       @model.set('relationships',relationships)
       @showGuardian(@model)
-      
+
+    getFormWrapperRegion:->
+      @getLayout().formWrapperRegion
+
+    getLayout:->
+      @layout ?= new EditCreate.Layout

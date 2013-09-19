@@ -9,17 +9,9 @@ is:
       quiz: "Svefnskráning"
       rating-scale: "ADHD Rating Scale"
     status:
-      recently_completed:
-        column: "svarað"
-        header: "nýlega klárað"
-      completed:
-        column: "svarað"
-        header: ""
-      uncompleted:
-        column: "skilafrestur"
-        header: "eftir að klára"
-      overdue:
-        column: "skilafrestur"
-        header: "skilafrestur runninn út"
-    messages:
-        requested: "Beiðni hefur verið send"
+      completed: "Búið að svara"
+      uncompleted: "Á eftir að svara"
+    headers:
+      name: "Heiti"
+      patient: "Varðar"
+      due_date: "Skiladagur"

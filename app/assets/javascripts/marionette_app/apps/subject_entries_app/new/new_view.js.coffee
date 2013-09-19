@@ -19,9 +19,9 @@
       @stickit()
 
     initialize:->
-      @on "form:submit", ()->
-        @model.validate = (attributes,options) ->
-          if !attributes.text_value? or _.isEmpty(attributes.text_value) then {text_value: ["cannot be empty"]}
+      # @on "form:submit", ()->
+      #   @model.validate = (attributes,options) ->
+      #     if !attributes.text_value? or _.isEmpty(attributes.text_value) then {text_value: ["cannot be empty"]}
 
 
  

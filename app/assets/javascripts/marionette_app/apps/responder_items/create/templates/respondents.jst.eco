@@ -1,6 +1,0 @@
-<div class="controls">
-  <span class="help-inline span1"></span>
-  <select class="span5 offset1">
-    <option>Velja viðtakenda</option>
-  </select>
-</div>

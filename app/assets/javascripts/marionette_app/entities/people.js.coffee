@@ -13,17 +13,35 @@
     nestedAttributeList: ['relationships']
 
     defaults: {
-      "image_url_tiny":  "/assets/avatars/tiny/missing.png",
-      "image_url_thumb":  "/assets/avatars/thumb/missing.png",
-      "image_url_small":  "/assets/avatars/small/missing.png",
-      "image_url_medium":  "/assets/avatars/medium/missing.png",
-      "image_url_large":  "/assets/avatars/large/missing.png"
+      "image_url_tiny":  "/assets/avatars/tiny/male.png",
+      "image_url_thumb":  "/assets/avatars/thumb/male.png",
+      "image_url_small":  "/assets/avatars/small/male.png",
+      "image_url_medium":  "/assets/avatars/medium/male.png",
+      "image_url_large":  "/assets/avatars/large/male.png"
     }
+
+    validation:
+      firstname: 
+        required: true
+        msg: "Vantar"
+      lastname: 
+        required: true
+        msg: "Vantar"
+      full_cpr: 
+        required: true
+        msg: "Vantar"
+      sex: 
+        required: true
+        msg: "Vantar"
             
     initialize:->
+      super
       @blacklist = _.keys(@defaults)
       @on "change:respondents", @setRespondents
       @on "change:full_cpr", @ageInYears
+
+      #NOTE: We add the ageinYears to the blacklist to avoid de warning in the console
+      @blacklist.push "ageInYears"
 
       
     #FIX: Add 'respondents to the relations array'
@@ -32,7 +50,9 @@
         @set('respondents',new Entities.People(value),{silent:true})
 
     ageInYears:->
-      @set("ageInYears",moment().diff(moment(@get('full_cpr').substr(0,6),"DDMMYY"),'years'))
+      
+      if !!@get('full_cpr')
+        @set("ageInYears",moment().diff(moment(@get('full_cpr').substr(0,6),"DDMMYY"),'years'))
 
     getParents:->
       parents = new Entities.People([])
@@ -58,6 +78,8 @@
       person = new Entities.Person id: id
       person.fetch()
       person
+
+
       
   App.reqres.setHandler "get:person:entity", (id) ->
     API.getPerson(id)

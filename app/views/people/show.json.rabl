@@ -8,10 +8,8 @@ node do |p|
    :image_url_large => p.avatar.url(:large)}
 end
 child(:address){ attributes :id,:street_1, :town}
-node :respondents do |u|
+node :respondents do
   @person.respondents.map do |r|
-    {:id => r.id, :firstname => r.firstname, :lastname => r.lastname}
+    {:id => r.id, :firstname => r.firstname, :lastname => r.lastname, :full_name => r.full_name}
   end
 end
-
-

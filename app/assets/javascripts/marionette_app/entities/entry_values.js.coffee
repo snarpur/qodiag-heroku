@@ -4,19 +4,20 @@
   class Entities.EntryValue extends Entities.Model
     urlRoot: Routes.entry_values_path
     paramRoot: 'entry_value'
+  
+    validation:
+      text_value: 
+        required: true
+        
 
-    initialize:->
+    initialize: ->
       if @get('comments')
         @set("comments", new Entities.EntryValues(@get('comments')))
-
-    
 
     entrySetResponseId:->
       @.get('entry_set_response_id') or @collection?.entrySetResponseId
       
-      
-  
-
+    
 
   class Entities.EntryValues extends Entities.Collection
     model: Entities.EntryValue

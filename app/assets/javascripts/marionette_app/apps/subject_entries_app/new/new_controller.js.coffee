@@ -30,7 +30,7 @@
         entry_set_response_id:  @entry.get('entry_set_response_id')
         person_id: App.request("get:current:user").get('person_id')
         text_value: ""
-
+      
       entry = new App.Entities.EntryValue attributes
       
       @listenTo entry,"sync:stop",(model) ->

@@ -44,7 +44,9 @@
 
       if parents.size() is 1 
         #TODO: We should change this way to do it       
-        parents.add parents.first().clone().clear(), at: 1
+        parent = parents.first().clone().clear()
+        parent.set(address: {})
+        parents.add parent, at: 1
 
 
     getSubjectView: (person)->

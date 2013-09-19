@@ -1,0 +1,43 @@
+<div class="control-group">
+  <label for="respondent_id" class="control-label"><%- @t("responder_item.respondent") %></label>
+  <div class="controls">
+    <span class="help-inline span1"></span>
+    <select id="respondent_id" class="input-xlarge">
+      <option value="">Velja viðtakenda</option>
+      <% if @respondents()?: %>
+        <% for respondent in @respondents(): %>
+          <option value="<%= respondent.id %>"><%= respondent.full_name %></option> 
+        <% end %>
+      <% end %>
+    </select>
+    <span id="respondent_id_error" class="help-inline"></span>
+  </div>
+</div>
+<div class="control-group">
+  <label for="entry_set_response" class="control-label"><%- @t("responder_item.entry_set") %></label>
+  <div class="controls">
+    <select id="entry_set_response" data-nested-key="entry_set_id" class="input-xlarge">
+      <option value="">Velja eyðublað</option>
+      <% if @entrySets()?: %>
+        <% for entrySet in @entrySets(): %>
+          <option value="<%= entrySet.id %>"><%= entrySet.name %></option> 
+        <% end %>
+      <% end %>
+    </select>
+    <span id="entry_set_response_error" class="help-inline"></span>
+  </div>
+</div>
+
+
+  <div class="control-group">
+    <label class="control-label"><%- @t("responder_item.deadline") %></label>
+    <div class="controls">
+      <label for="deadline_date"></label>
+      <span id="deadline_error" class="help-inline"></span>
+    </div>
+  </div>
+
+
+<div class="row">
+    <div id="deadline" class="span5 offset1" data-date-wrapper='true'>
+</div>
