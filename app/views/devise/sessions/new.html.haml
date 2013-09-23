@@ -1,15 +1,12 @@
 =content_for :body_class, "sign-in"
-.login-info
-	%h1
-		Velkomin á vinnusvæði Qodiag !
-	%p
-		Vinsamlegast skráðu þig inn með lykilorði sem þú hefur fengið sent í tölvupósti.
 
+%h2
+	Login
 .main-login
 	= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
 		= render "shared/error_messages", :locals => {:form_builder => f}
-		= f.input :email
-		= f.input :password
-		= f.button :submit, t('actions.sign_in'), :class => "btn btn-inverse"
-	%a{:href=>'mailto:qodiag@qodiag.com?Subject=Fyrirspurn - Qodiag'}
-		Hafa samband
+		= f.input :email, label: false, placeholder: "email"
+		= f.input :password, label: false, placeholder: "password"
+		= f.button :submit, t('actions.sign_in'), :class => "btn"
+	%p{ :class => 'muted'}
+		%small Vinsamlegast skráðu þig inn með lykilorði sem þú hefur fengið sent í tölvupósti.

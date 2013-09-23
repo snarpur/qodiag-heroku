@@ -6,6 +6,11 @@ class PagesController < ApplicationController
   end
 
   def help
+    render :layout => 'application'
+  end
+
+  def landing
+    render :layout => 'login'
   end
 
   def browser_update

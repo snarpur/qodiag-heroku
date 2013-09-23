@@ -1,48 +1,112 @@
 html
-  background: url("2013/body-bg-blue.jpg")
+  //background: url("2013/body-bg-blue.jpg")
   height: 100%
 body
-  background: url("2013/body-bg-q.png") no-repeat 30px 30px
+  //background: url("2013/body-bg-q.png") no-repeat 30px 30px
   height: 100%
+  
+#header
+  background-color: #131C23
+  background-position: center top
+  background-repeat: no-repeat
+  padding: 60px 0
+  transition: all 0.2s ease-out 0s
+  color: #ADDAF1
+  .page-title
+    font-size: 600%
+    font-weight: bold
+    margin: 0 0 10px
+    color: #FFFFFF
 
-body.sign-in #page
-  background: url("rannis_96.png") no-repeat 100% 170px
+  .page-slogan 
+    margin: 0 0 5px
+    padding: 0
 
-#page
-  padding: 170px 0 0
-  color: #fff
-  width: 720px
+.lights
+  background-image: url("login/lights-blue.jpg")
+  background-size: 1400px 492px
 
-  .logo
-    margin-bottom: 30px
+#apply
+  background-color: #DBDBDB
+  padding: 10px 0
 
-  .login-info
-    margin-bottom: 30px
-    h1
-      font-size: 30px
-      font-weight: 400
+.btn
+  background: none repeat scroll 0 0 #2F9FE6
+  color: #FFFFFF
+  width: 30%
+  height: 35px
+  &:hover
+    background: none repeat scroll 0 0 #2F9FE6
+    color: #FFFFFF
 
-  .main-login
-    h2
-      display: none
+.signup-form 
+  form
+    margin-bottom: 0
 
-    label
-      text-transform: capitalize
-      color: #ccc
+  .muted
+    font-size: 90%
+    margin: -5px 0 0
 
-    div.input
-      float: left
-      width: 50%
+ 
+.form-stretch
+  .input-append
+    display: block
+    margin-bottom: 0
+    input
+      -moz-box-sizing: border-box
+      width: 55%
+      height: 35px
+      line-height: 35px
+      padding: 0 2%
 
-      input.string, input.password
-        font-size: 20px
-        padding: 8px 16px
-        width: 300px
+#content
+  padding: 60px 0
+  background: none repeat scroll 0 0 #FFFFFF
+  border-top: 1px solid #FFFFFF
+  min-height: 400px
 
-    input.button
-      float: right
-      margin-right: 26px
+.features 
+  margin: 40px 0
+  i
+    float: left
+    font-size: 6em !important
+    color: #2F9FE6
+    height: 0.5em !important
+    line-height: 0.5em !important
 
-    a
-      color: #ccc
-      text-decoration: underline
+  .title
+    font-weight: bold
+    line-height: 1
+    margin: 0
+
+  .sub-title 
+    margin: 0 0 10px
+    color: #2F9FE6
+    font-weight: 100
+  p
+    text-align: justify
+
+nav
+  height: 120px
+  background: none repeat scroll 0 0 #EFEFEF
+  border-top: 1px solid #DBDBDB
+  color: #ABABAB
+  text-align: center
+  i
+    float: left
+    font-size: 6em !important
+    color: #AAA
+    height: 0.5em !important
+    width: 0.75em
+    line-height: 0.85em !important
+  span.contact-text
+    padding: 3px 0
+  .subfooter
+    font-size: 80%
+  a 
+    display: inline-block
+    text-align: center
+    text-decoration: none
+  img
+    margin-top: 25px
+

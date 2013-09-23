@@ -1,6 +1,6 @@
 :coffee
   $('document').ready () ->
-    helpContent = $("#help-content").carousel()
+    helpContent = $("#help-content").carousel('pause')
     helpContent.carousel('pause')
     helpContent.on("slid",()-> 
       helpContent.carousel('pause')
@@ -11,17 +11,74 @@
 
 =content_for :body_class, "help"
 
-%div{:id => "help-content", :class => "carousel slide"}
-
-  %ol.carousel-indicators
-    %li{:data => {:target=>"#help-content", :slide_to =>"0"}} 
-    %li{:data => {:target=>"#help-content", :slide_to =>"1"}}
-    %li{:data => {:target=>"#help-content", :slide_to =>"2"}}
+#help-content{:class => 'carousel slide'}
+  %ol{:class => 'carousel-indicators'}
+    %li{:class => 'c-icon crossroad active',:data => {:target=>"#help-content", :slide_to =>"0"}}
+    %li{:class => 'c-icon crossroad',:data => {:target=>"#help-content", :slide_to =>"1"}}
+    %li{:class => 'c-icon crossroad',:data => {:target=>"#help-content", :slide_to =>"2"}}
+    %li{:class => 'c-icon crossroad',:data => {:target=>"#help-content", :slide_to =>"3"}}
   
   .carousel-inner
     .item.active
-      %h1 1
+      .row
+        .span11
+          %h3
+            Slide 1
+      .row
+        .span6
+          
+          %p
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae arcu vulputate dui viverra egestas ut et felis. Quisque in iaculis purus. Sed leo turpis, porttitor et elit eu, dictum pellentesque mi. Phasellus imperdiet lacus a felis semper, et commodo ante mollis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer ac facilisis ipsum. Nunc tempor odio non tortor aliquet iaculis. Nulla ac venenatis risus, in posuere nisl. Morbi tincidunt nunc ac libero eleifend, ut accumsan metus tempor. Nullam scelerisque feugiat elit. Morbi vel augue interdum, consectetur nunc eu, tempus turpis.
+          %p
+            Vestibulum volutpat ut quam ac tempus. Quisque vitae dapibus purus. Praesent vehicula imperdiet orci vel porta. Praesent porta eget nunc ac malesuada. Maecenas et malesuada nunc, vitae blandit urna. Sed gravida commodo aliquet. Nulla sagittis sagittis nulla, eget fringilla orci commodo sit amet. Sed quis varius lacus. Nulla condimentum placerat ligula. Donec dictum a neque sed tristique. Ut neque massa, mollis quis convallis ut, bibendum at orci. Vestibulum tincidunt, lorem eget commodo tristique, est odio aliquam diam, sed suscipit risus lacus ac dui. Pellentesque aliquet at nibh et bibendum. Aliquam eu ipsum nec magna venenatis consequat sed quis ante. Pellentesque in interdum libero, eget dictum est. Cras pellentesque nec dui ut sollicitudin.
+            
+          
+        .span5{:class => 'text-center'}
+          %img{:src => '/avatars/medium/female.png', :alt => 'Image Help'}
+
     .item
-      %h1 2
+      .row
+        .span11
+          %h3
+            Slide 2
+      .row
+        .span6
+          
+          %p
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae arcu vulputate dui viverra egestas ut et felis. Quisque in iaculis purus. Sed leo turpis, porttitor et elit eu, dictum pellentesque mi. Phasellus imperdiet lacus a felis semper, et commodo ante mollis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer ac facilisis ipsum. Nunc tempor odio non tortor aliquet iaculis. Nulla ac venenatis risus, in posuere nisl. Morbi tincidunt nunc ac libero eleifend, ut accumsan metus tempor. Nullam scelerisque feugiat elit. Morbi vel augue interdum, consectetur nunc eu, tempus turpis.
+          %p
+            Vestibulum volutpat ut quam ac tempus. Quisque vitae dapibus purus. Praesent vehicula imperdiet orci vel porta. Praesent porta eget nunc ac malesuada. Maecenas et malesuada nunc, vitae blandit urna. Sed gravida commodo aliquet. Nulla sagittis sagittis nulla, eget fringilla orci commodo sit amet. Sed quis varius lacus. Nulla condimentum placerat ligula. Donec dictum a neque sed tristique. Ut neque massa, mollis quis convallis ut, bibendum at orci. Vestibulum tincidunt, lorem eget commodo tristique, est odio aliquam diam, sed suscipit risus lacus ac dui. Pellentesque aliquet at nibh et bibendum. Aliquam eu ipsum nec magna venenatis consequat sed quis ante. Pellentesque in interdum libero, eget dictum est. Cras pellentesque nec dui ut sollicitudin. 
+        .span5{:class => 'text-center'}
+          %img{:src => '/avatars/medium/male.png', :alt => 'Image Help'}
     .item
-      %h1 3
+      .row
+        .span11
+          %h3
+            Slide 3
+      .row
+        .span6
+          
+          %p
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae arcu vulputate dui viverra egestas ut et felis. Quisque in iaculis purus. Sed leo turpis, porttitor et elit eu, dictum pellentesque mi. Phasellus imperdiet lacus a felis semper, et commodo ante mollis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer ac facilisis ipsum. Nunc tempor odio non tortor aliquet iaculis. Nulla ac venenatis risus, in posuere nisl. Morbi tincidunt nunc ac libero eleifend, ut accumsan metus tempor. Nullam scelerisque feugiat elit. Morbi vel augue interdum, consectetur nunc eu, tempus turpis.
+          %p
+            Vestibulum volutpat ut quam ac tempus. Quisque vitae dapibus purus. Praesent vehicula imperdiet orci vel porta. Praesent porta eget nunc ac malesuada. Maecenas et malesuada nunc, vitae blandit urna. Sed gravida commodo aliquet. Nulla sagittis sagittis nulla, eget fringilla orci commodo sit amet. Sed quis varius lacus. Nulla condimentum placerat ligula. Donec dictum a neque sed tristique. Ut neque massa, mollis quis convallis ut, bibendum at orci. Vestibulum tincidunt, lorem eget commodo tristique, est odio aliquam diam, sed suscipit risus lacus ac dui. Pellentesque aliquet at nibh et bibendum. Aliquam eu ipsum nec magna venenatis consequat sed quis ante. Pellentesque in interdum libero, eget dictum est. Cras pellentesque nec dui ut sollicitudin. 
+        .span5{:class => 'text-center'}
+          %img{:src => '/avatars/medium/missing.png', :alt => 'Image Help'}
+    .item
+      .row
+        .span11
+          %h3
+            Slide 4
+      .row
+        .span6          
+          %p
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae arcu vulputate dui viverra egestas ut et felis. Quisque in iaculis purus. Sed leo turpis, porttitor et elit eu, dictum pellentesque mi. Phasellus imperdiet lacus a felis semper, et commodo ante mollis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer ac facilisis ipsum. Nunc tempor odio non tortor aliquet iaculis. Nulla ac venenatis risus, in posuere nisl. Morbi tincidunt nunc ac libero eleifend, ut accumsan metus tempor. Nullam scelerisque feugiat elit. Morbi vel augue interdum, consectetur nunc eu, tempus turpis.
+          %p
+            Vestibulum volutpat ut quam ac tempus. Quisque vitae dapibus purus. Praesent vehicula imperdiet orci vel porta. Praesent porta eget nunc ac malesuada. Maecenas et malesuada nunc, vitae blandit urna. Sed gravida commodo aliquet. Nulla sagittis sagittis nulla, eget fringilla orci commodo sit amet. Sed quis varius lacus. Nulla condimentum placerat ligula. Donec dictum a neque sed tristique. Ut neque massa, mollis quis convallis ut, bibendum at orci. Vestibulum tincidunt, lorem eget commodo tristique, est odio aliquam diam, sed suscipit risus lacus ac dui. Pellentesque aliquet at nibh et bibendum. Aliquam eu ipsum nec magna venenatis consequat sed quis ante. Pellentesque in interdum libero, eget dictum est. Cras pellentesque nec dui ut sollicitudin. 
+        .span5{:class => 'text-center'}
+          %img{:src => '/avatars/medium/male.png', :alt => 'Image Help'}
+
+  %a{:href => '#help-content', :class => 'carousel-control left', :data => {:slide=>"prev"}}
+    &lsaquo;
+  %a{:href => '#help-content', :class => 'carousel-control right', :data => {:slide=>"next"}}
+    &rsaquo;

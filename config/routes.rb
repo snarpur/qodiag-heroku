@@ -105,6 +105,7 @@ Snarpur::Application.routes.draw do
 
   get "pages/error_401"
   get "pages/help"
+  get "pages/landing"
   get "pages/browser_update"
 
   root :to => 'application#index'
