@@ -2,7 +2,7 @@
 @import compass/layout/sticky-footer
 @import partials/twitter_bootstrap
 @import partials/fonts
-@import partials/fontcustom
+
 
 @import jquery-nanoscroller/nanoscroller
 @import ui-themes/base/jquery.ui.core
@@ -15,7 +15,7 @@
 @import theme/2013/type
 @import theme/2013/forms
 @import theme/2013/buttons
-/@import theme/2013/icons
+@import theme/2013/icons
 @import theme/2013/lists
 @import theme/2013/tables
 @import theme/2013/datepicker
@@ -25,7 +25,7 @@
 @import theme/2013/loading_views
 @import theme/2013/help
 
-
+@import partials/fontcustom
 
 
 @import partials/timeline
@@ -38,6 +38,8 @@
 @import partials/charts
 
 // REFACTOR: set shared timeline variables accross css and js
+
+@include declare-font-face("fontcustom","fontcustom/fontcustom")
 
 #canvas
   width: 938px

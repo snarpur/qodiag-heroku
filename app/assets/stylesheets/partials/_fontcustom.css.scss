@@ -1,0 +1,22 @@
+/* 
+ * Font Custom: bare CSS
+ */
+
+
+.fc-icon-employee-evaluation:before,
+.fc-icon-exit:before,
+.fc-icon-needs-assesment:before {
+  font-family: "fontcustom";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  text-decoration: inherit;
+}
+
+.fc-icon-employee-evaluation:before { content: "\f100"; }
+.fc-icon-exit:before { content: "\f101"; }
+.fc-icon-needs-assesment:before { content: "\f102"; }
