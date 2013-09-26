@@ -17,14 +17,22 @@ class User < ActiveRecord::Base
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
   validates_uniqueness_of :email
   validates_confirmation_of :password
-  validates_presence_of :password, :password_confirmation, :unless => :invitation?
-  validates_length_of :password, :in => 6..20, :unless => :invitation?
+  validates_presence_of :password, :password_confirmation, :unless => :password_required?
+  validates_length_of :password, :in => 6..20, :unless => :password_required?
   validates_associated :person
 
   scope :by_role, lambda {|r| joins(:roles).where("roles.name" => r)}
   
   def invitation?
     self.invitation ||= false
+  end
+
+  def pre_registered?
+    self.role_names.include?("pre_registered")
+  end
+
+  def password_required?
+    self.pre_registered? or self.invitation?
   end
   
   def is_invited?

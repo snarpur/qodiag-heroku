@@ -43,15 +43,15 @@ gem 'spinjs-rails'
 
 
 group :assets do
-  gem 'sass-rails', "  ~> 3.2.3"
+  gem 'sass-rails' #, "  ~> 3.2.3"
   gem 'coffee-rails', "~> 3.2.1"
   gem 'coffee-rails-source-maps'
   gem 'yui-compressor'
   gem 'turbo-sprockets-rails3'
   gem 'uglifier', '>=1.0.3'
   gem 'closure-compiler'
-  gem 'compass-rails'
   gem 'compass_twitter_bootstrap'
+  gem 'compass-rails'
   gem 'eco'
 end
 

@@ -24,26 +24,33 @@
       Qodiag - Quality of diagnosis
 
   %body{:class => yield(:body_class)}
-   
-    #header{:class => 'lights'}
-      .container
-        .row-fluid
-          %h1{:class => 'page-title'} 
-            %img{:src => '/assets/2013/logo-big.png', :alt => 'Qodiag', :class => 'logo'}
-          %h3{:class => 'page-slogan'}
-            Velkomin á vinnusvæði Qodiag !   
+    
+    #page
 
-    =render "pages/landing_page/apply" 
+      #header{:class => 'lights'}
+        .container
+          .row-fluid
+            .span6
+              %h1{:class => 'page-title'} 
+                =link_to image_tag( '/assets/2013/logo-big.png', :class => 'logo', :alt => 'Qodiag'), root_path()
+              %h3{:class => 'page-slogan'}
+                Velkomin á vinnusvæði Qodiag !
+            .span6
+              %img{:src => '/assets/login/computer_large.png', :alt => 'Qodiag'}  
 
-    #content
-      .container
-        =yield
-    #flash
-      -flash.each do |name, msg|
-        %div{:class => name}
-          =msg
+      #apply
+        - if not request.env['PATH_INFO'].include?"users/sign_in"
+          =render "pages/landing_page/apply" 
 
-    %nav{:class => "navbar navbar-default navbar-fixed-bottom"}
+      #content
+        .container
+          #flash
+            -flash.each do |name, msg|
+              %div{:class => name}
+                =msg
+          =yield
+    
+    #footerwrap
       .container
         =render "pages/landing_page/footer"
 

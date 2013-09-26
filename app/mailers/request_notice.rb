@@ -4,4 +4,9 @@ class RequestNotice < ActionMailer::Base
     @responder_item = responder_item
     mail(:to => "<#{responder_item.respondent.user.email}>", :subject => "Registered")
   end
+
+   def request_sign_up(email)
+    mail(:to => "<#{email}>", :subject => "Sign up Qodiag!")
+  end
+
 end

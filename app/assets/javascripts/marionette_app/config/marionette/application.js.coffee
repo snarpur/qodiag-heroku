@@ -7,7 +7,7 @@ do (Backbone) ->
   
 
     routeToCaretakerBackboneApp:(currentUser)-> 
-      if _.contains currentUser.get('role_names'), 'caretaker' and @getCurrentRoute() is null
+      if _.contains(currentUser.get('role_names'), 'caretaker') and @getCurrentRoute() is null
         true
       else
         false
@@ -23,6 +23,7 @@ do (Backbone) ->
         caretaker: "settings"
         respondent: "items"
 
+      
       roles = user.get('role_names')
       currentRole = _.filter(roles,(s)-> s == "caretaker" or s == "respondent")
       rootUrls[_.first(currentRole)]

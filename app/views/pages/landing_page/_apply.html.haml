@@ -1,11 +1,10 @@
-#apply
-  .container
-    .row-fluid{ :class => 'row-fluid-70 signup-form'}
-      .span8
-        %form{:id => "email", :action => "#", :method => "post",:class => "form-bloat form-stretch"} 
-          .input-append
-            %input{:type => "text", :id => "email", :class => "placeholder", :placeholder => "Are you interested in use Qodiag.com?"}
-            %button{:type => "button", :class => "btn"}
-              Sign up!
-      .span4{:class => 'text-right'}
-        = button_to ' Sign in!', root_path(), class: "btn"
+.container
+  .row-fluid{ :class => 'row-fluid-70 signup-form'}
+    .span8
+      = simple_form_for(User.new, :as => 'user', :url => sign_up_user_path(), :class => "form-bloat form-stretch") do |f|
+        .input-append
+          = render "shared/error_messages", :locals => {:form_builder => f}
+          = f.input :email, label: false, placeholder: "Are you interested in being part of Qodiag.com?", :class => "placeholder"
+          = f.button :submit, "Join us!", :class => "btn"
+    .span4{:class => 'text-right'}
+      = link_to "Sign in!", new_user_session_path(), :class => "btn"

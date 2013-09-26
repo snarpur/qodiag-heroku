@@ -1,5 +1,5 @@
 Snarpur::Application.routes.draw do
-
+  require "#{ RAILS_ROOT }/lib/util/route_util.rb"
 
 
   resources :entry_set_responses 
@@ -101,16 +101,16 @@ Snarpur::Application.routes.draw do
   
   # match 'pre_registrations/edit/step/:step_no/:id' => 'pre_registrations#edit',:defaults => { :step_no => 1}, :via => [:get], :as => :pre_registration_step
   # match 'pre_registrations/edit/step/:step_no/:id' => 'pre_registrations#update',:defaults => { :step_no => 1}, :via => [:post]
-
+  
+  post "sign_up/user", :to => 'sign_up#create'
 
   get "pages/error_401"
   get "pages/help"
   get "pages/landing"
   get "pages/browser_update"
 
-  root :to => 'application#index'
-
-
-
+  #REFACTOR: Try to pass this logic to Devise GEM
+  root :to => 'application#index', constraints: lambda { |r| r.env["warden"].authenticate? }
+  root :to => 'pages#landing'
 
 end

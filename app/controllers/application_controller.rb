@@ -47,6 +47,9 @@ class ApplicationController < ActionController::Base
     redirect_to new_user_session_path() unless logged_in? 
   end
 
+  def after_sign_out_path_for(resource_or_scope)
+    new_user_session_path()
+  end
 
   def application_layout
     params[:action] == 'index' ? 'marionette_application' : 'application'

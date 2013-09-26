@@ -31,6 +31,8 @@ is:
       signed_up: 'Skráning tókst'
       updated: 'You updated your account successfully.'
       destroyed: 'Bye! Your account was successfully cancelled. We hope to see you again soon.'
+      pre_registration: "Takk fyrir áhugan, við munum senda netfang á %{email}"
+      blank_email: 'Netfang vantar'
     unlocks:
       send_instructions: 'You will receive an email with instructions about how to unlock your account in a few minutes.'
       unlocked: 'Your account was successfully unlocked. You are now signed in.'
@@ -52,4 +54,5 @@ is:
       send_instructions: 'Beiðni um að klára skráningur hefur verið sent á %{email}'
       invitation_token_invalid: "Beiðni um skráningu er ekki gild"
       updated: 'Lykilorð hefur verið vistað, þú ert nú skráður inn'
+
 

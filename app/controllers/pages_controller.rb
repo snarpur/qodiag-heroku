@@ -17,5 +17,4 @@ class PagesController < ApplicationController
   	render :layout => 'simple_layout'
   end
 
-
 end

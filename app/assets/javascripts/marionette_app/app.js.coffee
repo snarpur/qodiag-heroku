@@ -3,7 +3,6 @@
   App = new Marionette.Application
   
   App.on "initialize:before", (options) ->
-
     App.environment = options.environment
     @currentUser = App.request "set:current:user", options.currentUser
   
@@ -34,13 +33,13 @@
 
   
   App.on "initialize:after", (options) ->
-
     if Backbone.history
       Backbone.history.start()
       if @routeToCaretakerBackboneApp(@currentUser)
         window.location.href = "/users"
         return
-      @navigate(@rootUrl(App.currentUser), trigger: true) unless @getCurrentRoute()
+      
+      @navigate(@rootUrl(@currentUser), trigger: true) unless @getCurrentRoute()?
   
   App
 
