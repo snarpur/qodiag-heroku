@@ -1,0 +1,36 @@
+/* 
+ * Font Custom: bare CSS
+ */
+
+
+.fc-icon-waiting-room:before,
+.fc-icon-employee-evaluation:before,
+.fc-icon-papers:before,
+.fc-icon-secure:before,
+.fc-icon-social-services:before,
+.fc-icon-locker:before,
+.fc-icon-line-graph:before,
+.fc-icon-mail-box:before,
+.fc-icon-needs-assesment:before,
+.fc-icon-exit:before {
+  font-family: "fontcustom";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  text-decoration: inherit;
+}
+
+.fc-icon-waiting-room:before { content: "\f100"; }
+.fc-icon-employee-evaluation:before { content: "\f101"; }
+.fc-icon-papers:before { content: "\f102"; }
+.fc-icon-secure:before { content: "\f103"; }
+.fc-icon-social-services:before { content: "\f104"; }
+.fc-icon-locker:before { content: "\f105"; }
+.fc-icon-line-graph:before { content: "\f106"; }
+.fc-icon-mail-box:before { content: "\f107"; }
+.fc-icon-needs-assesment:before { content: "\f108"; }
+.fc-icon-exit:before { content: "\f109"; }

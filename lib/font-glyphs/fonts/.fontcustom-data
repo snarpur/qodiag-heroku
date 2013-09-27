@@ -1,0 +1,27 @@
+{
+  "fonts": [
+    "fontcustom.ttf",
+    "fontcustom.woff",
+    "fontcustom.eot",
+    "fontcustom.svg"
+  ],
+  "templates": [
+    "fontcustom.css",
+    "_fontcustom.scss",
+    "_fontcustom-bootstrap.scss",
+    "fontcustom-preview.html"
+  ],
+  "file_name": "fontcustom",
+  "glyphs": [
+    "waiting-room",
+    "employee-evaluation",
+    "papers",
+    "secure",
+    "social-services",
+    "locker",
+    "line-graph",
+    "mail-box",
+    "needs-assesment",
+    "exit"
+  ]
+}

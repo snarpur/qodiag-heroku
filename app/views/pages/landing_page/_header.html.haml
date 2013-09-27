@@ -1,0 +1,15 @@
+#header{:class => 'lights'}
+  .container
+    .row-fluid
+      .span6
+        %h1{:class => 'page-title'} 
+          =link_to image_tag( '/assets/2013/logo-big.png', :class => 'logo', :alt => 'Qodiag'), root_path()
+        %h3{:class => 'page-slogan'}
+          Velkomin á vinnusvæði Qodiag !
+        %i{:class => 'fc-icon-waiting-room icon-light icon-5x'}
+        %i{:class => 'fc-icon-secure icon-light icon-5x'}
+        %i{:class => 'fc-icon-social-services icon-light icon-5x'}
+        %i{:class => 'fc-icon-line-graph icon-light icon-5x'}
+        %i{:class => 'fc-icon-needs-assesment icon-light icon-5x'}
+      .span6
+        %img{:src => '/assets/login/computer_large.png', :alt => 'Qodiag', :class => 'hidden-phone'}

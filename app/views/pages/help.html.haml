@@ -11,13 +11,16 @@
 
 =content_for :body_class, "help"
 
+
+%i.fc-icon-papers
+
 #help-content{:class => 'carousel slide'}
   %ol{:class => 'carousel-indicators'}
     %li{:class => 'c-icon crossroad active',:data => {:target=>"#help-content", :slide_to =>"0"}}
     %li{:class => 'c-icon crossroad',:data => {:target=>"#help-content", :slide_to =>"1"}}
     %li{:class => 'c-icon crossroad',:data => {:target=>"#help-content", :slide_to =>"2"}}
     %li{:class => 'c-icon crossroad',:data => {:target=>"#help-content", :slide_to =>"3"}}
-  
+
   .carousel-inner
     .item.active
       .row

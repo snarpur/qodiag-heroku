@@ -1,0 +1,71 @@
+/*
+ * Font Custom: Bootstrap CSS
+ */
+
+@font-face {
+  font-family: "fontcustom";
+  src: url("fontcustom.eot");
+  src: url("fontcustom.eot?#iefix") format("embedded-opentype"),
+       url("fontcustom.woff") format("woff"),
+       url("fontcustom.ttf") format("truetype"),
+       url("fontcustom.svg#fontcustom") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="fc-icon-"]:before, [class*=" fc-icon-"]:before {
+  font-family: "fontcustom";
+  font-weight: normal;
+  font-style: normal;
+  display: inline-block;
+  text-decoration: inherit;
+}
+
+a [class^="fc-icon-"], a [class*=" fc-icon-"] {
+  display: inline-block;
+  text-decoration: inherit;
+}
+
+.fc-icon-large:before {
+  vertical-align: top;
+  font-size: 1.333em;
+}
+
+.btn [class^="fc-icon-"], .btn [class*=" fc-icon-"] {
+  line-height: 0.9em;
+}
+
+li [class^="fc-icon-"], li [class*=" fc-icon-"] {
+  display: inline-block;
+  width: 1.25em;
+  text-align: center;
+}
+
+li .fc-icon-large[class^="fc-icon-"], li .fc-icon-large[class*=" fc-icon-"] {
+  width: 1.875em;
+}
+
+li[class^="fc-icon-"], li[class*=" fc-icon-"] {
+  margin-left: 0;
+  list-style-type: none;
+}
+
+li[class^="fc-icon-"]:before, li[class*=" fc-icon-"]:before {
+  text-indent: -2em;
+  text-align: center;
+}
+
+li[class^="fc-icon-"].fc-icon-large:before, li[class*=" fc-icon-"].fc-icon-large:before {
+  text-indent: -1.333em;
+}
+
+.fc-icon-waiting-room:before { content: "\f100"; }
+.fc-icon-employee-evaluation:before { content: "\f101"; }
+.fc-icon-papers:before { content: "\f102"; }
+.fc-icon-secure:before { content: "\f103"; }
+.fc-icon-social-services:before { content: "\f104"; }
+.fc-icon-locker:before { content: "\f105"; }
+.fc-icon-line-graph:before { content: "\f106"; }
+.fc-icon-mail-box:before { content: "\f107"; }
+.fc-icon-needs-assesment:before { content: "\f108"; }
+.fc-icon-exit:before { content: "\f109"; }

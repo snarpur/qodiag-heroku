@@ -18,30 +18,20 @@
     =javascript_tag do
       = yield(:jstemplates)
 
-    //=yield :backbone_bootstrap
-
     %title
       Qodiag - Quality of diagnosis
 
   %body{:class => yield(:body_class)}
     
     #page
-
-      #header{:class => 'lights'}
-        .container
-          .row-fluid
-            .span6
-              %h1{:class => 'page-title'} 
-                =link_to image_tag( '/assets/2013/logo-big.png', :class => 'logo', :alt => 'Qodiag'), root_path()
-              %h3{:class => 'page-slogan'}
-                Velkomin á vinnusvæði Qodiag !
-            .span6
-              %img{:src => '/assets/login/computer_large.png', :alt => 'Qodiag'}  
-
+      - if not request.env['PATH_INFO'].include?"users/sign_in"
+        =render "pages/landing_page/header"  
+     
       #apply
         - if not request.env['PATH_INFO'].include?"users/sign_in"
           =render "pages/landing_page/apply" 
-
+        - else
+          =render "pages/landing_page/apply_sign_in" 
       #content
         .container
           #flash
@@ -49,8 +39,8 @@
               %div{:class => name}
                 =msg
           =yield
-    
-    #footerwrap
+      .push
+    %footer#footer
       .container
         =render "pages/landing_page/footer"
 

@@ -37,9 +37,10 @@ gem 'gon'
 gem 'js-routes'
 gem 'acts_as_commentable', '3.0.1'
 gem 'yaml_db'
+gem 'fontcustom'
 
 # Gem to show the spinner when change the view
-gem 'spinjs-rails'
+
 
 
 group :assets do
