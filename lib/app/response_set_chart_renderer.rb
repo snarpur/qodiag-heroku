@@ -22,6 +22,7 @@ module ResponseSetChartRenderer
           item.get_renderer.send(:new, config_copy.merge(chart_metrics), self)
         end
       end
+
       OpenStruct.new({:charts => charts}.merge(chart_metrics))
     end
 

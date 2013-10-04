@@ -13,8 +13,18 @@ $answer-level-color-4: rgba(22,25,59,$level-opacity)
   position: relative
   min-width: 500px
   color: #333
+  width: 93%
   thead th
     background-color: rgba(0,0,0,.1)
+    padding: 0 .4em
+  thead tr
+    width: 100%
+    th:last-child
+      width: 35% !important
+    th:first-child
+      width: 4% !important
+    th:nth-child(2)
+      width: 53% !important
   thead tr th:last-child span
     right: 0
   thead tr th:first-child span
@@ -29,7 +39,15 @@ $answer-level-color-4: rgba(22,25,59,$level-opacity)
     color: #EE8900
     &:hover
       color: lighten(#EE8900,10%)
-  tbody 
+  tbody
+    tr td:last-child
+      width: 33% !important
+    tr td:first-child
+      width: 4% !important
+    tr td:nth-child(2)
+      width: 53% !important
+    tr
+      width: 100%
     tr:nth-child(2n+1) 
       background-color: rgba(255,255,255,0.5)
     tr td
@@ -52,13 +70,22 @@ $answer-level-color-4: rgba(22,25,59,$level-opacity)
     span.answer-signal
       display: block
       font-size: 0.7em
-      font-weight: bold
+      //font-weight: bold
       height: 1em
       line-height: 1em
       text-align: center
       padding: 0.3em
       margin-left: .5em
-      +border-radius
+      +border-radius(1px)
     span
       display: none
+
+.highcharts-data-labels
+  span
+    text-align: center
+    padding-top: 3px
+  .label-high-scores
+    color: white
+    bottom: -25px
+    position: relative
 

@@ -5,7 +5,7 @@ class PopulateUtil
  	attr_accessor :surveys
 
  	def initialize
- 		  @surveys = ["adhd_rating_scale","sdq","ysr_syndrome_scale"]
+ 		  @surveys = ["adhd_rating_scale","sdq","ysr_syndrome_scale","dass"]
     	@caretaker_role = Role.find_by_name('caretaker')
     	@respondent_role = Role.find_by_name('respondent')
     	@sex = ['male','female']
@@ -100,6 +100,7 @@ class PopulateUtil
                                   )
       FactoryGirl.create(:guardian_relationship, :person => parent_person, :relation => patient)
       FactoryGirl.create(:parent_relationship, :person => parent_person, :relation => patient)
+      FactoryGirl.create(:respondent_relationship, :person => parent_person, :relation => patient)
       {:person => parent_person, :user => parent_user}
     
   end

@@ -37,6 +37,7 @@ class App.Views.Timeline.ItemDialog extends Backbone.View
 
   
   resizeDialog:(line)=>
+    @.$el.closest(".overlay-charts").css("height",line.get('currentChartHeight'))
     @.$el.css("height",line.get('currentChartHeight'))
     
   

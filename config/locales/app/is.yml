@@ -85,6 +85,8 @@ is:
     personal_information: "Persónu upplýsingar"
     occupational_information: "Atvinnu upplýsingar"
     contact_information: "Heimilisfang og sími"
+    total: "heildarvandi"
+    y: " og "
   #Common actions -------------------------------------------------------
   actions:
     save: "Vista"

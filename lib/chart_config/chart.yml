@@ -4,6 +4,7 @@ chart_config:
     enabled: false
   tooltip:
     enabled: false
+    backgroundColor: rgba(255, 255, 255, 0.85)
   chart:
     marginBottom: 75
     marginTop: 80

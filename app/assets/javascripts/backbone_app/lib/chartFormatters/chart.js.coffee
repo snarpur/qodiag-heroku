@@ -8,12 +8,14 @@ class App.Lib.ChartFormatters.Chart
       "xAxis.labels.formatter",
       "yAxis.labels.formatter",
       "legend.labelFormatter",
+      #"plotOptions.column.tooltip.formatter",
       "tooltip.formatter",
       "subtitle.text",
       "title.text"
     ]
  
   constructor:(chart_config)->
+
     @chart = chart_config
  
   findValue:(obj,path)->
@@ -43,13 +45,19 @@ class App.Lib.ChartFormatters.Chart
     _.each(@formatters(),((f) ->
       target = @findKeyAndValue(@chart,f)
       if target?.key?[target.value]?
-        target.key[target.value] = @getFormatterFunction(f)
+        value = target.key[target.value]
+        target.key[target.value] = @getFormatterFunction(f,value)
     ),@)
     @chart
      
-  getFormatterFunction:(str)=>
+  getFormatterFunction:(str,options)=>
     functionString = _.camelize(str.replace(/\./g,"-"))
-    @[functionString].call()
+    #NOTE: Check if options is a boolean
+    if (options == true)
+      options = {name: 'default'}
+      
+    @[functionString].call(@,options)
+
 
   plotOptionsColumnDataLabelsFormatter:->
     () ->

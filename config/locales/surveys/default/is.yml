@@ -1,0 +1,18 @@
+is:
+  surveys:
+    terms:
+      age: "ára"
+      male: "drengir"
+      female: "stúlkur"
+      average: Meðaltal
+      standard_deviation: Staðalfrávik
+      respondent:
+        parent: "foreldri"
+        teacher: "kennari"
+      norm_reference:
+        title: "viðmið"
+        group: "samanburðarhópur"
+        teacher: "kennaramat"
+        parent: "foreldramat"
+    respondent_registration: 
+      name: Grunnuplýsingar

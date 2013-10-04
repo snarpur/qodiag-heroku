@@ -77,6 +77,10 @@ FactoryGirl.define do
     factory :parent_relationship do
       name "parent"
     end
+
+    factory :respondent_relationship do
+      name "respondent"
+    end
   end
 
 

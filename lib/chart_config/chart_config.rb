@@ -149,5 +149,13 @@ module ChartConfig
       class  Chart < ChartConfig::StandardDeviation::Chart;  end
     end
   end
+  module Dass
+    module Column
+        class  Chart < ChartConfig::StackedColumn::Chart;  end
+    end
+    module Line
+      class  Chart < ChartConfig::Line::Chart;  end
+    end
+  end
  
 end

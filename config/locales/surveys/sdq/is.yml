@@ -1,0 +1,45 @@
+is:
+  surveys:
+    sdq:
+      name: "Spurningar um styrk og vanda (SDQ)"
+      terms:
+        normal: undir mörkum
+        borderline: jaðarsvæði
+        abnormal: yfir mörkum
+        emotional: tilfinningavandi
+        conduct: "hegðunarvandi"
+        hyperactivity_inattention: "ofvirkni"
+        peer_problem: "samskiptavandi"
+        prosocial_behaviour: "félagshæfni"
+        total: "heildarvandi"
+        impact_supplement: viðbótarspurningar
+      questions:
+       - Tekur tillit til tilfinninga annarra
+       - Eirðarlaus, ofvirk/ur, getur ekki verið kyrr lengi
+       - Kvartar oft um höfuðverk, magaverk eða flökurleika
+       - Deilir greiðlega með öðrum börnum (nammi, dóti, blýöntum o.s.frv.)
+       - Fær oft skapofsaköst eða er heitt í hamsi
+       - Frekar einræn/n, leikur sér oft ein/n
+       - Almennt hlýðin/n, gerir yfirleitt eins og fullorðnir óska
+       - Áhyggjur af mörgu, virðist oft áhyggjufullur
+       - Hjálpsamur/söm ef einhver meiðir sig, er í uppnámi eða líður illa
+       - Stöðugt með fikt eða á iði
+       - Á að minnsta kosti einn góðan vin
+       - Flýgst oft á eða leggur börn í einelti
+       - Oft óhamingjusamur/söm, langt niðri eða tárast
+       - Almennt vel þokkaður/þokkuð af öðrum börnum
+       - Auðvelt að stela athygli hans/hennar, einbeiting á flakki
+       - Óörugg/ur, hangir í foreldrum, við ókunnar aðstæður, missir sjálfstraust
+       - Góður við yngri börn
+       - Lýgur oft eða svindlar
+       - Verður fyrir stríðni eða einelti af hálfu annarra barna
+       - Býðst oft til að hjálpa öðrum (foreldrum, kennurum, öðrum börnum)
+       - Hugsar áður en hann/hún framkvæmir
+       - Stelur heima, í skóla eða annarsstaðar
+       - Semur betur við fullorðna en önnur börn
+       - Óttast margt, verður auðveldlega hrædd/ur
+       - Fylgir verkefnum eftir til enda, heldur góðri athygli
+      answers:
+        - Ekki rétt
+        - Að nokkru rétt
+        - Örugglega rétt

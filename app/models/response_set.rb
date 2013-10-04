@@ -41,6 +41,13 @@ module ResponseSetCustomMethods
               where(:question_groups => {:text => group_name}).length
   end
 
+  def weights_by_groups(group_name)
+    result =  self.responses.joins(:answer,:question => :question_group).
+              where(:question_groups => {:text => group_name}).
+              select('answers.weight')
+              
+  end
+
   def norm_reference 
     NormReference.find_match({:survey_id => self.survey.id, :sex => self.subject.sex, :age => self.subject.age})
   end

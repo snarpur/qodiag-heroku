@@ -32,16 +32,19 @@ module ChartRenderer
       data= {}
       data[:data] = get_content(:question_groups).map do |i|
         groups = i.is_a?(String) ? i : i[:total]
-        group_results = total_for_groups(groups)
+        group_results = total_for_groups(groups)        
         if i.respond_to?(:has_key?) && i[:drilldown] == true
-          drilldown_config = Marshal::load(Marshal.dump(@chart)) 
-          drilldown_config[:content][:question_groups] = groups 
-          drilldown_chart = self.class.new(drilldown_config,@response_set)
-          drilldown_series = [{:data => drilldown_chart.chart_data, :name => i[:name]}]
-          {:y => group_results, :drilldown => {:series => drilldown_chart.chart_data,:xAxis => {:categories => groups}}}
+          config_drilldown(i)
+          # NOTE: Review the function config_drilldown
+          # drilldown_config = Marshal::load(Marshal.dump(@chart)) 
+          # drilldown_config[:content][:question_groups] = groups
+          # drilldown_chart = self.class.new(drilldown_config,@response_set)
+          # drilldown_series = [{:data => drilldown_chart.chart_data, :name => i[:name]}]
+          # {:y => group_results, :drilldown => {:series => drilldown_chart.chart_data,:xAxis => {:categories => groups}}}
         else
-          {:y => group_results}
+          {:y => group_results, :values => weights_by_groups(groups)}
         end
+          
       end
       data
     end
@@ -147,6 +150,17 @@ module ChartRenderer
       @response_set.sum_of_group_result(groups)
     end
 
+    def config_drilldown(group)
+      drilldown_config = Marshal::load(Marshal.dump(@chart)) 
+      drilldown_config[:content][:question_groups] = group[:total]
+      drilldown_chart = self.class.new(drilldown_config,@response_set)
+      drilldown_series = [{:data => drilldown_chart.chart_data, :name => group[:name]}]
+      {:y => group_results, :values => weights_by_groups(group), :drilldown => {:series => drilldown_chart.chart_data,:xAxis => {:categories => group[:total]}}}  
+    end
+
+    def weights_by_groups(groups)
+      @response_set.weights_by_groups(groups)
+    end
     
     def questions_by_group
       get_content(:question_groups).map do |i|

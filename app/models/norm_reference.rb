@@ -47,11 +47,11 @@ class NormReference < ActiveRecord::Base
   end
  
   def norm_reference_group_name
-  title = []
-  title << [:survey,survey.access_code]
-  title << [:respondent,responder] unless responder.nil?
-  title << [:sex ,sex] unless sex.empty?
-  title << [:age,age_group_string] unless age_group_string.empty?
-  title
+    title = []
+    title << [:survey,survey.access_code]
+    title << [:respondent,responder] unless responder.nil?
+    title << [:sex ,sex] unless sex == nil or sex.empty?
+    title << [:age,age_group_string] unless age_group_string == nil or age_group_string.empty?
+    title
   end
 end

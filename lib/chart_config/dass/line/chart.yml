@@ -1,0 +1,14 @@
+chart_name: Dass
+chart_type: Line
+extends: Line
+content:
+  result_names: [normal, mild, moderate, severe, extremely_severe]
+
+
+charts:
+  -
+    chart_config:
+      chart: 
+        renderTo: score
+    content:
+      question_groups: [depression, anxiety, stress]

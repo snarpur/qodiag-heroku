@@ -12,6 +12,7 @@ chart_config:
   title:
     text: true
 content:
+  high_scores: [2,3]
   result_names: [average]
 charts:
   -
@@ -19,19 +20,36 @@ charts:
       name:  score
       question_list_drilldown: true
       question_groups: [inattention, impulsivity_hyperactivity] 
+    chart_config:
+      tooltip:
+        enabled: true
+        shared: true
+        useHTML: true
+        formatter: 
+          name: countHighScores
+          argument: [2,3]
+            
   -
     content:
       name:  total
+
       question_groups: 
         -
           name: total
           total: [inattention, impulsivity_hyperactivity]
     chart_config:
+      plotOptions:
+        column:
+          point:
+            events:
+              click: false
       legend:
           enabled: false
       yAxis:
         opposite: true
         maxPadding: 0.01
+        labels:
+          useHTML: true
       title: 
         text: ~
       subtitle:

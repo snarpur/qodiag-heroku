@@ -1,0 +1,60 @@
+is:
+  surveys:
+    dass:
+      name: "DASS"
+      questions:
+        - Ég komst í uppnám yfir hreinum smámunum. 
+        - Ég fann fyrir munnþurrki. 
+        - Ég virtist alls ekki geta fundið fyrir neinum góðum tilfinningum. 
+        - Ég átti í erfiðleikum með að anda (t.d. allt of hröð öndun, mæði án líkamlegrar áreynslu). 
+        - Ég gat ekki byrjað á neinu.
+        - Ég hafði tilhneigingu til að bregðast of harkalega við aðstæðum. 
+        - Mér fannst ég vera óstyrk(ur) (t.d. að fæturnir væru að gefa sig). 
+        - Mér fannst erfitt að slappa af.
+        - Ég lenti í aðstæðum sem gerðu mig svo kvíðna/kvíðinn að mér létti stórum þegar þeim lauk. 
+        - Mér fannst ég ekki geta hlakkað til neins. 
+        - Ég komst auðveldlega í uppnám.
+        - Mér fannst ég eyða mikilli andlegri orku.
+        - Ég var hrygg/hryggur og þunglynd(ur).
+        - Ég varð óþolinmóð(ur) ef eitthvað lét á sér standa (t.d. lyftur, umferðarljós, ég látin(n) bíða).
+        - Mér fannst það ætlaði að líða yfir mig.
+        - Mér fannst ég hafa misst áhuga á næstum öllu.
+        - Mér fannst ég ekki vera mikils virð i sem manneskja.
+        - Mér fannst ég frekar hörundsár.
+        - Ég svitnaði töluvert (t.d. sviti í lófum) þó það væri ekki heitt og ég hafi ekki reynt mikið á mig.
+        - Ég fann fyrir ótta án nokkurrar skynsamlegrar ástæðu.
+        - Mér fannst lífið varla þess virði að lifa því.
+        - Mér fannst erfitt að ná mér niður.
+        - Ég átti erfitt með að kyngja.
+        - Ég virtist ekki geta haft neina ánægju af því sem ég var að gera.
+        - Ég varð var við hjartsláttinn í mér þó ég hefði ekki reynt á mig (t.d.hraðari hjartsláttur, hjartað sleppti úr slagi).
+        - Ég var dapur/döpur og niðurdregin(n).
+        - Mér fannst ég vera mjög pirruð/pirraður.
+        - Mér fannst ég nánast gripin(n) skelfingu.
+        - Mér fannst erfitt að róa mig eftir að eitthvað kom mér í uppnám.
+        - Ég var hrædd(ur) um að „klikka á“ smávægilegu verki sem ég var ekki kunnug(ur).
+        - Ég gat ekki fengið brennandi áhuga á neinu.
+        - Ég átti erfitt með að umbera truflanir á því sem ég var að gera.
+        - Ég var spennt(ur) á taugum.
+        - Mér fannst ég nánast einskis virði.
+        - Ég þoldi ekki þegar eitthvað kom í veg fyrir að ég héldi áfram við það sem ég var að gera.
+        - Ég var óttaslegin(n).
+        - Ég sá ekkert í framtíðinni sem gaf mér von.
+        - Mér fannst lífið vera tilgangslaust.
+        - Ég var ergileg(ur).
+        - Ég hafði áhyggjur af aðstæðum þar sem ég fengi hræðslukast (panik) og gerði mig að fífli.
+        - Ég fann fyrir skjálfta (t.d. í höndum).
+        - Mér fannst erfitt að hleypa í mig krafti til að gera hluti.
+      answers:
+        - Átti alls ekki við mig
+        - Átti við mig að einhverju leyti eða stundum
+        - Átti töluvert vel við mig eða drjúgan hluta vikunnar
+        - Átti mjög vel við mig eða mest allan tímann
+      terms:
+        depression: þunglyndi
+        stress: "streitu"
+        anxiety: "kvíði"
+        normal: undir mörkum
+        moderate: meðallagi
+        severe: alvarleg
+        extremely_severe: afar alvarleg
