@@ -1,10 +1,52 @@
+$pastel: #537BC3 #5E88BF #73B2D9 #8BCAD9 #C4EEF2 
+$neon: #0E2759 #183F8C #3D71D9 #72A9F2 #B3F2F2
+$active_palette: $pastel
+$banner_label_height: 40px
+$l_str_width: 100px
+$l_str_margin: 20px
+$r_str_width: 10px
+$r_str_margin: 10px
+
+
+
+$left_stripe_1: linear-gradient(left, nth($active_palette,1), nth($active_palette,1))
+$left_stripe_2: linear-gradient(left, nth($active_palette,2), nth($active_palette,2))
+$left_stripe_3: linear-gradient(left, nth($active_palette,3), nth($active_palette,3))
+$left_stripe_4: linear-gradient(left, nth($active_palette,4), nth($active_palette,4))
+$left_stripe_5: linear-gradient(left, nth($active_palette,5), nth($active_palette,5))
+
+
 html
-  //background: url("2013/body-bg-blue.jpg")
+
   height: 100%
 body
-  //background: url("2013/body-bg-q.png") no-repeat 30px 30px
   height: 100%
   overflow: hidden
+  font-family: 'Lato', sans-serif
+  font-weight: 300
+  +background-image($left_stripe_1,$left_stripe_2,$left_stripe_3,$left_stripe_4,$left_stripe_5)
+  background-size: $l_str_width 100%
+  background-position: left $l_str_margin top 0px, left $l_str_width+$l_str_margin top 0px,left $l_str_width*2+$l_str_margin top 0px,left $l_str_width*3+$l_str_margin top 0px,left $l_str_width*4+$l_str_margin top 0px
+  background-repeat: repeat-y
+
+#flash
+  top: 20px !important
+  div
+    padding: 8px 35px 8px 14px
+    margin-bottom: 18px
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5)
+    -webkit-border-radius: 4px
+    -moz-border-radius: 4px
+    border-radius: 4px
+  div.success    
+    color: #468847    
+    background-color: #dff0d8
+    border: 1px solid #d6e9c6
+    
+  div.notice
+    color: #C09853
+    background-color: #FCF8E3
+    border: 1px solid #FBEED5
   
 #page
   clear: both
@@ -12,7 +54,11 @@ body
   margin-bottom: -75px
   min-height: 100%
   height: 100%
-  margin: 0 auto -75px
+  margin: 0 0 -75px
+  +background-image($left_stripe_1,$left_stripe_2,$left_stripe_3,$left_stripe_4,$left_stripe_5)
+  background-size: 10px 100%
+  background-position: right 3px top 0px, right 13px top 0px,right 23px top 0px,right 33px top 0px,right 43px top 0px
+  background-repeat: repeat-y
 
 .push 
   height: 75px
@@ -21,20 +67,78 @@ body
   margin: 0 20px
 
 #header
-  background-color: #131C23
   background-position: center top
   background-repeat: no-repeat
-  padding: 20px 0
   transition: all 0.2s ease-out 0s
-  opacity: 0.75
-  color: #FFF
+
+  .row-fluid
+    & > div
+      position: relative
+      height: 340px
+      overflow: hidden
+    div:nth-child(2)
+      padding-left: 5px
+      h1
+        font-weight: 300
+        font-size: 5em
+        letter-spacing: 0.1em
+        margin-top: .2em
+      h1:first-letter
+        color: #f20000
+        font-weight: 900
+        font-size: 1.2em
+        +text-shadow(-1px 1px 0 #fff, -2px 2px 0 rgba(0, 0, 0,0.1))
+      // 7px 7px 1px rgba(255,0,0,.85)
+      p
+        margin-top: 20px
+      img
+        display: block
+        position: absolute
+        bottom: -100px
+        +opacity(0.75)
+
+  ul
+    +horizontal-list(false)
+    padding-left: $l_str_margin
+    li
+      width: 100px
+      height: 340px
+      position: relative
+
+    em
+      font-family: 'Dosis', sans-serif
+      display: block
+      position: relative
+      width: 100%
+      font-size: 1em
+      color: #333
+      height: $banner_label_height
+      font-style: normal
+      font-weight: 400
+      margin: 3em 0 1em 0
+      line-height: $banner_label_height
+      text-align: center
+      text-transform: uppercase
+    i
+      display: block
+      font-size: 2em
+      margin: 0 auto
+      background-color: #fafafa
+      color: #444
+
+      @extend .fc-icon-circled
+    
+    @for $i from 1 through 5
+      $stripe_label: lightness(nth($active_palette,$i))/2
+      li:nth-child(#{$i}) em
+        background-color: lighten(nth($active_palette,$i),7)
+
   .page-title
     font-size: 600%
     font-weight: bold
     margin: 0 0 10px
     color: #FFFFFF
-  i
-    margin: 5px
+
 
   .page-slogan 
     margin: 0 0 5px
@@ -45,9 +149,10 @@ body
   //background-size: 1400px 492px
 
 #apply
-  background-color: #DBDBDB
   padding: 10px 0
   min-height: 37px
+  background-color: rgba(255,255,255,.8)
+  +box-shadow(-3px -3px 0 rgba(0,0,0,.1))
   .user_email
     display: inline
   form
@@ -103,8 +208,7 @@ input.btn
     font-size: 1em
 
 #content
-  background: none repeat scroll 0 0 #FFFFFF
-  border-top: 1px solid #FFFFFF
+  background: rgba(255,255,255,0.8)
   height: auto
   clear: both
   overflow: auto

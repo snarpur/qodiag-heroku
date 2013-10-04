@@ -3,16 +3,25 @@
  */
 
 
-.fc-icon-waiting-room:before,
+.fc-icon-chart-documents:before,
+.fc-icon-dialog:before,
 .fc-icon-employee-evaluation:before,
+.fc-icon-exit:before,
+.fc-icon-filled-circle:before,
+.fc-icon-form-document:before,
+.fc-icon-form:before,
+.fc-icon-infographics:before,
+.fc-icon-line-graph:before,
+.fc-icon-locker:before,
+.fc-icon-mail-box:before,
+.fc-icon-needs-assesment:before,
+.fc-icon-open-box:before,
+.fc-icon-outlined-circle:before,
 .fc-icon-papers:before,
 .fc-icon-secure:before,
 .fc-icon-social-services:before,
-.fc-icon-locker:before,
-.fc-icon-line-graph:before,
-.fc-icon-mail-box:before,
-.fc-icon-needs-assesment:before,
-.fc-icon-exit:before {
+.fc-icon-waiting-room:before,
+.fc-icon-worker:before {
   font-family: "fontcustom";
   font-style: normal;
   font-weight: normal;
@@ -24,13 +33,22 @@
   text-decoration: inherit;
 }
 
-.fc-icon-waiting-room:before { content: "\f100"; }
-.fc-icon-employee-evaluation:before { content: "\f101"; }
-.fc-icon-papers:before { content: "\f102"; }
-.fc-icon-secure:before { content: "\f103"; }
-.fc-icon-social-services:before { content: "\f104"; }
-.fc-icon-locker:before { content: "\f105"; }
-.fc-icon-line-graph:before { content: "\f106"; }
-.fc-icon-mail-box:before { content: "\f107"; }
-.fc-icon-needs-assesment:before { content: "\f108"; }
-.fc-icon-exit:before { content: "\f109"; }
+.fc-icon-chart-documents:before { content: "\f100"; }
+.fc-icon-dialog:before { content: "\f101"; }
+.fc-icon-employee-evaluation:before { content: "\f102"; }
+.fc-icon-exit:before { content: "\f103"; }
+.fc-icon-filled-circle:before { content: "\f104"; }
+.fc-icon-form-document:before { content: "\f105"; }
+.fc-icon-form:before { content: "\f106"; }
+.fc-icon-infographics:before { content: "\f107"; }
+.fc-icon-line-graph:before { content: "\f108"; }
+.fc-icon-locker:before { content: "\f109"; }
+.fc-icon-mail-box:before { content: "\f10a"; }
+.fc-icon-needs-assesment:before { content: "\f10b"; }
+.fc-icon-open-box:before { content: "\f10c"; }
+.fc-icon-outlined-circle:before { content: "\f10d"; }
+.fc-icon-papers:before { content: "\f10e"; }
+.fc-icon-secure:before { content: "\f10f"; }
+.fc-icon-social-services:before { content: "\f110"; }
+.fc-icon-waiting-room:before { content: "\f111"; }
+.fc-icon-worker:before { content: "\f112"; }

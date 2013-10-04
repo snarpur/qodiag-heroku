@@ -13,15 +13,24 @@
   ],
   "file_name": "fontcustom",
   "glyphs": [
-    "waiting-room",
+    "chart-documents",
+    "dialog",
     "employee-evaluation",
+    "exit",
+    "filled-circle",
+    "form-document",
+    "form",
+    "infographics",
+    "line-graph",
+    "locker",
+    "mail-box",
+    "needs-assesment",
+    "open-box",
+    "outlined-circle",
     "papers",
     "secure",
     "social-services",
-    "locker",
-    "line-graph",
-    "mail-box",
-    "needs-assesment",
-    "exit"
+    "waiting-room",
+    "worker"
   ]
 }
