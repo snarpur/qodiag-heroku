@@ -103,6 +103,7 @@ is:
     send: "Senda"
     upload: Hlaða upp
     request_survey: "Senda spurningalista"
+    express_interest: "Skráðu þig hér til að fá fréttir af verkefninu."
   time_to_words:
     until: "þangað til"
     ago: "síðan"

@@ -164,3 +164,18 @@ a .icon-flip-horizontal:before,
 a .icon-flip-vertical:before {
   display: inline-block;
 }
+
+.fc-icon-circled {
+  display: block;
+  text-align: center;
+  height: 3em;
+  width: 3em;
+  line-height: 3em;
+  @include border-radius(1.5em);
+}
+
+@-moz-document url-prefix() {
+  i.fc-icon {
+    font-weight: normal;
+  }
+}
