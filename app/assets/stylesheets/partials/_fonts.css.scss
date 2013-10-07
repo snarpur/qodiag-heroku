@@ -16,28 +16,19 @@ font-stretch: $font-stretch;
 }
 }
 
+// [class^="fc-icon-"]:before, [class*="fc-icon-"]:before {
+//     display: inline-block;
+//     text-decoration: inherit;
+//     height: auto;
+//     width: auto;
+// }
+// [class^="fc-icon-"], [class*="fc-icon-"] {
+//     display: inline;
+//     height: auto;
+//     width: auto;
+// }
 
-[class^="fc-icon-"]:before, [class*=" icon-"]:before {
-    display: inline-block;
-    text-decoration: inherit;
-}
-[class^="fc-icon-"]:before, [class*=" icon-"]:before {
-    display: inline-block;
-    text-decoration: inherit;
-}
-[class^="fc-icon-"], [class*=" icon-"] {
-    background-image: none;
-    background-position: 0 0;
-    background-repeat: repeat;
-    display: inline;
-    height: auto;
-    line-height: normal;
-    margin-top: 0;
-    vertical-align: baseline;
-    width: auto;
-}
-
-.icon-border {
+.fc-icon-border {
   border: solid 1px #eeeeee;
   padding: .2em .25em .15em;
   -webkit-border-radius: 3px;
@@ -45,133 +36,73 @@ font-stretch: $font-stretch;
   border-radius: 3px;
 }
 
-.icon-2x {
+.fc-icon-2x {
   font-size: 2em;
 }
 
-.icon-shadow {
+.fc-icon-shadow {
   text-shadow: -1px 1px 1px rgba(255, 255, 255, 0.4);
 }
 
-.icon-2x.icon-border {
+.fc-icon-2x.icon-border {
   border-width: 2px;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
 }
 
-.icon-3x {
+.fc-icon-3x {
   font-size: 3em;
 }
 
-.icon-3x.icon-border {
+.fc-icon-3x.icon-border {
   border-width: 3px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
 }
-.icon-4x {
+.fc-icon-4x {
   font-size: 4em;
 }
 
-.icon-4x.icon-border {
+.fc-icon-4x.icon-border {
   border-width: 4px;
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
   border-radius: 6px;
 }
 
-.icon-5x {
+.fc-icon-5x {
   font-size: 5em;
 }
 
-.icon-5x.icon-border {
+.fc-icon-8x {
+  font-size: 8em;
+}
+
+.fc-icon-5x.icon-border {
   border-width: 5px;
   -webkit-border-radius: 7px;
   -moz-border-radius: 7px;
   border-radius: 7px;
 }
 
-.icon-muted {
+.fc-icon-muted {
   color: #eeeeee;
 }
-.icon-light {
+.fc-icon-light {
   color: #ffffff;
 }
-.icon-dark {
+.fc-icon-dark {
   color: #333333;
 }
 
-.pull-right {
-  float: right;
-}
-.pull-left {
-  float: left;
-}
-
-[class^="icon-"].pull-left,
-[class*=" icon-"].pull-left {
-  margin-right: .3em;
-}
-[class^="icon-"].pull-right,
-[class*=" icon-"].pull-right {
-  margin-left: .3em;
-}
-/* Icon rotations and mirroring */
-.icon-rotate-90:before {
-  -webkit-transform: rotate(90deg);
-  -moz-transform: rotate(90deg);
-  -ms-transform: rotate(90deg);
-  -o-transform: rotate(90deg);
-  transform: rotate(90deg);
-  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
-}
-.icon-rotate-180:before {
-  -webkit-transform: rotate(180deg);
-  -moz-transform: rotate(180deg);
-  -ms-transform: rotate(180deg);
-  -o-transform: rotate(180deg);
-  transform: rotate(180deg);
-  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
-}
-.icon-rotate-270:before {
-  -webkit-transform: rotate(270deg);
-  -moz-transform: rotate(270deg);
-  -ms-transform: rotate(270deg);
-  -o-transform: rotate(270deg);
-  transform: rotate(270deg);
-  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
-}
-.icon-flip-horizontal:before {
-  -webkit-transform: scale(-1, 1);
-  -moz-transform: scale(-1, 1);
-  -ms-transform: scale(-1, 1);
-  -o-transform: scale(-1, 1);
-  transform: scale(-1, 1);
-}
-.icon-flip-vertical:before {
-  -webkit-transform: scale(1, -1);
-  -moz-transform: scale(1, -1);
-  -ms-transform: scale(1, -1);
-  -o-transform: scale(1, -1);
-  transform: scale(1, -1);
-}
-/* ensure rotation occurs inside anchor tags */
-a .icon-rotate-90:before,
-a .icon-rotate-180:before,
-a .icon-rotate-270:before,
-a .icon-flip-horizontal:before,
-a .icon-flip-vertical:before {
-  display: inline-block;
-}
-
 .fc-icon-circled {
-  display: block;
-  text-align: center;
-  height: 3em;
-  width: 3em;
-  line-height: 3em;
-  @include border-radius(1.5em);
+  // display: block;
+  // line-height: 3em;
+  background-color: #fafafa;
+  padding: .3em .4em .25em;
+  //@include border-radius(35px);
 }
 
 @-moz-document url-prefix() {

@@ -30,21 +30,19 @@
       - if not request.env['PATH_INFO'].include?"users/sign_in"
         =render "pages/landing_page/header"  
      
-      #apply
-        - if not request.env['PATH_INFO'].include?"users/sign_in"
-          =render "pages/landing_page/apply" 
-        - else
-          =render "pages/landing_page/apply_sign_in" 
+      - if not request.env['PATH_INFO'].include?"users/sign_in"
+        =render "pages/landing_page/apply" 
+      - else
+        =render "pages/landing_page/apply_sign_in" 
       #content
+        #flash
+          -flash.each do |name, msg|
+            %div{:class => name}
+              =msg
         .container
-          #flash
-            -flash.each do |name, msg|
-              %div{:class => name}
-                =msg
           =yield
       .push
     %footer#footer
-      .container
-        =render "pages/landing_page/footer"
+      =render "pages/landing_page/footer"
 
     =render "shared/google_analytics"

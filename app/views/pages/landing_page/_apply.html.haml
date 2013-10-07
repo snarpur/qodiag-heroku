@@ -1,11 +1,9 @@
-.container
-  .row{:class => 'row signup-form'}
-    .span4
+#apply
+  .container
+    .row{:class => 'row signup-form text-center'}
       = simple_form_for(User.new, :as => 'user', :url => sign_up_user_path(), :class => "form-bloat form-stretch") do |f|
         .input-append
           = render "shared/error_messages", :locals => {:form_builder => f}
           = f.input :email, label: false, placeholder: t("user.email"), :class => "placeholder"
           = f.button :submit, t("actions.register"), :class => "btn"
-        %span.help-block=t("actions.express_interest")
-    .span2{:class => 'offset6'}
-      = link_to t("actions.log_in"), new_user_session_path(), :class => "btn"
+      %span.help-block=t("actions.express_interest")

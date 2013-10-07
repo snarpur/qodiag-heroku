@@ -1,7 +1,7 @@
 #header{:class => 'lights'}
 
   .row-fluid
-    .span6
+    .span6{:class => 'stripes hidden-phone hidden-tablet'}
       %ul
         %li
           %em Staðlaðir listar
@@ -22,8 +22,9 @@
 
       
     .span6
-      %h1
+      %h1.logo
         Qodiag
       %p.offset1
         Auðveldar söfnun og úrvinnslu klínískra gagna. 
-      %img{:src => '/assets/login/computer_large.png', :alt => 'Qodiag', :class => 'hidden-phone'}
+      %img{:src => '/assets/login/computer_large.png', :alt => 'Qodiag', :class => 'computer hidden-phone hidden-tablet'}
+      = link_to t("actions.log_in"), new_user_session_path(), :class => "button btn"
