@@ -4,7 +4,7 @@ class Devise::InvitationsController < ApplicationController
 
   def edit
     if params[:invitation_token] && @user = User.first(:conditions => { :invitation_token => params[:invitation_token] })
-      render :edit
+      render :edit, :layout => 'login'
     else
       flash[:alert] = I18n.t('devise.invitations.invitation_token_invalid')
       redirect_to after_sign_out_path_for(User)
