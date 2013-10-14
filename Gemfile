@@ -72,6 +72,7 @@ group :development, :test do
   # gem "shoulda-matchers"
   #gem "cucumber-rails", ">= 0.3.2"
   gem "capybara"
+  gem "capybara-webkit"
   gem "database_cleaner"
   gem "pickle"
   gem "email_spec"
@@ -85,9 +86,12 @@ group :development, :test do
   gem "watchr"
   gem "syntax"
   gem 'debugger'
-  # gem "guard-haml"
-  # gem "guard-livereload"
+  gem "rb-fsevent", :group => :test, :require => false if RUBY_PLATFORM =~ /darwin/i
+  gem 'guard-rspec'
+  gem "guard-haml"
+  gem "guard-livereload"
+  gem "selenium-webdriver", "~> 2.35.1"
   # gem "letter_opener"
 end
 
-#gem "rb-fsevent", :group => :test, :require => false if RUBY_PLATFORM =~ /darwin/i
+

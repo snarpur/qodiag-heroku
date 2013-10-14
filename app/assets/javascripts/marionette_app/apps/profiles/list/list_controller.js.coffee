@@ -26,9 +26,10 @@
       parents = person.getParents()
 
       App.execute "when:fetched", parents, =>
-        parents = new App.Entities.People(parents.toJSON(acceptsNested: false))
         #NOTE: We should have always two parents, for that reason if we have only one, we will add the other one empty
         @addEmptyParent parents
+
+        parents = new App.Entities.People(parents.toJSON(acceptsNested: false))
         
         guardianView = @getGuardianView parents
         @getLayout().guardianProfileRegion.show guardianView
@@ -41,13 +42,15 @@
 
 
     addEmptyParent:(parents)->
+      if parents.size() is 0
+        parent = new App.Entities.Person()
+        parents.add parent, at: 0
 
       if parents.size() is 1 
         #TODO: We should change this way to do it       
         parent = parents.first().clone().clear()
         parent.set(address: {})
         parents.add parent, at: 1
-
 
     getSubjectView: (person)->
       new List.Subject

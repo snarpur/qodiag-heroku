@@ -1,7 +1,7 @@
 class SignUpController < ApplicationController
   
   def create
-    if params[:user] != nil
+    if not params[:user][:email].blank?
       @user = User.new
       @user.email = params[:user][:email]
       @user.set_role("pre_registered")

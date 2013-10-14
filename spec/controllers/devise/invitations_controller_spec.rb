@@ -55,7 +55,7 @@ describe Devise::InvitationsController do
       end
 
       it "invalid invitation token" do
-        get :edit, :invitation_token => @new_user.invitation_token << "df"
+        get :edit, :invitation_token => @new_user.invitation_token << "dftt"
         response.status.should eql(302)
         response.should redirect_to root_path
         flash[:alert].should eql I18n.t('devise.invitations.invitation_token_invalid')

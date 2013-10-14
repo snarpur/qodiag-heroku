@@ -1,7 +1,12 @@
-%h2 Velja lykilorð
-.form-base
+%h1{:class => 'logo text-center'}
+  = link_to "Qodiag", root_path()
+  
+%div{:class => 'text-center'}
+  %i{:class => 'fc-icon-locker fc-icon-8x'}
+
+.main-login
   = simple_form_for @user, :url => user_confirmation_path, :html => { :method => :put } do |f|
     = f.input :invitation_token, :as => :hidden
-    = f.input :password
-    = f.input :password_confirmation
-    %p= f.submit I18n.t('actions.register'), :class => 'button small china2' 
+    = f.input :password, label: false, placeholder: I18n.t('user.password')
+    = f.input :password_confirmation, label: false, placeholder: I18n.t('user.password_confirmation')
+    = f.button :submit, I18n.t('actions.register'), :class => "btn"

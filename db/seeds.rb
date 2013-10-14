@@ -1,5 +1,5 @@
 #encoding: UTF-8
-users = ["super_admin", "caretaker", "respondent"]
+users = ["super_admin", "caretaker", "respondent", "pre_registered"]
 
 users.each do |u|
   user = User.create(:email => "#{u}@orrigautur.com", :password => "asdfkj", :password_confirmation => "asdfkj")

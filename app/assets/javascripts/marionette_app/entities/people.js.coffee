@@ -50,7 +50,6 @@
         @set('respondents',new Entities.People(value),{silent:true})
 
     ageInYears:->
-      
       if !!@get('full_cpr')
         @set("ageInYears",moment().diff(moment(@get('full_cpr').substr(0,6),"DDMMYY"),'years'))
 
@@ -69,8 +68,6 @@
     url: -> Routes.people_path()
   
   
-
-
 
 
   API =

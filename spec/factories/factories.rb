@@ -8,6 +8,7 @@ FactoryGirl.define do
 
   sequence(:random_deadline) {|n| Time.zone.now.advance(:days => rand(30) + 2) }
   sequence(:email) {|n| "persona#{n}_#{rand(10000)}@example.com"}
+
   factory :user do
     email {generate(:email)}
     password 'asdfkj'
@@ -15,13 +16,15 @@ FactoryGirl.define do
     person
     
     factory :caretaker_user do
-      after_create do |user|
+      #after_create do |user|
+      after(:create) do |user|
         FactoryGirl.create(:caretaker_rights, user: user)
       end
     end
 
     factory :respondent_user do
-      after_create do |user|
+      #after_create do |user|
+      after(:create) do |user|
         FactoryGirl.create(:respondent_rights, user: user)
       end
     end
@@ -49,10 +52,19 @@ FactoryGirl.define do
     street_1 "nonni"
   end
 
+  sequence(:fullcpr) do |n| 
+    year = rand(2000) + 1
+    month = rand(12) + 1
+    day = rand(31) + 1
+    dateofbirth = Time.local(year, month, day)
+    "#{dateofbirth.strftime('%d%m%y')}1289"
+  end
+
   factory :person do
     firstname "jon"
     lastname "smith"
     sex {["male","female"].at(rand(2))}
+    full_cpr {generate(:fullcpr)}
 
     factory :caretaker_person do
       association :user, factory: :caretaker_user

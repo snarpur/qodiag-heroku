@@ -16,29 +16,23 @@
 
 
   class List.Guardian extends App.Views.ItemView
-    template: "profiles/list/templates/_guardian"
+    getTemplate: () ->
+      if @model?.get('id')?
+        "profiles/list/templates/_guardian"
+      else
+        "profiles/list/templates/_empty_guardian"
+      
     tagName: "div"
     className: "span5"
 
     triggers:
       'click .edit-item' : 'edit:guardian:clicked'
-
-
-  class List.EmptyGuardian extends App.Views.ItemView
-    template: "profiles/list/templates/_empty_guardian"
-    tagName: "div"
-    className: "span5"
-
-    triggers:
       'click .add-guardian' : 'create:guardian:clicked'
+  
 
   class List.Guardians extends App.Views.CompositeView
     template: "profiles/list/templates/_guardians"
-    getItemView:(model)->
-      if model?.id 
-        List.Guardian
-      else
-        List.EmptyGuardian
+    itemView: List.Guardian
 
     itemViewContainer: "div#foreldrar"
 

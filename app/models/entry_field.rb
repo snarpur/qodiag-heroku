@@ -26,4 +26,9 @@ class EntryField  < ActiveRecord::Base
     self.entry_values.person(person.id).by_response(entry_set_response.id)
   end
 
+  #Attribute overwritten
+  def field_type
+    read_attribute(:field_type).nil? ? "text" : read_attribute(:field_type)
+  end
+
 end

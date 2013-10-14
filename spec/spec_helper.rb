@@ -1,13 +1,13 @@
 require 'rubygems'
 require 'spork'
 
-
 Spork.prefork do
   # This file is copied to spec/ when you run 'rails generate rspec:install'
   ENV["RAILS_ENV"] ||= 'test'
   require File.expand_path("../../config/environment", __FILE__)
   require 'rspec/rails'
   require 'email_spec'
+  require 'capybara/rspec'
   # Requires supporting ruby files with custom matchers and macros, etc,
   # in spec/support/ and its subdirectories.
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
@@ -38,10 +38,14 @@ Spork.prefork do
     config.use_transactional_fixtures = true
     #needed for spork
     ActiveSupport::Dependencies.clear
+
+    # Session helpers - For Capybara
+    config.include Features::SessionHelpers, :type => :feature
     #Devise
     config.include Devise::TestHelpers, :type => :controller
     #Controller Macros
     config.extend ControllerMacros, :type => :controller
+
   end
 
 

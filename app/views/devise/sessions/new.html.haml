@@ -7,8 +7,8 @@
 .main-login
   = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
     = render "shared/error_messages", :locals => {:form_builder => f}
-    = f.input :email, label: false, placeholder: "email"
-    = f.input :password, label: false, placeholder: "password"
+    = f.input :email, label: false, placeholder: I18n.t('user.email')
+    = f.input :password, label: false, placeholder: I18n.t('user.password')
     = f.button :submit, t('actions.sign_in'), :class => "btn"
   %p{ :class => 'muted'}
   %small Vinsamlegast skráðu þig inn með lykilorði sem þú hefur fengið sent í tölvupósti.

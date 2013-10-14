@@ -240,7 +240,11 @@ class Person < ActiveRecord::Base
       elsif Date.current.month >= dateofbirth.month && Date.current.day >= dateofbirth.day
         Date.current.year - dateofbirth.year
       else
-        Date.current.year - dateofbirth.year - 1
+        if (Date.current.year - dateofbirth.year != 0)
+          Date.current.year - dateofbirth.year - 1
+        else
+          Date.current.year - dateofbirth.year
+        end
       end
     end
   end
@@ -286,7 +290,13 @@ class Person < ActiveRecord::Base
     unless cpr.empty?
       day = cpr[0..1]
       month = cpr[2..3]
-      year = cpr[4..5].to_i > 10 ? "19" << cpr[4..5] : "20" << cpr[4..5]
+      #year = cpr[4..5].to_i > 10 ? "19" << cpr[4..5] : "20" << cpr[4..5]
+      flag = cpr[9]
+      if (flag == "0") 
+        year = "20" << cpr[4..5] 
+      else 
+        year = "19" << cpr[4..5]
+      end
       self.dateofbirth = Date.civil(year.to_i,month.to_i,day.to_i)
       self.cpr = cpr[6..9]
     end
