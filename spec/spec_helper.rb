@@ -41,10 +41,14 @@ Spork.prefork do
 
     # Session helpers - For Capybara
     config.include Features::SessionHelpers, :type => :feature
+
     #Devise
     config.include Devise::TestHelpers, :type => :controller
+
     #Controller Macros
     config.extend ControllerMacros, :type => :controller
+
+    config.include ValidUserRequestHelper, :type => :request
 
   end
 
