@@ -1,6 +1,8 @@
 class EntrySetsController < ApplicationController
   respond_to :json
 
+  load_and_authorize_resource
+
   def index
     @entry_sets = EntrySet.by_author_or_public(@current_user.person_id)
   end
@@ -14,6 +16,7 @@ class EntrySetsController < ApplicationController
   # POST /entry_sets
   # POST /entry_sets.json
   def create
+    KK.log params[:entry_set].inspect
     #Change by Ata: Code refactoring that use the relationship between person and Entry Sets
     @entry_set = @current_user.person.entry_sets.build(params[:entry_set])
 

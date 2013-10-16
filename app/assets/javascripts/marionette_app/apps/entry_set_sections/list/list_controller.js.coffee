@@ -97,12 +97,9 @@
       #@getLayout().sectionTitleRegion.show view
 
       @listenTo view, "edit:title",(options) =>
-        
         App.execute "edit:section", 
           section: options.model
           activeView: @getLayout()
-
-
 
     showEntrySetTitle:(entrySet)->
       view = new List.Title model: entrySet
@@ -120,6 +117,10 @@
           # model: entrySet see comment above
           section: entrySet
           activeView: @getLayout()
+
+      @listenTo view, "remove:title",(options) =>  
+        App.execute "remove:entry_set", 
+          model: entrySet
    
 
     

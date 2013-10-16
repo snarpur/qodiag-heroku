@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe "Users" do
+describe "Application" do
 
-  describe "GET user_root_path" do
+  describe "GET root_path" do
 
     context "With user logged in" do
 
@@ -10,15 +10,15 @@ describe "Users" do
 
         before :each do
           sign_in_as_a_valid_user(:caretaker)
-          get user_root_path
+          get root_path
         end
 
         it "Gives us the expected status code" do
           response.status.should be(200)
         end
 
-        it "Takes us to the user list" do
-          expect(response).to render_template(:show)
+        it "Renders the index template" do
+          expect(response).to render_template(:index)
         end
 
       end
@@ -27,15 +27,15 @@ describe "Users" do
 
         before :each do
           sign_in_as_a_valid_user(:respondent)
-          get user_root_path
+          get root_path
         end
 
         it "Gives us the expected status code (REDIRECT)" do
-          response.status.should be(302)
+          response.status.should be(200)
         end
 
-        it "Takes us to the responder_items items" do
-          expect(response).to redirect_to "/#items"
+        it "Renders the index template" do
+          expect(response).to render_template(:index)
         end
 
       end

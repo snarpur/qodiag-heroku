@@ -46,13 +46,17 @@
         region: @getLayout().settingsNavigationRegion
     
 
+    deleteFromEntrySetSections: (options) ->    
+      bootbox.confirm "Ertu viss um að þú viljir eyða eyðublaði #{options.model.get('name')}", (result) ->
+        if result
+          options.model.destroy()
+          window.location.href = "/#settings/entry_sets"
+
     
     confirmDelete:(view)->
       bootbox.confirm "Ertu viss um að þú viljir eyða eyðublaði #{view.model.get('name')}", (result) ->
         if result
           view.model.destroy()
-
-    
 
     getLayout:=>
       @layout ?= new List.Layout

@@ -77,6 +77,7 @@
 
     triggers:
       "click .edit-item" : "edit:title"
+      "click .remove-item" : "remove:title"
 
     modelEvents:
       'edit:complete': ()-> @render()
