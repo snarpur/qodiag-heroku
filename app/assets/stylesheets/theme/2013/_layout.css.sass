@@ -5,6 +5,7 @@ html
 
 body
   background: url("2013/header-bg.jpg") repeat-x
+  font-weight: $baseFontWeight
 
 #header
   .logo
@@ -12,6 +13,10 @@ body
     position: absolute
     width: 150px
     left: 15px
+    a
+      width: 105px
+      height: 32px
+      display: block
 
   .login
     font-size: 0 //whitespace fix
@@ -47,6 +52,7 @@ body
           background: rgba(0, 0, 0, 0.15)
 
 #navigation
+  min-height: 40px
   ul
     margin-bottom: 0
     list-style: none

@@ -1,6 +1,6 @@
 class App.Models.NationalRegisterEntry extends App.Models.Base
 
-  urlRoot: "/national_register"
+  urlRoot: "/national_registers"
   initialize:->
 
     @url = ()->
@@ -9,4 +9,4 @@ class App.Models.NationalRegisterEntry extends App.Models.Base
 
 class App.Collections.NationalRegister extends App.Collections.Base
   model: App.Models.NationalRegisterEntry
-  url: "/national_register"  
+  url: "/national_registers"  

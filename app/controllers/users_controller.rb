@@ -43,12 +43,6 @@ class UsersController < ApplicationController
     @accessible_roles = Role.accessible_by(current_ability,:read)
   end
 
-  # Make the current user object available to views
-  #----------------------------------------
-  def get_user
-    @current_user = current_user
-  end
-
   # DELETE: Refactor after writing test
   # def create_user_with_role
   #   @user = User.new

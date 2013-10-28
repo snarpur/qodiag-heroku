@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
-  
+  before_filter :unauthorized_raise_401, :except => ['landing','browser_update','error_401']
+
   def error_401
 
   end

@@ -39,7 +39,6 @@ Snarpur::Application.routes.draw do
     resources :users
   end
 
-  resources :national_register
   resources :users
   resources :people do
     resources :address, :only => [:index]
@@ -91,7 +90,7 @@ Snarpur::Application.routes.draw do
   match 'all_surveys' => 'surveyor#index', :via => :get
   match 'people/:subject_id/responder_items/responses/:survey_id' => 'responder_items#responses', :via => :get
   match 'people/:subject_id/responder_items/responses/:respondent_id/:survey_id' => 'responder_items#responses', :via => :get
-  match 'people/:subject_id/responder_items/survey/:survey_id' => 'responder_items#survey', :via => :get
+  match 'people/:subject_id/responder_items/survey/:survey_id' => 'responder_items#survey', :via => :get, :as => :survey
   # match 'responder_items/:id/responses/question_group/:question_group_name' => 'responder_items/survey_responses#question_group', :via => :get
 
   match 'people/:subject_id/history' => 'people#history'
@@ -108,6 +107,10 @@ Snarpur::Application.routes.draw do
   get "pages/help"
   get "pages/landing"
   get "pages/browser_update"
+
+  # resources :national_registers, :only => [:show]
+
+  get "national_registers/:kennitala" => 'national_registers#lookup', :as => :lookup
 
   #REFACTOR: Try to pass this logic to Devise GEM
   root :to => 'application#index', constraints: lambda { |r| r.env["warden"].authenticate? }

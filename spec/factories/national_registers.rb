@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :national_register do
-    kennitala "MyString"
+    kennitala "0102783419"
     fjolskyldunumer "MyString"
     bannmerki "MyString"
     nafn "MyString"

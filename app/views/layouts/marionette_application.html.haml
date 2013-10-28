@@ -29,7 +29,7 @@
 
       #header{}
         %h1{:class => 'logo'}
-          Qodiag
+          = link_to "Qodiag", root_path()
         %div{:class => 'usernav'}
           =render 'shared/log_in_out'
 

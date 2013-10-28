@@ -4,7 +4,8 @@
     =yield(:head)
     =csrf_meta_tag
 
-    %link{:href => 'http://fonts.googleapis.com/css?family=Asap:400,700,700italic,400italic', :rel => 'stylesheet', :type => 'text/css'}
+    //%link{:href => 'http://fonts.googleapis.com/css?family=Asap:400,700,700italic,400italic', :rel => 'stylesheet', :type => 'text/css'}
+    %link{:href=>'http://fonts.googleapis.com/css?family=Lato:300,400,700,900', :rel=>'stylesheet', :type=>'text/css'}
     =stylesheet_link_tag "application"
     =javascript_include_tag "backbone_application"
 
@@ -28,7 +29,7 @@
 
       #header
         %h1{:class => 'logo'}
-          Qodiag
+          = link_to "Qodiag", root_path()
         %div{:class => 'usernav'}
           =render 'shared/log_in_out'
 

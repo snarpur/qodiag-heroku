@@ -50,6 +50,7 @@ class PeopleController < ApplicationController
       #   # format.json {render json: @person}
       #   respond_with(@person)
       end
+      #NOTE: We should change this respond, because we get a 406 Not Acceptable HTTP Request
       respond_with(@person)
     # end
 

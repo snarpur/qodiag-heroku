@@ -48,7 +48,7 @@ Spork.prefork do
     #Controller Macros
     config.extend ControllerMacros, :type => :controller
 
-    config.include ValidUserRequestHelper, :type => :request
+    config.include ValidUserRequestHelper
 
   end
 

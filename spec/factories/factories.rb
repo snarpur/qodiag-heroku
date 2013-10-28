@@ -1,5 +1,5 @@
 # require 'factory_girl'
-# require 'faker'
+require 'faker'
 
 
 

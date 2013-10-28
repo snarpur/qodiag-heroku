@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   layout :set_layout
+  before_filter :unauthorized_raise_401
   before_filter :get_user
   before_filter :set_layout
 
@@ -23,11 +24,20 @@ class ApplicationController < ActionController::Base
 
   def error_page(error)
     flash.now[:alert] = I18n.t("page_errors.error_#{error}")
-    render "pages/error_401", :status => 401
+    render "pages/#{error_partial}", :status => 401
+  end
+  
+
+  def error_partial
+    logged_in? ? "error_401" : "error_401_login"  
   end
   
   def get_user
     @current_user = current_user
+  end
+
+  def unauthorized_raise_401
+    raise CanCan::AccessDenied unless logged_in?
   end
 
   def set_layout

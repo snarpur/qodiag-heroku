@@ -1,28 +1,24 @@
 require 'spec_helper'
+require 'support/common_tests'
 
 describe "Application" do
+
+  describe "Common Authorization tests" do
+
+    @verbs = [ 
+      { :action => "index",  :name => "get",    :path => "root_path", :render => "index"}
+    ]
+    
+    @roles = [ "caretaker"]
+    
+    it_should_behave_like "common tests", @verbs, @roles, nil, ""
+
+  end
 
   describe "GET root_path" do
 
     context "With user logged in" do
-
-      context "as caretaker" do
-
-        before :each do
-          sign_in_as_a_valid_user(:caretaker)
-          get root_path
-        end
-
-        it "Gives us the expected status code" do
-          response.status.should be(200)
-        end
-
-        it "Renders the index template" do
-          expect(response).to render_template(:index)
-        end
-
-      end
-
+      
       context "as respondent" do 
 
         before :each do

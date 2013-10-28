@@ -20,145 +20,145 @@ require 'spec_helper'
 
 describe EntrySetResponsesController do
 
-  # This should return the minimal set of attributes required to create a valid
-  # EntrySetResponse. As you add validations to EntrySetResponse, be sure to
-  # update the return value of this method accordingly.
-  def valid_attributes
-    { "entry_set_id" => "1" }
-  end
+  # # This should return the minimal set of attributes required to create a valid
+  # # EntrySetResponse. As you add validations to EntrySetResponse, be sure to
+  # # update the return value of this method accordingly.
+  # def valid_attributes
+  #   { "entry_set_id" => "1" }
+  # end
 
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # EntrySetResponsesController. Be sure to keep this updated too.
-  def valid_session
-    {}
-  end
+  # # This should return the minimal set of values that should be in the session
+  # # in order to pass any filters (e.g. authentication) defined in
+  # # EntrySetResponsesController. Be sure to keep this updated too.
+  # def valid_session
+  #   {}
+  # end
 
-  describe "GET index" do
-    it "assigns all entry_set_responses as @entry_set_responses" do
-      entry_set_response = EntrySetResponse.create! valid_attributes
-      get :index, {}, valid_session
-      assigns(:entry_set_responses).should eq([entry_set_response])
-    end
-  end
+  # describe "GET index" do
+  #   it "assigns all entry_set_responses as @entry_set_responses" do
+  #     entry_set_response = EntrySetResponse.create! valid_attributes
+  #     get :index, {}, valid_session
+  #     assigns(:entry_set_responses).should eq([entry_set_response])
+  #   end
+  # end
 
-  describe "GET show" do
-    it "assigns the requested entry_set_response as @entry_set_response" do
-      entry_set_response = EntrySetResponse.create! valid_attributes
-      get :show, {:id => entry_set_response.to_param}, valid_session
-      assigns(:entry_set_response).should eq(entry_set_response)
-    end
-  end
+  # describe "GET show" do
+  #   it "assigns the requested entry_set_response as @entry_set_response" do
+  #     entry_set_response = EntrySetResponse.create! valid_attributes
+  #     get :show, {:id => entry_set_response.to_param}, valid_session
+  #     assigns(:entry_set_response).should eq(entry_set_response)
+  #   end
+  # end
 
-  describe "GET new" do
-    it "assigns a new entry_set_response as @entry_set_response" do
-      get :new, {}, valid_session
-      assigns(:entry_set_response).should be_a_new(EntrySetResponse)
-    end
-  end
+  # describe "GET new" do
+  #   it "assigns a new entry_set_response as @entry_set_response" do
+  #     get :new, {}, valid_session
+  #     assigns(:entry_set_response).should be_a_new(EntrySetResponse)
+  #   end
+  # end
 
-  describe "GET edit" do
-    it "assigns the requested entry_set_response as @entry_set_response" do
-      entry_set_response = EntrySetResponse.create! valid_attributes
-      get :edit, {:id => entry_set_response.to_param}, valid_session
-      assigns(:entry_set_response).should eq(entry_set_response)
-    end
-  end
+  # describe "GET edit" do
+  #   it "assigns the requested entry_set_response as @entry_set_response" do
+  #     entry_set_response = EntrySetResponse.create! valid_attributes
+  #     get :edit, {:id => entry_set_response.to_param}, valid_session
+  #     assigns(:entry_set_response).should eq(entry_set_response)
+  #   end
+  # end
 
-  describe "POST create" do
-    describe "with valid params" do
-      it "creates a new EntrySetResponse" do
-        expect {
-          post :create, {:entry_set_response => valid_attributes}, valid_session
-        }.to change(EntrySetResponse, :count).by(1)
-      end
+  # describe "POST create" do
+  #   describe "with valid params" do
+  #     it "creates a new EntrySetResponse" do
+  #       expect {
+  #         post :create, {:entry_set_response => valid_attributes}, valid_session
+  #       }.to change(EntrySetResponse, :count).by(1)
+  #     end
 
-      it "assigns a newly created entry_set_response as @entry_set_response" do
-        post :create, {:entry_set_response => valid_attributes}, valid_session
-        assigns(:entry_set_response).should be_a(EntrySetResponse)
-        assigns(:entry_set_response).should be_persisted
-      end
+  #     it "assigns a newly created entry_set_response as @entry_set_response" do
+  #       post :create, {:entry_set_response => valid_attributes}, valid_session
+  #       assigns(:entry_set_response).should be_a(EntrySetResponse)
+  #       assigns(:entry_set_response).should be_persisted
+  #     end
 
-      it "redirects to the created entry_set_response" do
-        post :create, {:entry_set_response => valid_attributes}, valid_session
-        response.should redirect_to(EntrySetResponse.last)
-      end
-    end
+  #     it "redirects to the created entry_set_response" do
+  #       post :create, {:entry_set_response => valid_attributes}, valid_session
+  #       response.should redirect_to(EntrySetResponse.last)
+  #     end
+  #   end
 
-    describe "with invalid params" do
-      it "assigns a newly created but unsaved entry_set_response as @entry_set_response" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        EntrySetResponse.any_instance.stub(:save).and_return(false)
-        post :create, {:entry_set_response => { "entry_set_id" => "invalid value" }}, valid_session
-        assigns(:entry_set_response).should be_a_new(EntrySetResponse)
-      end
+  #   describe "with invalid params" do
+  #     it "assigns a newly created but unsaved entry_set_response as @entry_set_response" do
+  #       # Trigger the behavior that occurs when invalid params are submitted
+  #       EntrySetResponse.any_instance.stub(:save).and_return(false)
+  #       post :create, {:entry_set_response => { "entry_set_id" => "invalid value" }}, valid_session
+  #       assigns(:entry_set_response).should be_a_new(EntrySetResponse)
+  #     end
 
-      it "re-renders the 'new' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        EntrySetResponse.any_instance.stub(:save).and_return(false)
-        post :create, {:entry_set_response => { "entry_set_id" => "invalid value" }}, valid_session
-        response.should render_template("new")
-      end
-    end
-  end
+  #     it "re-renders the 'new' template" do
+  #       # Trigger the behavior that occurs when invalid params are submitted
+  #       EntrySetResponse.any_instance.stub(:save).and_return(false)
+  #       post :create, {:entry_set_response => { "entry_set_id" => "invalid value" }}, valid_session
+  #       response.should render_template("new")
+  #     end
+  #   end
+  # end
 
-  describe "PUT update" do
-    describe "with valid params" do
-      it "updates the requested entry_set_response" do
-        entry_set_response = EntrySetResponse.create! valid_attributes
-        # Assuming there are no other entry_set_responses in the database, this
-        # specifies that the EntrySetResponse created on the previous line
-        # receives the :update_attributes message with whatever params are
-        # submitted in the request.
-        EntrySetResponse.any_instance.should_receive(:update_attributes).with({ "entry_set_id" => "1" })
-        put :update, {:id => entry_set_response.to_param, :entry_set_response => { "entry_set_id" => "1" }}, valid_session
-      end
+  # describe "PUT update" do
+  #   describe "with valid params" do
+  #     it "updates the requested entry_set_response" do
+  #       entry_set_response = EntrySetResponse.create! valid_attributes
+  #       # Assuming there are no other entry_set_responses in the database, this
+  #       # specifies that the EntrySetResponse created on the previous line
+  #       # receives the :update_attributes message with whatever params are
+  #       # submitted in the request.
+  #       EntrySetResponse.any_instance.should_receive(:update_attributes).with({ "entry_set_id" => "1" })
+  #       put :update, {:id => entry_set_response.to_param, :entry_set_response => { "entry_set_id" => "1" }}, valid_session
+  #     end
 
-      it "assigns the requested entry_set_response as @entry_set_response" do
-        entry_set_response = EntrySetResponse.create! valid_attributes
-        put :update, {:id => entry_set_response.to_param, :entry_set_response => valid_attributes}, valid_session
-        assigns(:entry_set_response).should eq(entry_set_response)
-      end
+  #     it "assigns the requested entry_set_response as @entry_set_response" do
+  #       entry_set_response = EntrySetResponse.create! valid_attributes
+  #       put :update, {:id => entry_set_response.to_param, :entry_set_response => valid_attributes}, valid_session
+  #       assigns(:entry_set_response).should eq(entry_set_response)
+  #     end
 
-      it "redirects to the entry_set_response" do
-        entry_set_response = EntrySetResponse.create! valid_attributes
-        put :update, {:id => entry_set_response.to_param, :entry_set_response => valid_attributes}, valid_session
-        response.should redirect_to(entry_set_response)
-      end
-    end
+  #     it "redirects to the entry_set_response" do
+  #       entry_set_response = EntrySetResponse.create! valid_attributes
+  #       put :update, {:id => entry_set_response.to_param, :entry_set_response => valid_attributes}, valid_session
+  #       response.should redirect_to(entry_set_response)
+  #     end
+  #   end
 
-    describe "with invalid params" do
-      it "assigns the entry_set_response as @entry_set_response" do
-        entry_set_response = EntrySetResponse.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        EntrySetResponse.any_instance.stub(:save).and_return(false)
-        put :update, {:id => entry_set_response.to_param, :entry_set_response => { "entry_set_id" => "invalid value" }}, valid_session
-        assigns(:entry_set_response).should eq(entry_set_response)
-      end
+  #   describe "with invalid params" do
+  #     it "assigns the entry_set_response as @entry_set_response" do
+  #       entry_set_response = EntrySetResponse.create! valid_attributes
+  #       # Trigger the behavior that occurs when invalid params are submitted
+  #       EntrySetResponse.any_instance.stub(:save).and_return(false)
+  #       put :update, {:id => entry_set_response.to_param, :entry_set_response => { "entry_set_id" => "invalid value" }}, valid_session
+  #       assigns(:entry_set_response).should eq(entry_set_response)
+  #     end
 
-      it "re-renders the 'edit' template" do
-        entry_set_response = EntrySetResponse.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        EntrySetResponse.any_instance.stub(:save).and_return(false)
-        put :update, {:id => entry_set_response.to_param, :entry_set_response => { "entry_set_id" => "invalid value" }}, valid_session
-        response.should render_template("edit")
-      end
-    end
-  end
+  #     it "re-renders the 'edit' template" do
+  #       entry_set_response = EntrySetResponse.create! valid_attributes
+  #       # Trigger the behavior that occurs when invalid params are submitted
+  #       EntrySetResponse.any_instance.stub(:save).and_return(false)
+  #       put :update, {:id => entry_set_response.to_param, :entry_set_response => { "entry_set_id" => "invalid value" }}, valid_session
+  #       response.should render_template("edit")
+  #     end
+  #   end
+  # end
 
-  describe "DELETE destroy" do
-    it "destroys the requested entry_set_response" do
-      entry_set_response = EntrySetResponse.create! valid_attributes
-      expect {
-        delete :destroy, {:id => entry_set_response.to_param}, valid_session
-      }.to change(EntrySetResponse, :count).by(-1)
-    end
+  # describe "DELETE destroy" do
+  #   it "destroys the requested entry_set_response" do
+  #     entry_set_response = EntrySetResponse.create! valid_attributes
+  #     expect {
+  #       delete :destroy, {:id => entry_set_response.to_param}, valid_session
+  #     }.to change(EntrySetResponse, :count).by(-1)
+  #   end
 
-    it "redirects to the entry_set_responses list" do
-      entry_set_response = EntrySetResponse.create! valid_attributes
-      delete :destroy, {:id => entry_set_response.to_param}, valid_session
-      response.should redirect_to(entry_set_responses_url)
-    end
-  end
+  #   it "redirects to the entry_set_responses list" do
+  #     entry_set_response = EntrySetResponse.create! valid_attributes
+  #     delete :destroy, {:id => entry_set_response.to_param}, valid_session
+  #     response.should redirect_to(entry_set_responses_url)
+  #   end
+  # end
 
 end

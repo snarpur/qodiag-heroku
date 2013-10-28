@@ -1,5 +1,6 @@
 class SignUpController < ApplicationController
-  
+  before_filter :unauthorized_raise_401, :except => ['create']
+
   def create
     if not params[:user][:email].blank?
       @user = User.new

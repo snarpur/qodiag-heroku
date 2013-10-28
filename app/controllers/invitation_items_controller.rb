@@ -1,6 +1,6 @@
 class InvitationItemsController < ApplicationController
   before_filter :get_user
-  before_filter :get_responder_item
+  before_filter :get_responder_item, :if => :logged_in?
   before_filter :set_step, :only => [:new,:show,:create,:update]
   load_and_authorize_resource :responder_item, :parent => false
 

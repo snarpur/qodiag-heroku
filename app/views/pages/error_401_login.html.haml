@@ -1,0 +1,17 @@
+-content_for :landing_page_header do
+  =render "pages/landing_page/apply_sign_in"
+%br
+.hero-unit{:class=>'alert-unauthorized center'}
+  %h1
+    Unauthorized
+    %small
+      401
+  %br
+  %p
+    You are not allowed to see this content, either contact your webmaster or try again. Use your browser's <b>Back button</b> to navigate to the page you have prevously come from
+  %p
+    %b
+      Or you could just logged in:
+  %div{:class=>'text-center'}
+    = link_to t("actions.log_in"), new_user_session_path(), :class => "button btn"
+  

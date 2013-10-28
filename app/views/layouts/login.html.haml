@@ -27,14 +27,7 @@
   %body{:class => yield(:body_class)}
     
     #page
-      - if not request.env['PATH_INFO'].include?"users/sign_in" and not request.env['PATH_INFO'].include?"inv"
-        =render "pages/landing_page/header"  
-     
-      - if request.env['PATH_INFO'].include?"users/sign_in" or request.env['PATH_INFO'].include?"invitation"
-        =render "pages/landing_page/apply_sign_in"
-      - else
-        =render "pages/landing_page/apply" 
-
+      = yield(:landing_page_header)
       #content
         #flash
           -flash.each do |name, msg|

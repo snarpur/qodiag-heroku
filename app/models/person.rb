@@ -466,9 +466,14 @@ class Person < ActiveRecord::Base
   
 
   def guardian_respondent
-    User.joins(:person => :relationships).
-    where("relationships.name = 'guardian' AND relationships.relation_id = #{self.id}").
-    first.person
+    guardian = User.joins(:person => :relationships).
+    where("relationships.name = 'guardian' AND relationships.relation_id = #{self.id}")
+
+    if (guardian.empty?)
+      return nil
+    else
+      return guardian.first.person
+    end
   end
 
   def opposite_parent_relation(parent)

@@ -1,12 +1,16 @@
 require 'ostruct'
 class ResponderItemsController < ApplicationController
-  before_filter :create_responder_item, :only => [:new,:create]
-  load_and_authorize_resource
+  # before_filter :authorize_from_params
+  before_filter :create_responder_item, :only => [:new,:create], :if => :logged_in?
+  before_filter :get_surveys, :only => [:survey] , :if => :logged_in?
+  load_and_authorize_resource :only => [:create]
   respond_to :json
 
   def index
     @person = Person.find(params[:subject_id])
     @responder_items = @person.responder_items.surveys
+    authorize!(:survey, *(@responder_items.any? ? @responder_items : ResponderItem.new))
+    @responder_items
     respond_to do |format|
       format.html
       format.json
@@ -54,6 +58,7 @@ class ResponderItemsController < ApplicationController
 
   end
   
+  #REFACTOR: Move to SurveyResponsesController
   def responses 
     @chart = ResponderItem.to_line_chart(params)
     respond_to do |format|
@@ -61,10 +66,12 @@ class ResponderItemsController < ApplicationController
       format.json {render "show"}
     end
   end
- 
+
+  #REFACTOR: Move to SurveyResponsesController
   def survey
-    @person = Person.find(params[:subject_id])
-    @responder_items = @person.responder_items.surveys_by_id(params[:survey_id])
+    @responder_items
+    authorize!(:survey, *(!@responder_items.nil? && @responder_items.any? ? @responder_items : ResponderItem.new)) 
+    @responder_items
   end
   
   private
@@ -74,5 +81,16 @@ class ResponderItemsController < ApplicationController
     args = params_without_root.slice(*attr_ok)
     @responder_item = ResponderItem.new_patient_item(args,current_user.person)
   end
+
+  def get_surveys
+    @person = Person.find(params[:subject_id])
+    @responder_items = @person.responder_items.surveys_by_id(params[:survey_id])
+  end
+
+  # def authorize_from_params
+  #   subject = Person.find(params[:subject_id])
+  #   if current_user.person.respondent_relationship_to(subject).empty? || current_user.person.caretaker_relationship_to(subject).empty?
+  #    raise CanCan:AccessDenied
+  # end
 
 end

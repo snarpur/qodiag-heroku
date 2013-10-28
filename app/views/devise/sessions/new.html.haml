@@ -1,4 +1,6 @@
-=content_for :body_class, "sign-in"
+-content_for :landing_page_header do
+  =render "pages/landing_page/apply_sign_in"
+
 %h1{:class => 'logo text-center'}
   = link_to "Qodiag", root_path()
   

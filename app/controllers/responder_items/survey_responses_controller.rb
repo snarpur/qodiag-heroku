@@ -1,3 +1,4 @@
+#IMPORTANT: Change to ActionController
 class ResponderItems::SurveyResponsesController < ActionController::Base
   
   def question_group
