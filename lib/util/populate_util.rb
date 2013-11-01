@@ -47,7 +47,9 @@ class PopulateUtil
 
     def full_cpr(age=5)
       dob = random_date(age).strftime("%d%m%y")
-      {:full_cpr => "#{dob}1289"}
+      year = Time.now.year - age
+      last = ( year >= 2000 ? "1280" : "1289")
+      {:full_cpr => "#{dob}#{last}"}
     end
 
     def fullname

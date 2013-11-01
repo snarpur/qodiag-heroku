@@ -266,7 +266,6 @@ module BackboneFormsPreprocessor
     end
 
     def type_is_nested_model?(field)
-      # KK.log "field -- #{field}"
       unless field.is_a?(String) || field[:type].nil?
         field.respond_to?(:has_key?) && (field[:type] == "NestedModel" || field[:type] == "NestedCollection")
       end

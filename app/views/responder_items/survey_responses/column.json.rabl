@@ -1,5 +1,6 @@
 object @chart
-attributes :chart_metrics => :chartMetrics
+attributes :chart_metrics => :chartMetrics #,
+           #:chart_filters => :chartFilters
 
 child @chart.charts => :charts do
   attributes :chart_size => :size, 

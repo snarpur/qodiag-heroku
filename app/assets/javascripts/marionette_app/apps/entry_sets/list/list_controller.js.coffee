@@ -54,6 +54,7 @@
 
     
     confirmDelete:(view)->
+
       bootbox.confirm "Ertu viss um að þú viljir eyða eyðublaði #{view.model.get('name')}", (result) ->
         if result
           view.model.destroy()

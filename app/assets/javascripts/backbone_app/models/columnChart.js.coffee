@@ -65,7 +65,10 @@ class App.Collections.ColumnChart extends Backbone.Collection
   initialize:(models,options)->
     @.options = options
     @setCurrentMetric(options.currentMetric)
-    @on('reset', @setMetricMenu)
+    @on('reset', (models, options) =>
+      @setMetricMenu(models, options)
+      # @setFilters(models, options)
+    )
   
     @url = ->
       url = "/responder_items/responses/:id/column"
@@ -85,6 +88,11 @@ class App.Collections.ColumnChart extends Backbone.Collection
       i
     ),@)
 
+  #filterSelects:->
+  #  _.map(@at(0).attributes.chartFilters,((i)->
+  #    i
+  #  ),@)
+
   
   responderItemId:->
     @options.responderItem.get("id")
@@ -99,10 +107,19 @@ class App.Collections.ColumnChart extends Backbone.Collection
     _.first(options.chartMetrics).isActive = true
     @metricMenu = new Backbone.Collection(options.chartMetrics)
     @listenTo(@metricMenu,"change:isActive",(model)-> @setCurrentMetric(model.get('name')))
+
+
+  #setFilters:(models,options)->
+  #  return if !options.chartFilters? or @filters?
+  #  @filters = new Backbone.Collection(options.chartFilters)
+    # @listenTo(@metricMenu,"change:isActive",(model)-> @setCurrentMetric(model.get('name')))
   
   
   getMetricMenu:->
     @metricMenu
+
+  # getFilters:->
+  #  @filters
 
   
   setCurrentMetric:(name)->

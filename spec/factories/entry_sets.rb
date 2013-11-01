@@ -6,7 +6,7 @@ FactoryGirl.define do
     created_by_id 1
     description "MyString"
     type ""
-    visibility "0"
+    visibility "1"
   end
   
 end

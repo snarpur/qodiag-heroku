@@ -134,6 +134,9 @@ module ChartRenderer
       @chart[:content][:chart_metrics]
     end
 
+    # def chart_filters
+    #   @chart[:content][:chart_filters]
+    # end
 
 
     def chart_output

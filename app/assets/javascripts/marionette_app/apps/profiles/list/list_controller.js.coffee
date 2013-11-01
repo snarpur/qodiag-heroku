@@ -44,6 +44,7 @@
     addEmptyParent:(parents)->
       if parents.size() is 0
         parent = new App.Entities.Person()
+        parent.set(address: {})
         parents.add parent, at: 0
 
       if parents.size() is 1 

@@ -8,6 +8,12 @@ chart_metrics:
    - 
      name: standard_deviation
      query: standard_deviation
+
+# chart_filters:
+#    - 
+#      name: age
+#      query: age
+
 chart_config:
   title:
     text: true
@@ -21,14 +27,15 @@ charts:
       question_list_drilldown: true
       question_groups: [inattention, impulsivity_hyperactivity] 
     chart_config:
+      chart:
+        marginBottom: 100
       tooltip:
         enabled: true
         shared: true
         useHTML: true
         formatter: 
           name: countHighScores
-          argument: [2,3]
-            
+          argument: [2,3]        
   -
     content:
       name:  total
@@ -38,6 +45,8 @@ charts:
           name: total
           total: [inattention, impulsivity_hyperactivity]
     chart_config:
+      chart:
+          marginBottom: 100
       plotOptions:
         column:
           point:

@@ -4,6 +4,7 @@ extends: Line
 chart_config:
   chart:
    type: line
+   
 content:
   result_names: [average]
 

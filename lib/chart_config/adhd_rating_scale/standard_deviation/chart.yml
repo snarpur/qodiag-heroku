@@ -13,3 +13,6 @@ charts:
           total:
             - inattention 
             - impulsivity_hyperactivity
+    chart_config:
+      chart:
+        marginBottom: 100

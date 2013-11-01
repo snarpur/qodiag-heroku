@@ -1,1 +1,0 @@
-alert("Please include e.g. date-en-US.js file from the build");

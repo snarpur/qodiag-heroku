@@ -23,13 +23,16 @@ class App.Views.ColumnChartCollection extends App.Marionette.CompositeView
     if @menuView
       @$el.prepend(@menuView.render().el)
 
+    if @filterView
+      @$el.prepend(@filterView.render().el)
 
   initialize:(options)->
     @menu = options.collection.getMetricMenu()
+
     if @menu?
       @menuView = new App.Views.MetricsMenuList({collection: @menu})
       @listenTo(@menu,'change:isActive',@fetchMetricResult)
-
+   
   fetchMetricResult:(model)=>
     view = @
     callbacks=
