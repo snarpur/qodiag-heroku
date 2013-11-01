@@ -1,0 +1,1 @@
+(function(){this.JST||(this.JST={});this.JST["backbone_app/templates/people/parentCollectionTmpl"]=function(obj){var __p=[],print=function(){__p.push.apply(__p,arguments)};with(obj||{}){__p.push("<h2>",I18n.t("terms.parents"),'</h2>\n<div class="editable-items"></div>\n')}return __p.join("")}}).call(this);

@@ -1,0 +1,1 @@
+(function(){Backbone.Marionette.Renderer.render=function(template,data){if(!_.startsWith(template,"templates")){template="templates/"+template}if(!JST["backbone_app/"+template]){throw"Template '"+template+"' not found!"}return JST["backbone_app/"+template](data)}}).call(this);

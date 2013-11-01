@@ -10,7 +10,6 @@ app/assets/stylesheets/**/*.sass-cache
 .watchr
 .rspec
 *.log
-public/assets
 public/source_maps/
 .sass-cache
 yes
