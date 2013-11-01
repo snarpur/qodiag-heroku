@@ -25,4 +25,5 @@
 environments:
   alfa:
     migrate: false
-    precompile_assets: true
+    precompile_assets: false
+    branch: development
