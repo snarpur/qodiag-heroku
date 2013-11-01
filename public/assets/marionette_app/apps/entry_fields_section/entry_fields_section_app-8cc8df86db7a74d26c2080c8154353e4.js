@@ -1,1 +1,0 @@
-(function(){this.Qapp.module("EntryFieldsSectionApp",function(EntryFieldsSectionApp,App,Backbone,Marionette,$,_){var API,_this=this;API={listFields:function(options){var ctrl;ctrl=new EntryFieldsSectionApp.List.Controller();return ctrl.list(options)}};return App.commands.setHandler("show:settings:section:fields",function(options){return API.listFields(options)})})}).call(this);

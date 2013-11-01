@@ -1,1 +1,0 @@
-(function(){$.fn.extend({helpOverlay:function(){var setUp,settings,_this=this;settings={trigger:"a",overlay:"#help-overlay"};setUp=function(){return $(_this,settings.trigger).bind("click",function(e){e.preventDefault();return $(settings.overlay).toggleClass("visible")})};return this.each(function(){return setUp(settings)})}})}).call(this);
