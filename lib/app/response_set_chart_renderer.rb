@@ -51,20 +51,9 @@ module ResponseSetChartRenderer
       config_class(:column).send(:instance).get_config.slice(:chart_metrics)
     end
 
-<<<<<<< HEAD
-    # def chart_filters
-    #   filters = config_class(:column).send(:instance).get_config.slice(:chart_filters)
-    #   filters[:chart_filters].each do |f|
-    #     options = self.send("norm_reference_#{f[:name]}_options")
-    #     f.merge!({:options => options})
-    #   end
-    #   filters
-    # end
-=======
     def chart_filters
       config_class(:column).send(:instance).get_config.slice(:chart_filters)
     end
->>>>>>> charts
   
   end 
  
