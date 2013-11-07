@@ -69,7 +69,7 @@ class App.Views.Timeline.ItemDialog extends Backbone.View
     charts = new App.Collections.ColumnChart([],{responderItem: @model})
     charts.fetch(
       success:(collection, response, options)->
-        collection.reset(response.charts,{chartMetrics: response.chartMetrics})
+        collection.reset(response.charts,{chartMetrics: response.chartMetrics, chartFilters: response.chartFilters})
         chartView = new App.Views.ColumnChartCollection({collection: collection})
         @.$(".chart-wrapper").append(chartView.render().el)
       error:(collection, xhr, options)->         

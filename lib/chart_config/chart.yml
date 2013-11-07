@@ -6,7 +6,7 @@ chart_config:
     enabled: false
     backgroundColor: rgba(255, 255, 255, 0.85)
   chart:
-    marginBottom: 75
+    marginBottom: 100
     marginTop: 80
     animation: false
   title:

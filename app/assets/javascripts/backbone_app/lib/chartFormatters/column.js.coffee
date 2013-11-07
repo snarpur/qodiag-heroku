@@ -47,7 +47,6 @@ class App.Lib.ChartFormatters.Column extends App.Lib.ChartFormatters.Chart
 
     formatters = 
       countHighScores:()->
-        console.log "@::",@
         labelText = ""
         if typeof @points is "object"
           totalHighScores = _.countBy(_.toArray(_.pluck(@points[0].point.values,'weight')), (num) -> _.contains(options.argument,num)).true

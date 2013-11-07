@@ -6,6 +6,7 @@ is:
       female: "stúlkur"
       average: Meðaltal
       standard_deviation: Staðalfrávik
+      sex: "kyn"
       respondent:
         parent: "foreldri"
         teacher: "kennari"
@@ -19,6 +20,7 @@ is:
     adhd-rating-scale:
       name: "ADHD Mælikvarði"
       terms:
+        age: Aldur
         average: meðaltal
         inattention: "athyglisbrestur"
         impulsivity_hyperactivity: "ofvirkni/hvatvísi"

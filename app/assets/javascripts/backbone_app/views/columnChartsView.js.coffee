@@ -22,13 +22,21 @@ class App.Views.ColumnChartCollection extends App.Marionette.CompositeView
   onRender:()->
     if @menuView
       @$el.prepend(@menuView.render().el)
+    if @filtersView
+      @$el.prepend(@filtersView.render().el)
 
 
   initialize:(options)->
+
     @menu = options.collection.getMetricMenu()
     if @menu?
       @menuView = new App.Views.MetricsMenuList({collection: @menu})
       @listenTo(@menu,'change:isActive',@fetchMetricResult)
+
+    @filter = options.collection.getFilters()
+    if @filter?
+      @filtersView = new App.Views.FilterList({collection: @filter})
+      @listenTo(@filter,'change:normReferenceId',@filterResult)
 
   fetchMetricResult:(model)=>
     view = @
@@ -39,5 +47,16 @@ class App.Views.ColumnChartCollection extends App.Marionette.CompositeView
       error:(collection,xhr)->
         throw "could no get collection in App.Views.ColumnChartCollection:fetchMetricResult"
       silent: true
+    @collection.fetch(callbacks)
 
+  filterResult:(model)=>
+    view = @
+    callbacks=
+      success:(collection,response)->
+        collection.reset(response.charts,{chartFilters: response.chartFilters})
+        view.menuView.render()
+      error:(collection,xhr)->
+        throw "could no get collection in App.Views.ColumnChartCollection:filterResult"
+      silent: true
+    
     @collection.fetch(callbacks)

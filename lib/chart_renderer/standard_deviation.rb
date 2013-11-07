@@ -2,8 +2,8 @@ module ChartRenderer::StandardDeviation
 class Chart < ChartRenderer::Chart
 
   BELL_CURVE = 9
-  def initialize(chart_options,response_set)
-    super(chart_options,response_set)
+  def initialize(chart_options,response_set, options = {})
+    super(chart_options,response_set, options)
   end
 
   
@@ -25,7 +25,6 @@ class Chart < ChartRenderer::Chart
     queries = @chart[:chart_metrics].group_by{|d| d[:name] }
 
     question_groups = get_content(:question_groups).map{|i| i.is_a?(String) ? i : i[:name]}
-
     reference = norm_reference.scores_by_names_and_result_names(question_groups,queries.values.map{|q| q[0][:query]})
     center = (BELL_CURVE - 1)/2
     data = []
