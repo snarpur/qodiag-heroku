@@ -1,6 +1,7 @@
 is:
   surveys:
     adhd-rating-scale:
+      age: Aldur
       name: "ADHD Mælikvarði"
       terms:
         average: meðaltal

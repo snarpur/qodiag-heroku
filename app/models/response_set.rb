@@ -52,8 +52,8 @@ module ResponseSetCustomMethods
     NormReference.find_match({:survey_id => self.survey.id, :sex => self.subject.sex, :age => self.subject.age})
   end
 
-  def norm_reference_age_options 
-    NormReference.where({:survey_id => self.survey.id, :sex => self.subject.sex})
+  def norm_reference_by_age_options(respondent)
+    NormReference.where({:survey_id => self.survey.id, :sex => self.subject.sex, :responder => respondent.to_s}).select('id, age_start, age_end')
   end
 
   def survey_name

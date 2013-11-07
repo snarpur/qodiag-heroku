@@ -62,6 +62,8 @@ Snarpur::Application.routes.draw do
 
   resources :survey_responses, :path => 'responder_items/responses', :module => "responder_items", :only => [:index] do
     member do 
+      get "column(/norm_reference/:norm_reference_id)" => "survey_responses#column"
+      get "column(/norm_reference/:norm_reference_id/:column_metrics)" => "survey_responses#column"
       get "column(/:column_metrics)" => "survey_responses#column"
       get "question_group/:question_group_name" => 'survey_responses#question_group'
     end

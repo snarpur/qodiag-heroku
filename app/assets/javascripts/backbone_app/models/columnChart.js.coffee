@@ -5,8 +5,7 @@ class App.Models.ColumnChart extends Backbone.Model
     @url = ()->
       base = "#{@.urlRoot}/#{@get('id')}/column"
       if @get("columnMetrics")
-        base = "#{base}/#{@get('columnMetrics')}"
-      
+          base = "#{base}/#{@get('columnMetrics')}"
       base
 
   
@@ -65,16 +64,24 @@ class App.Collections.ColumnChart extends Backbone.Collection
   initialize:(models,options)->
     @.options = options
     @setCurrentMetric(options.currentMetric)
-    @on('reset', (models, options) =>
-      @setMetricMenu(models, options)
-      # @setFilters(models, options)
+    @on('reset', (models,options)=> 
+      @setMetricMenu(models,options)
+      @setFilters(models,options)
     )
   
     @url = ->
       url = "/responder_items/responses/:id/column"
       url = url.replace(/\:id/,@responderItemId())
-      unless _.isEmpty(@currentMetric)
-        url = "#{url}/#{@currentMetric}"
+      if not _.isEmpty(@currentMetric)
+        if not _.isEmpty(@normReferenceId)
+          url = "#{url}/norm_reference/#{@normReferenceId}/#{@currentMetric}"
+        else
+          url = "#{url}/#{@currentMetric}"
+      else
+        if not _.isEmpty(@normReferenceId)
+          url = "#{url}/norm_reference/#{@normReferenceId}"
+      # unless _.isEmpty(@currentMetric)
+      #   url = "#{url}/#{@currentMetric}"
       url
 
   
@@ -88,10 +95,12 @@ class App.Collections.ColumnChart extends Backbone.Collection
       i
     ),@)
 
-  #filterSelects:->
-  #  _.map(@at(0).attributes.chartFilters,((i)->
-  #    i
-  #  ),@)
+  filters:->
+    _.map(@at(0).attributes.chartFilters,((i)->
+      # i.isActive = (i.query == @getCurrentMetric())
+      i
+    ),@)
+
 
   
   responderItemId:->
@@ -108,22 +117,23 @@ class App.Collections.ColumnChart extends Backbone.Collection
     @metricMenu = new Backbone.Collection(options.chartMetrics)
     @listenTo(@metricMenu,"change:isActive",(model)-> @setCurrentMetric(model.get('name')))
 
+  setFilters:(models,options)->
+    return if !options.chartFilters? or @selectFilter?
+    @selectFilter = new Backbone.Collection(options.chartFilters)
+    @listenTo(@selectFilter,'change:normReferenceId',(model)-> @setNormReferenceId(model.get('normReferenceId')))
 
-  #setFilters:(models,options)->
-  #  return if !options.chartFilters? or @filters?
-  #  @filters = new Backbone.Collection(options.chartFilters)
-    # @listenTo(@metricMenu,"change:isActive",(model)-> @setCurrentMetric(model.get('name')))
-  
   
   getMetricMenu:->
     @metricMenu
 
-  # getFilters:->
-  #  @filters
+  getFilters:->
+    @selectFilter
 
-  
   setCurrentMetric:(name)->
     @currentMetric = name
+
+  setNormReferenceId:(id)->
+    @normReferenceId = id
 
   
   getCurrentMetric:->

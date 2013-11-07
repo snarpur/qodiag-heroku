@@ -8,7 +8,7 @@ class ResponderItems::SurveyResponsesController < ActionController::Base
 
 
   def column
-    @chart = ResponderItem.find(params[:id]).response_to_chart(params.slice(:column_metrics))
+    @chart = ResponderItem.find(params[:id]).response_to_chart(params.slice(:column_metrics,:norm_reference_id))
   end
 
 

@@ -4,16 +4,23 @@ module ChartRenderer
     attr_accessor :chart_data, :chart_size, :categories
 
 
-    def initialize(chart_options,response_set)
+    def initialize(chart_options,response_set,options={})
+      @options = options
       @chart = chart_options
       @response_set = response_set
       @subject_series = subject_series
       @reference_values = reference_values
+      
     end
 
     def norm_reference
-      return if @response_set.norm_reference.nil?
-      @response_set.norm_reference
+      if not @options.nil? and not @options[:norm_reference_id].nil?
+        norm_referenceee = NormReference.find @options[:norm_reference_id] unless (@options.nil? && @options[:norm_reference_id].nil?)
+      else
+        return if @response_set.norm_reference.nil?
+        norm_referenceee = @response_set.norm_reference
+      end
+      norm_referenceee
     end
     
     def access_code

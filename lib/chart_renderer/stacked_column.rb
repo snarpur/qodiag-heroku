@@ -1,8 +1,8 @@
 module ChartRenderer::StackedColumn 
 class Chart < ChartRenderer::Chart
 
-  def initialize(chart_options,response_set)
-    super(chart_options,response_set)
+  def initialize(chart_options,response_set, options = {})
+    super(chart_options,response_set,options)
     @reference_values = set_group_actions
   end
 

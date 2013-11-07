@@ -9,10 +9,10 @@ chart_metrics:
      name: standard_deviation
      query: standard_deviation
 
-# chart_filters:
-#    - 
-#      name: age
-#      query: age
+chart_filters:
+   - 
+     name: age
+     query: age 
 
 chart_config:
   title:
