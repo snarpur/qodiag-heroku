@@ -30,6 +30,10 @@ class NormReference < ActiveRecord::Base
     self.age_start || self.age_end 
   end
 
+  def self.get_norm_reference_for_oldest(survey_id, responder = "parent")
+    NormReference.where('survey_id = ? AND responder = ?',survey_id,responder).order('age_start DESC').first()
+  end
+
   def get_score_by_result_name(result_names, group_by=:result_name)
     self.scores.by_result_names_in_groups(result_names,group_by)
   end
