@@ -22,7 +22,7 @@
         @showEntrySetSelect(@items)
         unless @items.size() is 0
           currentItem = if entrySetResponseId then @items.where(entry_set_response_id: entrySetResponseId)[0] else @items.first()
-          @getSections(currentItem,sectionId)
+          @getSections(currentItem,sectionId) unless not currentItem.get("completed")?
         else
 
         @listenTo @getLayout(), "add:item:clicked", => @createItemSetup(collection: @items)
