@@ -1,0 +1,21 @@
+<span id="entry_field_options_error" class="help-inline"></span>
+<div class="control-group">
+  <label class="control-label" for="title">Titill</label>
+  <div class="controls">
+    <input class="input-xlarge" type="text" id="title" placeholder="Titill">
+    <span id="title_error" class="help-inline"></span>
+  </div>
+</div>
+<div class="control-group">
+  <div class="controls">
+    <h5>Options</h5>
+  </div>
+</div>
+<div class="options"></div>
+<div class="control-group">
+  <div class="controls">
+    <a href="#" class="add">
+      Add new option
+    </a>
+  </div>
+</div>

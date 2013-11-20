@@ -51,12 +51,6 @@
       @url= ->
         Routes.entry_set_responses_path()
 
-
-
-
-
-
-
   API = 
     getEntrySetResponse: (options) ->
       responseSet = new Entities.EntrySetResponse id: options.id

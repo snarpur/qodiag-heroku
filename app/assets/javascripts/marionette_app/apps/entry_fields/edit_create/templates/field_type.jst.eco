@@ -1,0 +1,6 @@
+<div class="control-group">
+  <label class="control-label" for="field_type">Field Type</label>
+  <div class="controls">
+    <select class="input-xlarge" id="field-type" <%= @isDisabled() %>></select>
+  </div>
+</div>

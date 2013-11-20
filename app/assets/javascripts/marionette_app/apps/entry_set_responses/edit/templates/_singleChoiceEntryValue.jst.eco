@@ -1,0 +1,12 @@
+<label><%-@entry_field_title%></label>
+<% if @entry_field_help_text? : %>
+  <span class="help-block">
+    <%- @entry_field_help_text %>
+  </span>
+<% end %>
+<% for option in @entry_field_entry_field_options: %>
+  <label class="radio">
+    <input type="radio" name="<%-"entry_field_#{@entry_field_help_text}"%>" id="<%-"single_choice_value_#{option.id}"%>">
+      <%= option.text_option %>
+  </label>
+<% end %>

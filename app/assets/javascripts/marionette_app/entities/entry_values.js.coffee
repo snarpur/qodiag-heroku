@@ -8,7 +8,14 @@
     validation:
       text_value: 
         required: true
-        
+    
+    relations: [
+      {
+        type: Backbone.One
+        key: 'entry_field_option'
+        relatedModel: App.Entities.EntryFieldOption
+      }
+    ] 
 
     initialize: ->
       if @get('comments')

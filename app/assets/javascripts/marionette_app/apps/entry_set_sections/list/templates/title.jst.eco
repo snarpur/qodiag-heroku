@@ -1,5 +1,7 @@
 <h2>
     <%- @name %>
-    <span class="btn btn-mini edit-item"><i class="icon-edit"></i></span>
-    <span class="btn btn-mini remove-item"><i class="icon-trash"></i></span>
+    <% if @editable: %>
+      <span class="btn btn-mini edit-item"><i class="icon-edit"></i></span>
+      <span class="btn btn-mini remove-item"><i class="icon-trash"></i></span>
+    <% end %>
 </h2>

@@ -1,4 +1,7 @@
 <td>
+  <%- @field_type %>
+</td>
+<td>
   <%- @title %>
 </td>
 <td class="thin nowrap">

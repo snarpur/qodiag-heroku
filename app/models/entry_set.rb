@@ -3,7 +3,7 @@ class EntrySet < ActiveRecord::Base
   has_many :sections, :through => :entry_sets_sections
   has_one :entry_set_response
   attr_accessible :created_by_id, :description, :name, :type, :visibility
-
+  
   # Added in order to reflect the relationship between  entry_sets and users
   belongs_to :person
 

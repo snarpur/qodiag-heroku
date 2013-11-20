@@ -12,6 +12,7 @@
     template: "responder_items/list/templates/_item"
     tagName: 'tr'
     className: () ->
+      console.log "@model::",@model
       if @model.get("completed")? then "success" else "warning"
 
 
@@ -23,7 +24,6 @@
     templateHelpers: =>
         tableTitle: =>
           I18n.t("responder_item.status.#{@options.status}")
-          #@options.title
 
   class List.Header extends App.Views.ItemView
     template: "responder_items/list/templates/header"

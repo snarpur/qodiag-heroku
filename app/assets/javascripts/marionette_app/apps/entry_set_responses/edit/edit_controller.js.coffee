@@ -37,9 +37,10 @@
       entries = @entrySetResponse.getSectionResponses()
 
       #NOTE: We should try to remove this when-fetched in order to remove the time it takes to show the spinner
-      App.execute "when:fetched", entries, =>
-        @entrySetResponse.set('entry_values',entries.mergeEntryValues())
-        @showForm()
+      # App.execute "when:fetched", entries, =>
+      #   console.log "entries::",entries
+      #   # @entrySetResponse.set('entry_values',entries.mergeEntryValues())
+      #   @showForm()
 
       
     
@@ -78,6 +79,8 @@
       @listenTo formView, "form:saveAndComplete", => 
         @saveAsCompleteAndRedirect(formView)
     
+      @listenTo editView, "childview:multi:select", =>
+        console.info "@listenTo editView :", @, arguments
 
 
      saveAndMoveToNextSection:(formView)->
@@ -111,7 +114,7 @@
     getFormView:->
       new Edit.EntryValues 
         collection: @entrySetResponse.get('entry_values')
-        model: @entrySetResponse
+        model: @entrySetResponse 
 
 
 

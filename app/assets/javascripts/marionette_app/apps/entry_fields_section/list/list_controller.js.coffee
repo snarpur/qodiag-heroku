@@ -45,7 +45,6 @@
     
 
     getEntriesView:(entries,section)->
-      
       entriesView = new List.Fields
         collection: entries
         model: section

@@ -1,0 +1,6 @@
+<div class="control-group">
+  <div class="controls">
+    <input class="text_option input-xlarge" type="text" placeholder="option">
+    <a class="destroy" href="#"><span class="icon-trash"></span></a>
+  </div>
+</div>

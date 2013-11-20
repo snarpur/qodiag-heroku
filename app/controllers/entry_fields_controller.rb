@@ -13,16 +13,21 @@ class EntryFieldsController < ApplicationController
   def create
     #Change by Ata: Code refactoring that use the relationship between person and Entry Fields
     @entry_field = @current_user.person.entry_fields.build(params[:entry_field])
-
     if @entry_field.save
       render :show
+    else
+      respond_with(@entry_field)
     end
   end
 
   def update
     @entry_field = EntryField.find(params[:id])
     @entry_field.update_attributes(params[:entry_field])
-    render :json => {:ok => 'ok'}
+    KK.log @entry_field.inspect, :g
+    respond_with(@entry_field) do |format|
+      format.json { render :show }
+    end
+
   end
 
   def destroy

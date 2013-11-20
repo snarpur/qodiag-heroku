@@ -1,7 +1,7 @@
 object @entry_value
 attributes :id, :entry_field_id, :entry_set_response_id, 
            :string_value, :text_value, :person_id, :created_at,
-           :entry_field_title, :entry_field_description, :entry_field_help_text,:field_type
+           :entry_field_option_id
 child :person do
   attributes :full_name
 end
