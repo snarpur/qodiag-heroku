@@ -27,7 +27,6 @@ class PeopleController < ApplicationController
     @person.update_attributes(params[:person])
     redirect_to params[:redirect_path]
   end
-
   
   def update
     @person= Person.find(params[:id])

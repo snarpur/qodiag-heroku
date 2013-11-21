@@ -1,5 +1,5 @@
 object @user
-attributes :email, :person_id, :role_names
+attributes :email, :person_id, :role_names, :last_user_id
 attributes :role => :role_name
 node do |user|
   partial("users/#{user.role_name}", :object => user.person)

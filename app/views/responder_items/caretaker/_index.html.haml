@@ -22,6 +22,8 @@
         Óklárðar beiðnir
       %th{:class => 'small'}
         Útrunnar beiðnir
+      %th{:class => 'small'}
+        Login as
   %tbody
     -@patients.each do |p|
       %tr
@@ -37,3 +39,9 @@
           - unless o.zero?
             %span
               = o
+        %td{:class => 'center login'}
+          -unless p.respondents.count.zero?
+            %a{:href => login_as_path(p.respondents.first)}
+              %span.icon-user
+              %span.icon-share-alt
+              

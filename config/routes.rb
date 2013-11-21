@@ -33,7 +33,11 @@ Snarpur::Application.routes.draw do
     get "invitation/edit" => 'devise/invitations#edit', :as => :accept_user_invitation
     put "invitation/update" => 'devise/invitations#update', :as => :user_confirmation
     get 'users', :to => 'users#show', :as => :user_root # Rails 3
+
   end
+
+  match 'user/login_as/:id' => 'devise/switch_users#login_as', :as => :login_as, :via => :get
+  match 'user/logout_as/:id' => 'devise/switch_users#logout_as', :as => :logout_as, :via => :get
 
   namespace :admin do
     resources :users
@@ -98,6 +102,7 @@ Snarpur::Application.routes.draw do
   match 'people/:subject_id/history' => 'people#history'
   match 'people/:subject_id/information' => 'people#information'
   match 'people/:id/image_upload' => 'people#image_upload', :via => :put , :as => :image_upload
+  
 
   
   # match 'pre_registrations/edit/step/:step_no/:id' => 'pre_registrations#edit',:defaults => { :step_no => 1}, :via => [:get], :as => :pre_registration_step
