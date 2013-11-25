@@ -1,0 +1,25 @@
+#Common actions -------------------------------------------------------
+is:
+  actions:
+    save: "Vista"
+    add_spouse: "Skrá maka"
+    add_guardian: "Skrá forræðishafa"
+    remove: "Eyða"
+    create: "Skrá"
+    add: "Bæta við"
+    cancel: "Hætta við"
+    sign_up: "Nýskráning"
+    sign_in: "Skrá mig inn"
+    sign_out: "Skrá mig út"
+    log_in: "Innskráning"
+    register: "Skrá"
+    finish : "Klára"
+    send: "Senda"
+    upload: Hlaða upp
+    request_survey: "Senda spurningalista"
+  time_to_words:
+    until: "þangað til"
+    ago: "síðan"
+    expires: "rennur út"
+    expired: "rann út"
+    submitted: "svarað"

@@ -4,19 +4,24 @@
     .span6{:class => 'stripes hidden-phone hidden-tablet'}
       %ul
         %li
-          %em Staðlaðir listar
+          %em 
+            = t('views.landing_page.partial.header.stripes')[0]
           %i{:class => 'fc-icon-employee-evaluation'}
         %li
-          %em Eyðublöð
+          %em
+            = t('views.landing_page.partial.header.stripes')[1]
           %i{:class => 'fc-icon-form-document'}
         %li
-          %em Samskipti
+          %em
+            = t('views.landing_page.partial.header.stripes')[2]
           %i{:class => 'fc-icon-dialog'}
         %li
-          %em Yfirsýin
+          %em
+            = t('views.landing_page.partial.header.stripes')[3]
           %i{:class => 'fc-icon-chart-documents'}
         %li
-          %em Öryggi gagna
+          %em
+            = t('views.landing_page.partial.header.stripes')[4]
           %i{:class => 'fc-icon-secure'}
 
 
@@ -25,7 +30,7 @@
       %h1.logo
         Qodiag
       %p.offset1
-        Auðveldar söfnun og úrvinnslu klínískra gagna. 
+        = t('views.landing_page.partial.header.sub_header') 
       %img{:src => '/assets/login/computer_large.png', :alt => 'Qodiag', :class => 'computer hidden-phone hidden-tablet'}
       = link_to t("actions.log_in"), new_user_session_path(), :class => "button btn"
 

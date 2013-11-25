@@ -6,4 +6,5 @@
           = render "shared/error_messages", :locals => {:form_builder => f}
           = f.input :email, label: false, placeholder: t("user.email"), :class => "placeholder"
           = f.button :submit, t("actions.register"), :class => "btn"
-      %span.help-block=t("actions.express_interest")
+      %span.help-block
+        = t("views.landing_page.partial.apply.express_interest")

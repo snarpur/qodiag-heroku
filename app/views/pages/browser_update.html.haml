@@ -1,98 +1,56 @@
 =content_for :css_hook, "useragent-detection"
 
-.intro
-  %span.stop
-    =image_tag("useragent_detection/stop.png")
+=content_for :landing_page_header do
+  =render "pages/landing_page/apply_sign_in"
 
+%br
+.well
   %h1
+    %span.stop
+      =image_tag("useragent_detection/stop.png")
     Úps...!
   %p
     Til þessa að halda þróunarkostnaði í lágmarki styður Qodiag ekki Internet explorer eða eldri gerðir af vöfrum eins og er.
-  %p
     Vinsamlegastu uppfærðu vafran þinn(sjá leiðbeiningar) og skráði þig svo inn á Snarp.
 
-  %span.clear
-.instructions
-
-  .step.st-1
-    %span.arrow
-      =image_tag("useragent_detection/arrow.png")
-    .step-num
+.information
+  .row
+    .span7{:class => "step-1"}
       =image_tag("useragent_detection/m01-clear.png")
-    .step-content
       %p
-        Veldu annaðhvort 
-        %span.agent-link.ff 
-          = image_tag "useragent_detection/ff.png"
-          %a{:href => "http://www.mozilla.org/en-US/firefox/new/" }Firefox
+        Veldu annaðhvort
+        = image_tag "useragent_detection/ff.png"
+        %a{:href => "http://www.mozilla.org/en-US/firefox/new/" }Firefox
         eða 
-        %span.agent-link.chrome 
-          = image_tag "useragent_detection/chrome.png"
-          %a{:href => 'https://www.google.com/chrome'} Chrome
-        og fylgdu leiðbeiningum um uppsetningu. 
-      %br
-      %br
+        = image_tag "useragent_detection/chrome.png"
+        %a{:href => 'https://www.google.com/chrome'} Chrome
+        og fylgdu leiðbeiningum um uppsetningu.
+    
       %p
         Ef þú ert þegar með slíkan vafra skalltu uppfæra hann samkvæmt eftirfarandi leiðbeiningum.
-      %br
-      %br
-      %ul
-        %li 
+      .row
+        .span3
+          %b 1.Farðu í about
           %p
-            %em 1.
-            Farðu í about
-          %table
-            %tr
-              %th
-                = image_tag "useragent_detection/windowslogo.png"  
-                Á Windows
-              %th
-                = image_tag "useragent_detection/maclogo.png" 
-                Á Mac
-            %tr
-              %td
-                = image_tag "useragent_detection/windowsabout.png"  
-              %td
-                = image_tag "useragent_detection/mac_about.png"
-        %li
+            = image_tag "useragent_detection/windowslogo.png"
+            Á Windows
+            %br
+            = image_tag "useragent_detection/windowsabout.png"
+        .span3
+          %br
           %p
-            %em 2.
-            Smelltu á "Update now"
-            %table
-              %tr
-                %td
-                  = image_tag "useragent_detection/updatechrome.png"
-      %span.clear
-                    
-  
-  
-
-  .step.st-2
-    .step-num
+            = image_tag "useragent_detection/maclogo.png"
+            Á Mac
+            = image_tag "useragent_detection/mac_about.png"
+      .row
+        .span6    
+          %b 2.Smelltu á "Update now"
+          %p
+          = image_tag "useragent_detection/updatechrome.png"      
+    .span4{:class=>"pull-right"}              
       =image_tag("useragent_detection/m02-clear.png")
-    .step-content
       %p
         Skráðu þig inn á www.qodiag.com
       %br
-      %br
-
-      =image_tag("useragent_detection/snarpur_screen.png")
-      %span.clear
-
-  %span.clear
-
-
-
-/ %span.img.next-step
-/   =image_tag("useragent_detection/arrow1-solid-down.png")
-
-/ .one-col
-/   %span.img.no-2
-/     =image_tag("useragent_detection/m02-clear.png")
-/   .step.step-2
-/     %div
-/       Opanðu www.snapur.is í vafranum sem þú hefur valið þér og skráðu þig inn með notendanafni oglykilorði sem þú hefur fengið sent í tölvupósti
-/       %span.img.snarpur-screen
-/         =image_tag("useragent_detection/snarpur_screen.png")
-
-
+        =image_tag("useragent_detection/snarpur_screen.png")
+ 

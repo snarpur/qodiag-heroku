@@ -3,7 +3,11 @@
     %img{:src => '/assets/rannis_96.png', :alt => 'Tax Office'}
   .span3{:class => 'offset3'}
     %p
-      Copyright 2013 © Qodiag.com
+      = t("views.landing_page.partial.footer.copyright")
+      &nbsp 
+      = DateTime.now.strftime('%Y')
+      &nbsp 
+      © Qodiag.com
   .span2{:class => 'offset1 contact'}     
     %a{:href=>"mailto:qodiag@qodiag.com?Subject=Fyrirspurn - Qodiag"}
       qodiag(at)qodiag.com

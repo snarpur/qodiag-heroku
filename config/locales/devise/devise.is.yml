@@ -54,5 +54,7 @@ is:
       send_instructions: 'Beiðni um að klára skráningur hefur verið sent á %{email}'
       invitation_token_invalid: "Beiðni um skráningu er ekki gild"
       updated: 'Lykilorð hefur verið vistað, þú ert nú skráður inn'
+    messages:
+      use_password_received: "Vinsamlegast skráðu þig inn með lykilorði sem þú hefur fengið sent í tölvupósti."
 
 

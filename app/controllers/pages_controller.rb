@@ -22,7 +22,7 @@ class PagesController < ApplicationController
   end
 
   def browser_update
-  	render :layout => 'simple_layout'
+  	render :layout => 'login'
   end
 
 end
