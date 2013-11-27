@@ -1,0 +1,7 @@
+is:
+  views:
+    application:
+      partial:
+        alert_login_as:
+          attention: "Attention"
+          message: "You have logged-in like the patient respondent. To go back as a caretaker, please click the link below"

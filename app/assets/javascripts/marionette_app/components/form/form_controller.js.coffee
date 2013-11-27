@@ -87,7 +87,7 @@
 
 
 	App.reqres.setHandler "form:wrapper", (contentView, options = {}) ->
-		throw new Error "No model found inside of form's contentView" unless contentView.model
+		throw new Error I18n.t("marionette.errors.model_not_found") unless contentView.model
 		formController = new Form.Controller
 			view: contentView
 			config: options

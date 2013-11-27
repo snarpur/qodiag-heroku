@@ -9,7 +9,7 @@
 
     showGuardian:(guardian)->
 
-      #NOTE: Try to refector these
+      #NOTE: Try to refector these stuff
       #Depends on the template we use either Subject or Guardian View
       if @activeView.template.indexOf("guardian") isnt -1
         dialogView = new EditCreate.Guardian model: @model
@@ -26,7 +26,7 @@
     buttonsConfig:->
       options =
         modal: true
-        title: if @model.isNew() then "Skrá upplýsingar" else "Breyta upplýsingum"
+        title: if @model.isNew() then I18n.t("terms.add_information") else I18n.t("terms.edit_information")
         formClass: "form-horizontal"
       options
 

@@ -16,7 +16,7 @@
     showDialog:(options)->      
       @dialogView = new EditCreate.Section model: options.section
       App.dialogRegion.show @dialogView
-      @dialogView.on "save:section", => @saveSection(options) #console.log options.section.attributes 
+      @dialogView.on "save:section", => @saveSection(options)
 
    
     saveSection:(options)->

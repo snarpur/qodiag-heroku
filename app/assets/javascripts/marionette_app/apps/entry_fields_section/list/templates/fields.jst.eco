@@ -1,2 +1,2 @@
 <ul id="entry-section" class="reset"></ul>
-<button class="btn btn-success">Vista</button>
+<button class="btn btn-success"><%= @t("actions.save") %></button>

@@ -17,24 +17,24 @@
     validation:
       respondent_id: 
         required: true
-        msg: "Vantar"
+        msg: I18n.t("activerecord.errors.messages.blank")
       subject_id: 
         required: true
-        msg: "Vantar"
+        msg: I18n.t("activerecord.errors.messages.blank")
       deadline: 
         required: true
-        msg: "Vantar"
+        msg: I18n.t("activerecord.errors.messages.blank")
       entry_set_response:
         required: true
-        msg: "Vantar"
+        msg: I18n.t("activerecord.errors.messages.blank")
         # unless @get("entry_set_response").get('entry_set_id')?          
           # 'Vantar'
    
 
     labels:
-      respondent_id: "Vantar"
-      entry_set_response: "Vantar"
-      deadline: "Vantar"
+      respondent_id: I18n.t("activerecord.errors.messages.blank")
+      entry_set_response: I18n.t("activerecord.errors.messages.blank")
+      deadline: I18n.t("activerecord.errors.messages.blank")
     
     
 

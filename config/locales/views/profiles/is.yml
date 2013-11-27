@@ -1,0 +1,5 @@
+is:
+  views:
+    profiles:
+      parent_not_found: "Parent not found"
+      upload_image: "Hlaða upp mynd"

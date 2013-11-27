@@ -1,2 +1,2 @@
 <ul class="comments"></ul>
-<button class="btn"><span class="icon-comment"></span> Skrifa ummæli</button>
+<button class="btn"><span class="icon-comment"></span> <%= @t("actions.add_comment") %></button>

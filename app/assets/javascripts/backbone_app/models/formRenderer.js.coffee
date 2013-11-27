@@ -73,7 +73,7 @@ class App.Models.FormRenderer extends Backbone.Model
       success: (model,response)->  
         renderer.triggerIfComplete()
       error: (model,response)->
-        throw "ERROR delete FAILED in formRenderer.js.coffee:destroyInQueue()" 
+        throw I18n.t("marionette.errors.error_in_function", function: "formRenderer.js.coffee:destroyInQueue()")
     
     @.destructionQueue.each(((i)->
       model = @.destructionQueue.pop()

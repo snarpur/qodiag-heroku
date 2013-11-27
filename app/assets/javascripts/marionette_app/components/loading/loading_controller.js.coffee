@@ -25,7 +25,7 @@
           loadingView = @getLoadingView(config)
           @show loadingView
         else
-          throw new Error("Invalid loadingType")
+          throw new Error I18n.t("marionette.errors.invalid_loading_type")
 
       @showRealView view, loadingView, config, activeRegion
 

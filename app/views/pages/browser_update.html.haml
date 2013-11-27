@@ -8,49 +8,52 @@
   %h1
     %span.stop
       =image_tag("useragent_detection/stop.png")
-    Úps...!
+    = t('views.browser_update.content.ups')
   %p
-    Til þessa að halda þróunarkostnaði í lágmarki styður Qodiag ekki Internet explorer eða eldri gerðir af vöfrum eins og er.
-    Vinsamlegastu uppfærðu vafran þinn(sjá leiðbeiningar) og skráði þig svo inn á Snarp.
+    = t('views.browser_update.content.alert_message')
 
 .information
   .row
     .span7{:class => "step-1"}
       =image_tag("useragent_detection/m01-clear.png")
       %p
-        Veldu annaðhvort
+        = t('views.browser_update.content.election')
         = image_tag "useragent_detection/ff.png"
         %a{:href => "http://www.mozilla.org/en-US/firefox/new/" }Firefox
-        eða 
+        = t('terms.or')
         = image_tag "useragent_detection/chrome.png"
         %a{:href => 'https://www.google.com/chrome'} Chrome
-        og fylgdu leiðbeiningum um uppsetningu.
+        = t('views.browser_update.content.instructions')
     
       %p
-        Ef þú ert þegar með slíkan vafra skalltu uppfæra hann samkvæmt eftirfarandi leiðbeiningum.
+        = t('views.browser_update.content.update')
       .row
         .span3
-          %b 1.Farðu í about
+          %b 
+            = t('views.browser_update.content.step1')
           %p
             = image_tag "useragent_detection/windowslogo.png"
-            Á Windows
+            = t('terms.onCap') 
+            Windows
             %br
             = image_tag "useragent_detection/windowsabout.png"
         .span3
           %br
           %p
             = image_tag "useragent_detection/maclogo.png"
-            Á Mac
+            = t('terms.onCap')
+            Mac
             = image_tag "useragent_detection/mac_about.png"
       .row
         .span6    
-          %b 2.Smelltu á "Update now"
+          %b 
+            = t('views.browser_update.content.step2')
           %p
           = image_tag "useragent_detection/updatechrome.png"      
     .span4{:class=>"pull-right"}              
       =image_tag("useragent_detection/m02-clear.png")
       %p
-        Skráðu þig inn á www.qodiag.com
+        = t('views.browser_update.content.login')
       %br
         =image_tag("useragent_detection/snarpur_screen.png")
  

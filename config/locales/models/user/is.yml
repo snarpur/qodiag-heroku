@@ -4,4 +4,4 @@ is:
     password: "Lykilorð"
     password_confirmation: "Endurtaka lykilorð"
     sign_in: "Innskráning"
-    forgotten_password: "Gleymt lykilorð ?"
+    forgotten_password: "Gleymt lykilorð?"

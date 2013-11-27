@@ -23,7 +23,7 @@ class App.Views.SimpleForm extends Backbone.Marionette.ItemView
       success:(model,response)->
         view.destroyForm()
       error:(model, xhr)->
-        throw "could not save model with id : #{view.model.get('id')}"
+        throw I18n.t("marionette.errors.model_not_saved", model: model)
         
     @model.save(@model.attributes,callbacks)
 

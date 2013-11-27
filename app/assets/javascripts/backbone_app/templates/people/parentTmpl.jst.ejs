@@ -31,7 +31,7 @@
 </table>
 
 <div class="upload modal hide avatarUploadModal_<%= id %>">
-    <div class="modal-header"><h3>Hlaða upp mynd</h3></div>
+    <div class="modal-header"><h3><%= I18n.t("views.profiles.upload_image") %></h3></div>
     <div class="modal-body">
         <form accept-charset="UTF-8" class="edit_person" enctype="multipart/form-data" method="post" id="avatarUploadForm_<%= id%>" action="/people/<%= id %>">
             <input name="utf8" type="hidden" value="✓">
@@ -42,7 +42,7 @@
         </form>
     </div>
     <div class="modal-footer">
-        <a href="#" class="btn" onclick="$('.avatarUploadModal_<%= id %>').toggle();return false;">Hætta við</a>
-        <a href="#" class="btn btn-primary" onclick="document.forms.avatarUploadForm_<%= id%>.submit();return false;">Senda</a>
+        <a href="#" class="btn" onclick="$('.avatarUploadModal_<%= id %>').toggle();return false;"><%= I18n.t("actions.cancel") %></a>
+        <a href="#" class="btn btn-primary" onclick="document.forms.avatarUploadForm_<%= id%>.submit();return false;"><%= I18n.t("actions.send") %></a>
     </div>
 </div>
