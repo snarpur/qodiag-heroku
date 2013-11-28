@@ -34,7 +34,7 @@ App.FormEditors.NestedCollection = Backbone.Form.editors.NestedModel.extend({
     Backbone.Form.editors.NestedModel.prototype.initialize.call(this, options)
     @.schema.title = ""
     if (!options.schema.model)
-      throw 'Missing required "schema.model" option for NestedModel editor'
+      throw I18n.t("marionette.errors.schema_nested_model_not_found")
     
 
   render: ->
@@ -92,7 +92,7 @@ App.FormEditors.NestedCollection = Backbone.Form.editors.NestedModel.extend({
     while i < len
       fn = fn[arr[i]]
       i++
-    throw "Schema Model not found"  if typeof fn isnt "function"
+    throw I18n.t("marionette.errors.schema_model_not_found") if typeof fn isnt "function"
     fn
 
 

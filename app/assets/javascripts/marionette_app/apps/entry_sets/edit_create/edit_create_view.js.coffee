@@ -7,9 +7,10 @@
     className: 'modal'
 
     templateHelpers: =>
+      #REFACTOR: Try to see if we could use the Base Class template helper
       dialogTitle: =>
-        action = if @model.isNew() then 'nýtt' else 'breyta'
-        entity = if @model.isNew() then 'eyðublað' else 'eyðublaði'
+        action = if @model.isNew() then I18n.t("terms.new") else I18n.t("terms.edit")
+        entity = if @model.isNew() then I18n.t("entry_set.model_name") else I18n.t("entry_set.model_name_accusative")
         _("#{action} #{entity}").capitalize()
     
     triggers:

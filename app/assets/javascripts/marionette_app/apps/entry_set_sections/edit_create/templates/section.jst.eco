@@ -5,19 +5,19 @@
 <div class="modal-body">
   <form class="form-horizontal">
     <div class="control-group">
-      <label class="control-label" for="section_name">Titill</label>
+      <label class="control-label" for="section_name"><%= @t("terms.title") %></label>
       <div class="controls">
-        <input class="input-xlarge" type="text" id="section_name" placeholder="Titill">
+        <input class="input-xlarge" type="text" id="section_name" placeholder="<%= @t("terms.title") %>">
       </div>
     </div>
-    <label class="control-label" for="section_description">Lýsing</label>
+    <label class="control-label" for="section_description"><%= @t("entry_set.description") %></label>
       <div class="controls">
-        <textarea class="input-xlarge" rows="3" id="section_description" placeholder="Lýsing..."></textarea>
+        <textarea class="input-xlarge" rows="3" id="section_description" placeholder="<%= @t("entry_set.description") %>"></textarea>
       </div>
     </div>
   </form>
 </div>
 <div class="modal-footer">
-  <button class="btn btn-primary save">Vista</button>
-  <button class="btn cancel">Hætta við</button>
+  <button class="btn btn-primary save"><%= @t("actions.save") %></button>
+  <button class="btn cancel"><%= @t("actions.cancel") %></button>
 </div>

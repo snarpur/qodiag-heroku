@@ -6,7 +6,7 @@ do (Marionette) ->
     render: (template, data) ->
       return if template is false
       path = @getTemplate(template)
-      throw "Template #{template} not found!" unless path
+      throw I18n.t("marionette.errors.template_not_found", template: template) unless path
       path(data)
     
     getTemplate: (template) ->

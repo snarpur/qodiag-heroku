@@ -16,3 +16,6 @@ is:
         parent: "foreldramat"
     respondent_registration: 
       name: Grunnuplýsingar
+    messages:
+      question_list_failed: "questions for %{name} list failed"
+      charts_not_found: "could not get charts"

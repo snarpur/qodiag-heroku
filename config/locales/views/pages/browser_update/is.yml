@@ -1,0 +1,12 @@
+is:
+  views:
+    browser_update:
+      content:
+        ups: "Úps...!"
+        alert_message: "Til þessa að halda þróunarkostnaði í lágmarki styður Qodiag ekki Internet explorer eða eldri gerðir af vöfrum eins og er. Vinsamlegastu uppfærðu vafran þinn(sjá leiðbeiningar) og skráði þig svo inn á Snarp."
+        election: "Veldu annaðhvort"
+        instruction: "og fylgdu leiðbeiningum um uppsetningu."
+        update: "Ef þú ert þegar með slíkan vafra skalltu uppfæra hann samkvæmt eftirfarandi leiðbeiningum."
+        step1: "1. Farðu í about"
+        step2: "2. Smelltu á \"Update now\""
+        login: "Skráðu þig inn á www.qodiag.com"

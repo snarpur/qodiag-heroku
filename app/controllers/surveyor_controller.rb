@@ -41,6 +41,7 @@ module SurveyorControllerCustomMethods
   def edit
     @response_set = ResponseSet.find_by_access_code(params[:response_set_code], :include => {:responses => [:question, :answer]})
     if @response_set
+      redirect_to root_path unless @response_set[:completed_at].nil?
       @survey = Survey.with_sections.find_by_id(@response_set.survey_id)
       @sections = @survey.sections
       if params[:section]
@@ -58,6 +59,10 @@ module SurveyorControllerCustomMethods
   def update
     @response_set = ResponseSet.find_by_access_code(params[:response_set_code], :include => {:responses => :answer}, :lock => true)
     if @response_set
+      if not @response_set[:completed_at].nil?
+        redirect_to root_path
+        return
+      end
       @survey = Survey.with_sections.find_by_id(@response_set.survey_id)
       @sections = @survey.sections
       if params[:section]

@@ -1,0 +1,13 @@
+is:
+  views:
+    responder_items:
+      select_respondents: "Velja viðtakenda"
+      select_entry_sets: "Velja eyðublað"
+      requests:
+        submit: "Senda nýja beiðni"
+        have_sent: "Beiðni hefur verið send"
+        sent: "Beiðni send"
+        for: "Skilast fyrir %{date}"
+        sent_another: "Veldu dagsetningu til að senda aðra beiðni"
+        error: "Villa !"
+        contact_admin: "Kerfisstjóri hefur fengið meldingu um villu."

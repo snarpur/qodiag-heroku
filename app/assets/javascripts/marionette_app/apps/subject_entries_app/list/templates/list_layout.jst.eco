@@ -3,7 +3,7 @@
   <div class="span2">
     <a href='#' class="btn btn-success btn-small btn-block add-item" data-placement="left" data-content="Smellið hér til að senda beiðni um skráningu upplýsinga" data-title="Engar færslur">
       <i class="icon-plus icon-white"></i>
-        Senda nýja beiðni
+        <%= @t("views.responder_items.requests.submit") %>
     </a>
   </div>
 </div>

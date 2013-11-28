@@ -48,7 +48,7 @@ class App.Views.ColumnChartCollection extends App.Marionette.CompositeView
         collection.reset(response.charts,{chartMetrics: response.chartMetrics})
         view.menuView.render()
       error:(collection,xhr)->
-        throw "could no get collection in App.Views.ColumnChartCollection:fetchMetricResult"
+        throw I18n.t("marionette.errors.error_in_function", function: "App.Views.ColumnChartCollection:fetchMetricResult - Collection not found")
       silent: true
     @collection.fetch(callbacks)
 
@@ -59,7 +59,7 @@ class App.Views.ColumnChartCollection extends App.Marionette.CompositeView
         collection.reset(response.charts,{chartFilters: response.chartFilters})
         view.menuView.render()
       error:(collection,xhr)->
-        throw "could no get collection in App.Views.ColumnChartCollection:filterResult"
+        throw I18n.t("marionette.errors.error_in_function", function: "App.Views.ColumnChartCollection:filterResult - Collection not found")
       silent: true
     
     @collection.fetch(callbacks)

@@ -17,6 +17,8 @@ is:
       user:
         not_found_in_database: 'Ógilt netfang eða lykilorð'
     sessions:
+      sign_up: "Skrá notenda"
+      sign_in: "Innskráning"
       signed_in: 'Innskráning tókst'
       signed_out: 'Útskráning tókst'
       signed_in_as: 'Skráð(ur) inn sem'
@@ -24,26 +26,55 @@ is:
     passwords:
       send_instructions: 'You will receive an email with instructions about how to reset your password in a few minutes.'
       updated: 'Your password was changed successfully. You are now signed in.'
+      change_password: "Change your password"
+      send_reset: "Send me reset password instructions"
     confirmations:
       send_instructions: 'You will receive an email with instructions about how to confirm your account in a few minutes.'
       confirmed: 'Your account was successfully confirmed. You are now signed in.'
+      resend_instructions: "Resend confirmation instructions"
+      not_received: "Didn't receive confirmation instructions?"
     registrations:
       signed_up: 'Skráning tókst'
       updated: 'You updated your account successfully.'
       destroyed: 'Bye! Your account was successfully cancelled. We hope to see you again soon.'
       pre_registration: "Takk fyrir áhugan, við munum senda netfang á %{email}"
       blank_email: 'Netfang vantar'
+      tips:
+        - "(leave blank if you don't want to change it)"
+        - "(we need your current password to confirm your changes)"
+        - "Unhappy? "
+      cancel_account: "Cancel my account"
     unlocks:
       send_instructions: 'You will receive an email with instructions about how to unlock your account in a few minutes.'
       unlocked: 'Your account was successfully unlocked. You are now signed in.'
+      not_received: "Didn't receive unlock instructions?"
+      resend_instructions: "Resend unlock instructions"
     mailer:
       confirmation_instructions:
         subject: 'Confirmation instructions'
         user_subject: "blabla"
+        greeting: "Velkomin %{name}!"
+        body:
+          - "You can confirm your account through the link below:"
+        link:
+          confirm: "Confirm my account"
       reset_password_instructions:
         subject: 'Reset password instructions breytt'
+        greeting: "Sæl(l) %{name}!"
+        body:
+          - "Someone has requested a link to change your password, and you can do this through the link below."
+          - "If you didn't request this, please ignore this email."
+          - "Your password won't change until you access the link above and create a new one."
+        link:
+          change_password: "Change my password"
       unlock_instructions:
         subject: 'Unlock Instructions breytt'
+        greeting: "Sæl(l) %{name}!"
+        body:
+          - "Your account has been locked due to an excessive amount of unsuccessful sign in attempts."
+          - "Click the link below to unlock your account:"
+        link:
+          unlock: "Unlock my account"
       invitation_instructions:
         user_subject: 'Qodiag- Nýskráning'
         body:

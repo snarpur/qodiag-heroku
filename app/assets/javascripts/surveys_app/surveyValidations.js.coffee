@@ -1,8 +1,10 @@
 $(document).ready( () ->
-
 	answers = $(".survey_section .pick-one > ol")
+	invalid = []
+	$("label.error").remove()
 	$("input[type = submit]").bind('click', (e) ->
-		invalid = []
+		$("input[type = submit]").attr('disabled','disabled')
+		$(".next_section").prepend("<label class='error'>There are unanswered questions!</label>")
 		answers.each(() ->
 			fieldset = $(@).parents("fieldset.pick-one")
 			if $(@).find("input[type='radio']:checked").size() is 0
@@ -18,6 +20,10 @@ $(document).ready( () ->
 	
 	$(".survey_section").delegate(".state-invalid input[type=radio]", "click", (e) ->
 		$(@).parents("fieldset.pick-one").setCssState("valid")
+		invalid = _.rest(invalid)
+		if _.size(invalid) is 0
+			$('input[type="submit"]').removeAttr('disabled')
+			$("label.error").remove()
 	)
 
 )

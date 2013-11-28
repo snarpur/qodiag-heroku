@@ -1,4 +1,4 @@
-%h2= t('headers.sign_up')
+%h2= t('devise.sessions.sign_up')
 = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
   .section
     = render "shared/error_messages", :locals => {:form_builder => f}

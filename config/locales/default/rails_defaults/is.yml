@@ -170,3 +170,10 @@ is:
         less_than_or_equal_to: "þarf að vera minna en eða jafngilt %{count}"
         odd: "þarf að vera oddatala"
         even: "þarf að vera slétt tala"
+        not_equal: "This value must match the value of %{field}"
+    sucess:
+      messages:
+        saved: "Skref %{model} hefur verið vistað"
+    confirm:
+      messages:
+        deleted: "Ertu viss um að þú viljir eyða eyðublaði %{model}"

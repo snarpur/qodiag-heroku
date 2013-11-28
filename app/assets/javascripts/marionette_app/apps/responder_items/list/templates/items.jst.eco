@@ -2,9 +2,9 @@
 <table class="table">
   <thead>
     <tr>
-      <th><%- @t('responder_item.headers.name')%></th>
-      <th><%- @t('responder_item.headers.patient')%></th>
-      <th><%- @t('responder_item.headers.due_date')%></th>
+      <th><%- @t('terms.name')%></th>
+      <th><%- @t('terms.patient')%></th>
+      <th><%- @t('terms.due_date')%></th>
     </tr>
   </thead>
   <tbody>

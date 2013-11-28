@@ -58,7 +58,7 @@
           success:->
             _this.setDisplayOrder()
           error:->
-            throw "error in - entities/sections_entry_fields.js.coffee:removeFromSection()"
+            throw I18n.t("marionette.errors.error_in_function", function: " - entities/sections_entry_fields.js.coffee:removeFromSection()")
       else
         @remove(model)
         @setDisplayOrder()

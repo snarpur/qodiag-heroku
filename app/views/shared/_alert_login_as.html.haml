@@ -1,7 +1,8 @@
 -if session['last_user_id'].present?
   .well{:class => "well-large text-center"}
     %h1 
-      Attention
-    %p You have logged-in like the patient respondent. To go back as a caretaker, please click the link below
+      = t('views.application.partial.alert_login_as.attention')
+    %p 
+      = t('views.application.partial.alert_login_as.message')
     %a{:class => "btn btn-large btn-info", :href => logout_as_path(session['last_user_id'])}
-      Go back!
+      = t('terms.go_back')

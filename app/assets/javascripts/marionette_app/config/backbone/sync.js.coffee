@@ -60,7 +60,7 @@ do (Backbone) ->
       (if _.isFunction(object.url) then object.url() else object.url)
 
     urlError: ->
-      throw new Error("A 'url' property or function must be specified")
+      throw new Error I18n.t("marionette.errors.url_not_found")
 
 
 

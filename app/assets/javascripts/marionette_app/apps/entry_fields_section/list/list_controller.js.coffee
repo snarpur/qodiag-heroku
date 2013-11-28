@@ -40,9 +40,7 @@
         model.saveEntryFields()
         
       @listenTo model, "updated", =>
-        toastr.success("Skref #{model.get('name')} hefur verið vistað")
-
-    
+        toastr.success(I18n.t("activerecord.sucess.messages.saved",model: model.get('name')))
 
     getEntriesView:(entries,section)->
       

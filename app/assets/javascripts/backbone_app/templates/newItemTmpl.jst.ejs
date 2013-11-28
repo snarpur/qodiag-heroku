@@ -10,21 +10,21 @@
         <li class="m-sending"></li>
         <li class="m-success">
           <div class="alert alert-block alert-success">
-            <h4>Beiðni hefur verið send</h4>
-             Veldu dagsetningu til að senda aðra beiðni
+            <h4><%= I18n.t("views.responder_items.requests.have_sent") %></h4>
+            <%= I18n.t("views.responder_items.requests.sent_another") %>
           </div>
         </li>
         <li class="m-error">
           <div class="alert alert-block alert-error">
-            <h4>Villa !</h4>
-            Kerfisstjóri hefur fengið meldingu um villu.
+            <h4><%= I18n.t("views.responder_items.requests.error") %></h4>
+            <%= I18n.t("views.responder_items.requests.contact_admin") %>
           </div>
         </li>
       </ul>
     </div>
     <div class="calendar right"></div>
     <ul class="btn-controls">
-      <button class="btn btn-cancel">Hætta við</button>
-      <button class="btn btn-success btn-submit">Senda</button>
+      <button class="btn btn-cancel"><%= I18n.t("actions.cancel") %></button>
+      <button class="btn btn-success btn-submit"><%= I18n.t("actions.send") %></button>
     </ul>
 </div>

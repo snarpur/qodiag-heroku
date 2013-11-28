@@ -18,19 +18,19 @@
       models = [
         {
           name: "timeline"
-          text: "Mælingar" 
+          text: I18n.t("terms.timeline")
           url: "#{Routes.person_path(personId)}"
           iconClass:'icon-meter' 
         },
         {
           name: "entries"
-          text: "Saga"
+          text: I18n.t("terms.history")
           url: "\##{Routes.person_path(personId)}/entries"
           iconClass:'icon-history'
         },
         {
           name: "profiles"
-          text: "Persónu upplýsingar"
+          text: I18n.t("terms.personal_information")
           url: "\##{Routes.person_path(personId)}/profiles"
           iconClass:'icon-profile'
         }

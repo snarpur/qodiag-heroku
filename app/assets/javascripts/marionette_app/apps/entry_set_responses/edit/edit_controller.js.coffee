@@ -90,7 +90,8 @@
     triggerSuccessMessage:(formView)->
       formView.trigger('form:submit')
       @listenToOnce @entrySetResponse, 'updated', =>
-        toastr.success "Færsla hefur vistast"
+        toastr.success(I18n.t("activerecord.sucess.messages.saved",model: ""))
+        # toastr.success "Færsla hefur vistast"
 
     
 
@@ -99,7 +100,8 @@
       formView.trigger('form:submit')
       @listenToOnce @entrySetResponse, 'updated', =>
         App.navigate "/items", {trigger: true}
-        toastr.success "Færsla hefur vistast"
+        toastr.success(I18n.t("activerecord.sucess.messages.saved",model: ""))
+        # toastr.success "Færsla hefur vistast"
 
 
     
@@ -128,15 +130,15 @@
     buttonsConfig:->
       options =
         buttons: 
-          primary: {text: 'Áfram og vista >>', buttonType: 'saveAndContinue', order: 3} 
-          save: {text: "Vista", buttonType: 'save', order: 2,  className: 'btn btn-success'} 
+          primary: {text: I18n.t("actions.save_and_continue",model: "") + " >>", buttonType: 'saveAndContinue', order: 3} 
+          save: {text: I18n.t("actions.save"), buttonType: 'save', order: 2,  className: 'btn btn-success'} 
           cancel: false
      
       if @sections.isCurrentLast()
-        options.buttons.primary = _.extend options.buttons.primary , {text: "Vista og klára", buttonType: 'saveAndComplete'}
+        options.buttons.primary = _.extend options.buttons.primary , {text: I18n.t("actions.save_and_complete"), buttonType: 'saveAndComplete'}
       
       unless @sections.isCurrentFirst() 
-        _.extend options.buttons, back: {text: "<< Tilbaka", buttonType: 'back', className: "btn",order: 1}
+        _.extend options.buttons, back: {text: "<< " + I18n.t("terms.go_back"), buttonType: 'back', className: "btn",order: 1}
           
       
       options

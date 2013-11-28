@@ -10,7 +10,7 @@
   
   API =
     getSection:(options)->
-      console.log "--- getSection() SECTION ENTITY ---"
+      # console.log "--- getSection() SECTION ENTITY ---"
 
 
    

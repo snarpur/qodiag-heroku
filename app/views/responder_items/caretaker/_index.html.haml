@@ -1,4 +1,4 @@
-=content_for :content_title, "Skjólstæðingar"
+=content_for :content_title, t('terms.client', :count => 2)
 =content_for :subject_content do
   =render "shared/content_title"
 
@@ -8,22 +8,19 @@
       %input{:type => 'text', :id => 'patient-search', :class => 'search-input'}
 
   %li{:class => 'right'}
-    =link_to content_tag(:span, '', :class => 'icon-user-add' ) + "Skrá skjólstæðing", new_invitation_item_path, :class => 'button prime'
-
-
-
+    =link_to content_tag(:span, '', :class => 'icon-user-add' ) + t('actions.invite_clients'), new_invitation_item_path, :class => 'button prime'
 
 %table.table
   %thead
     %tr
       %th
-        Nafn
+        = t('person.name')
       %th{:class => 'small'}
-        Óklárðar beiðnir
+        = t('views.users.content.uncompleted_requests')
       %th{:class => 'small'}
-        Útrunnar beiðnir
+        = t('views.users.content.completed_requests')
       %th{:class => 'small'}
-        Login as
+        = t('views.users.content.login_as')
   %tbody
     -@patients.each do |p|
       %tr

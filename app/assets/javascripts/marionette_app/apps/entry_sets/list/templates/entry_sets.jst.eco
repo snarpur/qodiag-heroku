@@ -1,11 +1,11 @@
 <ul class="reset toolbar">
-  <li class="right"><a href="#" class="button prime"><span class="icon-add"></span>Búa til nýjan lista</a></li>
+  <li class="right"><a href="#" class="button prime"><span class="icon-add"></span><%= @t("actions.new_list") %></a></li>
 </ul>
 
 <table class="table">
 <thead>
   <tr>
-    <th>Heiti</th>
+    <th><%= @t("terms.name") %></th>
     <th></th>
   </tr>
 </thead>
@@ -13,5 +13,5 @@
 </tbody>
 </table>
 <ul class="reset toolbar">
-    <li class="right"><a href="#" class="button prime"><span class="icon-add"></span>Búa til nýjan lista</a></li>
+    <li class="right"><a href="#" class="button prime"><span class="icon-add"></span><%= @t("actions.new_list") %></a></li>
 </ul>

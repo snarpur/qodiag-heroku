@@ -1,9 +1,4 @@
 is:
- 
-  #Headers -------------------------------------------------------
-  headers:
-    sign_up: "Skrá notenda"
-    sign_in: "Innskráning"
   #Navigation -------------------------------------------------------
   navigation:
     home: "heim"

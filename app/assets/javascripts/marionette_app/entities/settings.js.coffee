@@ -30,8 +30,8 @@
     
     getSettingsEntities: (options) ->
       settings = new Entities.SettingsCollection [
-        {name: 'entry_sets', text: "Eyðublöð"},
-        {name: 'entry_fields', text: "Spurningar"}
+        {name: 'entry_sets', text: I18n.t("entry_set.model_name_plural")},
+        {name: 'entry_fields', text: I18n.t("terms.question")}
       ], options
       
       settings

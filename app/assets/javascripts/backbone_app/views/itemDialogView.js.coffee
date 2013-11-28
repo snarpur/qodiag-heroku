@@ -62,7 +62,7 @@ class App.Views.Timeline.ItemDialog extends Backbone.View
         @.$(".chart-wrapper").append(charts.render().el)
         charts.renderCharts()
       error:()->
-          throw "could not get charts"
+          throw I18n.t("surveys.messages.charts_not_found")
       )
 
   renderColumnCharts: =>
