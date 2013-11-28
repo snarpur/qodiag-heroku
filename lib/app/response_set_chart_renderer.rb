@@ -2,6 +2,7 @@ module ResponseSetChartRenderer
   module InstanceMethods
  
    def survey_class
+      # REFACTOR: It could be a hole security (http://www.sitepoint.com/rails-security-pitfalls/)
       survey_name.underscore.camelize
    end
     
