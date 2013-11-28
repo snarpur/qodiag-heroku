@@ -1,5 +1,5 @@
 $pastel: #537BC3 #5E88BF #73B2D9 #8BCAD9 #C4EEF2 
-$neon: #0E2759 #183F8C #3D71D9 #72A9F2 #B3F2F2
+$neon: #113379 #1C4BA6 #2F80C8 #72D7F2 #B3F2F2
 $active_palette: $neon
 $banner_label_height: 40px
 $l_str_width: 100px
@@ -80,28 +80,39 @@ h1.logo:first-letter
     font-weight: bold
   ul
     +horizontal-list(false)
-    padding-left: $l_str_margin
-
+    margin-left: $l_str_margin
+    width: $l_str_width * 5
+    // font-family: 'Dosis', sans-serif
+    // font-size: 0.9em
+    // &:before
+    //   content: "."
+    //   text-indent: -9999px
+    //   display: block
+    //   height: 2em
+    //   margin-bottom: -2em
+    //   background-color: rgba(0,0,0,0.1)
+      // +box-shadow(0px 0px 0px 3px rgba(0,0,0,.1))
     li
       width: 100px
       height: 340px
       position: relative
       text-align: center
-
     em
-      font-family: 'Dosis', sans-serif
+
       display: block
       position: relative
       width: 100%
-      font-size: 0.9em
-      color: #333
       height: $banner_label_height
-      font-style: normal
-      font-weight: 400
       margin: 3em 0 1em 0
       line-height: $banner_label_height
+      font-family: 'Dosis', sans-serif
+      font-size: 0.85em
+      font-style: normal
+      font-weight: 400
       text-align: center
       text-transform: uppercase
+      color: #222
+      
     i
       background: #FAFAFA
       +border-radius(1.5em)
@@ -111,10 +122,10 @@ h1.logo:first-letter
       width: 2.5em
     
     @for $i from 1 through 5
-      $stripe_label: lightness(nth($active_palette,$i))/2
+      $stripe_label: lightness(nth($active_palette,(6-$i)))*0.4
       li:nth-child(#{$i}) em
-        background-color: lighten(nth($active_palette,$i),7)
-
+        background-color: lighten(nth($active_palette,$i),$stripe_label)
+  
   .page-title
     font-size: 600%
     font-weight: bold

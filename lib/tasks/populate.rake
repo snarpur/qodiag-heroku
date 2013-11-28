@@ -41,7 +41,7 @@ namespace :db do
         people = {:caretaker => caretaker, :patient => patient, :parent => parent}
         puts "patient created - #{patient.firstname}"
         
-        1.times do |t|
+        4.times do |t|
           pop.create_requests({:people => people, :number => 5, :survey_id => t+1})
         end
         
