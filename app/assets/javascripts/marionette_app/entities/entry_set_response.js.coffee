@@ -32,6 +32,7 @@
 
     
     currentSection:->
+      console.log "gfdg",@get('entry_set')
       @get('entry_sets_sections')?.getCurrentSection()
 
     
