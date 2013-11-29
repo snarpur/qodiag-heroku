@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130821152446) do
+ActiveRecord::Schema.define(:version => 20131129114630) do
 
   create_table "addresses", :force => true do |t|
     t.string   "street_1"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(:version => 20130821152446) do
   end
 
   add_index "answers", ["api_id"], :name => "uq_answers_api_id", :unique => true
+  add_index "answers", ["question_id"], :name => "index_question_id"
 
   create_table "dependencies", :force => true do |t|
     t.integer  "question_id"
@@ -77,15 +78,24 @@ ActiveRecord::Schema.define(:version => 20130821152446) do
     t.datetime "updated_at"
   end
 
+  create_table "entry_field_options", :force => true do |t|
+    t.integer  "entry_field_id"
+    t.string   "text_option"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "entry_field_options", ["entry_field_id"], :name => "index_entry_field_id"
+
   create_table "entry_fields", :force => true do |t|
     t.string   "title"
     t.text     "description"
     t.string   "help_text"
-    t.string   "field_type"
+    t.string   "field_type",      :default => "text"
     t.integer  "parent_field_id"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
-    t.integer  "visibility",      :default => 0, :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
+    t.integer  "visibility",      :default => 0,      :null => false
     t.integer  "created_by_id"
   end
 
@@ -123,6 +133,7 @@ ActiveRecord::Schema.define(:version => 20130821152446) do
     t.datetime "updated_at",            :null => false
     t.integer  "person_id"
     t.integer  "commentable_id"
+    t.integer  "entry_field_option_id"
   end
 
   create_table "national_registers", :id => false, :force => true do |t|
