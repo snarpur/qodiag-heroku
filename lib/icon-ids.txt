@@ -15,4 +15,8 @@
 * waiting-room -> 3
 * mail-box -> 18199
 * lock -> 424
+* string -> 10607
+* text -> 8326
+* multi-choice -> 13115
+* single-choice -> 835
 exit -> 

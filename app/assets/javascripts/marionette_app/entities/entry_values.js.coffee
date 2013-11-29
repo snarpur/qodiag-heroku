@@ -51,8 +51,8 @@
   API = 
     getEntryValues:(options)->
       values = new Entities.EntryValues([],options)
-      values.fetch
-        reset: true
+      values.fetch()
+      # reset: true
       values
   
   App.reqres.setHandler "entry:values:entities", (options) ->

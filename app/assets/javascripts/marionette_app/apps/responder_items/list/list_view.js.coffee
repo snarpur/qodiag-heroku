@@ -12,7 +12,6 @@
     template: "responder_items/list/templates/_item"
     tagName: 'tr'
     className: () ->
-      console.log "@model::",@model
       if @model.get("completed")? then "success" else "warning"
 
 

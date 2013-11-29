@@ -80,7 +80,7 @@
         @saveAsCompleteAndRedirect(formView)
     
       @listenTo editView, "childview:multi:select", =>
-        console.info "@listenTo editView :", @, arguments
+
 
 
      saveAndMoveToNextSection:(formView)->

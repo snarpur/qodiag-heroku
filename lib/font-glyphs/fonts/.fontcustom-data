@@ -17,20 +17,24 @@
     "infographics",
     "employee-evaluation",
     "papers",
+    "string",
     "secure",
     "social-services",
     "form-document",
+    "multi-choice",
     "chart-documents",
     "form",
     "locker",
     "line-graph",
     "mail-box",
+    "text",
     "needs-assesment",
     "worker",
     "filled-circle",
     "exit",
     "dialog",
     "open-box",
-    "outlined-circle"
+    "outlined-circle",
+    "single-choice"
   ]
 }

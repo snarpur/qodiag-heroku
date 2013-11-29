@@ -1,5 +1,5 @@
-<td>
-  <%- @field_type %>
+<td class="thin nowrap center">
+  <i class="fc-icon-<%=@field_type%>"></i>
 </td>
 <td>
   <%- @title %>

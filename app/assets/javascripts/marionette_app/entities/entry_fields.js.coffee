@@ -2,7 +2,7 @@
 do (Backbone) ->
   _.extend Backbone.Validation.validators,
 
-    minMultichoiceOptions: (value, attr, customValue, model)=>    
+   minMultichoiceOptions: (value, attr, customValue, model)=>    
       return model.get("field_type") == "multi-choice" and value.size() < customValue
 
 @Qapp.module "Entities", (Entities, App, Backbone, Marionette, $, _) ->
@@ -12,17 +12,21 @@ do (Backbone) ->
     paramRoot: 'entry_field'
     blacklist:['index','editable','ok']
 
-    relations: [
-      {
-        type: Backbone.Many
-        key: 'entry_field_options'
-        relatedModel: App.Entities.EntryFieldOption
-      },
+    backboneAssociations: [
       {
         type: Backbone.Many
         key: 'entry_values'
         relatedModel: App.Entities.EntryValue
       }
+    ]
+
+    relations: [
+      {
+        type: Backbone.Many
+        key: 'entry_field_options'
+        relatedModel: App.Entities.EntryFieldOption
+      }
+
     ]
 
     validation:
@@ -38,21 +42,20 @@ do (Backbone) ->
 
 
     initialize:->
-      # @initializeEntryValues()
 
       @url = ->
         if @isNew() then @urlRoot else "#{@urlRoot}/#{@id}"
 
     
 
-    # initializeEntryValues:->
+    initializeEntryValues:->
 
-    #   return unless @get('entry_values')? 
-    #   unless @get('entry_values') instanceof Backbone.Collection
-    #     entryValues = if _.isArray(@get('entry_values')) then @get('entry_values') else [@get('entry_values')]
-    #     @set 'entry_values', new Entities.EntryValues(@get('entry_values'), {entryField: @}, {silent: true})
+      return unless @get('entry_values')? 
+      unless @get('entry_values') instanceof Backbone.Collection
+        entryValues = if _.isArray(@get('entry_values')) then @get('entry_values') else [@get('entry_values')]
+        @set 'entry_values', new Entities.EntryValues(@get('entry_values'), {entryField: @}, {silent: true})
       
-    #   @on "change:entry_values", @initializeEntryValues
+      @on "change:entry_values", @initializeEntryValues
 
 
 
@@ -70,6 +73,7 @@ do (Backbone) ->
           Routes.section_entry_fields_path(@sectionId)
         else
           Routes.entry_fields_path()
+
 
     
 

@@ -6,6 +6,5 @@ child :entry_set do
   child :entry_sets_sections => :sections do
     attributes :display_order
     attributes :section_name => :name, :section_id => :id
-    
   end
 end

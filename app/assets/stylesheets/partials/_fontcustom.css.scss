@@ -7,21 +7,25 @@
 .fc-icon-infographics:before,
 .fc-icon-employee-evaluation:before,
 .fc-icon-papers:before,
+.fc-icon-string:before,
 .fc-icon-secure:before,
 .fc-icon-social-services:before,
 .fc-icon-form-document:before,
+.fc-icon-multi-choice:before,
 .fc-icon-chart-documents:before,
 .fc-icon-form:before,
 .fc-icon-locker:before,
 .fc-icon-line-graph:before,
 .fc-icon-mail-box:before,
+.fc-icon-text:before,
 .fc-icon-needs-assesment:before,
 .fc-icon-worker:before,
 .fc-icon-filled-circle:before,
 .fc-icon-exit:before,
 .fc-icon-dialog:before,
 .fc-icon-open-box:before,
-.fc-icon-outlined-circle:before {
+.fc-icon-outlined-circle:before,
+.fc-icon-single-choice:before {
   font-family: "fontcustom";
   font-style: normal;
   font-weight: normal;
@@ -38,18 +42,22 @@
 .fc-icon-infographics:before { content: "\f101"; }
 .fc-icon-employee-evaluation:before { content: "\f102"; }
 .fc-icon-papers:before { content: "\f103"; }
-.fc-icon-secure:before { content: "\f104"; }
-.fc-icon-social-services:before { content: "\f105"; }
-.fc-icon-form-document:before { content: "\f106"; }
-.fc-icon-chart-documents:before { content: "\f107"; }
-.fc-icon-form:before { content: "\f108"; }
-.fc-icon-locker:before { content: "\f109"; }
-.fc-icon-line-graph:before { content: "\f10a"; }
-.fc-icon-mail-box:before { content: "\f10b"; }
-.fc-icon-needs-assesment:before { content: "\f10c"; }
-.fc-icon-worker:before { content: "\f10d"; }
-.fc-icon-filled-circle:before { content: "\f10e"; }
-.fc-icon-exit:before { content: "\f10f"; }
-.fc-icon-dialog:before { content: "\f110"; }
-.fc-icon-open-box:before { content: "\f111"; }
-.fc-icon-outlined-circle:before { content: "\f112"; }
+.fc-icon-string:before { content: "\f104"; }
+.fc-icon-secure:before { content: "\f105"; }
+.fc-icon-social-services:before { content: "\f106"; }
+.fc-icon-form-document:before { content: "\f107"; }
+.fc-icon-multi-choice:before { content: "\f108"; }
+.fc-icon-chart-documents:before { content: "\f109"; }
+.fc-icon-form:before { content: "\f10a"; }
+.fc-icon-locker:before { content: "\f10b"; }
+.fc-icon-line-graph:before { content: "\f10c"; }
+.fc-icon-mail-box:before { content: "\f10d"; }
+.fc-icon-text:before { content: "\f10e"; }
+.fc-icon-needs-assesment:before { content: "\f10f"; }
+.fc-icon-worker:before { content: "\f110"; }
+.fc-icon-filled-circle:before { content: "\f111"; }
+.fc-icon-exit:before { content: "\f112"; }
+.fc-icon-dialog:before { content: "\f113"; }
+.fc-icon-open-box:before { content: "\f114"; }
+.fc-icon-outlined-circle:before { content: "\f115"; }
+.fc-icon-single-choice:before { content: "\f116"; }

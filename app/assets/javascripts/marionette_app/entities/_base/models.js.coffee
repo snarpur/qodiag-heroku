@@ -10,10 +10,18 @@ do (Backbone) ->
     nestedAttributeList: []
     blacklist:[]
     validation: {}
-    
+    backboneAssociations: []
+    relations: []
 
     initialize:->
       super
+      if _.isEmpty(@relations)
+        @relations = @backboneAssociations
+      else
+        _.each(@backboneAssociations,(assoc)->
+          @relations.add(assoc)
+        )
+
       @url = ()->
         base = _.result(@, 'urlRoot') ? @collection.url()
         if @id then "#{base}/#{@id}" else base
@@ -83,7 +91,7 @@ do (Backbone) ->
     
 
     _isBackboneAssociation:(key)->
-      _.contains(_.pluck(@relations,'key'), key)
+      _.contains(_.pluck(@relations,'key'), key) or _.contains(_.pluck(@backboneAssociations,'key'), key)
 
     
     _isHelper:(key,value)->

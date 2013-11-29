@@ -73,8 +73,6 @@
       fieldType = @model.get('field_type')+"_value"
       for option in @model.get('entry_field_entry_field_options')
         @bindings["\##{fieldType}_#{option.id}"] = fieldType
-      console.log "@ in multichoice::",@
-      console.log "arguments in multichoice::",options
     #   @bindings = {}
     #   
     #   @bindings["\##{fieldType}_#{@model.get('entry_field_id')}"] = fieldType
