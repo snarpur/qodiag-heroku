@@ -1,9 +1,9 @@
-<label><%-@entry_field_title%></label>
-<% if @entry_field_help_text? : %>
+<label><%-@title%></label>
+<% if @help_text? : %>
   <span class="help-block">
-    <%- @entry_field_help_text %>
+    <%- @help_text %>
   </span>
 <% end %>
-<textarea class="input-xxlarge" id='<%-"text_value_#{@entry_field_id}"%>'placeholder="Type something…">
-  <%=@text_value%>
+<textarea class="input-xxlarge" id='<%-"text_value_#{@id}"%>'>
+  <%=@entry_values.text_value%>
 </textarea>

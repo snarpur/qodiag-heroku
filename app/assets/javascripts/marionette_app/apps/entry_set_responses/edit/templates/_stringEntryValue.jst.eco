@@ -1,7 +1,7 @@
-<label><%-@entry_field_title%></label>
-<% if @entry_field_help_text? : %>
+<label><%-@title%></label>
+<% if @help_text? : %>
   <span class="help-block">
-    <%- @entry_field_help_text %>
+    <%- @help_text %>
   </span>
 <% end %>
-<input class="input-xxlarge" type="text" id='<%-"string_value_#{@entry_field_id}"%>'placeholder="Type something…" value=<%=@string_value%>>
+<input class="input-xxlarge" type="text" id='<%-"string_value_#{@id}"%>' value="<%=_.first(@entry_values).string_value%>">

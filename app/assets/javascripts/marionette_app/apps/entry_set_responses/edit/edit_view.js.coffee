@@ -46,8 +46,7 @@
 
     # onShow:(options)->
     #   @bindings = {}
-    #   fieldType = @model.get('field_type')+"_value"
-    #   @bindings["\##{fieldType}_#{@model.get('entry_field_id')}"] = fieldType
+    #   @bindings["\#text_value_#{@model.get('id')}"] = _.first(@model.get('entry_values')).text_value
 
     #   @stickit()
 
@@ -56,38 +55,56 @@
 
     onShow:(options)->
       @bindings = {}
-      fieldType = @model.get('field_type')+"_value"
-      @bindings["\##{fieldType}_#{@model.get('entry_field_id')}"] = fieldType
+      @bindings["\#string_value_#{@model.get('id')}"] = _.first(@model.get('entry_values')).string_value
 
       @stickit()
 
   class Edit.EntryValueMultiChoice extends App.Views.ItemView
     template: "entry_set_responses/edit/templates/_multiChoiceEntryValue"
 
-    # events: 
-    #   "click input[type=checkbox]" : 
+    events: 
+      "click input[type=checkbox]" : "checkboxClicked"
 
+    checkboxClicked:(event) =>
+      if event.currentTarget.checked
+        console.log "size():: ",@model.get("entry_values").length
+        # if @model.get("entry_values").length isnt 1 or @model.get("entry_values").at(0).entry_field_option_id?    
+      #     @model.get("entry_values")[_.size(@model.get("entry_values"))] = _.clone(_.first(@model.get("entry_values")))    
 
-    onShow:(options)->
-      @bindings = {}
-      fieldType = @model.get('field_type')+"_value"
-      for option in @model.get('entry_field_entry_field_options')
-        @bindings["\##{fieldType}_#{option.id}"] = fieldType
+      #   _.last(@model.get("entry_values")).entry_field_option_id = event.currentTarget.value
+      # else
+      #   if _.size(@model.get("entry_values")) is 1 and _.first(@model.get("entry_values")).entry_field_option_id?
+      #     _.first(@model.get("entry_values")).entry_field_option_id = null
+      #   else
+      #     @model.set("entry_values",_.without(@model.get("entry_values"),_.findWhere(@model.get("entry_values"), {entry_field_option_id: event.currentTarget.value})))
+
+    # onShow:(options)->
     #   @bindings = {}
-    #   
-    #   @bindings["\##{fieldType}_#{@model.get('entry_field_id')}"] = fieldType
+    #   fieldType = @model.get('field_type')+"_value"
+    #   for option in @model.get('entry_field_options').models
+    #     @bindings["\##{fieldType}_#{option.id}"] = fieldType
 
-    #   @stickit()
+      
+      # @bindings["\##{fieldType}_#{@model.get('entry_field_id')}"] = fieldType
+
+      # @stickit()
 
   class Edit.EntryValueSingleChoice extends App.Views.ItemView
     template: "entry_set_responses/edit/templates/_singleChoiceEntryValue"
 
-    onShow:(options)->
-      @bindings = {}
-      fieldType = @model.get('field_type')+"_value"
-      @bindings["\##{fieldType}_#{@model.get('entry_field_id')}"] = fieldType
+    events: 
+      "click input[type=radio]" : "radioClicked"
 
-      @stickit()
+    radioClicked:(event) =>
+      _.first(@model.get("entry_values")).entry_field_option_id = event.currentTarget.value
+      
+
+    # onShow:(options)->
+    #   @bindings = {}
+    #   fieldType = @model.get('field_type')+"_value"
+    #   @bindings["\##{fieldType}_#{@model.get('entry_field_id')}"] = fieldType
+
+    #   @stickit()
      
   class Edit.EntryValues extends App.Views.CompositeView
     template: "entry_set_responses/edit/templates/entryValues"

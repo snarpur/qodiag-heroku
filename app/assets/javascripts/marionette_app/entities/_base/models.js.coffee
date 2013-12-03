@@ -11,16 +11,19 @@ do (Backbone) ->
     blacklist:[]
     validation: {}
     backboneAssociations: []
-    relations: []
+
 
     initialize:->
       super
-      if _.isEmpty(@relations)
-        @relations = @backboneAssociations
-      else
-        _.each(@backboneAssociations,(assoc)->
-          @relations.add(assoc)
-        )
+      @initAttributes()
+      # unless _.isEmpty(@backboneAssociations)
+      #   console.warn "in IF : ", @
+      #   @relations = @backboneAssociations
+      # # else
+      # #   console.warn "in else : ", @.attributes
+      # #   _.each(@backboneAssociations,(assoc)->
+      # #     @relations.add(assoc)
+      # #   )
 
       @url = ()->
         base = _.result(@, 'urlRoot') ? @collection.url()
@@ -30,6 +33,24 @@ do (Backbone) ->
       @validateOnChange()
       @on("validated:valid",@onValid)
       @on("validated:invalid",@onInvalid)
+
+
+
+
+
+    # REFACTOR: change entry_set_response to relation (BackboneAcossiation) and delete initAttributes()
+    initAttributes:(model,value)->
+      if _.isEmpty(arguments)
+        eventStr = _.map(@backboneAssociations,(v,k)-> "change:#{v.key}").join(" ")
+        console.log "eventStr:: ",eventStr
+        @on(eventStr, @initAttributes)
+        console.warn "listening"
+        _.each(@backboneAssociations,((v,k)-> @_createNestedEntity(v.key,@get(v.key))),@)
+      else
+        changed = _.invert(@changed)[value]
+        @_createNestedEntity(changed,@get(changed)) if _.contains(_.pluck @backboneAssociations('key'), changed)
+
+    
 
     destroy: (options = {}) ->
       _.defaults options,
@@ -79,7 +100,10 @@ do (Backbone) ->
 
 
     _createNestedEntity:(key,value)->
+      console.warn arguments
+      console.log @get('key')
       unless @_isBackbone(@get('key')) and value?
+        console.info arguments
         entity = new (@_getEntityClass(key))(value)
         @set(key, entity,{silent:true})
         @listenTo entity, "change", => @trigger("change:#{key}",key,entity)

@@ -16,11 +16,14 @@
       {entrySetResponseId,sectionId} = options
     
       @entrySetResponse = App.request "entry:set:response:entities", id: entrySetResponseId
-      
+
+      window.test = @entrySetResponse
       App.execute "when:fetched", @entrySetResponse, =>
-        @sections = @entrySetResponse.get("entry_sets_sections")
-        
+        # @sections = @entrySetResponse.get("entry_sets_sections")
+        @sections = new App.Entities.Sections(@entrySetResponse.get("entry_set").sections)
+
         if sectionId
+
           @sections.trigger("change:current:section", model: @sections.get(sectionId))
         
         @showFormSteps()
@@ -28,29 +31,27 @@
         @listenTo @sections, "change:current:section", () =>          
           App.navigate(@sectionUrl(),{replace: true})
           @getEntries()
-  
+        
+
         @getEntries()
 
-    
 
     getEntries:->
       entries = @entrySetResponse.getSectionResponses()
 
       #NOTE: We should try to remove this when-fetched in order to remove the time it takes to show the spinner
-      # App.execute "when:fetched", entries, =>
-      #   console.log "entries::",entries
-      #   # @entrySetResponse.set('entry_values',entries.mergeEntryValues())
-      #   @showForm()
+      App.execute "when:fetched", entries, =>
+        @entrySetResponse.set('entry_fields',entries)
+        @showForm()
 
       
     
     
     showFormSteps:->
       view = @getFormStepsView(collection: @sections)
-      
+
       #DELETE: When we are totally sure that the loading views works
       #@getFormStepsRegion().show view
-
       @show view,
          region: @getFormStepsRegion()
          loading:false 
@@ -84,21 +85,30 @@
 
 
      saveAndMoveToNextSection:(formView)->
-      formView.trigger('form:submit')
       @listenToOnce @entrySetResponse, 'updated', =>
         @sections.trigger("change:current:section",model: @sections.getNextSection())
      
       
 
     triggerSuccessMessage:(formView)->
+      @entrySetResponse.set("entry_values",@buildEntryValues(formView.model.get('entry_fields')))
       formView.trigger('form:submit')
       @listenToOnce @entrySetResponse, 'updated', =>
         toastr.success "Færsla hefur vistast"
 
-    
+    buildEntryValues:(entry_fields)->
+      return unless entry_fields?    
+      entry_values = new App.Entities.EntryValues()
+      _.each(entry_fields.models,(entry_field)->
+        _.each(entry_field.get('entry_values'),(entry_value)->
+          entry_values.add(entry_value)
+        )
+      ) 
+      entry_values
 
     saveAsCompleteAndRedirect:(formView) ->
       @entrySetResponse.set("complete_item",1)
+      @entrySetResponse.set("entry_values",@buildEntryValues(formView.model.get('entry_fields')))
       formView.trigger('form:submit')
       @listenToOnce @entrySetResponse, 'updated', =>
         App.navigate "/items", {trigger: true}
@@ -113,7 +123,7 @@
     
     getFormView:->
       new Edit.EntryValues 
-        collection: @entrySetResponse.get('entry_values')
+        collection: @entrySetResponse.get('entry_fields')
         model: @entrySetResponse 
 
 

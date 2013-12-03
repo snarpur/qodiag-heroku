@@ -41,6 +41,7 @@ class EntryField  < ActiveRecord::Base
   end
 
   def get_or_initialize_entry_value(entry_set_response_id)
+    KK.log entry_set_response_id
     self.entry_values.by_response(entry_set_response_id).first #_or_initialize
   end
 

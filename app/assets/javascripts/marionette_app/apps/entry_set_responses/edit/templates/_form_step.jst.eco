@@ -1,2 +1,2 @@
 <span class="badge"><%- @display_order %></span>
-<%- @linkTo(@section_name,"") %>
+<%- @linkTo(@name,"") %>

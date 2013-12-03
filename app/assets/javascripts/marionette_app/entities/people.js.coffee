@@ -3,7 +3,7 @@
   class Entities.Person extends Entities.Model
     urlRoot: Routes.people_path()
     paramRoot: 'person'
-    relations: [
+    backboneAssociations: [
       {
         type: Backbone.One
         key: 'address'

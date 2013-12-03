@@ -9,7 +9,7 @@
       text_value: 
         required: true
     
-    relations: [
+    backboneAssociations: [
       {
         type: Backbone.One
         key: 'entry_field_option'
@@ -18,6 +18,7 @@
     ] 
 
     initialize: ->
+      super
       if @get('comments')
         @set("comments", new Entities.EntryValues(@get('comments')))
 

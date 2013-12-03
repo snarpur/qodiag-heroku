@@ -17,17 +17,15 @@ do (Backbone) ->
         type: Backbone.Many
         key: 'entry_values'
         relatedModel: App.Entities.EntryValue
-      }
-    ]
-
-    relations: [
+      },
       {
         type: Backbone.Many
         key: 'entry_field_options'
         relatedModel: App.Entities.EntryFieldOption
       }
-
     ]
+
+
 
     validation:
       title: 
@@ -42,20 +40,20 @@ do (Backbone) ->
 
 
     initialize:->
-
+      super
       @url = ->
         if @isNew() then @urlRoot else "#{@urlRoot}/#{@id}"
 
     
 
-    initializeEntryValues:->
+    # initializeEntryValues:->
 
-      return unless @get('entry_values')? 
-      unless @get('entry_values') instanceof Backbone.Collection
-        entryValues = if _.isArray(@get('entry_values')) then @get('entry_values') else [@get('entry_values')]
-        @set 'entry_values', new Entities.EntryValues(@get('entry_values'), {entryField: @}, {silent: true})
+    #   return unless @get('entry_values')? 
+    #   unless @get('entry_values') instanceof Backbone.Collection
+    #     entryValues = if _.isArray(@get('entry_values')) then @get('entry_values') else [@get('entry_values')]
+    #     @set 'entry_values', new Entities.EntryValues(@get('entry_values'), {entryField: @}, {silent: true})
       
-      @on "change:entry_values", @initializeEntryValues
+    #   @on "change:entry_values", @initializeEntryValues
 
 
 

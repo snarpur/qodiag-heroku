@@ -7,38 +7,48 @@
     urlRoot: () ->
       Routes.entry_set_responses_path()
 
+    backboneAssociations: [
+      {
+        type: Backbone.Many
+        key: 'entry_values'
+        relatedModel: App.Entities.EntryValue
+      }
+    ]
     
 
     initialize:->
-      @initializeSections()
-      @initializeEntryFields()
-      @on("change:entry_sets_sections", @initializeSections)
-      @on("change:entry_sets_sections", @initializeEntryFields)
+      super
+      # @initializeSections()
+      # @initializeEntryFields()
+      # @on("change:entry_sets_sections", @initializeSections)
+      # @on("change:entry_sets_sections", @initializeEntryFields)
 
     
     
-    initializeSections:->
-      sections = @get('entry_sets_sections')
-      unless sections instanceof Backbone.Collection
-        @set("entry_sets_sections", new Entities.EntrySetSections(sections,{entrySetResponse: @}),{silent: true})
+    # initializeSections:->
+    #   sections = @get('entry_sets_sections')
+    #   unless sections instanceof Backbone.Collection
+    #     @set("entry_sets_sections", new Entities.EntrySetSections(sections,{entrySetResponse: @}),{silent: true})
     
 
     
-    initializeEntryFields: ->
-      fields = @get('entry_fields') 
-      unless fields instanceof Backbone.Collection
-        @set("entry_fields", new Entities.EntryFields(fields,{entrySetResponse: @}),{silent: true})
+    # initializeEntryFields: ->
+    #   fields = @get('entry_fields') 
+    #   unless fields instanceof Backbone.Collection
+    #     @set("entry_fields", new Entities.EntryFields(fields,{entrySetResponse: @}),{silent: true})
 
 
     
     currentSection:->
-      console.log "gfdg",@get('entry_set')
-      @get('entry_sets_sections')?.getCurrentSection()
+      sections = new App.Entities.Sections(@get('entry_set').sections) unless not @get('entry_set')?
+      sections?.getCurrentSection()
+      # @get('entry_sets_sections')?.getCurrentSection()
+      
 
     
 
     getSectionResponses:->
-      @currentSection().getSectionEntryResponses()
+      @currentSection().getSectionEntryResponses(@id)
       
 
      

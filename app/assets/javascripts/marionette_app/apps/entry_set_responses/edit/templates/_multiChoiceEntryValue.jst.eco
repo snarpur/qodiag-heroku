@@ -1,12 +1,13 @@
-<label><%-@entry_field_title%></label>
-<% if @entry_field_help_text? : %>
+<label><%-@title%></label>
+<% if @help_text? : %>
   <span class="help-block">
-    <%- @entry_field_help_text %>
+    <%- @help_text %>
   </span>
 <% end %>
-<% for option in @entry_field_entry_field_options: %>
+
+<% for option in @entry_field_options.models: %>
   <label class="checkbox">
-    <input type="checkbox" id="<%-"multi_choice_value_#{option.id}"%>" value="<%-"#{option.id}"%>">
-      <%= option.text_option %>
+    <input type="checkbox" id="<%-"multi_choice_value_#{option.get('id')}"%>" value="<%-"#{option.get('id')}"%>">
+      <%= option.get("text_option") %>
   </label>
 <% end %>
