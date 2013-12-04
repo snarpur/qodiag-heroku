@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130821152446) do
+ActiveRecord::Schema.define(:version => 20131129144855) do
 
   create_table "addresses", :force => true do |t|
     t.string   "street_1"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(:version => 20130821152446) do
   end
 
   add_index "answers", ["api_id"], :name => "uq_answers_api_id", :unique => true
+  add_index "answers", ["question_id"], :name => "index_question_id"
 
   create_table "dependencies", :force => true do |t|
     t.integer  "question_id"
@@ -77,17 +78,28 @@ ActiveRecord::Schema.define(:version => 20130821152446) do
     t.datetime "updated_at"
   end
 
+  create_table "entry_field_options", :force => true do |t|
+    t.integer  "entry_field_id"
+    t.string   "text_option"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "entry_field_options", ["entry_field_id"], :name => "index_entry_field_id"
+
   create_table "entry_fields", :force => true do |t|
     t.string   "title"
     t.text     "description"
     t.string   "help_text"
-    t.string   "field_type"
+    t.string   "field_type",      :default => "text"
     t.integer  "parent_field_id"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
-    t.integer  "visibility",      :default => 0, :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
+    t.integer  "visibility",      :default => 0,      :null => false
     t.integer  "created_by_id"
   end
+
+  add_index "entry_fields", ["created_by_id"], :name => "index_created_by_id"
 
   create_table "entry_set_responses", :force => true do |t|
     t.integer  "entry_set_id"
@@ -95,6 +107,9 @@ ActiveRecord::Schema.define(:version => 20130821152446) do
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
   end
+
+  add_index "entry_set_responses", ["entry_set_id"], :name => "index_entry_set_id"
+  add_index "entry_set_responses", ["responder_item_id"], :name => "index_responder_item_id"
 
   create_table "entry_sets", :force => true do |t|
     t.string   "name"
@@ -106,6 +121,8 @@ ActiveRecord::Schema.define(:version => 20130821152446) do
     t.integer  "visibility",    :default => 0, :null => false
   end
 
+  add_index "entry_sets", ["created_by_id"], :name => "index_created_by_id_entry_sets"
+
   create_table "entry_sets_sections", :force => true do |t|
     t.integer  "entry_set_id"
     t.integer  "section_id"
@@ -113,6 +130,9 @@ ActiveRecord::Schema.define(:version => 20130821152446) do
     t.datetime "updated_at",    :null => false
     t.integer  "display_order"
   end
+
+  add_index "entry_sets_sections", ["entry_set_id"], :name => "entry_sets_sections_index_entry_set_id"
+  add_index "entry_sets_sections", ["section_id"], :name => "entry_sets_sections_index_section_id"
 
   create_table "entry_values", :force => true do |t|
     t.integer  "entry_field_id"
@@ -123,7 +143,14 @@ ActiveRecord::Schema.define(:version => 20130821152446) do
     t.datetime "updated_at",            :null => false
     t.integer  "person_id"
     t.integer  "commentable_id"
+    t.integer  "entry_field_option_id"
   end
+
+  add_index "entry_values", ["commentable_id"], :name => "entry_values_index_commentable_id"
+  add_index "entry_values", ["entry_field_id"], :name => "entry_values_index_entry_field_id"
+  add_index "entry_values", ["entry_field_option_id"], :name => "entry_values_index_entry_field_option_id"
+  add_index "entry_values", ["entry_set_response_id"], :name => "entry_values_index_entry_set_response_id"
+  add_index "entry_values", ["person_id"], :name => "entry_values_index_person_id"
 
   create_table "national_registers", :id => false, :force => true do |t|
     t.integer "rownumber"
@@ -143,6 +170,8 @@ ActiveRecord::Schema.define(:version => 20130821152446) do
     t.integer "latinn"
   end
 
+  add_index "national_registers", ["kennitala"], :name => "national_registers_index_kennitala"
+
   create_table "norm_references", :force => true do |t|
     t.integer  "survey_id"
     t.string   "sex"
@@ -152,6 +181,8 @@ ActiveRecord::Schema.define(:version => 20130821152446) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "norm_references", ["survey_id"], :name => "norm_references_index_survey_id"
 
   create_table "people", :force => true do |t|
     t.string   "firstname"
@@ -172,6 +203,8 @@ ActiveRecord::Schema.define(:version => 20130821152446) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
   end
+
+  add_index "people", ["address_id"], :name => "people_index_address_id"
 
   create_table "question_groups", :force => true do |t|
     t.text     "text"
@@ -214,6 +247,9 @@ ActiveRecord::Schema.define(:version => 20130821152446) do
   end
 
   add_index "questions", ["api_id"], :name => "uq_questions_api_id", :unique => true
+  add_index "questions", ["correct_answer_id"], :name => "questions_index_correct_answer_id"
+  add_index "questions", ["question_group_id"], :name => "questions_index_question_group_id"
+  add_index "questions", ["survey_section_id"], :name => "questions_index_survey_section_id"
 
   create_table "relationships", :force => true do |t|
     t.integer  "person_id"
@@ -224,6 +260,9 @@ ActiveRecord::Schema.define(:version => 20130821152446) do
     t.date     "start"
     t.date     "end"
   end
+
+  add_index "relationships", ["person_id"], :name => "relationships_index_person_id"
+  add_index "relationships", ["relation_id"], :name => "relationships_index_relation_id"
 
   create_table "responder_items", :force => true do |t|
     t.integer  "respondent_id"
@@ -239,6 +278,13 @@ ActiveRecord::Schema.define(:version => 20130821152446) do
     t.integer  "entry_set_response_id"
   end
 
+  add_index "responder_items", ["caretaker_id"], :name => "responder_items_index_caretaker_id"
+  add_index "responder_items", ["entry_set_response_id"], :name => "responder_items_index_entry_set_response_id"
+  add_index "responder_items", ["respondent_id"], :name => "responder_items_index_respondent_id"
+  add_index "responder_items", ["response_set_id"], :name => "responder_items_index_response_set_id"
+  add_index "responder_items", ["subject_id"], :name => "responder_items_index_subject_id"
+  add_index "responder_items", ["survey_id"], :name => "responder_items_index_survey_id"
+
   create_table "response_sets", :force => true do |t|
     t.integer  "user_id"
     t.integer  "survey_id"
@@ -252,6 +298,8 @@ ActiveRecord::Schema.define(:version => 20130821152446) do
 
   add_index "response_sets", ["access_code"], :name => "response_sets_ac_idx", :unique => true
   add_index "response_sets", ["api_id"], :name => "uq_response_sets_api_id", :unique => true
+  add_index "response_sets", ["survey_id"], :name => "response_sets_index_survey_id"
+  add_index "response_sets", ["user_id"], :name => "response_sets_index_user_id"
 
   create_table "responses", :force => true do |t|
     t.integer  "response_set_id"
@@ -271,13 +319,19 @@ ActiveRecord::Schema.define(:version => 20130821152446) do
     t.string   "api_id"
   end
 
+  add_index "responses", ["answer_id"], :name => "responses_index_answer_id"
   add_index "responses", ["api_id"], :name => "uq_responses_api_id", :unique => true
+  add_index "responses", ["question_id"], :name => "responses_index_question_id"
+  add_index "responses", ["response_set_id"], :name => "responses_index_response_set_id"
   add_index "responses", ["survey_section_id"], :name => "index_responses_on_survey_section_id"
 
   create_table "rights", :force => true do |t|
     t.integer "role_id"
     t.integer "user_id"
   end
+
+  add_index "rights", ["role_id"], :name => "rights_index_role_id"
+  add_index "rights", ["user_id"], :name => "rights_index_user_id"
 
   create_table "roles", :force => true do |t|
     t.string   "name"
@@ -296,6 +350,8 @@ ActiveRecord::Schema.define(:version => 20130821152446) do
     t.float    "value"
   end
 
+  add_index "scores", ["norm_reference_id"], :name => "scores_index_norm_reference_id"
+
   create_table "sections", :force => true do |t|
     t.string   "name"
     t.string   "description"
@@ -311,6 +367,9 @@ ActiveRecord::Schema.define(:version => 20130821152446) do
     t.integer  "display_order"
   end
 
+  add_index "sections_entry_fields", ["entry_field_id"], :name => "sections_entry_fields_index_entry_field_id"
+  add_index "sections_entry_fields", ["section_id"], :name => "sections_entry_fields_index_section_id"
+
   create_table "survey_sections", :force => true do |t|
     t.integer  "survey_id"
     t.string   "title"
@@ -324,6 +383,8 @@ ActiveRecord::Schema.define(:version => 20130821152446) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "survey_sections", ["survey_id"], :name => "survey_sections_index_survey_id"
 
   create_table "survey_translations", :force => true do |t|
     t.integer  "survey_id"
@@ -402,6 +463,7 @@ ActiveRecord::Schema.define(:version => 20130821152446) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["invitation_token"], :name => "index_users_on_invitation_token"
+  add_index "users", ["person_id"], :name => "users_index_person_id"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
   create_table "validation_conditions", :force => true do |t|

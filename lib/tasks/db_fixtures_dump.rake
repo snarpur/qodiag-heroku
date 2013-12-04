@@ -14,6 +14,7 @@ namespace :db do
       puts "Found models: " + models.join(', ')
  
       models.each do |m|
+        # REFACTOR: It could be a hole security (http://www.sitepoint.com/rails-security-pitfalls/)
         model = m.constantize
         next unless model.ancestors.include?(ActiveRecord::Base)
  

@@ -137,6 +137,7 @@ module BackboneFormsPreprocessor
     end
 
     def form_root_class(step_no)
+      # REFACTOR: It could be a hole security (http://www.sitepoint.com/rails-security-pitfalls/)
       form_root_name(step_no).classify
     end
 
@@ -161,6 +162,7 @@ module BackboneFormsPreprocessor
     end
 
     def current_form_root_class
+      # REFACTOR: It could be a hole security (http://www.sitepoint.com/rails-security-pitfalls/)
       current_form_root_name.classify
     end
 
@@ -177,6 +179,7 @@ module BackboneFormsPreprocessor
     end
       
     def get_class_or_decorator(class_name)
+      # REFACTOR: It could be a hole security (http://www.sitepoint.com/rails-security-pitfalls/)
       has_decorator?(class_name) ? Module.const_get(decorator_for_class(class_name)) : Module.const_get(class_name.classify)
     end
 

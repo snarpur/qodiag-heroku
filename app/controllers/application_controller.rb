@@ -68,10 +68,12 @@ class ApplicationController < ActionController::Base
   def pick_params(params,class_name=nil)
    if class_name.nil?
       params.map do |k,v|
+        # REFACTOR: It could be a hole security (http://www.sitepoint.com/rails-security-pitfalls/)
         accessible_attr = eval(k.classify)._accessible_attributes[:default].to_a
         {k.to_sym => v.with_indifferent_access.slice(*accessible_attr)}
       end
     else
+      # REFACTOR: It could be a hole security (http://www.sitepoint.com/rails-security-pitfalls/)
       accessible_attr = eval(class_name.classify)._accessible_attributes[:default].to_a
       params.with_indifferent_access.slice(*accessible_attr)
     end
