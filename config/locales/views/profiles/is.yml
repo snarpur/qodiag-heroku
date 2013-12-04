@@ -1,5 +1,5 @@
 is:
   views:
     profiles:
-      parent_not_found: "Parent not found"
+      parent_not_found: "Foreldri vantar"
       upload_image: "Hlaða upp mynd"

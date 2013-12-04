@@ -3,6 +3,7 @@
 * infographics -> 12034
 * chart-documents -> 1908
 * worker -> 13710
+* worker-2 -> 1539
 * open-box -> 1167
 * form -> 7381
 * outlined-circle -> 12971
@@ -15,4 +16,14 @@
 * waiting-room -> 3
 * mail-box -> 18199
 * lock -> 424
-exit -> 
+* clock-1 -> 1164
+* clock-2 -> 8663
+* landscape -> 5340
+* survey-1 -> 1539
+* at-sign-1 -> 12513
+* confused -> 12321
+* no-sign -> 8559
+
+exit ->
+
+Results are visually presented and automatically processed. Offers a library of standardized rating scales and creation of custom questionares
