@@ -59,6 +59,7 @@
 
       @stickit()
 
+  
   class Edit.EntryValueMultiChoice extends App.Views.ItemView
     template: "entry_set_responses/edit/templates/_multiChoiceEntryValue"
 
@@ -67,25 +68,30 @@
 
     checkboxClicked:(event) =>
       if event.currentTarget.checked
-        console.log "size():: ",@model.get("entry_values").length
-        # if @model.get("entry_values").length isnt 1 or @model.get("entry_values").at(0).entry_field_option_id?    
-      #     @model.get("entry_values")[_.size(@model.get("entry_values"))] = _.clone(_.first(@model.get("entry_values")))    
+        return unless @model.get("entry_values").findWhere({entry_field_option_id: (Number)(event.currentTarget.value)})?
+        if @model.get("entry_values").length isnt 1 or @model.get("entry_values").at(0).get("entry_field_option_id")?
+          @model.get("entry_values").unshift(@model.get("entry_values"))        
+        @model.get("entry_values").at(0).set("entry_field_option_id",(Number)(event.currentTarget.value))
+      else
+        if @model.get("entry_values").length is 1 and @model.get("entry_values").at(0).get("entry_field_option_id")?
+          @model.get("entry_values").at(0).set("entry_field_option_id",null)
+        else
+          @model.get("entry_values").remove(@model.get("entry_values").findWhere({entry_field_option_id: (Number)(event.currentTarget.value)}))
 
-      #   _.last(@model.get("entry_values")).entry_field_option_id = event.currentTarget.value
-      # else
-      #   if _.size(@model.get("entry_values")) is 1 and _.first(@model.get("entry_values")).entry_field_option_id?
-      #     _.first(@model.get("entry_values")).entry_field_option_id = null
-      #   else
-      #     @model.set("entry_values",_.without(@model.get("entry_values"),_.findWhere(@model.get("entry_values"), {entry_field_option_id: event.currentTarget.value})))
+      # console.log "entry_values::",@model.get("entry_values").models
 
-    # onShow:(options)->
-    #   @bindings = {}
-    #   fieldType = @model.get('field_type')+"_value"
-    #   for option in @model.get('entry_field_options').models
-    #     @bindings["\##{fieldType}_#{option.id}"] = fieldType
-
-      
-      # @bindings["\##{fieldType}_#{@model.get('entry_field_id')}"] = fieldType
+    onShow:(options)->
+      console.log "OPTIONS : ", options, @
+      # console.log "entry_values::",@model.get("entry_values")
+      # console.log "pluck:: ", @model.get("entry_values").pluck("entry_field_option_id")
+      # @bindings = {}
+      # @bindings["input[name=multi_choice_value_#{@model.get('id')}]"] = @model.get("entry_values").pluck("entry_field_option_id")
+      # console.info "bindings::",@bindings
+      # @bindings = {}
+      # # fieldType = @model.get('field_type')+"_value"
+      # @bindings["[name=multi_choice_value_#{@model.get('id')]",@model.get('entry_values').findWhere({entry_field_option_id: option.id})?.get('entry_field_option_id')]
+     
+      # # @bindings["\##{fieldType}_#{@model.get('entry_field_id')}"] = fieldType
 
       # @stickit()
 

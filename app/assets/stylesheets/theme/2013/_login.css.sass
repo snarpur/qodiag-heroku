@@ -227,6 +227,14 @@ h1.logo:first-letter
 
 
 //RESPONSIVE
+// Phones veritcal
+@media (max-width: 479px)
+  h1.logo
+    font-size: 4em
+    margin-bottom: 30px
+  p.offset1
+    display: none
+
 // Landscape phones and down
 @media (max-width: 767px)
 
@@ -246,7 +254,6 @@ h1.logo:first-letter
 
 // All Tablets and down
 @media (max-width: 1024px)
-
   .row-fluid
     .stripes,
     .computer
@@ -284,6 +291,8 @@ h1.logo:first-letter
   .help-block
     margin-left: -38%
 
+  #header .row-fluid div:nth-child(2)
+    padding-left: 25px
 
 // Especial size for the header with stripes
 @media (max-width: 1075px)
@@ -301,8 +310,18 @@ h1.logo:first-letter
   #header ul li
     width: 94px
 
+  .row-fluid
+    .stripes
+      min-width: 500px
 
-// Especial size for help div margin
+
+// Especial size min-width stripes
+@media (min-width: 1076px)
+
+  .row-fluid
+    .stripes
+      min-width: 525px
+
 @media (min-width: 1199px)
   .help-block
     margin-left: -44%

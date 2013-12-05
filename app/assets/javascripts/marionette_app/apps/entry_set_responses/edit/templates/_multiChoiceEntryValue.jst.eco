@@ -7,7 +7,7 @@
 
 <% for option in @entry_field_options.models: %>
   <label class="checkbox">
-    <input type="checkbox" id="<%-"multi_choice_value_#{option.get('id')}"%>" value="<%-"#{option.get('id')}"%>">
+    <input type="checkbox" name="<%-"multi_choice_value_#{@id}"%>" value="<%-"#{option.get('id')}"%>">
       <%= option.get("text_option") %>
   </label>
 <% end %>

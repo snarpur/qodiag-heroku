@@ -7,7 +7,7 @@ end
 
 node :entry_values, :if =>  @current_user.role?(:respondent) do |e|
   partial("entry_values/_entry_value",
-          :object =>  [e.response_values_for_person(@entry_set_response.responder_item.respondent,@entry_set_response).first_or_initialize])
+          :object =>  e.response_values_for_person(@entry_set_response.responder_item.respondent,@entry_set_response))#.first_or_initialize])
 end
 
 
