@@ -13,29 +13,29 @@
   font-style: normal;
 }
 
-.fc-icon-waiting-room:before,
-.fc-icon-infographics:before,
-.fc-icon-employee-evaluation:before,
-.fc-icon-papers:before,
-.fc-icon-string:before,
-.fc-icon-secure:before,
-.fc-icon-social-services:before,
-.fc-icon-form-document:before,
-.fc-icon-multi-choice:before,
 .fc-icon-chart-documents:before,
-.fc-icon-form:before,
-.fc-icon-locker:before,
-.fc-icon-line-graph:before,
-.fc-icon-mail-box:before,
-.fc-icon-text:before,
-.fc-icon-needs-assesment:before,
-.fc-icon-worker:before,
-.fc-icon-filled-circle:before,
-.fc-icon-exit:before,
 .fc-icon-dialog:before,
+.fc-icon-employee-evaluation:before,
+.fc-icon-exit:before,
+.fc-icon-filled-circle:before,
+.fc-icon-form-document:before,
+.fc-icon-form:before,
+.fc-icon-infographics:before,
+.fc-icon-line-graph:before,
+.fc-icon-locker:before,
+.fc-icon-mail-box:before,
+.fc-icon-multi-choice:before,
+.fc-icon-needs-assesment:before,
 .fc-icon-open-box:before,
 .fc-icon-outlined-circle:before,
-.fc-icon-single-choice:before {
+.fc-icon-papers:before,
+.fc-icon-secure:before,
+.fc-icon-single-choice:before,
+.fc-icon-social-services:before,
+.fc-icon-string:before,
+.fc-icon-text:before,
+.fc-icon-waiting-room:before,
+.fc-icon-worker:before {
   font-family: "fontcustom";
   font-style: normal;
   font-weight: normal;
@@ -43,31 +43,30 @@
   text-transform: none;
   line-height: 1;
   -webkit-font-smoothing: antialiased;
-  // display: inline-block;
-  display: inline;
+  display: inline-block;
   text-decoration: inherit;
 }
 
-.fc-icon-waiting-room:before { content: "\f100"; }
-.fc-icon-infographics:before { content: "\f101"; }
+.fc-icon-chart-documents:before { content: "\f100"; }
+.fc-icon-dialog:before { content: "\f101"; }
 .fc-icon-employee-evaluation:before { content: "\f102"; }
-.fc-icon-papers:before { content: "\f103"; }
-.fc-icon-string:before { content: "\f104"; }
-.fc-icon-secure:before { content: "\f105"; }
-.fc-icon-social-services:before { content: "\f106"; }
-.fc-icon-form-document:before { content: "\f107"; }
-.fc-icon-multi-choice:before { content: "\f108"; }
-.fc-icon-chart-documents:before { content: "\f109"; }
-.fc-icon-form:before { content: "\f10a"; }
-.fc-icon-locker:before { content: "\f10b"; }
-.fc-icon-line-graph:before { content: "\f10c"; }
-.fc-icon-mail-box:before { content: "\f10d"; }
-.fc-icon-text:before { content: "\f10e"; }
-.fc-icon-needs-assesment:before { content: "\f10f"; }
-.fc-icon-worker:before { content: "\f110"; }
-.fc-icon-filled-circle:before { content: "\f111"; }
-.fc-icon-exit:before { content: "\f112"; }
-.fc-icon-dialog:before { content: "\f113"; }
-.fc-icon-open-box:before { content: "\f114"; }
-.fc-icon-outlined-circle:before { content: "\f115"; }
-.fc-icon-single-choice:before { content: "\f116"; }
+.fc-icon-exit:before { content: "\f103"; }
+.fc-icon-filled-circle:before { content: "\f104"; }
+.fc-icon-form-document:before { content: "\f105"; }
+.fc-icon-form:before { content: "\f106"; }
+.fc-icon-infographics:before { content: "\f107"; }
+.fc-icon-line-graph:before { content: "\f108"; }
+.fc-icon-locker:before { content: "\f109"; }
+.fc-icon-mail-box:before { content: "\f10a"; }
+.fc-icon-multi-choice:before { content: "\f10b"; }
+.fc-icon-needs-assesment:before { content: "\f10c"; }
+.fc-icon-open-box:before { content: "\f10d"; }
+.fc-icon-outlined-circle:before { content: "\f10e"; }
+.fc-icon-papers:before { content: "\f10f"; }
+.fc-icon-secure:before { content: "\f110"; }
+.fc-icon-single-choice:before { content: "\f111"; }
+.fc-icon-social-services:before { content: "\f112"; }
+.fc-icon-string:before { content: "\f113"; }
+.fc-icon-text:before { content: "\f114"; }
+.fc-icon-waiting-room:before { content: "\f115"; }
+.fc-icon-worker:before { content: "\f116"; }

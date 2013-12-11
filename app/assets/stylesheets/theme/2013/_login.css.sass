@@ -1,5 +1,5 @@
 $pastel: #537BC3 #5E88BF #73B2D9 #8BCAD9 #C4EEF2 
-$neon: #0E2759 #183F8C #3D71D9 #72A9F2 #B3F2F2
+$neon: #113379 #1C4BA6 #2F80C8 #72D7F2 #B3F2F2
 $active_palette: $neon
 $banner_label_height: 40px
 $l_str_width: 100px
@@ -94,7 +94,7 @@ h1.logo:first-letter
       position: relative
       width: 100%
       font-size: 0.9em
-      color: #333
+      color: #000
       height: $banner_label_height
       font-style: normal
       font-weight: 400
@@ -111,10 +111,11 @@ h1.logo:first-letter
       width: 2.5em
     
     @for $i from 1 through 5
-      $stripe_label: lightness(nth($active_palette,$i))/2
+      // $stripe_label: lightness(nth($active_palette,$i))/2
+      $stripe_label: lightness(nth($active_palette,(6-$i)))*0.4
       li:nth-child(#{$i}) em
-        background-color: lighten(nth($active_palette,$i),7)
-
+        // background-color: lighten(nth($active_palette,$i),7)
+        background-color: desaturate(lighten(nth($active_palette,$i),$stripe_label),20%)
   .page-title
     font-size: 600%
     font-weight: bold
@@ -159,6 +160,7 @@ h1.logo:first-letter
 
 .btn
   background: none repeat scroll 0 0 #2F9FE6
+  +text-shadow(none)
   color: #FFFFFF
   width: 15%
   height: 25px
