@@ -5,5 +5,5 @@
   </span>
 <% end %>
 <textarea class="input-xxlarge" id='<%-"text_value_#{@id}"%>'>
-  <%=@entry_values.text_value%>
+  <%=@entry_values.first().get('text_value')%>
 </textarea>

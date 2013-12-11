@@ -41,15 +41,22 @@
 
     
     addEntryFieldOption:(options)->
-      @add(options)
+      existing = @findWhere({entry_field_option_id: options.entry_field_option_id})
+      if existing
+        existing.unset('_destroy')
+      else
+        @add(options)
 
+      console.info "Adding values::",@models
 
     removeEntryFieldOption:(options)->
       existing = @findWhere({entry_field_option_id: options.entry_field_option_id})
       if existing and existing.id?
-        console.log "existing",existing
+        existing.set('_destroy',true)
       else
-        console.log "non existing", existing
+        @remove(options)
+
+      console.info "Removing values::",@models
 
     #DELETE: sooner the better
     # buildEntryValue:(field_id,field_option_id)->
