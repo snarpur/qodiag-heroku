@@ -15,7 +15,7 @@ do (Backbone) ->
 
     initialize:->
       super
-      @initAttributes()
+      # @initAttributes()
       # unless _.isEmpty(@backboneAssociations)
       #   console.warn "in IF : ", @
       #   @relations = @backboneAssociations

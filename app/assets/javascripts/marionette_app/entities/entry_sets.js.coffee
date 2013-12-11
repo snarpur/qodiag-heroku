@@ -4,14 +4,14 @@
     urlRoot: Routes.entry_sets_path()
     paramRoot: 'entry_set'
 
-    backboneAssociations: [
-      {
-        type: Backbone.Many
-        key: 'sections'
-        relatedModel: App.Entities.Section
-      }
+    # backboneAssociations: [
+    #   {
+    #     type: Backbone.Many
+    #     key: 'sections'
+    #     relatedModel: App.Entities.Section
+    #   }
 
-    ]
+    # ]
 
 
   class Entities.EntrySetsCollection extends Entities.Collection
