@@ -1,4 +1,4 @@
- class EntrySetResponse < ActiveRecord::Base
+class EntrySetResponse < ActiveRecord::Base
   has_many :entry_values
   has_one :responder_item
   belongs_to :entry_set

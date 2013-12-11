@@ -7,6 +7,7 @@
 
 
     initialize: () ->
+      console.log "IN entry_set_sections"
       if @collection?.entrySetResponseId? or @collection?.entrySetResponse?
         @set("entrySetResponseId",@collection.entrySetResponseId ? @collection.entrySetResponse.id) 
 
@@ -176,6 +177,7 @@
 
   
   App.reqres.setHandler "entry:set:sections:entities", (options) ->
+    console.warn options
     API.getSectionEntities options
 
 

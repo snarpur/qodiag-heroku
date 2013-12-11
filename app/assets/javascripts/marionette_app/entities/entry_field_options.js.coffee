@@ -13,6 +13,7 @@
       @url = ->
         Routes.entry_field_option_path(@id)
 
+
     
 
   class Entities.EntryFieldOptions extends Entities.Collection

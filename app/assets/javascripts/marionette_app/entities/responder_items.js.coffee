@@ -8,9 +8,9 @@
     
     backboneAssociations: [
       {
-        type: Backbone.One
+        type: "One"
         key: 'entry_set_response'
-        relatedModel: App.Entities.EntrySetResponse
+        relatedEntity: "App.Entities.EntrySetResponse"
       }
     ]
 

@@ -5,50 +5,27 @@ do (Backbone) ->
 	 
 
   
-  class Entities.Model extends Backbone.AssociatedModel
+  class Entities.Model extends Backbone.Model
     attributeList: []
     nestedAttributeList: []
     blacklist:[]
     validation: {}
+
     backboneAssociations: []
 
 
     initialize:->
       super
-      # @initAttributes()
-      # unless _.isEmpty(@backboneAssociations)
-      #   console.warn "in IF : ", @
-      #   @relations = @backboneAssociations
-      # # else
-      # #   console.warn "in else : ", @.attributes
-      # #   _.each(@backboneAssociations,(assoc)->
-      # #     @relations.add(assoc)
-      # #   )
-
+      @createBackboneAssociation()
       @url = ()->
         base = _.result(@, 'urlRoot') ? @collection.url()
         if @id then "#{base}/#{@id}" else base
 
-      #Validation
+      @on("created updated", @unsetAssociationParams)
       @validateOnChange()
       @on("validated:valid",@onValid)
       @on("validated:invalid",@onInvalid)
 
-
-
-
-
-    # REFACTOR: change entry_set_response to relation (BackboneAcossiation) and delete initAttributes()
-    initAttributes:(model,value)->
-      if _.isEmpty(arguments)
-        eventStr = _.map(@backboneAssociations,(v,k)-> "change:#{v.key}").join(" ")
-        console.log "eventStr:: ",eventStr
-        @on(eventStr, @initAttributes)
-        console.warn "listening"
-        _.each(@backboneAssociations,((v,k)-> @_createNestedEntity(v.key,@get(v.key))),@)
-      else
-        changed = _.invert(@changed)[value]
-        @_createNestedEntity(changed,@get(changed)) if _.contains(_.pluck @backboneAssociations('key'), changed)
 
     
 
@@ -74,6 +51,8 @@ do (Backbone) ->
         error:    _.bind(@saveError, @)
     
       @unset "_errors"
+      console.log @,"errors:: ", @.attributes
+
       super data, options
     
     
@@ -90,53 +69,92 @@ do (Backbone) ->
     
     
 
+
+
     saveError: (model, xhr, options) =>
       ## set errors directly on the model unless status returned was 500 or 404
       @set _errors: $.parseJSON(xhr.responseText)?.errors unless xhr.status is 500 or xhr.status is 404
 
     
-    _getEntityClass:(name)->
-      Entities[_(name).chain().capitalize().camelize().value()]
+    unsetAssociationParams:->
+      _.each(@backboneAssociations,((i)-> @unset("#{i.key}_attributes",{silent: true})),@)
 
 
-    _createNestedEntity:(key,value)->
-      console.warn arguments
-      console.log @get('key')
-      unless @_isBackbone(@get('key')) and value?
-        console.info arguments
-        entity = new (@_getEntityClass(key))(value)
-        @set(key, entity,{silent:true})
-        @listenTo entity, "change", => @trigger("change:#{key}",key,entity)
+    createBackboneAssociation:(model,value)->
+      if _.isEmpty(arguments)
+        eventStr = _.map(@backboneAssociations,(v,k)-> "change:#{v.key}").join(" ")
+        @on(eventStr, @createBackboneAssociation)
+        _.each(@backboneAssociations,((v,k)-> @_createAssociation(v,@get(v.key))),@)
+      else
+        changed = _.invert(@changed)[value]
+        if @_getBackboneAssociation(changed)
+          changedAssociation = _.findWhere(@backboneAssociations, {key: changed})
+          @_createAssociation(changedAssociation,@get(changed)) 
+
+
+    
+    _createAssociation:(association,value)->
+      if !@_isBackbone(@get(association.key)) and value?
+        if association.type == "Many"
+          entity = @_createAssociationCollection(association,value)
+        else
+          entity = @_createAssociationModel(association,value)
+
+        @set(association.key, entity,{silent:true})
+        @listenTo entity, "change", (model,options)=>
+          @trigger("change:#{association.key}",{key:association.key, model:model, options:options})
+
+
+
+
+    
+    _createAssociationCollection:(association,value)->
+      entity = new (eval(association.relatedEntity))(value)
+ 
+
+
+    _createAssociationModel:(association,value)->
+      entity = new (eval(association.relatedEntity))(value)
+
 
 
     _isBackbone:(attribute)->
-      (attribute instanceof Backbone.Model or attribute instanceof Backbone.Collection)
-    
-    
+       (attribute instanceof Backbone.Model or attribute instanceof Backbone.Collection)
 
-    _isBackboneAssociation:(key)->
-      _.contains(_.pluck(@relations,'key'), key) or _.contains(_.pluck(@backboneAssociations,'key'), key)
 
     
+    _getBackboneAssociation:(key)->
+      _.findWhere(@backboneAssociations,{key: key})
+
+
+    
+    _sendBackboneAssociation:(key)->
+      unless @_getBackboneAssociation(key)? then return false 
+      association =  _.defaults @_getBackboneAssociation(key),
+                                send: true 
+      association.send                         
+    
+              
+
     _isHelper:(key,value)->
       (_.isObject(value) and !@_inNestedAttributeList(key) and !_.endsWith(key,"_attributes")) or _.isFunction(value) 
     
-    
+
 
     _inNestedAttributeList:(key)->
       _.contains(@nestedAttributeList, key)
-    
+      
     
 
     _inAttributeList:(key)->
-       _.contains(@attributeList, key)
-  
+      _.contains(@attributeList, key)
     
+      
 
     _inBlacklist:(key)->
-        _.contains(@blacklist, key)
+      _.contains(@blacklist, key)
 
-    #Validation functions
+      #Validation functions
 
     onValid:(model,errors)->
       model.set("_errors",null)
@@ -148,16 +166,16 @@ do (Backbone) ->
       eventStr = _.map(_.keys(@validation),(i)-> "change:#{i}").join(" ")
       @on eventStr, => @validate() if @get('_errors')?
 
-    
+      
 
     toJSON:(options)=>
-      if options?.acceptsNested == false
+      if options?.acceptsNested == false or options is false
         super
       else
         json = $.extend(true,{},@.attributes)
         _.each(json,((v,k)->
-          if (@_inNestedAttributeList(k) or @_isBackboneAssociation(k)) and !(_.isNull(v) or v?.length is 0)
-            if @_isBackbone(v) and 
+          if (@_inNestedAttributeList(k) or @_sendBackboneAssociation(k)) and !(_.isNull(v) or v?.length is 0)
+            if @_isBackbone(v)
               json["#{k}_attributes"] = v.toJSON()
             else
               json["#{k}_attributes"] = v

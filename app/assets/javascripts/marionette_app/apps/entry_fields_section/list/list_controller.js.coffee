@@ -5,7 +5,6 @@
 
     list: (options) ->
       @getSectionEntryFields(options)
-      
 
 
     XgetSectionEntryFields:(options)->  

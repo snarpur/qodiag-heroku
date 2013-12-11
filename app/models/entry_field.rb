@@ -49,7 +49,7 @@ class EntryField  < ActiveRecord::Base
     if responses.any?
       responses
     else
-      self.entry_values.person(person.id).by_response(entry_set_response.id).first_or_initialize
+      []
     end
   end
 

@@ -14,14 +14,14 @@ do (Backbone) ->
 
     backboneAssociations: [
       {
-        type: Backbone.Many
+        type: "Many"
         key: 'entry_values'
-        relatedModel: App.Entities.EntryValue
+        relatedEntity: "App.Entities.EntryValues"
       },
       {
-        type: Backbone.Many
+        type: "Many"
         key: 'entry_field_options'
-        relatedModel: App.Entities.EntryFieldOption
+        relatedEntity: "App.Entities.EntryFieldOptions"
       }
     ]
 
@@ -44,19 +44,19 @@ do (Backbone) ->
       @url = ->
         if @isNew() then @urlRoot else "#{@urlRoot}/#{@id}"
 
+      @listenTo @get('entry_field_options'), "options:add", @addOption 
+      @listenTo @get('entry_field_options'), "options:remove", @removeOption
+
     
-
-    # initializeEntryValues:->
-
-    #   return unless @get('entry_values')? 
-    #   unless @get('entry_values') instanceof Backbone.Collection
-    #     entryValues = if _.isArray(@get('entry_values')) then @get('entry_values') else [@get('entry_values')]
-    #     @set 'entry_values', new Entities.EntryValues(@get('entry_values'), {entryField: @}, {silent: true})
+    removeOption:(model,options)->
+      @get('entry_values').removeEntryFieldOption(options)
+    
+    addOption:(model,options)->
+      @get('entry_values').addEntryFieldOption(options)
       
-    #   @on "change:entry_values", @initializeEntryValues
 
 
-
+  
 
 
   class Entities.EntryFields extends Entities.Collection
@@ -74,7 +74,6 @@ do (Backbone) ->
 
 
     
-
     comparator:(entryField)->
       _(entryField.get('title')).capitalize()
 

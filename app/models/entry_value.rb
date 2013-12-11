@@ -6,7 +6,7 @@ class EntryValue < ActiveRecord::Base
   has_many :caretaker_comments, :through => :entry_set_response
   belongs_to :commentable, :class_name => "EntyValue"
 
-  has_many :entry_field_options
+  belongs_to :entry_field_option
 
   attr_accessible :entry_field_id, :entry_set_response_id, :string_value, :text_value, :person_id, :commentable_id, 
     :entry_field_option_id

@@ -31,7 +31,6 @@
 			model = @contentView.model
 			collection = @contentView.collection
 			errors = model.validate()
-			# @formLayout.addErrors(model.validationError)
 			@formLayout.addErrors(errors)
 			unless errors
 				@processFormSubmit model, collection

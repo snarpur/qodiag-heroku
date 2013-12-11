@@ -9,49 +9,44 @@
 
     backboneAssociations: [
       {
-        type: Backbone.Many
+        type: "One"
+        key: 'entry_set'
+        relatedEntity: "App.Entities.EntrySet"
+        send: false
+      }      
+      {
+        type: "Many"
         key: 'entry_values'
-        relatedModel: App.Entities.EntryValue
+        relatedEntity: "App.Entities.EntryValues"
       }
     ]
     
 
     initialize:->
       super
-      # @initializeSections()
-      # @initializeEntryFields()
-      # @on("change:entry_sets_sections", @initializeSections)
-      # @on("change:entry_sets_sections", @initializeEntryFields)
+      @on "sync:start", -> console.log "on beforeSend :",@, arguments
 
-    
-    
-    # initializeSections:->
-    #   sections = @get('entry_sets_sections')
-    #   unless sections instanceof Backbone.Collection
-    #     @set("entry_sets_sections", new Entities.EntrySetSections(sections,{entrySetResponse: @}),{silent: true})
-    
-
-    
-    # initializeEntryFields: ->
-    #   fields = @get('entry_fields') 
-    #   unless fields instanceof Backbone.Collection
-    #     @set("entry_fields", new Entities.EntryFields(fields,{entrySetResponse: @}),{silent: true})
 
 
     
     currentSection:->
-      sections = new App.Entities.Sections(@get('entry_set').sections) unless not @get('entry_set')?
+      sections = @get('entry_set').get('sections') unless not @get('entry_set')?
       sections?.getCurrentSection()
-      # @get('entry_sets_sections')?.getCurrentSection()
       
 
-    
 
     getSectionResponses:->
       @currentSection().getSectionEntryResponses(@id)
-      
 
-     
+
+    
+    getEntryValuesForSection:->
+      _.chain(@get('entry_fields').models)
+        .map((i)-> i.get("entry_values").models)
+        .flatten()
+        .value()
+        
+        
 
   
 
@@ -65,7 +60,8 @@
   API = 
     getEntrySetResponse: (options) ->
       responseSet = new Entities.EntrySetResponse id: options.id
-      responseSet.fetch()
+      responseSet.fetch
+        reset: true
       responseSet
 
   
