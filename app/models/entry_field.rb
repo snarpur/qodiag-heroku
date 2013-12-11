@@ -41,12 +41,17 @@ class EntryField  < ActiveRecord::Base
   end
 
   def get_or_initialize_entry_value(entry_set_response_id)
-    KK.log entry_set_response_id
     self.entry_values.by_response(entry_set_response_id).first #_or_initialize
   end
 
   def response_values_for_person(person,entry_set_response)
-    self.entry_values.person(person.id).by_response(entry_set_response.id)
+    responses = self.entry_values.person(person.id).by_response(entry_set_response.id)
+    if responses.any?
+      responses
+    else
+      #self.entry_values.person(person.id).by_response(entry_set_response.id).first_or_initialize
+      []
+    end
   end
 
   #Attribute overwritten

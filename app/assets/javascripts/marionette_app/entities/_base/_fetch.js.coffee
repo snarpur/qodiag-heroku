@@ -11,4 +11,4 @@
 		$.when(xhrs...).done ()->
 			#callback()
 			#DELETE: Only for test pourposes
-			_.delay(callback,1000);
+			_.delay(callback,300);

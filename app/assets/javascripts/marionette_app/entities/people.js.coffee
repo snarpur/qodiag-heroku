@@ -5,9 +5,9 @@
     paramRoot: 'person'
     backboneAssociations: [
       {
-        type: Backbone.One
+        type: "One"
         key: 'address'
-        relatedModel: App.Entities.Address
+        relatedEntity: "App.Entities.Address"
       }
     ]
     nestedAttributeList: ['relationships']

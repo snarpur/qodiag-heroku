@@ -6,12 +6,13 @@
 
     backboneAssociations: [
       {
-        type: Backbone.Many
+        type: "Many"
         key: 'sections'
-        relatedModel: App.Entities.Section
+        relatedEntity: "App.Entities.Sections"
       }
 
     ]
+
 
 
   class Entities.EntrySetsCollection extends Entities.Collection
