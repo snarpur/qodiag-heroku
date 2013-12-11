@@ -49,8 +49,16 @@ class EntryField  < ActiveRecord::Base
     if responses.any?
       responses
     else
-      []
+      if self.text_or_string_field_type?
+        [responses.first_or_initialize]
+      else
+        []
+      end
     end
+  end
+
+  def text_or_string_field_type?
+    (self.field_type == "text" or self.field_type == "string")
   end
 
   #Attribute overwritten

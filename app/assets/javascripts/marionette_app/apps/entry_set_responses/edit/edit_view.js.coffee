@@ -1,9 +1,3 @@
-#TODO: change view names from EntryValueText to EntryFieldText as the model is a EntryField not EntryValue
-#TODO: change change template filenames to snake_case instead of camelCase
-
-
-
-
 @Qapp.module "EntrySetResponsesApp.Edit", (Edit, App, Backbone, Marionette, $, _) ->
   
 
@@ -50,27 +44,40 @@
     collectionEvents: 
       'change:current:section' : ()-> @render()
 
-
-
-  
-
-  class Edit.EntryValueText extends App.Views.ItemView
-    template: "entry_set_responses/edit/templates/_textEntryValue"
-
-
-  
-
-  
-  class Edit.EntryValueString extends App.Views.ItemView
-    template: "entry_set_responses/edit/templates/_stringEntryValue"
+  class Edit.EntryFieldText extends App.Views.ItemView
+    template: "entry_set_responses/edit/templates/_text_entry_field"
 
     onShow:(options)->
       @bindings = {}
-      @bindings["\#string_value_#{@model.get('id')}"] = _.first(@model.get('entry_values')).string_value
+      @bindings["\#text_value_#{@model.get('id')}"] = {
+        observe: 'entry_values',
+        onGet: (value,options) ->
+          @model.get('entry_values').first().get('text_value')
+        onSet: (value,options) ->
+          @model.get('entry_values').first().set('text_value',value,{silent: true})
+          @model.get('entry_values')
+
+      }
+      @stickit()
+  
+  class Edit.EntryFieldString extends App.Views.ItemView
+    template: "entry_set_responses/edit/templates/_string_entry_field"
+
+    onShow:(options)->
+      @bindings = {}
+      @bindings["\#string_value_#{@model.get('id')}"] = {
+        observe: 'entry_values',
+        onGet: (value,options) ->
+          @model.get('entry_values').first().get('string_value')
+        onSet: (value,options) ->
+          @model.get('entry_values').first().set('string_value',value,{silent: true})
+          @model.get('entry_values')
+
+      }
       @stickit()
 
-  class Edit.EntryValueMultiChoice extends App.Views.Layout
-    template: "entry_set_responses/edit/templates/_multiChoiceEntryValue"
+  class Edit.EntryFieldMultiChoice extends App.Views.Layout
+    template: "entry_set_responses/edit/templates/_multi_choice_entry_field"
 
 
     onBeforeRender:->
@@ -84,14 +91,13 @@
 
 
     getFieldOptionsView:->
-      
       @fieldOptionsView ?= new Edit.FieldOptions
         collection: @model.get('entry_field_options')
         selectedIds: @model.get("entry_values").pluck("entry_field_option_id")
   
 
-  class Edit.EntryValueSingleChoice extends App.Views.ItemView
-    template: "entry_set_responses/edit/templates/_singleChoiceEntryValue"
+  class Edit.EntryFieldSingleChoice extends App.Views.ItemView
+    template: "entry_set_responses/edit/templates/_single_choice_entry_field"
 
     
     events: 
@@ -102,17 +108,14 @@
       _.first(@model.get("entry_values")).entry_field_option_id = event.currentTarget.value
   
 
-
-
-
-  class Edit.EntryValues extends App.Views.CompositeView
-    template: "entry_set_responses/edit/templates/entryValues"
+  class Edit.EntryFields extends App.Views.CompositeView
+    template: "entry_set_responses/edit/templates/entry_fields"
     className: "field"
     childViewMap:
-      "text": Edit.EntryValueText
-      "string": Edit.EntryValueString
-      "multi-choice": Edit.EntryValueMultiChoice
-      "single-choice": Edit.EntryValueSingleChoice
+      "text": Edit.EntryFieldText
+      "string": Edit.EntryFieldString
+      "multi-choice": Edit.EntryFieldMultiChoice
+      "single-choice": Edit.EntryFieldSingleChoice
 
     
     getItemView:(options)->

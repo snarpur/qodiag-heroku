@@ -95,37 +95,16 @@
       formView.trigger('form:submit')
       @listenToOnce @entrySetResponse, 'updated', =>
         toastr.success "Færsla hefur vistast"
+        @getEntries()
 
-    
-
-    # buildEntryValues:(entry_fields)->
-    #   return unless entry_fields?    
-    #   entry_values = new App.Entities.EntryValues()
-    #   _.each(entry_fields.models,(entry_field)->
-    #     _.each(entry_field.get('entry_values'),(entry_value)->
-    #       entry_values.add(entry_value)
-    #     )
-    #   ) 
-    #   entry_values
-
-    #DELETE: do it soon
-    # saveAsCompleteAndRedirect:(formView) ->
-    #   @entrySetResponse.set("complete_item",1)
-    #   @entrySetResponse.set("entry_values",@buildEntryValues(formView.model.get('entry_fields')))
-    #   formView.trigger('form:submit')
-    #   @listenToOnce @entrySetResponse, 'updated', =>
-    #     App.navigate "/items", {trigger: true}
-    #     toastr.success "Færsla hefur vistast"
-
-
-    
+  
     getFormStepsView:(options)->
       new Edit.FormSteps _.extend options
 
 
     
     getFormView:->
-      new Edit.EntryValues 
+      new Edit.EntryFields 
         collection: @entrySetResponse.get('entry_fields')
         model: @entrySetResponse 
 
@@ -140,7 +119,7 @@
       @getLayout().formWrapperRegion
 
 
-    #TODO: change strings to I18n
+    #TODO: change strings to I18n. After we merge with Development
     buttonsConfig:->
       options =
         buttons: 
