@@ -82,7 +82,6 @@
     showEntryFields:(entries)->
       entriesView = new List.Entries(collection: entries)
 
-      
       @getEntrySetValuesRegion().on "show", () =>
         entriesView.children.each (view) =>
           region = @layout.addRegion view.entryValueRegionName(),"\##{view.entryValueRegionName()}" 

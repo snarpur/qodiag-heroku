@@ -1,4 +1,4 @@
-@Qapp.module "Entities", (Entities, App, Backbone, Marionette, $, _) ->
+ @Qapp.module "Entities", (Entities, App, Backbone, Marionette, $, _) ->
   
   class Entities.Section extends Entities.Model
 
@@ -14,9 +14,7 @@
       @collection.isCurrentSection(@)
 
     getSectionEntryResponses: (entrySetResponseId)->
-
       entries = new App.Entities.EntryFields([],{})
-      console.info "section fields"
       entries.url = Routes.entry_set_response_section_path(entrySetResponseId,@id)
       entries.fetch
         reset: true

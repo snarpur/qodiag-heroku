@@ -2,8 +2,7 @@
   
   class Show.Layout extends App.Views.Layout
     template: "subject_entries_app/show/show_layout"
-    templateHelpers:->
-      helpers=
+    templateHelpers:=>
         regionId:()=>
           @options.regionId  
 
