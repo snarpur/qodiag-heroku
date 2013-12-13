@@ -51,7 +51,6 @@ do (Backbone) ->
         error:    _.bind(@saveError, @)
     
       @unset "_errors"
-      console.log @,"errors:: ", @.attributes
 
       super data, options
     

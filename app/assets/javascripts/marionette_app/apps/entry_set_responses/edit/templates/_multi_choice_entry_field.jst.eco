@@ -1,2 +1,3 @@
-<label><%-@title%></label>
+<label><%=@title%></label>
+<span class="help-block"><%=@help_text%></span>
 <div id="field-options-<%-@id%>"></div>

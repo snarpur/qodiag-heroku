@@ -46,7 +46,7 @@ class EntryField  < ActiveRecord::Base
 
   def response_values_for_person(person,entry_set_response)
     responses = self.entry_values.person(person.id).by_response(entry_set_response.id)
-    if responses.any?
+    if responses.any? or person.user.role?("caretaker") or person.user.role?("caretaker_admin")
       responses
     else
       if self.text_or_string_field_type?

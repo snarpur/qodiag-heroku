@@ -16,7 +16,6 @@
     getSectionEntryResponses: (entrySetResponseId)->
 
       entries = new App.Entities.EntryFields([],{})
-      console.info "section fields"
       entries.url = Routes.entry_set_response_section_path(entrySetResponseId,@id)
       entries.fetch
         reset: true
@@ -31,6 +30,10 @@
 
       # @url = -> 
       #   Routes.entry_set_sections_path(@entrySetId)
+
+      @on "change:current:section", (options)->
+        @currentSectionId = options.model.id
+        @currentSection = options.model
 
     isCurrentSection:(section) ->
       section.id == @getCurrentSection().id
@@ -49,6 +52,12 @@
 
     currentDisplayNo:->
       @getCurrentSection().get('display_order')
+
+    getNextSection:->
+      @findWhere(display_order: @currentDisplayNo() + 1)
+
+    getPreviousSection:->
+      @findWhere(display_order: @currentDisplayNo() - 1)
   
   API =
     getSection:(options)->

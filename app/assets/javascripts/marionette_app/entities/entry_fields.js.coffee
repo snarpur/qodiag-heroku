@@ -44,8 +44,11 @@ do (Backbone) ->
       @url = ->
         if @isNew() then @urlRoot else "#{@urlRoot}/#{@id}"
 
-      @listenTo @get('entry_field_options'), "options:add", @addOption 
-      @listenTo @get('entry_field_options'), "options:remove", @removeOption
+      #NOTE: Added the unless conditions beacuse of an error in entry_field_list
+      unless not @get('entry_field_options')? 
+        @listenTo @get('entry_field_options'), "options:add", @addOption 
+        @listenTo @get('entry_field_options'), "options:remove", @removeOption
+        @listenTo @, "option:selected", @selectOption
 
     
     removeOption:(model,options)->
@@ -53,6 +56,9 @@ do (Backbone) ->
     
     addOption:(model,options)->
       @get('entry_values').addEntryFieldOption(options)
+
+    selectOption:(model,options)->
+      @get('entry_values').selectEntryFieldOption(options)
       
 
 

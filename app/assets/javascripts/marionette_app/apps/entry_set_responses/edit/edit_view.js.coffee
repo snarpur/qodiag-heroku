@@ -103,9 +103,25 @@
     events: 
       "click input[type=radio]" : "radioClicked"
 
-    
+    onShow:(options)->
+      @bindings = {}
+      @bindings["[name=entry_field_#{@model.get('id')}]"] = {
+        observe: 'entry_values',
+        onGet: (value,options) ->
+          Number(@model.get('entry_values')?.first()?.get('entry_field_option_id'))
+        onSet: (value,options) ->
+          @model.get('entry_values').first().set('entry_field_option_id',Number(value),{silent: true}) if @model.get('entry_values')?
+          @model.get('entry_values')
+
+      }
+      @stickit()
+
     radioClicked:(event) =>
-      _.first(@model.get("entry_values")).entry_field_option_id = event.currentTarget.value
+      currentUser = App.request "get:current:user"
+      @model.trigger "option:selected", @model,
+                                person_id: currentUser.get('person_id')
+                                entry_field_option_id: event.currentTarget.value
+                                entry_field_id: @model.get('id')
   
 
   class Edit.EntryFields extends App.Views.CompositeView

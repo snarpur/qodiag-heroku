@@ -27,7 +27,7 @@
         
         @showFormSteps()
 
-        @listenTo @sections, "change:current:section", () =>          
+        @listenTo @sections, "change:current:section", () =>        
           App.navigate(@sectionUrl(),{replace: true})
           @getEntries()
         
@@ -76,6 +76,7 @@
       @listenTo formView, "form:save", => 
         @triggerSuccessMessage(formView)
       
+      #DELETE: We are not using this button anymore
       @listenTo formView, "form:saveAndContinue", => 
         @saveAndMoveToNextSection(formView)
       
@@ -83,9 +84,16 @@
         @saveAsCompleteAndRedirect(formView)
     
 
+    saveAsCompleteAndRedirect:(formView) ->
+      @entrySetResponse.set("entry_values",@entrySetResponse.getEntryValuesForSection())
+      @entrySetResponse.set("complete_item",1)
+      formView.trigger('form:submit')
+      @listenToOnce @entrySetResponse, 'updated', =>
+        App.navigate "/items", {trigger: true}
+        toastr.success "Færsla hefur vistast"
 
 
-     saveAndMoveToNextSection:(formView)->
+    saveAndMoveToNextSection:(formView)->
       @listenToOnce @entrySetResponse, 'updated', =>
         @sections.trigger("change:current:section",model: @sections.getNextSection())
      

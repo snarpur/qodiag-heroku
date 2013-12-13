@@ -58,7 +58,9 @@
     itemViewContainer: ".options"
 
     bindings:
-      '#title' : 'title'
+      '#title' : 'title',
+      '#description' : 'description',
+      '#visibility'  : 'visibility'
 
     onShow:->
       @.stickit()
