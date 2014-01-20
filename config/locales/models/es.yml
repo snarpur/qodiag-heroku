@@ -1,0 +1,17 @@
+es:
+  responder_item:
+    registration: "Registro"
+    registrations: "Registro"
+    registration_items:
+      client_registration: "Nuevo registro"
+    survey_items:
+      hsq-r: "W.B. Escala de depresión*"
+      quiz: "Test"
+      rating-scale: "Escala TDAH"
+    status:
+      completed: "Completados"
+      uncompleted: "Pendientes"
+    headers:
+      name: "Nombre"
+      patient: "Paciente"
+      due_date: "Fecha límite"

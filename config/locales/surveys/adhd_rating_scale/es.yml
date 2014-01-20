@@ -1,0 +1,36 @@
+es:
+  surveys:
+    adhd-rating-scale:
+      age: Edad
+      name: "Escala TDAH"
+      terms:
+        average: promedio
+        inattention: "déficit de atención"
+        impulsivity_hyperactivity: "impulsividad/hiperactividad"
+        total: "total"
+        standard_deviation_from_average: "s frá m*"
+        age: Seleccione la edad
+      questions:
+        - Hugar illa að smáatriðum og gerir fljótfærnislegar villur á skólaverkefnum.
+        - Er mikið með hendur og fætur á hreyfingu eða iðar í sæti.
+        - Dificultad para mantener la atención en sus tareas o en los juegos.
+        - Abandona su asiento en clase o en otros lugares en los que debería de permanecer sentado.
+        - Parece no escuchar cuando se le habla.
+        - Hleypur um eða prílar óhóflega við aðstæður þar sem slíkt á ekki við (Corre o ¿trepa? demasiado en situaciones en las que no debería).
+        - Fylgir oft ekki fyrirmælum til enda og lýkur ekki við verkefni. (A menudo no atiende a las instrucciones y no completa la tarea)
+        - Dificultad para mantener silencio durante los juegos o tareas.
+        - Dificultad para organizar tareas y actividades.
+        - Er á “fleygiferð” eða er “eins og þeytispjald”*.
+        - Evita retos (p.e. proyectos y tareas de las escuela) que requieren mucho trabajo mental.
+        - Habla desproporcionadamente alto.
+        - Pierde la cosas que necesita para la realización de las tareas o actividades.
+        - Interrumpe antes de la finalización de las preguntas.
+        - Se distrae fácilmente ante estímulos externos.
+        - Dificultad para esperar su turno.
+        - Es olvidadizo/a en sus actividades de la vida diaria.
+        - Interrumpe o entrar en las conversaciones y juegos.
+      answers:
+        - nunca/raramente
+        - a veces
+        - habitualmente
+        - muy habitualmente

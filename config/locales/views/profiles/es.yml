@@ -1,0 +1,5 @@
+es:
+  views:
+    profiles:
+      parent_not_found: "Padre/Madre no encontrado"
+      upload_image: "Subir imagen"

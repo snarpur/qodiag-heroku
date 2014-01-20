@@ -1,0 +1,179 @@
+#Rails defaults -------------------------------------------------------
+es:
+  number:
+    # Used in number_with_delimiter()
+    # These are also the defaults for 'currency', 'percentage', 'precision', and 'human'
+    format:
+      # Sets the separator between the units, for more precision (e.g. 1.0 / 2.0 == 0.5)
+      separator: ","
+      # Delimets thousands (e.g. 1,000,000 is a million) (always in groups of three)
+      delimiter: "."
+      # Number of decimals, behind the separator (1 with a precision of 2 gives: 1.00)
+      precision: 2
+
+    # Used in number_to_currency()
+    currency:
+      format:
+        # Where is the currency sign? %u is the currency unit, %n the number (default: $5.00)
+        format: "%u %n"
+        unit: "€"
+        # These three are to override number.format and are optional
+        #separator: ","
+        #delimiter: "."
+        #precision: 2
+
+    # Used in number_to_human_size()
+    human:
+      format:
+        # These three are to override number.format and are optional
+        # separator:
+        delimiter: ""
+        precision: 1
+      storage_units:
+        # Storage units output formatting.
+        # %u is the storage unit, %n is the number (default: 2 MB)
+        format: "%n %u"
+        units:
+          byte:
+            one:   "byte"
+            other: "byte"
+          kb: "KB"
+          mb: "MB"
+          gb: "GB"
+          tb: "TB"
+
+  date:
+    formats:
+      # Use the strftime parameters for formats.
+      # When no format has been given, it uses default.
+      # You can provide other formats here if you like!
+      default: "%d.%m.%Y"
+      short: "%e. %b"
+      long: "%e. %B %Y"
+
+
+    day_names: [domingo, lunes, martes, miércoles, jueves, viernes, sábado]
+    abbr_day_names: [dom, lun, mar, mie, jue, vie, sáb]
+
+    # Don't forget the nil at the beginning; there's no such thing as a 0th month
+    month_names: [~, enero, febrero, marzo, abril, mayo, junio, julio, agosto, septiembre, octubre, noviembre, diciembre]
+    abbr_month_names: [~, ene, feb, mar, abr, may, jun, jul, ago, sep, oct, nov, dic]
+    # Used in date_select and datime_select.
+    order: 
+      :day
+      :month
+      :year
+
+  time:
+    formats:
+      default: "%A %e. %B %Y kl. %H:%M"
+      time: "%H:%M"
+      short: "%e. %B %Y"
+      long: "%A %e. %B %Y kl. %H:%M"
+      abbr_month: "%b"
+    am: ""
+    pm: ""
+
+  # Used in array.to_sentence.
+  support:
+    array:
+      sentence_connector: "y"
+      words_connector: ", "
+      two_words_connector: " y "
+      last_word_connector: " y "
+      skip_last_comma: true
+
+  # Used in distance_of_time_in_words(), distance_of_time_in_words_to_now(), time_ago_in_words()
+  datetime:
+    distance_in_words:
+      half_a_minute: "medio minuto"
+      less_than_x_seconds:
+        one: "menos de un segundo"
+        other: "menos de %{count} segundos"
+      x_seconds:
+        one: "1 segundo"
+        other: "%{count} segundos"
+      less_than_x_minutes:
+        one: "menos de 1 minuto"
+        other: "menos de %{count} minutos"
+      x_minutes:
+        one: "1 minuto"
+        other: "%{count} minutos"
+      about_x_hours:
+        one: "aprox. 1 hora*"
+        other: "aprox. %{count} horas"
+      x_days:
+        one: "1 día"
+        other: "%{count} días"
+      about_x_months:
+        one: "aprox. 1 mes"
+        other: "aprox. %{count} meses"
+      x_months:
+        one: "1 mes"
+        other: "%{count} meses"
+      about_x_years:
+        one: "aprox. 1 año"
+        other: "aprox. %{count} años"
+      over_x_years:
+        one: "más de 1 año"
+        other: "más de %{count} años"
+
+  activerecord:
+    models:
+      user: "usuario"
+      role: "rol"
+      person: "persona"
+      resopnder_item: "registro*"
+    attributes:
+      user:
+        email: "correo electrónico"
+        password: "contraseña"
+        password_confirmation: "repetir contraseña"
+      role:
+        name: "rol"
+      person:
+        firstname: "nombre"
+        lastname: "segundo nombre"
+        cpr: "kennitala*"
+        sex: "sexo"
+        full_cpr: "kennitala*"
+      relationship:
+        relation_id: "relation_id"
+        name: "relacion"
+      responder_item:
+        completed: "completado"
+        deadline: "fecha límite"
+    errors:
+      template:
+        header:
+          one:   "No se ha podido guardar el/la %{model} debido a un error."
+          other: "No se ha podido guardar el/la %{model} debido a %{count} errores."
+        body: "Upp kom vandamál í eftirfarandi dálkum:"
+      messages:
+        inclusion: "no esta en la lista"
+        exclusion: "esta reservado/a"
+        invalid: "es inválido/a"
+        record_invalid: "es inválido/a  %{count}"
+        confirmation: "no coincide con la confirmación"
+        accepted: "tiene que ser aceptado/a"
+        empty: "no puede ser vacío"
+        blank: "obligatorio"
+        too_long: "demasiado largo, el número máximo de caracteres es %{count}"
+        too_short: "demasiado corto, el número mínimi de caracteres es %{count}"
+        wrong_length: "longitud incorrecta, el número exacto de caracteres es %{count}"
+        taken: "ya esta en uso"
+        not_a_number: "no es un número"
+        greater_than: "debe ser mayor que %{count}"
+        greater_than_or_equal_to: "debe ser mayor o igual que %{count}"
+        equal_to: "debe ser igual a %{count}"
+        less_than: "debe ser menor que %{count}"
+        less_than_or_equal_to: "debe ser menor o igual que %{count}"
+        odd: "debe ser un número impar"
+        even: "debe ser un número par"
+        not_equal: "Este valor debe de ser igual al valor del campo %{field}"
+    sucess:
+      messages:
+        saved: "El/la %{model} ha sido guardado"
+    confirm:
+      messages:
+        deleted: "¿Estás seguro de que quieres eliminar el/la %{model}?"

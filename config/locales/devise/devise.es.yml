@@ -1,0 +1,89 @@
+es:
+  errors:
+    messages:
+      not_found: "no encontrado"
+      already_confirmed: "ya fue confirmado"
+      not_locked: "no estaba bloqueado"
+
+  devise:
+    failure:
+      unauthenticated: 'Necesitas hacer login o registrarte antes de continuar.'
+      unconfirmed: 'Debes de confirmar tu cuenta antes de continuar.'
+      locked: 'Tu cuenta esta bloqueada.'
+      invalid: 'Correo electrónico o contraseña inválida.'
+      invalid_token: 'Identificador de autentificación inválido.'
+      timeout: ' Tu sesión ha expirado, Por favor haz login otra vez para continuar.'
+      inactive: 'Tu cuenta no ha sido activada aún.'
+      user:
+        not_found_in_database: 'Correo electrónico o contraseña incorrecta'
+    sessions:
+      sign_up: "Registrarse"
+      sign_in: "Entrar"
+      signed_in: 'Has entrado exitosamente.'
+      signed_out: 'Has salido exitosamente.'
+      signed_in_as: 'Has accedido como'
+      sign_out: "Salir"
+    passwords:
+      send_instructions: "Recibirás un correo electrónico con las instrucciones sobre como resetear tu contraseña en unos pocos minutos."
+      updated: 'Tu contraseña ha sido cambiada exitosamente. Ya has accedido a tu cuenta.'
+      change_password: "Cambia tu contraseña"
+      send_reset: "Envíame las instrucciones sobre como resetar mi contraseña"
+    confirmations:
+      send_instructions: 'Recibirás un correo electrónico con las instrucciones sobre como confirmar tu cuenta en unos pocos minutos.'
+      confirmed: 'Tu cuenta ha sido confirmada exitosamente. Ya has accedido a tu cuenta.'
+      resend_instructions: "Reenviar las instrucciones de confirmación"
+      not_received: "¿No has recibido las instrucciones de confirmación?"
+    registrations:
+      signed_up: 'Te has registrado exitosamente. Si estaba habilitado, recibirás un correo electrónico de confirmación.'
+      updated: 'Has actualizado tu cuenta exitosamente.'
+      destroyed: '¡Adiós! Tu cuenta ha sido eliminada exitosamente. Esperamos verte pronto.'
+      pre_registration: "Muchas gracias por su interés, le hemos enviado un correo a %{email}"
+      blank_email: 'El correo electrónico es obligatorio'
+      tips:
+        - "(Déjalo en blanco si no quieres cambiarlo)"
+        - "(Necesitaremos tu contraseña actual para confirmar tus cambios)"
+        - "¿Descontento? "
+      cancel_account: "Cancelar mi cuenta"
+    unlocks:
+      send_instructions: 'Recibirás un correo electrónico con las instrucciones sobre como desbloquear tu cuenta en unos pocos minutos.'
+      unlocked: 'Tu cuenta ha sido desbloqueada exitosamente. Ya has accedido a tu cuenta.'
+      not_received: "¿No has recibido las instrucciones de desbloqueo?"
+      resend_instructions: "Reenviar las instrucciones de desbloqueo"
+    mailer:
+      confirmation_instructions:
+        subject: 'Instrucciones de confirmación'
+        user_subject: 'Instrucciones de confirmación'
+        greeting: "Bienvenido %{name}!"
+        body:
+          - "Puedes confirmar tu cuenta a través del enlace que escontrarás más abajo:"
+        link:
+          confirm: "Confirmar mi cuenta"
+      invitation_instructions:
+        user_subject: 'Qodiag- Nuevo registro'
+        body:
+          greeting: "Hola %{name}"
+          text: "Por favor finalice el registro siguiendo el siguiente enlace"
+          regards: "Saludos cordiales"
+      reset_password_instructions:
+        subject: 'Instrucciones de reseteo de la contraseña CAMBIADAS'
+        greeting: "Hola %{name}!"
+        body:
+          - "Alguien ha solicitado un enlace para cambiar tu contraseña, y puedes hacerlo a través del enlace que encontrarás más abajo"
+          - "Si no lo has solicitado, por favor, ignora este correo electrónico."
+          - "Tu contraseña no se modificará hasta que accedas al enlace que encontrarás más abajo y lo cambies."
+        link:
+          change_password: "Cambiar mi contraseña"
+      unlock_instructions:
+        subject: 'Instrucciones de desbloqueo'
+        greeting: "Hola %{name}!"
+        body:
+          - "Tu cuenta ha sido bloqueada debido a un excesivo número de intentos fallidos de acceso."
+          - "Haz click en el enlace que encontrarás más abajo para desbloquear tu cuenta:"
+        link:
+          unlock: "Desbloquear mu cuenta"
+    invitations:
+      send_instructions: 'Se ha enviado una invitación de registro al correo electrónico %{email}'
+      invitation_token_invalid: "La solicitud de registro es inválida"
+      updated: 'La contraseña ha sido guardada. Ya has accedido a tu cuenta.'
+    messages:
+      use_password_received: "Por favor, inicia sesión con la contraseña que has recibido por correo electrónico."

@@ -1,0 +1,9 @@
+es:
+  views:
+    401_page:
+      content:
+        unauthorized: "No autorizado"
+        message: "No estas autorizado para acceder a este contenido, contacto con el administrador. Usa el botón <b>Atrás</b> del navegador para volver a la página anterior"
+        go_homepage: "O también podrías volver a la página de inicio:"
+        button_home: "Volver a la página de inicio"
+        go_loginpage: "O también podrías iniciar sesión:"

@@ -1,0 +1,28 @@
+#Acciones comunes -------------------------------------------------------
+es:
+  actions:
+    save: "Guardar"
+    add_spouse: "Crear esposa"
+    add_guardian: "Crear tutor"
+    remove: "Eliminar"
+    create: "Crear"
+    add: "Añadir"
+    cancel: "Cancelar"
+    sign_up: "Registrarse"
+    sign_in: "Entrar"
+    sign_out: "Salir"
+    log_in: "Entrar"
+    register: "Registrarse*"
+    finish : "Finalizar"
+    send: "Enviar"
+    upload: Subir
+    request_survey: "Enviar encuenta"
+    invite_clients: "Invitar pacientes"
+    save_and_continue: "Guardar y continuar"
+    save_and_complete: "Guardar y completar"
+    new_list: "Crear una nueva lista"
+    add_parent: "Añadir padre"
+    edit_avatar: "Editar avatar"
+    edit_information: "Editar información personal"
+    add_comment: "Añadir comentario"
+    

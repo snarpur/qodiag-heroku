@@ -1,0 +1,45 @@
+es:
+  surveys:
+    sdq:
+      name: "Cuestionario de Fortalezas y Debilidades (SDQ)"
+      terms:
+        normal: normal
+        borderline: límite
+        abnormal: anormal
+        emotional: problemas emocionales
+        conduct: "problemas de conducta"
+        hyperactivity_inattention: "hiperactividad"
+        peer_problem: "problemas de comunicación"
+        prosocial_behaviour: "conducta prosocial"
+        total: "total"
+        impact_supplement: preguntas adocionales*
+      questions:
+       - Tiene en cuenta los sentimientos de los demás
+       - Inquieto, hiperactivo, no puede quedarse quieto por mucho tiempo
+       - Se queja con frecuencia de dolores de cabeza, dolores de estómago o náuseas
+       - Comparte frecuentemente con otros niños (golosinas, juguetes, lápices, etc.)
+       - Propenso a ataques de temperamento, es irascible y polémico
+       - Es más bien solitario
+       - Generalmente obediente, por lo general hace lo que le piden los adultos
+       - Tiene muchas preocupaciones, a menudo parece preocupado
+       - Hjálpsamur/söm ef einhver meiðir sig, er í uppnámi eða líður illa*
+       - Está continuamente moviéndose
+       - Tiene por lo menos un amigo
+       - Pelea con frecuencia con otros niños
+       - Se siente a menudo infeliz 
+       - En general muy querido por otros niños
+       - Se distrae con facilidad
+       - Es inseguro o dependiente de sus padres
+       - Amable con los niños más pequeños
+       - A menudo miente o engaña
+       - Otros niños se meten con él
+       - A menudo se ofrece para ayudar a otros (padres, maestros, otros niños)
+       - Hugsar áður en hann/hún framkvæmir
+       - Piensa las cosas antes de hacerlas 
+       - Se lleva mejor con adultos que con otros niños
+       - Tiene muchos miedos, se austa con facilidad
+       - Termina lo que empieza 
+      answers:
+        - No es cierto
+        - Un poco cierto
+        - Absolutamente cierto

@@ -1,0 +1,13 @@
+es:
+  views:
+    responder_items:
+      select_respondents: "Selecciona encuestado"
+      select_entry_sets: "Selecciona cuestionario"
+      requests:
+        submit: "Enviar nueva solicitud"
+        have_sent: "La nueva solicitud ha sido enviada"
+        sent: "solicitud enviada"
+        for: "Fecha límite %{date}"
+        sent_another: "Seleccione la fecha límite de respuesta de la solicitud"
+        error: "Error !"
+        contact_admin: "Contacte con el administrador del sistema."

@@ -1,0 +1,5 @@
+es:
+  responder_item:
+    deadline: "Fecha límite"
+    respondent: "Encuestado"
+    entry_set: "Cuestionario"

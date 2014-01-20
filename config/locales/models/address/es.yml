@@ -1,0 +1,8 @@
+es:
+  address:
+    street_1: "Dirección"
+    street_2: "Dirección"
+    zip_code: "Código postal"
+    town: "Ciudad"
+    home_phone: "Teléfono 2"
+    phone: "Teléfono 1"

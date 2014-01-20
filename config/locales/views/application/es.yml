@@ -1,0 +1,7 @@
+es:
+  views:
+    application:
+      partial:
+        alert_login_as:
+          attention: "Atención"
+          message: "Ha iniciado sesión como el encuestado de un paciente. Para volver a la sesión como caretaker, Por favor, haz clic en el enlace siguiente"

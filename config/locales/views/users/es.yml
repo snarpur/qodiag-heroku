@@ -1,0 +1,7 @@
+es:
+  views:
+    users:
+      content:
+        uncompleted_requests: "Solicitudes no completadas"
+        completed_requests: "Solicitudes completadas"
+        login_as: "Iniciar sesión como"
