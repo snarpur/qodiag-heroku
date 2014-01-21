@@ -45,6 +45,9 @@ class Ability
       can [:survey,:show,:update,:index], ResponderItem do |ri|
         ri.respondent == user.person
       end 
+
+      # NOTE: Respondent should be able only to search in the National Register table when they are doing the pre_registration
+      can :lookup, NationalRegister
       
     end
     #only super_admin abilities

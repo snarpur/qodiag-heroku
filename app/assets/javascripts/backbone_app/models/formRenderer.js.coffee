@@ -29,6 +29,9 @@ class App.Models.FormRenderer extends Backbone.Model
   formModelId:=>
     @get("formModel").get("id")
 
+  subjectId:=>
+    @get("formModel").get("subject").id
+
   formTemplate:=>
     @.get('formMetaData').get('formTemplate')
   
@@ -47,8 +50,7 @@ class App.Models.FormRenderer extends Backbone.Model
   urlOnComplete:()->
     location = "#{window.location.protocol}//#{window.location.host}"
     if @formTemplate().match(/invitation/)
-      subjectId = @get("formModel").get("subject").get("id")
-      "#{location}/people/#{subjectId}"
+      "#{location}/people/#{@subjectId()}"
     else if @formTemplate().match(/registration/)
       "#{location}/users"
 
