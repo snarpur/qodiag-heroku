@@ -1,6 +1,6 @@
 # require 'factory_girl'
 require 'faker'
-
+include ActionDispatch::TestProcess
 
 
 FactoryGirl.define do
@@ -61,10 +61,22 @@ FactoryGirl.define do
   end
 
   factory :person do
+    ignore do
+      genavatar false
+      type "parent"
+    end
+
+    trait :generate do
+      genavatar true
+    end
+
     firstname "jon"
     lastname "smith"
     sex {["male","female"].at(rand(2))}
     full_cpr {generate(:fullcpr)}
+
+    # avatar { fixture_file_upload(Rails.root.join(*%w[ spec data default-portraits #{type} #{sex} th_#{type}_#{rand(5)}.jpg ]), 'image/jpg') } if :generate
+    avatar { fixture_file_upload(Rails.root + "spec/data/default-portraits/#{type}/#{sex}/th_#{type}_#{rand(1..5)}.jpg", 'image/jpg') } if :generate
 
     factory :caretaker_person do
       association :user, factory: :caretaker_user

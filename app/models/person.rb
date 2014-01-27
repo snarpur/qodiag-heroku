@@ -123,9 +123,9 @@ class Person < ActiveRecord::Base
     :styles => {
         :tiny=> "64x64#",
         :thumb=> "100x100#",
-        :small  => "150x150>",
-        :medium => "250x250>",
-        :large =>   "400x400>" },
+        :small  => "150x150#",
+        :medium => "200x200#",
+        :large =>   "400x400#" },
     :default_url => "/avatars/:style/:sex.png"
 
 

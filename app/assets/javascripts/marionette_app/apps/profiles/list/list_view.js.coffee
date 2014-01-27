@@ -28,6 +28,7 @@
     triggers:
       'click .edit-item' : 'edit:guardian:clicked'
       'click .add-guardian' : 'create:guardian:clicked'
+      
   
 
   class List.Guardians extends App.Views.CompositeView

@@ -27,7 +27,7 @@ class ResponderItem < ActiveRecord::Base
   scope :entry_request, where("entry_set_response_id IS NOT NULL")
   scope :surveys_by_group, ResponderItem.surveys.order('survey_id')
   scope :by_respondent, lambda {|respondent_id| where("respondent_id = ?", respondent_id)}
-  scope :by_subject, lambda {|subject_id| where(:subject_id => subject_id)} 
+  scope :by_subject, lambda {|subject_id| where(:subject_id => subject_id)}
   scope :entry_set_responses, where("entry_set_response_id IS NOT NULL")
   scope :subject_ids, select(:subject_id).uniq
 

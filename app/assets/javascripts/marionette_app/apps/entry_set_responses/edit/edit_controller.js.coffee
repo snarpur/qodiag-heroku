@@ -90,6 +90,7 @@
     triggerSuccessMessage:(formView)->
       formView.trigger('form:submit')
       @listenToOnce @entrySetResponse, 'updated', =>
+        @sections.trigger("change:current:section",model: @sections.getCurrentSection())
         toastr.success(I18n.t("activerecord.sucess.messages.saved",model: ""))
         # toastr.success "Færsla hefur vistast"
 

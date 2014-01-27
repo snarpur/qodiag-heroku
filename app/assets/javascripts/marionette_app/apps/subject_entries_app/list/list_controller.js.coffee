@@ -59,7 +59,7 @@
          region: @getEntrySetSelectRegion()
          loading:false 
 
-      @listenTo selectView, "select:response",(view)=>
+      @listenTo selectView, "childview:select:response",(view)=>
         @getSections(view.model)
 
     

@@ -23,16 +23,20 @@
     validation:
       firstname: 
         required: true
-        msg: I18n.t("activerecord.errors.messages.blank")
+        msg: ->
+          I18n.t("activerecord.errors.messages.blank")
       lastname: 
         required: true
-        msg: I18n.t("activerecord.errors.messages.blank")
+        msg: -> 
+          I18n.t("activerecord.errors.messages.blank")
       full_cpr: 
         required: true
-        msg: I18n.t("activerecord.errors.messages.blank")
+        msg: ->
+          I18n.t("activerecord.errors.messages.blank")
       sex: 
         required: true
-        msg: I18n.t("activerecord.errors.messages.blank")
+        msg: ->
+          I18n.t("activerecord.errors.messages.blank")
             
     initialize:->
       super

@@ -3,6 +3,7 @@
     <label class="control-label" for="firstname"><%- @t("person.firstname") %></label>
     <div class="controls">
       <input class="input-xlarge" type="text" id="firstname" placeholder="<%- @t("person.firstname") %>">
+      <span id="firstname_error" class="help-inline"></span>
     </div>
   </div>
   <div class="control-group">

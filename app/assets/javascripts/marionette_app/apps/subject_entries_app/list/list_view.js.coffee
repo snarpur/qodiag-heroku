@@ -26,6 +26,16 @@
   class List.SelectItem extends App.Views.ItemView
     template: "subject_entries_app/list/_select_item"
     tagName: "option"
+    attributes:->
+      "data-attribute-id":@model.get("id")
+
+    events:
+      'select' : 'triggerSelectResponse'
+
+    triggerSelectResponse: (event)=>
+      @trigger "select:response", @ unless not @model.get("completed")?
+      
+
     templateHelpers: =>
       responseDetails:=>
        if @model.get('completed')
@@ -53,9 +63,8 @@
 
 
     triggerSelectResponse: (event)=>
-      @trigger "select:response", @children.findByIndex(event.currentTarget.selectedIndex)
+      $(event.currentTarget.options[event.currentTarget.selectedIndex]).trigger("select")
 
-  
     triggerAdd:->
       @$el.removeAttr('disabled')
 

@@ -20,11 +20,11 @@ class Ability
       can :manage, ResponderItem do |ri|
         ri.caretaker == user.person || ri.new_record?
       end
-      can [:read,:update,:destroy], EntrySet do |es|
+      can [:update,:destroy], EntrySet do |es|
         (es.visibility == 1 || (es.created_by_id == user.person_id))
       end
       
-      can :create, EntrySet
+      can [:create,:read], EntrySet
 
       can :read, Role
       can :manage, Survey 

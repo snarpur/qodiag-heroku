@@ -11,7 +11,7 @@
           <address>
             <strong><%= @firstname + " " + @lastname %></strong><br>
             <abbr title="Kennitala">K:</abbr> <%= @full_cpr %> <br> 
-            <% if @address.get("id")?: %>
+            <% if @address?: %>
               <br>
               <abbr title="Heimilisfang">H: </abbr><%= @address.get('street_1') %><br>
               <%= @address.get('street_2') %><br>

@@ -77,7 +77,10 @@ class PopulateUtil
   end
   
   def create_caretaker(name)
-    caretaker_person = FactoryGirl.create(:person, person_attributes(rand(10)+40))
+    attrs = person_attributes(rand(10)+40)
+    attrs[:genavatar] = true
+    attrs[:type] = "caretaker"
+    caretaker_person = FactoryGirl.create(:person, attrs)
     caretaker_user = FactoryGirl.create(:user, 
                                     :email => "#{name}@qodiag.com", 
                                     :roles => [@caretaker_role], 
@@ -89,15 +92,21 @@ class PopulateUtil
 
   def create_patient(caretaker_person)
     attrs = person_attributes(rand(10)+5)
+    attrs[:genavatar] = true
+    attrs[:type] = "patient"
     patient = FactoryGirl.create(:person, attrs)
     FactoryGirl.create(:patient_relationship, :person => caretaker_person, :relation => patient)
     patient
   end
 
   def create_parent(patient)
-    parent_person = FactoryGirl.create(:person, person_attributes(rand(20)+40))
+    attrs = person_attributes(rand(20)+40)
+    attrs[:genavatar] = true
+    attrs[:type] = "parent"
+    parent_person = FactoryGirl.create(:person, attrs)
     parent_user = FactoryGirl.create(:user, 
-                                 :email => "user_#{parent_person.id}@qodiag.com", 
+                                 # :email => "user_#{parent_person.id}@qodiag.com", 
+                                 :email => "user_#{parent_person.id}_#{rand(10000)}@qodiag.com", 
                                  :roles => [@respondent_role], 
                                  :person => parent_person
                                 )

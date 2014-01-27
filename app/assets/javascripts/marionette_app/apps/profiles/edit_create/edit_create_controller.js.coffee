@@ -21,7 +21,11 @@
       App.dialogRegion.show formView
 
       @listenTo formView.model, "created updated", =>
-        @activeView.render()
+        # Update every Guardians' child view
+        _.each(@activeView.children._views,((i) ->
+          i.render()
+        ))
+        # @activeView.render()
      
     buttonsConfig:->
       options =
