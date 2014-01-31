@@ -60,4 +60,12 @@ class PersonDecorator < Draper::Decorator
     spouse_relationship = (model.spouse_relationship_to(other_parent) + model.inverse_spouse_relationship_to(other_parent)).first
     spouse_relationship || model.build_spouse_relationship_to(other_parent,{:status => false})
   end
+
+  def list_respondents
+    respondents = model.respondents
+    if model.age >= 18
+      respondents.push(model)
+    end
+    respondents
+  end
 end

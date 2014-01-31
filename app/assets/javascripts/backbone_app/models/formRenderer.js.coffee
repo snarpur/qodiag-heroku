@@ -49,10 +49,11 @@ class App.Models.FormRenderer extends Backbone.Model
 
   urlOnComplete:()->
     location = "#{window.location.protocol}//#{window.location.host}"
-    if @formTemplate().match(/invitation/)
-      "#{location}/people/#{@subjectId()}"
-    else if @formTemplate().match(/registration/)
-      "#{location}/users"
+    # NOTE: Temporary solution because respondent should be redirected to their respondent page, not to the patient page
+    # if @formTemplate().match(/invitation/)
+    #   "#{location}/people/#{@subjectId()}"
+    # else if @formTemplate().match(/registration/)
+    #   "#{location}/users"
 
   toJSON:=>
     @get("formModel").toJSON()

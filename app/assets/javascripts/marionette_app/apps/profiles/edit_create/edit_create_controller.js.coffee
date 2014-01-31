@@ -11,7 +11,7 @@
 
       #NOTE: Try to refector these stuff
       #Depends on the template we use either Subject or Guardian View
-      if @activeView.template.indexOf("guardian") isnt -1
+      if @activeView.options.name is "Guardian"
         dialogView = new EditCreate.Guardian model: @model
       else
         dialogView = new EditCreate.Subject model: @model
@@ -21,11 +21,14 @@
       App.dialogRegion.show formView
 
       @listenTo formView.model, "created updated", =>
-        # Update every Guardians' child view
-        _.each(@activeView.children._views,((i) ->
-          i.render()
-        ))
-        # @activeView.render()
+        # If we are updating the parents, re render every childview
+        if @activeView.collection
+          _.each(@activeView.children?._views,((i) ->
+            i.render()
+          ))
+        # If we are updating the subject, re render only the subject view
+        else
+          @activeView.render()
      
     buttonsConfig:->
       options =

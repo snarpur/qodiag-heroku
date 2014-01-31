@@ -1,7 +1,7 @@
 <div class="span4 well">
   <div class="row">
     <div class="span2 text-center">
-        <img class="avatar" src="<%= @image_url_medium %>"><br/>
+        <img class="avatar" src="<%= @image_url_thumb %>"><br/>
          <a onclick="$('.avatarUploadModal_<%= @id %>').toggle();return false;" href="#">
            <button class="btn btn-small add-avatar"><%= @t("actions.edit_avatar") %></button>
          </a>

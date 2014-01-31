@@ -18,13 +18,19 @@
 
         uncompleted = items.filter((item) ->
           not item.get('completed')?)
+      
+        unless completed.length == 0
+          itemsCompletedView = new List.Items {collection: new App.Entities.ResponderItems(completed,{}), status: "completed"}
+          @getLayout().completeItemsRegion.show itemsCompletedView
 
-        itemsCompletedView = new List.Items {collection: new App.Entities.ResponderItems(completed,{}), status: "completed"}
-        @getLayout().completeItemsRegion.show itemsCompletedView
-
-        itemsUncompletedView = new List.Items {collection: new App.Entities.ResponderItems(uncompleted,{}), status: "uncompleted"}
-        @getLayout().uncompleteItemsRegion.show itemsUncompletedView
         
+        if uncompleted.length == 0
+          console.log "No imcompleted"
+          noitemsUncompletedView = new List.NoRequests {model: uncompleted}
+          @getLayout().uncompleteItemsRegion.show noitemsUncompletedView
+        else
+          itemsUncompletedView = new List.Items {collection: new App.Entities.ResponderItems(uncompleted,{}), status: "uncompleted"}
+          @getLayout().uncompleteItemsRegion.show itemsUncompletedView
 
     getLayout:=>
       @layout ?= new List.Layout

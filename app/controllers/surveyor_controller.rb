@@ -57,6 +57,7 @@ module SurveyorControllerCustomMethods
   end
 
   def update
+
     @response_set = ResponseSet.find_by_access_code(params[:response_set_code], :include => {:responses => :answer}, :lock => true)
     if @response_set
       if not @response_set[:completed_at].nil?

@@ -33,12 +33,14 @@ class ResponderItem < ActiveRecord::Base
 
   accepts_nested_attributes_for :respondent, :subject, :entry_set_response
 
-  attr_accessor :invite_respondent_user
+  attr_writer :current_user
+  attr_accessor :invite_respondent_user, :subject_as_respondent
 
   
   attr_accessible :registration_identifier, :id, :caretaker_id, :deadline, :completed, 
                   :complete_item, :respondent_id, :subject_id, :survey_id, :invite_respondent_user, 
-                  :days_until_deadline,:subject_attributes, :respondent_attributes, :entry_set_response_attributes
+                  :days_until_deadline,:subject_attributes, :respondent_attributes, :entry_set_response_attributes,
+                  :subject_as_respondent
   
   validates_associated :respondent, :subject
 
@@ -101,16 +103,15 @@ class ResponderItem < ActiveRecord::Base
   def result
     self.response_set.result_to_chart
   end
-  
+
   private
   def is_uncompleted_survey?
     (!self.survey_id.nil? && self.completed.nil?)
   end
 
   def send_respondent_invitation
-    unless respondent.user_is_invited?
-      respondent.user_invite!(caretaker.user)
-    end
+    KK.log respondent.nil?
+    respondent.user_invite!(caretaker.user) if not respondent.nil? and not respondent.user_is_invited?
   end
 
   def set_response_set

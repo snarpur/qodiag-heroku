@@ -25,4 +25,5 @@ is:
     edit_avatar: "Breyta mynd"
     edit_information: "Breyta upplýsingum"
     add_comment: "Skrifa ummæli"
-    
+    minor: "Undir lögaldri"
+    adult: "Fullorðin"   

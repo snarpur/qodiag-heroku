@@ -26,7 +26,7 @@ class UsersController < ApplicationController
   # end
 
   def show
-    @patients = @current_user.person.relations.patients
+    @patients = PersonDecorator.decorate_collection(@current_user.person.relations.patients)
     respond_to do |format|
       format.html
     end

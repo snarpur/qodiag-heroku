@@ -14,6 +14,20 @@
     className: () ->
       if @model.get("completed")? then "success" else "warning"
 
+  class List.Item extends App.Views.ItemView
+    template: "responder_items/list/templates/_item"
+    tagName: 'tr'
+    className: () ->
+      if @model.get("completed")? then "success" else "warning"
+
+  class List.NoRequests extends App.Views.ItemView
+    template: "responder_items/list/templates/_empty"
+
+    templateHelpers: =>
+        tableTitle: =>
+          I18n.t("responder_item.status.uncompleted")
+          #@options.title
+    
 
   class List.Items extends App.Views.CompositeView
     template: "responder_items/list/templates/items"

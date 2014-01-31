@@ -11,3 +11,4 @@ es:
         sent_another: "Seleccione la fecha límite de respuesta de la solicitud"
         error: "Error !"
         contact_admin: "Contacte con el administrador del sistema."
+        no_uncompleted: "No hay solicitudes pendientes"

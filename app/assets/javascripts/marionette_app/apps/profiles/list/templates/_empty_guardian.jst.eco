@@ -1,10 +1,9 @@
 <div class="span4 well">
   <div class="row">
     <div class="span2 text-center pagination-center">
-        <img class="avatar" src="/avatars/medium/male.png" alt="<%= @t("views.profiles.parent_not_found") %>">
+        <img class="avatar" src="/avatars/thumb/male.png" alt="<%= @t("views.profiles.parent_not_found") %>">
     </div>
     <div class="span2">
-      <br/><br/>
       <p><h4 class="muted"><%= @t("views.profiles.parent_not_found") %></h4></p>
       <p></p>
       <p>

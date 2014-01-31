@@ -5,12 +5,12 @@ node do
    :id=>"Hidden",
    :registration_identifier=>"Hidden",
    :caretaker_id=>"Hidden",
-   :respondent=>
+   :subject=>
    {
     :title=>"personal_info",
     :model=>"App.Models.Person",
     :type=>"NestedModel",
-    :as=>"get_respondent",
+    :as=>"get_subject",
     :schema=>
     {
       :id=>"Hidden",
@@ -19,22 +19,22 @@ node do
         :type=>"Text",
         :template=>"field",
         :validators=>["required"]
-        },
-        :user=>
+      },
+      :user=>
+      {
+        # :as=>"user_invitation",
+        :model=>"App.Models.Base",
+        :type=>"NestedModel",
+        :schema=>
         {
-          :as=>"user_invitation",
-          :model=>"App.Models.Base",
-          :type=>"NestedModel",
-          :schema=>
+          :id=>"Hidden",
+          :email=>
           {
-            :id=>"Hidden",
-            :email=>
-            {
-              :type=>"Text",
-              :template=>"field",
-              :validators=>["required", "email"]
-              },
-            :invitation=>"Hidden"
+            :type=>"Text",
+            :template=>"field",
+            :validators=>["required", "email"]
+          },
+          :invitation=>"Hidden"
           }
         },
         :firstname=>
@@ -70,6 +70,23 @@ node do
             :phone=>"Text",
             :home_phone=>"Text"
           }
+        },
+        :inverse_relationships=>
+        {
+          :type=>"NestedCollection",
+          :collection=>"App.Collections.Relationships",
+          #DELETE: check to make sure that has no purpose
+          # :as=> ["inverse_parent_relationship_as_current_subject","inverse_patient_relationship_as_current_subject","inverse_guardian_relationship_as_current_subject"], 
+          :schema=>
+          [
+            {
+              :id=>"Hidden",
+              :person_id=>"Hidden",
+              :relation_id=>"Hidden",
+              :name=>"Hidden",
+              :status=>"Hidden"
+            }
+          ]
         }
       }
     }

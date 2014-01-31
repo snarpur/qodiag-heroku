@@ -1,6 +1,6 @@
 object false
 
-node :formMetaData do 
+node :formMetaData do
   {
     :currentStep => @step_no,
     :stepLength => 2,
@@ -22,3 +22,4 @@ end
 node :schema do
   partial("invitation_items/guardian_invitation/step_#{@step_no}/schema", :object => @responder_item)
 end
+

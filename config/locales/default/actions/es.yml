@@ -25,4 +25,5 @@ es:
     edit_avatar: "Editar avatar"
     edit_information: "Editar información personal"
     add_comment: "Añadir comentario"
-    
+    minor: "Menor de edad"
+    adult: "Adulto"  

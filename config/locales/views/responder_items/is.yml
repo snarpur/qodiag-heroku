@@ -11,3 +11,4 @@ is:
         sent_another: "Veldu dagsetningu til að senda aðra beiðni"
         error: "Villa !"
         contact_admin: "Kerfisstjóri hefur fengið meldingu um villu."
+        no_uncompleted: "Engar nýjar beiðnir"

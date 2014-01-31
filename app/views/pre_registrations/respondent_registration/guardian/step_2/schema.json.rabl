@@ -2,6 +2,7 @@ object @responder_item
 node do
 {
   :id=>"Hidden",
+  :complete_item =>"Hidden",
   :respondent=>
   {
     :title=>"personal_info",
