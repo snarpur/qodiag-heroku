@@ -41,6 +41,11 @@ charts:
           name: total
           total: [anxious_or_depressed, withdrawn_or_depressed, somatic_complaints, social_problems, thought_problems, attention_problems, rule_breaking_behaviour, aggressive_behaviour]
     chart_config:
+      plotOptions:
+        column:
+          point:
+            events:
+              click: false
       legend:
           enabled: false
       xAxis:

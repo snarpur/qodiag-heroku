@@ -110,7 +110,6 @@ class ResponderItem < ActiveRecord::Base
   end
 
   def send_respondent_invitation
-    KK.log respondent.nil?
     respondent.user_invite!(caretaker.user) if not respondent.nil? and not respondent.user_is_invited?
   end
 

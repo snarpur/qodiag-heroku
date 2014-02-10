@@ -25,7 +25,7 @@
     modelEvents:
       "change:deadline" : ()->
         # @ui.heading.html("Skilast fyrir #{@formatDeadline()}")
-        @ui.heading.html(I18n.t("views.responder_items.requests.submit", date:@formatDeadline()))
+        @ui.heading.html(I18n.t("views.responder_items.requests.for", date:@formatDeadline()))
         @ui.heading.effect('highlight',2000)
 
     formatDeadline:->
