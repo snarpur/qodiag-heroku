@@ -18,7 +18,9 @@ is:
         externalizing: hegðun, ytri þættir
         internalizing: innri líðan
         total: heildarvandi
+        describe: lystu
       questions:
+        - 
         - Ég haga mér barnalega miðað við aldur
         - Ég drekk áfengi án samþykkis foreldra (lýstu)
         - Ég rífst mikið
@@ -74,15 +76,16 @@ is:
         - Ég borða of mikið
         - Ég finn fyrir ofþreytu
         - Ég er of feit(ur)
-        - Líkamleg vandamál án læknisfræðilegra skýringa
-            # a. Sársauki og verkir (ekki maga- eða höfuðverkur)
-            # b. Höfuðverkur
-            # c. Ógleði, flökurleiki
-            # d. Vandamál með augu (sem gleraugu laga ekki, lýstu)
-            # e. Útbrot eða önnur húðvandamál
-            # f. Magaverkir eða magakrampar
-            # g. Uppköst
-            # h. Annað (lýstu)
+        - header: Líkamleg vandamál án læknisfræðilegra skýringa
+          subquestions:  
+            - a) Sársauki og verkir (ekki maga- eða höfuðverkur)
+            - b) Höfuðverkur
+            - c) Ógleði, flökurleiki
+            - d) Vandamál með augu (sem gleraugu laga ekki, lýstu)
+            - e) Útbrot eða önnur húðvandamál
+            - f) Magaverkir eða magakrampar
+            - g) Uppköst
+            - h) Annað (lýstu)
         - Ég ræðst (líkamlega) á annað fólk
         - Ég kroppa í húð eða aðra líkamshluta (lýstu)
         - Ég get verið vingjarnleg(ur)
@@ -143,3 +146,4 @@ is:
         - Ekki rétt
         - Stundum rétt
         - Oft rétt
+        - Lystu      

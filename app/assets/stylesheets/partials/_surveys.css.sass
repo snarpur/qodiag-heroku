@@ -36,7 +36,8 @@ body
 .next_section
   float: right
 
-.q_default_inline.pick-one
+.q_default_inline.pick-one, 
+.q_default_inline.pick-none
   position: relative
   margin-bottom: .8em
   padding: .5em
@@ -64,6 +65,9 @@ body
       padding: .3em 2em .5em 2em
       margin-bottom: 1px
 
+.q_default_inline.pick-none
+  border-bottom: none !important
+
 .well-large
   border-radius: 6px 6px 6px 6px
   padding: 24px
@@ -85,3 +89,17 @@ body
 label.error
   color: red
   margin: 0 15px
+
+.subquestion
+  margin-left: 20px
+
+input[class='describe']
+  display: none
+
+textarea
+  height: 100px !important
+  margin-left: 5px
+  width: 290px !important
+
+.choice > label
+  vertical-align: top

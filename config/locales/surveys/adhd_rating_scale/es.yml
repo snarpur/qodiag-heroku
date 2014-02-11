@@ -11,6 +11,7 @@ es:
         standard_deviation_from_average: "s frá m*"
         age: Seleccione la edad
       questions:
+        -
         - Hugar illa að smáatriðum og gerir fljótfærnislegar villur á skólaverkefnum.
         - Er mikið með hendur og fætur á hreyfingu eða iðar í sæti.
         - Dificultad para mantener la atención en sus tareas o en los juegos.
