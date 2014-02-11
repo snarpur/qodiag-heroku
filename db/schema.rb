@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131129144855) do
+ActiveRecord::Schema.define(:version => 20140211094417) do
 
   create_table "addresses", :force => true do |t|
     t.string   "street_1"
@@ -234,7 +234,7 @@ ActiveRecord::Schema.define(:version => 20131129144855) do
     t.string   "data_export_identifier"
     t.string   "common_namespace"
     t.string   "common_identifier"
-    t.integer  "display_order"
+    t.decimal  "display_order",          :precision => 10, :scale => 2
     t.string   "display_type"
     t.boolean  "is_mandatory"
     t.integer  "display_width"

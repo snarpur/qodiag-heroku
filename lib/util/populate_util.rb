@@ -7,6 +7,19 @@ class PopulateUtil
 
  	def initialize
  		  @surveys = ["adhd_rating_scale","sdq","ysr_syndrome_scale","dass"]
+      @descriptions = [
+        "description 1",
+        "description 2",
+        "description 3",
+        "description 4",
+        "description 5",
+        "description 6",
+        "description 7",
+        "description 8",
+        "description 9",
+        "description 10",
+        "description 11"
+      ]
     	@caretaker_role = Role.find_by_name('caretaker')
     	@respondent_role = Role.find_by_name('respondent')
     	@sex = ['male','female']
@@ -146,12 +159,21 @@ end
       questions_size = questions.size
       questions.each_with_index do |question,index|
         answers = question.answers
-        random_answer_no = index % 3 == 0 ? rand(answers.size) : rand(answers.size - 1)  
+        if not answers.empty? and answers.where(:custom_class => "describe").size > 0
+          random_answer_no = rand(answers.size - 1)
+          random_description = rand(@descriptions.length - 1)
+          description = @descriptions[random_description]
+        else
+          random_answer_no = index % 3 == 0 ? rand(answers.size) : rand(answers.size - 1)
+          description = nil
+        end
+
         FactoryGirl.create(:response, 
                        :response_set => item.response_set, 
                        :question_id => question.id,
-                       :answer_id => answers[random_answer_no].id 
-                      )
+                       :answer_id => answers[random_answer_no].id,
+                       :text_value => description
+                      ) unless answers.empty?
       end
     end
   end

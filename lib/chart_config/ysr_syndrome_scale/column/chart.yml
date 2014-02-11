@@ -32,7 +32,31 @@ charts:
           total:
             - rule_breaking_behaviour 
             - aggressive_behaviour
-          
+        - other_problems
+  # -   
+  #   content:
+  #     name: other_problems
+  #     question_groups:
+  #       -
+  #         name: other_problems
+  #         total: [other_problems]
+  #         drilldown: true
+
+  #   chart_config:
+  #     legend:
+  #         enabled: false
+  #     xAxis:
+  #       title:
+  #         text: false
+  #     yAxis:
+  #       opposite: false
+  #       maxPadding: 0.01
+  #       minorTickInterVal: auto
+  #       tickInterval: null
+  #     title:
+  #       text: ~
+  #     subtitle: 
+  #       text: ~
   -   
     content:
       name: total
@@ -41,6 +65,11 @@ charts:
           name: total
           total: [anxious_or_depressed, withdrawn_or_depressed, somatic_complaints, social_problems, thought_problems, attention_problems, rule_breaking_behaviour, aggressive_behaviour]
     chart_config:
+      plotOptions:
+        column:
+          point:
+            events:
+              click: false
       legend:
           enabled: false
       xAxis:

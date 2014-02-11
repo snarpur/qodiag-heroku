@@ -1,6 +1,23 @@
-<td data-sortAs="<%= question %>"><%= question %></td>
-<td><%= I18n.t("surveys."+surveyAccessCode+"."+"questions")[question] %></td>
-<td data-sortAs="<%= answer + 1 %>"><span class="answer-signal"><%= I18n.t("surveys."+surveyAccessCode+"."+"answers")[answer] %></span></td>
+<td data-sortAs="<%= question %>">
+  <%= question %>
+</td>
+<td>
+<% if (subquestion == "0") { %>
+  <%= I18n.t("surveys."+surveyAccessCode+"."+"questions")[question] %>
+<% }else{ %>
+  <%= I18n.t("surveys."+surveyAccessCode+"."+"questions")[question]["header"] + ":<br/><small>" + I18n.t("surveys."+surveyAccessCode+"."+"questions")[question]["subquestions"][(subquestion - 1)]+ "</small>" %>
+<% } %>
+<% if (text_value != null) { %>
+  <br/><div class="description">
+    <small>
+      <%= text_value %>
+    </small>
+  </div>
+<% } %>
+</td>
+<td data-sortAs="<%= answer + 1 %>"><span class="answer-signal"><%= I18n.t("surveys."+surveyAccessCode+"."+"answers")[answer] %></span>
+
+</td>
 
 
 
