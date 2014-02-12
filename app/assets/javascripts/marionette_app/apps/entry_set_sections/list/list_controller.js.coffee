@@ -162,6 +162,3 @@
     sectionUrl:(section)->
       params = _.values(section.pick("entry_set_id","id"))
       "settings#{Routes.entry_set_section_path(params...)}"
-
-
-

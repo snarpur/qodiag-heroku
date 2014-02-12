@@ -44,26 +44,6 @@ class ResponderItem < ActiveRecord::Base
   
   validates_associated :respondent, :subject
 
-  ACTORS = %w{caretaker subject respondent}
-  #DELETE: if not in use
-  # ACTORS.each do |role|
-  #   define_method("build_and_prepare_#{role}") do |*opt|
-  #     arg = opt.first || {}
-  #     person = Person.new(arg)
-  #     person.current_responder_item= self
-  #     send("#{role}=", person)
-  #   end
-  # end
-
-  # ACTORS.each do |role|
-  #   define_method("get_#{role}") do
-  #     return  send("build_and_prepare_#{role}") if send("#{role}").nil?
-  #     person = Person.find(send("#{role}_id"))
-  #     person.current_responder_item= self
-  #     person
-  #   end
-  # end
-
   def self.new_patient_item(params,caretaker)
     ResponderItem.new(params.merge({:caretaker_id => caretaker.id}))
   end
@@ -116,4 +96,5 @@ class ResponderItem < ActiveRecord::Base
   def set_response_set
     self.response_set=(ResponseSet.create(:survey_id => self.survey_id, :user_id => self.respondent.user.id))
   end
+  
 end

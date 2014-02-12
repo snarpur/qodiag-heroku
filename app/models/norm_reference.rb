@@ -34,14 +34,6 @@ class NormReference < ActiveRecord::Base
     NormReference.where('survey_id = ? AND responder = ?',survey_id,responder).order('age_start DESC').first()
   end
 
-  def get_score_by_result_name(result_names, group_by=:result_name)
-    self.scores.by_result_names_in_groups(result_names,group_by)
-  end
-
-  def get_score_by_name(names,group_by=:name)
-    self.scores.by_names_in_groups(names,group_by)
-  end
-
   def scores_by_names_and_result_names(names,result_names)
     self.scores.by_names_and_result_names_in_groups(names,result_names)
   end
@@ -58,4 +50,5 @@ class NormReference < ActiveRecord::Base
     title << [:age,age_group_string] unless age_group_string == nil or age_group_string.empty?
     title
   end
+  
 end

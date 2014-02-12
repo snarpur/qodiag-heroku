@@ -5,10 +5,7 @@
       
     listEntrySets: (options) ->    
       App.contentRegion.show @getLayout()
-      @entrySets = App.request "entry:sets:entities"
-      
-      #App.execute "when:fetched", @entrySets, =>
-         
+      @entrySets = App.request "entry:sets:entities"   
       entrySetsView = @getEntrySetsView()
       @showEntrySets(entrySetsView)
       @executeSettingsNavigation()

@@ -2,13 +2,8 @@
 	
 	App.commands.setHandler "when:fetched", (entities, callback) ->
 		xhrs = _.chain([entities]).flatten().pluck("_fetch").value()
-
-		# if _.isArray(entities)
-		# 	xhrs.push(entity._fetch) for entity in entities
-		# else
-		# 	xhrs.push(entities._fetch)
 		
 		$.when(xhrs...).done ()->
-			#callback()
+			callback()
 			#DELETE: Only for test pourposes
-			_.delay(callback,1000);
+			# _.delay(callback,1000);

@@ -25,7 +25,6 @@
 
         
         if uncompleted.length == 0
-          console.log "No imcompleted"
           noitemsUncompletedView = new List.NoRequests {model: uncompleted}
           @getLayout().uncompleteItemsRegion.show noitemsUncompletedView
         else

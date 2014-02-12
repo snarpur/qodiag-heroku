@@ -1,29 +1,10 @@
 class UsersController < ApplicationController
 
-  # DELETE: Refactor after writing test
-  # before_filter :get_user, :only => [:index,:new,:edit,:show]
-  # before_filter :redirect_to_sign_in
-  # before_filter :accessible_roles, :only => [:new, :edit, :show, :update, :create]
-  # before_filter :create_user_with_role, :only => [:new]
-  # before_filter :redirect_if_admin, :only => [:show]
-  # before_filter :redirect_to_respondent_home, :only => [:show]
-  # load_and_authorize_resource :only => [:new,:destroy,:edit,:update]
-
-  
   before_filter :get_user, :only => [:show]
   before_filter :redirect_to_sign_in
   before_filter :accessible_roles, :only => [:show]
   before_filter :redirect_if_admin, :only => [:show]
   before_filter :redirect_to_respondent_home, :only => [:show]
-
-
-  # DELETE: Refactor after writing test
-  # def new
-  #   @user.build_person
-  #   respond_to do |format|
-  #     format.html
-  #   end
-  # end
 
   def show
     @patients = PersonDecorator.decorate_collection(@current_user.person.relations.patients)
@@ -32,23 +13,10 @@ class UsersController < ApplicationController
     end
   end
 
-  # DELETE: Refactor after writing test
-  # def index
-
-  # end
-
-
   private
   def accessible_roles
     @accessible_roles = Role.accessible_by(current_ability,:read)
   end
-
-  # DELETE: Refactor after writing test
-  # def create_user_with_role
-  #   @user = User.new
-  #   role = Role.find_by_name(params[:role_name])
-  #   @user.roles << role
-  # end
 
   def redirect_if_admin
    unless current_user.nil?

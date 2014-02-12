@@ -56,7 +56,6 @@ class App.Models.Person extends App.Models.Base
         address.enableFields()
   
   getCprFields:(person)=>
-    console.log "person::",person
     thisModel = @
     address = thisModel.get("address");
     cpr =  person.get('full_cpr')

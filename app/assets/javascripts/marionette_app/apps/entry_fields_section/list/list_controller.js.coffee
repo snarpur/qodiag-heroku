@@ -19,9 +19,7 @@
 
       entries = model.getSectionEntryFields()
 
-      #App.execute "when:fetched",entries, =>
       view = @getEntriesView(entries,model)
-      #model.collection.trigger("fields:fetched")
 
 
       @listenTo view, "section:entries:updated", (options) =>

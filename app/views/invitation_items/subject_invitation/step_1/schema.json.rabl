@@ -22,7 +22,6 @@ node do
       },
       :user=>
       {
-        # :as=>"user_invitation",
         :model=>"App.Models.Base",
         :type=>"NestedModel",
         :schema=>
@@ -75,8 +74,6 @@ node do
         {
           :type=>"NestedCollection",
           :collection=>"App.Collections.Relationships",
-          #DELETE: check to make sure that has no purpose
-          # :as=> ["inverse_parent_relationship_as_current_subject","inverse_patient_relationship_as_current_subject","inverse_guardian_relationship_as_current_subject"], 
           :schema=>
           [
             {

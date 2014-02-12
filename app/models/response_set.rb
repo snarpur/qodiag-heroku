@@ -30,17 +30,6 @@ module ResponseSetCustomMethods
       where(:question_groups => {:text => group_name})
   end
 
-  def count_results_by_group_and_weight(weight, group_name)
-    result = self.responses.joins(:answer,:question => :question_group).
-             where(:question_groups => {:text => group_name}, :answers => {:weight => weight}).
-             select('answers.weight, question_groups.text').length
-  end
-
-  def count_results_by_group(group_name)
-    result =  self.responses.joins(:answer,:question => :question_group).
-              where(:question_groups => {:text => group_name}).length
-  end
-
   def weights_by_groups(group_name)
     result =  self.responses.joins(:answer,:question => :question_group).
               where(:question_groups => {:text => group_name}).
@@ -98,4 +87,5 @@ class ResponseSet < ActiveRecord::Base
     ResponseSet.responses_to_chart(responses)
   end
   %w{chart_methods response_set_chart_renderer}.each {|c| require_dependency "#{c}.rb"} if Rails.env.development?
+
 end

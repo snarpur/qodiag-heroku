@@ -7,7 +7,7 @@ class Person < ActiveRecord::Base
   #validates_length_of :cpr, :is => 4
   #validates_length_of :firstname, :minimum => 4
   #validate :presence_of_parent_occupation
-  #after_save :set_parents_address
+
   
   
 
@@ -111,11 +111,9 @@ class Person < ActiveRecord::Base
   attr_accessible :id, :firstname, :lastname, :sex, :ispatient, :dateofbirth, :cpr, :workphone, :mobilephone, :occupation, :workplace, :full_cpr,
                   :avatar,
                   :address_id, :relations_attributes, :inverse_relations_attributes, :relationships_attributes, :inverse_relationships_attributes, :address_attributes, 
-                  :spouse_relationships_attributes, :respondent_responder_items_attributes, :patient_responder_items_attributes, :user_attributes,
-                  :full_siblings_attributes, :full_siblings, :half_siblings_attributes, :half_siblings, :inverse_half_siblings_attributes, :inverse_half_siblings,
-                  :parent0_attributes, :parent1_attributes
-  
-  validates_associated :relationships, :inverse_relationships, :address #:user
+                  :spouse_relationships_attributes, :respondent_responder_items_attributes, :patient_responder_items_attributes, :user_attributes
+                 
+  validates_associated :relationships, :inverse_relationships, :address 
 
   
 
@@ -186,10 +184,6 @@ class Person < ActiveRecord::Base
     end
   end
 
-  def respondent_subject_ids
-    ResponderItem.by_respondent(self.id).subject_ids.to_a
-  end
-  
   def guardianship_relations
     self.relations.guardian_of
   end
@@ -212,10 +206,7 @@ class Person < ActiveRecord::Base
       items
   end
 
-  def completed_surveys_by_id(id)
-    self.responder_items & ResponderItem.by_survey_id(id).completed
-  end
-
+  #DELETE: Used in the test files
   def responder_items_by_group
     items = self.responder_items.surveys_by_group
     groups, groups_arr = {},[]
@@ -247,16 +238,6 @@ class Person < ActiveRecord::Base
         end
       end
     end
-  end
-  
-  def presence_of_cpr
-    errors.add(:cpr, "cannot be empty") if
-      ispatient == true and cpr.nil?
-  end
-  
-  def presence_of_full_cpr
-    errors.add(:full_cpr, I18n.t("activerecord.errors.messages.invalid")) if
-      !self.inverse_relationships.patient.empty? && (!valid_cpr? || dateofbirth.nil?)
   end
 
   def uniqueness_of_full_cpr
@@ -290,7 +271,6 @@ class Person < ActiveRecord::Base
     unless cpr.empty?
       day = cpr[0..1]
       month = cpr[2..3]
-      #year = cpr[4..5].to_i > 10 ? "19" << cpr[4..5] : "20" << cpr[4..5]
       flag = cpr[9]
       if (flag == "0") 
         year = "20" << cpr[4..5] 
@@ -333,6 +313,7 @@ class Person < ActiveRecord::Base
     self.inverse_relations.parents
   end
 
+  #DELETE: Not sure if it is in use
   def guardians
     self.inverse_relations.guardians
   end
@@ -341,128 +322,40 @@ class Person < ActiveRecord::Base
     self.inverse_relations.caretakers
   end
   
-  def spouses
-    self.relations.spouse + self.inverse_relations.spouse
-  end
-
   def spouse_relationships
     self.relationships.spouse + self.inverse_relationships.spouse
   end
 
+  def spouse_relationships_attributes=(params)
+    params.each do |i|
+      if !i.has_key?(:id) || i[:id] == nil
+        if i[:relation_id] == self.id
+          self.inverse_relationships.build(i)
+        else
+          self.relationships.build(i)
+        end
+      elsif i[:relation_id] == self.id
+        self.inverse_relationships.find(i[:id]).update_attributes(i)
+      elsif i[:person_id] == self.id
+        self.relationships.find(i[:id]).update_attributes(i)
+      end
+    end
+  end
+
+  #DELETE: Not sure if it is in use
   def mother
     self.inverse_relations.mother.first
   end
 
+  #DELETE: Not sure if it is in use
   def father
     self.inverse_relations.father.first
   end
 
-  def is_parent_of?(person)
-    !parent_relationship_to(person).empty?
+
+  def respondents
+    self.inverse_relations.respondents.with_valid_user
   end
-
-  def is_guardian_of?(person)
-    !guardian_relationship_to(person).empty?
-  end
-
-  def is_parent_and_guardian_of?(person)
-    (is_parent_of?(person) && is_guardian_of?(person))
-  end
-
-  def full_siblings_relationships
-    relations = Relationship.where(:name => 'parent', :person_id => self.parents[0].id) + Relationship.where(:name => 'parent', :person_id => self.parents[1].id)
-  end
-
-  def full_siblings
-    full_siblings = self.parents[0].relations.children & self.parents[1].relations.children
-    full_siblings.delete(self)
-
-    if full_siblings.empty?
-      full_siblings = self.parents[0].relations.build
-    end
-
-    full_siblings
-  end
-
-  def full_siblings_attributes=(siblings)
-    unless siblings.empty?
-      siblings.each do |i|
-        unless i['firstname'].nil?
-          p = Person.find_or_initialize_by_id(i)
-          p.save()
-          if p.parents.empty?
-            p.inverse_relationships.create([{:name => 'parent', :person_id => parents[0].id}, {:name => 'parent', :person_id => parents[1].id}])
-          end
-        end
-      end
-    end
-  end
-
-  def half_siblings
-    half_siblings = self.parents[0].relations.children - self.parents[1].relations.children
-
-    if half_siblings.empty?
-      half_siblings = self.parents[0].relations.build
-    end
-
-    half_siblings
-  end
-
-  def half_siblings_attributes=(siblings)
-    unless siblings.empty?
-      siblings = siblings - parents[1].relations.children
-      siblings.each do |i|
-        unless i['firstname'].nil?
-          p = Person.find_or_initialize_by_id(i)
-          p.save()
-          if p.parents.empty?
-            p.inverse_relationships.create([{:name => 'parent', :person_id => parents[0].id}])
-          end
-        end
-      end
-    end
-  end
-
-  def inverse_half_siblings
-    half_siblings = self.parents[1].relations.children - self.parents[0].relations.children
-
-    if half_siblings.empty?
-      half_siblings = self.parents[1].relations.build
-    end
-
-    half_siblings
-  end
-
-  def inverse_half_siblings_attributes=(siblings)
-    unless siblings.empty?
-      siblings = siblings - parents[0].relations.children
-      siblings.each do |i|
-        unless i['firstname'].nil?
-          p = Person.find_or_initialize_by_id(i)
-          p.save()
-          if p.parents.empty?
-            p.inverse_relationships.create([{:name => 'parent', :person_id => parents[1].id}])
-          end
-        end
-      end
-    end
-  end
-
-  def foster_siblings
-    blood_related = self.parents.map {|i| i.relations.children}.flatten
-    all = self.parents[0].relations.children + self.parents[0].relations.children
-    foster_siblings = all - blood_related
-
-    if foster_siblings.empty?
-      foster_siblings = self.parents[0].relations.build
-    end
-
-    foster_siblings
-  end
-
-   def respondents
-      self.inverse_relations.respondents.with_valid_user
-   end
   
 
   def guardian_respondent
@@ -484,73 +377,9 @@ class Person < ActiveRecord::Base
     opposite_parent_relation(parent) || self.inverse_relations.build() 
   end
 
-  def parent0
-    p = self.parents[0]
-    unless p
-      p = self.parents.build
-    end
-    p
-  end
-
-  def parent0_attributes=(parent)
-    p = Person.find_or_initialize_by_id(parent)
-    p.save()
-    unless self.parents[0]
-      p.relationships.build([{:name => 'parent', :person_id => p.id, :relation_id => self.id}])
-    end
-    self.parents[0] = p
-  end
-
-  def parent1
-    p = self.parents[1]
-    unless p
-      p = self.parents.build
-    end
-    p
-  end
-
-  def parent1_attributes=(parent)
-    p = Person.find_or_initialize_by_id(parent)
-    p.save()
-    unless self.parents[1]
-      p.relationships.build(:name => 'parent', :person_id => p.id, :relation_id => self.id)
-    end
-
-    self.parents[1] = p
-  end
-
   def other_parent_of(child)
     return child.parents.first if self.new_record?
     Person.joins(:relationships).where('relationships.name = ? AND relationships.relation_id = ? AND relationships.person_id != ?', 'parent', child.id, self.id).first
   end
   
-  def parents_relationship
-    parents = self.parents
-    if parents.size == 1
-       parents[0].relationships.build(:name => :spouse)
-    elsif parents.size == 2
-       relationship = parents[0].spouse_relationships & parents[1].spouse_relationships
-       if relationship.empty?
-        parents[0].relationships.build(:name => :spouse, :relation_id => parents[1].id)
-       else
-        relationship.first
-       end
-    end
-  end
-  
-  def spouse_relationships_attributes=(params)
-    params.each do |i|
-      if !i.has_key?(:id) || i[:id] == nil
-        if i[:relation_id] == self.id
-          self.inverse_relationships.build(i)
-        else
-          self.relationships.build(i)
-        end
-      elsif i[:relation_id] == self.id
-        self.inverse_relationships.find(i[:id]).update_attributes(i)
-      elsif i[:person_id] == self.id
-        self.relationships.find(i[:id]).update_attributes(i)
-      end
-    end
-  end
 end    

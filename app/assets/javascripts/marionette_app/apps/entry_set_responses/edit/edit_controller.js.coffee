@@ -92,9 +92,6 @@
       @listenToOnce @entrySetResponse, 'updated', =>
         @sections.trigger("change:current:section",model: @sections.getCurrentSection())
         toastr.success(I18n.t("activerecord.sucess.messages.saved",model: ""))
-        # toastr.success "Færsla hefur vistast"
-
-    
 
     saveAsCompleteAndRedirect:(formView) ->
       @entrySetResponse.set("complete_item",1)
@@ -102,10 +99,7 @@
       @listenToOnce @entrySetResponse, 'updated', =>
         App.navigate "/items", {trigger: true}
         toastr.success(I18n.t("activerecord.sucess.messages.saved",model: ""))
-        # toastr.success "Færsla hefur vistast"
 
-
-    
     getFormStepsView:(options)->
       new Edit.FormSteps _.extend options
 

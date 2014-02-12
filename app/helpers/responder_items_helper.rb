@@ -1,13 +1,10 @@
 module ResponderItemsHelper
-  def deadline_or_completed_header(items)
-    header = items.first.completed == nil ? 'deadline' : 'submitted'
-    I18n.t("terms.time_to_words.#{header}")
-
-  end
+ 
   def deadline_or_completed_date(item)
     date = item.completed ? item.completed : item.deadline
     before_or_after_today(date)
   end
+  
   def user_partial_path(path)
     partial = @current_user.roles.first.name
     "responder_items/#{partial}/#{path}"
@@ -26,4 +23,5 @@ module ResponderItemsHelper
       "responder_items/#{partial}/patient_index"
     end
   end
+  
 end

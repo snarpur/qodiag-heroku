@@ -132,4 +132,3 @@
 
     entriesUrl:(entry)->
       _("#{Routes.person_path(@personId)}/entries/#{entry.get('entrySetResponseId')}/section/#{entry.id}").ltrim('/')
-
