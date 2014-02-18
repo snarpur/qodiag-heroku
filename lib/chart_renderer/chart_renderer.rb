@@ -17,8 +17,11 @@ module ChartRenderer
       if not @options.nil? and not @options[:norm_reference_id].nil?
         norm_referenceee = NormReference.find @options[:norm_reference_id] unless (@options.nil? && @options[:norm_reference_id].nil?)
       else
-        return if @response_set.norm_reference.nil?
-        norm_referenceee = @response_set.norm_reference
+        if @response_set.norm_reference.nil?
+          norm_referenceee =  NormReference.get_norm_reference_for_oldest(@response_set[:survey_id])
+        else
+          norm_referenceee = @response_set.norm_reference
+        end
       end
       norm_referenceee
     end
@@ -41,7 +44,7 @@ module ChartRenderer
         groups = i.is_a?(String) ? i : i[:total]
         group_results = total_for_groups(groups)        
         if i.respond_to?(:has_key?) && i[:drilldown] == true
-          config_drilldown(i)
+          config_drilldown(i, group_results)
           # NOTE: Review the function config_drilldown
           # drilldown_config = Marshal::load(Marshal.dump(@chart)) 
           # drilldown_config[:content][:question_groups] = groups
@@ -160,7 +163,7 @@ module ChartRenderer
       @response_set.sum_of_group_result(groups)
     end
 
-    def config_drilldown(group)
+    def config_drilldown(group, group_results)
       drilldown_config = Marshal::load(Marshal.dump(@chart)) 
       drilldown_config[:content][:question_groups] = group[:total]
       drilldown_chart = self.class.new(drilldown_config,@response_set)

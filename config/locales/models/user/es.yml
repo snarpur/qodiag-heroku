@@ -1,0 +1,7 @@
+es:
+  user:
+    email: "Correo electrónico"
+    password: "Contraseña"
+    password_confirmation: "Repetir contraseña"
+    sign_in: "Entrar"
+    forgotten_password: "¿Olvidó su contraseña?"

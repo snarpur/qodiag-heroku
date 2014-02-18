@@ -2,13 +2,13 @@
 	%thead
 		%tr
 			%th
-				Notendanafn
+				= t('terms.username')
 			%th
-				Innskráningar
+				= t('terms.access_count')
 			%th
-				Síðasta innskráning
+				= t('terms.last_access')
 			%th
-				Stofnað
+				= t('terms.first_access')
 	%tbody
 		-@users.each do |u|
 			%tr

@@ -1,0 +1,9 @@
+is:
+  views:
+    401_page:
+      content:
+        unauthorized: "Unauthorized"
+        message: "You are not allowed to see this content, either contact your webmaster or try again. Use your browser's <b>Back button</b> to navigate to the page you have prevously come from"
+        go_homepage: "Or you could go to your Home Page:"
+        button_home: "Take me home"
+        go_loginpage: "Or you could just logged in:"

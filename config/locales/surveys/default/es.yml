@@ -1,0 +1,21 @@
+es:
+  surveys:
+    terms:
+      age: "Años"
+      male: "masculino"
+      female: "femenino"
+      average: Promedio
+      standard_deviation: Desviación típica
+      respondent:
+        parent: "padres"
+        teacher: "profesor"
+      norm_reference:
+        title: "Título"
+        group: "grupo"
+        teacher: "profesor"
+        parent: "padres"
+    respondent_registration: 
+      name: Perfil básico
+    messages:
+      question_list_failed: "Error al obtener las preguntas de la lista %{name}"
+      charts_not_found: "No se han podido obtener los gráficos"

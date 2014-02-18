@@ -11,3 +11,6 @@ child :respondent => :respondent do |person|
     node(:paramRoot){"address"}
   end
 end
+child :subject => :subject do
+  attributes :id
+end

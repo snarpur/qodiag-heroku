@@ -51,4 +51,7 @@ Snarpur::Application.configure do
   config.assets.compile = false
   # Generate digests for assets URLs
   config.assets.digest = true
+
+  #Added by Ata (http://www.sitepoint.com/rails-security-pitfalls/)
+  config.filter_parameters += [:email]
 end

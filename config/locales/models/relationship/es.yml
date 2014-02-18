@@ -1,0 +1,11 @@
+es:
+  relationship:
+    is_parent: "El tutor es uno de los padres"
+    is_guardian: "El tutor tiene la custodia*"
+    not_guardian: "No tiene la custodia"
+    not_spouse: "No tiene esposa*"
+    is_spouse: "Er núverandi maki tengiliðs*"
+    spouse_start: "Samband hófst*"
+    spouse_end: "Sambandi lauk*"
+    guardian_start: "Tók við forræði*"
+    guardian_end: "Forræði lauk*"

@@ -1,0 +1,12 @@
+es:
+  views:
+    browser_update:
+      content:
+        ups: "Úps...!"
+        alert_message: "Para reducir el coste de desarrollo de Qodiag, Internet Explorer y versiones antiguas de otros navegadores no estan soportadas. Por favor, actualice su navegador (vea las instrucciones más abajo) e inténtelo de nuevo"
+        election: "Elija entre"
+        instruction: "y siga las instrucciones de instalación."
+        update: "Si usted ya dispone del navegador, por favor, actualicelo siguendo los siguientes pasos."
+        step1: "1. Vaya a Acerca de"
+        step2: "2. Haga clic en \"Update now\""
+        login: "Inicie sesión en  www.qodiag.com"

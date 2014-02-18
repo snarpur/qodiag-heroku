@@ -6,7 +6,6 @@
         
     list:(options) ->
       @getEntrySet(options)
-
  
     
     
@@ -162,8 +161,4 @@
     
     sectionUrl:(section)->
       params = _.values(section.pick("entry_set_id","id"))
-      console.log "params :: ", section
       "settings#{Routes.entry_set_section_path(params...)}"
-
-
-

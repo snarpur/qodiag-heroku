@@ -36,7 +36,8 @@ body
 .next_section
   float: right
 
-.q_default_inline.pick-one
+.q_default_inline.pick-one, 
+.q_default_inline.pick-none
   position: relative
   margin-bottom: .8em
   padding: .5em
@@ -63,3 +64,42 @@ body
       background-color: rgba(155,155,155,0.2)
       padding: .3em 2em .5em 2em
       margin-bottom: 1px
+
+.q_default_inline.pick-none
+  border-bottom: none !important
+
+.well-large
+  border-radius: 6px 6px 6px 6px
+  padding: 24px
+
+.well
+  background-color: #F5F5F5
+  border: 1px solid #E3E3E3
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05) inset
+  margin-bottom: 20px
+  min-height: 20px
+  text-align: center
+  font-size: 14px
+  line-height: 16px
+  h1
+    background: none !important
+  p
+    margin: 10px 0
+
+label.error
+  color: red
+  margin: 0 15px
+
+.subquestion
+  margin-left: 20px
+
+input[class='describe']
+  display: none
+
+textarea
+  height: 100px !important
+  margin-left: 5px
+  width: 290px !important
+
+.choice > label
+  vertical-align: top

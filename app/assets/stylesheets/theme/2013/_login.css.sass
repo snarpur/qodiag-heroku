@@ -41,6 +41,8 @@ body
   background-repeat: repeat-y
   a
     text-decoration: none
+  .features
+    display: none
 
 
 .push 
@@ -80,28 +82,39 @@ h1.logo:first-letter
     font-weight: bold
   ul
     +horizontal-list(false)
-    padding-left: $l_str_margin
-
+    margin-left: $l_str_margin
+    width: $l_str_width * 5
+    // font-family: 'Dosis', sans-serif
+    // font-size: 0.9em
+    // &:before
+    //   content: "."
+    //   text-indent: -9999px
+    //   display: block
+    //   height: 2em
+    //   margin-bottom: -2em
+    //   background-color: rgba(0,0,0,0.1)
+      // +box-shadow(0px 0px 0px 3px rgba(0,0,0,.1))
     li
       width: 100px
       height: 340px
       position: relative
       text-align: center
-
     em
-      font-family: 'Dosis', sans-serif
+
       display: block
       position: relative
       width: 100%
-      font-size: 0.9em
-      color: #000
       height: $banner_label_height
-      font-style: normal
-      font-weight: 400
       margin: 3em 0 1em 0
       line-height: $banner_label_height
+      font-family: 'Dosis', sans-serif
+      font-size: 0.85em
+      font-style: normal
+      font-weight: 400
       text-align: center
       text-transform: uppercase
+      color: #222
+      
     i
       background: #FAFAFA
       +border-radius(1.5em)
@@ -111,11 +124,10 @@ h1.logo:first-letter
       width: 2.5em
     
     @for $i from 1 through 5
-      // $stripe_label: lightness(nth($active_palette,$i))/2
       $stripe_label: lightness(nth($active_palette,(6-$i)))*0.4
       li:nth-child(#{$i}) em
-        // background-color: lighten(nth($active_palette,$i),7)
-        background-color: desaturate(lighten(nth($active_palette,$i),$stripe_label),20%)
+        background-color: lighten(nth($active_palette,$i),$stripe_label)
+  
   .page-title
     font-size: 600%
     font-weight: bold
@@ -130,7 +142,7 @@ h1.logo:first-letter
 #apply-sign-in
   padding: 10px 0
   min-height: 37px
-  background-color: none
+  +box-shadow(3px 3px 0 rgba(0,0,0,.1))
 
 #apply
   padding: 10px 0
@@ -143,6 +155,7 @@ h1.logo:first-letter
     .input-append
       display: block
       margin-bottom: 0
+      margin-top: 40px
       input
         -moz-box-sizing: border-box
         width: 46%
@@ -160,7 +173,6 @@ h1.logo:first-letter
 
 .btn
   background: none repeat scroll 0 0 #2F9FE6
-  +text-shadow(none)
   color: #FFFFFF
   width: 15%
   height: 25px
@@ -196,7 +208,7 @@ h1.logo:first-letter
   height: auto
   clear: both
   overflow: auto
-  min-height: 100%
+  min-height: 40px
   h2
     padding: 40px 0
 
@@ -227,16 +239,15 @@ h1.logo:first-letter
     color: #111
     font-weight: bold
 
-
+// Browser updates page
+.information
+  background-color: rgba(255, 255, 255, 0.698)
+  border: 1px solid #EAEAEA
+  padding: 2em
+  .step-1
+    border-right: 1px dotted #CCCCCC
+  
 //RESPONSIVE
-// Phones veritcal
-@media (max-width: 479px)
-  h1.logo
-    font-size: 4em
-    margin-bottom: 30px
-  p.offset1
-    display: none
-
 // Landscape phones and down
 @media (max-width: 767px)
 
@@ -256,6 +267,7 @@ h1.logo:first-letter
 
 // All Tablets and down
 @media (max-width: 1024px)
+
   .row-fluid
     .stripes,
     .computer
@@ -293,8 +305,6 @@ h1.logo:first-letter
   .help-block
     margin-left: -38%
 
-  #header .row-fluid div:nth-child(2)
-    padding-left: 25px
 
 // Especial size for the header with stripes
 @media (max-width: 1075px)
@@ -312,18 +322,8 @@ h1.logo:first-letter
   #header ul li
     width: 94px
 
-  .row-fluid
-    .stripes
-      min-width: 500px
 
-
-// Especial size min-width stripes
-@media (min-width: 1076px)
-
-  .row-fluid
-    .stripes
-      min-width: 525px
-
+// Especial size for help div margin
 @media (min-width: 1199px)
   .help-block
     margin-left: -44%

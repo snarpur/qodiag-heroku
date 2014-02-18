@@ -28,8 +28,6 @@ Snarpur::Application.configure do
     :authentication => :plain,
 }
 
-
-
   #Paperclip
   Paperclip.options[:command_path] = "/usr/bin/"
   

@@ -1,0 +1,61 @@
+es:
+  surveys:
+    dass:
+      name: "DASS"
+      questions:
+        -
+        - Me costó mucho relajarme. 
+        - Me di cuenta que tenia la boca seca. 
+        - No podía sentir ningún sentimiento positivo. 
+        - Se me hizo difícil respirar. 
+        - Se me hizo difícil tomar la iniciativa para hacer cosas.
+        - Reaccioné exageradamente en ciertas situaciones. 
+        - Sentí que mis manos temblaban. 
+        - Sentí que tenia muchos nervios.
+        - Estaba preocupado por situaciones en las cuales podía tener pánico o en las que podría hacer el ridículo. 
+        - Sentí que no tenia nada por que vivir. 
+        - Noté que me agitaba.
+        - Se me hizo difícil relajarme.
+        - Me sentí triste y deprimido.
+        - No toleré nada que no me permitiera continuar con lo que estaba haciendo.
+        - Sentí que estaba al punto de pánico.
+        - No me pude entusiasmar por nada.
+        - Sentí que valía muy poco como persona.
+        - Sentí que estaba muy irritable.
+        - Sentí los latidos de mi corazón a pesar de no haber hecho ningún esfuerzo físico.
+        - Tuve miedo sin razón.
+        - Sentí que la vida no tenia ningún sentido.
+        - Mér fannst erfitt að ná mér niður*.
+        - Ég átti erfitt með að kyngja*.
+        - No sentí placer por las cosas que estaba haciendo.
+        - Ég varð var við hjartsláttinn í mér þó ég hefði ekki reynt á mig (t.d.hraðari hjartsláttur, hjartað sleppti úr slagi)*.
+        - Estuve triste y deprimido/a
+        - Me sentí muy molesto/a, enfadado/a
+        - Me sentí aterrorizado/a
+        - Me resultó dificil calmarme cuando algo me molestaba.
+        - Ég var hrædd(ur) um að „klikka á“ smávægilegu verki sem ég var ekki kunnug(ur)*.
+        - No me interesé por nada.
+        - Me costó tolerar las interrupciones sobre lo que estaba haciendo.
+        - Estuve muy nervioso/a.
+        - Me sentí casi sin valor.
+        - Me alteraba cuando algo me impedía continuar con lo que estaba haciendo.
+        - Tuve miedo
+        - No vi nada en el futuro que me diera esperanza.
+        - Me pareció que la vida no tenía sentido.
+        - Estaba irritado/a
+        - Esta preocupado/a por las situaciones en las que tuve una crisis de ansiedad(pánco) y hacer el ridículo
+        - Me sentía débil(p.e. las manos).
+        - Mér fannst erfitt að hleypa í mig krafti til að gera hluti*.
+      answers:
+        - Nada aplicable a mí
+        - Aplicable a mí en algún grado, o una pequeña parte del tiempo
+        - Aplicable a mí en un grado considerable, o una buena parte del tiempo
+        - Muy aplicable a mí, o aplicable la mayor parte del tiempo
+      terms:
+        depression: depresión
+        stress: "stress"
+        anxiety: "ansiedad"
+        normal: normal
+        moderate: moderado
+        severe: severo
+        extremely_severe: extremadamente severo

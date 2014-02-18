@@ -1,0 +1,5 @@
+es:
+  role:
+    super_admin: "Super admin"
+    caretaker: "Cuidador/Asistente*"
+    client: "Paciente"

@@ -1,4 +1,4 @@
-Stillingar
+<%= @t("terms.setup") %>
 
 
   

@@ -41,7 +41,7 @@
     buttonsConfig:->
       options =
         modal: true
-        title: "Senda nýja beiðni"
+        title: I18n.t("views.responder_items.requests.submit")
         formClass: "form-horizontal"
       options
 

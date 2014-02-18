@@ -1,4 +1,4 @@
-=content_for :content_title, "Skjólstæðingar"
+=content_for :content_title, t('terms.client', :count => 2)
 =content_for :subject_content do
   =render "shared/content_title"
 
@@ -8,20 +8,26 @@
       %input{:type => 'text', :id => 'patient-search', :class => 'search-input'}
 
   %li{:class => 'right'}
-    =link_to content_tag(:span, '', :class => 'icon-user-add' ) + "Skrá skjólstæðing", new_invitation_item_path, :class => 'button prime'
-
-
+    %div{:class => 'dropdown btn-group'}
+      =link_to content_tag(:span, '', :class => 'icon-user-add' ) + t('actions.invite_clients'), "#", :class => 'dropdown-toggle button prime', :data => {:toggle=>"dropdown"}
+      %ul{:class => 'dropdown-menu'}
+        %li
+          =link_to t('actions.minor'), new_invitation_item_path
+        %li
+          =link_to t('actions.adult'), invitation_items_path+"/invite/subject"
 
 
 %table.table
   %thead
     %tr
       %th
-        Nafn
+        = t('person.name')
       %th{:class => 'small'}
-        Óklárðar beiðnir
+        = t('views.users.content.uncompleted_requests')
       %th{:class => 'small'}
-        Útrunnar beiðnir
+        = t('views.users.content.completed_requests')
+      %th{:class => 'small'}
+        = t('views.users.content.login_as')
   %tbody
     -@patients.each do |p|
       %tr
@@ -37,3 +43,8 @@
           - unless o.zero?
             %span
               = o
+        %td{:class => 'center login'}
+          -unless p.list_respondents.size.zero?
+            %a{:href => login_as_path(p.list_respondents.first)}
+              %span.icon-user
+              %span.icon-share-alt      

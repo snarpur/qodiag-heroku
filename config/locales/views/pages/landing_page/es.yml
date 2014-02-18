@@ -1,0 +1,30 @@
+es:
+  views:
+    landing_page:
+      content:
+        features:
+          -
+            title: "Dream it!"
+            subtitle: "Aliquet amet nascetur"
+            description: "Snarpur er nýsköpunarverkefni þar sem unnið er að þróun hugbúnaðar sem auðveldar söfnun og úrvinnslu gagna í klínísku starfi sérfræðinga sem taka sér skjólstæðinga til meðferðar s.s. lækna, sálfræðinga og félagsráðgjafa."
+          -
+            title: "Dream it!"
+            subtitle: "Aliquet amet nascetur"
+            description: "Snarpur er nýsköpunarverkefni þar sem unnið er að þróun hugbúnaðar sem auðveldar söfnun og úrvinnslu gagna í klínísku starfi sérfræðinga sem taka sér skjólstæðinga til meðferðar s.s. lækna, sálfræðinga og félagsráðgjafa."  
+          -
+            title: "Dream it!"
+            subtitle: "Aliquet amet nascetur"
+            description: "Snarpur er nýsköpunarverkefni þar sem unnið er að þróun hugbúnaðar sem auðveldar söfnun og úrvinnslu gagna í klínísku starfi sérfræðinga sem taka sér skjólstæðinga til meðferðar s.s. lækna, sálfræðinga og félagsráðgjafa."    
+      partial:
+        apply:
+          express_interest: "Regístrate para recibir las noticias del proyecto."
+        footer:
+          copyright: "Todos los derecho reservados"
+        header:
+          stripes:
+            - "Staðlaðir listar*"
+            - "Cuestionarios"
+            - "Comunicación"
+            - "Estadísticas*"
+            - "Seguridad" 
+          sub_header: "Facilita la recogida y el análisis de los datos clínicos."   

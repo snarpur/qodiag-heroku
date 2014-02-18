@@ -39,7 +39,7 @@ class App.Views.FormRenderer extends Backbone.View
         else
           view.model.nextStep()
       error:(model, response) ->
-        throw  "could not save #{model} error"
+        throw  I18n.t("marionette.errors.model_not_saved", model: model)
 
   
 

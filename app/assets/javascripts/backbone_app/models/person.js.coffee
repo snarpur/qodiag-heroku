@@ -67,7 +67,7 @@ class App.Models.Person extends App.Models.Base
           if _.isFunction(address.set)
             address.set(response, {formUpdate: true})
         error:(model, xhr, options) ->
-          throw "error in Person:getCprFields"
+          throw I18n.t("marionette.errors.error_in_function", function: "Person:getCprFields")
 
   
   commonAddressCallbacks:=>
@@ -78,7 +78,7 @@ class App.Models.Person extends App.Models.Base
         model.disableFields()
         thisModel.set('address_id',model.get('id'))
       error:(model, xhr, options) ->
-        throw "error in Person:commonAddressCallbacks"
+        throw I18n.t("marionette.errors.error_in_function", function: "Person:commonAddressCallbacks")
 
   separateAddressCallbacks:=>
     thisModel = @
@@ -89,7 +89,7 @@ class App.Models.Person extends App.Models.Base
         thisModel.set('address_id',model.get('id'))
         model.enableFields()
       error:(model, xhr, options) ->
-        throw "error in Person:separateAddressCallbacks"
+        throw I18n.t("marionette.errors.error_in_function", function: "Person:separateAddressCallbacks")
 
 
 

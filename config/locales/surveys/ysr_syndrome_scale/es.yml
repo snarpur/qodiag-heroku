@@ -1,0 +1,138 @@
+is:
+  surveys:
+    ysr-syndrome-scale:
+      name: "Autoinforme para jóvenes(YSR)"
+      terms:
+        clinical: por encima del límite
+        borderline: en el límite
+        raw_score_mean: promedio
+        other_problems: otros problemas
+        aggressive_behaviour: comportamiento agresivo
+        rule_breaking_behaviour: desobediencia
+        attention_problems: problemas de atención
+        thought_problems: problemas para pensar*
+        somatic_complaints: malestar somático
+        withdrawn_or_depressed: depresión
+        anxious_or_depressed: ansiedad/ depresión
+        social_problems: problemas sociales
+        externalizing: problemas de comportamiento (externos)
+        internalizing: aislamiento
+        total: total
+      questions:
+        - 
+        - Tengo una actitud infantil para mi edad
+        - Bebo alcohol sin consentimiento de mis padres
+        - Discuto mucho
+        - No termino los proyectos que empiezo
+        - Það er fátt sem ég hef ánægju af*
+        - Me encantan los animales
+        - Soy orgulloso, sjálfhælin(n)*
+        - Me resulta difícil concentrarme
+        - No puedo dejar de pensar ciertos pensamientos / obsesión
+        - Me resulta difícil estar quieto
+        - Soy demasiado dependiente de los adultos
+        - Me siento solo
+        - Me siento confundido o desorientado
+        - Lloro mucho
+        - Soy bastante honesto
+        - Ég er vondur við aðra*
+        - A menudo siento como si estuviera en las nubes
+        - Intencionadamente he tratado de lastimarme y de matarme*
+        - Trato de llamar la atención
+        - Ég eyðilegg eigin eigur*
+        - Destruyo las propiedades de otros
+        - No obedezco a mis padres
+        - No obedezco en la escuela
+        - No como lo suficiente para mi edad
+        - Me llevo bien con otros niños
+        - No me siento culpable después de hacer algo que no debería hacer
+        - Tengo celos de los demás
+        - Rompo las reglas en el hogar, la escuela o en otros lugares
+        - Ég hræðist sum dýr, aðstæður eða staði annað en skóla (lýstu)*
+        - Tengo miedo de ir a la escuela
+        - Tengo miedo de pensar o hacer algo malo
+        - Soy perfeccionista
+        - Siento que nadie me quiere
+        - Mér finnst aðrir ofsækja mig*
+        - Me siento inferior a los demás
+        - Me lastimo a menudo de manera accidental
+        - Me peleo mucho
+        - Hago muchas burlas
+        - Me junto con jóvenes que se meten en problemas
+        - A menudo oigo sonidos o voces que otras personas no parecen escuchar
+        - A menudo hago cosas sin pensar
+        - Prefiero estar solo a estar con otras personas
+        - Miento o engaño
+        - Me muerdo las uñas
+        - A menudo me siento nervioso o excitado
+        - Hlutar líkama míns kippast til eða ég fæ taugaviprur/kæki (lýstu)* Tengo convulsiones
+        - Tego pesadillas
+        - A otros niños no les gusta estar conmigo
+        - Puedo hacer ciertas cosas mejor que la mayoría de los demás
+        - Tengo mucho miedo o ansiedad
+        - Me mareo
+        - Me siento culpable
+        - Como demasiado
+        - Me siento cansado/a
+        - Estoy gordo/a
+        - Tengo problemas físicos sin explicación médica
+        - Ég ræðst (líkamlega) á annað fólk*
+        - Ég kroppa í húð eða aðra líkamshluta (lýstu)* (Me araño la piel u otras partes del cuerpo)
+        - Puedo ser amable
+        - Me gusta probar cosas nuevas
+        - Tengo dificultades para aprender
+        - Tengo una mala coordinación, soy torpe
+        - Prefiero estar con niños mayores que con mis compañeros
+        - Prefiero estar con niños menores que estar con mis compañeros
+        - Me niego a hablar
+        - Repito ciertas conductas una y otra vez, (lýstu)
+        - Ég strýk að heiman*
+        - Grito mucho
+        - Ég er dul(ur) og pukrast með hlutina*
+        - Veo cosas que otros no son capaces de ver (lýstu)
+        - Soy tímido*
+        - Ég kveiki í*
+        - Tengo facilidad para los trabajos manuales
+        - Hago el payaso para atraer la atención hacia mi
+        - Soy demasiado tímido
+        - Duermo menos que la mayoría de la gente
+        - Duermo más que la mayoría de la gente de día o de noche (lýstu)
+        - Me resulta difícil concentrarme y piero la concentración muy fácilmente
+        - Tengo dificultad para hablar o comunicarme (lýstu)
+        - Ég stend á rétti mínum * (Soy inquieto)
+        - Robo en casa
+        - Robo en otros lugares fuera de mi casa (lýstu)
+        - Ég safna að mér drasli sem ég hef enga þörf fyrir (lýstu)*
+        - Tengo comportamientos que para otras personas resultan extrañas (lýstu)
+        - Pienso cosas que para otras personas resultan extrañas (lýstu)
+        - Soy terco/a
+        - Tengo cambios de estado de ánimo repentinos
+        - Me gusta estar con otras personas
+        - Soy cínico/a
+        - Ég blóta eða klæmist*
+        - He pensado en suicidarme
+        - Me gusta hacer reir a los demás
+        - Hablo demasiado
+        - Soy muy travieso/a
+        - Tengo mucho temparamento
+        - Ég hugsa of mikið um kynferðismál*
+        - Odio hacer daño a la gente
+        - Me gusta ayudar a los demás
+        - Fumo (uso oral o inhalado)
+        - Tengo problemas para dormir (lýstu)
+        - Me salto las clases en la escuela eða sleppi úr tímum*
+        - No tengo paciencia
+        - Me siento infeliz, triste y deprimido
+        - Soy más fuerte que otros niños
+        - Tomos drogas o medicamentos no preescritos (no se incluye el tabaco o el alcohol) (lýstu)
+        - Trato de ser justo/a con los demás
+        - Me gusta gastar bromas
+        - Me tomo la vida a la ligera
+        - Me gusta ayudar a otras personas cuando lo necesitan
+        - Me gustaría ser del sexo opuesto
+        - Trato de no relacionarme con otras personas
+        - Me preocupo a menudo
+      answers:
+        - No es cierto
+        - Un poco cierto
+        - Absolutamiente cierto

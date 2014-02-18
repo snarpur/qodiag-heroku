@@ -9,7 +9,9 @@ is:
         impulsivity_hyperactivity: "ofvirkni/hvatvísi"
         total: "heildarskor"
         standard_deviation_from_average: "s frá m"
+        age: Veldu aldur
       questions:
+        -
         - Hugar illa að smáatriðum og gerir fljótfærnislegar villur á skólaverkefnum.
         - Er mikið með hendur og fætur á hreyfingu eða iðar í sæti.
         - Á erfitt með að halda athygli vakandi við verkefni eða leiki.

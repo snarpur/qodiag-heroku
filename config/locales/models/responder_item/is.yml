@@ -1,0 +1,21 @@
+is:
+  responder_item:
+    deadline: "Skilafrestur"
+    respondent: "Viðtakenda"
+    entry_set: "Eyðublað"
+    registration: "Skráning"
+    registrations: "Skráningar"
+    registration_items:
+      client_registration: "Nýskráning"
+    survey_items:
+      hsq-r: "W.B. Þunglyndismælikvarði"
+      quiz: "Svefnskráning"
+      rating-scale: "ADHD Rating Scale"
+    status:
+      completed: "Búið að svara"
+      uncompleted: "Á eftir að svara"
+    headers:
+      name: "Heiti"
+      patient: "Varðar"
+      due_date: "Skiladagur"
+    

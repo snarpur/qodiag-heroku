@@ -1,14 +1,13 @@
 <div class="span4 well">
   <div class="row">
     <div class="span2 text-center pagination-center">
-        <img class="avatar" src="/avatars/medium/male.png" alt="No parent found">
+        <img class="avatar" src="/avatars/thumb/male.png" alt="<%= @t("views.profiles.parent_not_found") %>">
     </div>
     <div class="span2">
-      <br/><br/>
-      <p><h4 class="muted">Parent not found</h4></p>
+      <p><h4 class="muted"><%= @t("views.profiles.parent_not_found") %></h4></p>
       <p></p>
       <p>
-        <button class="btn btn-info add-guardian">Add other parent</button>
+        <button class="btn btn-info add-guardian"><%= @t("actions.add_parent") %></button>
       </p>
     </div>
   </div>

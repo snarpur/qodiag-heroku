@@ -18,9 +18,7 @@
 
       entries = model.getSectionEntryFields()
 
-      #App.execute "when:fetched",entries, =>
       view = @getEntriesView(entries,model)
-      #model.collection.trigger("fields:fetched")
 
 
       @listenTo view, "section:entries:updated", (options) =>
@@ -39,9 +37,7 @@
         model.saveEntryFields()
         
       @listenTo model, "updated", =>
-        toastr.success("Skref #{model.get('name')} hefur verið vistað")
-
-    
+        toastr.success(I18n.t("activerecord.sucess.messages.saved",model: model.get('name')))
 
     getEntriesView:(entries,section)->
       entriesView = new List.Fields

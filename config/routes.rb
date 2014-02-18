@@ -37,7 +37,11 @@ Snarpur::Application.routes.draw do
     get "invitation/edit" => 'devise/invitations#edit', :as => :accept_user_invitation
     put "invitation/update" => 'devise/invitations#update', :as => :user_confirmation
     get 'users', :to => 'users#show', :as => :user_root # Rails 3
+
   end
+
+  match 'user/login_as/:id' => 'devise/switch_users#login_as', :as => :login_as, :via => :get
+  match 'user/logout_as/:id' => 'devise/switch_users#logout_as', :as => :logout_as, :via => :get
 
   namespace :admin do
     resources :users
@@ -87,6 +91,11 @@ Snarpur::Application.routes.draw do
   match "pre_registrations/:id(/step/:step_no)" => 'pre_registrations#update',:defaults => {:step_no => 1}, :via => :put
   #REFACTOR: change match to memeber
   resources :responder_items, :path => 'invitation_items', :as => :invitation_items , :controller => "invitation_items" 
+  #NOTE: Add by Ata, in order to diferentiate if we are inviting a guardian or a subject
+  match "invitation_items/(invite/:type)" => 'invitation_items#new',:defaults => {:type => "guardian"}, :via => :get
+  match "invitation_items(/invite/:type/step/:step_no)" => 'invitation_items#create',:defaults => {:step_no => 1, :type => "guardian"}, :via => :post
+  match "invitation_items/:id(/invite/:type/step/:step_no)" => 'invitation_items#show',:defaults => {:step_no => 1,:type => "guardian"}, :via => :get
+
   match "invitation_items/:id(/step/:step_no)" => 'invitation_items#show',:defaults => {:step_no => 1}, :via => :get
   match "invitation_items(/step/:step_no)" => 'invitation_items#create',:defaults => {:step_no => 1}, :via => :post
   match "invitation_items/:id(/step/:step_no)" => 'invitation_items#update',:defaults => {:step_no => 1}, :via => :put
@@ -102,6 +111,7 @@ Snarpur::Application.routes.draw do
   match 'people/:subject_id/history' => 'people#history'
   match 'people/:subject_id/information' => 'people#information'
   match 'people/:id/image_upload' => 'people#image_upload', :via => :put , :as => :image_upload
+  
 
   
   # match 'pre_registrations/edit/step/:step_no/:id' => 'pre_registrations#edit',:defaults => { :step_no => 1}, :via => [:get], :as => :pre_registration_step

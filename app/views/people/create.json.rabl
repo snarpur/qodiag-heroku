@@ -7,7 +7,7 @@ node do |p|
    :image_url_medium => p.avatar.url(:medium),
    :image_url_large => p.avatar.url(:large)}
 end
-child(:address){ attributes :id,:street_1, :town}
+child(:address){ attributes :id, :street_1, :street_2, :zip_code, :town, :country, :home_phone, :phone}
 node :respondents do |u|
   @person.respondents.map do |r|
     {:id => r.id, :firstname => r.firstname, :lastname => r.lastname}

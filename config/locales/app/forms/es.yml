@@ -1,0 +1,36 @@
+es:
+  forms:
+    full_siblings: "Hermanos"
+    half_siblings: "Hermanastros"
+    inverse_half_siblings: "Hálf systkin - Börn hins foreldris*"
+    foster_siblings: "Hermanos adoptivos"
+    relations: "Relaciones"
+    information_from_national_registry: "Información del Registro Nacional"
+    personal_info: Información personal
+    personal_info_parent1: Información personal del padre/madre
+    personal_info_parent2: Información personal del padre/madre
+    address_info: Heimilisfang
+    parent_guardian: "Padres/Tutores"
+    client: "paciente"
+    guardian_invitation:
+      name: "Solicitud de inscripción"
+      steps:
+        guardian_info: "Padre/Tutor"
+        patient_info: "Información del paciente"
+    respondent_registration:
+      name: "Información básica"
+      steps:
+        contact_info: "Datos de contacto (teléfono, dirección, etc.)"
+        subject_parent: "Padre/madre"
+    pre_registration_as_guardian_and_parent:
+      steps:
+        subject: Paciente
+        contact_info: Datos de contacto del paciente
+        subject_parent: Padres del paciente
+        subject_siblings: Hermanos del paciente
+    pre_registration_as_guardian:
+      steps:
+        subject: Paciente
+        contact_info: Datos de contacto del paciente
+        subject_parent: Padres del paciente
+        subject_siblings: Hermanos del paciente

@@ -1,0 +1,11 @@
+is:
+  relationship:
+    is_parent: "Forráðamaður er foreldri"
+    is_guardian: "Er forræðishafi skjólstæðings"
+    not_guardian: "Er ekki forræðishafi"
+    not_spouse: "Fyrrverandi maki"
+    is_spouse: "Er núverandi maki tengiliðs"
+    spouse_start: "Samband hófst"
+    spouse_end: "Sambandi lauk"
+    guardian_start: "Tók við forræði"
+    guardian_end: "Forræði lauk"

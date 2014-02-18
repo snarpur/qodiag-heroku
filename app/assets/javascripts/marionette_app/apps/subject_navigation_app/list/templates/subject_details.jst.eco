@@ -1,4 +1,4 @@
 <h1 class="content_title">
   <img class="avatar" src="<%= @image_url_tiny %>">
   <%- @firstname %> <%- @lastname %></h1>
-<h5 class="content_title_sub"><%- @ageInYears %> ára</h5>
+<h5 class="content_title_sub"><%- @age %>  <%= @t("surveys.terms.age") %></h5>

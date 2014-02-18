@@ -1,0 +1,7 @@
+is:
+  views:
+    users:
+      content:
+        uncompleted_requests: "Óklárðar beiðnir"
+        completed_requests: "Útrunnar beiðnir"
+        login_as: "Skrá mig inn"

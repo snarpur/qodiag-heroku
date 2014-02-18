@@ -26,21 +26,26 @@
   class List.SelectItem extends App.Views.ItemView
     template: "subject_entries_app/list/_select_item"
     tagName: "option"
+    attributes:->
+      "data-attribute-id":@model.get("id")
+
+    events:
+      'select' : 'triggerSelectResponse'
+
+    triggerSelectResponse: (event)=>
+      @trigger "select:response", @ unless not @model.get("completed")?
+      
+
     templateHelpers: =>
       responseDetails:=>
        if @model.get('completed')
-        "svarað: #{moment(@model.get('completed')).format('Do MMMM YYYY')}"
+        I18n.t("terms.time_to_words.submitted") + ": #{moment(@model.get('completed')).format('Do MMMM YYYY')}"
        else if moment().isSame(moment(@model.get('deadline')),'day')
-         "skilafrestur rennur út ídag"
+         I18n.t("responder_item.deadline") + " " + I18n.t("terms.time_to_words.expires") + " " + I18n.t("terms.today")
        else
-        "skilafrestur: #{moment(@model.get('deadline')).fromNow()}"
+        I18n.t("responder_item.deadline") + ": #{moment(@model.get('deadline')).fromNow()}"
          
-   
-
-
-  
-
-
+ 
   class List.SelectItems extends App.Views.CompositeView
     template: "subject_entries_app/list/select_items"
     itemView: List.SelectItem
@@ -58,9 +63,8 @@
 
 
     triggerSelectResponse: (event)=>
-      @trigger "select:response", @children.findByIndex(event.currentTarget.selectedIndex)
+      $(event.currentTarget.options[event.currentTarget.selectedIndex]).trigger("select")
 
-  
     triggerAdd:->
       @$el.removeAttr('disabled')
 

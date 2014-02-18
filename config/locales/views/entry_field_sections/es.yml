@@ -1,0 +1,5 @@
+es:
+  views:
+    entry_field_sections:
+      list:
+        drag_and_drop: "Arrastra la pregunta aquí"

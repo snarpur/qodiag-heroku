@@ -3,6 +3,7 @@
 * infographics -> 12034
 * chart-documents -> 1908
 * worker -> 13710
+* worker-2 -> 1539
 * open-box -> 1167
 * form -> 7381
 * outlined-circle -> 12971
@@ -21,4 +22,12 @@
 * single-choice -> 835
 * group-1 -> 2554
 * patient-chart-1 -> 12258
+* clock-1 -> 1164
+* clock-2 -> 8663
+* landscape -> 5340
+* survey-1 -> 1539
+* at-sign-1 -> 12513
+* confused -> 12321
+* no-sign -> 8559
 exit ->
+

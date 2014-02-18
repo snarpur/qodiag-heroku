@@ -1,0 +1,7 @@
+is:
+  user:
+    email: "Netfang"
+    password: "Lykilorð"
+    password_confirmation: "Endurtaka lykilorð"
+    sign_in: "Innskráning"
+    forgotten_password: "Gleymt lykilorð?"

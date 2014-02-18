@@ -1,0 +1,5 @@
+is:
+  role:
+    super_admin: "Kerfisstjóri"
+    caretaker: "Starfsmaður"
+    client: "Skjólstæðingur"

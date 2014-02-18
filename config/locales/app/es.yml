@@ -1,0 +1,7 @@
+es:
+  #Navegación -------------------------------------------------------
+  navigation:
+    home: "Inicio"
+    settings: "configuración"
+  page_errors:
+      error_401: "No tiene los permisos suficientes para acceder a este recurso"

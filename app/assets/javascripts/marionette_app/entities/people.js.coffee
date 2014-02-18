@@ -23,25 +23,29 @@
     validation:
       firstname: 
         required: true
-        msg: "Vantar"
+        msg: ->
+          I18n.t("activerecord.errors.messages.blank")
       lastname: 
         required: true
-        msg: "Vantar"
+        msg: -> 
+          I18n.t("activerecord.errors.messages.blank")
       full_cpr: 
         required: true
-        msg: "Vantar"
+        msg: ->
+          I18n.t("activerecord.errors.messages.blank")
       sex: 
         required: true
-        msg: "Vantar"
+        msg: ->
+          I18n.t("activerecord.errors.messages.blank")
             
     initialize:->
       super
       @blacklist = _.keys(@defaults)
       @on "change:respondents", @setRespondents
-      @on "change:full_cpr", @ageInYears
+      # @on "change:full_cpr", @ageInYears
 
       #NOTE: We add the ageinYears to the blacklist to avoid de warning in the console
-      @blacklist.push "ageInYears"
+      # @blacklist.push "ageInYears"
 
       
     #FIX: Add 'respondents to the relations array'
@@ -49,9 +53,16 @@
       unless value instanceof Backbone.Collection
         @set('respondents',new Entities.People(value),{silent:true})
 
-    ageInYears:->
-      if !!@get('full_cpr')
-        @set("ageInYears",moment().diff(moment(@get('full_cpr').substr(0,6),"DDMMYY"),'years'))
+    # ageInYears:->
+    #   console.log "@::",@
+    #   if !!@get('age')
+    #     @get('age')
+      # if !!@get('full_cpr')
+      #   if @get('full_cpr').substr(9,1) == "9"
+      #     dateofbirth = @get('full_cpr').substr(0,4) + "19" + @get('full_cpr').substr(4,2)
+      #   else
+      #     dateofbirth = @get('full_cpr').substr(0,4) + "20" + @get('full_cpr').substr(4,2)
+      #   @set("ageInYears",moment().diff(moment(dateofbirth,"DDMMYYYY"),'years'))
 
     getParents:->
       parents = new Entities.People([])

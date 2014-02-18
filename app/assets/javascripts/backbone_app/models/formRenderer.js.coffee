@@ -29,6 +29,9 @@ class App.Models.FormRenderer extends Backbone.Model
   formModelId:=>
     @get("formModel").get("id")
 
+  subjectId:=>
+    @get("formModel").get("subject").id
+
   formTemplate:=>
     @.get('formMetaData').get('formTemplate')
   
@@ -46,11 +49,11 @@ class App.Models.FormRenderer extends Backbone.Model
 
   urlOnComplete:()->
     location = "#{window.location.protocol}//#{window.location.host}"
-    if @formTemplate().match(/invitation/)
-      subjectId = @get("formModel").get("subject").get("id")
-      "#{location}/people/#{subjectId}"
-    else if @formTemplate().match(/registration/)
-      "#{location}/users"
+    # NOTE: Temporary solution because respondent should be redirected to their respondent page, not to the patient page
+    # if @formTemplate().match(/invitation/)
+    #   "#{location}/people/#{@subjectId()}"
+    # else if @formTemplate().match(/registration/)
+    #   "#{location}/users"
 
   toJSON:=>
     @get("formModel").toJSON()
@@ -73,7 +76,7 @@ class App.Models.FormRenderer extends Backbone.Model
       success: (model,response)->  
         renderer.triggerIfComplete()
       error: (model,response)->
-        throw "ERROR delete FAILED in formRenderer.js.coffee:destroyInQueue()" 
+        throw I18n.t("marionette.errors.error_in_function", function: "formRenderer.js.coffee:destroyInQueue()")
     
     @.destructionQueue.each(((i)->
       model = @.destructionQueue.pop()

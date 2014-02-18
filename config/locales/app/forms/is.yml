@@ -17,6 +17,9 @@ is:
       steps:
         guardian_info: "Foreldri/forráðamaður"
         patient_info: "Upplýsingar um skjólstæðing"
+    subject_invitation:
+      steps:
+        patient_info: "Upplýsingar um skjólstæðing"
     respondent_registration:
       name: "Forskráning grunnupplýsinga"
       steps:

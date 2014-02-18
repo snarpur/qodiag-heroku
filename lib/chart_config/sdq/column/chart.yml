@@ -19,6 +19,11 @@ charts:
           name: total
           total: [emotional, conduct, hyperactivity_inattention, peer_problem]
     chart_config:
+      plotOptions:
+        column:
+          point:
+            events:
+              click: false
       legend:
           enabled: false
       yAxis:

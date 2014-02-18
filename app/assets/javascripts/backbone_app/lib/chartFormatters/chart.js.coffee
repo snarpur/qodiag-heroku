@@ -8,7 +8,6 @@ class App.Lib.ChartFormatters.Chart
       "xAxis.labels.formatter",
       "yAxis.labels.formatter",
       "legend.labelFormatter",
-      #"plotOptions.column.tooltip.formatter",
       "tooltip.formatter",
       "subtitle.text",
       "title.text"

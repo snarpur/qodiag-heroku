@@ -36,7 +36,7 @@ class App.Lib.ChartEvents.Drilldown extends Backbone.Model
       success: (model,response)->
        drilldown.addQuestionListToHistory(questionList)
       error: (model,response)->
-        throw "questions for #{questionGroupName} list failed "
+        throw I18n.t("surveys.messages.question_list_failed", name: questionGroupName)
     
     questionList.fetch(callbacks)
   

@@ -7,7 +7,7 @@ namespace :db do
     #db:populate_reset[reset] -- regenerates surveys, regenerates user data
     #db:populate_reset[user] -- clears users does not regenerate data, to regenerate users call  db:populate_users[some_user_name]
     
-    # !IMPORTANT national register setup (ber => bundle exec rake) => ber db:data:load_dir dir=data
+    # !IMPORTANT national register setup => bundle exec rake db:data:load_dir dir=data
 
   Rake::Task[:environment].invoke
     require 'faker'
@@ -20,8 +20,9 @@ namespace :db do
   end
 
   desc "populate database with test data for user"
-  task :populate_users, :users do |cmd, args|
-    # e.g. db:populate_users[jonni]
+  task :populate_users, :users, :patients do |cmd, args|
+    # e.g. db:populate_users[jonni,3] --> Caretaker: jonni  Numer of patients: 3
+    # e.g. db:populate_users[jonni] --> Caretaker: jonni  Numer of patients: 1
 
   Rake::Task[:environment].invoke
     puts "in the nested task"
@@ -29,19 +30,21 @@ namespace :db do
     require "#{Rails.root}/lib/util/populate_util.rb"
     users = args[:users].split(":")
     puts users.inspect
+    patients =  args[:patients].blank? ? 1 : args[:patients].to_i
+    puts patients
     pop = PopulateUtil.new
     users.each do |u|
       
       puts "createing caretaker #{u}"
       caretaker = pop.create_caretaker(u)
-      1.times do |p|
+      patients.times do |p|
         
         patient = pop.create_patient(caretaker[:person])
         parent = pop.create_parent(patient)
         people = {:caretaker => caretaker, :patient => patient, :parent => parent}
         puts "patient created - #{patient.firstname}"
         
-        1.times do |t|
+        4.times do |t|
           pop.create_requests({:people => people, :number => 5, :survey_id => t+1})
         end
         

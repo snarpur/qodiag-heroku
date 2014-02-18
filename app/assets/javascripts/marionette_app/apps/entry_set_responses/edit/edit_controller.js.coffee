@@ -14,14 +14,12 @@
 
     getSections:(options)->
       {entrySetResponseId,sectionId} = options
-      current_user = App.request "get:current:user"
-      @entrySetResponse = App.request "entry:set:response:entities", 
-                                      id: entrySetResponseId, 
-                                      personId: current_user.get('person_id')
+    
+      @entrySetResponse = App.request "entry:set:response:entities", id: entrySetResponseId
       
       App.execute "when:fetched", @entrySetResponse, =>
-        @sections = @entrySetResponse.get("entry_set").get('sections')
-
+        @sections = @entrySetResponse.get("entry_sets_sections")
+        
         if sectionId
           @sections.trigger("change:current:section", model: @sections.get(sectionId))
         
@@ -30,18 +28,17 @@
         @listenTo @sections, "change:current:section", () =>          
           App.navigate(@sectionUrl(),{replace: true})
           @getEntries()
-        
-
+  
         @getEntries()
 
+    
 
     getEntries:->
       entries = @entrySetResponse.getSectionResponses()
 
       #NOTE: We should try to remove this when-fetched in order to remove the time it takes to show the spinner
       App.execute "when:fetched", entries, =>
-        @entrySetResponse.set('entry_fields',entries)
-        window.etest = @entrySetResponse
+        @entrySetResponse.set('entry_values',entries.mergeEntryValues())
         @showForm()
 
       
@@ -49,12 +46,13 @@
     
     showFormSteps:->
       view = @getFormStepsView(collection: @sections)
-
+      
       #DELETE: When we are totally sure that the loading views works
       #@getFormStepsRegion().show view
+
       @show view,
          region: @getFormStepsRegion()
-         loading: false 
+         loading:false 
 
 
     
@@ -67,8 +65,6 @@
       @show formView,
          region: @getFormWrapperRegion()
          loading:true 
-      
-
 
       @listenTo formView, "form:back", =>
         @sections.trigger("change:current:section",{model: @sections.getPreviousSection()})
@@ -84,29 +80,35 @@
     
 
 
-
      saveAndMoveToNextSection:(formView)->
+      formView.trigger('form:submit')
       @listenToOnce @entrySetResponse, 'updated', =>
         @sections.trigger("change:current:section",model: @sections.getNextSection())
      
       
+
     triggerSuccessMessage:(formView)->
-      @entrySetResponse.set("entry_values",@entrySetResponse.getEntryValuesForSection())
       formView.trigger('form:submit')
       @listenToOnce @entrySetResponse, 'updated', =>
-        toastr.success "Færsla hefur vistast"
-        @getEntries()
+        @sections.trigger("change:current:section",model: @sections.getCurrentSection())
+        toastr.success(I18n.t("activerecord.sucess.messages.saved",model: ""))
 
-  
+    saveAsCompleteAndRedirect:(formView) ->
+      @entrySetResponse.set("complete_item",1)
+      formView.trigger('form:submit')
+      @listenToOnce @entrySetResponse, 'updated', =>
+        App.navigate "/items", {trigger: true}
+        toastr.success(I18n.t("activerecord.sucess.messages.saved",model: ""))
+
     getFormStepsView:(options)->
       new Edit.FormSteps _.extend options
 
 
     
     getFormView:->
-      new Edit.EntryFields 
-        collection: @entrySetResponse.get('entry_fields')
-        model: @entrySetResponse 
+      new Edit.EntryValues 
+        collection: @entrySetResponse.get('entry_values')
+        model: @entrySetResponse
 
 
 
@@ -119,19 +121,19 @@
       @getLayout().formWrapperRegion
 
 
-    #TODO: change strings to I18n. After we merge with Development
+    
     buttonsConfig:->
       options =
         buttons: 
-          primary: {text: 'Áfram og vista >>', buttonType: 'saveAndContinue', order: 3} 
-          save: {text: "Vista", buttonType: 'save', order: 2,  className: 'btn btn-success'} 
+          primary: {text: I18n.t("actions.save_and_continue",model: "") + " >>", buttonType: 'saveAndContinue', order: 3} 
+          save: {text: I18n.t("actions.save"), buttonType: 'save', order: 2,  className: 'btn btn-success'} 
           cancel: false
      
       if @sections.isCurrentLast()
-        options.buttons.primary = _.extend options.buttons.primary , {text: "Vista og klára", buttonType: 'saveAndComplete'}
+        options.buttons.primary = _.extend options.buttons.primary , {text: I18n.t("actions.save_and_complete"), buttonType: 'saveAndComplete'}
       
       unless @sections.isCurrentFirst() 
-        _.extend options.buttons, back: {text: "<< Tilbaka", buttonType: 'back', className: "btn",order: 1}
+        _.extend options.buttons, back: {text: "<< " + I18n.t("terms.go_back"), buttonType: 'back', className: "btn",order: 1}
           
       
       options

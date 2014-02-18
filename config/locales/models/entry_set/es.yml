@@ -1,0 +1,6 @@
+es:
+  entry_set:
+    model_name: "Cuestionario"
+    model_name_accusative: "Cuestionario"
+    model_name_plural: "Cuestionarios"
+    description: "Descripción"

@@ -24,6 +24,10 @@ class ResponderItemDecorator < Draper::Decorator
     end
   end
 
+  def subject_registration_partial
+    "subject"
+  end
+
   def pre_registration_base_template
     "pre_registrations/#{model.registration_identifier}"
   end

@@ -5,10 +5,7 @@
       
     listEntrySets: (options) ->    
       App.contentRegion.show @getLayout()
-      @entrySets = App.request "entry:sets:entities"
-      
-      #App.execute "when:fetched", @entrySets, =>
-         
+      @entrySets = App.request "entry:sets:entities"   
       entrySetsView = @getEntrySetsView()
       @showEntrySets(entrySetsView)
       @executeSettingsNavigation()
@@ -47,15 +44,14 @@
     
 
     deleteFromEntrySetSections: (options) ->    
-      bootbox.confirm "Ertu viss um að þú viljir eyða eyðublaði #{options.model.get('name')}", (result) ->
+      bootbox.confirm I18n.t("activerecord.confirm.messages.deleted", model: options.model.get('name')), (result) ->
         if result
           options.model.destroy()
           window.location.href = "/#settings/entry_sets"
 
     
     confirmDelete:(view)->
-
-      bootbox.confirm "Ertu viss um að þú viljir eyða eyðublaði #{view.model.get('name')}", (result) ->
+      bootbox.confirm I18n.t("activerecord.confirm.messages.deleted", model: view.model.get('name')), (result) ->
         if result
           view.model.destroy()
 

@@ -1,1 +1,1 @@
-Dragðu spurningu hingað
+<%= @t("views.entry_field_sections.list.drag_and_drop") %>

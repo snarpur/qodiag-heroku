@@ -1,0 +1,8 @@
+-if session['last_user_id'].present?
+  .well{:class => "well-large text-center"}
+    %h1 
+      = t('views.application.partial.alert_login_as.attention')
+    %p 
+      = t('views.application.partial.alert_login_as.message')
+    %a{:class => "btn btn-large btn-info", :href => logout_as_path(session['last_user_id'])}
+      = t('terms.go_back')
