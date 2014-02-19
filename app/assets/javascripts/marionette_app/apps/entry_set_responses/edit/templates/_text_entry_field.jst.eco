@@ -1,9 +1,5 @@
 <label><%-@title%></label>
-<% if @help_text? : %>
-  <span class="help-block">
-    <%- @help_text %>
-  </span>
-<% end %>
+<span class="help-block"><%- @help_text %></span>
 <textarea class="input-xxlarge" id='<%-"text_value_#{@id}"%>'>
   <%=@entry_values.first().get('text_value')%>
 </textarea>

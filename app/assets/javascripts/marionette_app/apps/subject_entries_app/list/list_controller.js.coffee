@@ -18,6 +18,7 @@
       @showLayout @items     
 
       @items = App.request "get:person:entry:set:responder:items", options
+
       App.execute "when:fetched", @items, =>
         @showEntrySetSelect(@items)
         unless @items.size() is 0
@@ -36,6 +37,8 @@
         currentSectionId: sectionId
 
       sections = App.request "entry:set:sections:entities", options
+
+
       
       App.execute "when:fetched", sections, =>
         @showSections(sections,sections.getCurrentSection().id)

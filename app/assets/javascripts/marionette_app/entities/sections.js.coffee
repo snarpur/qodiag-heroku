@@ -30,6 +30,10 @@
       # @url = -> 
       #   Routes.entry_set_sections_path(@entrySetId)
 
+      @on "change:current:section", (options)->
+        @currentSectionId = options.model.id
+        @currentSection = options.model
+
     isCurrentSection:(section) ->
       section.id == @getCurrentSection().id
 
@@ -47,6 +51,12 @@
 
     currentDisplayNo:->
       @getCurrentSection().get('display_order')
+
+    getNextSection:->
+      @findWhere(display_order: @currentDisplayNo() + 1)
+
+    getPreviousSection:->
+      @findWhere(display_order: @currentDisplayNo() - 1)
   
   API =
     getSection:(options)->

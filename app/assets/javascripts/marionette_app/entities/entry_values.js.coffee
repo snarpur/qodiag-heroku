@@ -47,7 +47,10 @@
       else
         @add(options)
 
-      console.info "Adding values::",@models
+    selectEntryFieldOption:(options)->
+      existing = @findWhere({entry_field_option_id: options.entry_field_option_id})
+      if @size() is 0
+        @add(options)
 
     removeEntryFieldOption:(options)->
       existing = @findWhere({entry_field_option_id: options.entry_field_option_id})
@@ -55,20 +58,6 @@
         existing.set('_destroy',true)
       else
         @remove(options)
-
-      console.info "Removing values::",@models
-
-    #DELETE: sooner the better
-    # buildEntryValue:(field_id,field_option_id)->
-    #   new Entities.EntryValue
-    #     person_id: @personId
-    #     entry_set_response_id: @entrySetResponseId
-    #     entry_field_id: field_id
-
-
-  
-
-
 
   API = 
     getEntryValues:(options)->

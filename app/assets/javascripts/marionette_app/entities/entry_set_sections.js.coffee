@@ -7,7 +7,6 @@
 
 
     initialize: () ->
-      console.log "IN entry_set_sections"
       if @collection?.entrySetResponseId? or @collection?.entrySetResponse?
         @set("entrySetResponseId",@collection.entrySetResponseId ? @collection.entrySetResponse.id) 
 
@@ -18,7 +17,7 @@
           Routes.section_path(@get('id'))
     
 
-
+    #NOTE: We have to refactor, this function is repeated in Sections and EntrySetSections Entity
     getSectionEntryResponses:->
       entries = new App.Entities.EntryFields([],{})
       entries.url = Routes.entry_set_response_section_path(@get('entrySetResponseId'),@id)
@@ -81,7 +80,7 @@
     initialize:(models,options)->
       {@entrySetId,@entrySetResponse,@currentSectionId,@sectionNo} = options
 
-      @url = -> 
+      @url = ->
         Routes.entry_set_sections_path(@entrySetId)
 
       @on "change:current:section", (options)->
@@ -177,7 +176,6 @@
 
   
   App.reqres.setHandler "entry:set:sections:entities", (options) ->
-    console.warn options
     API.getSectionEntities options
 
 

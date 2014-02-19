@@ -7,6 +7,12 @@
   </div>
 </div>
 <div class="control-group">
+  <label class="control-label" for="description">Lýsing</label>
+  <div class="controls">
+    <textarea class="input-xlarge" rows="3" id="description" placeholder="Lýsing..."></textarea>
+  </div>
+</div>
+<div class="control-group">
   <div class="controls">
     <h5>Options</h5>
   </div>
@@ -19,3 +25,11 @@
     </a>
   </div>
 </div>
+<% if @hasRole('caretaker_admin'): %>
+  <div class="control-group">
+    <label class="control-label" for="visibility">Opinber?</label>
+    <div class="controls">
+      <input type="checkbox" id="visibility">        
+    </div>
+  </div>
+<% end %>
