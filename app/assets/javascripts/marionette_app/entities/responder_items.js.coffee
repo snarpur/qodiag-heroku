@@ -10,43 +10,26 @@
       {
         type: Backbone.One
         key: 'entry_set_response'
-        relatedModel: App.Entities.EntrySetResponse
+        relatedModel:-> 
+          App.Entities.EntrySetResponse
+      },
+      {
+        type: Backbone.One
+        key: 'subject'
+        relatedModel:-> 
+          App.Entities.Person
+      },
+      {
+        type: Backbone.One
+        key: 'respondent'
+        relatedModel:-> 
+          App.Entities.Person
       }
     ]
 
-    validation:
-      respondent_id: 
-        required: true
-        msg: -> 
-          I18n.t("activerecord.errors.messages.blank")
-      subject_id: 
-        required: true
-        msg: ->
-          I18n.t("activerecord.errors.messages.blank")
-      deadline: 
-        required: true
-        msg: ->
-          I18n.t("activerecord.errors.messages.blank")
-      entry_set_response:
-        required: true
-        msg: ->
-          I18n.t("activerecord.errors.messages.blank")
-        # unless @get("entry_set_response").get('entry_set_id')?          
-          # 'Vantar'
-   
-
-    labels:
-      respondent_id: ->
-        I18n.t("activerecord.errors.messages.blank")
-      entry_set_response: ->
-        I18n.t("activerecord.errors.messages.blank")
-      deadline: ->
-        I18n.t("activerecord.errors.messages.blank")
     
-    
-
-    initialize: (models,options) ->
-      super
+    # initialize: (models,options) ->
+    #   super
       #@initAttributes()
 
     #REFACTOR: change entry_set_response to relation (BackboneAcossiation) and delete initAttributes()

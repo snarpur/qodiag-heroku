@@ -28,7 +28,7 @@ class Ability
 
       can :read, Role
       can :manage, Survey 
-      can :lookup, NationalRegister
+      can [:lookup,:family], NationalRegister
 
     elsif user.role? :respondent
       can [:read,:update], User do |u|
@@ -47,7 +47,7 @@ class Ability
       end 
 
       # NOTE: Respondent should be able only to search in the National Register table when they are doing the pre_registration
-      can :lookup, NationalRegister
+      can [:lookup,:family], NationalRegister
       
     end
     #only super_admin abilities

@@ -19,6 +19,7 @@ es:
     request_survey: "Enviar encuenta"
     invite_clients: "Invitar pacientes"
     save_and_continue: "Guardar y continuar"
+    continue: "Continuar"
     save_and_complete: "Guardar y completar"
     new_list: "Crear una nueva lista"
     add_parent: "Añadir padre"

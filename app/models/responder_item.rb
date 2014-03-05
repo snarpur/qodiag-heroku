@@ -74,6 +74,14 @@ class ResponderItem < ActiveRecord::Base
     !self.entry_set_response.nil?
   end
 
+  def is_subject?
+    !self.subject.nil?
+  end
+
+  def is_respondent?
+    !self.respondent.nil?
+  end
+
   def complete_item=(is_complete)
    if is_complete.to_i == 1 && self.completed.nil?
     write_attribute :completed, Time.zone.now

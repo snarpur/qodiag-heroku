@@ -12,6 +12,28 @@ class NationalRegister < ActiveRecord::Base
     nafn.sub(lastname, '').strip
   end
 
+  def self.family(full_cpr)
+    entry = NationalRegister.find_by_kennitala(full_cpr)
+    unless entry.nil?
+      family = NationalRegister.where(:fjolskyldunumer => entry.fjolskyldunumer)
+
+      r = []
+
+      family.each do |member|
+        day = member.kennitala[0..1]
+        month = member.kennitala[2..3]
+        year = member.kennitala[4..5].to_i > 10 ? "19" << member.kennitala[4..5] : "20" << member.kennitala[4..5]
+        dob = Date.civil(year.to_i,month.to_i,day.to_i)
+        age = Date.today.strftime("%Y").to_i - dob.year
+
+        if age <= 18
+          r.push(member)
+        end
+      end
+    end
+    r
+  end
+
   def town
     require 'csv'
     csv_filepath = 'app/assets/other/postnumer.txt'

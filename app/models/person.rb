@@ -131,6 +131,10 @@ class Person < ActiveRecord::Base
     self.sex == nil
   end
 
+  def is_user?
+    !self.user.nil?
+  end
+
   attr_accessor :current_responder_item
   
   delegate :email, :is_invited?,:invite!,

@@ -89,6 +89,7 @@ Snarpur::Application.routes.draw do
   resources :responder_items, :path => 'invitation_items', :as => :invitation_items , :controller => "invitation_items" 
   #NOTE: Add by Ata, in order to diferentiate if we are inviting a guardian or a subject
   match "invitation_items/(invite/:type)" => 'invitation_items#new',:defaults => {:type => "guardian"}, :via => :get
+  match "invitation_items(/invite/:type/step/:step_no)" => 'invitation_items#new',:defaults => {:step_no => 1, :type => "guardian"}, :via => :get
   match "invitation_items(/invite/:type/step/:step_no)" => 'invitation_items#create',:defaults => {:step_no => 1, :type => "guardian"}, :via => :post
   match "invitation_items/:id(/invite/:type/step/:step_no)" => 'invitation_items#show',:defaults => {:step_no => 1,:type => "guardian"}, :via => :get
 
@@ -123,6 +124,7 @@ Snarpur::Application.routes.draw do
   # resources :national_registers, :only => [:show]
 
   get "national_registers/:kennitala" => 'national_registers#lookup', :as => :lookup
+  get "national_registers/family/:kennitala" => 'national_registers#family', :as => :family
 
   #REFACTOR: Try to pass this logic to Devise GEM
   root :to => 'application#index', constraints: lambda { |r| r.env["warden"].authenticate? }

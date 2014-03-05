@@ -1,0 +1,2 @@
+<span class="badge"><%- @step_num %></span>
+<%- @linkTo(@step_name,"") %>

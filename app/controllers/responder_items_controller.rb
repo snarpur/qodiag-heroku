@@ -2,7 +2,10 @@ require 'ostruct'
 class ResponderItemsController < ApplicationController
   # before_filter :authorize_from_params
   before_filter :create_responder_item, :only => [:new,:create], :if => :logged_in?
+  before_filter :set_role_to_respondent, :only => [:create], :if => :logged_in?
   before_filter :get_surveys, :only => [:survey] , :if => :logged_in?
+  after_filter :add_subject_as_respondent, :only => [:create]
+  # after_filter :send_email_notification, :only => [:create], prepend: true
   load_and_authorize_resource :only => [:create]
   respond_to :json
 
@@ -27,16 +30,18 @@ class ResponderItemsController < ApplicationController
   end
 
   def create
-    if @responder_item.save!
-      RequestNotice.request_survey(@responder_item).deliver
+    if @responder_item.save
+      # RequestNotice.request_survey(@responder_item).deliver
       #respond_to do |format|
         #format.json {render :json => @responder_item}
-        render "create"
+        # render "create"
+      render :json => @responder_item
       #end 
     else
       #respond_to do |format|
         #format.json {render :json => {:errors => @responder_item.errors}}
-        render :json => {:errors => @responder_item.errors}
+      # render :json => {:errors => @responder_item.errors,:status => 400}
+      respond_with @responder_item
       #end
     end
   end
@@ -85,6 +90,38 @@ class ResponderItemsController < ApplicationController
   def get_surveys
     @person = Person.find(params[:subject_id])
     @responder_items = @person.responder_items.surveys_by_id(params[:survey_id])
+  end
+
+  def is_caretaker?(responder_item)
+    (@current_user.person_id ==  @responder_item.caretaker_id)
+  end
+
+  def is_subject_registration?(responder_item)
+    (responder_item.registration_identifier.present? and responder_item.registration_identifier ==  "subject_registration")
+  end
+
+  def is_guardian_registration?(responder_item)
+    (responder_item.registration_identifier.present? and responder_item.registration_identifier ==  "respondent_registration")
+  end
+
+  def add_subject_as_respondent
+    if is_caretaker?(@responder_item) and is_subject_registration?(@responder_item)
+      @responder_item.update_attributes(:respondent_id => @responder_item.subject_id,:invite_respondent_user => true) 
+    end
+  end
+
+  def set_role_to_respondent
+    if is_subject_registration?(@responder_item)
+      @responder_item.subject.user.set_role("respondent")
+    else
+      if is_guardian_registration?(@responder_item)
+        @responder_item.respondent.user.set_role("respondent")
+      end
+    end
+  end
+
+  def send_email_notification
+    RequestNotice.request_survey(@responder_item).deliver
   end
 
   # def authorize_from_params

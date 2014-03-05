@@ -49,6 +49,7 @@ class InvitationItemsController < ApplicationController
   end
 
   def is_subject_registration?(responder_item)
+    KK.log responder_item.inspect,:r
     (responder_item.registration_identifier.present? and responder_item.registration_identifier ==  "subject_registration")
   end
 

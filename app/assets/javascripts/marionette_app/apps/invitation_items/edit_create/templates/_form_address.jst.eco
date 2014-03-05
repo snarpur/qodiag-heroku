@@ -1,0 +1,39 @@
+<div class="control-group">
+  <label><%-@t("forms.address_info")%></label><br/>            
+  <div class="control-group">
+    <label class="control-label" for="street_1"><%- @t("address.street_1") %></label>
+    <div class="controls">
+      <input class="input-xlarge" type="text" id="street_1" placeholder="<%- @t("address.street_1") %>">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="street_2"><%- @t("address.street_2") %></label>
+    <div class="controls">
+      <input class="input-xlarge" type="text" id="street_2" placeholder="<%- @t("address.street_2") %>">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="town"><%- @t("address.town") %></label>
+    <div class="controls">
+      <input class="input-xlarge" type="text" id="town" placeholder="<%- @t("address.town") %>">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="zip_code"><%- @t("address.zip_code") %></label>
+    <div class="controls">
+      <input class="input-xlarge" type="text" id="zip_code" placeholder="<%- @t("address.zip_code") %>">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="phone"><%- @t("address.phone") %></label>
+    <div class="controls">
+      <input class="input-xlarge" type="text" id="phone" placeholder="<%- @t("address.phone") %>">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="home_phone"><%- @t("address.home_phone") %></label>
+    <div class="controls">
+      <input class="input-xlarge" type="text" id="home_phone" placeholder="<%- @t("address.home_phone") %>">
+    </div>
+  </div>
+</div> 

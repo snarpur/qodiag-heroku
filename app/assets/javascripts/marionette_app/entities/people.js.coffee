@@ -7,7 +7,22 @@
       {
         type: Backbone.One
         key: 'address'
-        relatedModel: App.Entities.Address
+        relatedModel: ->
+          App.Entities.Address
+      },
+      {
+        type: Backbone.One
+        key: 'user'
+        # relatedModel: App.Entities.User 
+        relatedModel:->
+          App.Entities.User
+      },
+      {
+        type: Backbone.Many
+        key: 'inverse_relationships'
+        # relatedModel: App.Entities.User 
+        relatedModel:->
+          App.Entities.Relationship
       }
     ]
     nestedAttributeList: ['relationships']
@@ -20,26 +35,27 @@
       "image_url_large":  "/assets/avatars/large/male.png"
     }
 
-    validation:
-      firstname: 
-        required: true
-        msg: ->
-          I18n.t("activerecord.errors.messages.blank")
-      lastname: 
-        required: true
-        msg: -> 
-          I18n.t("activerecord.errors.messages.blank")
-      full_cpr: 
-        required: true
-        msg: ->
-          I18n.t("activerecord.errors.messages.blank")
-      sex: 
-        required: true
-        msg: ->
-          I18n.t("activerecord.errors.messages.blank")
+    # validation:
+    #   firstname: 
+    #     required: true
+    #     msg: ->
+    #       I18n.t("activerecord.errors.messages.blank")
+    #   lastname: 
+    #     required: true
+    #     msg: -> 
+    #       I18n.t("activerecord.errors.messages.blank")
+    #   full_cpr: 
+    #     required: true
+    #     msg: ->
+    #       I18n.t("activerecord.errors.messages.blank")
+    #   sex: 
+    #     required: true
+    #     msg: ->
+    #       I18n.t("activerecord.errors.messages.blank")
             
     initialize:->
       super
+      # @relations[1] = {type: Backbone.One, key: 'user', relatedModel: App.Entities.User}
       @blacklist = _.keys(@defaults)
       @on "change:respondents", @setRespondents
       # @on "change:full_cpr", @ageInYears

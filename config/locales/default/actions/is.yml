@@ -19,6 +19,7 @@ is:
     request_survey: "Senda spurningalista"
     invite_clients: "Skrá skjólstæðing"
     save_and_continue: "Áfram og vista"
+    continue: "Áfram"
     save_and_complete: "Vista og klára"
     new_list: "Búa til nýjan lista"
     add_parent: "Skrá foreldri"

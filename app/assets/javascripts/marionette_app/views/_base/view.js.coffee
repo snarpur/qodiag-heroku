@@ -40,6 +40,9 @@
         @templateHelpers = ()-> 
           _.extend(instanceHelpers(),_.pick(Marionette.View::templateHelpers(),helpers...))
 
+
+    modelEvents: {}
+
     templateHelpers: ->
         
       routeTo:

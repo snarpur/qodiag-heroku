@@ -6,4 +6,7 @@
 
     initialize: ->
       @extendTemplateHelpers(@templateHelpers)
+
+    changeErrors: ->
+      
       

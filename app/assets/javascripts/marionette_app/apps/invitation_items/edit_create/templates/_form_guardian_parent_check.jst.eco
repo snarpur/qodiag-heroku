@@ -1,0 +1,8 @@
+<div class="control-group">
+  <div class="controls">
+    <label class="radio">
+      <input type="checkbox" class="is_parent" name="is_parent" value="yes">
+      <%- @t("relationship.is_parent") %>
+    </label>
+  </div>
+</div>

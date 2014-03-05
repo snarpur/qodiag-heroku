@@ -6,4 +6,8 @@ class NationalRegistersController < ApplicationController
   def lookup
     @person = NationalRegister.find_by_kennitala(params[:kennitala])
   end
+
+  def family
+    @national_registers = NationalRegister.family(params[:kennitala])
+  end
 end

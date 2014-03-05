@@ -42,7 +42,6 @@
 			@trigger("form:cancel")
 
 		modelEvents:
-			"change:_errors" 	: "changeErrors"
 			"sync:start"			:	"syncStart"
 			"sync:stop"				:	"syncStop"
 		

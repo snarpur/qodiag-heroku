@@ -1,0 +1,16 @@
+<div class="control-group">
+  <label><%-@t("forms.information_from_national_registry")%></label><br/>            
+  <div class="control-group">
+    <div class="controls">
+      <select id="family" class="input-xlarge">
+        <option value="">--</option>
+          <% if @children()?: %>
+          <% for child in @children(): %>
+            <option value="<%= child.get('full_cpr') %>"><%= child.get("firstname") + " " + child.get("lastname") %></option>
+          <% end %>
+      <% end %>
+      </select><br/>
+      <span class="help-block"><%-@t("forms.family_from_national_registry")%> </span>
+    </div>
+  </div>
+</div>
