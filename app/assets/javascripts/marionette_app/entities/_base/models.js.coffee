@@ -10,6 +10,7 @@ do (Backbone) ->
     nestedAttributeList: []
     blacklist:[]
     validation: {}
+    nestedErrors:{}
     
 
     initialize:->
@@ -21,52 +22,23 @@ do (Backbone) ->
       #Validation
       #@validateOnChange()
       
-      # @on("validated",()->
-      #   @nestedErrors = null
-      #   @unset("_nested_errors")
-      #   nested = _.pluck @relations, "key"
-      #   console.log "nested::",nested
-      #   _.each nested, (val) =>
-      #     if @get(val)?
-      #       if not @get(val).models?
-      #       #   _.each @get(val).models, (val) =>
-      #       #     # val.validate()
-      #       #    val.set("_nested_errors",val.isValid(true))
-      #       # else
-      #         # @get(val).validate()
-      #         # # _.extend @get("_errors"), @get(val).get("errors")
-      #         # @set("is_valid",@get(val).validate()?)
-      #         nestedValid = @get(val).isValid(true)
-      #         @nestedErrors = if nestedValid == false then true 
-        
-      #   @set("_nested_errors",@nestedErrors)
-      #   console.log "model::",@
-      #   console.log "_nested_errors::",@get("_nested_errors")
-      #   console.log "_errors::",@get("_errors")
-      # )
-      
       @on("validated",()->
-        if not @get("_checked")
-          nested = _.pluck @relations, "key"
-          if nested.length == 0
-            @set("_nested_errors",@isValid(true))
-            @set("_checked",true)
-          else
-            # _.each nested, (val) =>
-            for val in nested
-              if @get(val)?
-                if not @get(val).models?
-                  validNested = @get(val).isValid(true)
-                  @get(val).set("_checked",true)
-                  if validNested is false
-                    @set("_nested_errors",false)
-                    break
-            if @get("_nested_errors")?
-              @set("_nested_errors",@isValid(true))
-              @set("_checked",true)          
+        @nestedErrors = {}
+        
+        nested = _.pluck @relations, "key"
+        _.each nested, (val) =>
+          if @get(val)?
+            if @get(val).models?
+              _.each @get(val).models, (model) =>
+                _.extend @nestedErrors, model.validate()
+                # console.log "_errors::",@nestedErrors
+                console.log "collection models::",model
+            else
+              _.extend @nestedErrors,@get(val).validate()
+              # console.log "_errors::",@nestedErrors
+              console.log "submodels::",@get(val)
+        console.log "model::",@
       )
-      
-      
       
       @on("validated:valid",@onValid)
       @on("validated:invalid",@onInvalid)

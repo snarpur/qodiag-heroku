@@ -29,18 +29,55 @@
 		formSubmit: (options) ->
 			@contentView.triggerMethod("form:submit")
 			model = @contentView.model
-			model.once "change:_nested_errors",() =>
-				console.log "_nested_errors::",model.get("_nested_errors")
-				if not model.get("_nested_errors")?
-					@processFormSubmit model, collection
-			
-			model.validate()
-
-
-
 			collection = @contentView.collection
-			# errors = {}
+			model.once "validated",() =>
+				errors = {}
+				_.extend errors, model.nestedErrors
+				console.log "errors in form controller::",errors
+			
+			errors = model.validate()
+			
+			# console.log "_errors::",errors
 			# @extractErrors(model,errors)
+			# model.validate()
+			
+			# _.defer =>
+			# 	errors = {}	
+			# 	@extractErrors(model,errors)
+				
+			# model.validate()
+			
+
+			
+
+			# console.log "errors::",errors
+			# if _.isEmpty errors
+			# 		@processFormSubmit model, collection
+				# setTimeout((=> 
+				# 	@extractErrors(model,errors)),
+				# 	2000
+				# )
+				# setTimeout((-> 
+				# 	console.log "_errors",errors),
+				# 	2000
+				# )
+			# 	console.log "_nested_errors::",model.get("_nested_errors")
+			# 	# if not model.get("_nested_errors")
+			# 		# @processFormSubmit model, collection
+			
+			
+			# model.once "change:_errors",() =>
+			
+
+			
+
+			
+
+
+
+			
+			
+			
 			# _.delay(console.log(model.get("_nested_errors")), 5000)
 			# setTimeout((-> 
 			# 	console.log "_nested_errors",model.get("_nested_errors")),
@@ -48,13 +85,15 @@
 			# 	)
 			
 
-		extractErrors:(model,errors)->
+		extractErrors:(model,errors={})->
 			if model?
 				if model.models?
 					_.each model.models, (val) =>
 						@extractErrors(val,errors)
 				else
-					errors = _.extend errors, model.get("_errors")
+					model.on "change:_errors", () =>
+						errors = _.extend errors, model.get("_errors")
+						console.log "gettingErrors from::",model
 				if model.relations?
 					nested = _.pluck model.relations, "key"
 					_.each nested, (val) =>
