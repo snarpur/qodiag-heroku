@@ -22,8 +22,6 @@ class PopulateUtil
   end
 
   def reset_db(reset,file_name)
-    puts "Filename in reset db"
-    puts file_name
     self.send("#{reset}_level",file_name)
   end
 
