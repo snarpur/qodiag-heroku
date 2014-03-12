@@ -8,8 +8,9 @@ gem "ejs"
 # gem "backbone-rails"
 gem 'mysql2', '~> 0.3.7'
 gem 'json'
-gem 'devise', '>= 2.0.0'
-gem 'devise_invitable', '~> 1.0.0'
+gem "bcrypt-ruby", "~> 3.1.5"
+gem 'devise', '2.2.4'
+gem 'devise_invitable', '1.0.3'
 gem "cancan"
 gem "hpricot"
 gem "ruby_parser"
