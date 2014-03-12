@@ -184,6 +184,7 @@ GEM
     i18n (0.6.5)
     i18n-js (2.1.2)
       i18n
+    ini_file (0.0.2)
     journey (1.0.4)
     js-routes (0.9.0)
       rails (>= 3.2)
@@ -382,6 +383,7 @@ DEPENDENCIES
   hirb-unicode
   hpricot
   i18n-js
+  ini_file
   js-routes
   json
   meta_request
