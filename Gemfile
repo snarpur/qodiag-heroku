@@ -39,6 +39,7 @@ gem 'acts_as_commentable', '3.0.1'
 gem 'yaml_db'
 gem 'fontcustom'
 
+
 # Gem to show the spinner when change the view
 
 
@@ -90,8 +91,7 @@ group :development, :test do
   gem 'guard-rspec'
   gem "guard-haml"
   gem "guard-livereload"
-  gem "selenium-webdriver", "~> 2.35.1"
-  # gem "letter_opener"
+  gem "selenium-webdriver", "~> 2.35.1"  # gem "letter_opener"
 end
 
 
