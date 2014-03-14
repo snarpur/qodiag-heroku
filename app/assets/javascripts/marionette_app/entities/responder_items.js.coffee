@@ -94,6 +94,3 @@
 
   App.reqres.setHandler "get:person:entry:set:responder:items", (options) ->
     API.getEntrySetResponderItemsForPerson options
-
-
-  
