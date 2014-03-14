@@ -24,7 +24,7 @@
           translationKey: ""
         },
         {
-          fieldType: "text"
+          fieldType: "date"
           fieldName: "deadline"
           translationKey: "responder_item.deadline"
 
