@@ -10,7 +10,11 @@
       fieldCollection = new App.Entities.FieldCollection(config,{rootModel:@rootModel})
       view = @getFieldsView(fieldCollection)
 
-      @getLayout().mainRegion.show view
+      formView = App.request "form:wrapper", @getLayout(), @buttonsConfig()
+
+      @getLayout().mainRegion.show formView
+      
+      # @getLayout().mainRegion.show view
 
     getFieldsView: (collection) =>
       new App.Components.FormSandbox.FormFieldCollectionView 
@@ -27,13 +31,24 @@
           fieldType: "date"
           fieldName: "deadline"
           translationKey: "responder_item.deadline"
-
         },
         {
           fieldType: "hidden"
           fieldName: "id"
           translationKey: ""
           formModel: "subject"
+        },
+        {
+          fieldType: "text"
+          fieldName: "full_cpr"
+          translationKey: "person.full_cpr"
+          formModel: "subject"
+        },
+        {
+          fieldType: "text"
+          fieldName: "email"
+          translationKey: "user.email"
+          formModel: "subject.user"
         },
         {
           fieldType: "text"
@@ -46,6 +61,42 @@
           fieldName: "last_name"
           translationKey: "person.lastname"
           formModel: "subject"
+        },
+        {
+          fieldType: "text"
+          fieldName: "street_1"
+          translationKey: "address.street_1"
+          formModel: "subject.address"
+        },
+        {
+          fieldType: "text"
+          fieldName: "street_2"
+          translationKey: "address.street_2"
+          formModel: "subject.address"
+        },
+        {
+          fieldType: "text"
+          fieldName: "zip_code"
+          translationKey: "address.zip_code"
+          formModel: "subject.address"
+        },
+        {
+          fieldType: "text"
+          fieldName: "town"
+          translationKey: "address.town"
+          formModel: "subject.address"
+        },
+        {
+          fieldType: "text"
+          fieldName: "zip_code"
+          translationKey: "address.phone"
+          formModel: "subject.address"
+        },
+        {
+          fieldType: "text"
+          fieldName: "zip_code"
+          translationKey: "address.home_phone"
+          formModel: "subject.address"
         }
       ]
 
@@ -57,6 +108,14 @@
           id: null
           first_name: "Gulli"
           last_name: "Gunnarson"
+          address:
+            street_1: "Hafnarstræti 101"
+            street_2: "2 hæð, B"
+            zip_code: "600"
+            town: "Akureyri"
+            phone: "8520754"
+          user:
+            email: "email@qodiag.com"
 
     getLayout:()->
       @layout ?= new EditCreate.Layout

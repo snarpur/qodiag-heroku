@@ -7,7 +7,8 @@
       @.set("fieldValue",@.get("formModel").get(@.get("fieldName"))) if @.get("formModel")?.get(@.get("fieldName"))?
       
       @on "change:fieldValue", ()->
-        @.get("formModel").set(@.get("fieldName"),@.get("fieldValue"))
+        @.get("formModel").set(@.get("fieldName"),@.get("fieldValue"),{changed:@.get("fieldName")})
+
 
   class Entities.FieldCollection extends Backbone.Collection
     model: Entities.Field
@@ -19,14 +20,26 @@
     buildCollection:(models)->
       _.each models, (model) =>
         if model.formModel?
-          model.formModel = @rootModel.get(model.formModel)
+          nestedModels = model.formModel.split(".")          
+          auxModel = @rootModel
+          _.each nestedModels, (nested) =>
+            formModel =  auxModel.get(nested)
+            auxModel = formModel
+          model.formModel = auxModel
         else
           model.formModel = @rootModel
+
       models
 
       
 
   class Entities.FormModel
+
+    initialize:->
+      @on "change",()=> 
+        console.log "arguments::", arguments
+        console.log "@::", @
+        
 
 
  
