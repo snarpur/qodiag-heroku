@@ -10,15 +10,38 @@
       fieldCollection = new App.Entities.FieldCollection(config,{rootModel:@rootModel})
       view = @getFieldsView(fieldCollection)
 
-      formView = App.request "form:wrapper", @getLayout(), @buttonsConfig()
+      formView = App.request "form:wrapper", view, @buttonsConfig()
+
+      @listenTo formView, "form:save", => 
+        @saveFormData(formView)
 
       @getLayout().mainRegion.show formView
-      
-      # @getLayout().mainRegion.show view
+
+    saveFormData:(formView)->
+      formView.trigger('form:submit')
+      @listenToOnce @rootModel, 'created updated', (options)=>
+        toastr.success(I18n.t("activerecord.sucess.messages.saved",model: ""))
+        # console.log "arguments in model after saved::",arguments
+        # console.log "@ in model after saved::",options
+        # window.location.href = "/users"
+        # return
+
+    buttonsConfig:->
+
+      options =
+        formClass: "form-base form-horizontal"
+        buttons: 
+          # primary: {text: I18n.t("actions.save_and_continue",model: "") + " >>", buttonType: 'saveAndContinue', order: 3} 
+          primary: false
+          save: {text: I18n.t("actions.save"), buttonType: 'save', order: 1,  className: 'btn btn-success'} 
+          cancel: {text: I18n.t("actions.cancel"), buttonType: 'cancel', order: 2,  className: 'btn'} 
+
+      options
 
     getFieldsView: (collection) =>
       new App.Components.FormSandbox.FormFieldCollectionView 
         collection: collection
+        model: @rootModel
 
     getFormConfig:()->
       config = [
@@ -106,16 +129,16 @@
         deadline: null
         subject:
           id: null
-          first_name: "Gulli"
-          last_name: "Gunnarson"
+          first_name: null
+          last_name: null
           address:
-            street_1: "Hafnarstræti 101"
-            street_2: "2 hæð, B"
-            zip_code: "600"
-            town: "Akureyri"
-            phone: "8520754"
+            street_1: null
+            street_2: null
+            zip_code: null
+            town: null
+            phone: null
           user:
-            email: "email@qodiag.com"
+            email:null
 
     getLayout:()->
       @layout ?= new EditCreate.Layout

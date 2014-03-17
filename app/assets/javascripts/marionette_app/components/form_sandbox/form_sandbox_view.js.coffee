@@ -1,8 +1,29 @@
 @Qapp.module "Components.FormSandbox", (FormSandbox, App, Backbone, Marionette, $, _) ->
 
   class FormSandbox.FormFieldView extends App.Views.ItemView
+    
     getTemplate:()->
       "form_sandbox/templates/_#{@model.get("fieldType")}_field"
+
+    modelEvents:
+      "change:_errors": "changeErrors"
+    
+    changeErrors: (model, errors, options) ->
+      @removeErrors()
+      @addErrors errors
+    
+    removeErrors: ->
+      @$el.find(".error").removeClass("error")
+      @$el.find(".help-inline").text("")
+
+    addErrors: (errors = {}) ->
+      for name, array of errors
+        @addError name, array
+    
+    addError: (name, error) ->
+      el = @$el.find("[id='#{name}_error']")
+      el.closest(".control-group").addClass("error")
+      el.text(error)
 
     onShow:->
       @bindings = {}
@@ -17,6 +38,7 @@
   class FormSandbox.FormTextAreaFieldView extends FormSandbox.FormFieldView
 
   class FormSandbox.FormDateFieldView extends FormSandbox.FormFieldView
+
 
     ui:=>
       datepick: "##{@model.get("fieldName")}"

@@ -30,6 +30,7 @@
 			"keyup" : "keypressed"
 
 		formButtonClick:(event)->
+
 			buttonType = $(event.target).attr('data-form-button')
 			@trigger("form:#{buttonType}",{sourceButton: buttonType})
 			
@@ -42,7 +43,7 @@
 			@trigger("form:cancel")
 
 		modelEvents:
-			"change:_errors" 	: "changeErrors"
+			# "change:_errors" 	: "changeErrors"
 			"sync:start"			:	"syncStart"
 			"sync:stop"				:	"syncStop"
 		

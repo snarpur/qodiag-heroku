@@ -9,6 +9,9 @@
       @on "change:fieldValue", ()->
         @.get("formModel").set(@.get("fieldName"),@.get("fieldValue"),{changed:@.get("fieldName")})
 
+      @.get("formModel").on "change:_errors", (model,errors)=>
+        @.set("_errors",errors)
+
 
   class Entities.FieldCollection extends Backbone.Collection
     model: Entities.Field
@@ -35,10 +38,11 @@
 
   class Entities.FormModel
 
-    initialize:->
-      @on "change",()=> 
-        console.log "arguments::", arguments
-        console.log "@::", @
+    # initialize:->
+
+    #   @on "change",()=> 
+    #     console.log "arguments::", arguments
+    #     console.log "@::", @
         
 
 

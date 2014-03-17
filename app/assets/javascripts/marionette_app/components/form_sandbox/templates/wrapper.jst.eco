@@ -1,6 +1,3 @@
 <div class="panel radius">
   <div id="form-content-region"></div>
-  <footer>
-    <button type="button" data-form-button="save" class="">Save
-  </footer>
 </div>
