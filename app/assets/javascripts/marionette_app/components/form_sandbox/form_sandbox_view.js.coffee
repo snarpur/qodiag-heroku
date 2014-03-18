@@ -38,7 +38,6 @@
   class FormSandbox.FormTextAreaFieldView extends FormSandbox.FormFieldView
 
   class FormSandbox.FormSelectFieldView extends FormSandbox.FormFieldView
-  
       
   class FormSandbox.FormSeparatorFieldView extends FormSandbox.FormFieldView
 

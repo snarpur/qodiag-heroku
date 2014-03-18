@@ -24,13 +24,12 @@
 
 
     buttonsConfig:->
-
       options =
         formClass: "form-base form-horizontal"
         buttons: 
           primary: false
           save: {text: I18n.t("actions.save"), buttonType: 'save', order: 1,  className: 'btn btn-success'} 
-          cancel: {text: I18n.t("actions.cancel"), buttonType: 'cancel', order: 2,  className: 'btn'} 
+          cancel: false
 
       options
 
@@ -147,6 +146,7 @@
       response =
         id: null
         deadline: null
+        registration_identifier: "subject"
         subject:
           id: null
           firstname: null
@@ -169,7 +169,8 @@
             town: null
             phone: null
           user:
-            email: "email@qodiag.com"
+            email: null
+            invitation: true
 
     getLayout:()->
       @layout ?= new EditCreate.Layout

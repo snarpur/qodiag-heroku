@@ -22,13 +22,12 @@
       
       @on "change:fieldValue", ()=>
         @get("formModel").set(@get("fieldName"),@get("fieldValue"),{changed:@get("fieldName")})
-        console.log "model changed::",@get("formModel")
 
       @get("formModel").on "change:_errors", (model,errors)=>
         @set("_errors",errors)
       
   class Entities.FieldCollection extends Backbone.Collection
-    model: Entities.Field
+    model:Entities.Field
 
     initialize:(models,options)->
       {@rootModel} = options
