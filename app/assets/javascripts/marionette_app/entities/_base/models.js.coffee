@@ -20,26 +20,21 @@ do (Backbone) ->
         if @id then "#{base}/#{@id}" else base
 
       #Validation
-      #@validateOnChange()
-      
+
+      @validateOnChange()
+
+      # DELETE: Delete after testing, change for the code yin validation branch
       @on("validated",()->
-        @nestedErrors = {}
-        
         nested = _.pluck @relations, "key"
         _.each nested, (val) =>
           if @get(val)?
             if @get(val).models?
               _.each @get(val).models, (model) =>
-                _.extend @nestedErrors, model.validate()
-                # console.log "_errors::",@nestedErrors
-                console.log "collection models::",model
+                model.validate()
             else
-              _.extend @nestedErrors,@get(val).validate()
-              # console.log "_errors::",@nestedErrors
-              console.log "submodels::",@get(val)
-        console.log "model::",@
+              @get(val).validate()
       )
-      
+
       @on("validated:valid",@onValid)
       @on("validated:invalid",@onInvalid)
       # @on("change:_errors",@setErrors)

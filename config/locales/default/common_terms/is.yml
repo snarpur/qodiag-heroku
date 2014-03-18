@@ -56,6 +56,7 @@ is:
     due_date: "Skiladagur"
     edit_information: "Breyta upplýsingum"
     add_information: "Skrá upplýsingar"
+    empty_select: "Select an option..."
     
     time_to_words:
       until: "þangað til"

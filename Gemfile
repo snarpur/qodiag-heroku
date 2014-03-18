@@ -8,8 +8,9 @@ gem "ejs"
 # gem "backbone-rails"
 gem 'mysql2', '~> 0.3.7'
 gem 'json'
-gem 'devise', '>= 2.0.0'
-gem 'devise_invitable', '~> 1.0.0'
+gem "bcrypt-ruby", "~> 3.1.5"
+gem 'devise', '2.2.4'
+gem 'devise_invitable', '1.0.3'
 gem "cancan"
 gem "hpricot"
 gem "ruby_parser"
@@ -38,6 +39,9 @@ gem 'js-routes'
 gem 'acts_as_commentable', '3.0.1'
 gem 'yaml_db'
 gem 'fontcustom'
+gem 'ini_file'
+
+
 
 # Gem to show the spinner when change the view
 
@@ -90,8 +94,7 @@ group :development, :test do
   gem 'guard-rspec'
   gem "guard-haml"
   gem "guard-livereload"
-  gem "selenium-webdriver", "~> 2.35.1"
-  # gem "letter_opener"
+  gem "selenium-webdriver", "~> 2.35.1"  # gem "letter_opener"
 end
 
 

@@ -38,7 +38,6 @@
       if @routeToCaretakerBackboneApp(@currentUser)
         window.location.href = "/users"
         return
-      
       @navigate(@rootUrl(@currentUser), trigger: true) unless @getCurrentRoute()?
   
   App
