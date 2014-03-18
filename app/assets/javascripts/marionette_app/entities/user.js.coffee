@@ -2,6 +2,7 @@
 	
 	class Entities.User extends Entities.Model
 
+	
 		subjectIds:->
 			_.map @get('subjects'), (i)-> i.id
 

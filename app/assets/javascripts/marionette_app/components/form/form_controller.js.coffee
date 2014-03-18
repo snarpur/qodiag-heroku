@@ -29,15 +29,16 @@
 		formSubmit: (options) ->
 			@contentView.triggerMethod("form:submit")
 			model = @contentView.model
+
+			@listenToOnce model, "validated:invalid validated:valid", (model,msg)=>
+				if _.isEmpty model._errorsWithNested()
+					@processFormSubmit model, collection
+			
+			model.validateNested()
 			collection = @contentView.collection
-			errors = model.validate()
-			# @formLayout.addErrors(model.validationError)
-			unless errors
-				@processFormSubmit model, collection
-				
+
 
 		processFormSubmit: (model, collection) ->
-			
 			model.save model.toJSON(),
 				collection: collection
 			

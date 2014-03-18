@@ -1,5 +1,6 @@
 do (Backbone) ->
   _.extend Backbone.Model::,Backbone.Validation.mixin
+  _.extend Backbone.Model::,Qapp.ModelMixins.NestedValidation
 
 @Qapp.module "Entities", (Entities, App, Backbone, Marionette, $, _) ->
 	 
@@ -14,36 +15,15 @@ do (Backbone) ->
     
 
     initialize:->
-      super
       @url = ()->
         base = _.result(@, 'urlRoot') ? @collection.url()
         if @id then "#{base}/#{@id}" else base
 
-      #Validation
-
-      @validateOnChange()
-
-      # DELETE: Delete after testing, change for the code yin validation branch
-      @on("validated",()->
-        nested = _.pluck @relations, "key"
-        _.each nested, (val) =>
-          if @get(val)?
-            if @get(val).models?
-              _.each @get(val).models, (model) =>
-                model.validate()
-            else
-              @get(val).validate()
-      )
-
-      @on("validated:valid",@onValid)
       @on("validated:invalid",@onInvalid)
-      # @on("change:_errors",@setErrors)
+      @on("validated:valid",@onValid)
+      super
+   
 
-
-    
-    setErrors:->
-      # console.log "error changed!!!",@
-      # console.log "arguments::",arguments
     
     destroy: (options = {}) ->
       _.defaults options,
@@ -53,9 +33,12 @@ do (Backbone) ->
       super options
     
     
+    
     isDestroyed: ->
       @get "_destroy"
   
+    
+
     save: (data, options = {}) ->
       isNew = @isNew()
       
@@ -67,6 +50,8 @@ do (Backbone) ->
       @unset "_errors"
       super data, options
     
+    
+
     saveSuccess: (isNew, collection) =>
       if isNew ## model is being created
         collection.add @ if collection
@@ -82,13 +67,17 @@ do (Backbone) ->
     saveError: (model, xhr, options) =>
       console.log "There are errors!!!"
       ## set errors directly on the model unless status returned was 500 or 404
-      @set _errors: $.parseJSON(xhr.responseText)?.errors unless xhr.status is 500 or xhr.status is 404
+      unless xhr.status is 500 or xhr.status is 404
+        @setNestedServerErrors($.parseJSON(xhr.responseText)?.errors)
+        # @set _errors: $.parseJSON(xhr.responseText)?.errors
+
 
     
     _getEntityClass:(name)->
       Entities[_(name).chain().capitalize().camelize().value()]
 
 
+    
     _createNestedEntity:(key,value)->
       unless @_isBackbone(@get('key')) and value?
         entity = new (@_getEntityClass(key))(value)
@@ -96,14 +85,17 @@ do (Backbone) ->
         @listenTo entity, "change", => @trigger("change:#{key}",key,entity)
 
 
+    
     _isBackbone:(attribute)->
       (attribute instanceof Backbone.Model or attribute instanceof Backbone.Collection)
     
     
 
+    
     _isBackboneAssociation:(key)->
       _.contains(_.pluck(@relations,'key'), key)
 
+    
     
     _isHelper:(key,value)->
       (_.isObject(value) and !@_inNestedAttributeList(key) and !_.endsWith(key,"_attributes")) or _.isFunction(value) 
@@ -120,21 +112,22 @@ do (Backbone) ->
   
     
 
+    
     _inBlacklist:(key)->
         _.contains(@blacklist, key)
 
-    #Validation functions
 
+
+    
     onValid:(model,errors)->
-      # console.warn "onvalid ::::: ", model.attributes, errors
       model.set("_errors",null)
 
+    
+    
+    
     onInvalid:(model,errors)->
       model.set("_errors",errors)
 
-    validateOnChange:-> 
-      eventStr = _.map(_.keys(@validation),(i)-> "change:#{i}").join(" ")
-      @on eventStr, => @validate() if @get('_errors')?
 
     
 
