@@ -21,6 +21,7 @@
       @set("fieldValue",@get("formModel").get(@get("fieldName")))
       
       @on "change:fieldValue", ()=>
+        console.log "changing the model::",arguments
         @get("formModel").set(@get("fieldName"),@get("fieldValue"),{changed:@get("fieldName")})
 
       @get("formModel").on "change:_errors", (model,errors)=>

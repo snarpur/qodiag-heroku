@@ -9,7 +9,7 @@
       
       options=
         type: type
-        step: if step_no? (Number)(step_no) else 1 
+        step: if step_no? then (Number)(step_no) else 1 
       
       ctrl = new InvitationItemsApp.EditCreate.Controller
       ctrl.create(options)

@@ -59,7 +59,8 @@
         then "validated:#{m}:collection"
         else "validated:#{m}.invalid validated:#{m}.valid"
 
-        @once validationListener, (model,msg,options)=>     
+        @once validationListener, (model,msg,options)=>
+          console.log "we are in the validationListener::",arguments     
           @_setNestedErrors(model,m,validationListener)
           @_addToValidatedRelations(m)
           if _.isEmpty _.difference(@_relationKeys(),@_validatedRelations())

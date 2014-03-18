@@ -9,6 +9,7 @@
       "change:_errors": "changeErrors"
     
     changeErrors: (model, errors, options) ->
+      console.log "errors changed!!",arguments
       @removeErrors()
       @addErrors errors
     
