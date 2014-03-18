@@ -37,6 +37,18 @@
 
   class FormSandbox.FormTextAreaFieldView extends FormSandbox.FormFieldView
 
+  class FormSandbox.FormSelectFieldView extends FormSandbox.FormFieldView
+  
+      
+  class FormSandbox.FormSeparatorFieldView extends FormSandbox.FormFieldView
+
+  class FormSandbox.FormRadioFieldView extends FormSandbox.FormFieldView
+
+    onShow:->
+      @bindings = {}
+      @bindings[".#{@model.get("fieldName")}"] = "fieldValue"
+      @.stickit()
+
   class FormSandbox.FormDateFieldView extends FormSandbox.FormFieldView
 
 

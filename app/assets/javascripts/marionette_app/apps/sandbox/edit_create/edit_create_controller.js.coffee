@@ -21,17 +21,13 @@
       formView.trigger('form:submit')
       @listenToOnce @rootModel, 'created updated', (options)=>
         toastr.success(I18n.t("activerecord.sucess.messages.saved",model: ""))
-        # console.log "arguments in model after saved::",arguments
-        # console.log "@ in model after saved::",options
-        # window.location.href = "/users"
-        # return
+
 
     buttonsConfig:->
 
       options =
         formClass: "form-base form-horizontal"
         buttons: 
-          # primary: {text: I18n.t("actions.save_and_continue",model: "") + " >>", buttonType: 'saveAndContinue', order: 3} 
           primary: false
           save: {text: I18n.t("actions.save"), buttonType: 'save', order: 1,  className: 'btn btn-success'} 
           cancel: {text: I18n.t("actions.cancel"), buttonType: 'cancel', order: 2,  className: 'btn'} 
@@ -56,6 +52,10 @@
           translationKey: "responder_item.deadline"
         },
         {
+          fieldType: "separator"
+          translationKey: "terms.personal_information"
+        },
+        {
           fieldType: "hidden"
           fieldName: "id"
           translationKey: ""
@@ -75,15 +75,35 @@
         },
         {
           fieldType: "text"
-          fieldName: "first_name"
+          fieldName: "firstname"
           translationKey: "person.firstname"
           formModel: "subject"
         },
         {
           fieldType: "text"
-          fieldName: "last_name"
+          fieldName: "lastname"
           translationKey: "person.lastname"
           formModel: "subject"
+        },
+        {
+          fieldType: "radio"
+          fieldName: "sex"
+          translationKey: "person.sex"
+          formModel: "subject"
+          options: [
+            {
+              value: "male",
+              translationKey: "person.male"
+            },
+            {
+              value: "female",
+              translationKey: "person.female"
+            }
+          ]
+        },
+        {
+          fieldType: "separator"
+          translationKey: "terms.contact_information"
         },
         {
           fieldType: "text"
@@ -129,8 +149,19 @@
         deadline: null
         subject:
           id: null
-          first_name: null
-          last_name: null
+          firstname: null
+          lastname: null
+          sex: null
+          # _sex_options: [ 
+          #   {
+          #     value: "male",
+          #     text: "male"
+          #   },
+          #   {
+          #     value: "female", 
+          #     text: "female"
+          #   }
+          # ]
           address:
             street_1: null
             street_2: null
@@ -138,7 +169,7 @@
             town: null
             phone: null
           user:
-            email:null
+            email: "email@qodiag.com"
 
     getLayout:()->
       @layout ?= new EditCreate.Layout

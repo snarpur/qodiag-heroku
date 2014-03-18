@@ -86,30 +86,30 @@
 		getFormDataType: ->
 			if @model.isNew() then "new" else "edit"
 
-		changeErrors: (model, errors, options) ->
-			if @config.errors
-				@removeErrors()
-				@addErrors errors
+		# changeErrors: (model, errors, options) ->
+		# 	if @config.errors
+		# 		@removeErrors()
+		# 		@addErrors errors
 		
 		
 
-		removeErrors: ->
-			@$el.find(".error").removeClass("error")
-			@$el.find(".help-inline").text("")
+		# removeErrors: ->
+		# 	@$el.find(".error").removeClass("error")
+		# 	@$el.find(".help-inline").text("")
 
 		
 		
 
-		addErrors: (errors = {}) ->
-			for name, array of errors
-				@addError name, array
+		# addErrors: (errors = {}) ->
+		# 	for name, array of errors
+		# 		@addError name, array
 		
 		
 
-		addError: (name, error) ->
-			el = @$el.find("[id='#{name}_error']")
-			el.closest(".control-group").addClass("error")
-			el.text(error)
+		# addError: (name, error) ->
+		# 	el = @$el.find("[id='#{name}_error']")
+		# 	el.closest(".control-group").addClass("error")
+		# 	el.text(error)
 			
 		syncStart: (model) ->
 			@addOpacityWrapper() if @config.syncing

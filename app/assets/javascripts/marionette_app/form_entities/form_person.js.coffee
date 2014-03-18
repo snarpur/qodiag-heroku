@@ -2,6 +2,14 @@
 
   class Entities.FormPersonModel extends Entities.Person
 
+    initialize:->
+      
+      @on "change:full_cpr", (model,value,options) ->
+        console.log "Call the National Registers function!!" unless value.length isnt 10
+        
+      super
+
+
     relations: [
       {
         type: Backbone.One
@@ -27,6 +35,10 @@
         msg: -> 
           I18n.t("activerecord.errors.messages.blank")
       full_cpr: 
+        required: true
+        msg: ->
+          I18n.t("activerecord.errors.messages.blank")
+      sex: 
         required: true
         msg: ->
           I18n.t("activerecord.errors.messages.blank")

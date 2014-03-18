@@ -3,16 +3,30 @@
   class Entities.Field extends Backbone.Model
 
     initialize:()->
-      #Set the value taht comes from the Form Model into the field value
-      @.set("fieldValue",@.get("formModel").get(@.get("fieldName"))) if @.get("formModel")?.get(@.get("fieldName"))?
       
-      @on "change:fieldValue", ()->
-        @.get("formModel").set(@.get("fieldName"),@.get("fieldValue"),{changed:@.get("fieldName")})
+      if @get("fieldType") isnt "separator"
 
-      @.get("formModel").on "change:_errors", (model,errors)=>
-        @.set("_errors",errors)
+        if @get("fieldType") in ["select","radio"] and not @get("options")?
+          @selectOrRadioFileTypeInit()
 
+        @defaultFileTypeInit()
+        
+      super
 
+    selectOrRadioFileTypeInit:()->
+      options = "_"+@get("fieldName")+"_options"
+      @set("options", @get("formModel").get(options))
+
+    defaultFileTypeInit:()->
+      @set("fieldValue",@get("formModel").get(@get("fieldName")))
+      
+      @on "change:fieldValue", ()=>
+        @get("formModel").set(@get("fieldName"),@get("fieldValue"),{changed:@get("fieldName")})
+        console.log "model changed::",@get("formModel")
+
+      @get("formModel").on "change:_errors", (model,errors)=>
+        @set("_errors",errors)
+      
   class Entities.FieldCollection extends Backbone.Collection
     model: Entities.Field
 
@@ -30,19 +44,13 @@
             auxModel = formModel
           model.formModel = auxModel
         else
-          model.formModel = @rootModel
+          model.formModel = @rootModel unless model.fieldType is "separator"
 
       models
 
       
-
   class Entities.FormModel
 
-    # initialize:->
-
-    #   @on "change",()=> 
-    #     console.log "arguments::", arguments
-    #     console.log "@::", @
         
 
 

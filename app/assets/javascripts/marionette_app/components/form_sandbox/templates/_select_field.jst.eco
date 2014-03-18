@@ -1,0 +1,18 @@
+<div class="control-group">
+  <label for="<%=@.fieldName%>" class="control-label"><%- @t(@.translationKey) %></label>
+  <div class="controls">
+    <select id="<%=@.fieldName%>" class="input-xlarge">
+      <option value=""><%= @t("terms.empty_select")%></option>
+      <% if @.options?: %>
+        <% for option in @.options: %>
+          <% if option.translationKey?: %>
+            <option value="<%= option.value %>"><%= @t(option.translationKey) %></option> 
+          <% else: %>
+            <option value="<%= option.value %>"><%= option.text %></option>
+          <% end %>
+        <% end %>
+      <% end %>
+    </select>
+    <span id="<%=@.fieldName%>_error" class="help-inline"></span>
+  </div>
+</div>

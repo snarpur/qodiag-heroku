@@ -20,6 +20,19 @@ do (Backbone) ->
 
       #Validation
       @validateOnChange()
+
+      # DELETE: Delete after testing, change for the code yin validation branch
+      @on("validated",()->
+        nested = _.pluck @relations, "key"
+        _.each nested, (val) =>
+          if @get(val)?
+            if @get(val).models?
+              _.each @get(val).models, (model) =>
+                model.validate()
+            else
+              @get(val).validate()
+      )
+
       @on("validated:valid",@onValid)
       @on("validated:invalid",@onInvalid)
 
