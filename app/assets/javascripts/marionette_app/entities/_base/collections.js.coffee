@@ -1,7 +1,12 @@
+do (Backbone) ->
+  _.extend Backbone.Collection::,Qapp.CollectionMixins.NestedValidation
+  
+
 @Qapp.module "Entities", (Entities, App, Backbone, Marionette, $, _) ->
 	
 	class Entities.Collection extends Backbone.Collection
-    
+  
+
     toJSON:(options)=>
       if options?.acceptsNested == false
         super

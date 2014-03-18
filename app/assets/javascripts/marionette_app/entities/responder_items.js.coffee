@@ -27,20 +27,6 @@
       }
     ]
 
-    
-    # initialize: (models,options) ->
-    #   super
-      #@initAttributes()
-
-    #REFACTOR: change entry_set_response to relation (BackboneAcossiation) and delete initAttributes()
-    initAttributes:(model,value)->
-      if _.isEmpty(arguments)
-        eventStr = _.map(@nestedAttributeList,(i)-> "change:#{i}").join(" ")
-        @on(eventStr, @initAttributes)
-        _.each(@nestedAttributeList,((i)-> @_createNestedEntity(i,@get(i))),@)
-      else
-        changed = _.invert(@changed)[value]
-        @_createNestedEntity(changed,@get(changed)) if _.contains @nestedAttributeList, changed
 
 
   class Entities.ResponderItems extends Entities.Collection

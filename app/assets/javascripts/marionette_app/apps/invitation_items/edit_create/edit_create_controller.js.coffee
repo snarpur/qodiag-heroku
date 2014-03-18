@@ -54,7 +54,7 @@
         #Responder Items Fields
         responderItemView = @getResponderItemView()
         @getResponderItemsFieldsRegion().show responderItemView
-
+ 
         #User Fields
         userView = @getUserView()
         @getUserFieldsRegion().show userView
@@ -86,13 +86,13 @@
         @getAddressFieldsRegion().show GuardianParentCheckItemView
 
 
-      @listenTo formView, "form:save", => 
+      @listenTo formView, "form:save", =>
         @saveFormData(formView)
       
       @listenTo formView, "form:back", =>
         @moveToPreviousStep(formView)
       
-      @listenTo formView, "form:saveAndContinue", => 
+      @listenTo formView, "form:saveAndContinue", =>
         @moveToNextStep(formView)
       
     saveFormData:(formView)->
@@ -169,10 +169,10 @@
             firstname: "", 
             address: {street_1: ""}, 
             user: {email: "", invitation: true}, 
-            inverse_relationships: {name:"respondent", person_id: @curentUser.get("person_id")}
+            inverse_relationships: [{name:"respondent", person_id: @curentUser.get("person_id")}]
           subject:
             firstname: "", 
-            inverse_relationships: {name:"patient", person_id: @curentUser.get("person_id")}
+            inverse_relationships: [{name:"patient", person_id: @curentUser.get("person_id")}]
         
       else
         params =
@@ -181,7 +181,7 @@
             firstname: "", 
             address: {street_1: ""}, 
             user: {email: "", invitation: true}, 
-            inverse_relationships: {name:"patient", person_id: @curentUser.get("person_id")}
+            inverse_relationships: [{name:"patient", person_id: @curentUser.get("person_id")}]
 
       params
 

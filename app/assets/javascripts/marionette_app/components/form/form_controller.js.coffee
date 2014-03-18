@@ -29,40 +29,15 @@
 		formSubmit: (options) ->
 			@contentView.triggerMethod("form:submit")
 			model = @contentView.model
-			model.once "change:_nested_errors",() =>
-				console.log "_nested_errors::",model.get("_nested_errors")
-				if not model.get("_nested_errors")?
+
+			@listenToOnce model, "validated:invalid validated:valid", (model,msg)=>
+				if _.isEmpty model._errorsWithNested()
 					@processFormSubmit model, collection
 			
-			model.validate()
-
-
-
+			model.validateNested()
 			collection = @contentView.collection
-			# errors = {}
-			# @extractErrors(model,errors)
-			# _.delay(console.log(model.get("_nested_errors")), 5000)
-			# setTimeout((-> 
-			# 	console.log "_nested_errors",model.get("_nested_errors")),
-			# 	5000
-			# 	)
-			
-
-		extractErrors:(model,errors)->
-			if model?
-				if model.models?
-					_.each model.models, (val) =>
-						@extractErrors(val,errors)
-				else
-					errors = _.extend errors, model.get("_errors")
-				if model.relations?
-					nested = _.pluck model.relations, "key"
-					_.each nested, (val) =>
-						if model.get(val)?
-							@extractErrors(model.get(val),errors)     		
 
 		processFormSubmit: (model, collection) ->
-			
 			model.save model.toJSON(),
 				collection: collection
 			

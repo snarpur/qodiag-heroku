@@ -13,16 +13,15 @@
       {
         type: Backbone.One
         key: 'user'
-        # relatedModel: App.Entities.User 
         relatedModel:->
           App.Entities.User
       },
       {
         type: Backbone.Many
         key: 'inverse_relationships'
-        # relatedModel: App.Entities.User 
-        relatedModel:->
-          App.Entities.Relationship
+        collectionType: 'Qapp.Entities.Relationships' 
+        # relatedModel:->
+        #   App.Entities.Relationship
       }
     ]
     nestedAttributeList: ['relationships']
