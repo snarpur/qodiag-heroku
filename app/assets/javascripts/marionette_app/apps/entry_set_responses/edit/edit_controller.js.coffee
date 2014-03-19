@@ -15,9 +15,7 @@
     getSections:(options)->
       {entrySetResponseId,sectionId} = options
       current_user = App.request "get:current:user"
-      @entrySetResponse = App.request "entry:set:response:entities", 
-                                      id: entrySetResponseId, 
-                                      personId: current_user.get('person_id')
+      @entrySetResponse = App.request "entry:set:response:entities", id: entrySetResponseId
       
       App.execute "when:fetched", @entrySetResponse, =>
         @sections = @entrySetResponse.get("entry_set").get('sections')

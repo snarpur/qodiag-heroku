@@ -9,9 +9,13 @@
   
 
     #REFACTOR: make index a function to avoid JSON serialization
-    itemViewOptions: (model,index) ->
+    itemViewOptions: (model,index) =>
       options = 
         index: index
+      if @childViewOptions?
+        _.extend options, @childViewOptions()
+      else
+        options 
 
     initialize: ->
       @extendTemplateHelpers(@templateHelpers)

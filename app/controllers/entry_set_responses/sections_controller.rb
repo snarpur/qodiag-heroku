@@ -4,7 +4,7 @@ class EntrySetResponses::SectionsController < ApplicationController
 
   def index
     @entry_set_response = EntrySetResponse.find(params[:entry_set_response_id])
-    @entries = Section.find(params[:section_id]).entry_fields
+    @entries = Section.find(params[:section_id]).sections_entry_fields
   end
 
 end

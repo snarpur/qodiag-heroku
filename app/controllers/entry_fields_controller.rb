@@ -2,7 +2,6 @@ class EntryFieldsController < ApplicationController
   respond_to :json
 
   def index
-    #@entry_fields = EntryField.all
     @entry_fields = EntryField.by_author_or_public(@current_user.person_id)
   end
 

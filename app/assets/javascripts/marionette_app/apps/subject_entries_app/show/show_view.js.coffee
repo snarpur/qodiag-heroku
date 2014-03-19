@@ -52,9 +52,19 @@
   
 
   class Show.Entry extends App.Views.ItemView
-    template: "subject_entries_app/show/_entry"
+    getTemplate: -> 
+      template = if @options.field_type == 'multi-choice' then '_multi_choice_' else '_'
+      "subject_entries_app/show/#{template}entry"
+    
     tagName: "div"
     className: "entry"
+
+    templateHelpers: =>
+      index: =>
+        @options.index
+      field_type: =>
+        @options.field_type
+
 
   class Show.EmptyEntry extends App.Views.ItemView
     template: "subject_entries_app/show/_entryEmpty"
@@ -65,4 +75,9 @@
   class Show.Entries extends App.Views.CollectionView
     itemView: Show.Entry
     emptyView: Show.EmptyEntry
+    childViewOptions: ->
+      options=
+        field_type: @options.field_type
+
+
     

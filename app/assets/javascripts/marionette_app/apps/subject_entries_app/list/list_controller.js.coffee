@@ -48,7 +48,9 @@
      
     getEntries:(section)->
       entries = section.getSectionEntryResponses()
-      @showEntryFields(entries)
+      entries.comparator = 'display_order'
+      App.execute "when:fetched", entries, =>
+        @showEntryFields(entries)
         
     
 
@@ -85,22 +87,21 @@
     showEntryFields:(entries)->
       entriesView = new List.Entries(collection: entries)
 
-      @getEntrySetValuesRegion().on "show", () =>
-        entriesView.children.each (view) =>
-          region = @layout.addRegion view.entryValueRegionName(),"\##{view.entryValueRegionName()}" 
-          App.execute "show:entry:values", 
-            region: region 
-            entryField: view.model
-            entries: entries
+      entriesView.on "childview:show", (view)=> 
+        region = @layout.addRegion view.entryValueRegionName(),"\##{view.entryValueRegionName()}" 
+        App.execute "show:entry:values", 
+          region: region 
+          entryField: view.model
+          entries: entries
 
       #DELETE: When we are totally sure that the loading views works
-      #@getEntrySetValuesRegion().show entriesView 
+      @getEntrySetValuesRegion().show entriesView 
       
-      @show entriesView, 
-        loading:
+      #@show entriesView, 
+      # loading:
           # I use the spinner effect here because the opacity-spinner here doesn't look like good 
-          loadingType: "spinner"
-        region: @getEntrySetValuesRegion()
+      #    loadingType: "spinner"
+      #  region: @getEntrySetValuesRegion()
         
 
     createItemSetup:(options = {})->

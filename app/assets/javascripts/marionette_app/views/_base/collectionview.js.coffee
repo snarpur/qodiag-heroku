@@ -5,3 +5,8 @@
     itemViewOptions: (model,index) =>
       options = 
         index: index
+      if @childViewOptions?
+        _.extend options, @childViewOptions()
+      else
+        options 
+        
