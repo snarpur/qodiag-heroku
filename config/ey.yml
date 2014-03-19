@@ -24,6 +24,9 @@
 ---
 environments:
   alfa:
+    copy_exclude: 
+      - .git 
     migrate: false
+    maintenance_on_migrate: true
     precompile_assets: true
     branch: development
