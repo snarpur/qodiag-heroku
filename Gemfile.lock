@@ -272,7 +272,7 @@ GEM
       rake (>= 0.8.7)
       rdoc (~> 3.4)
       thor (>= 0.14.6, < 2.0)
-    rainbow (2.0.0)
+    rainbow (1.1.4)
     rake (10.1.1)
     rb-fsevent (0.9.4)
     rb-inotify (0.9.3)
@@ -412,7 +412,7 @@ DEPENDENCIES
   rabl
   rails (= 3.2.11)
   rails-dev-tweaks (~> 0.6.1)
-  rainbow
+  rainbow (= 1.1.4)
   rb-readline (~> 0.4.2)
   rspec-rails
   ruby_parser

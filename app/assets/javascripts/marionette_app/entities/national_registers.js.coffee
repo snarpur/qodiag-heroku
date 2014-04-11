@@ -5,8 +5,15 @@
     urlRoot: () ->
       Routes.lookup_path(@get("kennitala"))
 
+    isEmpty:()->
+      if _.size(@attributes) == 1 then true else false 
+
+
   class Entities.NationalRegisters extends Entities.Collection
     model: Entities.NationalRegister
+
+    isEmpty:()->
+      if @length == 0 then true else false
 
   API =
     getNationalRegisterInformation:(full_cpr)->

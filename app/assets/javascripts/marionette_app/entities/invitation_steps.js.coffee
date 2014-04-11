@@ -9,8 +9,15 @@
   class Entities.InvitationItemsCollection extends Entities.Collection
     model: Entities.InvitationItem
     initialize: (models,options) ->
-      @currentStep = options.step  
+      if @correctStep(options.step)
+        @currentStep = options.step  
+      else
+        @currentStep = 1
+        
 
+    correctStep: (step) ->
+      ((/^([0-9])$/.test(step)) and @models.length <= step and step > 0)
+    
     setCurrentStep:(step)->
       @currentStep = step
 
@@ -22,6 +29,12 @@
 
     getPreviousStep: ->
       @currentStep  = @currentStep - 1
+
+    isMovingForward:(new_step) ->
+      new_step > @currentStep
+
+    isSameStep:(new_step)->
+      @currentStep == new_step  
   
   API =
     getSteps: (options) ->

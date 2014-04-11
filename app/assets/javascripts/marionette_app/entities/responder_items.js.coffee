@@ -5,7 +5,25 @@
     nestedAttributeList: ['entry_set_response']
     urlRoot: Routes.responder_items_path()
     paramRoot: 'responder_item'
-    
+
+    validation:
+      respondent_id:
+        required: true
+        msg: ->
+          I18n.t("activerecord.errors.messages.blank")
+      subject_id:
+        required: true
+        msg: ->
+          I18n.t("activerecord.errors.messages.blank")
+      deadline:
+        required: true
+        msg: ->
+          I18n.t("activerecord.errors.messages.blank")
+      entry_set_response:
+        required: true
+        msg: ->
+          I18n.t("activerecord.errors.messages.blank")
+
     relations: [
       {
         type: Backbone.One
@@ -16,13 +34,13 @@
       {
         type: Backbone.One
         key: 'subject'
-        relatedModel:-> 
+        relatedModel:->
           App.Entities.Person
       },
       {
         type: Backbone.One
         key: 'respondent'
-        relatedModel:-> 
+        relatedModel:->
           App.Entities.Person
       }
     ]
@@ -35,15 +53,12 @@
     initialize: (models,options) ->
       @personId = options.personId
       @url= ()->
-        Routes.person_responder_items_path(@personId)  
+        Routes.person_responder_items_path(@personId)
 
-
-
-
-  
-
+      super 
 
   API =
+
     getResponderItemsForPerson: (options) ->
       items = new Entities.ResponderItems([],options)
       items.fetch
@@ -63,3 +78,6 @@
 
   App.reqres.setHandler "get:person:entry:set:responder:items", (options) ->
     API.getEntrySetResponderItemsForPerson options
+
+  # App.reqres.setHandler "get:responder:item", (options) ->
+  #   API.getResponderItemForId options

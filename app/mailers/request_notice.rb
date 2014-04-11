@@ -5,7 +5,12 @@ class RequestNotice < ActionMailer::Base
     mail(:to => "<#{responder_item.respondent.user.email}>", :subject => "Registered")
   end
 
-   def request_sign_up(email)
+  def request_invitation(respondent)
+    @respondent = respondent
+    mail(:to => "<#{respondent.user.email}>", :subject => "Registered")
+  end
+
+  def request_sign_up(email)
     mail(:to => "<#{email}>", :subject => "Sign up Qodiag!")
   end
 

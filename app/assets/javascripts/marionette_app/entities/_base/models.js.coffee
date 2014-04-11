@@ -10,21 +10,24 @@ do (Backbone) ->
     attributeList: []
     nestedAttributeList: []
     blacklist:[]
-    validation: {}
     nestedErrors:{}
-    
-
+    validation:{}
     initialize:->
+      # @validation = {}
       @url = ()->
         base = _.result(@, 'urlRoot') ? @collection.url()
         if @id then "#{base}/#{@id}" else base
 
+      @validateOnChange()
       @on("validated:invalid",@onInvalid)
       @on("validated:valid",@onValid)
       super
    
 
-    
+    validateOnChange:->
+      eventStr = _.map(_.keys(@validation),(i)-> "change:#{i}").join(" ")
+      @on eventStr, => @validate() if @get('_errors')?
+      
     destroy: (options = {}) ->
       _.defaults options,
         wait: true
@@ -65,7 +68,6 @@ do (Backbone) ->
     
 
     saveError: (model, xhr, options) =>
-      console.log "There are errors!!!"
       ## set errors directly on the model unless status returned was 500 or 404
       unless xhr.status is 500 or xhr.status is 404
         @setNestedServerErrors($.parseJSON(xhr.responseText)?.errors)

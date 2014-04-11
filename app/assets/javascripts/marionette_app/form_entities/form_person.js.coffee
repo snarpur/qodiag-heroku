@@ -3,45 +3,40 @@
   class Entities.FormPersonModel extends Entities.Person
 
     initialize:->
-      
+      @validation = {}
       @on "change:full_cpr", (model,value,options) ->
-        console.log "Call the National Registers function!!" unless value.length isnt 10
-        
+        if value.length is 10 
+          data = App.request "get:national_register:data", value
+          App.execute "when:fetched", data, ()=>
+            if not data.isEmpty()             
+              @mergeNationalRegisterData(data)
+ 
       super
 
+    mergeNationalRegisterData:(data)->
+      if @get("address")?
+        @get("address").set(data.get("address"))
+
+      @set(data.attributes)
 
     relations: [
       {
         type: Backbone.One
-        key: 'user'
-        relatedModel:-> 
-          App.Entities.FormUserModel
+        key: 'address'
+        relatedModel:->
+          App.Entities.FormAddressModel
       },
       {
         type: Backbone.One
-        key: 'address'
-        relatedModel:-> 
-          App.Entities.FormAddressModel
+        key: 'user'
+        relatedModel:->
+          App.Entities.FormUserModel 
+      },
+      {
+        type: Backbone.Many
+        key: 'inverse_relationships'
+        collectionType: "Qapp.Entities.Relationships"
+        relatedModel:->
+          App.Entities.Relationship
       }
     ]
-
-    validation:
-      firstname: 
-        required: true
-        msg: ->
-          I18n.t("activerecord.errors.messages.blank")
-      lastname: 
-        required: true
-        msg: -> 
-          I18n.t("activerecord.errors.messages.blank")
-      full_cpr: 
-        required: true
-        msg: ->
-          I18n.t("activerecord.errors.messages.blank")
-      sex: 
-        required: true
-        msg: ->
-          I18n.t("activerecord.errors.messages.blank")
-      
-
-  _.extend Entities.FormPersonModel::,Entities.FormModel.prototype

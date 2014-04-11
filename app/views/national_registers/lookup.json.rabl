@@ -1,3 +1,5 @@
 object @person
-attributes :kennitala => :full_cpr, :firstname => :firstname, :lastname => :lastname, :kyn => :sex, :postnumer => :zip_code,
-    :heimili => :street_1, :town => :town
+attributes :firstname => :firstname, :lastname => :lastname, :kyn => :sex
+node :address, :if =>  !@person.nil? do |p|
+  attributes :street_1 => p.heimili, :zip_code => p.postnumer, :town => p.town
+end

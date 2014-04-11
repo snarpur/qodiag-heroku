@@ -15,7 +15,7 @@ gem "cancan"
 gem "hpricot"
 gem "ruby_parser"
 gem "simple_form"
-gem "rainbow"
+gem "rainbow", '1.1.4'
 gem "surveyor",:github => "NUBIC/surveyor"
 gem "fastercsv", "~> 1.5.4"
 gem "formtastic"

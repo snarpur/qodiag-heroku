@@ -1,2 +1,2 @@
 require 'rainbow'
-Rainbow.enabled = true
+Sickill::Rainbow.enabled = true

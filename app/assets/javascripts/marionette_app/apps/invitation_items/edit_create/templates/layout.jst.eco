@@ -1,4 +1,2 @@
 <div id="form-steps-region"></div>
-<div id="form-wrapper-region">
-  <div id="fields-form-region"></div>
-</div>
+<div id="fields-region"></div>

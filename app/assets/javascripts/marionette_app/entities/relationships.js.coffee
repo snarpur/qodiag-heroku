@@ -5,3 +5,4 @@
 
   class Entities.Relationships extends Entities.Collection
     model: Entities.Relationship
+    url: -> Routes.relationships_path()

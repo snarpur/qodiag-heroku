@@ -18,7 +18,7 @@ class Ability
         true
       end
       can :manage, ResponderItem do |ri|
-        ri.caretaker == user.person || ri.new_record?
+        ri.new_record? || ri.caretaker == user.person
       end
       can [:update,:destroy], EntrySet do |es|
         (es.visibility == 1 || (es.created_by_id == user.person_id))

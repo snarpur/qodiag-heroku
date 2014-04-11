@@ -1,6 +1,6 @@
 <div class="control-group">
   <% if @.translationKey?: %>
-    <label class="control-label" ><%- @t(@.translationKey) %></label>
+    <label><%- @t(@.translationKey) %></label>
   <% end %>
   <hr></hr>
 </div>

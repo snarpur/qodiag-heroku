@@ -1,5 +1,7 @@
 <div class="control-group">
-  <label class="control-label" for="<%=@.fieldName%>"><%- @t(@.translationKey) %></label>
+  <% if @.translationKey?: %>
+    <label class="control-label" for="<%=@.fieldName%>"><%- @t(@.translationKey) %></label>
+  <% end %>
   <div class="controls">
     <input class="input-xlarge" type="text" id="<%=@.fieldName%>" placeholder="<%- @t(@.translationKey) %>">
     <span id="<%=@.fieldName%>_error" class="help-inline"></span>

@@ -1,5 +1,7 @@
 <div class="control-group">
-   <label class="control-label" for="<%=@.fieldName%>"><%- @t(@.translationKey) %></label>
+  <% if @.translationKey?: %>
+    <label class="control-label" for="<%=@.fieldName%>"><%- @t(@.translationKey) %></label>
+  <% end %>
     <div class="controls">
       <% if @.options?: %>
         <% for option in @.options: %>

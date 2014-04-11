@@ -3,7 +3,5 @@
 	App.commands.setHandler "when:fetched", (entities, callback) ->
 		xhrs = _.chain([entities]).flatten().pluck("_fetch").value()
 		
-		$.when(xhrs...).done ()->
+		$.when(xhrs...).done ()->  
 			callback()
-			#DELETE: Only for test pourposes
-			# _.delay(callback,1000);

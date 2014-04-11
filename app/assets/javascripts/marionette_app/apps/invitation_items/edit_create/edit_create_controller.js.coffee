@@ -1,145 +1,136 @@
 @Qapp.module "InvitationItemsApp.EditCreate", (EditCreate, App, Backbone, Marionette, $, _) ->
-  
+
   class EditCreate.Controller extends App.Controllers.Base
-    
-    initialize: () ->
+
+    initialize:()->
       App.contentRegion.show @getLayout()
       @curentUser = App.request "get:current:user"
-            
-    create: (options) ->
-      {@type,@step} = options
 
-      params = @buildParams() 
-      @responderItem = new App.Entities.ResponderItem(params)
+    create:(options={})->
+      {@type,@step,@id} = options
       @steps = App.request "set:invitation:steps", options
+      #NOTE: When we are creating a invitation item, we go always to the first step
+      @step = 1
       @showFormSteps(@steps,options)
 
+    edit:(options={})->
+      {@type,@step,@id} = options
+      @steps = App.request "set:invitation:steps", options
+      @step = @steps.currentStep
+      responderItem = App.request "get:responder:item",{id: @id, step_no: @step, type: @type}
+      App.execute "when:fetched", responderItem,=>
+        if not responderItem.id?
+          @step = 1
+          @steps.setCurrentStep(@step)
+          @steps.trigger("change:current:step")
+
+        @id = responderItem.get("id")
+        @rootModel = new App.Entities.FormInvitationItemModel(responderItem.attributes)
+        @showFormSteps(@steps,options)
+
     showFormSteps:(options)->
-      view = @getFormStepsView(@steps)
+      stepsView = @getFormStepsView(@steps)
 
       if @step?
         App.navigate(@invitationUrl(@step),{replace: true})
-
-      @listenTo view, "childview:change:current:step", (options) =>          
-        @steps.setCurrentStep(options.model.get("step_num"))
-        @steps.trigger("change:current:step")
-        App.navigate(@invitationUrl(options.model.get("step_num")),{replace: true})
-        @step = options.model.get("step_num") 
-        @showForm()
-
-      @getFormStepsRegion().show view
+        @steps.setCurrentStep(@step)
+           
+      @getLayout().formStepsRegion.show stepsView
       @showForm()
 
     showForm:()->
-      @nested_model = @getNestedModel()
-      @getFieldsFormRegion().show @getFormLayout()
+      if not @id?
+        response = @getResponse()
+        @rootModel = new App.Entities.FormInvitationItemModel(response)
 
-      formView = App.request "form:wrapper", @getFormLayout(), @buttonsConfig()
+      config = @getFormConfig()
+      @controllerModel = new App.Entities.Model()
+      @fieldCollection = new App.Entities.FieldCollection(config,{rootModel:@rootModel,controllerModel:@controllerModel})
+      @getChildren() if @step is 2 and @type is "guardian"  
 
-      @getFormWrapperRegion().show formView
+      view = @getFieldsView(@fieldCollection)
 
-      # Subject or Respondent Fields
-      subjectGuardianView = @getSubjectGuardianView()
-      @getSubjectGuardianFieldsRegion().show subjectGuardianView
+      @formView = App.request "form:wrapper", view, @buttonsConfig()
 
-      @listenTo subjectGuardianView.model, "change:full_cpr", (model) => 
-        unless model.get("full_cpr").length != 10
-          data = App.request "get:national_register:data", model.get("full_cpr")
+      @listenTo @controllerModel, "change:children",(model,value,options) => 
+        if value isnt ""
+          @rootModel.get("subject").set("full_cpr",value)
 
-          App.execute "when:fetched", data, =>
-            @mergeNationalRegisterData(subjectGuardianView.model,data)
-
-      if @type is "subject" or (@type is "guardian" and @step is 1)
-
-        #Responder Items Fields
-        responderItemView = @getResponderItemView()
-        @getResponderItemsFieldsRegion().show responderItemView
- 
-        #User Fields
-        userView = @getUserView()
-        @getUserFieldsRegion().show userView
-
-        #Address Fields
-        addressView = @getAddressView()
-        @getAddressFieldsRegion().show addressView
-
-      else
-
-        if @responderItem.get("respondent")?.get("full_cpr")?
-          @children_data = App.request "get:national_register:family",@responderItem.get("respondent").get("full_cpr")
-          App.execute "when:fetched", @children_data, =>
-            #Children's respondent Fields
-            childrenSelectItemView = @getChildrenSelectItemView(@children_data)
-            @getResponderItemsFieldsRegion().show childrenSelectItemView
-
-            @listenTo childrenSelectItemView, "change:select:children", (full_cpr) =>
-              data = App.request "get:national_register:data", full_cpr
-              App.execute "when:fetched", data, =>
-                @mergeNationalRegisterData(subjectGuardianView.model,data)
+      @listenTo @rootModel, "change:parent_guardian",(model,value,options) -> 
+        relationship = model.get("subject").get("inverse_relationships").findWhere({name:"parent"})
+        if value is null
+          if relationship.id?
+            model.get("subject").get("inverse_relationships").findWhere({name:"parent"}).destroy()
+          else
+            model.get("subject").get("inverse_relationships").remove(relationship)
         else
-          #Children's respondent Fields
-          childrenSelectItemView = @getChildrenSelectItemView()
-          @getResponderItemsFieldsRegion().show childrenSelectItemView
-
-        #Guardian is Parent Check Field
-        GuardianParentCheckItemView = @getGuardianParentCheck()
-        @getAddressFieldsRegion().show GuardianParentCheckItemView
-
-
-      @listenTo formView, "form:save", =>
-        @saveFormData(formView)
+          if not relationship?
+            model.get("subject").get("inverse_relationships").add({name:"parent", person_id: model.get("respondent").get("id")})
+        
+      @listenTo @formView, "form:back", =>
+        @moveToPreviousStep()
       
-      @listenTo formView, "form:back", =>
-        @moveToPreviousStep(formView)
+      @listenTo @formView, "form:saveAndContinue form:save", =>
+        @formView.trigger('form:submit',{collection:false})
       
-      @listenTo formView, "form:saveAndContinue", =>
-        @moveToNextStep(formView)
+      @listenTo @formView, "before:form:submit", =>
+        @saveFormData()
+
+      @getLayout().mainRegion.show @formView
+
+    getChildren:()->
+      if @rootModel.get("respondent")?.get("full_cpr")? and @rootModel.get("respondent").get("full_cpr").length is 10
+        children_data = App.request "get:national_register:family",@rootModel.get("respondent").get("full_cpr")
+        App.execute "when:fetched", children_data, =>
+          if not children_data.isEmpty()
+            @controllerModel.set("_children_options",@getSelectDataFromChildren(children_data.models))
+      else
+        @controllerModel.set("_children_options",[])
+
+    getSelectDataFromChildren:(children)->
+      values = []
+      _.each children,(child)=>
+        values.push {value: child.get("full_cpr"),text: child.get("firstname") + " " + child.get("lastname")}
+
+      values
       
-    saveFormData:(formView)->
-
-      formView.trigger('form:submit')
-      @listenToOnce @responderItem, 'created updated', (options)=>
-        toastr.success(I18n.t("activerecord.sucess.messages.saved",model: ""))
-        # console.log "arguments in model after saved::",arguments
-        console.log "@ in model after saved::",options
-        # window.location.href = "/users"
-        # return
-
-    moveToNextStep:(formView)->
-      @step = @steps.getNextStep()
-      @steps.setCurrentStep(@step)
-      @steps.trigger("change:current:step")
-      App.navigate(@invitationUrl(@step),{replace: true})
-      @showForm()
-
-    moveToPreviousStep:(formView)->
-      @step = @steps.getPreviousStep()
-      @steps.setCurrentStep(@step)
-      @steps.trigger("change:current:step")
-      App.navigate(@invitationUrl(@step),{replace: true})
-      @showForm()
-
-    mergeNationalRegisterData:(model,data)->
-      model.set("firstname",data.get("firstname"))
-      model.set("lastname",data.get("lastname"))
-      model.set("full_cpr",data.get("full_cpr"))
-      model.set("sex",data.get("sex"))
-      if model.get("address")?
-        model.get("address").set("street_1",data.get("street_1"))
-        model.get("address").set("town",data.get("town"))
-        model.get("address").set("zip_code",data.get("zip_code"))
-
-  
     invitationUrl:(step)->
-      "invitation_items/invite/#{@type}/step/#{step}"
+      if @id?
+        "invitation_items/#{@id}/invite/#{@type}/step/#{step}"
+      else
+        "invitation_items/invite/#{@type}/step/#{step}"
+
+    saveFormData:()->
+      @listenToOnce @rootModel, 'created updated', (options) =>
+        toastr.success(I18n.t("activerecord.sucess.messages.saved",model: ""))
+        if @steps.isCurrentLast()
+          window.location.href = "/users"
+        else
+          @step = @steps.getNextStep()
+          @changeStep()
+
+            
+    changeStep:()-> 
+      @steps.setCurrentStep(@step)
+      @steps.trigger("change:current:step")     
+      responderItem = App.request "get:responder:item",{id: @rootModel.get('id'), step_no: @step, type: @type}
+      App.execute "when:fetched", responderItem,=>
+        @id = responderItem.get("id")
+        @rootModel = new App.Entities.FormInvitationItemModel(responderItem.attributes)
+        App.navigate(@invitationUrl(@step),{replace: true})
+        @showForm()
+     
+    moveToPreviousStep:()->
+      @step = @steps.getPreviousStep()
+      @changeStep()
+
 
     buttonsConfig:->
       #If we are in the the last step, we should show Save and Finish button, otherwise, only Save button
       options =
         formClass: "form-base form-horizontal"
+        errors: false
         buttons:
-          # primary: {text: I18n.t("actions.save_and_continue",model: "") + " >>", buttonType: 'saveAndContinue', order: 3}
-          # save: {text: I18n.t("actions.save"), buttonType: 'save', order: 2,  className: 'btn btn-success'} 
           primary: false
           save: false
           cancel: false
@@ -157,97 +148,58 @@
       else
         if @type is "guardian"
           _.extend options.buttons, 
-            primary: {text: I18n.t("actions.continue",model: "") + " >>", buttonType: 'saveAndContinue', order: 3}
+            primary: {text: I18n.t("actions.save_and_continue",model: "") + " >>", buttonType: 'saveAndContinue', order: 3}
      
       options
 
-    buildParams:->
-      if @type is "guardian"
-        params =
-          registration_identifier: "respondent_registration",
+    getFieldsView: (collection) =>
+      new App.Components.Form.FieldCollectionView 
+        collection: collection
+        model: @rootModel
+
+    getFormConfig:()->
+      EditCreate.FormConfig[@type]["step_#{@step}"]
+
+    getResponse:()->
+      if @type is "subject"
+        response =
+          deadline: null
+          registration_identifier: "subject_registration"
+          subject:
+            firstname: null
+            address:
+              street_1: null
+            user:
+              email: null
+              invitation: true
+            inverse_relationships: [{name:"patient", person_id: @curentUser.get("person_id")}]
+      else
+        response =
+          deadline: null
+          registration_identifier: "respondent_registration"
           respondent:
-            firstname: "", 
-            address: {street_1: ""}, 
-            user: {email: "", invitation: true}, 
-            inverse_relationships: [{name:"respondent", person_id: @curentUser.get("person_id")}]
-          subject:
-            firstname: "", 
-            inverse_relationships: [{name:"patient", person_id: @curentUser.get("person_id")}]
-        
-      else
-        params =
-          registration_identifier: "subject_registration",
-          subject:
-            firstname: "", 
-            address: {street_1: ""}, 
-            user: {email: "", invitation: true}, 
-            inverse_relationships: [{name:"patient", person_id: @curentUser.get("person_id")}]
-
-      params
-
-    getNestedModel:->
-      if @type is "subject" or (@type is "guardian" and @step is 2)
-        @nested_model = "subject"
-      else
-        @nested_model = "respondent"
-
-      @nested_model
-
-    #Views functions
+            firstname: null
+            address:
+              street_1: null
+            user:
+              email: null
+              invitation: true
+            inverse_relationships: [
+              {
+                name:"respondent", 
+                person_id: @curentUser.get("person_id")
+              },
+              {
+                name:"guardian", 
+                person_id: @curentUser.get("person_id")
+              }
+            ]
+         
     getFormStepsView:(steps)->
       new EditCreate.FormSteps collection: @steps
 
-    getResponderItemView:()->
-      new EditCreate.FormResponderItem
-        model: @responderItem
-
-    getSubjectGuardianView:()->
-      new EditCreate.FormSubjectOrGuardian
-        model: @responderItem.get(@nested_model)
-        
-    getChildrenSelectItemView:(data={})->
-      new EditCreate.FormChildrenSelect
-        children: data
-        model: @responderItem
-
-    getUserView:()->
-      new EditCreate.FormUser
-        model: @responderItem.get(@nested_model).get("user")
-
-    getAddressView:()->
-      new EditCreate.FormAddress
-        model: @responderItem.get(@nested_model).get("address")
-
-    getGuardianParentCheck:()->
-      new EditCreate.FormGuardianParentCheck
-        model: @responderItem.get(@nested_model)
-
-    # Region functions
     getFormStepsRegion:->
       @getLayout().formStepsRegion
 
-    getResponderItemsFieldsRegion:->
-      @getFormLayout().responderItemsFieldsRegion
-
-    getSubjectGuardianFieldsRegion:->
-      @getFormLayout().subjectGuardianFieldsRegion
-
-    getUserFieldsRegion:->
-      @getFormLayout().userFieldsRegion
-
-    getAddressFieldsRegion:->
-      @getFormLayout().addressFieldsRegion
-
-    getFormWrapperRegion:->
-      @getLayout().formWrapperRegion
-
-    getFieldsFormRegion:->
-      @getLayout().fieldsFormRegion
-
-
-    # Layout functions
-    getLayout:->
+    getLayout:()->
       @layout ?= new EditCreate.Layout
-
-    getFormLayout:->
-      @formLayout ?= new EditCreate.FormLayout(model:@responderItem)

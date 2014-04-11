@@ -7,7 +7,8 @@
 			@modal = options.config.modal
 			@formLayout = @getFormLayout options.config
 			@listenTo @formLayout, "show", @formContentRegion
-			@listenTo @formLayout, "form:submit", @formSubmit
+			@listenTo @formLayout, "form:submit", (options)=> 
+				@formSubmit(options)
 			@listenTo @formLayout, "form:cancel", @formCancel
 
 			#NOTE: Save the attributes state when we open the window when whe are using a modal window, just in case we press Cancel Button
@@ -26,16 +27,18 @@
 		
 		
 
-		formSubmit: (options) ->
+		formSubmit: (options={}) ->
 			@contentView.triggerMethod("form:submit")
 			model = @contentView.model
-
 			@listenToOnce model, "validated:invalid validated:valid", (model,msg)=>
+				@stopListening model, "validated:invalid validated:valid"
 				if _.isEmpty model._errorsWithNested()
-					@processFormSubmit model, collection
+					@formLayout.trigger "before:form:submit"
+					@processFormSubmit model
 			
 			model.validateNested()
-			collection = @contentView.collection
+			
+			collection = @contentView.collection if options.collection
 
 
 		processFormSubmit: (model, collection) ->

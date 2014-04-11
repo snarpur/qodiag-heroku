@@ -88,15 +88,14 @@ Snarpur::Application.routes.draw do
   #REFACTOR: change match to memeber
   resources :responder_items, :path => 'invitation_items', :as => :invitation_items , :controller => "invitation_items" 
   #NOTE: Add by Ata, in order to diferentiate if we are inviting a guardian or a subject
-  match "invitation_items/(invite/:type)" => 'invitation_items#new',:defaults => {:type => "guardian"}, :via => :get
-  match "invitation_items(/invite/:type/step/:step_no)" => 'invitation_items#new',:defaults => {:step_no => 1, :type => "guardian"}, :via => :get
-  match "invitation_items(/invite/:type/step/:step_no)" => 'invitation_items#create',:defaults => {:step_no => 1, :type => "guardian"}, :via => :post
-  match "invitation_items/:id(/invite/:type/step/:step_no)" => 'invitation_items#show',:defaults => {:step_no => 1,:type => "guardian"}, :via => :get
+  # match "invitation_items/(invite/:type)" => 'invitation_items#new',:defaults => {:type => "guardian"}, :via => :get
+  # match "invitation_items(/invite/:type/step/:step_no)" => 'invitation_items#new',:defaults => {:step_no => 1, :type => "guardian"}, :via => :get
+  # match "invitation_items(/invite/:type/step/:step_no)" => 'invitation_items#create',:defaults => {:step_no => 1, :type => "guardian"}, :via => :post
+  # match "invitation_items/:id(/invite/:type/step/:step_no)" => 'invitation_items#show',:defaults => {:step_no => 1,:type => "guardian"}, :via => :get
 
-  match "invitation_items/:id(/step/:step_no)" => 'invitation_items#show',:defaults => {:step_no => 1}, :via => :get
-  match "invitation_items(/step/:step_no)" => 'invitation_items#create',:defaults => {:step_no => 1}, :via => :post
-  match "invitation_items/:id(/step/:step_no)" => 'invitation_items#update',:defaults => {:step_no => 1}, :via => :put
-
+  match "invitation_items/:id/invite/:type/step/:step_no" => 'invitation_items#show',:defaults => {:step_no => 1,:type => "guardian"}, :via => :get, :as => :invitation_item_step
+  match "invitation_items/invite/:type/step/:step_no" => 'invitation_items#create',:defaults => {:step_no => 1, :type => "guardian"}, :via => :post
+  match "invitation_items/:id/invite/:type/step/:step_no" => 'invitation_items#update',:defaults => {:step_no => 1,:type => "guardian"}, :via => :put
 
 
   match 'all_surveys' => 'surveyor#index', :via => :get
