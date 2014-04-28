@@ -89,6 +89,7 @@
 
       entriesView.on "childview:show", (view)=> 
         region = @layout.addRegion view.entryValueRegionName(),"\##{view.entryValueRegionName()}" 
+        
         App.execute "show:entry:values", 
           region: region 
           entryField: view.model

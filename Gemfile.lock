@@ -413,6 +413,7 @@ DEPENDENCIES
   rails (= 3.2.11)
   rails-dev-tweaks (~> 0.6.1)
   rainbow (= 1.1.4)
+  rb-fsevent
   rb-readline (~> 0.4.2)
   rspec-rails
   ruby_parser

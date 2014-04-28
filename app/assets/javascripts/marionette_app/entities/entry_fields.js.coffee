@@ -12,19 +12,22 @@ do (Backbone) ->
     paramRoot: 'entry_field'
     blacklist:['index','editable','ok']
 
-    backboneAssociations: [
+   
+    relations:[
       {
-        type: "Many"
+        type: Backbone.Many
         key: 'entry_values'
-        relatedEntity: "App.Entities.EntryValues"
+        relatedModel:->
+          App.Entities.EntryValue
       },
       {
-        type: "Many"
-        key: 'entry_field_options'
-        relatedEntity: "App.Entities.EntryFieldOptions"
+       type: Backbone.Many
+       key: 'entry_field_options'
+       relatedModel:->
+         App.Entities.EntryFieldOption
       }
     ]
-
+ 
 
 
     validation:
@@ -40,25 +43,29 @@ do (Backbone) ->
 
 
     initialize:->
-      super
+      
       @url = ->
         if @isNew() then @urlRoot else "#{@urlRoot}/#{@id}"
 
-      #NOTE: Added the unless conditions beacuse of an error in entry_field_list
-      unless not @get('entry_field_options')? 
+
+      if not _.isEmpty  @get('entry_field_options')
         @listenTo @get('entry_field_options'), "options:add", @addOption 
         @listenTo @get('entry_field_options'), "options:remove", @removeOption
         @listenTo @, "option:selected", @selectOption
 
+      super
     
     removeOption:(model,options)->
       @get('entry_values').removeEntryFieldOption(options)
-    
+ 
+
     addOption:(model,options)->
       @get('entry_values').addEntryFieldOption(options)
-
+    
+    
     selectOption:(model,options)->
       @get('entry_values').selectEntryFieldOption(options)
+    
       
 
 
@@ -71,12 +78,14 @@ do (Backbone) ->
     
     initialize:(models,options)->
       {@sectionId,@entrySetId} = options
-
+      
       @url = -> 
         if @sectionId
           Routes.section_entry_fields_path(@sectionId)
         else
           Routes.entry_fields_path()
+
+      super
 
 
     

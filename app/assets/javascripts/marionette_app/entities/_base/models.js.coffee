@@ -139,7 +139,7 @@ do (Backbone) ->
       else
         json = $.extend(true,{},@.attributes)
         _.each(json,((v,k)->
-          if (@_inNestedAttributeList(k) or@_isBackboneAssociation(k)) and !(_.isNull(v) or v?.length is 0)
+          if (@_inNestedAttributeList(k) or @_isBackboneAssociation(k)) and !(_.isNull(v) or v?.length is 0)
             if @_isBackbone(v) and 
               json["#{k}_attributes"] = v.toJSON()
             else

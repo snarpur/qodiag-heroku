@@ -41,7 +41,6 @@
     
     addSelectedField:(options) ->
       {displayOrder, field} = options
-      
       model= 
         entry_field_id: field.get('id')
         section_id: @get('id')
