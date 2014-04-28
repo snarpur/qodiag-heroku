@@ -18,12 +18,12 @@
     
 
 
-    showEntryFields: (options) ->
+    showEntryFields: (options = {}) ->
       fields = App.request "entry:fields:entities"
       # NOTE: try to delete the when:fetch - to avoid the tiem it takes to show he spinner
       App.execute "when:fetched", fields, =>
         searchCollection = fields.createSearchCollection()     
-    
+
         @showEntryFieldsView searchCollection, fields
 
 
@@ -38,10 +38,9 @@
 
       @getLayout().listRegion.on "show", () =>
         @showSearchField(fields)
-
-        @listenTo collection, "add", (model, collection)=>
-          toastr.success("Spurningu bætt við", model.get('title'))
-       
+        
+      @listenTo collection, "updated", (model, collection)=>
+        toastr.success("Spurningu breytt við", model.get('title'))   
       
       #DELETE: When we are totally sure that the loading views works
       #@layout.listRegion.show view  
@@ -61,6 +60,8 @@
             view.model.destroy()
 
 
+    resetSearchField:->
+      @layout.$el.find(".search-input").val("")
 
 
     showSearchField:(collection) ->
@@ -73,11 +74,11 @@
     
     
     getSearchFieldView:(collection) ->
-      search = new Backbone.Model({search: ""})
-      search.on("change:search",(model, searchString)->
+      @search = new Backbone.Model({search: ""})
+      @search.on("change:search",(model, searchString)->
         collection.trigger("search:update",@.get("search"))
       )
-      new List.Search model: search
+      new List.Search model: @search
 
 
     

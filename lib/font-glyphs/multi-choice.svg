@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" width="100px" height="100px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
+<g>
+	<rect x="8.083" y="8.083" width="13.954" height="1.213"/>
+	<rect x="8.083" y="22.037" width="15.167" height="1.213"/>
+	<rect x="8.083" y="8.083" width="1.213" height="15.167"/>
+	<line x1="22.037" y1="23.25" x2="23.25" y2="23.25"/>
+	<polyline points="23.25,8.083 22.037,8.083 22.037,9.296  "/>
+</g>
+<rect x="22.037" y="14.766" width="1.213" height="8.484"/>
+<polyline points="23.25,13.553 23.25,14.766 22.037,14.766 "/>
+<rect x="14.111" y="13.797" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -5.0655 17.8049)" width="9.698" height="2.439"/>
+<polyline points="23.25,9.011 21.53,10.73 23.25,12.451 "/>
+<rect x="10.114" y="14.471" transform="matrix(0.7071 0.7071 -0.7071 0.7071 15.1972 -5.5143)" width="8.283" height="2.236"/>
+<g>
+	<rect x="8.083" y="31.296" width="13.954" height="1.213"/>
+	<rect x="8.083" y="45.25" width="15.167" height="1.213"/>
+	<rect x="8.083" y="31.296" width="1.213" height="15.167"/>
+	<line x1="22.037" y1="46.463" x2="23.25" y2="46.463"/>
+	<polyline points="23.25,31.296 22.037,31.296 22.037,32.51  "/>
+</g>
+<rect x="22.037" y="37.979" width="1.213" height="8.484"/>
+<polyline points="23.25,36.766 23.25,37.979 22.037,37.979 "/>
+<rect x="14.111" y="37.011" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -21.4799 24.604)" width="9.698" height="2.439"/>
+<polyline points="23.25,32.224 21.53,33.944 23.25,35.664 "/>
+<rect x="10.114" y="37.684" transform="matrix(0.7071 0.7071 -0.7071 0.7071 31.6109 1.284)" width="8.283" height="2.236"/>
+<g>
+	<rect x="8.083" y="54.5" width="13.954" height="1.214"/>
+	<rect x="8.083" y="68.454" width="15.167" height="1.213"/>
+	<rect x="8.083" y="54.5" width="1.213" height="15.167"/>
+	<line x1="22.037" y1="69.667" x2="23.25" y2="69.667"/>
+	<polyline points="23.25,54.5 22.037,54.5 22.037,55.714  "/>
+</g>
+<rect x="22.037" y="61.184" width="1.213" height="8.483"/>
+<polyline points="23.25,59.971 23.25,61.184 22.037,61.184 "/>
+<rect x="14.111" y="60.215" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -37.8876 31.4003)" width="9.698" height="2.439"/>
+<polyline points="23.25,55.428 21.53,57.148 23.25,58.868 "/>
+<rect x="10.114" y="60.888" transform="matrix(0.7072 0.707 -0.707 0.7072 48.0156 8.0782)" width="8.283" height="2.236"/>
+<g>
+	<rect x="8.083" y="77.577" width="13.954" height="1.214"/>
+	<rect x="8.083" y="91.531" width="15.167" height="1.213"/>
+	<rect x="8.083" y="77.577" width="1.213" height="15.167"/>
+	<line x1="22.037" y1="92.744" x2="23.25" y2="92.744"/>
+	<polyline points="23.25,77.577 22.037,77.577 22.037,78.791  "/>
+</g>
+<rect x="22.037" y="84.261" width="1.213" height="8.483"/>
+<polyline points="23.25,83.048 23.25,84.261 22.037,84.261 "/>
+<rect x="14.111" y="83.292" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -54.2056 38.1595)" width="9.698" height="2.439"/>
+<polyline points="23.25,78.505 21.53,80.226 23.25,81.945 "/>
+<rect x="10.114" y="83.965" transform="matrix(0.7072 0.707 -0.707 0.7072 64.3322 14.836)" width="8.283" height="2.236"/>
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="30.114" y1="22.644" x2="92.053" y2="22.644"/>
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="30.114" y1="45.856" x2="92.053" y2="45.856"/>
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="30.114" y1="69.061" x2="92.053" y2="69.061"/>
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="30.114" y1="92.138" x2="92.053" y2="92.138"/>
+</svg>

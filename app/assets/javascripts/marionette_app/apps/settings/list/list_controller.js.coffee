@@ -29,7 +29,7 @@
       @region.show(view)
 
       @listenTo view, 'back', =>
-        #App.navigate("/settings/#{model.get('name')}",{trigger: true})
+        App.navigate("/settings/#{model.get('name')}",{trigger: true})
   
     
     showHeader:(model)->

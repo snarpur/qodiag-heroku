@@ -4,6 +4,7 @@
     #ISSUE: #17 Accossiation and naming structure/convention on front-end side should be re considered on many to many relationships     
     blacklist: ['index']
     initialize:->
+
       @url= ->
         Routes.section_sections_entry_fields_path(@id)
      

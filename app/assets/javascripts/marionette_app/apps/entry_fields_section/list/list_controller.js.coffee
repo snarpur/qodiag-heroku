@@ -5,7 +5,6 @@
 
     list: (options) ->
       @getSectionEntryFields(options)
-      
 
 
     XgetSectionEntryFields:(options)->  
@@ -41,7 +40,6 @@
         toastr.success(I18n.t("activerecord.sucess.messages.saved",model: model.get('name')))
 
     getEntriesView:(entries,section)->
-      
       entriesView = new List.Fields
         collection: entries
         model: section

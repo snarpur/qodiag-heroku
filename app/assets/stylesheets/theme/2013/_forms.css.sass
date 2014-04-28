@@ -139,10 +139,26 @@ ul.wizard-nav
     cursor: default
 
   .help-block
-    margin-bottom: 30px
+    margin-bottom: 10px
 
   textarea
     width: 844px
     height: 60px
     padding: 8px 16px
     margin-bottom: 30px
+
+  select
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2) inset
+
+div.modal
+  #form-content-region
+    textarea
+      width: 250px !important
+
+.options > div
+  &:first-child .icon-trash
+    display: none
+
+#form-content-region
+  li
+    list-style-type: none

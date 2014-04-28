@@ -8,11 +8,21 @@
     validation:
       text_value: 
         required: true
-        
+    
+    backboneAssociations: [
+      {
+        type: "One"
+        key: 'entry_field_option'
+        relatedEntity: "App.Entities.EntryFieldOption"
+      }
+    ] 
 
     initialize: ->
+      super
       if @get('comments')
         @set("comments", new Entities.EntryValues(@get('comments')))
+
+
 
     entrySetResponseId:->
       @.get('entry_set_response_id') or @collection?.entrySetResponseId
@@ -30,16 +40,24 @@
           "#{Routes.entry_values_path()}/#{@entrySetResponseId}/#{@sectionId}"
 
     
+    addEntryFieldOption:(options)->
+      existing = @findWhere({entry_field_option_id: options.entry_field_option_id})
+      if existing
+        existing.unset('_destroy')
+      else
+        @add(options)
 
-    buildEntryValue:(field)->
-      new Entities.EntryValue
-        person_id: @personId
-        entry_set_response_id: @entrySetResponseId
-        entry_field_id: field.get('id')
+    selectEntryFieldOption:(options)->
+      existing = @findWhere({entry_field_option_id: options.entry_field_option_id})
+      if @size() is 0
+        @add(options)
 
-  
-
-
+    removeEntryFieldOption:(options)->
+      existing = @findWhere({entry_field_option_id: options.entry_field_option_id})
+      if existing and existing.id?
+        existing.set('_destroy',true)
+      else
+        @remove(options)
 
   API = 
     getEntryValues:(options)->

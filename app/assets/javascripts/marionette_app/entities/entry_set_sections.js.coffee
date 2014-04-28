@@ -17,7 +17,7 @@
           Routes.section_path(@get('id'))
     
 
-
+    #NOTE: We have to refactor, this function is repeated in Sections and EntrySetSections Entity
     getSectionEntryResponses:->
       entries = new App.Entities.EntryFields([],{})
       entries.url = Routes.entry_set_response_section_path(@get('entrySetResponseId'),@id)
@@ -80,7 +80,7 @@
     initialize:(models,options)->
       {@entrySetId,@entrySetResponse,@currentSectionId,@sectionNo} = options
 
-      @url = -> 
+      @url = ->
         Routes.entry_set_sections_path(@entrySetId)
 
       @on "change:current:section", (options)->

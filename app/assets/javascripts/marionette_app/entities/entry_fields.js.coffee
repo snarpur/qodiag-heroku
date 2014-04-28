@@ -1,30 +1,68 @@
+# TODO: Create a file for custom validation functions
+do (Backbone) ->
+  _.extend Backbone.Validation.validators,
+
+   minMultichoiceOptions: (value, attr, customValue, model)=>    
+      return model.get("field_type") == "multi-choice" and value.size() < customValue
+
 @Qapp.module "Entities", (Entities, App, Backbone, Marionette, $, _) ->
-  
+
   class Entities.EntryField extends Entities.Model
     urlRoot: Routes.entry_fields_path()
     paramRoot: 'entry_field'
     blacklist:['index','editable','ok']
 
+    backboneAssociations: [
+      {
+        type: "Many"
+        key: 'entry_values'
+        relatedEntity: "App.Entities.EntryValues"
+      },
+      {
+        type: "Many"
+        key: 'entry_field_options'
+        relatedEntity: "App.Entities.EntryFieldOptions"
+      }
+    ]
+
+
+
+    validation:
+      title: 
+        required: true
+        msg: "Vantar"
+      field_type: 
+        required: true
+        msg: "Vantar"
+      entry_field_options:
+        minMultichoiceOptions: 1
+        msg: "At least one"
+
 
     initialize:->
-      @initializeEntryValues()
-
+      super
       @url = ->
         if @isNew() then @urlRoot else "#{@urlRoot}/#{@id}"
 
+      #NOTE: Added the unless conditions beacuse of an error in entry_field_list
+      unless not @get('entry_field_options')? 
+        @listenTo @get('entry_field_options'), "options:add", @addOption 
+        @listenTo @get('entry_field_options'), "options:remove", @removeOption
+        @listenTo @, "option:selected", @selectOption
+
     
+    removeOption:(model,options)->
+      @get('entry_values').removeEntryFieldOption(options)
+    
+    addOption:(model,options)->
+      @get('entry_values').addEntryFieldOption(options)
 
-    initializeEntryValues:->
-
-      return unless @get('entry_values')? 
-      unless @get('entry_values') instanceof Backbone.Collection
-        entryValues = if _.isArray(@get('entry_values')) then @get('entry_values') else [@get('entry_values')]
-        @set 'entry_values', new Entities.EntryValues(@get('entry_values'), {entryField: @}, {silent: true})
+    selectOption:(model,options)->
+      @get('entry_values').selectEntryFieldOption(options)
       
-      @on "change:entry_values", @initializeEntryValues
+
+
   
-
-
 
 
   class Entities.EntryFields extends Entities.Collection
@@ -40,15 +78,14 @@
         else
           Routes.entry_fields_path()
 
-    
 
+    
     comparator:(entryField)->
       _(entryField.get('title')).capitalize()
 
 
-    mergeEntryValues:->
-      new App.Entities.EntryValues _.flatten @pluck('entry_values').map (i)-> i.toJSON()
-
+    # mergeEntryValues:->
+      # new App.Entities.EntryValues _.flatten @pluck('entry_values',true).map (i)-> i.toJSON({acceptsNested : false})
 
     
     getSearchCollection:->
@@ -78,7 +115,6 @@
       @searchCollection = @liveCollection.createLiveChildCollection()
         .setFilter('search', (model,searchString) ->
           return true  if !searchString? or searchString?.length < 3       
-          
           searchRegex = queryEngine.createSafeRegex(searchString)
           pass = searchRegex.test(model.get('title'))
           return pass

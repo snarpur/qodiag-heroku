@@ -1,0 +1,12 @@
+<label><%-@title%></label>
+<span class="help-block"><%- @help_text %></span>
+<ul>
+<% for option in @entry_field_options.models: %>
+  <li>
+    <label class="radio">
+      <input type="radio" name="<%-"entry_field_#{@id}"%>" value="<%-"#{option.get('id')}"%>">
+        <%= option.get("text_option") %>
+    </label>
+  </li>
+<% end %>
+</ul>

@@ -1,10 +1,10 @@
 @Qapp.module "Entities", (Entities, App, Backbone, Marionette, $, _) ->
 	
-	class Entities.Button extends Entities.Model
+	class Entities.Button extends Backbone.Model
 		defaults:
 			buttonType: "button"
 		
-	class Entities.ButtonsCollection extends Entities.Collection
+	class Entities.ButtonsCollection extends Backbone.Collection
 		model: Entities.Button
 
 		comparator:(button)->

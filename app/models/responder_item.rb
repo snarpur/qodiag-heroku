@@ -30,6 +30,7 @@ class ResponderItem < ActiveRecord::Base
   scope :by_subject, lambda {|subject_id| where(:subject_id => subject_id)}
   scope :entry_set_responses, where("entry_set_response_id IS NOT NULL")
   scope :subject_ids, select(:subject_id).uniq
+  scope :order_by_complete_date, order("completed DESC, deadline ASC")
 
   accepts_nested_attributes_for :respondent, :subject, :entry_set_response
 

@@ -37,7 +37,6 @@
     templateHelpers: =>
         tableTitle: =>
           I18n.t("responder_item.status.#{@options.status}")
-          #@options.title
 
   class List.Header extends App.Views.ItemView
     template: "responder_items/list/templates/header"

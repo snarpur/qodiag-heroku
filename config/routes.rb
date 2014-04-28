@@ -8,6 +8,10 @@ Snarpur::Application.routes.draw do
   resources :entry_values
   get 'entry_set_responses/:entry_set_response_id/section/:section_id' => 'entry_set_responses/sections#index', :as => :entry_set_response_section
 
+  # Entry Field options
+  match 'entry_fields/:id/entry_field_options' => 'entry_field_options#index', :via => :get 
+  resources :entry_field_options, :only => [:destroy]
+
   resources :entry_sets do
     resources :sections  
   end

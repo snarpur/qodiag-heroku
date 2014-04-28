@@ -7,9 +7,9 @@
   <% end %>
 <% else if @item_type == "entry_set": %>
   <% if not @completed?: %>
-    <%- @linkTo(@entry_set_response.get('entry_set_name'),"#{@routeTo.entry_set_response_path(@entry_set_response_id)}") %>
+    <%- @linkTo(@entry_set_response.get('entry_set').get('name'),"#{@routeTo.entry_set_response_path(@entry_set_response_id)}") %>
   <% else: %> 
-    <%=@entry_set_response.get('entry_set_name')%>
+    <%= @entry_set_response.get('entry_set').get('name')%>
   <% end %>
 <% else if @item_type == "pre_registration": %>
   <% if not @completed?: %>

@@ -6,17 +6,16 @@
 
     show: (options) -> 
       {@region,@entryField,@entries} = options
-
       @entryValue = @entryField.get('entry_values')
-      # @entryField.set('entry_values',@entryValue)
       @region.show @getLayout()
       @showEntryValue()
       @showComments()
 
     
 
-    showEntryValue:->   
-      entryView = new Show.Entries collection: @entryValue
+
+    showEntryValue:-> 
+      entryView = new Show.Entries collection: @entryValue, field_type: @entryField.get('field_type')
       @getEntryRegion().show entryView
 
     

@@ -1,0 +1,23 @@
+<div class="control-group">
+  <label class="control-label" for="title">Titill</label>
+  <div class="controls">
+    <input class="input-xlarge" type="text" id="title" placeholder="Titill">
+    <span id="title_error" class="help-inline"></span>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="description">Lýsing</label>
+  <div class="controls">
+    <textarea class="input-xlarge" rows="3" id="description" placeholder="Lýsing..."></textarea>
+  </div>
+</div>
+<% if @hasRole('caretaker_admin'): %>
+  <div class="control-group">
+    <label class="control-label" for="visibility">Opinber?</label>
+    <div class="controls">
+      <input type="checkbox" id="visibility">        
+    </div>
+  </div>
+<% end %>
+</div>
+ 

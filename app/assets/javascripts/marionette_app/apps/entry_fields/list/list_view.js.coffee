@@ -43,7 +43,6 @@
       "click a.button.prime": "create:field:clicked"
 
 
-
   class List.Search extends App.Views.ItemView
     template: "entry_fields/list/templates/_search"
     tagName: 'form'

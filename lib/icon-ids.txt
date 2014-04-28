@@ -16,6 +16,12 @@
 * waiting-room -> 3
 * mail-box -> 18199
 * lock -> 424
+* string -> 10607
+* text -> 8326
+* multi-choice -> 13115
+* single-choice -> 835
+* group-1 -> 2554
+* patient-chart-1 -> 12258
 * clock-1 -> 1164
 * clock-2 -> 8663
 * landscape -> 5340
@@ -23,7 +29,5 @@
 * at-sign-1 -> 12513
 * confused -> 12321
 * no-sign -> 8559
-
 exit ->
 
-Results are visually presented and automatically processed. Offers a library of standardized rating scales and creation of custom questionares

@@ -1,0 +1,5 @@
+
+<label class="checkbox">
+  <input type="checkbox" <%= @isChecked()%> id="<%-"multi_choice_value_#{@id}"%>" value="<%-"#{@id}"%>">
+  <%= @text_option %>
+</label>
