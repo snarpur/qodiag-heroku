@@ -30,15 +30,16 @@
 		formSubmit: (options={}) ->
 			@contentView.triggerMethod("form:submit")
 			model = @contentView.model
+			collection = @contentView.collection ? options.collection
 			@listenToOnce model, "validated:invalid validated:valid", (model,msg)=>
 				@stopListening model, "validated:invalid validated:valid"
 				if _.isEmpty model._errorsWithNested()
 					@formLayout.trigger "before:form:submit"
-					@processFormSubmit model
+					@processFormSubmit model, collection
 			
 			model.validateNested()
 			
-			collection = @contentView.collection if options.collection
+
 
 
 		processFormSubmit: (model, collection) ->

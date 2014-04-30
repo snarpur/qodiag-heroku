@@ -18,7 +18,7 @@
     
     showForm:->
       editView = @getFormView()
-      formView = App.request "form:wrapper", editView
+      formView = App.request "form:wrapper", editView, {collection: editView.collection}
       @region.show formView
       formView
 

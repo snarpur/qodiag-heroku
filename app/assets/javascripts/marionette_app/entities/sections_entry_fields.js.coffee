@@ -8,7 +8,7 @@
       @url= ->
         Routes.section_sections_entry_fields_path(@id)
      
-
+      super
     
     updateDisplayOrder:(displayOrder)=>
       displayOrder += 1
@@ -41,7 +41,9 @@
         if @section
           Routes.section_sections_entry_fields_path(@section.id)
 
-    
+      super
+
+      
     comparator: (entry) ->
       entry.get('display_order')
 

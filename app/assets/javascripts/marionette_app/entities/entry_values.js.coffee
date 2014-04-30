@@ -8,20 +8,6 @@
     validation:
       text_value: 
         required: true
-    
-    backboneAssociations: [
-      {
-        type: "One"
-        key: 'entry_field_option'
-        relatedEntity: "App.Entities.EntryFieldOption"
-      }
-    ] 
-
-    initialize: ->
-      super
-      if @get('comments')
-        @set("comments", new Entities.EntryValues(@get('comments')))
-
 
 
     entrySetResponseId:->
