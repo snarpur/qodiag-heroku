@@ -1,7 +1,8 @@
 @Qapp = do (Backbone, Marionette) ->
   
   App = new Marionette.Application
-  
+  App.Qodiag = {}
+  App.Qodiag.namespace = "Qapp"
   App.on "initialize:before", (options) ->
     App.environment = options.environment
     @currentUser = App.request "set:current:user", options.currentUser

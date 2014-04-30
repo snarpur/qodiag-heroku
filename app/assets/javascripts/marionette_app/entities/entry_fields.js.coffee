@@ -17,29 +17,19 @@ do (Backbone) ->
       {
         type: Backbone.Many
         key: 'entry_values'
+        collectionType: "#{App.Qodiag.namespace}.Entities.EntryValues"
         relatedModel:->
           App.Entities.EntryValue
       },
       {
        type: Backbone.Many
        key: 'entry_field_options'
+       collectionType: "#{App.Qodiag.namespace}.EntryFieldOptions"
        relatedModel:->
          App.Entities.EntryFieldOption
       }
     ]
  
-
-
-    validation:
-      title: 
-        required: true
-        msg: "Vantar"
-      field_type: 
-        required: true
-        msg: "Vantar"
-      entry_field_options:
-        minMultichoiceOptions: 1
-        msg: "At least one"
 
 
     initialize:->

@@ -5,9 +5,6 @@
     urlRoot: Routes.entry_values_path
     paramRoot: 'entry_value'
   
-    validation:
-      text_value: 
-        required: true
 
 
     entrySetResponseId:->
@@ -24,7 +21,7 @@
         {@entrySetResponseId,@entryField,@sectionId,@personId} = options
         @url= ->
           "#{Routes.entry_values_path()}/#{@entrySetResponseId}/#{@sectionId}"
-
+      super
     
     addEntryFieldOption:(options)->
       existing = @findWhere({entry_field_option_id: options.entry_field_option_id})

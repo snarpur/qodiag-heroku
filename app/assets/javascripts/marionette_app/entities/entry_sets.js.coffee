@@ -4,19 +4,19 @@
     urlRoot: Routes.entry_sets_path()
     paramRoot: 'entry_set'
 
-    backboneAssociations: [
-      {
-        type: "Many"
-        key: 'sections'
-        relatedEntity: "App.Entities.Sections"
-      }
-
-    ]
+    relations:[{
+      type: Backbone.Many
+      key: 'sections'
+      collectionType: "#{App.Qodiag.namespace}.Entities.Sections"
+      relatedModel:->
+        App.Entities.Section
+    }]
 
   class Entities.EntrySetsCollection extends Entities.Collection
     model: Entities.EntrySet
     initialize:->
       @url= ()-> Routes.entry_sets_path()
+      super
   
   API =
     getEntrySets: (callBack) ->

@@ -7,25 +7,21 @@
     urlRoot: () ->
       Routes.entry_set_responses_path()
 
-    backboneAssociations: [
+   
+    relations:[{
+      type: Backbone.One
+      key: 'entry_set'
+      relatedModel:->
+        App.Entities.EntrySet
+      },
       {
-        type: "One"
-        key: 'entry_set'
-        relatedEntity: "App.Entities.EntrySet"
-        send: false
-      }      
-      {
-        type: "Many"
-        key: 'entry_values'
-        relatedEntity: "App.Entities.EntryValues"
-      }
-    ]
-    
-
-    initialize:->
-      super
-      @on "sync:start", -> console.log "on beforeSend :",@, arguments
-
+      type: Backbone.Many
+      key: 'entry_values'
+      collectionType: "#{App.Qodiag.namespace}.Entities.EntryValues"
+      relatedModel:->
+        App.Entities.EntryValue
+      }]
+   
 
 
     
@@ -56,6 +52,7 @@
     initialize:(models,options)->
       @url= ->
         Routes.entry_set_responses_path()
+      super
 
   API = 
     getEntrySetResponse: (options) ->

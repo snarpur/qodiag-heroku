@@ -10,6 +10,8 @@
         else
           Routes.section_path(@get('id'))
 
+      super
+
     isCurrentSection:->
       @collection.isCurrentSection(@)
 
@@ -25,6 +27,7 @@
     url: -> Routes.sections_path()
 
     initialize:(models,options)->
+      super
       # {@entrySetId,@entrySetResponse,@currentSectionId,@sectionNo} = options
 
       # @url = -> 
