@@ -92,6 +92,7 @@
 
 
     saveAndMoveToNextSection:(formView)->
+      @entrySetResponse.set("entry_values",@entrySetResponse.getEntryValuesForSection())
       formView.trigger('form:submit')
       @listenToOnce @entrySetResponse, 'updated', =>
         @sections.trigger("change:current:section",model: @sections.getNextSection())
