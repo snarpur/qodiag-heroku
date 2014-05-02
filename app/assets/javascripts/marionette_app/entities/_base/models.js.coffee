@@ -9,7 +9,7 @@ do (Backbone) ->
   class Entities.Model extends Backbone.AssociatedModel
     attributeList: []
     nestedAttributeList: []
-    blacklist:[]
+    blacklist:["_errors","_nestedErrors"]
     nestedErrors:{}
     validation:{}
     initialize:->
