@@ -12,6 +12,7 @@
     initialize: ->
       @url = ->
         Routes.entry_field_option_path(@id)
+      super
 
 
     

@@ -39,7 +39,6 @@
       #NOTE: We should try to remove this when-fetched in order to remove the time it takes to show the spinner
       App.execute "when:fetched", entries, =>
         @entrySetResponse.set('entry_fields',entries)
-        window.etest = @entrySetResponse
         @showForm()
 
       

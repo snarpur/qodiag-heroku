@@ -159,6 +159,7 @@
                                 person_id: currentUser.get('person_id')
                                 entry_field_option_id: @model.id
                                 entry_field_id: @model.get('entry_field_id')
+      
 
 
 

@@ -7,7 +7,6 @@ class People::ResponderItemsController < ApplicationController
    def index
     #@responder_items = ResponderItem.by_respondent(params[:person_id]).uncompleted
     @responder_items = ResponderItem.by_respondent(params[:person_id])
-    KK.log @responder_items.inspect,:r
     @responder_items
     authorize!(:index, *(@responder_items.any? ? @responder_items : ResponderItem.new))
    end
