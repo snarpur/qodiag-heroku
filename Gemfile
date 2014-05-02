@@ -16,9 +16,9 @@ gem "hpricot"
 gem "ruby_parser"
 gem "simple_form"
 gem "rainbow", '1.1.4'
-gem "surveyor",:github => "NUBIC/surveyor"
+gem "surveyor",:github => "NUBIC/surveyor", tag: 'v1.4.0'
+gem 'formtastic-bootstrap'
 gem "fastercsv", "~> 1.5.4"
-gem "formtastic"
 gem "hash-deep-merge"
 gem 'rails-dev-tweaks', '~> 0.6.1'
 gem "i18n-js"
