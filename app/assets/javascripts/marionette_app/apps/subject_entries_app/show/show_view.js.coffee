@@ -64,6 +64,8 @@
         @options.index
       field_type: =>
         @options.field_type
+      value:=>
+        value = if @options.field_type == "string" then @model.get('string_value') else @model.get('text_value')
 
 
   class Show.EmptyEntry extends App.Views.ItemView

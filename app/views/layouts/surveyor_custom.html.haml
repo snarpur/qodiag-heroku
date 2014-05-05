@@ -4,17 +4,16 @@
     %meta{:content => "text/html;charset=UTF-8", "http-equiv" => "content-type"}/
     %title
       Survey: #{controller.action_name}
-    = stylesheet_link_tag "http://fonts.googleapis.com/css?family=Droid+Sans:400,700"
-    = stylesheet_link_tag "http://fonts.googleapis.com/css?family=Droid+Sans:400,700"
+    // = stylesheet_link_tag "http://fonts.googleapis.com/css?family=Droid+Sans:400,700"
+    // = stylesheet_link_tag "http://fonts.googleapis.com/css?family=Droid+Sans:400,700"
     = stylesheet_link_tag "surveys"
     = javascript_include_tag "surveys_application"
   %body.surveys
+    .container
+      #header
+        =render 'shared/alert_login_as'
+        =render "surveyor/header"
 
-    #header
-      =render 'shared/alert_login_as'
-      =render "surveyor/header"
-
-    #container
       #content
         = yield
     =render "shared/google_analytics"

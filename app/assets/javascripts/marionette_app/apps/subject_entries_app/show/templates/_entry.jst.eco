@@ -10,5 +10,5 @@
     </div>
 </div>
 <div class="entry-content">
-    <p><%- @text_value %></p>
+    <p><%- @value() %></p>
 </div>
