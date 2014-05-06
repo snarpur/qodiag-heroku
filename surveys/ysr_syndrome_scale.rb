@@ -23,8 +23,7 @@ survey survey_name do
     questionnaire_definition.each do |s|
       group s[:question_group], :common_identifier => s[:common_identifier], :display_type => :default do
         s[:order].each do |order|
-          #NOTE: To match with the question number
-          # parameters = params.merge({:display_order => order - 1})
+          #To match with the question number
           parameters = params.merge({:display_order => order})
           if question_with_subquestions.include?(order)
             parameters = parameters.merge({:pick => :none, :custom_class => 'survey-question pick-none'})

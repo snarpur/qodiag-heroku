@@ -185,10 +185,6 @@ App.FormEditors.NestedCollection = Backbone.Form.editors.NestedModel.extend({
     else
       @.value
 
-
-  # setValue: (value) ->
-  #   @$el.val value
-
   focus: ->
     return  if @hasFocus
     

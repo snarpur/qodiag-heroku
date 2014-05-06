@@ -3,7 +3,6 @@ extends: Chart
 chart_config:
   colors: ['#6ddb00', '#ffff00', '#e20000']
   chart:
-    # type: bar
     type: columnrange
     inverted: true
     marginBottom: 40

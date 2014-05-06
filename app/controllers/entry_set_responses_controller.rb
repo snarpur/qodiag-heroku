@@ -8,11 +8,6 @@ class EntrySetResponsesController < ApplicationController
   def update
     @entry_set_response = EntrySetResponse.find(params[:id])
     @entry_set_response.update_attributes(params[:entry_set_response])
-    #   # render :json => {:ok =>'ok'}
-    #   render :update
-    #   respond_with @entry_set_response
-    # else
-    respond_with @entry_set_response
-    # end    
+    respond_with @entry_set_response  
   end
 end

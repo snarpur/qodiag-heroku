@@ -6,8 +6,7 @@ params = {:common_namespace => namespace, :pick => :one, :display_type => :inlin
 survey name do
   section namespace do
     group "inattention" do
-      #NOTE: To match with the question number
-      # order = 0
+      #To match with the question number
       order = 1
       9.times do |s|
         q namespace, params.merge({:display_order => order})
@@ -16,8 +15,7 @@ survey name do
       end
     end
     group "impulsivity_hyperactivity" do
-      #NOTE: To match with the question number
-      # order = 1
+      #To match with the question number
       order = 2
       9.times do |s|
         q namespace, params.merge({:display_order => order})

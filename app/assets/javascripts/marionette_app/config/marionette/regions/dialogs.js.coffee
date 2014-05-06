@@ -22,7 +22,7 @@ do (Backbone, Marionette) ->
     
     closeDialog: ->
       @stopListening()
-      #NOTE: When valdate against the server closeDialog is called and the next time currentView doesn't exists
+      # When valdate against the server closeDialog is called and the next time currentView doesn't exists
       if @currentView?
         @currentView.$el.modal('hide')
 

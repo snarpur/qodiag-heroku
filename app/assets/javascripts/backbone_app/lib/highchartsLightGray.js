@@ -7,15 +7,7 @@ Highcharts.themelight = {
 colors: ['#058DC7', '#50B432', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4'],
    chart: {
       backgroundColor: null,
-      //{
-      //    linearGradient: [0, 0, 0, 400],
-      //    stops: [
-      //       [0, 'rgb(96, 96, 96)'],
-      //       [1, 'rgb(16, 16, 16)']
-      //    ]
-      // },
       borderWidth: 0,
-      // borderRadius: 15,
       plotBackgroundColor: null,
       plotShadow: false,
       plotBorderWidth: 0

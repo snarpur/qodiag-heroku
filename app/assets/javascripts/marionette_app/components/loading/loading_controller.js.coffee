@@ -13,7 +13,7 @@
         debug: false
         entities: @getEntities(view)
 
-      #NOTE: Select the active region in the case we have a loader region 
+      # Select the active region in the case we have a loader region 
       activeRegion = if options.loaderRegion then options.loaderRegion else @region
 
       switch config.loadingType

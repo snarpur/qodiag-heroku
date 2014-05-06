@@ -8,6 +8,5 @@ child :respondent => :respondent do
 end
 
 node :subject do
-  # partial("invitation_items/guardian_invitation/step_#{@step_no}/subject", :object => PersonDecorator.decorate(@responder_item.subject))
   partial("invitation_items/guardian_invitation/step_#{@step_no}/subject", :object => @responder_item.subject)
 end

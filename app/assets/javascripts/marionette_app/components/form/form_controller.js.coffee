@@ -11,14 +11,14 @@
 				@formSubmit(options)
 			@listenTo @formLayout, "form:cancel", @formCancel
 
-			#NOTE: Save the attributes state when we open the window when whe are using a modal window, just in case we press Cancel Button
+			#Save the attributes state when we open the window when whe are using a modal window, just in case we press Cancel Button
 			if (@modal)
 				bindings = _.values @contentView.bindings
 				@previous = @contentView.model.pick(bindings...)
 			
 		formCancel: ->
 			if (@modal)
-				#NOTE: Set the attribute previous values
+				#Set the attribute previous values
 				@contentView.model.set(@previous)
 				@contentView.model.unset("_errors") 
 				App.dialogRegion.closeDialog()
@@ -46,7 +46,7 @@
 			model.save model.toJSON(),
 				collection: collection
 			
-			# NOTE: If the form is inside a modal window we listen to created or updated to take the propers action in the dialog region
+			#If the form is inside a modal window we listen to created or updated to take the propers action in the dialog region
 			if (@modal)	
 				@listenTo model, "created updated", ()=>
 					App.dialogRegion.closeDialog()

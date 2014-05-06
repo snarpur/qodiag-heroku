@@ -35,9 +35,9 @@
 			@trigger("form:#{buttonType}",{sourceButton: buttonType})
 			
 		keypressed: (e)->
-			#NOTE: We sunmit the form when we press Enter and the focus is not in a textarea
+			#We sunmit the form when we press Enter and the focus is not in a textarea
 			if e.which is 13 and e.target.type isnt "textarea"
-				#REFACTOR: We should maybe include the option collection in the form
+				#We should maybe include the option collection in the form
 				@trigger("form:submit",{collection:false})
 
 		closeButtonClick:->

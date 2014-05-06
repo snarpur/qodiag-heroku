@@ -33,30 +33,7 @@ charts:
             - rule_breaking_behaviour 
             - aggressive_behaviour
         - other_problems
-  # -   
-  #   content:
-  #     name: other_problems
-  #     question_groups:
-  #       -
-  #         name: other_problems
-  #         total: [other_problems]
-  #         drilldown: true
-
-  #   chart_config:
-  #     legend:
-  #         enabled: false
-  #     xAxis:
-  #       title:
-  #         text: false
-  #     yAxis:
-  #       opposite: false
-  #       maxPadding: 0.01
-  #       minorTickInterVal: auto
-  #       tickInterval: null
-  #     title:
-  #       text: ~
-  #     subtitle: 
-  #       text: ~
+  
   -   
     content:
       name: total

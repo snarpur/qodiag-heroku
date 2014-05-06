@@ -1,15 +1,6 @@
 class Person < ActiveRecord::Base
 
   validate :uniqueness_of_full_cpr
-  #validates_presence_of :firstname , :sex, :lastname
-  #validate :presence_of_full_cpr
-  #validates_length_of :full_cpr, :is => 10, :allow_nil => true
-  #validates_length_of :cpr, :is => 4
-  #validates_length_of :firstname, :minimum => 4
-  #validate :presence_of_parent_occupation
-
-  
-  
 
   belongs_to :address
   has_one :user
@@ -210,20 +201,6 @@ class Person < ActiveRecord::Base
       items
   end
 
-  #DELETE: Used in the test files
-  def responder_items_by_group
-    items = self.responder_items.surveys_by_group
-    groups, groups_arr = {},[]
-    items.each_with_index do |item,index|
-      groups[item.access_code] ||= []
-      groups[item.access_code] << item
-        if item == items.last || items[index + 1].access_code != item.access_code
-          groups_arr << {:name => item.access_code, :items => groups[item.access_code]}
-        end
-     end
-     groups_arr
-  end
-
   def role
     role = self.user.nil? ? 'patient' : self.user.role_name
   end
@@ -270,7 +247,7 @@ class Person < ActiveRecord::Base
     end
   end
 
-  #FIX: Exception on invalid date
+  # TODO: Exception on invalid date
   def full_cpr=(cpr)
     unless cpr.empty?
       day = cpr[0..1]

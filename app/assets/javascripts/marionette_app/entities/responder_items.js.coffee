@@ -78,6 +78,3 @@
 
   App.reqres.setHandler "get:person:entry:set:responder:items", (options) ->
     API.getEntrySetResponderItemsForPerson options
-
-  # App.reqres.setHandler "get:responder:item", (options) ->
-  #   API.getResponderItemForId options

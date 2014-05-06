@@ -1,7 +1,6 @@
 @import partials/base
 $tab_dark_border: linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,.1) 5%,rgba(0,0,0,.1) 65%,rgba(0,0,0,0) 100%)
 $tab_shadow: linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,.050) 25%,rgba(0,0,0,.050) 75%,rgba(0,0,0,0) 100%)
-//$tab_border_shadow: radial-gradient(center, ellipse cover, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 70%)
 
 @font-face 
   font-family: 'Entypo'
@@ -13,7 +12,6 @@ $tab_shadow: linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,.050) 25%,rgba(0,0
 
 body
   font-family: 'Droid Sans', sans-serif
-  // font-family: Helvetica, Arial, sans-serif
   font-size: 12px
   font-weight: 400
 
@@ -60,7 +58,7 @@ body
     padding-top: 25px
     +prepend(12)
     color: #999
-    // background: url("/assets/rannis90.jpg") no-repeat
+    
     
 
 #header
@@ -72,7 +70,6 @@ body
   +background-image($highlight_center)
   & > div
     position: relative
-    // width: $blueprint_container_size
     height: 50px
   h2
     position: absolute
@@ -138,10 +135,7 @@ ul.patient-nav.sub
   top: 50px
   width: $navigation_width
   padding: 100px 2px 500px 4px
-  //+background-image($tab_dark_border, $tab_border_shadow ,$tab_shadow)
-  //background-repeat: no-repeat
-  //background-position: 100% 100%, 57px -50px, 0 -50px
-  //background-size: 1px 100%, 6px 100%, 100% 95%
+
   li:last-child
     margin-bottom: -500px
   li
@@ -169,7 +163,6 @@ ul.patient-nav.sub
     border-color: rgba(0,0,0,.16)
     a
       +background-image(linear-gradient(right, rgba(255, 255, 255, .8) 0%, rgba(255, 255, 255, .45) 100%),url("/assets/bg-pattern-1.png"))
-      // background-color: blue
       margin-left: 2px
       border-radius: 4px 0 0 4px
       color: #333

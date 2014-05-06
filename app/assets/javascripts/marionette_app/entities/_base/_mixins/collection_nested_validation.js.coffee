@@ -15,6 +15,6 @@
           @validated.push model.cid
           if _.isEmpty(_.difference(@modelCids, @validated))
             _.each @parents,(p)=>
-              p.trigger "validated:#{@parentRelationsKey}:collection", @ # {name: "flies", model:@, msg: @_errors}
+              p.trigger "validated:#{@parentRelationsKey}:collection", @
 
         m.validateNested()

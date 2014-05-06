@@ -20,10 +20,7 @@ class App.Views.Timeline.Canvas extends Backbone.View
   updateOpenLine:(line,item)=>
     state = 'open' if item 
     @focusNewItem(null, state)
-    # unless line is null or !@model.getOpenLine()?
-    #   if line.cid isnt @model.getOpenLine()?.cid
-    #     @model.getOpenLine().trigger("updateDialog",null)
-    # @model.setOpenLine(line)
+
   
   focusNewItem:(obj, value)=>
     state = if value is "open" then "new-item" else ""
@@ -79,6 +76,5 @@ class App.Views.Timeline.Canvas extends Backbone.View
     @renderSurveyMenu()
     @renderHeadingsList()
     @lines.add(@createSortedLinesCollection())
-    # if @lines.size() is 0 then @$el.setCssState('empty')
     @model.set(current_date: Date.today())
     @

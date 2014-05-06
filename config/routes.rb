@@ -91,11 +91,7 @@ Snarpur::Application.routes.draw do
   match "pre_registrations/:id(/step/:step_no)" => 'pre_registrations#update',:defaults => {:step_no => 1}, :via => :put
   #REFACTOR: change match to memeber
   resources :responder_items, :path => 'invitation_items', :as => :invitation_items , :controller => "invitation_items" 
-  #NOTE: Add by Ata, in order to diferentiate if we are inviting a guardian or a subject
-  # match "invitation_items/(invite/:type)" => 'invitation_items#new',:defaults => {:type => "guardian"}, :via => :get
-  # match "invitation_items(/invite/:type/step/:step_no)" => 'invitation_items#new',:defaults => {:step_no => 1, :type => "guardian"}, :via => :get
-  # match "invitation_items(/invite/:type/step/:step_no)" => 'invitation_items#create',:defaults => {:step_no => 1, :type => "guardian"}, :via => :post
-  # match "invitation_items/:id(/invite/:type/step/:step_no)" => 'invitation_items#show',:defaults => {:step_no => 1,:type => "guardian"}, :via => :get
+  
 
   match "invitation_items/:id/invite/:type/step/:step_no" => 'invitation_items#show',:defaults => {:step_no => 1,:type => "guardian"}, :via => :get, :as => :invitation_item_step
   match "invitation_items/invite/:type/step/:step_no" => 'invitation_items#create',:defaults => {:step_no => 1, :type => "guardian"}, :via => :post
@@ -112,10 +108,6 @@ Snarpur::Application.routes.draw do
   match 'people/:subject_id/information' => 'people#information'
   match 'people/:id/image_upload' => 'people#image_upload', :via => :put , :as => :image_upload
   
-
-  
-  # match 'pre_registrations/edit/step/:step_no/:id' => 'pre_registrations#edit',:defaults => { :step_no => 1}, :via => [:get], :as => :pre_registration_step
-  # match 'pre_registrations/edit/step/:step_no/:id' => 'pre_registrations#update',:defaults => { :step_no => 1}, :via => [:post]
   
   post "sign_up/user", :to => 'sign_up#create'
 
@@ -123,8 +115,6 @@ Snarpur::Application.routes.draw do
   get "pages/help"
   get "pages/landing"
   get "pages/browser_update"
-
-  # resources :national_registers, :only => [:show]
 
   get "national_registers/:kennitala" => 'national_registers#lookup', :as => :lookup
   get "national_registers/family/:kennitala" => 'national_registers#family', :as => :family

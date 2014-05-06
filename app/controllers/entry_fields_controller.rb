@@ -10,7 +10,7 @@ class EntryFieldsController < ApplicationController
   end
   
   def create
-    #Change by Ata: Code refactoring that use the relationship between person and Entry Fields
+    # Code refactoring that use the relationship between person and Entry Fields
     @entry_field = @current_user.person.entry_fields.build(params[:entry_field])
     if @entry_field.save
       render :show

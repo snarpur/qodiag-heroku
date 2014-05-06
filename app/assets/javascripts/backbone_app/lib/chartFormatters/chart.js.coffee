@@ -51,7 +51,6 @@ class App.Lib.ChartFormatters.Chart
      
   getFormatterFunction:(str,options)=>
     functionString = _.camelize(str.replace(/\./g,"-"))
-    #NOTE: Check if options is a boolean
     if (options == true)
       options = {name: 'default'}
       

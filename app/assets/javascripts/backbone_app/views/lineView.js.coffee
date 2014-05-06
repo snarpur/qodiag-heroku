@@ -62,9 +62,6 @@ class App.Views.Timeline.Line extends Backbone.View
     lineItem = new App.Views.Timeline.LineItem(model: item, line: @model, timeline: @timeline)
     @.$(".line-items").append(lineItem.render().el)
 
-  
-  # itemDetailDialog:() =>
-
   newItemOverlayState:(self,state)=>
     overlayState = "new-item" if state is 'open'
     $(@el).setCssState(state)

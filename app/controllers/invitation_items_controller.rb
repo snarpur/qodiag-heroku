@@ -16,7 +16,7 @@ class InvitationItemsController < ApplicationController
       @responder_item = ResponderItemDecorator.decorate(ResponderItem.find(params[:id]))
     else
       @responder_item = ResponderItemDecorator.decorate(ResponderItem.new)
-      #NOTE: If there in no RespoderItem, the step should be always 1
+      # If there in no RespoderItem, the step should be always 1
       @step_no = 1
     end
     render "invitation_items/#{@type}_invitation/step_#{@step_no}/index"

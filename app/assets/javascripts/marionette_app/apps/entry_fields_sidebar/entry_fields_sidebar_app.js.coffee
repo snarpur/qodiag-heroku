@@ -1,7 +1,5 @@
  @Qapp.module "EntryFieldsSidebarApp", (EntryFieldsSidebarApp, App, Backbone, Marionette, $, _) ->
-  # @startWithParent = false
-  
-
+ 
   API =
     listEntryFields: (options)->
       ctrl = new EntryFieldsSidebarApp.List.Controller

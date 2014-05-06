@@ -1,5 +1,4 @@
 class Devise::InvitationsController < ApplicationController
-  # before_filter :get_user
   before_filter :unauthorized_raise_401, :except => ['edit','update']
 
   def edit

@@ -26,7 +26,6 @@
     templateHelpers: =>
         tableTitle: =>
           I18n.t("responder_item.status.uncompleted")
-          #@options.title
     
 
   class List.Items extends App.Views.CompositeView

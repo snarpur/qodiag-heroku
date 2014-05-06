@@ -57,9 +57,6 @@
     showEntrySetSelect:(items)->
       selectView = new List.SelectItems(collection: items, layout: @getLayout())
 
-      #DELETE: When we are totally sure that the loading views works
-      #@getEntrySetSelectRegion().show selectView
-
       @show selectView,
          region: @getEntrySetSelectRegion()
          loading:false 
@@ -80,9 +77,7 @@
       @show sectionsView,
         region: @getSectionRegion()
         loading:false     
-      
-     #DELETE: When we are totally sure that the loading views works
-     #@getSectionRegion().show sectionsView 
+
 
     showEntryFields:(entries)->
       entriesView = new List.Entries(collection: entries)
@@ -95,14 +90,12 @@
           entryField: view.model
           entries: entries
 
-      #DELETE: When we are totally sure that the loading views works
-      @getEntrySetValuesRegion().show entriesView 
+      # @getEntrySetValuesRegion().show entriesView 
       
-      #@show entriesView, 
-      # loading:
-          # I use the spinner effect here because the opacity-spinner here doesn't look like good 
-      #    loadingType: "spinner"
-      #  region: @getEntrySetValuesRegion()
+      @show entriesView, 
+        loading:
+          loadingType: "spinner"
+        region: @getEntrySetValuesRegion()
         
 
     createItemSetup:(options = {})->

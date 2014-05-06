@@ -381,9 +381,7 @@
         },
         {
           fieldClass: App.InvitationItemsApp.EditCreate.GuardianCheck
-          # modelName: "controller"
           fieldName: "parent_guardian"
-          # itemViewOptions: "relationships"
           options: [
             {
               value: "true",

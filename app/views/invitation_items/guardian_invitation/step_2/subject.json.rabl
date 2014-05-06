@@ -1,12 +1,6 @@
 object @subject
 attributes :id, :full_cpr, :firstname, :lastname, :sex
-  # child :address do
-  #   attributes :id, :street_1, :street_2, :town, :zip_code, :phone, :home_phone
-  #   node(:paramRoot){"address"}
-  # end
-# node do
-#   {:object_class => "person"}
-# end
+
 node do |subject|
   {
     :inverse_relationships =>

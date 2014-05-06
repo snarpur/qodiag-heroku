@@ -14,9 +14,6 @@
     
     showEntrySets: (entrySetsView) ->
       
-      #DELETE: When we are totally sure that the loading views works
-      #@getLayout().listRegion.show entrySetsView
-
       @show entrySetsView,
          region: @getLayout().listRegion
          loading:true 

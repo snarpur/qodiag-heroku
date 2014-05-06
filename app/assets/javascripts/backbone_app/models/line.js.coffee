@@ -1,7 +1,5 @@
 class App.Models.Line extends Backbone.Model
 
-  # urlRoot: "/people/:subject_id/"
-  
   initialize:->
     @.urlRoot = "/people/:subject_id/responder_items/survey/"
     @timeline = @.get('timeline')

@@ -80,8 +80,6 @@ class App.Collections.ColumnChart extends Backbone.Collection
       else
         if not _.isEmpty(@normReferenceId)
           url = "#{url}/norm_reference/#{@normReferenceId}"
-      # unless _.isEmpty(@currentMetric)
-      #   url = "#{url}/#{@currentMetric}"
       url
 
   
@@ -97,7 +95,6 @@ class App.Collections.ColumnChart extends Backbone.Collection
 
   filters:->
     _.map(@at(0).attributes.chartFilters,((i)->
-      # i.isActive = (i.query == @getCurrentMetric())
       i
     ),@)
 

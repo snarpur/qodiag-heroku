@@ -83,10 +83,6 @@ do (Backbone) ->
       _(entryField.get('title')).capitalize()
 
 
-    # mergeEntryValues:->
-      # new App.Entities.EntryValues _.flatten @pluck('entry_values',true).map (i)-> i.toJSON({acceptsNested : false})
-
-    
     getSearchCollection:->
       @searchCollection
     

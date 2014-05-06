@@ -3,7 +3,6 @@ module ResponseSetCustomMethods
   def self.included(base)
     base.send :attr_accessor, :status
     base.send :after_save, :complete_responder_item
-    #base.send :validate, :validate_mandatory_questions, :on => :update, :unless => Proc.new{|r|r.status.nil?}
   end
 
   def respondent

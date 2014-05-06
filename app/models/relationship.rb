@@ -4,10 +4,7 @@
   belongs_to :inverse_relation, :class_name => "Person"
 
   after_save :delete_nameless, :if => :is_nameless?
-  # scope :parent, where(:name => :parent)
-  # scope :guardian, where(:name => :guardian)
-  # scope :patient, where(:name => :patient)
-  # scope :spouse, where(:name => :spouse)
+
 
   accepts_nested_attributes_for :person, :relation
   attr_accessible :person_id, :relation_id, :name, :start, :end, :relation_attributes, :inverse_relation_attributes, :status, :person_attributes

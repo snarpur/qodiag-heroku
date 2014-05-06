@@ -66,9 +66,6 @@
         region: @getNavigationRegion()
         loading: false
 
-      #DELETE: When we are totally sure that the loading views works
-      #@getNavigationRegion().show view
-      
       @listenTo sections ,"change:current:section", (options)=>
         @executeFields options
         App.navigate @sectionUrl(options.model),{replace:true}
@@ -81,11 +78,6 @@
           collection: view.collection
           activeView: @getLayout()
 
-      # NOTE: Temporarily disabled
-      # if sections.length is 0
-      #   view.trigger "add:new:section:clicked", view
-
-
     
     showTitle:(section) ->
       view = new List.Title model: section
@@ -93,9 +85,6 @@
         region: @getLayout().sectionTitleRegion
         loading: 
           loadingType: "opacity"
-
-      #DELETE: When we are totally sure that the loading views works
-      #@getLayout().sectionTitleRegion.show view
 
       @listenTo view, "edit:title",(options) =>
         App.execute "edit:section", 
@@ -108,9 +97,6 @@
       @show view,
         region: @getLayout().entrySetTitleRegion
         loading: false
-
-      #DELETE: When we are totally sure that the loading views works
-      #@getLayout().entrySetTitleRegion.show view
       
       @listenTo view, "edit:title",(options) =>  
         App.execute "edit:section", 

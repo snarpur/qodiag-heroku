@@ -1,9 +1,5 @@
 module SurveyCustomMethods
 
-  # def question_group_count
-  #   QuestionGroup.joins(:questions => [{:survey_section => :survey}]).where("surveys.id=#{self.id}").group('question_groups.id').length
-  # end
-  #
   def question_weight_max
       self.sections.joins(:questions => :answers).maximum('weight').to_i
   end
