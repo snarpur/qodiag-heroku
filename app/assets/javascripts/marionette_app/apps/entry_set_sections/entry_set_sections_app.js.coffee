@@ -15,10 +15,10 @@
   
     
     createSection:(section)->
-      EntrySetSectionsApp.EditCreate.Controller.create(section)
+      new EntrySetSectionsApp.EditCreate.Controller().create(section)
 
     editSection:(section)->
-      EntrySetSectionsApp.EditCreate.Controller.edit(section)
+      new EntrySetSectionsApp.EditCreate.Controller().edit(section)
 
 
   App.commands.setHandler "create:section",(section) ->

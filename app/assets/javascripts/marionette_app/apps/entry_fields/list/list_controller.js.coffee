@@ -42,8 +42,6 @@
       @listenTo collection, "updated", (model, collection)=>
         toastr.success("Spurningu breytt við", model.get('title'))   
       
-      #DELETE: When we are totally sure that the loading views works
-      #@layout.listRegion.show view  
       @show view,
          region: @getLayout().listRegion
          loading:true 
@@ -65,9 +63,6 @@
 
 
     showSearchField:(collection) ->
-      #DELETE: When we are totally sure that the loading views works
-      #@layout.searchRegion.show @getSearchFieldView(collection)
-
       @show @getSearchFieldView(collection),
          region: @layout.searchRegion
          loading:false 
