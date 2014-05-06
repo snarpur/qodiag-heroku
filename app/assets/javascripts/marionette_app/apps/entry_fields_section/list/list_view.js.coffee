@@ -4,9 +4,6 @@
     template: "entry_fields_section/list/templates/_empty"
     tagName: 'li'
 
-
-
-  
   class List.Field extends App.Views.ItemView
     template: "entry_fields_section/list/templates/_field"
     tagName: 'li'
@@ -16,8 +13,6 @@
 
     events:
       'update:display:order': 'setDisplayOrder'
-
-
 
     setDisplayOrder:(e,displayOrder)->
       @model.updateDisplayOrder(displayOrder)

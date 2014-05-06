@@ -52,16 +52,12 @@
           I18n.t("activerecord.errors.messages.blank")
             
     initialize:->
-      # @relations[1] = {type: Backbone.One, key: 'user', relatedModel: App.Entities.User}
       @blacklist = _.keys(@defaults)
       @on "change:respondents", @setRespondents
-      # @on "change:full_cpr", @ageInYears
 
-      #NOTE: We add the ageinYears to the blacklist to avoid de warning in the console
-      # @blacklist.push "ageInYears"
       super
       
-    #FIX: Add 'respondents to the relations array'
+    #Add respondents to the relations array
     setRespondents:(model,value,options)->
       unless value instanceof Backbone.Collection
         @set('respondents',new Entities.People(value),{silent:true})

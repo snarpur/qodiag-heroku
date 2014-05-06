@@ -45,9 +45,7 @@ Snarpur::Application.configure do
   config.sass.compressed = false
   config.sass.debug_info = true
   config.sass.preferred_syntax = :sass
-#  config.after_initialize do
-#    Sass::Plugin.options[:never_update] = true
-#  end
+
 
   # Stuff to do on each request
   config.to_prepare do

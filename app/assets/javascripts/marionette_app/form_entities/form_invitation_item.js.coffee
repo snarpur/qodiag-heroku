@@ -34,5 +34,3 @@
 
   App.reqres.setHandler "get:responder:item", (options) ->
     API.getResponderItemForId options
-
-  # _.extend Entities.FormInvitationItemModel::,Entities.FormModel.prototype

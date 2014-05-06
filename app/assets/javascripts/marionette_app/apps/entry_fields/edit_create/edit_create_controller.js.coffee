@@ -40,7 +40,6 @@
         @getMultiChoiceFieldView(field)
 
     getSelectFieldTypeView: (field)->
-      #TODO: For test purpouses, we should change and take the values from other place
       selectView = new EditCreate.FieldType model: field, collection: new Backbone.Collection([{name: "text"}, 
         {name: "multi-choice"}, {name: "single-choice"}, {name: "string"}])
       @getFieldTypeRegion(field).show selectView

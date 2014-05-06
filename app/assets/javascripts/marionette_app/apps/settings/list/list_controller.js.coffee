@@ -16,7 +16,6 @@
     
     showNavigation: (settings) ->
       navigationView = @getNavigationView(settings)
-      #@region.show(navigationView)
 
       @show navigationView,
          region: @region

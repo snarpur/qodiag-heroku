@@ -4,19 +4,10 @@ namespace = SurveyDSLHelpers.access_code(survey_name)
 params = {:common_namespace => namespace, :pick => :one, :display_type => :inline, :custom_class => 'survey-question pick-one'}
 
 ratings =  ["not true",  "somewhat true",  "certainly true"]
-#NOTE: To match with the question number
-# inverted_questions = [0,3,8,16,19]
+#To match with the question number
 inverted_questions = [1,4,9,17,20]
 
-#NOTE: To match with the question number
-# sdq = [
-#   {:question_group => 'emotional', :order => [2,7,12,15,23]},
-#   {:question_group => 'conduct', :order => [4,6,11,17,21]},
-#   {:question_group => 'hyperactivity_inattention', :order => [1,9,14,20,24]},
-#   {:question_group => 'peer_problem', :order => [5,10,13,18,22]},
-#   {:question_group => 'prosocial_behaviour', :order => [0,3,8,16,19]}
-# ]
-
+#To match with the question number
 sdq = [
   {:question_group => 'emotional', :order => [3,8,13,16,24]},
   {:question_group => 'conduct', :order => [5,7,12,18,22]},
@@ -25,8 +16,7 @@ sdq = [
   {:question_group => 'prosocial_behaviour', :order => [1,4,9,17,20]}
 ]
 
-#NOTE: To match with the question number
-# impact_supplement  = [28,29,30,31,32,33]
+#To match with the question number
 impact_supplement  = [29,30,31,32,33,34]
 
 survey survey_name do

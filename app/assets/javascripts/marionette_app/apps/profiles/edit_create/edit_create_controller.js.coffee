@@ -4,12 +4,9 @@
 
     initialize:(options)->
       {@activeView,@collection,@model,@subjectId} = options
-      #App.dialogRegion.show @getLayout(),model: @model
-
 
     showGuardian:(guardian)->
 
-      #NOTE: Try to refector these stuff
       #Depends on the template we use either Subject or Guardian View
       if @activeView.options.name is "Guardian"
         dialogView = new EditCreate.Guardian model: @model

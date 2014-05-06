@@ -10,20 +10,4 @@ charts:
       question_list_drilldown: true
       question_groups: [depression, anxiety, stress]
       colors: ['#17B14F', '#F5F37A', '#F0B841','#F58814','#F51814']
-  # -
-  #   content:
-  #     name: total
-  #     question_groups:
-  #       -
-  #         name: total
-  #         total: [depression, anxiety, stress]
-  #   chart_config:
-  #     legend:
-  #         enabled: false
-  #     yAxis:
-  #       opposite: true
-  #       maxPadding: 0.01
-  #     title:
-  #       text: ~
-  #     subtitle:
-  #       text: ~
+  

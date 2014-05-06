@@ -13,8 +13,7 @@ class Ability
        !(u.role_names & ["caretaker","super_admin"]).empty? && (user.id == u.invited_by_id || user.id == u.id)
       end
       can :manage, Person do |p|
-        #!(p.relation_ids & user.person.relation_ids).empty?
-        #NOTE: We have to change this because a caretaker could only manage his/her patients
+        #TODO: We have to change this because a caretaker could only manage his/her patients
         true
       end
       can :manage, ResponderItem do |ri|
@@ -41,12 +40,12 @@ class Ability
         (p.guardian_respondent == user.person || p == user.person)
       end
 
-      # NOTE: Respondent should be able only to read and update respondent_items send them to them
+      # Respondent should be able only to read and update respondent_items send them to them
       can [:survey,:show,:update,:index], ResponderItem do |ri|
         ri.respondent == user.person
       end 
 
-      # NOTE: Respondent should be able only to search in the National Register table when they are doing the pre_registration
+      # Respondent should be able only to search in the National Register table when they are doing the pre_registration
       can [:lookup,:family], NationalRegister
       
     end

@@ -36,7 +36,6 @@
     getEntries:->
       entries = @entrySetResponse.getSectionResponses()
 
-      #NOTE: We should try to remove this when-fetched in order to remove the time it takes to show the spinner
       App.execute "when:fetched", entries, =>
         @entrySetResponse.set('entry_fields',entries)
         @showForm()
@@ -47,8 +46,6 @@
     showFormSteps:->
       view = @getFormStepsView(collection: @sections)
 
-      #DELETE: When we are totally sure that the loading views works
-      #@getFormStepsRegion().show view
       @show view,
          region: @getFormStepsRegion()
          loading: false 
@@ -59,8 +56,6 @@
       editView = @getFormView()
       formView = App.request "form:wrapper", editView, @buttonsConfig() 
 
-      #DELETE: When we are totally sure that the loading views works
-      #@getFormWrapperRegion().show formView
       @show formView,
          region: @getFormWrapperRegion()
          loading:true 
@@ -73,7 +68,6 @@
       @listenTo formView, "form:save", => 
         @triggerSuccessMessage(formView)
       
-      #DELETE: We are not using this button anymore
       @listenTo formView, "form:saveAndContinue", => 
         @saveAndMoveToNextSection(formView)
       

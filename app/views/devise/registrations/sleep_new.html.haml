@@ -5,9 +5,5 @@
     = f.input :email
     = f.input :password
     = f.input :password_confirmation, :required => true
-    / -new_role = f.object.roles.empty? ?  f.object.roles.build() :  f.object.roles
-    /  =f.simple_fields_for :roles, new_role  do |roles_form|
-    /    = roles_form.input :name, :as => :hidden
-    /    = roles_form.input :name, :collection => Role::ROLE_TYPES, :as => :radio
     = f.button :submit, t('actions.create')
 = render :partial => "devise/shared/links"

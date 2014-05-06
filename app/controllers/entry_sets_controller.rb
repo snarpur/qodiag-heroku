@@ -16,7 +16,7 @@ class EntrySetsController < ApplicationController
   # POST /entry_sets
   # POST /entry_sets.json
   def create
-    #Change by Ata: Code refactoring that use the relationship between person and Entry Sets
+    # Code refactoring that use the relationship between person and Entry Sets
     @entry_set = @current_user.person.entry_sets.build(params[:entry_set])
 
     respond_to do |format|

@@ -30,9 +30,6 @@
        loaderRegion: loaderRegion
        loading: true
 
-      #DELETE: When we are totally sure that the loading views works
-      #region.show view
-
       @listenTo view, "save:clicked", (options)=>
         model.saveEntryFields()
         

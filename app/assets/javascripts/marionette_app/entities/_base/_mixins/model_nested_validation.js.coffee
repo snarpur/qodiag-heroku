@@ -32,9 +32,6 @@
     errors = {}
     
     if model instanceof Backbone.Collection 
-      # errors[key] = model.map (m) ->
-      #   unless m._isValidWithNested()
-      #     m._errorsWithNested()
       _.each model.models, (m) =>
         unless m._isValidWithNested()
           _.extend errors[key], m._errorsWithNested()

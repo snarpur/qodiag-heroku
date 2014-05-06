@@ -1,11 +1,9 @@
 require 'ostruct'
 class ResponderItemsController < ApplicationController
-  # before_filter :authorize_from_params
   before_filter :create_responder_item, :only => [:new,:create], :if => :logged_in?
   before_filter :set_role_to_respondent, :only => [:create], :if => :logged_in?
   before_filter :get_surveys, :only => [:survey] , :if => :logged_in?
   after_filter :add_subject_as_respondent, :only => [:create]
-  # after_filter :send_email_notification, :only => [:create], prepend: true
   load_and_authorize_resource :only => [:create]
   respond_to :json
 
@@ -31,18 +29,10 @@ class ResponderItemsController < ApplicationController
 
   def create
     if @responder_item.save
-      # RequestNotice.request_survey(@responder_item).deliver
-      #respond_to do |format|
-        #format.json {render :json => @responder_item}
-        # render "create"
+      RequestNotice.request_survey(@responder_item).deliver
       render :json => @responder_item
-      #end 
     else
-      #respond_to do |format|
-        #format.json {render :json => {:errors => @responder_item.errors}}
-      # render :json => {:errors => @responder_item.errors,:status => 400}
       respond_with @responder_item
-      #end
     end
   end
 
@@ -123,11 +113,5 @@ class ResponderItemsController < ApplicationController
   def send_email_notification
     RequestNotice.request_survey(@responder_item).deliver
   end
-
-  # def authorize_from_params
-  #   subject = Person.find(params[:subject_id])
-  #   if current_user.person.respondent_relationship_to(subject).empty? || current_user.person.caretaker_relationship_to(subject).empty?
-  #    raise CanCan:AccessDenied
-  # end
 
 end

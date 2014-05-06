@@ -12,12 +12,12 @@ class ResponderItem < ActiveRecord::Base
   delegate :access_code, :to => :response_set, :prefix => true
   delegate :full_name, :to => :subject, :prefix => true
   delegate :full_name, :to => :respondent, :prefix => true
-  # delegate :entry_set_id, :to => :entry_set_response
+
   before_save :set_response_set, :if => :is_uncompleted_survey?
   after_save :send_respondent_invitation, :if => :invite_respondent_user
 
   scope :overdue, where("deadline < ? AND completed IS NULL", Time.zone.now)
-  # scope :uncompleted, where("deadline >= ? AND completed IS NULL", Time.zone.now)
+
   scope :uncompleted, where("deadline >= ? AND completed IS NULL", DateTime.now.at_midnight)
   scope :recently_completed, where("completed IS NOT NULL")
   scope :completed, where("completed IS NOT NULL")

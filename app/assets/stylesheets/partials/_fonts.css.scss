@@ -16,17 +16,6 @@ font-stretch: $font-stretch;
 }
 }
 
-// [class^="fc-icon-"]:before, [class*="fc-icon-"]:before {
-//     display: inline-block;
-//     text-decoration: inherit;
-//     height: auto;
-//     width: auto;
-// }
-// [class^="fc-icon-"], [class*="fc-icon-"] {
-//     display: inline;
-//     height: auto;
-//     width: auto;
-// }
 
 .fc-icon-border {
   border: solid 1px #eeeeee;
@@ -98,11 +87,8 @@ font-stretch: $font-stretch;
 }
 
 .fc-icon-circled {
-  // display: block;
-  // line-height: 3em;
   background-color: #fafafa;
   padding: .3em .4em .25em;
-  //@include border-radius(35px);
 }
 
 @-moz-document url-prefix() {

@@ -7,7 +7,6 @@ class EntrySetResponse < ActiveRecord::Base
   
   delegate :name, :to => :entry_set, :prefix => true
   
-  # delegate :id, :to => :responder_item, :prefix => true
   delegate :caretaker_id, :respondent_id, :subject_id, :to => :responder_item, :prefix => false
   
   delegate :name, :section_ids, :sections, :entry_sets_sections, :to => :entry_set, :prefix => false

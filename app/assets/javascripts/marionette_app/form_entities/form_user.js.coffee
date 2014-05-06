@@ -5,5 +5,3 @@
     initialize:->
       @validation = {}
       super
-
-  _.extend Entities.FormUserModel::,Entities.FormModel.prototype

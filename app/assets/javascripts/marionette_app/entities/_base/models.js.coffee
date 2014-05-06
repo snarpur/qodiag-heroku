@@ -13,7 +13,6 @@ do (Backbone) ->
     nestedErrors:{}
     validation:{}
     initialize:->
-      # @validation = {}
       @url = ()->
         base = _.result(@, 'urlRoot') ? @collection.url()
         if @id then "#{base}/#{@id}" else base
@@ -70,11 +69,10 @@ do (Backbone) ->
     saveError: (model, xhr, options) =>
       ## set errors directly on the model unless status returned was 500 or 404
       unless xhr.status is 500 or xhr.status is 404
-        #NOTE: If there is an server error, stop listening the create and update events in the model, just to avoid
+        # If there is an server error, stop listening the create and update events in the model, just to avoid
         # to have a bunch of listeners on the form wizards using the Form Component
         model.off "created updated"
         @setNestedServerErrors($.parseJSON(xhr.responseText)?.errors)
-        # @set _errors: $.parseJSON(xhr.responseText)?.errors
 
 
     

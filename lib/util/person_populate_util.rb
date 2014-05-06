@@ -66,9 +66,8 @@ class PersonPopulateUtil
     attrs[:genavatar] = true
     attrs[:type] = "parent"
     parent_person = FactoryGirl.create(:person, attrs)
-    parent_user = FactoryGirl.create(:user, 
-                                 # :email => "user_#{parent_person.id}@qodiag.com", 
-                                 :email => "user_#{parent_person.id}_#{rand(10000)}@qodiag.com", 
+    parent_user = FactoryGirl.create(:user,  
+                                 :email => "user_#{parent_person.id}_#{rand(10)}@qodiag.com", 
                                  :roles => [@respondent_role], 
                                  :person => parent_person
                                 )

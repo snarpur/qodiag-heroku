@@ -110,7 +110,6 @@
       @model.set('entryValueRegionName',@entryValueRegionName())
 
     entryValueRegionName: ->
-      # "entry-value-region-#{@model.get("entry_value").id}"
       "entry-value-region-#{@cid}"
  
 

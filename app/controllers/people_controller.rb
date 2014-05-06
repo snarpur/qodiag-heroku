@@ -6,8 +6,7 @@ class PeopleController < ApplicationController
   def show
     @person = PersonDecorator.decorate(Person.find(params[:id]))
     @responder_items = @person.responder_items.surveys
-    # @user = User.find params[:id]
-    # render 'users/show'
+
   end
 
   def history
@@ -30,28 +29,18 @@ class PeopleController < ApplicationController
   
   def update
     @person= Person.find(params[:id])
-    # respond_to do |format|
 
-     
-      if @person.update_attributes(params[:person])
+    if @person.update_attributes(params[:person])
 
-        if !params[:subject_id].nil?
-          id = params[:subject_id]
-          params.except!(:subject_id)
-        else
-          id = params[:id]
-        end
-        # format.html {redirect_to :action => "edit", :id => id}
-        # format.json {render json: {:ok => 'ok'}}
-      #   respond_with(@person)
-      # else
-      #   # format.html {render :action => "upload" }
-      #   # format.json {render json: @person}
-      #   respond_with(@person)
+      if !params[:subject_id].nil?
+        id = params[:subject_id]
+        params.except!(:subject_id)
+      else
+        id = params[:id]
       end
-      #NOTE: We should change this respond, because we get a 406 Not Acceptable HTTP Request
-      respond_with(@person)
-    # end
+    end
+
+    respond_with(@person)
 
   end
 end

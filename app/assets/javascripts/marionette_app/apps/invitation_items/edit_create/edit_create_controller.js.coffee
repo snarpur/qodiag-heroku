@@ -9,7 +9,7 @@
     create:(options={})->
       {@type,@step,@id} = options
       @steps = App.request "set:invitation:steps", options
-      #NOTE: When we are creating a invitation item, we go always to the first step
+      #When we are creating a invitation item, we go always to the first step
       @step = 1
       @showFormSteps(@steps,options)
 

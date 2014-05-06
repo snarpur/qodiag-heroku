@@ -16,7 +16,6 @@
       options = _.object(['personId','entrySetResponseId','sectionId'],args)
 
       ctrl = new SubjectEntriesApp.List.Controller(options)
-      # ctrl.list(options)
     
 
     create:(options)->

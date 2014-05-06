@@ -3,7 +3,6 @@
   class List.Controller extends App.Controllers.Base
 
     showProfile:(subjectId)->
-      #App.execute "show:subject:navigation",{personId: subjectId, currentItemName: 'profiles'}
       @person = App.request "get:person:entity", subjectId
 
       App.execute "when:fetched", @person, =>
@@ -16,8 +15,6 @@
 
       App.contentRegion.show @getLayout()
 
-
-    #NOTE: try to refactor these functions which have the almost the same code
     showSubject: (person)->
       
       subjectView = @getSubjectView person
@@ -47,7 +44,7 @@
       parents = person.getParents()
 
       App.execute "when:fetched", parents, =>
-        #NOTE: We should have always two parents, for that reason if we have only one, we will add the other one empty
+        #We should have always two parents, for that reason if we have only one, we will add the other one empty
         @addEmptyParent parents
 
         parents = new App.Entities.People(parents.toJSON(acceptsNested: false))
@@ -68,8 +65,7 @@
         parent.set(address: {})
         parents.add parent, at: 0
 
-      if parents.size() is 1 
-        #TODO: We should change this way to do it       
+      if parents.size() is 1      
         parent = parents.first().clone().clear()
         parent.set(address: {})
         parents.add parent, at: 1

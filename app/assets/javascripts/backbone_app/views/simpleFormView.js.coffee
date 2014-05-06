@@ -8,7 +8,6 @@ class App.Views.SimpleForm extends Backbone.Marionette.ItemView
 
   onRender:()->
     @form = new Backbone.Form({ model: @model}).render()
-    # @model.set("form",@form)
     @.$el.prepend(@form.el)
     @form.$el.addClass('form-horizontal')
   
@@ -28,10 +27,7 @@ class App.Views.SimpleForm extends Backbone.Marionette.ItemView
     @model.save(@model.attributes,callbacks)
 
   triggerDestroy:(model,response)=>
-    #FIX: parent edit fix bug on response
     paramRoot = @model.paramRoot
-    # params = if _.has(response, paramRoot) then response[paramRoot] else response
-    # @trigger("destroy", @)
   
   container:=>
     @.$el.parent()

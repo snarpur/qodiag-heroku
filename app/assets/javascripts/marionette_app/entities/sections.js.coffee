@@ -28,10 +28,6 @@
 
     initialize:(models,options)->
       super
-      # {@entrySetId,@entrySetResponse,@currentSectionId,@sectionNo} = options
-
-      # @url = -> 
-      #   Routes.entry_set_sections_path(@entrySetId)
 
       @on "change:current:section", (options)->
         @currentSectionId = options.model.id
@@ -61,9 +57,9 @@
     getPreviousSection:->
       @findWhere(display_order: @currentDisplayNo() - 1)
   
-  API =
-    getSection:(options)->
-      # console.log "--- getSection() SECTION ENTITY ---"
+  # API =
+  #   getSection:(options)->
+  #     # console.log "--- getSection() SECTION ENTITY ---"
 
 
    
