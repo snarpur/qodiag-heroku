@@ -1,8 +1,6 @@
 @Qapp.module "EntrySetSectionsApp.EditCreate", (EditCreate, App, Backbone, Marionette, $, _) ->
   
-  #NOTE: Change from object literal to Controller
-  EditCreate.Controller =
-
+  class EditCreate.Controller extends App.Controllers.Base
     create:(options)->
       options.action = 'create'
       @showDialog(options)

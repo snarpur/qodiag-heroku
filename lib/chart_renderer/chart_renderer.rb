@@ -45,12 +45,6 @@ module ChartRenderer
         group_results = total_for_groups(groups)        
         if i.respond_to?(:has_key?) && i[:drilldown] == true
           config_drilldown(i, group_results)
-          # NOTE: Review the function config_drilldown
-          # drilldown_config = Marshal::load(Marshal.dump(@chart)) 
-          # drilldown_config[:content][:question_groups] = groups
-          # drilldown_chart = self.class.new(drilldown_config,@response_set)
-          # drilldown_series = [{:data => drilldown_chart.chart_data, :name => i[:name]}]
-          # {:y => group_results, :drilldown => {:series => drilldown_chart.chart_data,:xAxis => {:categories => groups}}}
         else
           {:y => group_results, :values => weights_by_groups(groups)}
         end

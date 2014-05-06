@@ -19,7 +19,6 @@
 # Further information available here:
 # https://support.cloud.engineyard.com/entries/20996661-customize-your-deployment-on-engine-yard-cloud
 #
-# NOTE: Please commit this file into your git repository.
 #
 ---
 environments:

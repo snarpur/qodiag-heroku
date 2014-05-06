@@ -33,7 +33,7 @@ describe "PagesLandingPage" do
     end
 
     it "displays an error if the email exists" do
-      #NOTE:It doesn't matter the new user's role
+      # It doesn't matter the new user's role
       user = FactoryGirl.create(:user, :roles => [FactoryGirl.create(:role, :name => 'caretaker')])
       visit root_path
       fill_in 'user_email', :with => user.email

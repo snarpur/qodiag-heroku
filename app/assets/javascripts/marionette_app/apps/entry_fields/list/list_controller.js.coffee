@@ -63,7 +63,6 @@
 
 
     showSearchField:(collection) ->
-
       @show @getSearchFieldView(collection),
          region: @layout.searchRegion
          loading:false 
