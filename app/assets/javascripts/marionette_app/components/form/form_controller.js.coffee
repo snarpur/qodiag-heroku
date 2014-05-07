@@ -5,6 +5,7 @@
 		initialize: (options = {}) ->
 			@contentView = options.view
 			@modal = options.config.modal
+			@collection = options.config.collection ? false
 			@formLayout = @getFormLayout options.config
 			@listenTo @formLayout, "show", @formContentRegion
 			@listenTo @formLayout, "form:submit", (options)=> 
@@ -30,7 +31,8 @@
 		formSubmit: (options={}) ->
 			@contentView.triggerMethod("form:submit")
 			model = @contentView.model
-			collection = options.collection ? @contentView.collection
+			collection = @getCollection(model)
+			# collection = options.collection ? @contentView.collection
 			@listenToOnce model, "validated:invalid validated:valid", (model,msg)=>
 				@stopListening model, "validated:invalid validated:valid"
 				if _.isEmpty model._errorsWithNested()
@@ -40,6 +42,14 @@
 			model.validateNested()
 			
 
+		getCollection: (model) ->
+			if @collection?
+				@collection
+			else
+				if model instanceof @contentView.collection.model
+					@contentView.collection
+				else
+					false
 
 
 		processFormSubmit: (model, collection) ->
