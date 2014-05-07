@@ -14,9 +14,7 @@
     showDialog:(field)->
 
       @getFormWrapperView(field)
-
       @getSelectFieldTypeView(field)
-
       @getSelectedView(field)
 
       @listenTo field, "created", (options) =>  
@@ -68,7 +66,6 @@
 
       @listenTo configView, "childview:destroy-option:clicked", (view) =>
         if field.get('entry_field_options').size() > 1
-          field.get('entry_field_options').remove(view.model)
           view.model.destroy()
         
     buttonsConfig:(field)->

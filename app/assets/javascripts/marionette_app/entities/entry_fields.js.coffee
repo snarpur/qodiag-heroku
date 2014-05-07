@@ -24,7 +24,7 @@ do (Backbone) ->
       {
        type: Backbone.Many
        key: 'entry_field_options'
-       collectionType: "#{App.Qodiag.namespace}.EntryFieldOptions"
+       collectionType: "#{App.Qodiag.namespace}.Entities.EntryFieldOptions"
        relatedModel:->
          App.Entities.EntryFieldOption
       }
