@@ -40,3 +40,6 @@
           App.Entities.Relationship
       }
     ]
+
+  class Entities.FormPeopleCollection extends Entities.Collection
+    model: Entities.FormPersonModel

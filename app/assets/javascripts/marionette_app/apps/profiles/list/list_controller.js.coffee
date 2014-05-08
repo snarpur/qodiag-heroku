@@ -6,12 +6,13 @@
       @person = App.request "get:person:entity", subjectId
 
       App.execute "when:fetched", @person, =>
-        App.execute "show:subject:navigation",{person: @person, personId: subjectId, currentItemName: 'profiles'} 
-        if @person.get("age") >= 18   
-          @showAdultSubject @person
+        @profile = new App.Entities.FormPersonModel(@person.attributes)
+        App.execute "show:subject:navigation",{person: @profile, personId: subjectId, currentItemName: 'profiles'} 
+        if @profile.get("age") >= 18   
+          @showAdultSubject @profile
         else
-          @showSubject @person
-          @showGuardians @person unless @person.get("age") >= 18
+          @showSubject @profile
+          @showGuardians @profile unless @profile.get("age") >= 18
 
       App.contentRegion.show @getLayout()
 
@@ -47,7 +48,7 @@
         #We should have always two parents, for that reason if we have only one, we will add the other one empty
         @addEmptyParent parents
 
-        parents = new App.Entities.People(parents.toJSON(acceptsNested: false))
+        parents = new App.Entities.FormPeopleCollection(parents.toJSON(acceptsNested: false))
         
         guardianView = @getGuardiansView parents
         @getLayout().guardianProfileRegion.show guardianView
@@ -56,12 +57,12 @@
           App.execute "edit:guardian", model: childGuardianView.model, activeView: guardianView
 
         @listenTo guardianView, "childview:create:guardian:clicked", (childGuardianView)=>
-          App.execute "create:guardian", model: childGuardianView.model, activeView: guardianView, subjectId: @person.id
+          App.execute "create:guardian", model: childGuardianView.model, activeView: guardianView, subjectId: @profile.id
 
 
     addEmptyParent:(parents)->
       if parents.size() is 0
-        parent = new App.Entities.Person()
+        parent = new App.Entities.FormPersonModel()
         parent.set(address: {})
         parents.add parent, at: 0
 
