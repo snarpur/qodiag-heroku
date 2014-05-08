@@ -3,7 +3,7 @@
     <label class="control-label" for="<%=@.fieldName%>"><%- @t(@.translationKey) %></label>
   <% end %>
   <div class="controls">
-    <input class="input-xlarge" type="text" id="<%=@.fieldName%>">
+    <input class="input-xlarge" type="text" id="<%=@.fieldName%>" <%=@isDisabled()%>>
     <span id="<%=@.fieldName%>_error" class="help-inline"></span>
   </div>
 </div>

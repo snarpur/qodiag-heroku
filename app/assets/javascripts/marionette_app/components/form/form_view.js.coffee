@@ -81,7 +81,7 @@
 		
 
 		focusFirstInput: ->
-			@$el.find('input[type=text],textarea,select').filter(':visible:first').focus()
+			@$el.find('input[type=text],textarea,select').filter(':visible:enabled:first').focus()
 		
 
 		getFormDataType: ->
@@ -122,6 +122,10 @@
 
 
 	class Form.FieldView extends App.Views.ItemView
+
+    initialize:(options)->
+      @modelIsNew = options.new
+      super
     
     getTemplate:()->
       "form/templates/_#{@model.get("fieldType")}_field"
@@ -129,6 +133,11 @@
     onRender:->
       if @model.get("_errors")?
         @changeErrors(@model,@model.get("_errors"))
+
+    templateHelpers:=>
+      isDisabled:=>
+        unless @modelIsNew
+          if @model.get("disabled") then "disabled='disabled'" else false
 
     modelEvents:
       "change:_errors": "changeErrors"
@@ -205,3 +214,6 @@
           field.get('fieldClass')
       else 
         Form.TextFieldView
+
+    itemViewOptions: ->
+      new: @model.isNew()

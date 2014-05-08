@@ -3,7 +3,7 @@
     <label class="control-label"><%- @t(@.translationKey) %></label>
   <% end %>
   <div class="controls">
-    <select id="<%=@.fieldName%>" class="input-xlarge">
+    <select id="<%=@.fieldName%>" class="input-xlarge" <%=@isDisabled()%>>
       <option value=""><%= @t("terms.empty_select")%></option>
       <% if @.options?: %>
         <% for option in @.options: %>

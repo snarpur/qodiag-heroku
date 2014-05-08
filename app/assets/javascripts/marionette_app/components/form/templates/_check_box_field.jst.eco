@@ -6,7 +6,7 @@
     <% if @.options?: %>
       <% for option in @.options: %>
         <label class="radio">
-          <input type="checkbox" id="<%=@.fieldName%>" name="<%=@.fieldName%>" value="<%=option.value%>">
+          <input type="checkbox" id="<%=@.fieldName%>" name="<%=@.fieldName%>" value="<%=option.value%>" <%=@isDisabled()%>>
             <%- @t(option.translationKey) %>
         </label>
       <% end %>
