@@ -184,17 +184,7 @@
             user:
               email: null
               invitation: true
-            inverse_relationships: [
-              {
-                name:"respondent", 
-                person_id: @curentUser.get("person_id")
-              },
-              {
-                name:"guardian", 
-                person_id: @curentUser.get("person_id")
-              }
-            ]
-         
+           
     getFormStepsView:(steps)->
       new EditCreate.FormSteps collection: @steps
 
