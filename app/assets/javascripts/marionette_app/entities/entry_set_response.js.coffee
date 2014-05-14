@@ -23,7 +23,9 @@
       }]
    
 
-
+    initialize:->
+      @validation = {}
+      super
     
     currentSection:->
       sections = @get('entry_set').get('sections') unless not @get('entry_set')?

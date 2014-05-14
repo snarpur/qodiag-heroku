@@ -6,23 +6,23 @@
     urlRoot: Routes.responder_items_path()
     paramRoot: 'responder_item'
 
-    validation:
-      respondent_id:
-        required: true
-        msg: ->
-          I18n.t("activerecord.errors.messages.blank")
-      subject_id:
-        required: true
-        msg: ->
-          I18n.t("activerecord.errors.messages.blank")
-      deadline:
-        required: true
-        msg: ->
-          I18n.t("activerecord.errors.messages.blank")
-      entry_set_response:
-        required: true
-        msg: ->
-          I18n.t("activerecord.errors.messages.blank")
+    # validation:
+    #   respondent_id:
+    #     required: true
+    #     msg: ->
+    #       I18n.t("activerecord.errors.messages.blank")
+    #   subject_id:
+    #     required: true
+    #     msg: ->
+    #       I18n.t("activerecord.errors.messages.blank")
+    #   deadline:
+    #     required: true
+    #     msg: ->
+    #       I18n.t("activerecord.errors.messages.blank")
+    #   entry_set_response:
+    #     required: true
+    #     msg: ->
+    #       I18n.t("activerecord.errors.messages.blank")
 
     relations: [
       {
@@ -78,3 +78,4 @@
 
   App.reqres.setHandler "get:person:entry:set:responder:items", (options) ->
     API.getEntrySetResponderItemsForPerson options
+

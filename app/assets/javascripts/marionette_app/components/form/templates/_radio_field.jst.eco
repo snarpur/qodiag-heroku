@@ -4,14 +4,10 @@
   <% end %>
     <div class="controls">
       <% if @.options?: %>
-        <% for option in @.options: %>
+        <% for option in @selectOptions(): %>
           <label class="radio">
-            <input type="radio" class="<%=@.fieldName%>" name="<%=@.fieldName%>" value="<%=option.value%>" <%=@isDisabled()%>>
-            <% if option.translationKey?: %>
-              <%- @t(option.translationKey) %>
-            <% else: %>
-              <%= option.text %>
-            <% end %>
+            <input type="radio" class="<%=@.fieldName%>" name="<%=@.fieldName%>" value="<%=option.get("#{@getOptionId()}")%>" <%=@isDisabled()%>>
+              <%= @getOptionText(option) %>
           </label>
         <% end %>
       <% end %>

@@ -6,12 +6,8 @@
     <select id="<%=@.fieldName%>" class="input-xlarge" <%=@isDisabled()%>>
       <option value=""><%= @t("terms.empty_select")%></option>
       <% if @.options?: %>
-        <% for option in @.options: %>
-          <% if option.translationKey?: %>
-            <option value="<%= option.value %>"><%= @t(option.translationKey) %></option> 
-          <% else: %>
-            <option value="<%= option.value %>"><%= option.text %></option>
-          <% end %>
+        <% for option in @selectOptions(): %>
+          <option value='<%= option.get("#{@getOptionId()}") %>'><%= @getOptionText(option) %></option> 
         <% end %>
       <% end %>
     </select>

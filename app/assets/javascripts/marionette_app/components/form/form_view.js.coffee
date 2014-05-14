@@ -44,7 +44,7 @@
 			@trigger("form:cancel")
 
 		modelEvents:
-			"change:_errors" 	: "changeErrors"
+			# "change:_errors" 	: "changeErrors"
 			"sync:start"			:	"syncStart"
 			"sync:stop"				:	"syncStop"
 		
@@ -86,31 +86,6 @@
 
 		getFormDataType: ->
 			if @model.isNew() then "new" else "edit"
-
-		changeErrors: (model, errors, options) ->
-			if @config.errors
-				@removeErrors()
-				@addErrors errors
-		
-		
-
-		removeErrors: ->
-			@$el.find(".error").removeClass("error")
-			@$el.find(".help-inline").text("")
-
-		
-		
-
-		addErrors: (errors = {}) ->
-			for name, array of errors
-				@addError name, array
-		
-		
-
-		addError: (name, error) ->
-			el = @$el.find("[id='#{name}_error']")
-			el.closest(".control-group").addClass("error")
-			el.text(error)
 			
 		syncStart: (model) ->
 			@addOpacityWrapper() if @config.syncing
@@ -141,6 +116,10 @@
 
     modelEvents:
       "change:_errors": "changeErrors"
+      "change:options": "optionsChanged"
+
+    # Override when it is needed  
+    optionsChanged:=>
  
     changeErrors: (model, errors, options) ->
       @removeErrors()
@@ -173,16 +152,46 @@
 
   class Form.SelectFieldView extends Form.FieldView
 
-    modelEvents:
-      "change:options":->
-        @render()
-        @.stickit()
+    optionsChanged:=>
+      @render()
+      @.stickit()
+
+
+    getOptions:=>
+      if @model.get("options") instanceof Backbone.Collection
+        @model.get("options").models
+      else
+        @model.get("options")
+
+    templateHelpers:=>
+      parent = super
+      _.extend(parent,
+        selectOptions:=>
+          @getOptions()
+
+        getOptionId:(string)=>
+          if @model.get("optionId")?
+            @model.get("optionId")
+          else
+            "id"
+
+        getOptionText:(option)=>
+          if @model.get("optionText")
+            option.get("#{@model.get("optionText")}")
+          else
+            if _.first(@model.get("options").pluck "text")?
+              option.get("text")
+            else
+              I18n.t(option.get("i18n"))
+              
+      )
+
 
   class Form.SeparatorFieldView extends Form.FieldView
 
   class Form.CheckBoxFieldView extends Form.FieldView
 
-  class Form.RadioFieldView extends Form.FieldView
+  class Form.RadioFieldView extends Form.SelectFieldView
 
     onShow:->
       @bindings = {}

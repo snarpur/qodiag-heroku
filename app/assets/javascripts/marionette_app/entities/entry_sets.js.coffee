@@ -12,6 +12,10 @@
         App.Entities.Section
     }]
 
+    initialize:->
+      @validation = {}
+      super
+
   class Entities.EntrySetsCollection extends Entities.Collection
     model: Entities.EntrySet
     initialize:->

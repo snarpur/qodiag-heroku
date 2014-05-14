@@ -5,8 +5,11 @@
       @.model.attributes
 
     initialize: ->
+      super
       @extendTemplateHelpers(@templateHelpers)
 
+
+  
     changeErrors: ->
       
       
