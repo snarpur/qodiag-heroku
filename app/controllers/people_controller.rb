@@ -18,7 +18,12 @@ class PeopleController < ApplicationController
   end
 
   def create
-    @person = PersonDecorator.decorate(Person.create(params[:person]))    
+    @person = PersonDecorator.decorate(Person.create(params[:person]))
+    if @person.save
+      respond_with @person
+    else
+      respond_with @person
+    end     
   end
 
   def image_upload

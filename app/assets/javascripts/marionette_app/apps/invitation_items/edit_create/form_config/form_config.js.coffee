@@ -90,12 +90,12 @@
           modelName: "subject"
           options: [
             {
-              value: "male",
-              translationKey: "person.male"
+              id: "male",
+              i18n: "person.male"
             },
             {
-              value: "female",
-              translationKey: "person.female"
+              id: "female",
+              i18n: "person.female"
             }
           ]
           validations: [
@@ -236,12 +236,12 @@
           modelName: "respondent"
           options: [
             {
-              value: "male",
-              translationKey: "person.male"
+              id: "male",
+              i18n: "person.male"
             },
             {
-              value: "female",
-              translationKey: "person.female"
+              id: "female",
+              i18n: "person.female"
             }
           ]
           validations: [
@@ -363,12 +363,12 @@
           modelName: "subject"
           options: [
             {
-              value: "male",
-              translationKey: "person.boy"
+              id: "male",
+              i18n: "person.boy"
             },
             {
-              value: "female",
-              translationKey: "person.girl"
+              id: "female",
+              i18n: "person.girl"
             }
           ]
           validations: [
@@ -384,8 +384,8 @@
           fieldName: "parent_guardian"
           options: [
             {
-              value: "true",
-              translationKey: "relationship.is_parent"
+              id: "true",
+              i18n: "relationship.is_parent"
             }
           ]
 

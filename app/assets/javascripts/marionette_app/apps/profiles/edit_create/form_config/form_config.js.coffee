@@ -83,12 +83,12 @@
         translationKey: "person.sex"
         options: [
           {
-            value: "male",
-            translationKey: "person.male"
+            id: "male",
+            i18n: "person.male"
           },
           {
-            value: "female",
-            translationKey: "person.female"
+            id: "female",
+            i18n: "person.female"
           }
         ]
         validations: [

@@ -36,6 +36,8 @@
 
   class Entities.Field.Separator extends Backbone.Model
 
+  class Entities.Field.Hidden extends Backbone.Model
+
   class Entities.Field.Date extends Entities.Field
 
   class Entities.Field.Select extends Entities.Field
@@ -78,10 +80,15 @@
 
   class Entities.Field.Radio extends Entities.Field.Select
 
+  class Entities.Field.Controller extends Backbone.Model
+
   class Entities.FieldCollection extends Backbone.Collection
     model:(attrs, options)->
-      fieldType = "#{_.camelize _.capitalize attrs.fieldType}"
-      new Entities.Field[fieldType](attrs, options)
+      if attrs.fieldType?
+        fieldType = "#{_.camelize _.capitalize attrs.fieldType}"
+        console.log "fieldType::",fieldType
+        new Entities.Field[fieldType](attrs, options)
+
 
     initialize:(models,options)->
       {@rootModel,@controllerModel} = options

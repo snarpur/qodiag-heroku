@@ -4,11 +4,12 @@
 
     initialize:(options)->
       {@activeView,@collection,@model,@subjectId} = options
+      @rootModel = @model
 
     showGuardian:(guardian)->
       config = @getFormConfig()
       @controllerModel = new App.Entities.Model()
-      @fieldCollection = new App.Entities.FieldCollection(config,{rootModel:@model,controllerModel:@controllerModel})
+      @fieldCollection = new App.Entities.FieldCollection(config,{rootModel:@rootModel,controllerModel:@controllerModel})
 
       view = @getFieldsView(@fieldCollection)
 
@@ -16,7 +17,8 @@
       
       @listenTo formView, "before:form:submit", =>
 
-        @listenTo @model, "created updated", =>
+        @listenTo @rootModel, "created updated", =>
+          console.log "created or updated::",arguments
           # If we are updating the parents, re render every childview
           if @activeView.collection
             _.each(@activeView.children?._views,((i) ->
@@ -35,18 +37,18 @@
     getFieldsView: (collection) =>
       new App.Components.Form.FieldCollectionView 
         collection: collection
-        model: @model
+        model: @rootModel
 
     buttonsConfig:->
       options =
         modal: true
         collection: false
-        title: if @model.isNew() then I18n.t("terms.add_information") else I18n.t("terms.edit_information")
+        title: if @rootModel.isNew() then I18n.t("terms.add_information") else I18n.t("terms.edit_information")
         formClass: "form-horizontal"
       options
 
     edit:->
-      @showGuardian(@model)
+      @showGuardian(@rootModel)
 
      create:-> 
       relationships = [ 
@@ -55,7 +57,7 @@
       ]
 
       @model.set('relationships',relationships)
-      @showGuardian(@model)
+      @showGuardian(@rootModel)
 
     getFormWrapperRegion:->
       @getLayout().formWrapperRegion
