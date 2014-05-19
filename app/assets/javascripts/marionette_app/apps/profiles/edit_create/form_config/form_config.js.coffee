@@ -6,7 +6,8 @@
         fieldType: "text"
         fieldName: "full_cpr"
         disabled: true
-        translationKey: "person.full_cpr"
+        fieldLabel:
+          i18n: "person.full_cpr"
         validations: [
           {
             required: true,
@@ -18,7 +19,8 @@
       {
         fieldType: "text"
         fieldName: "firstname"
-        translationKey: "person.firstname"
+        fieldLabel:
+          i18n: "person.firstname"
         validations: [
           {
             required: true,
@@ -30,7 +32,8 @@
       {
         fieldType: "text"
         fieldName: "lastname"
-        translationKey: "person.lastname"
+        fieldLabel:
+          i18n: "person.lastname"
         validations: [
           {
             required: true,
@@ -45,7 +48,8 @@
         fieldType: "text"
         fieldName: "full_cpr"
         disabled: true
-        translationKey: "person.full_cpr"
+        fieldLabel:
+          i18n: "person.full_cpr"
         validations: [
           {
             required: true,
@@ -57,7 +61,8 @@
       {
         fieldType: "text"
         fieldName: "firstname"
-        translationKey: "person.firstname"
+        fieldLabel:
+          i18n: "person.firstname"
         validations: [
           {
             required: true,
@@ -68,7 +73,8 @@
       {
         fieldType: "text"
         fieldName: "lastname"
-        translationKey: "person.lastname"
+        fieldLabel:
+          i18n: "person.lastname"
         validations: [
           {
             required: true,
@@ -80,15 +86,18 @@
       {
         fieldType: "radio"
         fieldName: "sex"
-        translationKey: "person.sex"
+        fieldLabel:
+          i18n: "person.sex"
         options: [
           {
-            id: "male",
-            i18n: "person.male"
+            value: "male",
+            label:
+              i18n: "person.male"
           },
           {
-            id: "female",
-            i18n: "person.female"
+            value: "female",
+            label:
+              i18n: "person.female"
           }
         ]
         validations: [
@@ -101,43 +110,50 @@
       },
       {
         fieldType: "separator"
-        translationKey: "terms.contact_information"
+        fieldLabel:
+          i18n: "terms.contact_information"
         modelName: "controller"
       },
       {
         fieldType: "text"
         fieldName: "street_1"
-        translationKey: "address.street_1"
+        fieldLabel:
+          i18n: "address.street_1"
         modelName: "address"
       },
       {
         fieldType: "text"
         fieldName: "street_2"
-        translationKey: "address.street_2"
+        fieldLabel:
+          i18n: "address.street_2"
         modelName: "address"
       },
       {
         fieldType: "text"
         fieldName: "zip_code"
-        translationKey: "address.zip_code"
+        fieldLabel:
+          i18n: "address.zip_code"
         modelName: "address"
       },
       {
         fieldType: "text"
         fieldName: "town"
-        translationKey: "address.town"
+        fieldLabel:
+          i18n: "address.town"
         modelName: "address"
       },
       {
         fieldType: "text"
         fieldName: "phone"
-        translationKey: "address.phone"
+        fieldLabel:
+          i18n: "address.phone"
         modelName: "address"
       },
       {
         fieldType: "text"
         fieldName: "home_phone"
-        translationKey: "address.home_phone"
+        fieldLabel:
+          i18n: "address.home_phone"
         modelName: "address"
       }
     ]

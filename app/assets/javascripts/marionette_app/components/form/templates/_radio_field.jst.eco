@@ -6,7 +6,7 @@
       <% if @.options?: %>
         <% for option in @selectOptions(): %>
           <label class="radio">
-            <input type="radio" class="<%=@.fieldName%>" name="<%=@.fieldName%>" value="<%=option.get("#{@value()}")%>" <%=@isDisabled()%>>
+            <input type="radio" class="<%=@.fieldName%>" name="<%=@.fieldName%>" value="<%=@value(option)%>" <%=@isDisabled()%>>
               <%= @label(option) %>
           </label>
         <% end %>
