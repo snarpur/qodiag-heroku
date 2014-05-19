@@ -83,16 +83,10 @@
         children_data = App.request "get:national_register:family",@rootModel.get("respondent").get("full_cpr")
         App.execute "when:fetched", children_data, =>
           if not children_data.isEmpty()
-            @controllerModel.set("_children_options",@getSelectDataFromChildren(children_data.models))
+            @controllerModel.set("_children_options",children_data)
       else
         @controllerModel.set("_children_options",[])
 
-    getSelectDataFromChildren:(children)->
-      values = []
-      _.each children,(child)=>
-        values.push {value: child.get("full_cpr"),text: child.get("firstname") + " " + child.get("lastname")}
-
-      values
       
     invitationUrl:(step)->
       if @id?

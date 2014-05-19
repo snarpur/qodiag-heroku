@@ -1,13 +1,13 @@
 <div class="control-group">
-  <% if @.translationKey?: %>
-    <label class="control-label" for="<%=@.fieldName%>"><%- @t(@.translationKey) %></label>
+  <% if @.fieldLabel?: %>
+    <label class="control-label" for="<%=@.fieldName%>"><%- @label() %></label>
   <% end %>
   <div class="controls">
     <% if @.options?: %>
-      <% for option in @.options: %>
-        <label class="radio">
-          <input type="checkbox" id="<%=@.fieldName%>" name="<%=@.fieldName%>" value="<%=option.value%>" <%=@isDisabled()%>>
-            <%- @t(option.translationKey) %>
+      <% for option in @checkBoxOptions(): %>
+        <label class="checkbox">
+          <input type="checkbox" id="<%=@.fieldName+'_'+@label(option)%>" name="<%=@.fieldName%>" value="<%= @label(option) %>" <%=@isDisabled()%> <%=@isChecked(option)%>>
+            <%= @label(option) %>
         </label>
       <% end %>
     <% end %>

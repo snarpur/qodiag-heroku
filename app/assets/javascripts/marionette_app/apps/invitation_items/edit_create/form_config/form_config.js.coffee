@@ -6,12 +6,12 @@
         {
           fieldType: "hidden"
           fieldName: "id"
-          translationKey: ""
         },
         {
           fieldType: "date"
           fieldName: "deadline"
-          translationKey: "responder_item.deadline"
+          fieldLabel:
+            i18n: "responder_item.deadline"
           validations: [
             {
               required: true,
@@ -22,19 +22,20 @@
         },
         {
           fieldType: "separator"
-          translationKey: "terms.personal_information"
+          fieldLabel:
+            i18n: "terms.personal_information"
           modelName: "controller"
         },
         {
           fieldType: "hidden"
           fieldName: "id"
-          translationKey: ""
           modelName: "subject"
         },
         {
           fieldType: "text"
           fieldName: "full_cpr"
-          translationKey: "person.full_cpr"
+          fieldLabel:
+            i18n: "person.full_cpr"
           modelName: "subject"
           validations: [
             {
@@ -47,7 +48,8 @@
         {
           fieldType: "text"
           fieldName: "email"
-          translationKey: "user.email"
+          fieldLabel:
+            i18n: "user.email"
           modelName: "subject.user"
           validations: [
             {
@@ -60,7 +62,8 @@
         {
           fieldType: "text"
           fieldName: "firstname"
-          translationKey: "person.firstname"
+          fieldLabel:
+            i18n: "person.firstname"
           modelName: "subject"
           validations: [
             {
@@ -73,7 +76,8 @@
         {
           fieldType: "text"
           fieldName: "lastname"
-          translationKey: "person.lastname"
+          fieldLabel:
+            i18n: "person.lastname"
           modelName: "subject"
           validations: [
             {
@@ -86,16 +90,19 @@
         {
           fieldType: "radio"
           fieldName: "sex"
-          translationKey: "person.sex"
+          fieldLabel:
+            i18n: "person.sex"
           modelName: "subject"
           options: [
             {
-              id: "male",
-              i18n: "person.male"
+              value: "male",
+              label:
+                i18n: "person.male"
             },
             {
-              id: "female",
-              i18n: "person.female"
+              value: "female",
+              label:
+                i18n: "person.female"
             }
           ]
           validations: [
@@ -108,43 +115,50 @@
         },
         {
           fieldType: "separator"
-          translationKey: "terms.contact_information"
+          fieldLabel:
+            i18n: "terms.contact_information"
           modelName: "controller"
         },
         {
           fieldType: "text"
           fieldName: "street_1"
-          translationKey: "address.street_1"
+          fieldLabel:
+            i18n: "address.street_1"
           modelName: "subject.address"
         },
         {
           fieldType: "text"
           fieldName: "street_2"
-          translationKey: "address.street_2"
+          fieldLabel:
+            i18n: "address.street_2"
           modelName: "subject.address"
         },
         {
           fieldType: "text"
           fieldName: "zip_code"
-          translationKey: "address.zip_code"
+          fieldLabel:
+            i18n: "address.zip_code"
           modelName: "subject.address"
         },
         {
           fieldType: "text"
           fieldName: "town"
-          translationKey: "address.town"
+          fieldLabel:
+            i18n: "address.town"
           modelName: "subject.address"
         },
         {
           fieldType: "text"
           fieldName: "phone"
-          translationKey: "address.phone"
+          fieldLabel:
+            i18n: "address.phone"
           modelName: "subject.address"
         },
         {
           fieldType: "text"
           fieldName: "home_phone"
-          translationKey: "address.home_phone"
+          fieldLabel:
+            i18n: "address.home_phone"
           modelName: "subject.address"
         }
       ]
@@ -153,12 +167,12 @@
         {
           fieldType: "hidden"
           fieldName: "id"
-          translationKey: ""
         },
         {
           fieldType: "date"
           fieldName: "deadline"
-          translationKey: "responder_item.deadline"
+          fieldLabel:
+            i18n: "responder_item.deadline"
           validations: [
             {
               required: true,
@@ -169,19 +183,20 @@
         },
         {
           fieldType: "separator"
-          translationKey: "terms.personal_information"
+          fieldLabel:
+            i18n: "terms.personal_information"
           modelName: "controller"
         },
         {
           fieldType: "hidden"
           fieldName: "id"
-          translationKey: ""
           formModel: "respondent"
         },
         {
           fieldType: "text"
           fieldName: "full_cpr"
-          translationKey: "person.full_cpr"
+          fieldLabel:
+            i18n: "person.full_cpr"
           modelName: "respondent"
           validations: [
             {
@@ -194,7 +209,9 @@
         {
           fieldType: "text"
           fieldName: "email"
-          translationKey: "user.email"
+          fieldLabel:
+            i18n: "user.email"
+
           modelName: "respondent.user"
           validations: [
             {
@@ -207,7 +224,8 @@
         {
           fieldType: "text"
           fieldName: "firstname"
-          translationKey: "person.firstname"
+          fieldLabel:
+            i18n:"person.firstname"
           modelName: "respondent"
           validations: [
             {
@@ -219,7 +237,8 @@
         {
           fieldType: "text"
           fieldName: "lastname"
-          translationKey: "person.lastname"
+          fieldLabel:
+            i18n: "person.lastname"
           modelName: "respondent"
           validations: [
             {
@@ -232,16 +251,19 @@
         {
           fieldType: "radio"
           fieldName: "sex"
-          translationKey: "person.sex"
+          fieldLabel:
+            i18n: "person.sex"
           modelName: "respondent"
           options: [
             {
-              id: "male",
-              i18n: "person.male"
+              value: "male",
+              label:
+                i18n: "person.male"
             },
             {
-              id: "female",
-              i18n: "person.female"
+              value: "female",
+              label:
+                i18n: "person.female"
             }
           ]
           validations: [
@@ -254,73 +276,85 @@
         },
         {
           fieldType: "separator"
-          translationKey: "terms.contact_information"
+          fieldLabel:
+            i18n: "terms.contact_information"
           modelName: "controller"
         },
         {
           fieldType: "text"
           fieldName: "street_1"
-          translationKey: "address.street_1"
+          fieldLabel:
+            i18n: "address.street_1"
           modelName: "respondent.address"
         },
         {
           fieldType: "text"
           fieldName: "street_2"
-          translationKey: "address.street_2"
+          fieldLabel:
+            i18n: "address.street_2"
           modelName: "respondent.address"
         },
         {
           fieldType: "text"
           fieldName: "zip_code"
-          translationKey: "address.zip_code"
+          fieldLabel:
+            i18n: "address.zip_code"
           modelName: "respondent.address"
         },
         {
           fieldType: "text"
           fieldName: "town"
-          translationKey: "address.town"
+          fieldLabel:
+            i18n: "address.town"
           modelName: "respondent.address"
         },
         {
           fieldType: "text"
           fieldName: "phone"
-          translationKey: "address.phone"
+          fieldLabel:
+            i18n: "address.phone"
           modelName: "respondent.address"
         },
         {
           fieldType: "text"
           fieldName: "home_phone"
-          translationKey: "address.home_phone"
+          fieldLabel:
+            i18n: "address.home_phone"
           modelName: "respondent.address"
         }
       ]
       step_2: [
        {
           fieldType: "separator"
-          translationKey: "forms.information_from_national_registry"
+          fieldLabel:
+            i18n: "forms.information_from_national_registry"
           modelName: "controller"
        },
        {
           fieldType: "select"
           fieldName: "children"
           modelName: "controller"
+          valueKey: "full_cpr"
+          labelKey: 
+            key: "full_name"
         },
 
         {
           fieldType: "separator"
-          translationKey: "terms.personal_information"
+          fieldLabel:
+            i18n: "terms.personal_information"
           modelName: "controller"
         },
         {
           fieldType: "hidden"
           fieldName: "id"
-          translationKey: ""
           modelName: "subject"
         },
         {
           fieldType: "text"
           fieldName: "full_cpr"
-          translationKey: "person.full_cpr"
+          fieldLabel:
+            i18n: "person.full_cpr"
           modelName: "subject"
           validations: [
             {
@@ -333,7 +367,8 @@
         {
           fieldType: "text"
           fieldName: "firstname"
-          translationKey: "person.firstname"
+          fieldLabel:
+            i18n: "person.firstname"
           modelName: "subject"
           validations: [
             {
@@ -346,7 +381,8 @@
         {
           fieldType: "text"
           fieldName: "lastname"
-          translationKey: "person.lastname"
+          fieldLabel:
+            i18n: "person.lastname"
           modelName: "subject"
           validations: [
             {
@@ -359,16 +395,19 @@
         {
           fieldType: "radio"
           fieldName: "sex"
-          translationKey: "person.sex"
+          fieldLabel:
+            i18n: "person.sex"
           modelName: "subject"
           options: [
             {
-              id: "male",
-              i18n: "person.boy"
+              value: "male",
+              label:
+                i18n: "person.boy"
             },
             {
-              id: "female",
-              i18n: "person.girl"
+              value: "female",
+              label:
+                i18n: "person.girl"
             }
           ]
           validations: [
@@ -380,15 +419,16 @@
           ]
         },
         {
-          fieldClass: App.InvitationItemsApp.EditCreate.GuardianCheck
-          fieldName: "parent_guardian"
-          options: [
-            {
-              id: "true",
-              i18n: "relationship.is_parent"
-            }
-          ]
-
+          fieldType: "check_box"
+          fieldName: "inverse_relationships"
+          modelName: "subject.inverse_relationships"
+          valueKey: "id"
+          labelKey: 
+            key:"name"
+            i18nBase: "relationship"
+            
+          conditions:
+            name: 'parent'
         }
 
       ]

@@ -1,13 +1,13 @@
 <div class="control-group">
-  <% if @.translationKey?: %>
-    <label class="control-label" for="<%=@.fieldName%>"><%- @t(@.translationKey) %></label>
+  <% if @.fieldLabel?: %>
+    <label class="control-label" for="<%=@.fieldName%>"><%- @label() %></label>
   <% end %>
     <div class="controls">
       <% if @.options?: %>
         <% for option in @selectOptions(): %>
           <label class="radio">
-            <input type="radio" class="<%=@.fieldName%>" name="<%=@.fieldName%>" value="<%=option.get("#{@getOptionId()}")%>" <%=@isDisabled()%>>
-              <%= @getOptionText(option) %>
+            <input type="radio" class="<%=@.fieldName%>" name="<%=@.fieldName%>" value="<%=option.get("#{@value()}")%>" <%=@isDisabled()%>>
+              <%= @label(option) %>
           </label>
         <% end %>
       <% end %>

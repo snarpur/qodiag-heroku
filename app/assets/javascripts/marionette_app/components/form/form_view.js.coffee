@@ -109,14 +109,40 @@
       if @model.get("_errors")?
         @changeErrors(@model,@model.get("_errors"))
 
+    getLabel: (option=null)->
+      if @model.get("labelKey")?
+        if _.has(@model.get("labelKey"), "i18nBase")
+          I18n.t(@model.get("labelKey").i18nBase+"."+option.get("#{@model.get("labelKey").key}"))
+        else
+          option.get("#{@model.get("labelKey").key}")
+      else  
+        label = if option?.get("label")? then option.get("label") else @model.get("fieldLabel")
+        if _.has(label, "i18n")
+          I18n.t(label.i18n)
+        else
+          label
+
     templateHelpers:=>
       isDisabled:=>
         unless @modelIsNew
-          if @model.get("disabled") then "disabled='disabled'" else false
+          if @model.get("disabled") then "disabled='disabled'"
+
+      label:=>
+        @getLabel()
+
+      value:()=>
+        if @model.get("valueKey")?
+          @model.get("valueKey")
+        else
+          "value"
+    
 
     modelEvents:
       "change:_errors": "changeErrors"
       "change:options": "optionsChanged"
+
+
+
 
     # Override when it is needed  
     optionsChanged:=>
@@ -156,33 +182,14 @@
       @render()
       @.stickit()
 
-
-    getOptions:=>
-      if @model.get("options") instanceof Backbone.Collection
-        @model.get("options").models
-      else
-        @model.get("options")
-
     templateHelpers:=>
       parent = super
       _.extend(parent,
         selectOptions:=>
-          @getOptions()
+          @model.get("options").models
 
-        getOptionId:(string)=>
-          if @model.get("optionId")?
-            @model.get("optionId")
-          else
-            "id"
-
-        getOptionText:(option)=>
-          if @model.get("optionText")
-            option.get("#{@model.get("optionText")}")
-          else
-            if _.first(@model.get("options").pluck "text")?
-              option.get("text")
-            else
-              I18n.t(option.get("i18n"))
+        label:(option)=>
+          @getLabel(option)
               
       )
 
@@ -190,6 +197,42 @@
   class Form.SeparatorFieldView extends Form.FieldView
 
   class Form.CheckBoxFieldView extends Form.FieldView
+
+    events:
+      "change input[type='checkbox']":"checkboxChange"
+
+    getOptions:=>
+      if @model.get('conditions')?
+        @model.get('options').where(@model.get('conditions'))
+      else
+        @model.get("options").models
+
+
+    checkboxChange:(event)=>
+      key = if @model.get("optionText")? then @model.get("optionText") else "text"
+      query = {}
+      query[key] = event.currentTarget.value
+      modelChecked = @model.get("options").findWhere(query)
+      if modelChecked?        
+        modelChecked.set("_destroy",!event.currentTarget.checked)
+        modelChecked.set("_status",event.currentTarget.checked)
+
+
+    templateHelpers:=>
+      parent = super
+      _.extend(parent,
+        
+        checkBoxOptions:=>
+          @getOptions()
+
+        isChecked:(option)=>
+          if option.get("_status")? and option.get("_status") then "checked='checked'"
+
+        label:(option)=>
+          @getLabel(option)
+
+      )
+
 
   class Form.RadioFieldView extends Form.SelectFieldView
 

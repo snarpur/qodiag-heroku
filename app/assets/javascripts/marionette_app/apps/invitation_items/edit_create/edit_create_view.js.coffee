@@ -7,17 +7,6 @@
       formStepsRegion: "#form-steps-region"
       mainRegion: "#fields-region"
 
-  class EditCreate.GuardianCheck extends App.Views.ItemView
-    template: "invitation_items/edit_create/templates/_check_guardian"
-
-    onShow:->
-      @bindings = {}
-      @bindings["##{@model.get("fieldName")}"] = "fieldValue"
-      @.stickit()
-      
-    initialize:->
-      relationship = @model.get("formModel").get("subject").get("inverse_relationships").findWhere({name:"parent"})
-      @model.set( "fieldValue",relationship.get("status"))
         
   class EditCreate.FormStep extends App.Views.ItemView
     template: "invitation_items/edit_create/templates/_form_step"

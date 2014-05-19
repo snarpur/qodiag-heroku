@@ -77,6 +77,31 @@
   class Entities.Field.TextArea extends Entities.Field
 
   class Entities.Field.CheckBox extends Entities.Field
+    initialize:()->
+      optionsFieldName = "_"+@get("fieldName")+"_options"
+      @setOptions(optionsFieldName)
+      @addOptionsListeners(optionsFieldName)
+      super
+
+    setOptions:(optionsFieldName)->
+      if @get("formModel").get(optionsFieldName)?
+        options = @get("formModel").get(optionsFieldName)
+      else if @get("options")?
+        console.log "options::",@get('options')
+        options = @get('options')
+      else
+        options = @get('formModel')
+
+      unless options instanceof Backbone.Collection
+        options = new Backbone.Collection(options)
+
+
+      @set("options",options)
+
+    addOptionsListeners: (optionsFieldName)->
+      @listenTo @get("formModel"),"change:#{optionsFieldName}",(model,options)=>
+        @set("options", @get("formModel").get(optionsFieldName))
+
 
   class Entities.Field.Radio extends Entities.Field.Select
 
@@ -86,7 +111,6 @@
     model:(attrs, options)->
       if attrs.fieldType?
         fieldType = "#{_.camelize _.capitalize attrs.fieldType}"
-        console.log "fieldType::",fieldType
         new Entities.Field[fieldType](attrs, options)
 
 
@@ -116,13 +140,3 @@
             model.formModel.validation["#{model.fieldName}"] = validation
 
   class Entities.FormModel
-
-        
-
-
- 
-
-  
-
-  
-  

@@ -2,7 +2,7 @@ class NationalRegister < ActiveRecord::Base
   after_initialize :fixVars
 
   attr_accessible :bannmerki, :faedingarstadur, :fjolskyldunumer, :heimili, :hjuskaparstada, :kennitala, :ktmaka,
-                  :kyn, :lastchanged, :latinn, :nafn, :postnumer, :rikisfang, :sveitarfelag, :firstname, :lastname, :town
+                  :kyn, :lastchanged, :latinn, :nafn, :postnumer, :rikisfang, :sveitarfelag, :firstname, :lastname, :town, :full_name
 
   def lastname
     nafn.split.last
@@ -10,6 +10,10 @@ class NationalRegister < ActiveRecord::Base
 
   def firstname
     nafn.sub(lastname, '').strip
+  end
+
+  def full_name
+    "#{firstname} #{lastname}"
   end
 
   def self.family(full_cpr)

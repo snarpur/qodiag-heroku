@@ -1,7 +1,7 @@
 es:
   relationship:
-    is_parent: "El tutor es uno de los padres"
-    is_guardian: "El tutor tiene la custodia*"
+    parent: "El tutor es uno de los padres"
+    guardian: "El tutor tiene la custodia*"
     not_guardian: "No tiene la custodia"
     not_spouse: "No tiene esposa*"
     is_spouse: "Er núverandi maki tengiliðs*"

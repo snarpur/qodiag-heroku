@@ -1,13 +1,13 @@
 <div class="control-group">
-  <% if @.translationKey?: %>
-    <label class="control-label"><%- @t(@.translationKey) %></label>
+  <% if @.fieldLabel?: %>
+    <label class="control-label"><%- @label() %></label>
   <% end %>
   <div class="controls">
     <select id="<%=@.fieldName%>" class="input-xlarge" <%=@isDisabled()%>>
       <option value=""><%= @t("terms.empty_select")%></option>
       <% if @.options?: %>
         <% for option in @selectOptions(): %>
-          <option value='<%= option.get("#{@getOptionId()}") %>'><%= @getOptionText(option) %></option> 
+          <option value='<%= option.get("#{@value()}") %>'><%= @label(option) %></option> 
         <% end %>
       <% end %>
     </select>

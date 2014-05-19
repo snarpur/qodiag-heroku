@@ -1,7 +1,7 @@
 is:
   relationship:
-    is_parent: "Forráðamaður er foreldri"
-    is_guardian: "Er forræðishafi skjólstæðings"
+    parent: "Forráðamaður er foreldri"
+    guardian: "Er forræðishafi skjólstæðings"
     not_guardian: "Er ekki forræðishafi"
     not_spouse: "Fyrrverandi maki"
     is_spouse: "Er núverandi maki tengiliðs"

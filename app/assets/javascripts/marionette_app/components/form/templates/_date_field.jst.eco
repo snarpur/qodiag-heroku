@@ -1,6 +1,6 @@
 <div class="control-group">
-  <% if @.translationKey?: %>
-    <label class="control-label" for="<%=@.fieldName%>"><%- @t(@.translationKey) %></label>
+  <% if @.fieldLabel?: %>
+    <label class="control-label" for="<%=@.fieldName%>"><%- @label() %></label>
   <% end %>
   <div class="controls">
     <input class="input-xlarge" type="text" id="<%=@.fieldName%>" <%=@isDisabled()%>>
