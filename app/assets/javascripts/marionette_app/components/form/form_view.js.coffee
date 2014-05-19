@@ -110,7 +110,7 @@
         @changeErrors(@model,@model.get("_errors"))
 
     getLabel: (option=null)->
-      if @model.get("labelKey")?
+      if option? and @model.get("labelKey")?
         if _.has(@model.get("labelKey"), "i18nBase")
           I18n.t(@model.get("labelKey").i18nBase+"."+option.get("#{@model.get("labelKey").key}"))
         else
@@ -122,6 +122,18 @@
         else
           label
 
+    getValue: (option=null)->
+      if option?
+        if @model.get("valueKey")?
+          option.get("#{@model.get("valueKey")}")
+        else
+          option.get("value")
+      else
+        if @model.get("valueKey")?
+          @model.get("valueKey")
+        else
+          "value"
+
     templateHelpers:=>
       isDisabled:=>
         unless @modelIsNew
@@ -131,10 +143,7 @@
         @getLabel()
 
       value:()=>
-        if @model.get("valueKey")?
-          @model.get("valueKey")
-        else
-          "value"
+        @getValue()
     
 
     modelEvents:
@@ -190,6 +199,13 @@
 
         label:(option)=>
           @getLabel(option)
+
+        value:(option)=>
+          @getValue(option)
+          # if @model.get("valueKey")?
+          #   @model.get("valueKey")
+          # else
+          #   "value"
               
       )
 

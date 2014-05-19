@@ -4,7 +4,8 @@
     {
       fieldType: "date"
       fieldName: "deadline"
-      translationKey: "responder_item.deadline"
+      fieldLabel:
+        i18n: "responder_item.deadline"
       validations: [
         {
           required: true,
@@ -16,8 +17,11 @@
     {
       fieldType: "select"
       fieldName: "respondent_id"
-      optionText: "full_name"
-      translationKey: "views.responder_items.select_respondents"
+      valueKey: "id"
+      labelKey: 
+        key: "full_name"
+      fieldLabel:
+        i18n: "views.responder_items.select_respondents"
       validations: [
         {
           required: true,
@@ -30,8 +34,11 @@
       fieldType: "select"
       modelName: "entry_set_response"
       fieldName: "entry_set_id"
-      optionText: "name"
-      translationKey: "responder_item.entry_set"
+      valueKey: "id"
+      labelKey:
+        key: "name"
+      fieldLabel:
+        i18n: "responder_item.entry_set"
       validations: [
         {
           required: true,

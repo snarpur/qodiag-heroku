@@ -7,7 +7,7 @@
       <option value=""><%= @t("terms.empty_select")%></option>
       <% if @.options?: %>
         <% for option in @selectOptions(): %>
-          <option value='<%= option.get("#{@value()}") %>'><%= @label(option) %></option> 
+          <option value='<%= @value(option) %>'><%= @label(option) %></option> 
         <% end %>
       <% end %>
     </select>

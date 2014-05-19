@@ -1,5 +1,5 @@
 object @entry_set_response
-attributes :id :entry_set_name
+attributes :id, :entry_set_name
 
 child :entry_set do
   attributes :id,:name
