@@ -6,7 +6,7 @@
     <% if @.options?: %>
       <% for option in @checkBoxOptions(): %>
         <label class="checkbox">
-          <input type="checkbox" id="<%=@.fieldName+'_'+@label(option)%>" name="<%=@.fieldName%>" value="<%= @label(option) %>" <%=@isDisabled()%> <%=@isChecked(option)%>>
+          <input type="checkbox" id="<%=@.fieldName+'_'+@label(option)%>" name="<%=@.fieldName%>" value="<%= @value(option) %>" <%=@isDisabled()%> <%=@isChecked(option)%>>
             <%= @label(option) %>
         </label>
       <% end %>

@@ -207,9 +207,18 @@
       else
         @model.get("options").models
 
+    getValue: (option=null)->
+      if @model.get("labelKey")?
+        option.get("#{@model.get("labelKey").key}")
+      else  
+        label = if option?.get("label")? then option.get("label") else @model.get("fieldLabel")
+        if _.has(label, "i18n")
+          I18n.t(label.i18n)
+        else
+          label
 
     checkboxChange:(event)=>
-      key = if @model.get("optionText")? then @model.get("optionText") else "text"
+      key = if @model.get("labelKey")? then @model.get("labelKey").key else "label"
       query = {}
       query[key] = event.currentTarget.value
       modelChecked = @model.get("options").findWhere(query)
@@ -230,6 +239,10 @@
 
         label:(option)=>
           @getLabel(option)
+
+        value:(option)=>
+          @getValue(option)
+
 
       )
 
