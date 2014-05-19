@@ -4,7 +4,8 @@
     {
       fieldType: "text"
       fieldName: "name"
-      translationKey: "terms.title"
+      fieldLabel:
+        i18n: "terms.title"
       validations: [
         {
           required: true,
@@ -16,6 +17,7 @@
     {
       fieldType: "text_area"
       fieldName: "description"
-      translationKey: "entry_set.description"
+      fieldLabel:
+        i18n: "entry_set.description"
     },
   ]
