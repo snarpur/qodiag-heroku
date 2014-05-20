@@ -56,17 +56,6 @@
         if value isnt ""
           @rootModel.get("subject").set("full_cpr",value)
 
-      # @listenTo @rootModel, "change:parent_guardian",(model,value,options) -> 
-      #   relationship = model.get("subject").get("inverse_relationships").findWhere({name:"parent"})
-      #   if value is null
-      #     if relationship.id?
-      #       model.get("subject").get("inverse_relationships").findWhere({name:"parent"}).destroy()
-      #     else
-      #       model.get("subject").get("inverse_relationships").remove(relationship)
-      #   else
-      #     if not relationship?
-      #       model.get("subject").get("inverse_relationships").add({name:"parent", person_id: model.get("respondent").get("id")})
-        
       @listenTo @formView, "form:back", =>
         @moveToPreviousStep()
       

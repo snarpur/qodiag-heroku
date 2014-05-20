@@ -65,8 +65,6 @@
       @listenTo formView, "form:back", =>
         @sections.trigger("change:current:section",{model: @sections.getPreviousSection()})
         
-      @listenTo formView, "form:save", => 
-        @triggerSuccessMessage(formView)
       
       @listenTo formView, "form:saveAndContinue", => 
         @saveAndMoveToNextSection(formView)
@@ -90,14 +88,6 @@
       @listenToOnce @entrySetResponse, 'updated', =>
         @sections.trigger("change:current:section",model: @sections.getNextSection())
      
-      
-    triggerSuccessMessage:(formView)->
-      @entrySetResponse.set("entry_values",@entrySetResponse.getEntryValuesForSection())
-      formView.trigger('form:submit')
-      @listenToOnce @entrySetResponse, 'updated', =>
-        toastr.success "Færsla hefur vistast"
-        @getEntries()
-
   
     getFormStepsView:(options)->
       new Edit.FormSteps _.extend options
@@ -119,20 +109,17 @@
     getFormWrapperRegion:->
       @getLayout().formWrapperRegion
 
-
-    #TODO: change strings to I18n. After we merge with Development
     buttonsConfig:->
       options =
         buttons: 
-          primary: {text: 'Áfram og vista >>', buttonType: 'saveAndContinue', order: 3} 
-          save: {text: "Vista", buttonType: 'save', order: 2,  className: 'btn btn-success'} 
+          primary: {text: I18n.t("actions.save_and_continue",model: "") + " >>", buttonType: 'saveAndContinue', order: 3}
           cancel: false
      
       if @sections.isCurrentLast()
-        options.buttons.primary = _.extend options.buttons.primary , {text: "Vista og klára", buttonType: 'saveAndComplete'}
+        options.buttons.primary = _.extend options.buttons.primary , {text: I18n.t("actions.save_and_complete",model: ""), buttonType: 'saveAndComplete', order: 3}
       
       unless @sections.isCurrentFirst() 
-        _.extend options.buttons, back: {text: "<< Tilbaka", buttonType: 'back', className: "btn",order: 1}
+        _.extend options.buttons, back: {text: "<< " + I18n.t("terms.go_back"), buttonType: 'back', className: "btn", order: 1}
           
       
       options
