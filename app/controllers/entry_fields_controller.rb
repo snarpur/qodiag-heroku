@@ -22,7 +22,6 @@ class EntryFieldsController < ApplicationController
   def update
     @entry_field = EntryField.find(params[:id])
     @entry_field.update_attributes(params[:entry_field])
-    KK.log @entry_field.inspect, :g
     respond_with(@entry_field) do |format|
       format.json { render :show }
     end
