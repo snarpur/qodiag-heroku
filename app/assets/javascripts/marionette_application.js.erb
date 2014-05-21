@@ -29,6 +29,7 @@
 //= require toastr
 //= require i18n
 //= require i18n/translations
+//= require visjs/vis
 //= require_tree ./marionette_app/config
 //= require marionette_app/app
 //= require_tree ./marionette_app/entities
@@ -42,7 +43,7 @@
 
 
 $(document).ready(function(){
-  moment.lang('is');
+  // moment.lang('is');
   $.datepicker.setDefaults($.datepicker.regional[I18n.locale]);
   $("#flash > div").fadeOut(4000);
 });
