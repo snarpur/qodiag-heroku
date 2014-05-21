@@ -5,8 +5,11 @@ class People::ResponderItemsController < ApplicationController
   respond_to :json
 
    def index
-    @responder_items = ResponderItem.by_respondent(params[:person_id])
+    # @responder_items = ResponderItem.by_respondent(params[:person_id])
+    @responder_items = ResponderItem.by_subject(params[:person_id])
     @responder_items
+    
+
     authorize!(:index, *(@responder_items.any? ? @responder_items : ResponderItem.new))
    end
 end
