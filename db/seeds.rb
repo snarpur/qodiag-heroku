@@ -117,6 +117,7 @@ seed_question  = [
 entry_set_names = ["Spurningar um hitt of þetta", "Allskonar spurningar", "Líðan og heilsa"]
 section_names = [["Hvernig er..","Hver er...","Upplýsingar um.."],["Saga", "Heimili","Skóli"],["Í gær","Í dag","Á morgun"]]
 question_seed_count = 1
+visibility = 1
 
 3.times do |i|
   
@@ -129,7 +130,7 @@ question_seed_count = 1
     
     4.times do |f|
       
-      entry_field = EntryField.create(:title => seed_question[question_seed_count],:field_type => :text, :help_text => seed_question[(rand(10)*rand(10))])
+      entry_field = EntryField.create(:title => seed_question[question_seed_count],:field_type => :text, :help_text => seed_question[(rand(10)*rand(10))],:visibility => visibility)
       section.sections_entry_fields.create(:display_order => f+1, :entry_field_id => entry_field.id)
       question_seed_count += 1
     
