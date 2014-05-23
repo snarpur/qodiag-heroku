@@ -31,9 +31,6 @@ Snarpur::Application.routes.draw do
   devise_for :users
   devise_scope :user do
     get "/login" => "devise/sessions#new"
-    # get "invitation/new/:role_ids(/step/:step_no(/:responder_item_id))" => 'devise/invitations#new',:defaults => {:step_no => 1}, :as => :new_user_invitation
-    # post "invitation/new/:role_ids(/step/:step_no(/:responder_item_id))" => 'devise/invitations#create',:defaults => {:step_no => 1}
-    # post "invitation/new" => 'devise/invitations#create', :as => :user_invitation
     get "invitation/edit" => 'devise/invitations#edit', :as => :accept_user_invitation
     put "invitation/update" => 'devise/invitations#update', :as => :user_confirmation
     get 'users', :to => 'users#show', :as => :user_root # Rails 3
@@ -87,7 +84,7 @@ Snarpur::Application.routes.draw do
 
   #REFACTOR: change match to memeber
   resources :pre_registrations
-  match "pre_registrations/:id(/step/:step_no)" => 'pre_registrations#show',:defaults => {:step_no => 1}, :via => :get
+  match "pre_registrations/:id(/step/:step_no)" => 'pre_registrations#show',:defaults => {:step_no => 1}, :via => :get, :as => :pre_registration_step
   match "pre_registrations/:id(/step/:step_no)" => 'pre_registrations#update',:defaults => {:step_no => 1}, :via => :put
   #REFACTOR: change match to memeber
   resources :responder_items, :path => 'invitation_items', :as => :invitation_items , :controller => "invitation_items" 

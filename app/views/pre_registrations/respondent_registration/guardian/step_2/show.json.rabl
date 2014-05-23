@@ -1,4 +1,3 @@
-extends"#{@responder_item.pre_registration_base_template}/form_model"
 object @responder_item
 attributes :id
 node(:complete_item){"1"}

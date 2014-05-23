@@ -13,7 +13,7 @@
   <% end %>
 <% else if @item_type == "pre_registration": %>
   <% if not @completed?: %>
-    <%- @linkTo(@t('forms.respondent_registration.name'),"#{@routeTo.pre_registration_path(@id)}",{external:true}) %>
+    <%- @linkTo(@t('forms.respondent_registration.name'),"##{@routeTo.pre_registration_path(@id)}",{external:true}) %>
   <% else: %> 
     <%=@t('forms.respondent_registration.name')%>
   <% end %>

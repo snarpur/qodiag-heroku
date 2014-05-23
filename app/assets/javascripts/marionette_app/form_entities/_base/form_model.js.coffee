@@ -87,7 +87,6 @@
       if @get("formModel").get(optionsFieldName)?
         options = @get("formModel").get(optionsFieldName)
       else if @get("options")?
-        console.log "options::",@get('options')
         options = @get('options')
       else
         options = @get('formModel')
