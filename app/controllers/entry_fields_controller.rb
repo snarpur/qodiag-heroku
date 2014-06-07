@@ -6,6 +6,7 @@ class EntryFieldsController < ApplicationController
   end
 
   def show
+
     @entry_field = EntryField.find(params[:id])
   end
   

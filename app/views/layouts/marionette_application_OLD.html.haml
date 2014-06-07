@@ -1,0 +1,59 @@
+!!!
+%html
+  %head
+    = include_gon
+    =yield(:head)
+    =csrf_meta_tag
+
+    %link{:href => "/assets/favicon.ico", :rel => "shortcut icon"}
+    %link{:href => 'http://fonts.googleapis.com/css?family=Asap:400,700,700italic,400italic', :rel => 'stylesheet', :type => 'text/css'}
+    =stylesheet_link_tag "application"
+    =javascript_include_tag "marionette_application"
+
+    %script{:type => 'text/javascript'}
+      ="I18n.defaultLocale = '#{I18n.default_locale}';"
+      ="I18n.locale = '#{I18n.locale}';"
+
+
+    %style{:type => 'text/css'}
+      =yield(:style_header)
+    =javascript_tag do
+      = yield(:jstemplates)
+
+    =yield :backbone_bootstrap
+    
+    %title
+      Qodiag - Quality of diagnosis
+
+  %body{:class => yield(:body_class)}
+    #page{:class => 'container'}
+
+      #header{}
+        %h1{:class => 'logo'}
+          = link_to "Qodiag", root_path()
+        %div{:class => 'usernav'}
+          =render 'shared/log_in_out'
+
+      #navigation
+        =render 'shared/site_navigation'
+      
+      
+      #wrapper
+        #content-header
+          =render 'shared/alert_login_as'
+        #content
+          =yield
+          
+
+    #footerwrap
+      %span
+        ="Qodiag #{Date.today.year}  |  Quality of Diagnosis"
+
+    #flash
+      -flash.each do |name, msg|
+        %div{:class => name}
+          =msg
+
+    #dialog-region
+    =render "shared/google_analytics"
+

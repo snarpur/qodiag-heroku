@@ -6,8 +6,7 @@ do (Backbone, Marionette) ->
       _.extend @, Backbone.Events
     
     onShow: (view) ->
-      view.$el.modal({
-        show: true
+      view.$el.find(".modal").modal({
         keyboard: true
       })
 
@@ -24,6 +23,6 @@ do (Backbone, Marionette) ->
       @stopListening()
       # When valdate against the server closeDialog is called and the next time currentView doesn't exists
       if @currentView?
-        @currentView.$el.modal('hide')
+        @currentView.$el.find(".modal").modal('hide')
 
     

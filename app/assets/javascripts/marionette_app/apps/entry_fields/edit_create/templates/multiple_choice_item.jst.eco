@@ -1,6 +1,13 @@
-<div class="control-group">
-  <div class="controls">
-    <input class="text_option input-xlarge" type="text" placeholder="option">
-    <a class="destroy" href="#"><span class="icon-trash"></span></a>
+<div class="form-group">
+  <div class="col-lg-2">
+    <label></label>
+  </div> 
+  <div class="col-lg-10">
+    <div class="input-group m-bot15">
+      <input class="text_option form-control" type="text" placeholder="option">
+      <span class="input-group-btn">
+        <button type="button" class="btn btn-danger destroy"><i class="fa fa-trash-o"></i></button>
+      </span>
+    </div>
   </div>
 </div>

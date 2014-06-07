@@ -1,0 +1,2 @@
+<h1> <%= @t("entry_set.model_name_plural")%> </h1>
+

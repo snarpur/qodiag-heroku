@@ -1,2 +1,0 @@
-<li><a href="#"><%- @text %></a> <span class="divider">/</span></li>
-<li class="active"><%- @subView %></li>

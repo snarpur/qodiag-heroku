@@ -27,4 +27,6 @@ es:
     edit_information: "Editar información personal"
     add_comment: "Añadir comentario"
     minor: "Menor de edad"
-    adult: "Adulto"  
+    adult: "Adulto"
+    new_question: "Nueva pregunta"
+    add_section: "Nueva section"

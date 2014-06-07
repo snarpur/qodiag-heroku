@@ -1,6 +1,10 @@
-<div class="control-group">
-  <% if @.fieldLabel?: %>
-    <label><%- @label() %></label>
-  <% end %>
-  <hr></hr>
-</div>
+
+    <section class="panel">
+      <% if @.fieldLabel?: %>
+        <header class="panel-heading">
+          <%- @label() %>
+        </header>
+      <% end %>
+      <div class="panel-body"></div>
+    </section>
+

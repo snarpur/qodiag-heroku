@@ -1,14 +1,11 @@
-<div class="entry-info">
-    <%= @person.full_name %>
-    <span class="entry-date">
-      <%- @l("date.formats.long",@created_at) %>
-    </span>
+<a class="message-img" href="#">
+  <img alt="" src="<%- @avatar %>" class="avatar">
+</a>
+<div class="message-body msg-in">
+  <span class="arrow"></span>
+  <div class="text">
+      <p class="attribution"><a href="#"><%= @person.full_name %></a> <%- @l("date.formats.long",@created_at) %></p>
+      <p><%- @value() %></p>
+  </div>
 </div>
-<div class="entry-details">
-    <div class="entry-avatar">
-        <img src="<%- @avatar %>">
-    </div>
-</div>
-<div class="entry-content">
-    <p><%- @value() %></p>
-</div>
+

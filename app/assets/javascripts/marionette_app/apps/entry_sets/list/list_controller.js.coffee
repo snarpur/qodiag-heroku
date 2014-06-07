@@ -4,19 +4,18 @@
 
       
     listEntrySets: (options) ->    
+      App.contentHeaderRegion.show @getHeader()
       App.contentRegion.show @getLayout()
-      @entrySets = App.request "entry:sets:entities"   
+      @entrySets = App.request "entry:sets:entities" 
       entrySetsView = @getEntrySetsView()
       @showEntrySets(entrySetsView)
-      @executeSettingsNavigation()
+
         
-    
-    
     showEntrySets: (entrySetsView) ->
       
       @show entrySetsView,
          region: @getLayout().listRegion
-         loading:true 
+         loading: true 
       
       @listenTo entrySetsView, "new:entry:set", =>
         App.execute "create:entry:set", {activeView: entrySetsView}
@@ -31,13 +30,6 @@
 
       @listenTo view, "childview:delete:entry:set", (view)=> @confirmDelete(view)
       view
-    
-    
-
-    executeSettingsNavigation:->
-      App.execute "show:settings:navigation", 
-        currentSetting: 'entry_sets' 
-        region: @getLayout().settingsNavigationRegion
     
 
     deleteFromEntrySetSections: (options) ->    
@@ -55,7 +47,9 @@
     getLayout:=>
       @layout ?= new List.Layout
 
-    
+    getHeader:=>
+      new List.Header
+        model: new Backbone.Model()
 
     newEntrySetPath:(entrySet)->
       "settings#{Routes.entry_set_sections_path(entrySet.get('id'))}"

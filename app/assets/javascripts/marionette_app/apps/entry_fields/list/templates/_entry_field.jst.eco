@@ -1,15 +1,13 @@
-<td class="thin nowrap center">
-  <i class="fc-icon-<%=@field_type%>"></i>
+<td>
+  <i class="fa fa-<%=@type()%>"></i>
 </td>
 <td>
   <%- @title %>
 </td>
-<td class="thin nowrap">
+<td>
   <% if @editable: %>
-  <a href="#" class="edit"><span class="icon-edit"></span></a>
-  <% end %>
-  <% if @editable: %>
-  <a href="#" class="destroy"><span class="icon-trash"></span></a>
+    <a href="#" class="btn btn-primary btn-xs edit"><i class="fa fa-pencil "></i></a>
+    <a class="btn btn-danger btn-xs destroy" href="#"><i class="fa fa-trash-o "></i></a>
   <% end %>
 </td>
 

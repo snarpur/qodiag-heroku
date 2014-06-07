@@ -2,6 +2,7 @@
   
   class Show.Layout extends App.Views.Layout
     template: "subject_entries_app/show/show_layout"
+    className: "timeline-messages"
     templateHelpers:=>
         regionId:()=>
           @options.regionId  
@@ -20,16 +21,14 @@
   class Show.Comment extends App.Views.ItemView
     template: "subject_entries_app/show/_comment"
     emptyView: Show.EmptyEntry
-    tagName: 'li'
-    className: 'comment'
-
+    className: "msg-time-chat"
 
   
 
   class Show.Comments extends App.Views.CompositeView
     template: "subject_entries_app/show/comments"
     itemView: Show.Comment
-    itemViewContainer: 'ul'
+    itemViewContainer: ".comments"
 
     events:
       "click button": "newComment"
@@ -56,9 +55,6 @@
       template = if @options.field_type == 'multi-choice' then '_multi_choice_' else '_'
       "subject_entries_app/show/#{template}entry"
     
-    tagName: "div"
-    className: "entry"
-
     templateHelpers: =>
       index: =>
         @options.index
@@ -77,6 +73,7 @@
   class Show.Entries extends App.Views.CollectionView
     itemView: Show.Entry
     emptyView: Show.EmptyEntry
+    className: "msg-time-chat"
     childViewOptions: ->
       options=
         field_type: @options.field_type

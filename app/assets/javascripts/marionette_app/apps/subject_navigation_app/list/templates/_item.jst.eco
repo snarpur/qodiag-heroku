@@ -1,4 +1,4 @@
-<a class="button second" href="<%- @url %>" alt="<%- @text %>">
-  <span class="<%- @iconClass %>"></span>
+<a href="<%- @url %>" alt="<%- @text %>">
+  <i class="fa <%- @iconClass %> <%- @selected() %>"></i>
   <%- @text %>
 </a>

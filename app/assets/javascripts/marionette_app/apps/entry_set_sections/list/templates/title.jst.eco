@@ -1,7 +1,6 @@
-<h2>
-    <%- @name %>
-    <% if @editable: %>
-      <span class="btn btn-mini edit-item"><i class="icon-edit"></i></span>
-      <span class="btn btn-mini remove-item"><i class="icon-trash"></i></span>
-    <% end %>
-</h2>
+<%- @name %>
+<% if @editable: %>
+  <a href="#" class="btn btn-primary btn-xs edit-item"><i class="fa fa-pencil "></i></a>
+  <a class="btn btn-danger btn-xs remove-item"><i class="fa fa-trash-o "></i></a>
+<% end %>
+

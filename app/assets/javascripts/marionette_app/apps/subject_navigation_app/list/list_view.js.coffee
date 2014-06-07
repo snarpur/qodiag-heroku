@@ -12,20 +12,26 @@
 
   class List.SubjectDetails extends App.Views.ItemView
     template: "subject_navigation_app/list/subject_details"
+    className: "alt green-bg user-heading"
 
 
   class List.Item extends App.Views.ItemView
     template: "subject_navigation_app/list/_item"
     tagName: 'li'
+    className: "col-lg-4"
 
-    className:->
-      'active' if @model.isActive()
+    templateHelpers:=>
+      selected:=>
+        'text-primary' if @model.isActive()
+
+    # className:->
+    #   'text-primary' if @model.isActive()
   
   
   class List.Navigation extends App.Views.CollectionView
     itemView: List.Item
     tagName: "ul"
-    className: "reset subnav"
+    className: "summary-list"
 
 
 

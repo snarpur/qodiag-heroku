@@ -1,0 +1,50 @@
+!!!
+%html
+  %head
+    =yield(:head)
+    =csrf_meta_tag
+    %link{:href => "/assets/favicon.ico", :rel => "shortcut icon"}
+    =javascript_include_tag "flatlab_application_initial"
+    =stylesheet_link_tag "flatlab_application"
+    
+    %title
+      Qodiag - Quality of diagnosis
+
+  %body
+    %section{:id => "container"}
+      %header{:class => "header white-bg"}
+        .sidebar-toggle-box
+          %div{:class=>"fa fa-bars tooltips", :data => {:placement=>"right", :original=> {:title=>"Toggle Navigation"}}}
+        = link_to "Qodiag", root_path(), :class => "logo"
+        .top-nav
+          =render 'shared/log_in_out'
+
+      %aside
+        =render 'shared/site_navigation'
+
+      =yield :alert_login_as
+
+      %section{:id=>"main-content"}
+        %section{:class=>"wrapper site-min-height"}
+        
+          =yield :state_overview
+          =yield :subject_content
+
+          =yield
+
+
+      %footer{:class=>"site-footer"}
+        .text-center
+          Qodiag 2014 | Quality of Diagnosis
+          %a{:class=>"go-top", :href=>"#"}
+            %i{:class=>"fa fa-angle-up"}
+
+    =javascript_include_tag "flatlab_application"
+
+    %script{:type => 'text/javascript'}
+      ="I18n.defaultLocale = '#{I18n.default_locale}';"
+      ="I18n.locale = '#{I18n.locale}';"
+
+    =yield :javascript_initializations
+
+    =render "shared/google_analytics"

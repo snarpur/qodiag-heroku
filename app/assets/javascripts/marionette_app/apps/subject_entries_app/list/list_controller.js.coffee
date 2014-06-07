@@ -76,7 +76,7 @@
             
       @show sectionsView,
         region: @getSectionRegion()
-        loading:false     
+        loading: false     
 
 
     showEntryFields:(entries)->
@@ -93,8 +93,7 @@
       # @getEntrySetValuesRegion().show entriesView 
       
       @show entriesView, 
-        loading:
-          loadingType: "spinner"
+        loading: true
         region: @getEntrySetValuesRegion()
         
 

@@ -1,1 +1,8 @@
-<input type='text' class="search-input" />
+<div class="form-group">
+  <div class="input-group m-bot15">
+    <span class="input-group-btn">
+      <button type="button" class="btn btn-white"><i class="fa fa-search"></i></button>
+    </span>
+    <input type="text" placeholder="Search..." class="form-control">
+  </div>
+</div>

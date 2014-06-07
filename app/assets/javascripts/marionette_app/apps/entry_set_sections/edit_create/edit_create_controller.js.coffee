@@ -11,7 +11,8 @@
       @showDialog(options)
 
     
-    showDialog:(options)->      
+    showDialog:(options)->
+      console.info "showDialog"      
       @dialogView = new EditCreate.Section model: options.section
       App.dialogRegion.show @dialogView
       @dialogView.on "save:section", => @saveSection(options)
@@ -29,8 +30,8 @@
           else if action is 'edit'
             model.trigger('edit:complete')
 
-
-          _this.dialogView.trigger("dialog:close")
+          # _this.dialogView.trigger("dialog:close")
+          _this.dialogView.$el.find(".modal").modal('hide')
           activeView.trigger("section:#{action}:complete")
           
         error: ->

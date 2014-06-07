@@ -1,0 +1,359 @@
+/ +sticky-footer(84px, '#page', '#footerwrap')
+
+/ html
+/   background: url("2013/body-bg.jpg")
+
+/ body
+/   background: url("2013/header-bg.jpg") repeat-x
+/   font-weight: $baseFontWeight
+
+#header
+  .logo
+    @include replace-text("2013/logo.png", 0, 50%)
+    position: absolute
+    width: 150px
+    left: 15px
+    a
+      width: 105px
+      height: 32px
+      display: block
+
+  .login
+    font-size: 0 //whitespace fix
+    text-align: right
+
+    li
+      +ctb-ie7-inline-block()
+      display: inline-block
+      color: #fff
+      font-size: $baseFontSize
+      border-left: 2px ridge rgba(62, 110, 159, 0.5)
+      white-space: nowrap
+      line-height: 60px
+      padding: 0 10px
+
+      &:last-child
+        border-right: 2px ridge rgba(62, 110, 159, 0.5)
+
+      em
+        text-decoration: underline
+        font-style: normal
+
+      span
+        vertical-align: middle
+
+      a
+        display: block
+        color: #fff
+        padding: 0 10px
+        margin: 0 -10px
+
+        &:hover
+          background: rgba(0, 0, 0, 0.15)
+
+#navigation
+  min-height: 40px
+  ul
+    margin-bottom: 0
+    list-style: none
+    font-size: 0 //whitespace fix
+
+    li
+      @include ctb-ie7-inline-block()
+      display: inline-block
+      border-left: 2px ridge rgba(177, 177, 177, 0.5)
+      border-right: 2px ridge rgba(177, 177, 177, 0.5)
+
+      a
+        display: block
+        line-height: 39px
+        padding: 0 10px
+        color: #fff
+        text-transform: uppercase
+        font-size: $baseFontSize
+
+        &:hover
+          background: rgba(0, 0, 0, 0.15)
+          text-decoration: none
+
+  .primary
+    @extend ul.reset
+    float: left
+    width: 50%
+
+
+  .secondary
+    @extend ul.reset
+    float: right
+    width: 50%
+    .icon-information, .icon-settings
+      margin: -1px 5px 0 0
+
+    text-align: right
+
+    li
+      border-right: 0
+
+      &:last-child
+        border-right: 2px ridge rgba(177, 177, 177, 0.5)
+
+
+#content-header
+  clear: both
+  padding: 50px 0 30px
+
+  body.sign-in &
+    padding: 0
+
+  .content_title
+    font-size: $fontSizeLarge
+    font-weight: 400
+    margin: 0
+    float: left
+
+    .avatar
+      float: left
+      margin: -28px 10px 0 0
+      border: 1px solid #ccc
+      +box-shadow(0 0 10px rgba(0, 0, 0, 0.15))
+
+
+  .content_title_sub
+    float: left
+    border-left: 2px solid #333
+    margin-left: 10px
+    padding-left: 10px
+    font-size: $fontSizeLarge
+    font-weight: 400
+    color: $grayLight
+    text-transform: uppercase
+
+  .subnav
+    font-size: 0
+
+    li
+      font-size: $baseFontSize
+      margin-left: 5px
+
+#content
+  clear: both
+  background: #fff
+  border: 1px solid #ccc
+  margin: $baseLineHeight 0 92px
+  padding: 30px
+  overflow: auto
+
+  .subject
+    .information
+      h4
+        margin-top: 0
+
+    .avatar
+      float: left
+      position: relative
+      margin: 0 20px 20px 0
+
+      img
+        max-width: 200px
+
+      a
+        position: absolute
+        bottom: 1px
+        left: 1px
+
+  .parents
+    .editable-item
+      float: left
+      width: 50%
+      .avatar
+        position: relative
+        width: 150px
+        a
+          position: absolute
+          bottom: 1px
+          left: 1px
+
+#footerwrap
+  background-image: url("2013/footer-bg.jpg")
+  background-repeat: repeat-x
+  background-position: auto
+  text-align: center
+  color: #fff
+  padding: 20px 0
+  height: 44px
+  &:before
+    content: "."
+    display: block
+    margin: 0 auto -32px auto
+    width: $gridRowWidth
+    height: 32px
+    text-indent: -9999px
+    background-image: url("rannis_96.png")
+    background-repeat: no-repeat
+    background-position: $gridRowWidth - 100px 0
+
+
+
+.visibility-hidden
+  visibility: hidden
+
+
+// Subsections
+
+.fullwidth
+  margin: -30px
+
+.entry-region
+  .entry
+    margin-bottom: 10px
+    clear: both
+    overflow: auto
+
+    .entry-avatar
+      border: 4px solid #ccc
+      margin-bottom: 10px
+
+    .entry-info
+      float: left
+      font-weight: 700
+      font-size: 12px
+      background: #777
+      color: #fff
+      padding: 0 6px
+      margin-bottom: 5px
+
+      .entry-date
+        font-weight: 400
+        font-size: 11px
+        color: #eee
+
+    .entry-details
+      clear: left
+      float: left
+      width: 64px
+      padding-right: 10px
+      border-right: 1px solid #ccc
+      margin: 0 10px 0 0
+      font-size: 11px
+      text-align: center
+      line-height: 1.1
+
+    .entry-content
+      float: left
+      width: 755px
+
+.comments-region
+  border: 1px solid #bfcad5
+  background: #eef2f7
+  padding: 10px
+  margin-bottom: 20px
+
+  li
+    border-color: #bfcad5
+
+
+// Entry sets
+// 
+#entry-set-title-region
+  background: #104c89
+
+  h2
+    font-size: 14px
+    font-weight: 400
+    color: #fff
+    margin-top: 0
+    padding: 0 10px
+    line-height: 30px
+
+    span
+      margin: -2px 0 0 6px
+
+#sections-navigation-region
+  margin-bottom: 20px
+
+#section-title-region
+  border-bottom: 1px solid #ccc
+  margin-bottom: 10px
+
+  h2
+    font-size: 14px
+    font-weight: 400
+    margin: 0
+    padding: 0 10px
+    line-height: 30px
+
+    span
+      margin: -2px 0 0 6px
+
+
+#section-content-region
+  .btn-success
+    float: right
+
+#settings-content
+  float: left
+  border: 1px solid #ccc
+
+  .settings-content
+    float: left
+    width: 575px
+    padding: 10px
+
+.uneditable-entry-set
+  .settings-content
+    .btn
+      display: none
+
+#entry-fields-sidebar-region
+  float: left
+  width: 260px
+  border-left: 1px solid #ccc
+  border-bottom: 1px solid #ccc
+
+#entry-fields-search-region
+  padding: 20px 2px 10px
+
+  input
+    width: 180px
+    margin: 0 10px 10px
+
+#entry-fields-list-region
+  height: 600px
+  overflow: hidden
+
+  > ul
+    font-size: 0
+
+    > li
+      border-top: 1px solid #ccc
+      padding: 5px 10px 5px 24px
+      background: #fff url("2013/icon-list.png") no-repeat 5px 50%
+      cursor: pointer
+      font-size: $baseFontSize
+    > li:hover
+      background-color: darken(#fff, 5%)
+
+#entry-fields-search-region
+  width: 260px
+
+#entry-section
+  > li
+    position: relative
+    background: #f4f4f4
+    border: 1px solid #ccc
+    padding: 20px
+    margin-bottom: 5px
+
+    &.dropzone
+      @extend .alert
+      border-style: dashed
+      padding: 20px
+
+    > em
+      display: block
+      float: left
+      clear: left
+      padding: 20px
+      margin: -20px 20px -20px -20px
+      background: #fff
+      border-right: 1px solid #ccc

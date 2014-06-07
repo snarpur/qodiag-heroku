@@ -1,4 +1,10 @@
-<div class="patient-view">
-  <div id="subject-profile-region"></div>
-  <div id="guardian-profile-region"></div>
+<div class="row">
+  <div class="col-lg-12">
+    <section id="subject-profile-region" class="panel"></section>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12">
+    <section id="guardian-profile-region" class="panel"></section>
+  </div>
 </div>

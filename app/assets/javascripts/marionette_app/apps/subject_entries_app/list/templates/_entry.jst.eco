@@ -1,2 +1,5 @@
-<h3><%- @display_order %>.  <%- @title %></h3>
-<div id="<%-@entryValueRegionName%>"></div>
+<header class="panel-heading">
+  <b><%- @display_order %>.  <%- @title %></b>
+</header>
+<div class="panel-body" id="<%-@entryValueRegionName%>"></div>
+

@@ -1,17 +1,32 @@
-<ul class="reset toolbar">
-  <li class="right"><a href="#" class="button prime"><span class="icon-add"></span><%= @t("actions.new_list") %></a></li>
-</ul>
+<div class="row">
+  <div class="col-lg-12">
+    <section class="panel pull-right">
+      <button class="btn btn-primary" type="button">
+        <i class="fa fa-plus"></i> 
+        <%= @t("actions.new_list") %>
+      </button>
+    </section>
+  </div>
+</div>
 
-<table class="table">
-<thead>
-  <tr>
-    <th><%= @t("terms.name") %></th>
-    <th></th>
-  </tr>
-</thead>
-<tbody>
-</tbody>
-</table>
-<ul class="reset toolbar">
-    <li class="right"><a href="#" class="button prime"><span class="icon-add"></span><%= @t("actions.new_list") %></a></li>
-</ul>
+
+<div class="row">
+  <div class="col-lg-12">
+    <section class="panel">
+      <div class="panel-body">
+        <div class="adv-table">
+          <div id="entry_sets_wrapper" class="dataTables_wrapper form-inline">
+            <table id="entry_sets" class="display table table-bordered table-striped dataTable" role="grid">
+              <thead>
+                <tr>
+                  <th><%= @t("terms.name") %></th>
+                  <th></th>
+                </tr>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+    </section>
+  </div>
+</div>
+

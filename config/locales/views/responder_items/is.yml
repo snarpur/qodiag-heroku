@@ -3,7 +3,8 @@ is:
     responder_items:
       select_respondents: "Velja viðtakenda"
       select_entry_sets: "Velja eyðublað"
-      requests:
+      requests: 
+        name: "Beiðnir"
         submit: "Senda nýja beiðni"
         have_sent: "Beiðni hefur verið send"
         sent: "Beiðni send"

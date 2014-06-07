@@ -1,16 +1,24 @@
-- if params[:controller] == 'people'
-  %ul{:class => 'reset subnav'}
-    %li{:class => params[:action] == 'show' ? 'active' : ''}
-      %a{:alt => "Mælingar", :href => '/people/' + @person.id.to_s, :class => 'button second'}
-        %span{:class => 'icon-meter'}
-        Mælingar
-    %li{:class => params[:action] == 'history' ? 'active' : ''}
-      %a{:alt => "Sjúkraskrá", :href =>  "/#people/#{@person.id.to_s}/entries", :class => 'button second'}
-        %span{:class => 'icon-history'}
-        Saga
+%aside{:class=>"profile-nav alt green-border"}
+  .user-heading{:class=>"alt green-bg"}
+    %a{:href=>"/people/" + @person.id.to_s}
+      =image_tag @person.avatar.url(:small), {:alt => ''}
+    %h1
+      = @person.full_name
+    %p
+      = @person.age.to_s + ' ' + t("surveys.terms.age")
+%section{:class=>"panel"}
+  .panel-body
+    %ul{:class=>"summary-list"}
+      %li{:class=>"col-lg-4"}
+        %a{:href=>"#"}
+          %i{:class=>"fa fa-bar-chart-o #{params[:action] == 'show' ? 'text-primary' : ''}" }
+          = t("terms.timeline")
 
-    %li{:class => params[:action] == 'edit' ? 'active' : ''}
-      %a{:alt => "Fjölskylda", :href => '/#people/' + @person.id.to_s + '/profiles', :class => 'button second'}
-        %span{:class => 'icon-profile'}
-        Persónu upplýsingar
-
+      %li{:class=>"col-lg-4"}
+        %a{:href=>"/#people/#{@person.id.to_s}/entries"}
+          %i{:class=>"fa fa-list-alt #{params[:action] == 'history' ? 'text-primary' : ''}"}
+          = t("terms.history")
+      %li{:class=>"col-lg-4"}
+        %a{:href=>"/#people/" + @person.id.to_s + "/profiles"}
+          %i{:class=>"fa fa-file-text-o #{params[:action] == 'edit' ? 'text-primary' : ''}"}
+          = t("terms.personal_information")

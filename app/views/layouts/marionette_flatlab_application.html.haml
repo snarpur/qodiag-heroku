@@ -1,0 +1,57 @@
+!!!
+%html
+  %head
+    = include_gon
+    =yield(:head)
+    =csrf_meta_tag
+
+    %link{:href => "/assets/favicon.ico", :rel => "shortcut icon"}
+    =stylesheet_link_tag "flatlab_application"
+    =javascript_include_tag "marionette_application"
+
+    %script{:type => 'text/javascript'}
+      ="I18n.defaultLocale = '#{I18n.default_locale}';"
+      ="I18n.locale = '#{I18n.locale}';"
+    
+    %title
+      Qodiag - Quality of diagnosis
+
+  %body
+    %section{:id => "container"}
+
+      %header{:class => "header white-bg"}
+        .sidebar-toggle-box
+          %div{:class=>"fa fa-bars tooltips", :data => {:placement=>"right", :original=> {:title=>"Toggle Navigation"}}}
+        = link_to "Qodiag", root_path(), :class => "logo"
+        .top-nav
+          =render 'shared/log_in_out'
+
+      %aside
+        =render 'shared/site_navigation'
+
+      %section{:id=>"main-content"}
+
+        =render 'shared/content_header'
+        =render 'shared/alert_login_as'
+
+        %section{:id=>"content",:class=>"site-min-height wrapper"}
+                    
+          =yield
+          
+
+    %footer{:class=>"site-footer"}
+      .text-center
+        Qodiag 2014 | Quality of Diagnosis
+        %a{:class=>"go-top", :href=>"#"}
+          %i{:class=>"fa fa-angle-up"}
+
+    #flash
+      -flash.each do |name, msg|
+        %div{:class => name}
+          =msg
+
+    #dialog-region
+    =javascript_include_tag "marionette_flatlab_application"
+    =render "shared/google_analytics"
+
+

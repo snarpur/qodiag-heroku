@@ -1,35 +1,40 @@
-<span id="entry_field_options_error" class="help-inline"></span>
-<div class="control-group">
-  <label class="control-label" for="title">Titill</label>
-  <div class="controls">
-    <input class="input-xlarge" type="text" id="title" placeholder="Titill">
-    <span id="title_error" class="help-inline"></span>
+<span id="entry_field_options_error" class="help-block"></span>
+<div class="form-group">
+  <label class="col-lg-2 control-label" for="title">Titill</label>
+  <div class="col-lg-10">
+    <input class="form-control" type="text" id="title" placeholder="Titill">
+    <span id="title_error" class="help-block"></span>
   </div>
 </div>
-<div class="control-group">
-  <label class="control-label" for="description">Lýsing</label>
-  <div class="controls">
-    <textarea class="input-xlarge" rows="3" id="description" placeholder="Lýsing..."></textarea>
+<div class="form-group">
+  <label class="col-lg-2 control-label" for="description">Lýsing</label>
+  <div class="col-lg-10">
+    <textarea class="form-control" rows="3" id="description" placeholder="Lýsing..."></textarea>
   </div>
 </div>
-<div class="control-group">
-  <div class="controls">
-    <h5>Options</h5>
-  </div>
+<div class="form-group">
+  <label class="col-lg-2 control-label" for="description">Options</label>
 </div>
 <div class="options"></div>
-<div class="control-group">
-  <div class="controls">
-    <a href="#" class="add">
+<div class="form-group">
+  <div class="col-lg-10">
+    <button class="btn btn-primary add">
+      <i class="fa fa-plus"></i> 
       Add new option
-    </a>
+    </button>
   </div>
 </div>
 <% if @hasRole('caretaker_admin'): %>
-  <div class="control-group">
-    <label class="control-label" for="visibility">Opinber?</label>
-    <div class="controls">
-      <input type="checkbox" id="visibility">        
+  <div class="form-group">
+    <label class="col-lg-2 control-label" for="visibility"></label>
+    <div class="col-lg-10">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" id="visibility">
+          Opinber?
+        </label>
+      </div>        
     </div>
   </div>
 <% end %>
+

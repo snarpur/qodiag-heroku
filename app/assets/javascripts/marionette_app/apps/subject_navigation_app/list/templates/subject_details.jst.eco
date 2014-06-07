@@ -1,4 +1,5 @@
-<h1 class="content_title">
-  <img class="avatar" src="<%= @image_url_tiny %>">
-  <%- @firstname %> <%- @lastname %></h1>
-<h5 class="content_title_sub"><%- @age %>  <%= @t("surveys.terms.age") %></h5>
+<a href="/people/<%=@id%>" >
+  <img src="<%= @image_url_small %>">
+</a>
+<h1 class="content_title_sub"><%= @firstname + " " + @lastname %></h1>
+<p><%- @age %>  <%= @t("surveys.terms.age") %></p>

@@ -1,3 +1,4 @@
 <em><%- @display_order%></em>
 <%- @entry_field?.title  %>
-<span class="btn btn-inverse btn-mini trash"><i class="icon-trash icon-white icon-bg"></i></span>
+<a class="btn btn-danger btn-xs pull-right trash"><i class="fa fa-trash-o"></i></a>
+<!-- <span class="btn btn-inverse btn-mini trash"><i class="icon-trash icon-white icon-bg"></i></span> -->

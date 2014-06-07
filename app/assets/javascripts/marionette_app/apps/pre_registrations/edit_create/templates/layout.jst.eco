@@ -1,2 +1,6 @@
-<div id="form-steps-region"></div>
-<div id="fields-region"></div>
+<div class="col-lg-12">
+  <div id="form-steps-region" class="stepy-tab"></div>
+</div>
+<div class="col-lg-12">
+  <div id="fields-region"></div>
+</div>

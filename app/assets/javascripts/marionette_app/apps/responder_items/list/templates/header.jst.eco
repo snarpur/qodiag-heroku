@@ -1,1 +1,1 @@
-Beiðnir
+<h1> <%= @t("views.responder_items.requests.name")%> </h1>

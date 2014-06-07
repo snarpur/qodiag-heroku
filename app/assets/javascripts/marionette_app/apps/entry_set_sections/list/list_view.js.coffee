@@ -65,7 +65,7 @@
     itemViewContainer: "ul"
 
     triggers:
-      "click .button": "add:new:section:clicked"
+      "click .add-section":"add:new:section:clicked"
 
     
 
@@ -74,6 +74,7 @@
 
   class List.Title extends App.Views.ItemView
     template: "entry_set_sections/list/templates/title"
+    tagName: "span"
 
     triggers:
       "click .edit-item" : "edit:title"

@@ -62,7 +62,8 @@ class ApplicationController < ActionController::Base
   end
 
   def application_layout
-    params[:action] == 'index' ? 'marionette_application' : 'application'
+    # params[:action] == 'index' ? 'marionette_application' : 'application'
+    params[:action] == 'index' ? 'marionette_flatlab_application' : 'flatlab_application'
   end
 
   def pick_params(params,class_name=nil)

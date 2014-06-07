@@ -1,26 +1,32 @@
-<ul class="toolbar">
-  <li class="left"><div id="search-region"></div></li>
-  <li class="right"><a href="#" class="button prime"><span class="icon-add"></span>Ný spurning</a></li>
-</ul>
+<div class="row">
+  <div class="col-lg-12">
+    <section class="panel pull-right">
+      <button class="btn btn-primary add-question" type="button">
+        <i class="fa fa-plus"></i> 
+        <%= @t("actions.new_question") %>
+      </button>
+    </section>
+  </div>
+</div>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>
-        Tegund
-      </th>
-      <th>
-        Spurning
-      </th>
-      <th>
-        &nbsp;
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
-
-<ul class="toolbar">
-  <li class="right"><a href="#" class="button prime"><span class="icon-add"></span>Ný spurning</a></li>
-</ul>
+<div class="row">
+  <div class="col-lg-12">
+    <section class="panel">
+      <div class="panel-body">
+        <div class="adv-table">
+          <div id="entry_fields_wrapper" class="dataTables_wrapper form-inline">
+            <table id="entry_fields" class="display table table-bordered table-striped dataTable" role="grid">
+              <thead>
+                <tr>
+                  <th><%= @t("terms.type") %></th>
+                  <th><%= @t("terms.question") %></th>
+                  <th></th>
+                </tr>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

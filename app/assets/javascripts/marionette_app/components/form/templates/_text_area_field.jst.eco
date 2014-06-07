@@ -1,9 +1,7 @@
-<div class="control-group">
-  <% if @.fieldLabel?: %>
-    <label class="control-label" for="<%=@fieldName%>"><%- @label() %></label>
-  <% end %>
-  <div class="controls">
-    <textarea class="input-xlarge" id="<%=@fieldName%>" placeholder="<%- @label() %>" <%=@isDisabled()%>>
-    <span id="<%=@fieldName%>_error" class="help-inline"></span>
-  </div>
+<% if @.fieldLabel?: %>
+  <label class="col-lg-2 control-label" for="<%=@fieldName%>"><%- @label() %></label>
+<% end %>
+<div class="col-lg-10">
+  <textarea class="form-control" id="<%=@fieldName%>" placeholder="<%- @label() %>" <%=@isDisabled()%>>
+  <span id="<%=@fieldName%>_error" class="help-block"></span>
 </div>

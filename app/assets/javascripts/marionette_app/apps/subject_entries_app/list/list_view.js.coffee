@@ -50,7 +50,7 @@
     template: "subject_entries_app/list/select_items"
     itemView: List.SelectItem
     tagName: "select"
-    className: "span6"
+    className: "form-control"
     attributes:->
       'disabled' : => 'disabled' if @isEmpty()
 
@@ -82,18 +82,19 @@
   class List.Section extends App.Views.ItemView
     template: "subject_entries_app/list/_section"
     tagName: "li"
+
+
     className: ->
       "active"  if @model.collection.isCurrentSection(@model)
 
     triggers:
       "click " : "set:current:section"
-  
 
 
   class List.Sections extends App.Views.CollectionView
     itemView: List.Section
     tagName: "ul"
-    className: "stepper"
+    className: "nav nav-tabs"
 
     initialize:->
       @on "childview:set:current:section", (view)->
@@ -103,7 +104,8 @@
 
   class List.Entry extends App.Views.ItemView
     template: "subject_entries_app/list/_entry"
-    tagName: "li"
+    tagName: "section"
+    className: "panel"
 
 
     initialize: ->
@@ -114,11 +116,10 @@
  
 
   
-
+  class List.EmptyEntry extends App.Views.ItemView
+    template: "subject_entries_app/list/_section_empty"
 
   class List.Entries extends App.Views.CollectionView
     itemView: List.Entry
-    tagName: 'ul'
-    className: "entryset"
-
+    emptyView: List.EmptyEntry
 

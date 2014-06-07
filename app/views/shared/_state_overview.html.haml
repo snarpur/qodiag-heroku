@@ -1,0 +1,32 @@
+.row
+  .col-lg-4
+    .state-overview
+      %section{:class=>"panel"}
+        .symbol{:class=>"red"}
+          %i{:class=>"fa fa-user"}
+        .value
+          %h1 2
+          %p
+            = t('terms.client', :count => 2)
+
+  .col-lg-4
+    .state-overview
+      %section{:class=>"panel"}
+        .symbol{:class=>"blue"}
+          %i{:class=>"fa fa-bar-chart-o"}
+        .value
+          %h1 2
+          %p
+            Surveys
+
+  .col-lg-4
+    .state-overview
+      %section{:class=>"panel"}
+        .symbol{:class=>"terques"}
+          %i{:class=>"fa fa-list"}
+        .value
+          %h1 2
+          %p
+            Questionaires
+
+  
