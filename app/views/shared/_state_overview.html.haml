@@ -5,7 +5,8 @@
         .symbol{:class=>"red"}
           %i{:class=>"fa fa-user"}
         .value
-          %h1 2
+          %h1
+            = @patients.count
           %p
             = t('terms.client', :count => 2)
 
@@ -15,7 +16,8 @@
         .symbol{:class=>"blue"}
           %i{:class=>"fa fa-bar-chart-o"}
         .value
-          %h1 2
+          %h1
+            = current_user.person.responder_items.surveys.count
           %p
             Surveys
 
@@ -25,7 +27,8 @@
         .symbol{:class=>"terques"}
           %i{:class=>"fa fa-list"}
         .value
-          %h1 2
+          %h1
+            = (current_user.person.responder_items.count - current_user.person.responder_items.surveys.count)
           %p
             Questionaires
 
