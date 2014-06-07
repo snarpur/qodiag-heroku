@@ -1,4 +1,4 @@
-chart_name: Chart
+xchart_name: Chart
 chart_config:
   credits:
     enabled: false
@@ -9,6 +9,8 @@ chart_config:
     marginBottom: 100
     marginTop: 80
     animation: false
+    events: 
+      click: false
   title:
     text: true
     align: left

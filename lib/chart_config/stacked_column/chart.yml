@@ -20,9 +20,9 @@ chart_config:
         borderWidth: 0
       events:
         legendItemClick: false
-      point:
-        events:
-          click: drillToQuestion
+      # point:
+      #   events:
+      #     click: drillToQuestion
   yAxis:
     minorTickInterVal: 2
     tickInterval: 4

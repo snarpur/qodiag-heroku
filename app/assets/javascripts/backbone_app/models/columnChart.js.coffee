@@ -49,6 +49,8 @@ class App.Models.ColumnChart extends Backbone.Model
     @renderTo()
     @setFormatters()
     @drillDownSetup()
+    console.log JSON.stringify @attributes
+    console.warn @attributes
     highChart = new Highcharts.Chart(@.attributes)
     @set("activeChart",highChart)
 

@@ -1,0 +1,9 @@
+<% if @drilldown?: %>
+<button type="button" class="btn btn-default btn-xs drillup" style="display:none;">
+  <span class="glyphicon glyphicon glyphicon-arrow-left"></span> <%= @t("terms.back") %>
+</button>
+<% end %>
+<div class='chart'>
+  <% console.log "       ", @ %>
+</div>
+

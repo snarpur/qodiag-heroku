@@ -10,6 +10,8 @@ do (Marionette) ->
       path(data)
     
     getTemplate: (template) ->
-      for path in [template, template.split("/").insertAt(-1, "templates").join("/")]
+
+      t = template.split("/").splice(-1,0,"templates")
+      for path in [template, t.join("/")]
         for lookup in @lookups
           return JST[lookup + path] if JST[lookup + path]

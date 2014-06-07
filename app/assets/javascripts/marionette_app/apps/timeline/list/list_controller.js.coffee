@@ -41,9 +41,45 @@
     
 
     showTimeline:(options)->
-      visModel = new Backbone.Model({items: options.items, visItems: options.visItems})
+      visModel = new Backbone.Model(options)
       
       @show @getTimeline(visModel),
         region: @getLayout().timelineRegion 
 
- 
+      @listenTo @getTimeline(), "item:selected", (options)=>
+        @getColumnCharts(options)
+        
+    
+
+    chartsLayout:(options={})->
+      new List.ChartLayout(options)
+
+
+
+    chartsView:(options)->
+      new List.ColumnCharts(options)
+    
+    
+    
+    onChangeChart:(layout)->
+      @listenTo layout, "active:chart:selected", (view)=>
+        @charts.setCurrentMetric(view.model.get("name"))
+        @updateChart()
+
+    updateChart:->
+      @charts.fetch
+          reset: true
+
+
+    getColumnCharts:(options)->
+      chartsLayout = @chartsLayout()
+      App.dialogRegion.show chartsLayout
+      
+      @charts = App.request "column:charts", options
+      
+      App.execute "when:fetched", @charts, =>
+        chartView = @chartsView({ collection: @charts})
+        @onChangeChart(chartsLayout)
+        chartsLayout.chartsRegion.show chartView
+
+        

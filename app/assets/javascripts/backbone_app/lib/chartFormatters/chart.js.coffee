@@ -14,7 +14,6 @@ class App.Lib.ChartFormatters.Chart
     ]
  
   constructor:(chart_config)->
-
     @chart = chart_config
  
   findValue:(obj,path)->

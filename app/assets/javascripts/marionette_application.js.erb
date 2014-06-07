@@ -17,7 +17,8 @@
 //= require query-engine/query-engine.js
 //= require date/build/date-is-IS.js  
 //= require XDate/XDate
-//= require highcharts/js/highcharts.src.js
+//= require highcharts/js/highcharts.js
+//= require highcharts/js/modules/drilldown.js
 //= require jquery.quicksearch
 //= require bootstrap-all
 //= require bootstrap/bootbox.js
@@ -43,7 +44,8 @@
 
 
 $(document).ready(function(){
-  // moment.lang('is');
+  moment.lang('is');
   $.datepicker.setDefaults($.datepicker.regional[I18n.locale]);
   $("#flash > div").fadeOut(4000);
+
 });

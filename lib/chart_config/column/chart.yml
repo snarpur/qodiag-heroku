@@ -23,8 +23,8 @@ chart_config:
         borderWidth: 1
         borderColor: '#999'
         y: -6
-      point:
-        events:
-          click: drillToQuestion     
+      # point:
+      #   events:
+      #     click: drillToQuestion     
       events:
         legendItemClick: false

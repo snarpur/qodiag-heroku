@@ -11,11 +11,11 @@ do (Backbone, Marionette) ->
         keyboard: true
       })
 
-      @listenTo view.model, "created updated", ()=>
-        @closeDialog
+      # @listenTo view.model, "created updated", ()=>
+      #   @closeDialog
 
-      view.$el.on "hidden", => @close()
-      @setupBindings view 
+      # view.$el.on "hidden", => @close()
+      # @setupBindings view 
     
     setupBindings: (view) ->
       @listenTo view, "dialog:close", @closeDialog

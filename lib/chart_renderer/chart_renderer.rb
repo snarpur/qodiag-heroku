@@ -1,7 +1,7 @@
 module ChartRenderer
  class Chart
     include ChartMethods 
-    attr_accessor :chart_data, :chart_size, :categories
+    attr_accessor :chart_data, :chart_size, :categories, :drilldown
 
 
     def initialize(chart_options,response_set,options={})
@@ -45,8 +45,10 @@ module ChartRenderer
         group_results = total_for_groups(groups)        
         if i.respond_to?(:has_key?) && i[:drilldown] == true
           config_drilldown(i, group_results)
+          {:y => group_results, :drilldown => true, :name => i[:name] }
         else
-          {:y => group_results, :values => weights_by_groups(groups)}
+          # {:y => group_results, :values => weights_by_groups(groups)}
+          {:y => group_results}
         end
           
       end
@@ -100,10 +102,9 @@ module ChartRenderer
     
     def x_axis
       x_axis = @chart[:chart_config][:xAxis].deep_merge!({:categories => categories})
-      # x_axis.deep_merge!({:categories => categories})
     end
 
-    def subtitle
+    def subtitle   
       unless @chart[:chart_config][:subtitle][:text].nil?
         @chart[:chart_config][:subtitle].merge(:text => @response_set.completed_at) 
       end
@@ -114,7 +115,6 @@ module ChartRenderer
     end
 
     def series
-      # @chart[:chart_config][:series] = chart_data
       chart_data
     end
 
@@ -151,19 +151,50 @@ module ChartRenderer
       subtitle
       @chart[:chart_config]
     end
+    
+    def drilldown?
+      @chart[:content][:question_groups].each do |i|
+        if i.is_a? Hash
+          return true if i.key?(:drilldown)
+        end
+      end
+      return false
+
+    end
+
 
     private
     def total_for_groups(groups)
       @response_set.sum_of_group_result(groups)
     end
 
-    def config_drilldown(group, group_results)
+    def x_config_drilldown(group, group_results)
       drilldown_config = Marshal::load(Marshal.dump(@chart)) 
       drilldown_config[:content][:question_groups] = group[:total]
       drilldown_chart = self.class.new(drilldown_config,@response_set)
       drilldown_series = [{:data => drilldown_chart.chart_data, :name => group[:name]}]
       {:y => group_results, :values => weights_by_groups(group), :drilldown => {:series => drilldown_chart.chart_data,:xAxis => {:categories => group[:total]}}}  
     end
+
+    def config_drilldown(group, group_results)
+      @drilldown ||= {:series => []}
+      drilldown_config = Marshal::load(Marshal.dump(@chart)) 
+      drilldown_config[:content][:question_groups] = group[:total]
+      drilldown_chart = self.class.new(drilldown_config,@response_set)
+      drilldown_group =  drilldown_chart.chart_data
+      # drilldown_group.each {|i| i[:id] = group[:name]}
+      drilldown_group.each do |i| 
+        i[:id] = group[:name]
+      end
+                            
+      KK.log drilldown_group.inspect,:b                            
+                        
+                        # , 
+                        # :xAxis => {:categories => group[:total]}}
+      @drilldown[:series].concat drilldown_group
+
+      # @drilldown[:xAxis] = {:categories => group[:total]}     
+    end    
 
     def weights_by_groups(groups)
       @response_set.weights_by_groups(groups)
@@ -183,9 +214,7 @@ module ChartRenderer
       total_for_custom_groups? ? get_content(:question_groups).stringify_keys.keys : get_content(:question_groups)
     end
 
-    def drilldown?
-      get_content(:drilldown)
-    end
+
     
 
   end
