@@ -98,12 +98,15 @@
         region: @getLayout().entrySetTitleRegion
         loading: false
       
-      @listenTo view, "edit:title",(options) =>  
-        App.execute "edit:section", 
-          #ISSUE: #17 section argument should be refactored according to issue 
-          # model: entrySet see comment above
-          section: entrySet
-          activeView: @getLayout()
+      @listenTo view, "edit:title",(options) => 
+        App.execute "edit:entry:set",
+          model: entrySet
+          activeView: view
+        # App.execute "edit:section", 
+        #   #ISSUE: #17 section argument should be refactored according to issue 
+        #   # model: entrySet see comment above
+        #   section: entrySet
+        #   activeView: @getLayout()
 
       @listenTo view, "remove:title",(options) =>  
         App.execute "remove:entry_set", 

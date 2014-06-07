@@ -81,7 +81,9 @@
       "click .remove-item" : "remove:title"
 
     modelEvents:
-      'edit:complete': ()-> @render()
+      'edit:complete': ()-> 
+        console.log "in the modelEvents::",arguments
+        @render()
 
 
 

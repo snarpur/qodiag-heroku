@@ -3,11 +3,16 @@
   class EditCreate.Controller extends App.Controllers.Base
 
     initialize:(options)->
-      {@activeView} = options
+      {@activeView,@model} = options
        
     create:->
       response = @getResponse()
       @rootModel = new App.Entities.FormEntrySetModel(response)
+      @showDialog()
+
+    edit:->
+      # response = @getResponse()
+      @rootModel = new App.Entities.FormEntrySetModel(@model.attributes)
       @showDialog()
     
 
@@ -33,6 +38,9 @@
 
 
       @listenTo formView.model, "updated", =>
+        #NOTE: To make the title in entry_set_section change
+        @model.set("name",@rootModel.get("name"))
+        @model.trigger "edit:complete"
         view.trigger("dialog:close")
 
       
