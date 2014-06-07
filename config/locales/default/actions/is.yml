@@ -27,4 +27,6 @@ is:
     edit_information: "Breyta upplýsingum"
     add_comment: "Skrifa ummæli"
     minor: "Undir lögaldri"
-    adult: "Fullorðin"   
+    adult: "Fullorðin"
+    new_question: "Ný spurning"
+    add_section: "Bæta við skrefi"   

@@ -13,19 +13,10 @@
     className: ->
       if @model.collection.currentSetting == @model.get('name')
         "active"
-     
-
-  class List.Breadcrumb extends App.Views.ItemView
-    template: "settings/list/templates/breadcrumb"
-    tagName: 'ul'
-    className: 'breadcrumb'
-    triggers:
-      'click a' : "back"
 
   class List.Header extends App.Views.ItemView
     template: "settings/list/templates/header"
-    className: 'content_title'
-    tagName: "h1"
+    className: "feature-head text-center"
 
   class List.Navigation extends App.Views.CollectionView
     itemView: List.NavigationItem

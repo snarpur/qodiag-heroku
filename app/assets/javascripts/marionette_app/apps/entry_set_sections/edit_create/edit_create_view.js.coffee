@@ -4,7 +4,7 @@
 
   class EditCreate.Section extends App.Views.ItemView
     template: "entry_set_sections/edit_create/templates/section"
-    className: "modal"
+
     
     triggers:
       "click button.save" : "save:section"

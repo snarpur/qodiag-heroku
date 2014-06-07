@@ -1,6 +1,10 @@
-<h3 class="muted text-right"><%= @tableTitle() %></h3>
-<div class="text-center well well-small">
-  <h4>
-    <%= @t("views.responder_items.requests.no_uncompleted") %>!
-  </h4>        
+<div class="row">
+  <div class="col-lg-12">
+    <section class="panel">
+      <header class="panel-heading"><%= @tableTitle() %><header>
+      <div class="panel-body">
+        <h4 class="text-center"><%= @t("views.responder_items.requests.no_uncompleted") %>!</h4>  
+      </div>
+    </section>
+  </div>
 </div>

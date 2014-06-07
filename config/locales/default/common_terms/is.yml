@@ -57,6 +57,7 @@ is:
     edit_information: "Breyta upplýsingum"
     add_information: "Skrá upplýsingar"
     empty_select: "Select an option..."
+    type: "Tegund"
     
     time_to_words:
       until: "þangað til"

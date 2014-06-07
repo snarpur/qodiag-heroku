@@ -2,13 +2,16 @@
   
   class List.Layout extends App.Views.Layout
     template: "entry_fields/list/templates/list_layout"
+    className:"row"
     
     regions:
       settingsNavigationRegion: "#settings-navigation-region"
       listRegion: "#list-region"
       searchRegion: "#search-region"
 
-  
+  class List.Header extends App.Views.ItemView
+    template: "entry_fields/list/templates/_header"
+    className: "feature-head text-center"
 
   class List.EntryField extends App.Views.ItemView
     template: "entry_fields/list/templates/_entry_field"
@@ -27,10 +30,14 @@
       @render()
       @$el.effect('highlight',{easing:'swing'},2000)
       
-
+    templateHelpers: =>
+      type:=>
+        switch @model.get("field_type")
+          when "multi-choice" then "check-square-o"
+          when "single-choice" then "dot-circle-o"
+          else "font"
 
     
-   
 
   
   class List.EntryFields extends App.Views.CompositeView
@@ -38,11 +45,44 @@
     itemView: List.EntryField
     itemViewContainer: 'tbody'
 
-
     triggers:
-      "click a.button.prime": "create:field:clicked"
+      "click .add-question": "create:field:clicked"
+
+    ui:
+      wrapper: 'div#entry_fields_wrapper'
+      table: "table#entry_fields"
 
 
+    onShow:()->
+      @ui.table.dataTable
+        'order': [[ 1, "asc" ]]
+        'sDom': "<'row'<'col-sm-6'l><'col-sm-6'f>r>t<'row'<'col-sm-6'i><'col-sm-6'p>>"
+        'sPaginationType': "bootstrap"
+        'oLanguage':
+            'sLengthMenu': "_MENU_ records per page",
+            'oPaginate': 
+              'sPrevious': "Prev",
+              'sNext': "Next"
+      
+        'aoColumnDefs': [
+          {
+            'bSortable': false
+            'sClass': 'thin'
+            'aTargets': [0]
+          },
+          {
+            'bSortable': true
+            'aTargets': [1]
+          }
+          ,
+          {
+            'bSortable': false
+            'sClass': 'thin'
+            'aTargets': [2]
+          }
+      ]
+
+   
   class List.Search extends App.Views.ItemView
     template: "entry_fields/list/templates/_search"
     tagName: 'form'

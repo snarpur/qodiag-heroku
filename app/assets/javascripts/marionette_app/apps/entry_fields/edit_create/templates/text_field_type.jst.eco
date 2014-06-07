@@ -1,23 +1,26 @@
-<div class="control-group">
-  <label class="control-label" for="title">Titill</label>
-  <div class="controls">
-    <input class="input-xlarge" type="text" id="title" placeholder="Titill">
-    <span id="title_error" class="help-inline"></span>
+<div class="form-group">
+  <label class="col-lg-2 control-label" for="title">Titill</label>
+  <div class="col-lg-10">
+    <input class="form-control" type="text" id="title" placeholder="Titill">
+    <span id="title_error" class="help-block"></span>
   </div>
 </div>
-<div class="control-group">
-  <label class="control-label" for="description">Lýsing</label>
-  <div class="controls">
-    <textarea class="input-xlarge" rows="3" id="description" placeholder="Lýsing..."></textarea>
+<div class="form-group">
+  <label class="col-lg-2 control-label" for="description">Lýsing</label>
+  <div class="col-lg-10">
+    <textarea class="form-control" rows="3" id="description" placeholder="Lýsing..."></textarea>
   </div>
 </div>
 <% if @hasRole('caretaker_admin'): %>
-  <div class="control-group">
-    <label class="control-label" for="visibility">Opinber?</label>
-    <div class="controls">
-      <input type="checkbox" id="visibility">        
+  <div class="form-group">
+    <label class="col-lg-2 control-label" for="visibility"></label>
+    <div class="col-lg-10">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" id="visibility">
+          Opinber?
+        </label>
+      </div>        
     </div>
   </div>
 <% end %>
-</div>
- 

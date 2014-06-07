@@ -1,4 +1,9 @@
-<div class="pull-right">
-    <a href="#" class="button prime"><span class="icon-add"></span> Bæta við skrefi</a>
+<button type="button" class="btn btn-info pull-right add-section">
+  <i class="fa fa-plus"></i>
+  <i class="fa fa-user"></i>
+    <%- @t("actions.add_section") %>
+</button>
+
+<div id="entry-set-sections-region">
+  <ul class="nav nav-tabs"></ul>
 </div>
-<ul class="stepper"></ul>

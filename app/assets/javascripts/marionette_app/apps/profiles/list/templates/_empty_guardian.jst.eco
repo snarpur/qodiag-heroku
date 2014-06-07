@@ -1,14 +1,12 @@
-<div class="span4 well">
-  <div class="row">
-    <div class="span2 text-center pagination-center">
-        <img class="avatar" src="/avatars/thumb/male.png" alt="<%= @t("views.profiles.parent_not_found") %>">
-    </div>
-    <div class="span2">
-      <p><h4 class="muted"><%= @t("views.profiles.parent_not_found") %></h4></p>
-      <p></p>
-      <p>
-        <button class="btn btn-info add-guardian"><%= @t("actions.add_parent") %></button>
-      </p>
-    </div>
-  </div>
-</div>
+<aside class="profile-nav alt green-border">
+  <div class="alt green-bg user-heading">
+    <a href="#" class="add-avatar">
+      <img src="/avatars/thumb/male.png">
+    </a>
+    <h1 class="content_title_sub"><%= @t("views.profiles.parent_not_found") %></h1>
+    <p>&nbsp;</p>
+    <p>
+      <button class="btn btn-info add-guardian"><%= @t("actions.add_parent") %></button>
+    </p>
+  </div> 
+</aside>

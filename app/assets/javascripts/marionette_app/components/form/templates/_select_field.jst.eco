@@ -1,16 +1,14 @@
-<div class="control-group">
-  <% if @.fieldLabel?: %>
-    <label class="control-label"><%- @label() %></label>
-  <% end %>
-  <div class="controls">
-    <select id="<%=@.fieldName%>" class="input-xlarge" <%=@isDisabled()%>>
-      <option value=""><%= @t("terms.empty_select")%></option>
-      <% if @.options?: %>
-        <% for option in @selectOptions(): %>
-          <option value='<%= @value(option) %>'><%= @label(option) %></option> 
-        <% end %>
+<% if @.fieldLabel?: %>
+  <label class="col-lg-2 control-label"><%- @label() %></label>
+<% end %>
+<div class="col-lg-10">
+  <select id="<%=@.fieldName%>" class="form-control" <%=@isDisabled()%>>
+    <option value=""><%= @t("terms.empty_select")%></option>
+    <% if @.options?: %>
+      <% for option in @selectOptions(): %>
+        <option value='<%= @value(option) %>'><%= @label(option) %></option> 
       <% end %>
-    </select>
-    <span id="<%=@.fieldName%>_error" class="help-inline"></span>
-  </div>
+    <% end %>
+  </select>
+  <span id="<%=@.fieldName%>_error" class="help-block"></span>
 </div>

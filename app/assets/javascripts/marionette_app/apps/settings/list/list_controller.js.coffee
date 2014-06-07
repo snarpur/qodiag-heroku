@@ -7,10 +7,8 @@
       settings = App.request "get:settings", options
 
       @showHeader(settings.getCurrentSetting())
-      if options.subView
-        @showBackNavigationView settings.getCurrentSetting()
-      else
-        @showNavigation(settings)
+      
+      @showNavigation(settings)
  
 
     
@@ -20,16 +18,6 @@
       @show navigationView,
          region: @region
          loading:false 
-    
-    
-
-    showBackNavigationView: (model)->
-      view = new List.Breadcrumb model: model
-      @region.show(view)
-
-      @listenTo view, 'back', =>
-        App.navigate("/settings/#{model.get('name')}",{trigger: true})
-  
     
     showHeader:(model)->
       headerRegion = App.request "content:header:region"

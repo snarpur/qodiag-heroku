@@ -57,6 +57,8 @@
     template: "entry_fields/edit_create/templates/multiple_choice"
     itemViewContainer: ".options"
 
+    
+
     bindings:
       '#title' : 'title',
       '#description' : 'description',

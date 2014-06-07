@@ -1,2 +1,8 @@
-<ul class="comments"></ul>
-<button class="btn"><span class="icon-comment"></span> <%= @t("actions.add_comment") %></button>
+<div class="comments"></div>
+<div class="chat-form">
+  <div class="col-lg-12">
+    <div class="form-group col-lg-1">
+      <button type="button" class="btn btn-info icon-comment"><%= @t("actions.add_comment") %></button>
+    </div>
+  </div>
+</div>

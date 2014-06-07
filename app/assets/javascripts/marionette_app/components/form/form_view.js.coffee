@@ -161,8 +161,8 @@
       @addErrors errors
     
     removeErrors: ->
-      @$el.find(".error").removeClass("error")
-      @$el.find(".help-inline").text("")
+      @$el.find(".form-group").removeClass("has-error")
+      @$el.find(".help-block").text("")
 
     addErrors: (errors = {}) ->
       for name, array of errors
@@ -170,7 +170,7 @@
     
     addError: (name, error) ->
       el = @$el.find("[id='#{name}_error']")
-      el.closest(".control-group").addClass("error")
+      el.closest(".form-group").addClass("has-error")
       el.text(error)
 
     onShow:->
@@ -180,12 +180,17 @@
 
 
   class Form.TextFieldView extends Form.FieldView
+    className: "form-group"
 
   class Form.HiddenFieldView extends Form.FieldView
 
+  
+
   class Form.TextAreaFieldView extends Form.FieldView
+    className: "form-group"
 
   class Form.SelectFieldView extends Form.FieldView
+    className: "form-group"
 
     optionsChanged:=>
       @render()
@@ -202,17 +207,18 @@
 
         value:(option)=>
           @getValue(option)
-          # if @model.get("valueKey")?
-          #   @model.get("valueKey")
-          # else
-          #   "value"
               
       )
 
-
+  class Form.TitleFieldView extends Form.FieldView
+    
   class Form.SeparatorFieldView extends Form.FieldView
+    className: "col-lg-12"
+    ui: 
+      body: ".panel-body"
 
   class Form.CheckBoxFieldView extends Form.FieldView
+    className: "form-group"
 
     events:
       "change input[type='checkbox']":"checkboxChange"
@@ -264,6 +270,7 @@
 
 
   class Form.RadioFieldView extends Form.SelectFieldView
+    className: "form-group"
 
     onShow:->
       @bindings = {}
@@ -271,19 +278,21 @@
       @.stickit()
 
   class Form.DateFieldView extends Form.FieldView
+    className: "form-group"
 
-
-    ui:=>
+    ui:->
       datepick: "##{@model.get("fieldName")}"
        
-    onRender:=>
+    onRender:->
       if @model.get("fieldType") is "date"
         @ui.datepick.datepicker
-          dateFormat: "dd/mm/yy"
+          language: I18n.locale
+          autoclose: true
+          format: "dd/mm/yy"
           minDate: new Date().addDays(1)
-          beforeShow:-> 
-            $('#ui-datepicker-div').addClass("invitation_calendar");
+
       super
+     
      
   class Form.FieldCollectionView extends App.Views.CollectionView
     getItemView:(field)-> 
@@ -298,3 +307,12 @@
 
     itemViewOptions: ->
       new: @model.isNew()
+
+    appendHtml: (collectionView, itemView, index)->
+      type = itemView.model.get("fieldType")
+      if type == "separator"
+        @lastSeparator = $(itemView.ui.body)
+      if type != "separator" and @lastSeparator
+        @lastSeparator.append(itemView.el)
+      else
+        collectionView.$el.append(itemView.el)

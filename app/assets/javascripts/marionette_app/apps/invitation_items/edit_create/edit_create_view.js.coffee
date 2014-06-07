@@ -2,6 +2,7 @@
 
   class EditCreate.Layout extends App.Views.Layout
     template: "invitation_items/edit_create/templates/layout"
+    className: "row"
     
     regions:
       formStepsRegion: "#form-steps-region"
@@ -17,11 +18,11 @@
 
     className:->
       if @model.isCurrentStep()
-        "active"
+        "current-step"
 
   class EditCreate.FormSteps extends App.Views.CollectionView
     itemView: EditCreate.FormStep
-    className: 'wizard-nav'
+    className: 'stepy-titles clearfix'
     tagName: 'ul'
 
     collectionEvents: 

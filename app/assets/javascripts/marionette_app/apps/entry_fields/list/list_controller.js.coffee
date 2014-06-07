@@ -5,24 +5,17 @@
 
 
     list: (options) ->
+      App.contentHeaderRegion.show @getHeader()
       App.contentRegion.show @getLayout()
-      @executeSettingsNavigation()
       @showEntryFields()
-      
-
-
-    executeSettingsNavigation:->
-      App.execute "show:settings:navigation", 
-        currentSetting: 'entry_fields' 
-        region: @getLayout().settingsNavigationRegion
-    
-
+ 
 
     showEntryFields: (options = {}) ->
       fields = App.request "entry:fields:entities"
       # NOTE: try to delete the when:fetch - to avoid the tiem it takes to show he spinner
       App.execute "when:fetched", fields, =>
-        searchCollection = fields.createSearchCollection()     
+        searchCollection = fields.createSearchCollection()
+      # searchCollection = fields     
 
         @showEntryFieldsView searchCollection, fields
 
@@ -36,15 +29,15 @@
     showEntryFieldsView: (collection, fields) ->
       view = @getEntryFieldsView(collection)
 
+      
+
       @getLayout().listRegion.on "show", () =>
         @showSearchField(fields)
         
       @listenTo collection, "updated", (model, collection)=>
         toastr.success("Spurningu breytt við", model.get('title'))   
 
-      @show view,
-         region: @getLayout().listRegion
-         loading:true 
+      
 
       @listenTo view, "create:field:clicked", (view)=>
         App.execute "create:entry:field", collection: view.collection
@@ -57,6 +50,9 @@
           if result
             view.model.destroy()
 
+      @show view,
+        region: @getLayout().listRegion
+        loading: true 
 
     resetSearchField:->
       @layout.$el.find(".search-input").val("")
@@ -75,7 +71,9 @@
       )
       new List.Search model: @search
 
-
+    getHeader:=>
+      new List.Header
+        model: new Backbone.Model()
     
     getLayout:=>
       @layout ?= new List.Layout

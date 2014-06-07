@@ -2,7 +2,6 @@
 
   class List.Layout extends App.Views.Layout
     template: "profiles/list/templates/list_layout"
-
     regions:
       subjectProfileRegion: "#subject-profile-region"
       guardianProfileRegion: "#guardian-profile-region"
@@ -23,7 +22,7 @@
         "profiles/list/templates/_empty_guardian"
       
     tagName: "div"
-    className: "span5"
+    className: "col-lg-6"
 
     triggers:
       'click .edit-item' : 'edit:guardian:clicked'
@@ -34,7 +33,7 @@
   class List.Guardians extends App.Views.CompositeView
     template: "profiles/list/templates/_guardians"
     itemView: List.Guardian
-
+    className: "panel-body"
     itemViewContainer: "div#foreldrar"
 
   

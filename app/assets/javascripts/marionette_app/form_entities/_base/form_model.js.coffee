@@ -36,9 +36,12 @@
 
   class Entities.Field.Separator extends Backbone.Model
 
+  class Entities.Field.Title extends Backbone.Model
+
   class Entities.Field.Hidden extends Backbone.Model
 
   class Entities.Field.Date extends Entities.Field
+
 
   class Entities.Field.Select extends Entities.Field
 

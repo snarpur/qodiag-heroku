@@ -1,6 +1,2 @@
-<div>
-  <h2><%= @t("terms.parents") %></h2>
-  <div  class="editable-items">
-    <div id="foreldrar" class="row"></div>
-  </div>
-</div>
+<h2><%= @t("terms.parents") %></h2>
+<div id="foreldrar"></div>

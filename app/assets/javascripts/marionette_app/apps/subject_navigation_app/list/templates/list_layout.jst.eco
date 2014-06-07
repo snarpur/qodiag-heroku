@@ -1,2 +1,4 @@
-<div id="subject-details-region"></div>       
-<div id="subject-navigation-region"></div>       
+<aside id="subject-details-region" class="profile-nav alt green-border"></aside>
+<section class="panel">
+  <div id="subject-navigation-region" class="panel-body"></div>
+</section>       

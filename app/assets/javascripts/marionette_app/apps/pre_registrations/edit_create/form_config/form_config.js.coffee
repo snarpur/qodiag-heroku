@@ -4,6 +4,12 @@
     subject:
       step_1: [
         {
+          fieldType: "title"
+          fieldLabel:
+            i18n: "forms.guardian_invitation.steps.patient_info"
+          modelName: "controller"
+        },
+        {
           fieldType: "separator"
           fieldLabel:
             i18n: "terms.personal_information"
@@ -135,6 +141,12 @@
       parent:
         step_1: [
           {
+            fieldType: "title"
+            fieldLabel:
+              i18n: "forms.guardian_invitation.steps.patient_info"
+            modelName: "controller"
+          },
+          {
             fieldType: "separator"
             fieldLabel:
               i18n: "terms.personal_information"
@@ -215,6 +227,12 @@
           }
         ]
         step_2: [
+          {
+            fieldType: "title"
+            fieldLabel:
+              i18n: "forms.pre_registration_as_guardian_and_parent.steps.contact_info"
+            modelName: "controller"
+          },
           {
             fieldType: "separator"
             fieldLabel:

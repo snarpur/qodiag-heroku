@@ -1,3 +1,7 @@
-<textarea class="input-xxlarge" name="text_value" id="entry_field_value_for_<%- @entry_field_id %>">
-<%- @text_value %>
-</textarea>
+<div class="col-lg-offset-1 col-lg-11">
+  <div class="form-group">
+    <textarea class="form-control" name="text_value" id="entry_field_value_for_<%- @entry_field_id %>">
+    <%- @text_value %>
+    </textarea>
+  </div>
+</div>

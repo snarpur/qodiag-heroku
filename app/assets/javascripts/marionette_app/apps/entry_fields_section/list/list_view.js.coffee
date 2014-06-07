@@ -7,9 +7,10 @@
   class List.Field extends App.Views.ItemView
     template: "entry_fields_section/list/templates/_field"
     tagName: 'li'
+    className: "dd-item"
     
     triggers:
-      "click span.trash" : "remove:field"
+      "click a.trash" : "remove:field"
 
     events:
       'update:display:order': 'setDisplayOrder'

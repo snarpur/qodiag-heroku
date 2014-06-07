@@ -1,14 +1,32 @@
+
 <div class="row">
-  <div id="enty-set-select-region" class="span9"></div>
-  <div class="span2">
-    <a href='#' class="btn btn-success btn-small btn-block add-item" data-placement="left" data-content="Smellið hér til að senda beiðni um skráningu upplýsinga" data-title="Engar færslur">
-      <i class="icon-plus icon-white"></i>
-        <%= @t("views.responder_items.requests.submit") %>
-    </a>
+  <div class="col-lg-12">
+     <section class="panel">
+        <div class="panel-body">
+          <div class="col-lg-6"> 
+            <div class="form-group">
+                <div id="enty-set-select-region" class="col-lg-12"></div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <a href='#' class="btn btn-success add-item" data-content="Smellið hér til að senda beiðni um skráningu upplýsinga" data-title="Engar færslur">
+              <i class="fa fa-plus"></i>
+              <%= @t("views.responder_items.requests.submit") %>
+            </a>
+        </div>
+      </section>
   </div>
+
+
+  <div id="create-item-region"></div>
+
+  <div class="col-lg-12">
+    <section class="panel">
+      <header id="entry-set-sections-region"></header>
+      <div id="entry-set-values-region"></div> 
+    </section>
+    
+  </div>
+  
+  
 </div>
-<hr>
-<div id="create-item-region"></div>
-<div id="entry-set-sections-region"></div>
-<div id="entry-set-values-region"></div>
-      

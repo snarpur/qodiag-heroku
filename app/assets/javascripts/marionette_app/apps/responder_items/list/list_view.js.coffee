@@ -2,7 +2,7 @@
   
   class List.Layout extends App.Views.Layout
     template: "responder_items/list/templates/list_layout"
-    
+    className: "col-lg-12"
     regions:
       headerRegion: "#header-region"
       uncompleteItemsRegion: "#uncomplete-items-region"
@@ -11,21 +11,13 @@
   class List.Item extends App.Views.ItemView
     template: "responder_items/list/templates/_item"
     tagName: 'tr'
-    className: () ->
-      if @model.get("completed")? then "success" else "warning"
-
-  class List.Item extends App.Views.ItemView
-    template: "responder_items/list/templates/_item"
-    tagName: 'tr'
-    className: () ->
-      if @model.get("completed")? then "success" else "warning"
-
+    
   class List.NoRequests extends App.Views.ItemView
     template: "responder_items/list/templates/_empty"
 
     templateHelpers: =>
-        tableTitle: =>
-          I18n.t("responder_item.status.uncompleted")
+      tableTitle: =>
+        I18n.t("responder_item.status.uncompleted")
     
 
   class List.Items extends App.Views.CompositeView
@@ -33,12 +25,35 @@
     itemView: List.Item
     itemViewContainer: 'tbody'
 
+    ui:
+      wrapper: 'div.table_wrapper'
+      table: "table.table"
+
+    onShow:()->
+      @ui.table.dataTable
+        'sDom': "<'row'<'col-sm-6'l><'col-sm-6'f>r>t<'row'<'col-sm-6'i><'col-sm-6'p>>"
+        'sPaginationType': "bootstrap"
+        'oLanguage':
+          'sLengthMenu': "_MENU_ records per page",
+          'oPaginate': 
+            'sPrevious': "Prev",
+            'sNext': "Next"
+
+      
+      filter = @ui.wrapper.find(".dataTables_filter input")
+      select = @ui.wrapper.find(".dataTables_length select")
+
+      filter.addClass("form-control"); # modify table search input
+      select.addClass("form-control"); # modify table per page dropdown
+
     templateHelpers: =>
-        tableTitle: =>
-          I18n.t("responder_item.status.#{@options.status}")
+      tableTitle: =>
+        I18n.t("responder_item.status.#{@options.status}")
+      tableId: =>
+        "#{@options.status}"
+
 
   class List.Header extends App.Views.ItemView
     template: "responder_items/list/templates/header"
-    tagName: 'h1'
-    className: 'content_title'
+    className: "feature-head text-center"
 

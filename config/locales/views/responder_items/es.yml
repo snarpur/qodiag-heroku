@@ -4,6 +4,7 @@ es:
       select_respondents: "Selecciona encuestado"
       select_entry_sets: "Selecciona cuestionario"
       requests:
+        name: "Requests"
         submit: "Enviar nueva solicitud"
         have_sent: "La nueva solicitud ha sido enviada"
         sent: "solicitud enviada"

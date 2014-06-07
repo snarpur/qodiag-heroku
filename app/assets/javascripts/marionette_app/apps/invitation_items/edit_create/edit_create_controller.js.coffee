@@ -111,7 +111,7 @@
     buttonsConfig:->
       #If we are in the the last step, we should show Save and Finish button, otherwise, only Save button
       options =
-        formClass: "form-base form-horizontal"
+        formClass: "form-horizontal"
         errors: false
         buttons:
           primary: false
@@ -122,11 +122,11 @@
         if @type is "guardian"
           _.extend options.buttons, 
             primary:false,
-            save: {text: I18n.t("actions.save"), buttonType: 'save', order: 2,  className: 'btn btn-success'}  
+            save: {text: I18n.t("actions.save"), buttonType: 'save', order: 2,  className: 'btn btn-info'}  
             back: {text: "<< " + I18n.t("terms.go_back"), buttonType: 'back', className: "btn", order: 1}
         else
           _.extend options.buttons, primary:false,
-            save: {text: I18n.t("actions.save"), buttonType: 'save', order: 2,  className: 'btn btn-success'}  
+            save: {text: I18n.t("actions.save"), buttonType: 'save', order: 2,  className: 'btn btn-info'}  
             back: false
       else
         if @type is "guardian"

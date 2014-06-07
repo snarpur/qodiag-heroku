@@ -57,6 +57,7 @@ es:
     edit_information: "Editar información"
     add_information: "Añadir información"
     empty_select: "Seleccione una opción..."
+    type: "Tipo"
     
     time_to_words:
       until: "hasta"

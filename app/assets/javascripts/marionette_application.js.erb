@@ -1,7 +1,5 @@
-//= require jquery/jquery   
-//= require jquery-ui/ui/jquery-ui  
+//= require jquery/jquery
 //= require js-templates/handlebars.js
-//= require jquery-ui/ui/i18n/jquery-ui-i18n
 //= require underscore/underscore 
 //= require underscore/underscore.string  
 //= require backbone/backbone-1.0.0.js 
@@ -16,11 +14,8 @@
 //= require backbone-associations/backbone-associations.js
 //= require query-engine/query-engine.js
 //= require date/build/date-is-IS.js  
-//= require XDate/XDate
 //= require highcharts/js/highcharts.src.js
 //= require jquery.quicksearch
-//= require bootstrap-all
-//= require bootstrap/bootbox.js
 //= require tsort
 //= require spin
 //= require js-routes
@@ -38,11 +33,7 @@
 //= require_tree ./marionette_app/components
 //= require_tree ./marionette_app/apps
 
-
-
-
 $(document).ready(function(){
   moment.lang('is');
-  $.datepicker.setDefaults($.datepicker.regional[I18n.locale]);
-  $("#flash > div").fadeOut(4000);
+  //$("#flash > div").fadeOut(4000);
 });

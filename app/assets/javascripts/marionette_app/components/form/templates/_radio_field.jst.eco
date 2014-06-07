@@ -1,16 +1,16 @@
-<div class="control-group">
-  <% if @.fieldLabel?: %>
-    <label class="control-label" for="<%=@.fieldName%>"><%- @label() %></label>
-  <% end %>
-    <div class="controls">
-      <% if @.options?: %>
-        <% for option in @selectOptions(): %>
-          <label class="radio">
+<% if @.fieldLabel?: %>
+  <label class="col-sm-2 control-label col-lg-2" for="<%=@.fieldName%>"><%- @label() %></label>
+<% end %>
+  <div class="col-lg-10">
+    <% if @.options?: %>
+      <% for option in @selectOptions(): %>
+        <div class="radio">
+          <label>
             <input type="radio" class="<%=@.fieldName%>" name="<%=@.fieldName%>" value="<%=@value(option)%>" <%=@isDisabled()%>>
               <%= @label(option) %>
           </label>
-        <% end %>
+        </div>
       <% end %>
-      <span id="<%=@.fieldName%>_error" class="help-inline"></span>
-    </div>
+    <% end %>
+    <span id="<%=@.fieldName%>_error" class="help-block"></span>
   </div>

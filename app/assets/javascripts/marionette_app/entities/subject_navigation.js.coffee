@@ -20,19 +20,19 @@
           name: "timeline"
           text: I18n.t("terms.timeline")
           url: "#{Routes.person_path(personId)}"
-          iconClass:'icon-meter' 
+          iconClass:'fa-bar-chart-o' 
         },
         {
           name: "entries"
           text: I18n.t("terms.history")
           url: "\##{Routes.person_path(personId)}/entries"
-          iconClass:'icon-history'
+          iconClass:'fa-list-alt'
         },
         {
           name: "profiles"
           text: I18n.t("terms.personal_information")
           url: "\##{Routes.person_path(personId)}/profiles"
-          iconClass:'icon-profile'
+          iconClass:'fa-file-text-o'
         }
       ]
 

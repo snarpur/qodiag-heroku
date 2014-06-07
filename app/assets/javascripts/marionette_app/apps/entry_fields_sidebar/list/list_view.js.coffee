@@ -11,6 +11,7 @@
   class List.EntryField extends App.Views.ItemView
     template: "entry_fields_sidebar/list/templates/_entry_field"
     tagName: "li"
+    className: "list-group-item"
 
     triggers:
       'mouseenter' : 'connect:to:sortable'
@@ -52,7 +53,7 @@
   class List.EntryFields extends App.Views.CollectionView
     itemView: List.EntryField
     tagName: "ul"
-    className: "reset content"
+    className: "list-group"
 
 
 

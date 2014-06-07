@@ -1,23 +1,36 @@
-<div class="modal-header">
-  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-  <h3><%- @dialogTitle() %></h3>
-</div>
-<div class="modal-body">
-  <form class="form-horizontal">
-    <div class="control-group">
-      <label class="control-label" for="section_name"><%= @t("terms.title") %></label>
-      <div class="controls">
-        <input class="input-xlarge" type="text" id="section_name" placeholder="<%= @t("terms.title") %>">
+<div class="modal" aria-hidden="false" aria-labelledby="myModalLabel" role="dialog" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">
+          <%- @dialogTitle() %>
+        </h4>
+      </div>
+      <div class="modal-body">
+        <div class="panel radius">
+          <form class="form-horizontal">
+            <div class="form-group">
+              <label class="col-lg-2 control-label" for="section_name"><%= @t("terms.title") %></label>
+              <div class="col-lg-10">
+                <input class="form-control" type="text" id="section_name" placeholder="<%= @t("terms.title") %>">
+                <span class="help-block" id="section_name_error"></span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-lg-2  control-label" for="section_description"><%= @t("entry_set.description") %></label>
+              <div class="col-lg-10">
+                <textarea class="form-control" rows="3" id="section_description" placeholder="<%= @t("entry_set.description") %>"></textarea>
+                <span class="help-block" id="section_description_error"></span>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" data-form-button="submit" class="btn btn-primary save"><%= @t("actions.save") %></button>
+        <button type="button" data-form-button="cancel" data-dismiss="modal" class="btn btn-default cancel"><%= @t("actions.cancel") %></button>
       </div>
     </div>
-    <label class="control-label" for="section_description"><%= @t("entry_set.description") %></label>
-      <div class="controls">
-        <textarea class="input-xlarge" rows="3" id="section_description" placeholder="<%= @t("entry_set.description") %>"></textarea>
-      </div>
-    </div>
-  </form>
-</div>
-<div class="modal-footer">
-  <button class="btn btn-primary save"><%= @t("actions.save") %></button>
-  <button class="btn cancel"><%= @t("actions.cancel") %></button>
+  </div>
 </div>

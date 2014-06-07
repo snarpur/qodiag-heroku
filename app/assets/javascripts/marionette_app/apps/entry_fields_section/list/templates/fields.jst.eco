@@ -1,2 +1,2 @@
-<ul id="entry-section" class="reset"></ul>
-<button class="btn btn-success"><%= @t("actions.save") %></button>
+<ul id="entry-section" class="dd-list"></ul>
+<button class="btn btn-info pull-right"><%= @t("actions.save") %></button>

@@ -4,8 +4,14 @@
     subject:
       step_1: [
         {
-          fieldType: "hidden"
-          fieldName: "id"
+          fieldType: "title"
+          fieldLabel:
+            i18n: "forms.guardian_invitation.steps.patient_info"
+          modelName: "controller"
+        },
+        {
+          fieldType: "separator"
+          modelName: "controller"
         },
         {
           fieldType: "date"
@@ -165,8 +171,14 @@
     guardian:
       step_1: [
         {
-          fieldType: "hidden"
-          fieldName: "id"
+          fieldType: "title"
+          fieldLabel:
+            i18n: "forms.guardian_invitation.steps.guardian_info"
+          modelName: "controller"
+        },
+        {
+          fieldType: "separator"
+          modelName: "controller"
         },
         {
           fieldType: "date"
@@ -324,6 +336,12 @@
         }
       ]
       step_2: [
+        {
+          fieldType: "title"
+          fieldLabel:
+            i18n: "forms.subject_invitation.steps.patient_info"
+          modelName: "controller"
+        },
        {
           fieldType: "separator"
           fieldLabel:
@@ -421,6 +439,7 @@
         {
           fieldType: "check_box"
           fieldName: "inverse_relationships"
+          fieldLabel:" "
           modelName: "subject.inverse_relationships"
           valueKey: "id"
           labelKey: 

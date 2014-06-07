@@ -1,16 +1,16 @@
-<div class="control-group">
-  <% if @.fieldLabel?: %>
-    <label class="control-label" for="<%=@.fieldName%>"><%- @label() %></label>
-  <% end %>
-  <div class="controls">
-    <% if @.options?: %>
-      <% for option in @checkBoxOptions(): %>
-        <label class="checkbox">
+<% if @.fieldLabel?: %>
+  <label class="control-label col-lg-2" for="<%=@.fieldName%>"><%- @label() %></label>
+<% end %>
+<div class="col-lg-10">
+  <% if @.options?: %>
+    <% for option in @checkBoxOptions(): %>
+      <div class="checkbox">
+        <label>
           <input type="checkbox" id="<%=@.fieldName+'_'+@label(option)%>" name="<%=@.fieldName%>" value="<%= @value(option) %>" <%=@isDisabled()%> <%=@isChecked(option)%>>
             <%= @label(option) %>
         </label>
-      <% end %>
+      </div>
     <% end %>
-    <span id="<%=@.fieldName%>_error" class="help-inline"></span>
-  </div>
+  <% end %>
+  <span id="<%=@.fieldName%>_error" class="help-block"></span>
 </div>

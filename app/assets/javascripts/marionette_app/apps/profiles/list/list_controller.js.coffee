@@ -3,8 +3,7 @@
   class List.Controller extends App.Controllers.Base
 
     showProfile:(subjectId)->
-      @person = App.request "get:person:entity", subjectId
-
+      @person = App.request "get:person:entity", subjectId 
       App.execute "when:fetched", @person, =>
         @profile = new App.Entities.FormPersonModel(@person.attributes)
         App.execute "show:subject:navigation",{person: @profile, personId: subjectId, currentItemName: 'profiles'} 
