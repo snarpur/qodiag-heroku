@@ -420,6 +420,10 @@
   entry_field_path: function(_id, options) {
   return Utils.build_path(["id"], ["format"], [2,[2,[2,[2,[7,"/",false],[6,"entry_fields",false]],[7,"/",false]],[3,"id",false]],[1,[2,[8,".",false],[3,"format",false]],false]], arguments);
   },
+// entry_field_option => /entry_field_options/:id(.:format)
+  entry_field_option_path: function(_id, options) {
+  return Utils.build_path(["id"], ["format"], [2,[2,[2,[2,[7,"/",false],[6,"entry_field_options",false]],[7,"/",false]],[3,"id",false]],[1,[2,[8,".",false],[3,"format",false]],false]], arguments);
+  },
 // entry_fields => /entry_fields(.:format)
   entry_fields_path: function(options) {
   return Utils.build_path([], ["format"], [2,[2,[7,"/",false],[6,"entry_fields",false]],[1,[2,[8,".",false],[3,"format",false]],false]], arguments);
@@ -480,9 +484,9 @@
   invitation_item_path: function(_id, options) {
   return Utils.build_path(["id"], ["format"], [2,[2,[2,[2,[7,"/",false],[6,"invitation_items",false]],[7,"/",false]],[3,"id",false]],[1,[2,[8,".",false],[3,"format",false]],false]], arguments);
   },
-// invitation_item_step => /invitation_items/:id(/step/:step_no)(.:format)
-  invitation_item_step_path: function(_id, options) {
-  return Utils.build_path(["id"], ["step_no","format"], [2,[2,[2,[2,[2,[7,"/",false],[6,"invitation_items",false]],[7,"/",false]],[3,"id",false]],[1,[2,[2,[2,[7,"/",false],[6,"step",false]],[7,"/",false]],[3,"step_no",false]],false]],[1,[2,[8,".",false],[3,"format",false]],false]], arguments);
+// invitation_item_step => /invitation_items/:id/invite/:type/step/:step_no(.:format)
+  invitation_item_step_path: function(_id, _type, _step_no, options) {
+  return Utils.build_path(["id","type","step_no"], ["format"], [2,[2,[2,[2,[2,[2,[2,[2,[2,[2,[2,[2,[7,"/",false],[6,"invitation_items",false]],[7,"/",false]],[3,"id",false]],[7,"/",false]],[6,"invite",false]],[7,"/",false]],[3,"type",false]],[7,"/",false]],[6,"step",false]],[7,"/",false]],[3,"step_no",false]],[1,[2,[8,".",false],[3,"format",false]],false]], arguments);
   },
 // invitation_items => /invitation_items(.:format)
   invitation_items_path: function(options) {
@@ -647,6 +651,10 @@
 // pre_registration => /pre_registrations/:id(.:format)
   pre_registration_path: function(_id, options) {
   return Utils.build_path(["id"], ["format"], [2,[2,[2,[2,[7,"/",false],[6,"pre_registrations",false]],[7,"/",false]],[3,"id",false]],[1,[2,[8,".",false],[3,"format",false]],false]], arguments);
+  },
+// pre_registration_step => /pre_registrations/:id(/step/:step_no)(.:format)
+  pre_registration_step_path: function(_id, options) {
+  return Utils.build_path(["id"], ["step_no","format"], [2,[2,[2,[2,[2,[7,"/",false],[6,"pre_registrations",false]],[7,"/",false]],[3,"id",false]],[1,[2,[2,[2,[7,"/",false],[6,"step",false]],[7,"/",false]],[3,"step_no",false]],false]],[1,[2,[8,".",false],[3,"format",false]],false]], arguments);
   },
 // pre_registrations => /pre_registrations(.:format)
   pre_registrations_path: function(options) {

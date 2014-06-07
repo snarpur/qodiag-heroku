@@ -20,7 +20,7 @@ class EntryField  < ActiveRecord::Base
 
   accepts_nested_attributes_for :entry_field_options, :allow_destroy => true, reject_if: :reject_options
 
-  attr_accessible :entry_values_attributes, :entry_field_options_attributes, :field_type, :title, :description
+  attr_accessible :entry_values_attributes, :entry_field_options_attributes, :field_type, :title, :description, :visibility
 
   def reject_options(attributed)
     attributed['text_option'].blank?

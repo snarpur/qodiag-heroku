@@ -38,7 +38,15 @@
         collectionType: "Qapp.Entities.Relationships"
         relatedModel:->
           App.Entities.Relationship
-      }
+      }#,
+      # NOTE: Commented for FormConfig Preprocessor
+      # {
+      #   type: Backbone.Many
+      #   key: 'inverse_relations'
+      #   collectionType: "Qapp.Entities.FormPeopleCollection"
+      #   relatedModel:->
+      #     App.Entities.FormPersonModel
+      # }
     ]
 
   class Entities.FormPeopleCollection extends Entities.Collection
