@@ -37,7 +37,7 @@
 
   class Edit.FormSteps extends App.Views.CollectionView
     itemView: Edit.FormStep
-    className: 'wizard-nav'
+    className: 'nav nav-tabs'
     tagName: 'ul'
 
     
@@ -46,7 +46,7 @@
 
   class Edit.EntryFieldText extends App.Views.ItemView
     template: "entry_set_responses/edit/templates/_text_entry_field"
-
+    className: "form-group"
     onShow:(options)->
       @bindings = {}
       @bindings["\#text_value_#{@model.get('id')}"] = {
@@ -62,7 +62,7 @@
   
   class Edit.EntryFieldString extends App.Views.ItemView
     template: "entry_set_responses/edit/templates/_string_entry_field"
-
+    className: "form-group"
     onShow:(options)->
       @bindings = {}
       @bindings["\#string_value_#{@model.get('id')}"] = {
@@ -78,7 +78,7 @@
 
   class Edit.EntryFieldMultiChoice extends App.Views.Layout
     template: "entry_set_responses/edit/templates/_multi_choice_entry_field"
-
+    className: "form-group"
 
     onBeforeRender:->
       @addRegion("optionsRegion","#field-options-#{@model.get('id')}")
@@ -98,7 +98,7 @@
 
   class Edit.EntryFieldSingleChoice extends App.Views.ItemView
     template: "entry_set_responses/edit/templates/_single_choice_entry_field"
-
+    className: "form-group"
     
     events: 
       "click input[type=radio]" : "radioClicked"
@@ -126,7 +126,6 @@
 
   class Edit.EntryFields extends App.Views.CompositeView
     template: "entry_set_responses/edit/templates/entry_fields"
-    className: "field"
     childViewMap:
       "text": Edit.EntryFieldText
       "string": Edit.EntryFieldString
@@ -141,7 +140,8 @@
 
   class Edit.FieldOption extends App.Views.ItemView
     template: "entry_set_responses/edit/templates/_field_option"
-    tagName: 'li'
+    tagName: 'div'
+    className: "checkbox"
     templateHelpers:=>
       isChecked:=>
         if _.contains(@options.selectedIds, @model.id) then "checked='checked'" else false
@@ -168,7 +168,6 @@
 
   class Edit.FieldOptions extends App.Views.CollectionView
     itemView: Edit.FieldOption
-    tagName: 'ul'
     itemViewOptions:->
       _.pick @options, "selectedIds"
 

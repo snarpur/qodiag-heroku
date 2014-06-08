@@ -1,2 +1,1 @@
-<span class="badge"><%- @display_order %></span>
-<%- @linkTo(@name,"") %>
+<a href="#" data-toggle="tab"><%= @name %></a>

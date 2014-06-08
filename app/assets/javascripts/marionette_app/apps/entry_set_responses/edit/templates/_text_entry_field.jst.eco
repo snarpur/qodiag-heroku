@@ -1,5 +1,8 @@
-<label><%-@title%></label>
-<span class="help-block"><%- @help_text %></span>
-<textarea class="input-xxlarge" id='<%-"text_value_#{@id}"%>'>
-  <%=@entry_values.first().get('text_value')%>
-</textarea>
+<label class="col-lg-2 control-label"><%-@title%></label>
+<div class="col-lg-10">
+  <span class="help-text-block small"><%- @description %></span>
+  <textarea class="form-control" id='<%-"text_value_#{@id}"%>'>
+    <%=@entry_values.first().get('text_value')%>
+  </textarea>
+  <span id='<%-"text_value_#{@id}"%>_error' class="help-block"></span>
+</div>

@@ -111,6 +111,7 @@
 
     buttonsConfig:->
       options =
+        formClass: "form-base form-horizontal"
         buttons: 
           primary: {text: I18n.t("actions.save_and_continue",model: "") + " >>", buttonType: 'saveAndContinue', order: 3}
           cancel: false

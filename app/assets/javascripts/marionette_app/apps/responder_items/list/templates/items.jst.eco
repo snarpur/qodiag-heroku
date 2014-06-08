@@ -4,8 +4,8 @@
       <header class="panel-heading"><%= @tableTitle() %></header>
       <div class="panel-body">
         <div class="adv-table">
-          <div id="table_wrapper" class="dataTables_wrapper form-inline">
-            <table class="table">
+          <div id="table_wrapper" class="dataTables_wrapperform-inline">
+            <table class="display table table-bordered table-striped dataTable">
               <thead>
                 <tr>
                   <th><%- @t('terms.name')%></th>

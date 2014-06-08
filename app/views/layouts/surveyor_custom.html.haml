@@ -6,12 +6,29 @@
       Survey: #{controller.action_name}
     = stylesheet_link_tag "surveys"
     = javascript_include_tag "surveys_application"
-  %body.surveys
-    .container
-      #header
-        =render 'shared/alert_login_as'
-        =render "surveyor/header"
+  %body{:class=>"full-width"}
+    %section{:id => "container"}
+      %header{:class => "header white-bg"}
+        = link_to "Qodiag", root_path(), :class => "logo"
+        .top-nav
+          =render 'shared/log_in_out'
+         
+      %section{:id=>"main-content"}
+        .wrapper
+          .row
+            =render 'shared/alert_login_as'
+            =render "surveyor/header"
 
-      #content
-        = yield
+        %section{:id=>"content",:class=>"site-min-height"}            
+          =yield
+
+    %footer{:class=>"site-footer"}
+      .text-center
+        Qodiag 2014 | Quality of Diagnosis
+        %a{:class=>"go-top", :href=>"#"}
+          %i{:class=>"fa fa-angle-up"}
+
+
     =render "shared/google_analytics"
+
+

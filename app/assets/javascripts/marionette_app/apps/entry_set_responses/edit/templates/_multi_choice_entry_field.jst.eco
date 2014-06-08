@@ -1,3 +1,5 @@
-<label><%=@title%></label>
-<span class="help-block"><%=@help_text%></span>
-<div id="field-options-<%-@id%>"></div>
+<label class="col-lg-2 control-label" ><%=@title%></label>
+<div class="col-lg-10">
+  <div id="field-options-<%-@id%>"></div>
+  <span class="help-text-block small"><%=@description%></span>
+</div>
