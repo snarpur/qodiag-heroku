@@ -10,7 +10,7 @@
 
   class List.Header extends App.Views.ItemView
     template: "entry_sets/list/templates/_header"
-    className: "feature-head text-center"
+    className: "text-center"
 
   class List.EntrySet extends App.Views.ItemView
     template: "entry_sets/list/templates/_entry_set"

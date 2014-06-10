@@ -9,7 +9,7 @@
             </div>
           </div>
           <div class="col-lg-6">
-            <a href='#' class="btn btn-success add-item" data-content="Smellið hér til að senda beiðni um skráningu upplýsinga" data-title="Engar færslur">
+            <a href='#' class="btn btn-info add-item" data-content="Smellið hér til að senda beiðni um skráningu upplýsinga" data-title="Engar færslur">
               <i class="fa fa-plus"></i>
               <%= @t("views.responder_items.requests.submit") %>
             </a>
@@ -22,8 +22,10 @@
 
   <div class="col-lg-12">
     <section class="panel">
-      <header id="entry-set-sections-region"></header>
-      <div id="entry-set-values-region"></div> 
+      <div class="panel-body">
+        <div id="entry-set-sections-region"></div>
+        <div id="entry-set-values-region"></div>
+      </div> 
     </section>
     
   </div>

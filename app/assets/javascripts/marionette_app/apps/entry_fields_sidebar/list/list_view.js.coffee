@@ -8,6 +8,8 @@
       listRegion: "#entry-fields-list-region"
       formRegion: "#entry-fields-form-region"
 
+    
+
   class List.EntryField extends App.Views.ItemView
     template: "entry_fields_sidebar/list/templates/_entry_field"
     tagName: "li"
@@ -53,8 +55,4 @@
   class List.EntryFields extends App.Views.CollectionView
     itemView: List.EntryField
     tagName: "ul"
-    className: "list-group"
-
-
-
-
+    className: "list-group questions"

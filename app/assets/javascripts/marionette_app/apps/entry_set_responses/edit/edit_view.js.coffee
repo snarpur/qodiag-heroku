@@ -11,9 +11,6 @@
       formWrapperRegion: "#form-wrapper-region"
 
 
-      
-
-
   class Edit.FormStep extends App.Views.ItemView
     template: "entry_set_responses/edit/templates/_form_step"
     tagName: 'li'

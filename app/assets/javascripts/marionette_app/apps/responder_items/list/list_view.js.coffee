@@ -52,5 +52,5 @@
 
   class List.Header extends App.Views.ItemView
     template: "responder_items/list/templates/header"
-    className: "feature-head text-center"
+    className: "text-center"
 

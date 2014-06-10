@@ -26,7 +26,7 @@
 
     showAdultSubject: (person)->
 
-      subjectView = @getGuardianView person
+      subjectView = @getAdultSubjectView person
       @getLayout().subjectProfileRegion.show subjectView
 
       @listenTo subjectView, "edit:guardian:clicked", (childSubjectView)=>
@@ -72,6 +72,11 @@
 
     getSubjectView: (person)->
       new List.Subject
+        model: person
+        name: "Subject"
+
+    getAdultSubjectView: (person)->
+      new List.AdultSubject
         model: person
         name: "Subject"
 

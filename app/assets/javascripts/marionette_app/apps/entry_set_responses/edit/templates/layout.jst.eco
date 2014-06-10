@@ -1,8 +1,10 @@
 <div class="row">
   <div class="col-lg-12">
     <section class="panel">
-    <header id="form-steps-region"></header>
-    <div id="form-wrapper-region" class="panel-body"></div>
-  </section>
+      <div class="panel-body">
+        <div id="form-steps-region"></div>
+        <div id="form-wrapper-region"></div>
+      </div>
+    </section>
   </div> 
 </div>

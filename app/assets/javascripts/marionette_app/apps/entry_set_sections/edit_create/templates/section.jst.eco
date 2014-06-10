@@ -28,7 +28,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" data-form-button="submit" class="btn btn-primary save"><%= @t("actions.save") %></button>
+        <button type="button" data-form-button="submit" class="btn btn-success save"><%= @t("actions.save") %></button>
         <button type="button" data-form-button="cancel" data-dismiss="modal" class="btn btn-default cancel"><%= @t("actions.cancel") %></button>
       </div>
     </div>

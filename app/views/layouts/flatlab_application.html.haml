@@ -25,9 +25,11 @@
       =yield :alert_login_as
 
       %section{:id=>"main-content"}
+        =yield :state_overview
+        
         %section{:class=>"wrapper site-min-height"}
         
-          =yield :state_overview
+          
           =yield :subject_content
 
           =yield

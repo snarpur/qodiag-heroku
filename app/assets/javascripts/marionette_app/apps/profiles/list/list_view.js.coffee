@@ -13,17 +13,25 @@
     triggers:
       'click .edit-item' : 'edit:subject:clicked'
 
+  class List.AdultSubject extends App.Views.ItemView
+    template: "profiles/list/templates/_adult_subject"
+
+    triggers:
+      'click .edit-item' : 'edit:subject:clicked'
+
 
   class List.Guardian extends App.Views.ItemView
     getTemplate: () ->
+
       if @model?.get('id')?
         "profiles/list/templates/_guardian"
       else
         "profiles/list/templates/_empty_guardian"
       
     tagName: "div"
-    className: "col-lg-6"
 
+    className: "col-lg-6"
+  
     triggers:
       'click .edit-item' : 'edit:guardian:clicked'
       'click .add-guardian' : 'create:guardian:clicked'

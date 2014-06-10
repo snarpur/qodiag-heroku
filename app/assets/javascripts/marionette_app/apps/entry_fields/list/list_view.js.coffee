@@ -11,7 +11,7 @@
 
   class List.Header extends App.Views.ItemView
     template: "entry_fields/list/templates/_header"
-    className: "feature-head text-center"
+    className: "text-center"
 
   class List.EntryField extends App.Views.ItemView
     template: "entry_fields/list/templates/_entry_field"
