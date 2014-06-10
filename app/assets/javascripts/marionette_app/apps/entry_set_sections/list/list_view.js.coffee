@@ -82,7 +82,6 @@
 
     modelEvents:
       'edit:complete': ()-> 
-        console.log "in the modelEvents::",arguments
         @render()
 
 

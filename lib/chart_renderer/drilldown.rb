@@ -2,7 +2,6 @@ module ChartRenderer::Drilldown
 class Chart
 
   def initialize(response_set,groups,data)
-    KK.log "drilldown motha  #{groups.inspect}",:b
     @response_set = response_set
     @groups = groups
     @data = data

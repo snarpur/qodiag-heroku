@@ -27,7 +27,7 @@
       %section{:id=>"main-content"}
         =yield :state_overview
         
-        %section{:class=>"wrapper site-min-height"}
+        %section{:class=>"wrapper"}
         
           
           =yield :subject_content
@@ -35,11 +35,11 @@
           =yield
 
 
-      %footer{:class=>"site-footer"}
-        .text-center
-          Qodiag 2014 | Quality of Diagnosis
-          %a{:class=>"go-top", :href=>"#"}
-            %i{:class=>"fa fa-angle-up"}
+    %footer{:class=>"site-footer"}
+      .text-center
+        Qodiag 2014 | Quality of Diagnosis
+        %a{:class=>"go-top", :href=>"#"}
+          %i{:class=>"fa fa-angle-up"}
 
     =javascript_include_tag "flatlab_application"
 
