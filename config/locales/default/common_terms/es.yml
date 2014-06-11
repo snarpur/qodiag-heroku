@@ -65,6 +65,7 @@ es:
       expires: "finaliza"
       expired: "finalizado/a"
       submitted: "enviado/a"
+      no_submitted: "no enviado/a"
     today: "hoy"
     question: "Pregunta"
     history: "Historia"

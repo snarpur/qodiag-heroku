@@ -6,6 +6,11 @@
       Survey: #{controller.action_name}
     = stylesheet_link_tag "surveys"
     = javascript_include_tag "surveys_application"
+
+    %script{:type => 'text/javascript'}
+      ="I18n.defaultLocale = '#{I18n.default_locale}';"
+      ="I18n.locale = '#{I18n.locale}';"
+      
   %body{:class=>"full-width"}
     %section{:id => "container"}
       %header{:class => "header white-bg"}
@@ -14,7 +19,7 @@
           =render 'shared/log_in_out'
          
       %section{:id=>"main-content"}
-        .wrapper
+        %section{:id=>"content-header"}
           .row
             =render 'shared/alert_login_as'
             =render "surveyor/header"

@@ -24,10 +24,6 @@
       selected:=>
         'text-primary' if @model.isActive()
 
-    # className:->
-    #   'text-primary' if @model.isActive()
-  
-  
   class List.Navigation extends App.Views.CollectionView
     itemView: List.Item
     tagName: "ul"

@@ -34,8 +34,8 @@
       @getLayout().listRegion.on "show", () =>
         @showSearchField(fields)
         
-      @listenTo collection, "updated", (model, collection)=>
-        toastr.success("Spurningu breytt við", model.get('title'))   
+      @listenTo collection, "updated", (model, collection)=>   
+        toastr.success(I18n.t("entry_set.messages.question_edited"),model.get('title'))
 
       
 
@@ -46,7 +46,7 @@
         App.execute "edit:entry:field", model: view.model
 
       @listenTo view, "childview:destroy:clicked", (view)=>
-        bootbox.confirm "Ertu viss um að þú viljir eyða þessari spurningu", (result) ->
+        bootbox.confirm I18n.t("entry_set.messages.confirm_delte_question"), (result) ->
           if result
             view.model.destroy()
 

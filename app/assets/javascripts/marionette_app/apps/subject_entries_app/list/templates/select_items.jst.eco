@@ -1,2 +1,2 @@
-<optgroup label="Svarað"></optgroup>
-<optgroup disabled="disabled" label="Ósvarað"></optgroup>
+<optgroup label="<%= @t("terms.time_to_words.submitted")%>"></optgroup>
+<optgroup disabled="disabled" label="<%= @t("terms.time_to_words.no_submitted")%>"></optgroup>

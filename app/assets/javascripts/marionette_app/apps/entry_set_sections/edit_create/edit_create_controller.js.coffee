@@ -29,7 +29,6 @@
           else if action is 'edit'
             model.trigger('edit:complete')
 
-          # _this.dialogView.trigger("dialog:close")
           _this.dialogView.$el.find(".modal").modal('hide')
           activeView.trigger("section:#{action}:complete")
           

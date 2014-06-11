@@ -20,7 +20,7 @@
       @listenTo field, "created", (options) =>  
         @addAsSorted(field, @collection)
         @formView.trigger("dialog:close")
-        toastr.success("Spurningu bætt við", field.get('title'))
+        toastr.success(I18n.t("entry_set.messages.question_saved"),field.get('title'))
 
       @listenTo field, "updated", (options) =>
         @formView.trigger("dialog:close")
@@ -71,7 +71,7 @@
     buttonsConfig:(field)->
       options =
         modal: true
-        title: if field.isNew() then "Skrá upplýsingar" else "Breyta upplýsingum"
+        title: if field.isNew() then I18n.t("terms.add_information") else I18n.t("terms.edit_information")
         formClass: "form-horizontal"
       options
 

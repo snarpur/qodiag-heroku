@@ -79,7 +79,7 @@
       formView.trigger('form:submit')
       @listenToOnce @entrySetResponse, 'updated', =>
         App.navigate "/items", {trigger: true}
-        toastr.success "Færsla hefur vistast"
+        toastr.success(I18n.t("entry_set.messages.entry_set_saved"))
 
 
     saveAndMoveToNextSection:(formView)->

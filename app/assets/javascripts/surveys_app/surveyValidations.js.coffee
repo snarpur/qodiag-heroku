@@ -1,7 +1,7 @@
 $(document).ready( () ->
 	answers = $(".choices-group")
 	$("label.error").remove()
-	$("input[type = submit]").addClass("btn btn-primary")
+	$("input[type = submit]").addClass("btn btn-success")
 	$("input[type = submit]").bind('click', (e) ->
 		$("label.error").remove()
 		answers.each(() ->
@@ -13,7 +13,8 @@ $(document).ready( () ->
 		)
 
 		if $("#surveyor").find(".state-invalid").size() isnt 0
-			$(".next_section").append("<label class='error'>There are unanswered questions!</label>")
+			# $(".next_section").append("<label class='error'>There are unanswered questions!</label>")
+			$(".next_section").append("<label class='error'>"+I18n.t('entry_set.messages.question_saved')+"</label>")
 			false
 		else
 			$("label.error").remove()
