@@ -45,11 +45,6 @@
         %a{:class=>"go-top", :href=>"#"}
           %i{:class=>"fa fa-angle-up"}
 
-    #flash
-      -flash.each do |name, msg|
-        %div{:class => name}
-          =msg
-
     #dialog-region
     =javascript_include_tag "marionette_flatlab_application"
     =render "shared/google_analytics"
