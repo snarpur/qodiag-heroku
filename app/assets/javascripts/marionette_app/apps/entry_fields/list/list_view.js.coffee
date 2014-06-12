@@ -9,10 +9,6 @@
       listRegion: "#list-region"
       searchRegion: "#search-region"
 
-  class List.Header extends App.Views.ItemView
-    template: "entry_fields/list/templates/_header"
-    className: "feature-head text-center"
-
   class List.EntryField extends App.Views.ItemView
     template: "entry_fields/list/templates/_entry_field"
     tagName: 'tr'
@@ -58,12 +54,8 @@
         'order': [[ 1, "asc" ]]
         'sDom': "<'row'<'col-sm-6'l><'col-sm-6'f>r>t<'row'<'col-sm-6'i><'col-sm-6'p>>"
         'sPaginationType': "bootstrap"
-        'oLanguage':
-            'sLengthMenu': "_MENU_ records per page",
-            'oPaginate': 
-              'sPrevious': "Prev",
-              'sNext': "Next"
-      
+        'language':
+          'url': "assets/data-tables/locales/" + I18n.locale + ".json"
         'aoColumnDefs': [
           {
             'bSortable': false

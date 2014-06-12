@@ -2,6 +2,7 @@
 %html
   %head
     =yield(:head)
+    %meta{:name => "viewport", :content => "width=device-width, initial-scale=1"}
     =csrf_meta_tag
     %link{:href => "/assets/favicon.ico", :rel => "shortcut icon"}
     =javascript_include_tag "flatlab_application_initial"
@@ -19,25 +20,27 @@
         .top-nav
           =render 'shared/log_in_out'
 
-      %aside
-        =render 'shared/site_navigation'
+
+      =render 'shared/site_navigation'
 
       =yield :alert_login_as
 
       %section{:id=>"main-content"}
-        %section{:class=>"wrapper site-min-height"}
+        =yield :state_overview
         
-          =yield :state_overview
+        %section{:class=>"wrapper"}
+        
+          
           =yield :subject_content
 
           =yield
 
 
-      %footer{:class=>"site-footer"}
-        .text-center
-          Qodiag 2014 | Quality of Diagnosis
-          %a{:class=>"go-top", :href=>"#"}
-            %i{:class=>"fa fa-angle-up"}
+    %footer{:class=>"site-footer"}
+      .text-center
+        Qodiag 2014 | Quality of Diagnosis
+        %a{:class=>"go-top", :href=>"#"}
+          %i{:class=>"fa fa-angle-up"}
 
     =javascript_include_tag "flatlab_application"
 

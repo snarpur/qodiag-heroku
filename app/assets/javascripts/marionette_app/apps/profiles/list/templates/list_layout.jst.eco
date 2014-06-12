@@ -5,6 +5,9 @@
 </div>
 <div class="row">
   <div class="col-lg-12">
-    <section id="guardian-profile-region" class="panel"></section>
+    <section class="panel">
+      <header class="panel-heading"> <%= @t("terms.parents") %> </header>
+      <div id="guardian-profile-region" class="panel-body">
+    </section>
   </div>
 </div>

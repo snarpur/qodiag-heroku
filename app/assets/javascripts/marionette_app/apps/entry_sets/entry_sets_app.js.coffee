@@ -19,10 +19,17 @@
       ctrl = new EntrySetsApp.EditCreate.Controller(options)
       ctrl.create()
 
+    edit:(options)->
+      ctrl = new EntrySetsApp.EditCreate.Controller(options)
+      ctrl.edit()
+
     
       
   App.commands.setHandler "create:entry:set",(options) ->
-    API.create(options) 
+    API.create(options)
+
+  App.commands.setHandler "edit:entry:set",(options) ->
+    API.edit(options) 
 
   App.commands.setHandler "remove:entry_set",(options) ->
     API.delete(options)

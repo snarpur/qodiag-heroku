@@ -23,7 +23,6 @@ class ApplicationController < ActionController::Base
   private
 
   def error_page(error)
-    flash.now[:alert] = I18n.t("page_errors.error_#{error}")
     render "pages/#{error_partial}", :status => 401
   end
   

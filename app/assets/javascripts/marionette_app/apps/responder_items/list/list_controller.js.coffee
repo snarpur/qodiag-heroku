@@ -1,12 +1,10 @@
 @Qapp.module "ResponderItemsApp.List", (List, App, Backbone, Marionette, $, _) ->
   
   List.Controller =
-    
-    
+  
     items: ()->
+      @executeSettingsNavigation()
       App.contentRegion.show @getLayout()
-
-      @getLayout().headerRegion.show new List.Header(model: new Backbone.Model())
       
       user = App.request "get:current:user"
       items = App.request "get:person:responder:items",{personId: user.get('person_id')}
@@ -30,6 +28,11 @@
         else
           itemsUncompletedView = new List.Items {collection: new App.Entities.ResponderItems(uncompleted,{}), status: "uncompleted"}
           @getLayout().uncompleteItemsRegion.show itemsUncompletedView
+
+    executeSettingsNavigation:() ->
+      App.execute "show:settings:navigation", 
+        iconClass: "fa fa-envelope"
+        i18n: "views.responder_items.requests.name"
 
     getLayout:=>
       @layout ?= new List.Layout

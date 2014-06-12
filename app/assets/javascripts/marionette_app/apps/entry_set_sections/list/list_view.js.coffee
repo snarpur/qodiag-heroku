@@ -3,7 +3,7 @@
   class List.Layout extends App.Views.Layout
     template: "entry_set_sections/list/templates/list_layout"
     className: ()->
-      "uneditable-entry-set" if @model.get('editable') is false
+      "uneditable-entry-set row" if @model.get('editable') is false
 
     regions:
       settingsNavigationRegion: "#settings-navigation-region"
@@ -81,7 +81,8 @@
       "click .remove-item" : "remove:title"
 
     modelEvents:
-      'edit:complete': ()-> @render()
+      'edit:complete': ()-> 
+        @render()
 
 
 

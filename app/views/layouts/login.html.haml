@@ -29,10 +29,7 @@
     #page
       = yield(:landing_page_header)
       #content
-        #flash
-          -flash.each do |name, msg|
-            %div{:class => name}
-              =msg
+       
         .container
           =yield
       .push

@@ -29,7 +29,6 @@
   App.commands.setHandler "unregister:instance", (instance, id) ->
     App.unregister instance, id if App.environment is "development"
 
-  
   App.on "initialize:after", (options) ->
     if Backbone.history
       Backbone.history.start()
@@ -37,6 +36,6 @@
         window.location.href = "/users"
         return
       @navigate(@rootUrl(@currentUser), trigger: true) unless @getCurrentRoute()?
-  
+
   App
 

@@ -1,3 +1,7 @@
-<label><%-@title%></label>
-<span class="help-block"><%- @help_text %></span>
-<input class="input-xxlarge" type="text" id='<%-"string_value_#{@id}"%>' value="<%=@entry_values.first().get('string_value')%>">
+<label class="col-lg-2 control-label"><%-@title%></label>
+<div class="col-lg-10">
+  <input class="form-control" type="text" id='<%-"string_value_#{@id}"%>' value="<%=@entry_values.first().get('string_value')%>">
+  <span class="help-text-block small"><%- @description %></span>
+  <span id='<%-"string_value_#{@id}"%>_error' class="help-block"></span>
+</div>
+

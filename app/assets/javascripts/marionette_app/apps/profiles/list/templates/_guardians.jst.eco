@@ -1,2 +1,1 @@
-<h2><%= @t("terms.parents") %></h2>
-<div id="foreldrar"></div>
+<div id="foreldrar" class="row"></div>

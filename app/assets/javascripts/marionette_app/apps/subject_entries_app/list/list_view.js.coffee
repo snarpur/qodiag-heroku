@@ -8,7 +8,6 @@
       sendRequest : "a.add-item"
     
     regions:
-      createItemRegion: "#create-item-region"
       entrySetSelectRegion: "#enty-set-select-region"
       entrySetSectionsRegion: "#entry-set-sections-region"
       entrySetValuesRegion: "#entry-set-values-region"

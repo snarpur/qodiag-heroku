@@ -12,7 +12,8 @@
 
   class List.SubjectDetails extends App.Views.ItemView
     template: "subject_navigation_app/list/subject_details"
-    className: "alt green-bg user-heading"
+    className: "profile-nav"
+    tagName:"aside"
 
 
   class List.Item extends App.Views.ItemView
@@ -24,10 +25,6 @@
       selected:=>
         'text-primary' if @model.isActive()
 
-    # className:->
-    #   'text-primary' if @model.isActive()
-  
-  
   class List.Navigation extends App.Views.CollectionView
     itemView: List.Item
     tagName: "ul"

@@ -1,13 +1,14 @@
-%div{:class => "row user-row"}
-  .col-md-1
-    =image_tag @response_set.subject.avatar.url(:tiny), {:class => 'avatar'}
-  .col-md-11
-    %h4
-      %b
+.col-lg-12
+  %aside{:class=>"profile-nav alt green-border"}
+    .alt{:class=>"green-bg user-heading"}
+      %a{:class=>"add-avatar"}
+        =image_tag @response_set.subject.avatar.url(:small)
+      %h1{:class=>"content_title_sub"}
         = t("surveys.#{@response_set.survey_name}.name")
-    %h5
-      = @response_set.subject.full_name
-    %span
-      Svarast fyrir:
-      %b
-        = l(@response_set.responder_item.deadline, :format => :short)
+      %p
+        = @response_set.subject.full_name
+      %p
+        Svarast fyrir:
+        %b
+          = l(@response_set.responder_item.deadline, :format => :short)
+    

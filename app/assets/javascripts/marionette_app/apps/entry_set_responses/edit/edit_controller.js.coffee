@@ -3,7 +3,7 @@
   class Edit.Controller extends App.Controllers.Base
     
     initialize: (options) ->
-      App.contentRegion.show @getLayout()
+      App.contentRegion.show @getLayout(options)
             
     
 
@@ -79,7 +79,7 @@
       formView.trigger('form:submit')
       @listenToOnce @entrySetResponse, 'updated', =>
         App.navigate "/items", {trigger: true}
-        toastr.success "Færsla hefur vistast"
+        toastr.success(I18n.t("entry_set.messages.entry_set_saved"))
 
 
     saveAndMoveToNextSection:(formView)->
@@ -111,22 +111,23 @@
 
     buttonsConfig:->
       options =
+        formClass: "form-base form-horizontal"
         buttons: 
-          primary: {text: I18n.t("actions.save_and_continue",model: "") + " >>", buttonType: 'saveAndContinue', order: 3}
+          primary: {text: I18n.t("actions.save_and_continue",model: "") + " >>", className: "btn btn-info", buttonType: 'saveAndContinue', order: 3}
           cancel: false
      
       if @sections.isCurrentLast()
-        options.buttons.primary = _.extend options.buttons.primary , {text: I18n.t("actions.save_and_complete",model: ""), buttonType: 'saveAndComplete', order: 3}
+        options.buttons.primary = _.extend options.buttons.primary , {text: I18n.t("actions.save_and_complete",model: ""), className: "btn btn-success", buttonType: 'saveAndComplete', order: 3}
       
       unless @sections.isCurrentFirst() 
-        _.extend options.buttons, back: {text: "<< " + I18n.t("terms.go_back"), buttonType: 'back', className: "btn", order: 1}
+        _.extend options.buttons, back: {text: "<< " + I18n.t("terms.go_back"), buttonType: 'back', className: "btn btn-default", order: 1}
           
       
       options
 
     
     
-    getLayout:->
+    getLayout:(options)->
       @layout ?= new Edit.Layout
 
 

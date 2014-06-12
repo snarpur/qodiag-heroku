@@ -187,7 +187,6 @@ module ChartRenderer
       #   i[:id] = group[:name]
       # end
                             
-      KK.log drilldown_group.inspect,:b                            
                         
                         # , 
                         # :xAxis => {:categories => group[:total]}}

@@ -4,3 +4,9 @@ is:
     model_name_accusative: "eyðublaði"
     model_name_plural: "Eyðublöð"
     description: "Lýsing"
+    public: "Opinber?"
+    messages:
+      question_saved: "Spurningu bætt við"
+      question_edited: "Spurningu breytt við"
+      confirm_delte_question: "Ertu viss um að þú viljir eyða þessari spurningu"
+      entry_set_saved: "Færsla hefur vistast"

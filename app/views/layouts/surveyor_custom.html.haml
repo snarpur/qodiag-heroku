@@ -1,17 +1,40 @@
 !!!
 %html
   %head
+    %meta{:name => "viewport", :content => "width=device-width, initial-scale=1"}
     %meta{:content => "text/html;charset=UTF-8", "http-equiv" => "content-type"}/
     %title
       Survey: #{controller.action_name}
     = stylesheet_link_tag "surveys"
     = javascript_include_tag "surveys_application"
-  %body.surveys
-    .container
-      #header
-        =render 'shared/alert_login_as'
-        =render "surveyor/header"
 
-      #content
-        = yield
+    %script{:type => 'text/javascript'}
+      ="I18n.defaultLocale = '#{I18n.default_locale}';"
+      ="I18n.locale = '#{I18n.locale}';"
+      
+  %body{:class=>"full-width"}
+    %section{:id => "container"}
+      %header{:class => "header white-bg"}
+        = link_to "Qodiag", root_path(), :class => "logo"
+        .top-nav
+          =render 'shared/log_in_out'
+         
+      %section{:id=>"main-content"}
+        %section{:id=>"content-header"}
+          .row
+            =render 'shared/alert_login_as'
+            =render "surveyor/header"
+
+        %section{:id=>"content",:class=>"site-min-height"}            
+          =yield
+
+    %footer{:class=>"site-footer"}
+      .text-center
+        Qodiag 2014 | Quality of Diagnosis
+        %a{:class=>"go-top", :href=>"#"}
+          %i{:class=>"fa fa-angle-up"}
+
+
     =render "shared/google_analytics"
+
+

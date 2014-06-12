@@ -122,16 +122,16 @@
         if @type is "guardian"
           _.extend options.buttons, 
             primary:false,
-            save: {text: I18n.t("actions.save"), buttonType: 'save', order: 2,  className: 'btn btn-info'}  
-            back: {text: "<< " + I18n.t("terms.go_back"), buttonType: 'back', className: "btn", order: 1}
+            save: {text: I18n.t("actions.save"), buttonType: 'save', order: 2,  className: 'btn btn-success'}  
+            back: {text: "<< " + I18n.t("terms.go_back"), buttonType: 'back', className: "btn btn-info", order: 1}
         else
           _.extend options.buttons, primary:false,
-            save: {text: I18n.t("actions.save"), buttonType: 'save', order: 2,  className: 'btn btn-info'}  
+            save: {text: I18n.t("actions.save"), buttonType: 'save', order: 2,  className: 'btn btn-success'}  
             back: false
       else
         if @type is "guardian"
           _.extend options.buttons, 
-            primary: {text: I18n.t("actions.save_and_continue",model: "") + " >>", buttonType: 'saveAndContinue', order: 3}
+            primary: {text: I18n.t("actions.save_and_continue",model: "") + " >>", className: 'btn btn-info', buttonType: 'saveAndContinue', order: 3}
      
       options
 

@@ -4,3 +4,8 @@ es:
     model_name_accusative: "Cuestionario"
     model_name_plural: "Cuestionarios"
     description: "Descripción"
+    messages:
+      question_saved: "Spurningu bætt við"
+      question_edited: "Spurningu breytt við"
+      confirm_delte_question: "Ertu viss um að þú viljir eyða þessari spurningu"
+      entry_set_saved: "Færsla hefur vistast"
