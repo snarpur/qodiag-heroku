@@ -3,6 +3,7 @@
   %head
     = include_gon
     =yield(:head)
+    %meta{:name => "viewport", :content => "width=device-width, initial-scale=1"}
     =csrf_meta_tag
 
     %link{:href => "/assets/favicon.ico", :rel => "shortcut icon"}
@@ -26,13 +27,12 @@
         .top-nav
           =render 'shared/log_in_out'
 
-      %aside
-        =render 'shared/site_navigation'
+      =render 'shared/site_navigation'
+        
 
       %section{:id=>"main-content"}
-
-        =render 'shared/content_header'
         =render 'shared/alert_login_as'
+        =render 'shared/content_header'
 
         %section{:id=>"content",:class=>"wrapper"}
                     

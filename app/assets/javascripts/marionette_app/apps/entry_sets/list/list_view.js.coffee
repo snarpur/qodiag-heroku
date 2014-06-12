@@ -8,10 +8,6 @@
       settingsNavigationRegion: "#settings-navigation-region"
       listRegion: "#list-region"
 
-  class List.Header extends App.Views.ItemView
-    template: "entry_sets/list/templates/_header"
-    className: "text-center"
-
   class List.EntrySet extends App.Views.ItemView
     template: "entry_sets/list/templates/_entry_set"
     tagName: "tr"

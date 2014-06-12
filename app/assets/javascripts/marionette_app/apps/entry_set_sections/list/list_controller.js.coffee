@@ -29,7 +29,7 @@
         @showSidebarOnce()
 
         @showEntrySetTitle(entrySet)
-        @executeSettingsNavigation(entrySet)
+        @executeSettingsNavigation()
         @getSections(_.extend(options,{entrySet: entrySet}))
 
 
@@ -114,11 +114,10 @@
    
 
     
-    executeSettingsNavigation:(entrySet) ->
+    executeSettingsNavigation:() ->
       App.execute "show:settings:navigation", 
-        currentSetting: 'entry_sets' 
-        subView: entrySet.get('name')
-        region: @getLayout().settingsNavigationRegion
+        iconClass: "fa fa-cogs"
+        i18n: "terms.setup"
 
 
     getNavigationView: (collection)->

@@ -1,1 +1,8 @@
-<h1> <%= @t("terms.setup") %> </h1> 
+<section class="panel">
+  <div class="symbol red">
+    <i class="<%=@iconClass%>"></i>
+  </div>
+  <div class="value">
+    <h1 class=" count2"><%=@t("#{@i18n}")%></h1>
+  </div>
+</section>

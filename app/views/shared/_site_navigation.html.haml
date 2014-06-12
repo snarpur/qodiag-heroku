@@ -1,21 +1,22 @@
 -if (@current_user.is_superadmin? || @current_user.is_caretaker?)
-  #sidebar{:class=>"nav-collapse"}
-    %ul{:id=>"nav-accordion", :class=>"sidebar-menu"}
-      %li
-        %a{:href => "/users"}
-          %i{:class => "fa fa-user"}
-          = t('terms.client', :count => 2)
-      %li{:class=>"sub-menu"}
-        %a{:href => "javascript:;", :class=>""}
-          %i{:class => "fa fa-cog"}
-          %span
-            = t('terms.setup')
-          %span{:class=>"arrow"}
+  %aside{:id=>"navigation"}
+    #sidebar{:class=>"nav-collapse"}
+      %ul{:id=>"nav-accordion", :class=>"sidebar-menu"}
+        %li
+          %a{:href => "/users"}
+            %i{:class => "fa fa-user"}
+            = t('terms.client', :count => 2)
+        %li{:class=>"sub-menu"}
+          %a{:href => "javascript:;", :class=>""}
+            %i{:class => "fa fa-cog"}
+            %span
+              = t('terms.setup')
+            %span{:class=>"arrow"}
 
-        %ul{:class=>"sub"}
-          %li
-            %a{:class=>"", :href=>"/#settings/entry_sets"}
-              = t("entry_set.model_name_plural")
-          %li
-            %a{:class=>"", :href=>"/#settings/entry_fields"}
-              = t("terms.question")
+          %ul{:class=>"sub"}
+            %li
+              %a{:class=>"", :href=>"/#settings/entry_sets"}
+                = t("entry_set.model_name_plural")
+            %li
+              %a{:class=>"", :href=>"/#settings/entry_fields"}
+                = t("terms.question")

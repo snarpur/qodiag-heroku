@@ -1,23 +1,19 @@
-<div class="row">
-  <div class="col-lg-12">
-    <section class="panel">
-      <header class="panel-heading"><%= @tableTitle() %></header>
-      <div class="panel-body">
-        <div class="adv-table">
-          <div id="table_wrapper" class="dataTables_wrapperform-inline">
-            <table class="display table table-bordered table-striped dataTable">
-              <thead>
-                <tr>
-                  <th><%- @t('terms.name')%></th>
-                  <th><%- @t('terms.patient')%></th>
-                  <th><%- @t('terms.due_date')%></th>
-                </tr>
-              </thead>
-              <tbody></tbody>
-            </table>
-          </div>
-        </div>
+<section class="panel">
+  <header class="panel-heading"><%= @tableTitle() %></header>
+  <div class="panel-body">
+    <div class="adv-table">
+      <div id="table_wrapper" class="dataTables_wrapperform-inline">
+        <table class="display table table-bordered table-striped dataTable">
+          <thead>
+            <tr>
+              <th><%- @t('terms.name')%></th>
+              <th><%- @t('terms.patient')%></th>
+              <th><%- @t('terms.due_date')%></th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
       </div>
-    </section>
+    </div>
   </div>
-</div>
+</section>

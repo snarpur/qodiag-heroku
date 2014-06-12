@@ -41,7 +41,6 @@
   class List.Guardians extends App.Views.CompositeView
     template: "profiles/list/templates/_guardians"
     itemView: List.Guardian
-    className: "panel-body"
     itemViewContainer: "div#foreldrar"
 
   

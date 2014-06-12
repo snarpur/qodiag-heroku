@@ -111,7 +111,7 @@ class Person < ActiveRecord::Base
   has_attached_file :avatar,
     :styles => {
         :tiny=> "30x30#",
-        :thumb=> "100x100#",
+        :thumb=> "60x60#",
         :small  => "150x150#",
         :medium => "200x200#",
         :large =>   "400x400#" },

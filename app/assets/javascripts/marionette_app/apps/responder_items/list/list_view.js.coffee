@@ -2,12 +2,11 @@
   
   class List.Layout extends App.Views.Layout
     template: "responder_items/list/templates/list_layout"
-    className: "col-lg-12"
     regions:
-      headerRegion: "#header-region"
       uncompleteItemsRegion: "#uncomplete-items-region"
       completeItemsRegion: "#complete-items-region"  
-  
+    
+
   class List.Item extends App.Views.ItemView
     template: "responder_items/list/templates/_item"
     tagName: 'tr'
@@ -23,6 +22,7 @@
   class List.Items extends App.Views.CompositeView
     template: "responder_items/list/templates/items"
     itemView: List.Item
+    className:"col-lg-12"
     itemViewContainer: 'tbody'
 
     ui:
@@ -50,7 +50,7 @@
         "#{@options.status}"
 
 
-  class List.Header extends App.Views.ItemView
-    template: "responder_items/list/templates/header"
-    className: "text-center"
+  # class List.Header extends App.Views.ItemView
+  #   template: "responder_items/list/templates/header"
+  #   className: "text-center"
 

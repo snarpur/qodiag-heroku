@@ -9,10 +9,6 @@
       listRegion: "#list-region"
       searchRegion: "#search-region"
 
-  class List.Header extends App.Views.ItemView
-    template: "entry_fields/list/templates/_header"
-    className: "text-center"
-
   class List.EntryField extends App.Views.ItemView
     template: "entry_fields/list/templates/_entry_field"
     tagName: 'tr'

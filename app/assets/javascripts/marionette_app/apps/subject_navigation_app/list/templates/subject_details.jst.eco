@@ -1,5 +1,7 @@
-<a href="/people/<%=@id%>" >
-  <img src="<%= @image_url_small %>">
-</a>
-<h1 class="content_title_sub"><%= @firstname + " " + @lastname %></h1>
-<p><%- @age %>  <%= @t("surveys.terms.age") %></p>
+<div class="alt user-heading">
+  <a href="/people/<%=@id%>" >
+    <img src="<%= @image_url_small %>">
+  </a>
+  <h1 class="content_title_sub"><%= @firstname + " " + @lastname %></h1>
+  <p><%- @age %>  <%= @t("surveys.terms.age") %></p>
+</div>

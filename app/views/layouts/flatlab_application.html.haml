@@ -2,6 +2,7 @@
 %html
   %head
     =yield(:head)
+    %meta{:name => "viewport", :content => "width=device-width, initial-scale=1"}
     =csrf_meta_tag
     %link{:href => "/assets/favicon.ico", :rel => "shortcut icon"}
     =javascript_include_tag "flatlab_application_initial"
@@ -19,8 +20,8 @@
         .top-nav
           =render 'shared/log_in_out'
 
-      %aside
-        =render 'shared/site_navigation'
+
+      =render 'shared/site_navigation'
 
       =yield :alert_login_as
 

@@ -1,19 +1,20 @@
 <aside class="profile-nav alt green-border">
   <div class="alt green-bg user-heading">
     <a href="#" class="add-avatar">
-      <img src="<%= @image_url_small %>">
+      <img src="<%= @image_url_tiny %>">
     </a>
-    <h1 class="content_title_sub"><%= @firstname + " " + @lastname %></h1>
-    <p> <abbr title="Kennitala">K:</abbr> <%= @full_cpr %></p>
-    <p>
-      <button type="button" class="btn btn-info edit-item"><%= @t("actions.edit_information") %></button>
-      <button onclick="$('#avatarUploadModal_<%= @id %>').modal();" class="btn btn-primary add-avatar"><%= @t("actions.edit_avatar") %></button>
+    <h1 class="content_title_sub">
+      <%= @firstname + " " + @lastname %>
+    </h1>
+    <p> 
+      <abbr title="Kennitala">K:</abbr> <%= @full_cpr %>
+      <button href="#" class="btn btn-primary btn-xs edit-item"><i class="fa fa-pencil "></i></button>
+      <button class="btn btn-info btn-xs destroy" href="#" onclick="$('#avatarUploadModal_<%= @id %>').modal();"><i class="fa fa-camera-retro"></i></button>
     </p>
   </div> 
 </aside>
 <% if @address?: %>
   <div class="panel-body bio-graph-info">
-    <h1>Other information</h1>
     <div class="row">
         <div class="bio-row">
           <p>

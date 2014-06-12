@@ -4,7 +4,7 @@
 
       
     listEntrySets: (options) ->    
-      App.contentHeaderRegion.show @getHeader()
+      @executeSettingsNavigation()
       App.contentRegion.show @getLayout()
       @entrySets = App.request "entry:sets:entities" 
       entrySetsView = @getEntrySetsView()
@@ -32,6 +32,11 @@
       view
     
 
+    executeSettingsNavigation:() ->
+      App.execute "show:settings:navigation", 
+        iconClass: "fa fa-list-ul"
+        i18n: "entry_set.model_name_plural"
+
     deleteFromEntrySetSections: (options) ->    
       bootbox.confirm I18n.t("activerecord.confirm.messages.deleted", model: options.model.get('name')), (result) ->
         if result
@@ -46,10 +51,6 @@
 
     getLayout:=>
       @layout ?= new List.Layout
-
-    getHeader:=>
-      new List.Header
-        model: new Backbone.Model()
 
     newEntrySetPath:(entrySet)->
       "settings#{Routes.entry_set_sections_path(entrySet.get('id'))}"

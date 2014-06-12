@@ -1,3 +1,2 @@
-<div id="header-region"></div>
-<div id="uncomplete-items-region"></div>
-<div id="complete-items-region"></div>
+<div id="uncomplete-items-region" class="row"></div>
+<div id="complete-items-region" class="row"></div>

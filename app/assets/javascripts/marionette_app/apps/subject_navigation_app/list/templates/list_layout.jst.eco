@@ -1,4 +1,7 @@
-<aside id="subject-details-region" class="profile-nav alt green-border"></aside>
-<section class="panel">
-  <div id="subject-navigation-region" class="panel-body"></div>
-</section>       
+<div class="profile-overview">
+  <section class="panel">
+      <div id="subject-details-region" class="symbol red"></div>
+      <div id="subject-navigation-region" class="value"></div>
+  </section>
+</div>  
+    
