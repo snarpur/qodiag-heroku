@@ -10,7 +10,7 @@ class Score < ActiveRecord::Base
 
   def get_range_span
     start = self.start_value.zero? ? self.start_value : self.start_value - 1
-    (start - self.end_value).abs
+    (start - self.end_value).abs.round(2)
   end
 
   def get_range_values

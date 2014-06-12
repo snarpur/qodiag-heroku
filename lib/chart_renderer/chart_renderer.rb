@@ -177,21 +177,21 @@ module ChartRenderer
     end
 
     def config_drilldown(group, group_results)
-      @drilldown ||= {:series => []}
+      @drilldown ||= {}
       drilldown_config = Marshal::load(Marshal.dump(@chart)) 
       drilldown_config[:content][:question_groups] = group[:total]
       drilldown_chart = self.class.new(drilldown_config,@response_set)
       drilldown_group =  drilldown_chart.chart_data
       # drilldown_group.each {|i| i[:id] = group[:name]}
-      drilldown_group.each do |i| 
-        i[:id] = group[:name]
-      end
+      # drilldown_group.each do |i| 
+      #   i[:id] = group[:name]
+      # end
                             
       KK.log drilldown_group.inspect,:b                            
                         
                         # , 
                         # :xAxis => {:categories => group[:total]}}
-      @drilldown[:series].concat drilldown_group
+      @drilldown[group[:name]] = {:series => drilldown_group,:xAxis => {:categories => group[:total]}}
 
       # @drilldown[:xAxis] = {:categories => group[:total]}     
     end    

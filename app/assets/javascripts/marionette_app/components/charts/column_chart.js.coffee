@@ -9,10 +9,16 @@
 
   class Charts.Column extends Backbone.Model
     urlRoot: "/responder_items/responses"
+    chartOptionKeys: ["chart","series","accessCode","credits","legend","subtitle","drilldown","title","tooltip","yAxis","xAxis","plotOptions"]
     
     initialize:->
-      @chartKeys = _.keys @attributes
-      @set("paramsHistory",[@attributes],{silent: true})
+      @set "chartOptions", @pick(@chartOptionKeys)
+      # @set("chartOptions",_.deepCopy(@pick(@chartOptionKeys...)))
+      history =
+        xAxis: 
+          categories: _.clone(@get("chartOptions").xAxis.categories)
+        series: _.clone(@get("chartOptions").series) 
+      @set("drilldownHistory",[history],{silent: true})
       @url = ()->
         base = "#{@.urlRoot}/#{@get('id')}/column"
       super
@@ -21,30 +27,45 @@
     chartWidth:->
       (@get('size') / @collection.totalSize())
     
+
+    back:(options={})=>
+      unless @isChartRoot()
+        @get('drilldownHistory').pop()
+        last = _.last @get('drilldownHistory')
+        base = @get("chartOptions")
+        console.log " back:(options={})=> last ",last
+        console.log " back:(options={})=> base ",base
+        base.xAxis.categories = last.xAxis.categories
+        base.series = last.series
+        @trigger("change:drilldownHistory",{config: base,type:'drillup'})
+      
+  
+      
     
-    back:=>
-      @get('paramsHistory').pop()
-      @trigger("change:paramsHistory",{config: _.last @get('paramsHistory')})
-    
-    mergeConfig:(params)=>
-      inherited = ["chart","credits","legend","subtitle","title","tooltip","yAxis","xAxis","plotOptions"]
-      _.each(inherited,((i)->
-        target = params[i]
-        target ?= {}
-        params[i] = $.extend({},@get(i),target)
-      ),@)
+    drilldownConfig:(params)=>      
+      base = @get("chartOptions")
+      console.log "drilldownConfig:(params)=>   base                 ",base
+      console.log "drilldownConfig:(params)=>   params               ",params
+
       params
 
-    
+    currentDrilldownLevel:->
+      @get("drilldownHistory").length
+
+    isChartRoot:->
+      (@get("drilldownHistory").length == 1)
+
+
     addChartToHistory:(params)=>
-      params = @mergeConfig(params)
-      paramsHistory = @.get("paramsHistory")
-      paramsHistory.push(params)
-      @set('paramsHistory',paramsHistory)
-      @trigger('change:paramsHistory',{config:params})
-    # drillDownSetup:->
-    #   if @get('questionListDrilldown')
-    #     drilldown = new Charts.DrilldownView({chart: @})
+      params = @drilldownConfig(params)
+      @get("drilldownHistory").push(params)
+      base = @get("chartOptions")
+      base.xAxis.categories = params.xAxis.categories
+      base.series = params.series
+      
+
+      @trigger('change:drilldownHistory',{config:base,type:"drilldown"})
+
    
 
 
