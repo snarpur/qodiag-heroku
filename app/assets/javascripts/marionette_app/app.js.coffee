@@ -29,6 +29,10 @@
   App.commands.setHandler "unregister:instance", (instance, id) ->
     App.unregister instance, id if App.environment is "development"
 
+  
+  Backbone.history.on "route", ()->
+    App.showHideSidebar App.getCurrentRoute()
+
   App.on "initialize:after", (options) ->
     if Backbone.history
       Backbone.history.start()

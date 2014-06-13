@@ -1,7 +1,7 @@
-<div class="profile-overview">
-  <section class="panel">
-      <div id="subject-details-region" class="symbol red"></div>
-      <div id="subject-navigation-region" class="value"></div>
+<div class="state-overview subject">
+  <section class="panel subject">
+    <div id="subject-details-region" class="symbol red subject-details"></div>
+    <div id="subject-navigation-region" class="value subject-navigation pull-left"></div>
   </section>
 </div>  
     

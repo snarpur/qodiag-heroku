@@ -16,6 +16,13 @@ do (Backbone) ->
       frag = Backbone.history.fragment
       if _.isEmpty(frag) then null else frag
     
+    showHideSidebar:(fragment)->
+      routesWithoutSideBar = ["invitation_items","pre_registration","items", "entry_set_responses"]
+      routeMatched = _.find routesWithoutSideBar, (route)->
+        fragment.indexOf(route) isnt -1
+      
+      unless routeMatched is undefined
+        @contentRegion.$el.parents("body").addClass("full-width") unless @contentRegion.$el.parents("body").hasClass("full-width")
 
     rootUrl:(user)->
       rootUrls =

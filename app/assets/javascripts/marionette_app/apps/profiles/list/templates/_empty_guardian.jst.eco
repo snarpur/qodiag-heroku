@@ -1,12 +1,11 @@
 <aside class="profile-nav alt green-border">
   <div class="alt green-bg user-heading">
     <a href="#" class="add-avatar">
-      <img src="/avatars/thumb/male.png">
+      <img src="/avatars/tiny/male.png">
     </a>
     <h1 class="content_title_sub"><%= @t("views.profiles.parent_not_found") %></h1>
-    <p>&nbsp;</p>
     <p>
-      <button class="btn btn-info add-guardian"><%= @t("actions.add_parent") %></button>
+      <button href="#" class="btn btn-primary btn-xs add-guardian"><i class="fa fa-pencil "></i></button>
     </p>
   </div> 
 </aside>
