@@ -1,7 +1,7 @@
 <aside class="profile-nav alt green-border">
   <div class="alt green-bg user-heading">
     <a href="#" class="add-avatar">
-      <img src="<%= @image_url_tiny %>">
+      <img src="<%= @image_url_thumb %>">
     </a>
     <h1 class="content_title_sub">
       <%= @firstname + " " + @lastname %>

@@ -1,7 +1,7 @@
 <aside class="profile-nav alt green-border">
   <div class="alt green-bg user-heading">
     <a href="#" class="add-avatar">
-      <img src="/avatars/tiny/male.png">
+      <img src="/avatars/thumb/male.png">
     </a>
     <h1 class="content_title_sub"><%= @t("views.profiles.parent_not_found") %></h1>
     <p>
