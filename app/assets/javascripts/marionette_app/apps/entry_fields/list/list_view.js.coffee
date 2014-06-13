@@ -74,17 +74,6 @@
           }
       ]
 
-   
-  class List.Search extends App.Views.ItemView
-    template: "entry_fields/list/templates/_search"
-    tagName: 'form'
-    events:
-      "keyup input": "setSearch"
-
-    setSearch:(event)->
-      @model.set("search",$(event.target).val())
-  
-
 
 
 
