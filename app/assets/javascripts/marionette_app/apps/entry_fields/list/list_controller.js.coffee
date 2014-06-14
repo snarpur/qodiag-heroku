@@ -15,10 +15,8 @@
       fields = App.request "entry:fields:entities"
       # NOTE: try to delete the when:fetch - to avoid the tiem it takes to show he spinner
       App.execute "when:fetched", fields, =>
-        searchCollection = fields.createSearchCollection()
-      # searchCollection = fields     
-
-        @showEntryFieldsView searchCollection, fields
+        searchCollection = fields     
+        @showEntryFieldsView fields
 
 
     getEntryFieldsView: (collection) ->
@@ -30,15 +28,10 @@
         iconClass: "fa fa-question"
         i18n: "terms.question"
 
-    showEntryFieldsView: (collection, fields) ->
-      view = @getEntryFieldsView(collection)
+    showEntryFieldsView: (fields) ->
+      view = @getEntryFieldsView(fields)
 
-      
-
-      @getLayout().listRegion.on "show", () =>
-        @showSearchField(fields)
-        
-      @listenTo collection, "updated", (model, collection)=>   
+      @listenTo fields, "updated", (model, collection)=>   
         toastr.success(I18n.t("entry_set.messages.question_edited"),model.get('title'))
 
       
@@ -57,23 +50,6 @@
       @show view,
         region: @getLayout().listRegion
         loading: true 
-
-    resetSearchField:->
-      @layout.$el.find(".search-input").val("")
-
-
-    showSearchField:(collection) ->
-      @show @getSearchFieldView(collection),
-         region: @layout.searchRegion
-         loading:false 
-    
-    
-    getSearchFieldView:(collection) ->
-      @search = new Backbone.Model({search: ""})
-      @search.on("change:search",(model, searchString)->
-        collection.trigger("search:update",@.get("search"))
-      )
-      new List.Search model: @search
 
     getLayout:=>
       @layout ?= new List.Layout

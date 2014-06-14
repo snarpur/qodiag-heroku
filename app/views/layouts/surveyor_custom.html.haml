@@ -20,12 +20,10 @@
           =render 'shared/log_in_out'
          
       %section{:id=>"main-content"}
-        %section{:id=>"content-header"}
-          .row
-            =render 'shared/alert_login_as'
-            =render "surveyor/header"
+        =render 'shared/alert_login_as'
+        =render "surveyor/header"
 
-        %section{:id=>"content",:class=>"site-min-height"}            
+        %section{:id=>"content",:class=>"wrapper"}            
           =yield
 
     %footer{:class=>"site-footer"}

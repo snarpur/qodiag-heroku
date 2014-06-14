@@ -4,8 +4,8 @@
 %h1{:class => 'logo text-center'}
   = link_to "Qodiag", root_path()
   
-%div{:class => 'text-center'}
-  %i{:class => 'fc-icon-locker fc-icon-8x'}
+%div{:class => 'text-center lock-icon'}
+  %i{:class => 'fa fa-key fa-5x'}
 .main-login
   = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
     = render "shared/error_messages", :locals => {:form_builder => f}

@@ -13,7 +13,7 @@
   class List.SubjectDetails extends App.Views.ItemView
     template: "subject_navigation_app/list/subject_details"
     className: "profile-nav"
-    tagName:"aside"
+    tagName:"div"
 
 
   class List.Item extends App.Views.ItemView

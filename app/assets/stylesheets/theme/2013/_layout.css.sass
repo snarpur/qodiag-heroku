@@ -6,6 +6,16 @@ header
 body.full-width
   #navigation
     display: none
+  .sidebar-toggle-box
+    display: none
+  .nav li a
+    color: #667fa0
+  .nav > li > a:hover
+    background-color: #EEE
+    color: #2A3542
+  .nav > li.active > a
+    background-color: white
+    color: #2A3542
     
 #content-header
   display: inline-block
@@ -75,20 +85,24 @@ ul.summary-list > li
     font-size: 15px
     font-weight: normal
 
-.profile-overview
-  .profile-nav .user-heading      
-    border-radius: 0 4px 4px 0
-   
-  .symbol
-    display: inline-block
-    padding: 0
-    width: 20%
-  .value
-    display: inline-block
-    text-align: center
-    width: 80%
-    float: left
-    padding: 20px 0
+.subject
+  background: none repeat scroll 0 0 #FF766C
+  border-radius: 0 4px 4px 0
+  
+.state-overview
+  .subject-navigation
+    width: 79% !important
+    background-color: #FFFFFF
+    height: 99px
+  .subject-details
+    padding: 0 !important
+    width: 20% !important
+
+  .user-heading.alt a 
+    margin: 14px 5px
+    img
+      height: 60px
+      width: 60px
 
 .user-heading.alt a 
   margin: 14px 5px
