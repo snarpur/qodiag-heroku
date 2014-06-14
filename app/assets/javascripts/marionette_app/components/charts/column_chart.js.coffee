@@ -13,16 +13,18 @@
     
     initialize:->
       @set "chartOptions", @pick(@chartOptionKeys)
-      # @set("chartOptions",_.deepCopy(@pick(@chartOptionKeys...)))
+      @initHistory()
+      @url = ()->
+        base = "#{@.urlRoot}/#{@get('id')}/column"
+      super
+
+    initHistory:->
       history =
         xAxis: 
           categories: _.clone(@get("chartOptions").xAxis.categories)
         series: _.clone(@get("chartOptions").series) 
       @set("drilldownHistory",[history],{silent: true})
-      @url = ()->
-        base = "#{@.urlRoot}/#{@get('id')}/column"
-      super
-
+    
 
     chartWidth:->
       (@get('size') / @collection.totalSize())
@@ -33,21 +35,13 @@
         @get('drilldownHistory').pop()
         last = _.last @get('drilldownHistory')
         base = @get("chartOptions")
-        console.log " back:(options={})=> last ",last
-        console.log " back:(options={})=> base ",base
         base.xAxis.categories = last.xAxis.categories
         base.series = last.series
         @trigger("change:drilldownHistory",{config: base,type:'drillup'})
       
   
       
-    
-    drilldownConfig:(params)=>      
-      base = @get("chartOptions")
-      console.log "drilldownConfig:(params)=>   base                 ",base
-      console.log "drilldownConfig:(params)=>   params               ",params
-
-      params
+  
 
     currentDrilldownLevel:->
       @get("drilldownHistory").length
@@ -57,7 +51,6 @@
 
 
     addChartToHistory:(params)=>
-      params = @drilldownConfig(params)
       @get("drilldownHistory").push(params)
       base = @get("chartOptions")
       base.xAxis.categories = params.xAxis.categories

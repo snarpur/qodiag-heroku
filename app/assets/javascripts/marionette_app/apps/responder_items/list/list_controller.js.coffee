@@ -7,7 +7,7 @@
       App.contentRegion.show @getLayout()
       
       user = App.request "get:current:user"
-      items = App.request "get:person:responder:items",{personId: user.get('person_id')}
+      items = App.request "get:person:responder:items",{personId: user.get('person_id'), concern: 'respondent'}
 
       App.execute "when:fetched", items, =>
 

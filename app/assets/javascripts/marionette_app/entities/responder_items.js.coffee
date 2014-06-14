@@ -52,8 +52,12 @@
     
     initialize: (models,options) ->
       @personId = options.personId
+      @concern = options.concern
       @url= ()->
-        Routes.person_responder_items_path(@personId)
+        if @concern
+          Routes.person_responder_items_path(@personId)+"?concern="+@concern
+        else    
+          Routes.person_responder_items_path(@personId)
 
       super 
 

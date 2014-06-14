@@ -4,14 +4,14 @@
 
     initialize:(id,options)->
       @subjectId = id
+      @showSubjectNavigation(id)
       @getItems()
     
     getItems:()->
-      items = App.request "get:person:responder:items",{personId:@subjectId}
+      items = App.request "get:person:responder:items",{personId:@subjectId,concern:'subject'}
       visItems = new vis.DataSet()
       App.execute "when:fetched", items, =>
         items.each (model)->
-
           if model.get("survey_id")? 
 
             start = new Date(model.get("completed") ? model.get("deadline"))
@@ -24,7 +24,14 @@
           
        
         @showContent({items: items, visItems: visItems})
-  
+    
+    showSubjectNavigation:(subjectId)->
+      @person = App.request "get:person:entity", subjectId
+
+      App.execute "when:fetched", @person, =>
+        App.execute "show:subject:navigation",{person: @person, personId: subjectId, currentItemName: 'timeline'}
+    
+
     showContent:(options)->
       
       @listenTo @getLayout(), "show", ()=>

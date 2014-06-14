@@ -5,13 +5,14 @@ do (Backbone, Marionette) ->
     constructor: ->
       _.extend @, Backbone.Events
     
-    onShow: (view) ->
+    onShow: (view) ->     
       view.$el.find(".modal").modal({
         keyboard: true
       })
 
-      @listenTo view.model, "created updated", ()=>
-        @closeDialog
+      if view.model?    
+        @listenTo view.model, "created updated", ()=>
+          @closeDialog
 
       view.$el.on "hidden", => @close()
       @setupBindings view 

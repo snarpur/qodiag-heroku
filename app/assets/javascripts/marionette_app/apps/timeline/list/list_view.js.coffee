@@ -105,44 +105,26 @@
       
 
     onShow:->
-      @on "chart:updated", ()-> console.warn "yepp its happening"
-      config = @model.get("chartOptions")
-      config.chart.renderTo =  @ui.chart[0]
-      @setFormatters(config)
-
-      appView = @
-      config.chart.appView = ()-> appView
-          
-      config.chart.events.drilldown = @drilldown
-      @createChart(config) 
+      @chartSetUp(@model.get("chartOptions"))
+      @createChart(@model.get("chartOptions")) 
       
-    setFormatters:(config)->
-      formatter = new App.Components.Chart.Formatter.Column(config)
-      formatter.setFormatters()
-
 
 
     updateChart:(options)->
-      {config} = options
-
-      @createChart(config)
+      @createChart(options.config)
       @triggerMethod("chart:updated")
-
 
 
     createChart:(config)->
       @currentChart = new Highcharts.Chart(config) 
-
-    
+ 
 
     drilldown:(e)->
       @options.chart.appView().triggerMethod("drilldown",{e:e,chart:@})
  
-
     
     drillup:()=> 
       @model.back()
-
 
    
     toggleDrillupButton:-> 
@@ -155,45 +137,34 @@
    
 
     onDrilldown:(options)->
-      {e,chart} = options
-      drilldownChart = @model.get("drilldownSeries")[e.point.name]
+      drilldownChart = @model.get("drilldownSeries")[options.e.point.name]
       @model.addChartToHistory(drilldownChart)
 
-      
-      # dummy = [
-      #   {
-      #     name: 'Tom Jones'
-      #     stack: "base"
-      #     color: "#186cdb"
-      #     data: [{y: 1}, {y: 2}, {y: 5}]
-      #   },
-      #   {
-      #     name: 'Normal'
-      #     stack: "ref"
-      #     color: "#99FF99"
-      #     data: [{ y: 1}, {y: 4}, {y: 8}]
-      #   },
-      #   {
-      #     name: 'Borderline'
-      #     stack: "ref"
-      #     color: '#E3D400'
-      #     data: [{ y: 5}, {y: 6}, { y: 9}]
-      #   },
-      #   {
-      #     name: 'Abnormal'
-      #     stack: "ref"
-      #     color: "#B10C01"
-      #     data: [{y: 1}, {y: 4}, { y: 8}]
-      #   }
-      # ]
-      # xAxis=
-      #   xAxis:
-      #     categories:["Tom Jones","Crazy","Comatose"]
-      # dummyConf = _.extend(series: dummy, xAxis)
-      # @model.addChartToHistory(dummyConf)
+    
+    
+    setFormatters:(config)->
+      formatter = new App.Components.Chart.Formatter.Column(config)
+      formatter.setFormatters()
 
-      
-      
+    
+    setDrilldown:(config)->
+      appView = @
+      config.chart.appView = ()-> appView
+
+    
+    setAppView:(config)->
+      config.chart.events.drilldown = @drilldown
+    
+
+    setContainer:(config)->
+      config.chart.renderTo =  @ui.chart[0]
+
+    
+    chartSetUp: (config)->
+      @setDrilldown(config)
+      @setAppView(config)
+      @setFormatters(config)
+      @setContainer(config)
  
 
 

@@ -4,7 +4,7 @@
   
   class TimelineApp.Router extends Marionette.AppRouter
     appRoutes:
-      "timeline/person/:id" : "list"
+      "timeline/people/:id" : "list"
 
   
   

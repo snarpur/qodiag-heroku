@@ -2,14 +2,17 @@ do (Backbone) ->
   
   _.extend Backbone.Marionette.Application::,
 
+    
+
+
     navigate: (route, options = {}) ->
       Backbone.history.navigate route, options
       
     routeToCaretakerBackboneApp:(currentUser)-> 
-      if _.contains(currentUser.get('role_names'), 'caretaker') and @getCurrentRoute() is null
-        true
-      else
-        false
+      # if _.contains(currentUser.get('role_names'), 'caretaker') and @getCurrentRoute() is null
+      #   true
+      # else
+      false
 
 
     getCurrentRoute: ->
