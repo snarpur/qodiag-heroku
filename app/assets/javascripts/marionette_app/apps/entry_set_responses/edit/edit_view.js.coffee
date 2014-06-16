@@ -29,11 +29,13 @@
         "active"
 
 
-  
-
+  class Edit.EmptyStep extends App.Views.ItemView
+    template: "entry_set_responses/edit/templates/_empty_step"
+    tagName: 'li'
 
   class Edit.FormSteps extends App.Views.CollectionView
     itemView: Edit.FormStep
+    emptyView: Edit.EmptyStep
     className: 'nav nav-tabs'
     tagName: 'ul'
 

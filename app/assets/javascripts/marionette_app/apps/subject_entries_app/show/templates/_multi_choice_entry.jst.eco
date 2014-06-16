@@ -9,3 +9,12 @@
         <p><%- @option_value %></p>
     </div>
   </div>
+<% else: %>
+  <div class="message-body msg-in">
+    <span class="arrow"></span>
+    <div class="text">
+        <p class="attribution"><a href="#"><%= @person.full_name %></a> <%- @l("date.formats.long",@created_at) %></p>
+        <p><%- @option_value %></p>
+    </div>
+  </div>
+<% end %>
