@@ -19,7 +19,7 @@
         {
           name: "timeline"
           text: I18n.t("terms.timeline")
-          url: "/#timeline{Routes.person_path(personId)}"
+          url: "/#timeline#{Routes.person_path(personId)}"
           iconClass:'fa-bar-chart-o' 
         },
         {
