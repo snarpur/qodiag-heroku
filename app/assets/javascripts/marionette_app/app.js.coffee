@@ -36,7 +36,7 @@
   App.on "initialize:after", (options) ->
     if Backbone.history
       Backbone.history.start()
-      if @routeToCaretakerBackboneApp(@currentUser)
+      if @routeToCaretakerRoot(@currentUser)
         window.location.href = "/users"
         return
       @navigate(@rootUrl(@currentUser), trigger: true) unless @getCurrentRoute()?

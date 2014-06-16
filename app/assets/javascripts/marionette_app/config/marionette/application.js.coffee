@@ -8,11 +8,11 @@ do (Backbone) ->
     navigate: (route, options = {}) ->
       Backbone.history.navigate route, options
       
-    routeToCaretakerBackboneApp:(currentUser)-> 
-      # if _.contains(currentUser.get('role_names'), 'caretaker') and @getCurrentRoute() is null
-      #   true
-      # else
-      false
+    routeToCaretakerRoot:(currentUser)-> 
+      if _.contains(currentUser.get('role_names'), 'caretaker') and @getCurrentRoute() is null
+        true
+      else
+        false
 
 
     getCurrentRoute: ->
@@ -35,6 +35,7 @@ do (Backbone) ->
       
       roles = user.get('role_names')
       currentRole = _.filter(roles,(s)-> s == "caretaker" or s == "respondent")
+      console.log rootUrls[_.first(currentRole)]
       rootUrls[_.first(currentRole)]
     
     startHistory: ->
