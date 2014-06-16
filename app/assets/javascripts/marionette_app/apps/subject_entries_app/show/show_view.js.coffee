@@ -51,8 +51,8 @@
   
 
   class Show.Entry extends App.Views.ItemView
-    getTemplate: -> 
-      template = if @options.field_type == 'multi-choice' then '_multi_choice_' else '_'
+    getTemplate: ->
+      template = if @options.field_type == 'multi-choice' or @options.field_type == 'single-choice'  then '_multi_choice_' else '_'
       "subject_entries_app/show/#{template}entry"
     
     templateHelpers: =>
