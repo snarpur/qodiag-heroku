@@ -52,7 +52,13 @@
 
   class Show.Entry extends App.Views.ItemView
     getTemplate: ->
-      template = if @options.field_type == 'multi-choice' or @options.field_type == 'single-choice'  then '_multi_choice_' else '_'
+      if @options.field_type == 'multi-choice'
+        template = '_multi_choice_'
+      else if  @options.field_type == 'single-choice'
+        template = '_single_choice_'
+      else
+        template = '_'
+      
       "subject_entries_app/show/#{template}entry"
     
     templateHelpers: =>
