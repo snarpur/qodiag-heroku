@@ -4,6 +4,7 @@
     
     initialize: (options) ->
       App.contentRegion.show @getLayout(options)
+      @executeSettingsNavigation()
             
     
 
@@ -25,12 +26,13 @@
         
         @showFormSteps()
 
-        @listenTo @sections, "change:current:section", () =>        
-          App.navigate(@sectionUrl(),{replace: true})
-          @getEntries()
-        
+        unless @sections.length is 0
+          @listenTo @sections, "change:current:section", () =>        
+            App.navigate(@sectionUrl(),{replace: true})
+            @getEntries()
+          
 
-        @getEntries()
+          @getEntries()
 
 
     getEntries:->
@@ -40,7 +42,11 @@
         @entrySetResponse.set('entry_fields',entries)
         @showForm()
 
-      
+    
+    executeSettingsNavigation:() ->
+      App.execute "show:settings:navigation", 
+        iconClass: "fa fa-envelope"
+        i18n: "views.responder_items.requests.name"
     
     
     showFormSteps:->
