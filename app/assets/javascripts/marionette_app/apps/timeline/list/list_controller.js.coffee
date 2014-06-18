@@ -36,6 +36,9 @@
       
       @listenTo @getLayout(), "show", ()=>
         @showTimeline(options)
+
+      @listenTo @getLayout(), "add:survey:clicked", ()=> 
+        @createSurvey()
       
       App.contentRegion.show @getLayout()
 
@@ -57,6 +60,8 @@
         @getColumnCharts(options)
         
     
+    createSurvey:(options = {})->
+      view = App.request "create:survey:view", options
 
     chartsLayout:(options={})->
       new App.Components.Charts.ChartLayout(options)
@@ -71,8 +76,8 @@
         @charts.setCurrentMetric(view.model.get("name"))
         @updateChart()
 
-    updateChart:(view)->
-  
+
+    updateChart:->
       @charts.fetch
         reset: true
 

@@ -5,20 +5,38 @@
     
     initialize:(options)->
       @collection = options.collection
-      @entrySets = App.request "entry:sets:entities"
-      
+      @respondents = @getSubject().get('respondents')
+      @controllerModel = new App.Entities.Model()
 
     create:->
+      @entrySets = App.request "entry:sets:entities"
       @showResponderItem()
 
+    createSurvey:->
+      @surveys = App.request "get:surveys"
+      @showSurveyResponderItem()
+
+    showSurveyResponderItem:->
+      App.execute "when:fetched", @surveys, =>
+        config = @getSurveyFormConfig()
+        @rootModel = @getSurveyItem()
+        @rootModel.set("_survey_id_options",@surveys)
+        @rootModel.set("_respondent_id_options",@respondents)
+        @fieldCollection = new App.Entities.FieldCollection(config,{rootModel:@rootModel,controllerModel:@controllerModel})
+
+        @listenTo @rootModel, "created", (model) =>
+          # NOTE: Place to add the code to communicate the timeline,the creation of the new survey
+
+        view = @getFieldsView(@fieldCollection)      
+
+        formView = App.request "form:wrapper", view, @buttonsConfig()
+        App.dialogRegion.show formView
    
     showResponderItem:->
-      @respondents = @getSubject().get('respondents')
-
+      
       App.execute "when:fetched", @entrySets, =>
-        @controllerModel = new App.Entities.Model()
-        config = @getFormConfig()
-        @rootModel = @getItem()
+        config = @getEntrySetFormConfig()
+        @rootModel = @getEntrySetItem()
         @rootModel.get("entry_set_response").set("_entry_set_id_options",@entrySets)
         
         @listenTo @rootModel, "change:entry_set_response.entry_set_id",(model,value,options) => 
@@ -37,21 +55,36 @@
 
         @rootModel.set("_respondent_id_options",@respondents)
 
-    getFormConfig:()->
-      Create.FormConfig
+    getEntrySetFormConfig:()->
+      Create.EntrySet.FormConfig
+
+    getSurveyFormConfig:()->
+      Create.Survey.FormConfig
 
     getFieldsView: (collection) =>
       new App.Components.Form.FieldCollectionView 
         collection: collection
         model: @rootModel
 
-    getItem:=>
+    getEntrySetItem:=>
 
       @item ?= new App.Entities.FormResponderItemModel
         caretaker_id: App.request("get:current:user").get('person_id')
         subject_id: @getSubject().id
         entry_set_response:
           entry_set_id: null
+
+      @item
+
+    getSurveyItem:=>
+
+      @item ?= new App.Entities.FormResponderItemModel
+        caretaker_id: App.request("get:current:user").get('person_id')
+        subject_id: @getSubject().id
+        item_type: "survey"
+        response_set:
+          id: null
+        survey_id: null
 
       @item
 

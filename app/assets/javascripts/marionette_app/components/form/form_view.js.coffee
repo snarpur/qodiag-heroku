@@ -288,8 +288,9 @@
         @ui.datepick.datepicker
           language: I18n.locale
           autoclose: true
-          format: "dd/mm/yy"
-          minDate: new Date().addDays(1)
+          format: "yy/mm/dd"
+          startDate: new Date().addDays(1)
+          todayHighlight: true
 
       super
      

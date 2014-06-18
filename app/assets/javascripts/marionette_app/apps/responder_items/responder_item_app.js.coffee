@@ -15,10 +15,15 @@
       ctrl = new ResponderItemsApp.Create.Controller(options)
       ctrl.create()
 
-
+    createSurvey:(options)->
+      ctrl = new ResponderItemsApp.Create.Controller(options)
+      ctrl.createSurvey()
 
   App.reqres.setHandler "create:responder:item:view", (options) ->
     API.create(options)
+
+  App.reqres.setHandler "create:survey:view", (options) ->
+    API.createSurvey(options)
 
 
   App.addInitializer ->

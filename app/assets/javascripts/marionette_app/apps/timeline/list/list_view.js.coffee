@@ -6,6 +6,8 @@
       timelineRegion: "#timeline-region"
       # chartsRegion: "#charts-region"
 
+    triggers:
+      "click .add-survey"  : "add:survey:clicked"
     
   class List.Timeline extends App.Views.ItemView
     template: "timeline/list/templates/timeline"
@@ -59,26 +61,3 @@
 
   
   
-
-
-
-
-
-
-  # class List.Breadcrumb extends App.Views.ItemView
-  #   template: "settings/list/templates/breadcrumb"
-  #   tagName: 'ul'
-  #   className: 'breadcrumb'
-  #   triggers:
-  #     'click a' : "back"
-
-  # class List.Header extends App.Views.ItemView
-  #   template: "settings/list/templates/header"
-  #   className: 'content_title'
-  #   tagName: "h1"
-
-  # class List.Navigation extends App.Views.CollectionView
-  #   itemView: List.NavigationItem
-  #   className: 'tabs fullwidth'
-  #   tagName: 'ul'
-
