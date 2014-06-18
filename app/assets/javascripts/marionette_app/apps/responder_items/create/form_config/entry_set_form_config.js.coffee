@@ -1,6 +1,6 @@
-@Qapp.module "ResponderItemsApp.Create", (Create, App, Backbone, Marionette, $, _) ->
+@Qapp.module "ResponderItemsApp.Create.EntrySet", (EntrySet, App, Backbone, Marionette, $, _) ->
 
-  Create.FormConfig = [
+  EntrySet.FormConfig = [
     {
       fieldType: "date"
       fieldName: "deadline"

@@ -15,6 +15,12 @@
       },
       {
         type: Backbone.One
+        key: 'survey'
+        relatedModel:-> 
+          App.Entities.Survey
+      },
+      {
+        type: Backbone.One
         key: 'respondent'
         relatedModel:->
           App.Entities.Person
