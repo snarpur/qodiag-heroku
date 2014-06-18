@@ -5,5 +5,7 @@
       @model.attributes if @model
     
     initialize: ->
+      super
       @extendTemplateHelpers(@templateHelpers)
+
 

@@ -2,6 +2,5 @@
   <span class="fa fa-chevron-left"></span> <%= @t("terms.back") %>
 </button>
 
-<div class='chart'>
-</div>
+<div class='chart' id='<%= @chart.renderTo  %>'></div>
 

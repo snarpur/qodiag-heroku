@@ -1,8 +1,8 @@
-@Qapp.module "Components.Chart", (Chart, App, Backbone, Marionette, $, _) ->
+@Qapp.module "Components.Charts", (Charts, App, Backbone, Marionette, $, _) ->
 
-  Chart.Formatter ||= {}
+  Charts.Formatter ||= {}
 
-  class Chart.Formatter.Line extends Chart.Formatter.Base 
+  class Charts.Formatter.Line extends Charts.Formatter.Base 
 
     formatters:-> 
       [ 

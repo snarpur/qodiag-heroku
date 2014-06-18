@@ -18,4 +18,5 @@
         options 
 
     initialize: ->
+      super
       @extendTemplateHelpers(@templateHelpers)

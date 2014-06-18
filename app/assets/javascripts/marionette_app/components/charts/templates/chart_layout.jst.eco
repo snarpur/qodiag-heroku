@@ -1,11 +1,12 @@
 <div class="modal" aria-hidden="false" aria-labelledby="myModalLabel" role="dialog" tabindex="-1">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header" id="charts-heading-region">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <div id="charts-menu-region"></div>
+          
       </div>
       <div class="modal-body">
+        <div id="charts-menu-region"></div>
         <div class="panel radius">
           <div id="charts-region"></div>
         </div>

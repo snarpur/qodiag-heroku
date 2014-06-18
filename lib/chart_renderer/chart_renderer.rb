@@ -95,6 +95,7 @@ module ChartRenderer
       end
     end
 
+
     def chart
       @chart[:chart_config][:chart][:renderTo] = get_content(:name)
       @chart[:chart_config][:chart]
@@ -135,12 +136,13 @@ module ChartRenderer
     end
     
     def chart_metrics
+      KK.log @chart[:content][:chart_metrics],:g
       @chart[:content][:chart_metrics]
     end
 
-    # def chart_filters
-    #   @chart[:content][:chart_filters]
-    # end
+    def chart_filters
+      @chart[:content][:chart_filters]
+    end
 
 
     def chart_output
@@ -182,17 +184,9 @@ module ChartRenderer
       drilldown_config[:content][:question_groups] = group[:total]
       drilldown_chart = self.class.new(drilldown_config,@response_set)
       drilldown_group =  drilldown_chart.chart_data
-      # drilldown_group.each {|i| i[:id] = group[:name]}
-      # drilldown_group.each do |i| 
-      #   i[:id] = group[:name]
-      # end
-                            
-                        
-                        # , 
-                        # :xAxis => {:categories => group[:total]}}
+      
       @drilldown[group[:name]] = {:series => drilldown_group,:xAxis => {:categories => group[:total]}}
-
-      # @drilldown[:xAxis] = {:categories => group[:total]}     
+    
     end    
 
     def weights_by_groups(groups)

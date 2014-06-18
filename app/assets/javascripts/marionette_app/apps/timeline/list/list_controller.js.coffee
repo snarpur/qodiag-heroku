@@ -59,12 +59,10 @@
     
 
     chartsLayout:(options={})->
-      new List.ChartLayout(options)
-
-
+      new App.Components.Charts.ChartLayout(options)
 
     chartsView:(options)->
-      new List.ColumnCharts(options)
+      new App.Components.Charts.ColumnCharts(options)
     
     
     
@@ -73,9 +71,10 @@
         @charts.setCurrentMetric(view.model.get("name"))
         @updateChart()
 
-    updateChart:->
+    updateChart:(view)->
+  
       @charts.fetch
-          reset: true
+        reset: true
 
 
     getColumnCharts:(options)->

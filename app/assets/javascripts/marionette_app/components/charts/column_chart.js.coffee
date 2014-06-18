@@ -1,11 +1,6 @@
 @Qapp.module "Components.Charts", (Charts, App, Backbone, Marionette, $, _) ->
 
-  # class Chart.Column extends Entities.Model
 
-  #   initialize:->
-  #     @url = ()->
-  #       base = "#{@.urlRoot}/#{@get('id')}/column"
-  #     super
 
   class Charts.Column extends Backbone.Model
     urlRoot: "/responder_items/responses"

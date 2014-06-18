@@ -28,7 +28,7 @@ module ResponseSetChartRenderer
         get_filter_options(chart_filters)
       end
      
-      OpenStruct.new({:charts => charts}.merge(chart_metrics).merge(chart_filters))
+      OpenStruct.new({:charts => charts}.merge(chart_metrics).merge(chart_filters).merge(group_title))
     end
 
     def get_filter_options(chart_filters)
@@ -48,6 +48,9 @@ module ResponseSetChartRenderer
       config_class(chart_type).send(:instance).get_items
     end
 
+    def group_title
+      {:group_title => self.norm_reference_group_name}
+    end
     def chart_metrics
       config_class(:column).send(:instance).get_config.slice(:chart_metrics)
     end

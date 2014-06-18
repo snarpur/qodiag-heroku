@@ -1,0 +1,1 @@
+<button type="button" class="<%= @activeChart() %>"><%- @t("surveys.terms.#{@name}")%></button> 

@@ -14,9 +14,9 @@ chart_filters:
      name: age
      query: age 
 
-chart_config:
-  title:
-    text: true
+# chart_config:
+#   title:
+#     text: true
 content:
   high_scores: [2,3]
   result_names: [average]
