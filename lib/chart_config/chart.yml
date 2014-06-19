@@ -6,16 +6,19 @@ chart_config:
     enabled: false
     backgroundColor: rgba(255, 255, 255, 0.85)
   chart:
-    marginBottom: 100
-    marginTop: 80
+    marginBottom: 70
+    marginTop: 20
     animation: false
     events: 
       click: false
   title:
     text: ~
   subtitle:
-    text: true
-    align: left
+    text: ~
+    align: right
+    verticalAlign: top
+    y: 10
+    useHTML: true
   legend:
     enabled: true
     align: left

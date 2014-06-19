@@ -38,7 +38,7 @@ chart_config:
     showFirstLabel: false
     showLastLabel: false
     title:
-      text: ~
+      text: false
     labels:
       align: center
       formatter: true
@@ -57,4 +57,4 @@ chart_config:
     labels:
       enabled:false
   title:
-    text: false
+    text: ~

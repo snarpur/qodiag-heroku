@@ -1,6 +1,8 @@
-<button type="button" class="btn btn-white drillup" style="visibility:hidden;">
+
+<button type="button" class="btn btn-xs btn-white drillup" style="visibility:hidden;">
   <span class="fa fa-chevron-left"></span> <%= @t("terms.back") %>
 </button>
+
 
 <div class='chart' id='<%= @chart.renderTo  %>'></div>
 

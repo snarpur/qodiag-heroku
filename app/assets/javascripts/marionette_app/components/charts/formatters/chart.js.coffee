@@ -85,7 +85,7 @@
     
     
     subtitleText: =>
-      I18n.l("date.formats.long",@chart.subtitle.text)
+      "<span class='label label-inverse'>#{I18n.l('date.formats.long',@chart.subtitle.text)}</span>"
     
     titleText: =>
       title = _.chain(@chart.title.text)

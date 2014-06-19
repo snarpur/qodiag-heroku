@@ -127,7 +127,7 @@
             .map(((i)->@["title#{_(i[0]).capitalize()}"].call(@,i[1])),@)
             .flatten()
             .value()
-          title.join(" ")
+          title.join(' ')
        
     titleSurvey:(name)->
       _(I18n.t("surveys.#{name}.name")).capitalize()
@@ -141,7 +141,13 @@
      
     titleRespondent:(respondent)->
       I18n.t("surveys.terms.norm_reference.#{respondent}")
-
+    
+    subtitle: =>
+      # "<span class='label label-primary'>#{I18n.l('date.formats.long',@chart.subtitle.text)}</span>"
+      
+      # "<small>#{I18n.l('date.formats.long',@chart.subtitle.text)}</small>"
+      console.log "<small>", @
+      "<small>8. april 2014</small>"
   
   class Charts.ChartsMenuItem extends App.Views.ItemView
     template: 'charts/templates/_charts_menu_item'
