@@ -66,7 +66,6 @@
       @options = options
       @setCurrentMetric(options.currentMetric)
 
-
       @url = ->
         url = "/responder_items/responses/:id/column"
         url = url.replace(/\:id/,@responderItemId())
@@ -96,6 +95,12 @@
         @chartMenu 
       else 
         @chartMenu = new Backbone.Collection @options.chartMetrics 
+
+    getChartFilter:->
+      if @chartFilters 
+        @chartFilters 
+      else
+        @chartFilters = new Backbone.Collection @options.chartFilters
       
 
     responderItemId:->
@@ -109,6 +114,9 @@
 
     setCurrentMetric:(name)->
       @currentMetric = name
+
+    setNormReferenceId:(id)->
+      @normReferenceId = id
 
 
   # class Entities.QuestionResponse extends Backbone.Model

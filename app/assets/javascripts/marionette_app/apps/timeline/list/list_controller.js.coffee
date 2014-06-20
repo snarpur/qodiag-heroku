@@ -57,7 +57,7 @@
         region: @getLayout().timelineRegion 
 
       @listenTo @getTimeline(), "item:selected", (options)=>
-        @getColumnCharts(options)
+        @getColumnCharts(options) if options.item.get("completed")?
         
     
     createSurvey:(options = {})->
@@ -76,6 +76,11 @@
         @charts.setCurrentMetric(view.model.get("name"))
         @updateChart()
 
+    onChangeFilter:(layout)->
+      @listenTo layout, "filter:changed", (view, normReference)=>
+        @charts.setNormReferenceId(normReference.id)
+        @updateChart()
+
 
     updateChart:->
       @charts.fetch
@@ -91,6 +96,7 @@
       App.execute "when:fetched", @charts, =>
         chartView = @chartsView({ collection: @charts})
         @onChangeChart(chartsLayout)
+        @onChangeFilter(chartsLayout)
         chartsLayout.chartsRegion.show chartView
 
         

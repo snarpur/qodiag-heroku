@@ -1,7 +1,9 @@
 object @chart
 attributes :chart_metrics => :chartMetrics,
            :chart_filters => :chartFilters,
-           :group_title => :groupTitle
+           :group_title => :groupTitle,
+           :completed => :completed
+
 
 
 node :charts do |chart| 

@@ -1,0 +1,10 @@
+<label class="col-lg-1 control-label"><%- @t(@query) %></label>
+<div class="col-lg-4">
+  <select id="<%=@name%>" class="form-control">
+    <% if @options?: %>
+      <% for option in @options: %>
+        <option value='<%= option.id %>' <%= option.selected %> ><%= option.value %></option> 
+      <% end %>
+    <% end %>
+  </select>
+</div>

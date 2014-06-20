@@ -8,19 +8,33 @@
       chartsRegion: "#charts-region"
       chartsHeadingRegion: "#charts-heading-region"
       chartsMenuRegion: "#charts-menu-region"
+      chartsFilterRegion: "#charts-filter-region"
 
     onShow:->
       @chartsRegion.on "show", (chartView)=>
         menu = new Charts.ChartsMenu(collection: chartView.collection.getChartMenu())
-        @setHeading(chartView)      
+        filter = new Charts.ChartsFilters(collection: chartView.collection.getChartFilter())
+        filter.chart
+        @setHeading(chartView)
+
+        @listenTo chartView.collection, "charts:rendered",(view)->
+          @setHeading(view)
+        
         @listenTo menu, "childview:active", (options) =>
           @trigger "active:chart:selected", options
-        
+
+
+        @listenTo filter, "childview:selected", (options, normReference) =>
+          @trigger "filter:changed", options, normReference
+
         @chartsMenuRegion.show menu
+        @chartsFilterRegion.show filter
+
 
     
     setHeading:(chartsView)->
       heading = chartsView.groupTitle()
+      $(@chartsHeadingRegion.el).find(".modal-title").remove()
       $(@chartsHeadingRegion.el).append("<h4 class='modal-title'>#{heading}</h4>")
     
 
@@ -121,13 +135,15 @@
     itemView: Charts.ColumnChart
     className: 'row'
 
+    onRender:->
+      @collection.trigger("charts:rendered",@)
 
     groupTitle: =>
           title = _.chain(@collection.options.groupTitle)
             .map(((i)->@["title#{_(i[0]).capitalize()}"].call(@,i[1])),@)
             .flatten()
             .value()
-          title.join(' ')
+          "#{title.join(' ')} | #{@subtitle()}"
        
     titleSurvey:(name)->
       _(I18n.t("surveys.#{name}.name")).capitalize()
@@ -143,12 +159,11 @@
       I18n.t("surveys.terms.norm_reference.#{respondent}")
     
     subtitle: =>
-      # "<span class='label label-primary'>#{I18n.l('date.formats.long',@chart.subtitle.text)}</span>"
-      
-      # "<small>#{I18n.l('date.formats.long',@chart.subtitle.text)}</small>"
-      console.log "<small>", @
-      "<small>8. april 2014</small>"
-  
+      if @collection.options.completed?
+        "<small class='white'><em>#{I18n.l('date.formats.long',@collection.options.completed)}</em></small>"
+      else
+        ""
+
   class Charts.ChartsMenuItem extends App.Views.ItemView
     template: 'charts/templates/_charts_menu_item'
     className: 'btn-group'
@@ -196,9 +211,23 @@
       @activeIndex ?= 0
       super
 
+  
+  class Charts.ChartsFilter extends App.Views.ItemView
+    template: 'charts/templates/_charts_filters'
 
+    events: 
+      "change select": "normReferenceChanged"
     
+    normReferenceChanged:(event)->
+      @triggerMethod("selected",{id: event.currentTarget.value})
 
+  
+  class Charts.ChartsFilters extends App.Views.CollectionView
+    itemView: Charts.ChartsFilter
+    className: 'form-group'
+
+
+  
 
 
     

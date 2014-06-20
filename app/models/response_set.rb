@@ -36,8 +36,17 @@ module ResponseSetCustomMethods
               
   end
 
-  def norm_reference 
-    NormReference.find_match({:survey_id => self.survey.id, :sex => self.subject.sex, :age => self.subject.age})
+  def norm_reference(id=nil)
+    return @norm_reference if @norm_reference
+    unless id.nil?
+      @norm_reference = NormReference.find(id)
+    else
+      @norm_reference = NormReference.find_match({:survey_id => self.survey.id, :sex => self.subject.sex, :age => self.subject.age})
+      if @norm_reference == nil
+        @norm_reference = NormReference.get_norm_reference_for_oldest(self.survey.id, self.subject.sex)
+      end
+    end
+    @norm_reference
   end
 
   def norm_reference_group_name

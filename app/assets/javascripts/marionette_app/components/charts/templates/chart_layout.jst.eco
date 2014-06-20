@@ -7,6 +7,7 @@
       </div>
       <div class="modal-body">
         <div id="charts-menu-region"></div>
+        <div id="charts-filter-region"></div>
         <div class="panel radius">
           <div id="charts-region"></div>
         </div>

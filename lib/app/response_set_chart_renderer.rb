@@ -12,6 +12,8 @@ module ResponseSetChartRenderer
     end
 
     def response_to_chart(options={})
+      norm_reference options[:norm_reference_id]
+
       if options[:column_metrics] == "standard_deviation"
         charts = get_chart_items(:standard_deviation).map do |item|
           config_copy = Marshal::load(Marshal.dump(item.get_config))
@@ -27,8 +29,7 @@ module ResponseSetChartRenderer
       if not chart_filters.nil? and not chart_filters[:chart_filters].nil?
         get_filter_options(chart_filters)
       end
-     
-      OpenStruct.new({:charts => charts}.merge(chart_metrics).merge(chart_filters).merge(group_title))
+      OpenStruct.new({:charts => charts}.merge(chart_metrics).merge(chart_filters).merge(group_title).merge(completed))
     end
 
     def get_filter_options(chart_filters)
@@ -51,6 +52,11 @@ module ResponseSetChartRenderer
     def group_title
       {:group_title => self.norm_reference_group_name}
     end
+
+    def completed
+      {:completed => self.responder_item.completed}
+    end
+    
     def chart_metrics
       config_class(:column).send(:instance).get_config.slice(:chart_metrics)
     end

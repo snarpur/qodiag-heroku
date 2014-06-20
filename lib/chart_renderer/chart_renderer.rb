@@ -18,7 +18,7 @@ module ChartRenderer
         norm_referenceee = NormReference.find @options[:norm_reference_id] unless (@options.nil? && @options[:norm_reference_id].nil?)
       else
         if @response_set.norm_reference.nil?
-          norm_referenceee =  NormReference.get_norm_reference_for_oldest(@response_set[:survey_id])
+          norm_referenceee =  NormReference.get_norm_reference_for_oldest(@response_set[:survey_id],@response_set.subject.sex)
         else
           norm_referenceee = @response_set.norm_reference
         end

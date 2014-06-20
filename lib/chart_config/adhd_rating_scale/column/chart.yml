@@ -12,7 +12,7 @@ chart_metrics:
 chart_filters:
    - 
      name: age
-     query: age 
+     query: surveys.adhd-rating-scale.age 
 
 # chart_config:
 #   title:
