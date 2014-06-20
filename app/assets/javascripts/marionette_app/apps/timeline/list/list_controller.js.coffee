@@ -6,24 +6,44 @@
       @subjectId = id
       @showSubjectNavigation(id)
       @getItems()
-    
+
     getItems:()->
       items = App.request "get:person:responder:items",{personId:@subjectId,concern:'subject'}
       visItems = new vis.DataSet()
       App.execute "when:fetched", items, =>
-        items.each (model)->
+        items.each (model)=>
           if model.get("survey_id")? 
 
             start = new Date(model.get("completed") ? model.get("deadline"))
             start = moment(start).minutes(0).seconds(0).milliseconds(0)
 
-            params = {id: "#{model.get('id')}",type: 'point'}
+            params = {id: "#{model.get('id')}",type: 'point',className: @getItemClassName(model)}
             params.start = start 
             params.content = model.get("survey").access_code
             visItems.add params
           
        
         @showContent({items: items, visItems: visItems})
+
+  
+    getItemClassName:(model)->
+      if @isCompleted(model) then "completed"
+      else if @isPending(model) then "pending"
+      else if @isOverdue(model) then "overdue"
+
+    deadlineIsPassed:(model)->
+      deadline = Date.parse(model.get('deadline'))
+      deadline.isBefore(Date.today())
+
+    isCompleted:(model)->
+      model.get('completed')?
+  
+    isOverdue:(model)->
+      !@isPending(model) and !@isCompleted(model)
+  
+    isPending:(model)->
+      !@isCompleted(model) and !@deadlineIsPassed(model)
+
     
     showSubjectNavigation:(subjectId)->
       @person = App.request "get:person:entity", subjectId
