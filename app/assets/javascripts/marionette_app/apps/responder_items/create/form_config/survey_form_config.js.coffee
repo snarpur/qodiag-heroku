@@ -35,7 +35,7 @@
       fieldName: "survey_id"
       valueKey: "id"
       labelKey:
-        key: "title"
+        key: "text"
       fieldLabel:
         i18n: "terms.surveys"
       validations: [

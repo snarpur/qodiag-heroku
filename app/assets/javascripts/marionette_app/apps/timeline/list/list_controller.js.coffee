@@ -7,24 +7,26 @@
       @showSubjectNavigation(id)
       @getItems()
 
+
     getItems:()->
-      items = App.request "get:person:responder:items",{personId:@subjectId,concern:'subject'}
-      visItems = new vis.DataSet()
-      App.execute "when:fetched", items, =>
-        items.each (model)=>
+      @items = App.request "get:person:responder:items",{personId:@subjectId,concern:'subject'}
+      @visItems = new vis.DataSet()
+      @initialSurveys = []
+      App.execute "when:fetched", @items, =>
+        @items.each (model)=>
           if model.get("survey_id")? 
 
             start = new Date(model.get("completed") ? model.get("deadline"))
             start = moment(start).minutes(0).seconds(0).milliseconds(0)
 
-            params = {id: "#{model.get('id')}",type: 'point',className: @getItemClassName(model)}
+            params = {id: "#{model.get('id')}",surveyId: model.get('survey_id'),type: 'point',className: @getItemClassName(model)}
             params.start = start 
             params.content = model.get("survey").access_code
-            visItems.add params
+            @visItems.add params
           
-       
-        @showContent({items: items, visItems: visItems})
+            @initialSurveys.push model.get("survey_id")
 
+        @showContent({items: @items, visItems: @visItems})  
   
     getItemClassName:(model)->
       if @isCompleted(model) then "completed"
@@ -56,11 +58,49 @@
       
       @listenTo @getLayout(), "show", ()=>
         @showTimeline(options)
+        @showMenu()
 
       @listenTo @getLayout(), "add:survey:clicked", ()=> 
         @createSurvey()
+
       
       App.contentRegion.show @getLayout()
+
+    showMenu:=>
+      @surveys = App.request "get:surveys"
+      App.execute "when:fetched", @surveys, =>
+        @menuView ?= new List.Select({model: new Backbone.Model(), collection: @surveys, initialSurveys: _.uniq @initialSurveys})
+        @show @menuView,
+          region: @getLayout().menuRegion
+
+        @listenTo @menuView, "select:menu:changed", (options)=>
+          if options.removed?
+            @hideSurvey(options.removed.id)
+          else
+            @showSurvey(options.added.id)
+        
+          
+
+    showSurvey:(surveyId)->
+      @items.each (model)=>
+        if model.get("survey_id") is surveyId
+
+          start = new Date(model.get("completed") ? model.get("deadline"))
+          start = moment(start).minutes(0).seconds(0).milliseconds(0)
+
+          params = {id: "#{model.get('id')}",surveyId: model.get('survey_id'),type: 'point',className: @getItemClassName(model)}
+          params.start = start 
+          params.content = model.get("survey").access_code
+          @visItems.add params
+        
+
+    hideSurvey:(surveyId)->
+      itemIds = @visItems.get
+        fields: ["id"]
+        filter:(item)=>
+          item.surveyId == surveyId
+
+      @visItems.remove _.pluck itemIds, "id"
 
     getTimeline:(model)->
       @timelineView ?= new List.Timeline(model: model)
@@ -72,7 +112,6 @@
 
     showTimeline:(options)->
       visModel = new Backbone.Model(options)
-      
       @show @getTimeline(visModel),
         region: @getLayout().timelineRegion 
 

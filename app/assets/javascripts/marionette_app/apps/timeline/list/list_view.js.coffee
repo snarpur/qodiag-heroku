@@ -4,10 +4,50 @@
     template: "timeline/list/templates/list_layout"
     regions:
       timelineRegion: "#timeline-region"
-      # chartsRegion: "#charts-region"
+      menuRegion: "#menu-region"
 
     triggers:
       "click .add-survey"  : "add:survey:clicked"
+
+  class List.Option extends App.Views.ItemView
+    template: "timeline/list/templates/_option"
+    tagName: "li"
+
+  class List.Select extends App.Views.ItemView
+    template: "timeline/list/templates/menu"
+    itemView: List.Option
+    itemViewContainer: "#menu"
+
+    ui:->
+      select: "#menu"
+
+    events:
+      "change #menu" : "triggerSelect"
+
+    triggerSelect:(event)->
+      @trigger("select:menu:changed",event)
+
+    onRender:->
+      @ui.select.val(@options.initialSurveys)
+      @ui.select.select2
+        multiple: true
+        initSelection:(element, callback)=>
+          data = []
+
+          _.each element.val().split(","), (item)=>
+            query = {id: Number(item)}
+            survey = @collection.findWhere query
+            data.push({id: Number(item), text: survey.get('text')})
+
+          callback(data);
+
+
+        query:(query)=>
+          data = {
+            results: @collection.toJSON()
+          }
+          query.callback data
+      
     
   class List.Timeline extends App.Views.ItemView
     template: "timeline/list/templates/timeline"
@@ -20,8 +60,8 @@
       # margin:
       #   axis: 80
       #   item: 30
-      zoomMax: 31536000000
-      zoomMin: 31536000000
+      # zoomMax: 31536000000
+      # zoomMin: 31536000000
     
     onShow:()->
       @setTimeline()
@@ -45,6 +85,8 @@
 
     setTimeline:->
       @timeline = new vis.Timeline(@el,@model.get('visItems'),{})
+      @model.set("timeline",@timeline)
+
       
     setOptions:()->
       config = _.extend(@timelineOptions, @startEnd())

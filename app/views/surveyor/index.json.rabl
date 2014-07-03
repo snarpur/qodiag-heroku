@@ -1,2 +1,2 @@
 collection @surveys
-attributes :id, :access_code, :title
+attributes :id => :id, :access_code => :access_code, :title => :text
