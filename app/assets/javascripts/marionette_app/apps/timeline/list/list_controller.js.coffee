@@ -10,23 +10,30 @@
 
     getItems:()->
       @items = App.request "get:person:responder:items",{personId:@subjectId,concern:'subject'}
+      
       @visItems = new vis.DataSet()
       @initialSurveys = []
       App.execute "when:fetched", @items, =>
         @items.each (model)=>
           if model.get("survey_id")? 
-
-            start = new Date(model.get("completed") ? model.get("deadline"))
-            start = moment(start).minutes(0).seconds(0).milliseconds(0)
-
-            params = {id: "#{model.get('id')}",surveyId: model.get('survey_id'),type: 'point',className: @getItemClassName(model)}
-            params.start = start 
-            params.content = model.get("survey").access_code
-            @visItems.add params
-          
+            @visItems.add @buildItem(model) 
             @initialSurveys.push model.get("survey_id")
 
-        @showContent({items: @items, visItems: @visItems})  
+        @showContent({items: @items, visItems: @visItems})
+
+        @listenTo @items, "add",(model,collection)->
+          @visItems.add @buildItem(model)
+
+
+    buildItem:(responderItem)->
+      start = new Date(responderItem.get("completed") ? responderItem.get("deadline"))
+      start = moment(start).minutes(0).seconds(0).milliseconds(0)
+
+      params = {id: "#{responderItem.get('id')}",surveyId: responderItem.get('survey_id'),type: 'point',className: @getItemClassName(responderItem)}
+      params.start = start 
+      params.content = if responderItem.get("survey")? then responderItem.get("survey").access_code else @surveys.get(responderItem.get('survey_id')).get("access_code")
+
+      params
   
     getItemClassName:(model)->
       if @isCompleted(model) then "completed"
@@ -61,7 +68,7 @@
         @showMenu()
 
       @listenTo @getLayout(), "add:survey:clicked", ()=> 
-        @createSurvey()
+        @createSurvey({itemCollection: @items})
 
       
       App.contentRegion.show @getLayout()
@@ -69,7 +76,7 @@
     showMenu:=>
       @surveys = App.request "get:surveys"
       App.execute "when:fetched", @surveys, =>
-        @menuView ?= new List.Select({model: new Backbone.Model(), collection: @surveys, initialSurveys: _.uniq @initialSurveys})
+        @menuView ?= new List.Select({model: new Backbone.Model(), items: @items, collection: @surveys, initialSurveys: _.uniq @initialSurveys})
         @show @menuView,
           region: @getLayout().menuRegion
 
@@ -79,19 +86,11 @@
           else
             @showSurvey(options.added.id)
         
-          
 
     showSurvey:(surveyId)->
       @items.each (model)=>
         if model.get("survey_id") is surveyId
-
-          start = new Date(model.get("completed") ? model.get("deadline"))
-          start = moment(start).minutes(0).seconds(0).milliseconds(0)
-
-          params = {id: "#{model.get('id')}",surveyId: model.get('survey_id'),type: 'point',className: @getItemClassName(model)}
-          params.start = start 
-          params.content = model.get("survey").access_code
-          @visItems.add params
+          @visItems.add @buildItem(model)
         
 
     hideSurvey:(surveyId)->
@@ -112,16 +111,16 @@
 
     showTimeline:(options)->
       visModel = new Backbone.Model(options)
+
       @show @getTimeline(visModel),
         region: @getLayout().timelineRegion 
 
       @listenTo @getTimeline(), "item:selected", (options)=>
-        @getColumnCharts(options) if options.item.get("completed")?
-        
+        @getColumnCharts(options) if options.item.get("completed")?  
     
     createSurvey:(options = {})->
-      view = App.request "create:survey:view", options
-
+      App.request "create:survey:view", options
+    
     chartsLayout:(options={})->
       new App.Components.Charts.ChartLayout(options)
 

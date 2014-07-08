@@ -9,14 +9,8 @@
     triggers:
       "click .add-survey"  : "add:survey:clicked"
 
-  class List.Option extends App.Views.ItemView
-    template: "timeline/list/templates/_option"
-    tagName: "li"
-
   class List.Select extends App.Views.ItemView
     template: "timeline/list/templates/menu"
-    itemView: List.Option
-    itemViewContainer: "#menu"
 
     ui:->
       select: "#menu"
@@ -28,6 +22,7 @@
       @trigger("select:menu:changed",event)
 
     onRender:->
+
       @ui.select.val(@options.initialSurveys)
       @ui.select.select2
         multiple: true
@@ -47,7 +42,12 @@
             results: @collection.toJSON()
           }
           query.callback data
-      
+
+      @listenTo @options.items, "add", (model,collection)=>
+        surveysSelected = @ui.select.select2('val')
+        if _.indexOf(surveysSelected, model.get("survey_id")) is -1
+          surveysSelected.push model.get("survey_id")
+          @ui.select.select2('val',surveysSelected)
     
   class List.Timeline extends App.Views.ItemView
     template: "timeline/list/templates/timeline"
@@ -57,11 +57,7 @@
       align: 'center'
       orientation: "top"                  
       height: 500
-      # margin:
-      #   axis: 80
-      #   item: 30
-      # zoomMax: 31536000000
-      # zoomMin: 31536000000
+
     
     onShow:()->
       @setTimeline()

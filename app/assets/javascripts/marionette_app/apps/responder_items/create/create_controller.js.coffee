@@ -5,6 +5,7 @@
     
     initialize:(options)->
       @collection = options.collection
+      @itemCollection = options.itemCollection
       @respondents = @getSubject().get('respondents')
       @controllerModel = new App.Entities.Model()
 
@@ -12,7 +13,7 @@
       @entrySets = App.request "entry:sets:entities"
       @showResponderItem()
 
-    createSurvey:->
+    createSurvey:()->
       @surveys = App.request "get:surveys"
       @showSurveyResponderItem()
 
@@ -24,16 +25,22 @@
         @rootModel.set("_respondent_id_options",@respondents)
         @fieldCollection = new App.Entities.FieldCollection(config,{rootModel:@rootModel,controllerModel:@controllerModel})
 
-        @listenTo @rootModel, "created", (model) =>
-          # NOTE: Place to add the code to communicate the timeline,the creation of the new survey
-
-        view = @getFieldsView(@fieldCollection)      
+        
+        view = @getFieldsView(@fieldCollection)  
 
         formView = App.request "form:wrapper", view, @buttonsConfig()
+
         App.dialogRegion.show formView
-   
+
+
+
+        @listenTo formView, "before:form:submit", =>
+          @listenTo @rootModel, "created", (model) =>
+            @itemCollection.add model.clone()
+
+        view
+
     showResponderItem:->
-      
       App.execute "when:fetched", @entrySets, =>
         config = @getEntrySetFormConfig()
         @rootModel = @getEntrySetItem()
