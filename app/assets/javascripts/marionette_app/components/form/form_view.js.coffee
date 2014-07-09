@@ -161,7 +161,7 @@
       @addErrors errors
     
     removeErrors: ->
-      @$el.find(".form-group").removeClass("has-error")
+      @$el.removeClass("has-error")
       @$el.find(".help-block").text("")
 
     addErrors: (errors = {}) ->
@@ -280,6 +280,19 @@
   class Form.DateFieldView extends Form.FieldView
     className: "form-group"
 
+    onShow:->
+      @bindings = {}
+      @bindings["##{@model.get("fieldName")}"] = {
+        observe: "fieldValue",
+        onGet: (value,options) ->
+          unless value?
+            moment(value,"YYYY-MM-DDTHH:mmZ").format("DD/MM/YY")
+        onSet: (value,options) ->
+          moment(value,"DD/MM/YY").format("YY/MM/DD")
+
+      }
+      @.stickit()
+
     ui:->
       datepick: "##{@model.get("fieldName")}"
        
@@ -288,7 +301,8 @@
         @ui.datepick.datepicker
           language: I18n.locale
           autoclose: true
-          format: "yy/mm/dd"
+          forceParse: false
+          format: "dd/mm/yy"
           startDate: new Date().addDays(1)
           todayHighlight: true
 
