@@ -17,9 +17,7 @@
       
       @listenTo formView, "before:form:submit", =>
 
-        @listenTo @rootModel, "created updated", =>
-          # NOTE: Keep it for Issue #77 
-          console.log "created or updated::",arguments
+        @listenToOnce @rootModel, "created updated", =>
           # If we are updating the parents, re render every childview
           if @activeView.collection
             _.each(@activeView.children?._views,((i) ->
