@@ -68,7 +68,6 @@ group :development do
   gem 'binding_of_caller', :require => RUBY_PLATFORM.include?('darwin') ? 'binding_of_caller' : false
   gem 'meta_request'
   gem 'xray-rails'
-  gem 'mysql2psql', '~> 0.1.0'
 
 end
 
