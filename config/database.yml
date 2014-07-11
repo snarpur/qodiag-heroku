@@ -15,49 +15,65 @@
 # And be sure to use new-style password hashing:
 #   http://dev.mysql.com/doc/refman/5.0/en/old-client.html
 development:
-  adapter: mysql2
+  # adapter: mysql2
+  adapter: postgresql
   encoding: utf8
   reconnect: false
   database: snarpur_development
+  host: localhost
   pool: 5
-  username: root
-  password:
-  socket: /tmp/mysql.sock
+  # username: root
+  username: postgres
+  # password: 
+  password: alaska1959
+  # socket: /tmp/mysql.sock
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test: &test
-  adapter: mysql2
+  # adapter: mysql2
+  adapter: postgresql
   encoding: utf8
   reconnect: false
   database: snarpur_test
+  host: localhost
   pool: 5
-  username: root
-  password:
-  socket: /tmp/mysql.sock
+  # username: root
+  username: postgres
+  # password:
+  password: alaska1959   
+  # socket: /tmp/mysql.sock
 
 
 staging:
-  adapter: mysql2
+  # adapter: mysql2
+  adapter: postgresql
   encoding: utf8
   reconnect: false
   database: snarpur_staging
+  host: localhost
   pool: 5
-  username: root
-  password:
-  socket: /tmp/mysql.sock
+  # username: root
+  username: postgres
+  # password:
+  password: alaska1959
+  # socket: /tmp/mysql.sock
 
 
 production:
-  adapter: mysql2
+  # adapter: mysql2
+  adapter: postgresql
   encoding: utf8
   reconnect: false
   database: snarpur_production
+  host: localhost
   pool: 5
-  username: root
-  password:
-  socket: /tmp/mysql.sock
+  # username: root
+  username: postgres
+  # password:
+  password: alaska1959
+  # socket: /tmp/mysql.sock
 
 
 

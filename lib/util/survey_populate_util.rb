@@ -58,7 +58,8 @@ class SurveyPopulateUtil < ResponderItemPopulateUtil
   def complete_survey(item)
     self.complete_response_set(item)
     
-    survey_sections = SurveySection.where(item.survey_id).select(:id)
+    # survey_sections = SurveySection.where(item.survey_id).select(:id)
+    survey_sections = SurveySection.where("id = #{item.survey_id}").select(:id)
     survey_sections.each do |section|
       questions = Question.where("survey_section_id = #{section.id}")
       questions_size = questions.size
