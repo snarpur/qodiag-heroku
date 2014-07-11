@@ -42,7 +42,7 @@ gem 'yaml_db'
 gem 'fontcustom'
 gem 'ini_file'
 
-
+gem 'rails_12factor', group: :production
 
 # Gem to show the spinner when change the view
 
@@ -60,6 +60,7 @@ group :assets do
   gem 'compass-rails'
   gem 'eco'
 end
+
 
 group :development do
   gem 'quiet_assets'
