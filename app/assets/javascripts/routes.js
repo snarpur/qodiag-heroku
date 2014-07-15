@@ -1,6 +1,8 @@
 (function() {
-  var NodeTypes, ParameterMissing, Utils, defaults,
+  var NodeTypes, ParameterMissing, Utils, createGlobalJsRoutesObject, defaults, root,
     __hasProp = {}.hasOwnProperty;
+
+  root = typeof exports !== "undefined" && exports !== null ? exports : this;
 
   ParameterMissing = function(message) {
     this.message = message;
@@ -28,8 +30,8 @@
       if (!prefix && !(this.get_object_type(object) === "object")) {
         throw new Error("Url parameters should be a javascript hash");
       }
-      if (window.jQuery) {
-        result = window.jQuery.param(object);
+      if (root.jQuery) {
+        result = root.jQuery.param(object);
         return (!result ? "" : result);
       }
       s = [];
@@ -92,6 +94,19 @@
         delete options.anchor;
       }
       return anchor;
+    },
+    extract_trailing_slash: function(options) {
+      var trailing_slash;
+
+      trailing_slash = false;
+      if (defaults.default_url_options.hasOwnProperty("trailing_slash")) {
+        trailing_slash = defaults.default_url_options.trailing_slash;
+      }
+      if (options.hasOwnProperty("trailing_slash")) {
+        trailing_slash = options.trailing_slash;
+        delete options.trailing_slash;
+      }
+      return trailing_slash;
     },
     extract_options: function(number_of_params, args) {
       var last_el;
@@ -157,7 +172,7 @@
       return result;
     },
     build_path: function(required_parameters, optional_parts, route, args) {
-      var anchor, opts, parameters, result, url, url_params;
+      var anchor, opts, parameters, result, trailing_slash, url, url_params;
 
       args = Array.prototype.slice.call(args);
       opts = this.extract_options(required_parameters.length, args);
@@ -167,8 +182,12 @@
       parameters = this.prepare_parameters(required_parameters, args, opts);
       this.set_default_url_options(optional_parts, parameters);
       anchor = this.extract_anchor(parameters);
+      trailing_slash = this.extract_trailing_slash(parameters);
       result = "" + (this.get_prefix()) + (this.visit(route, parameters));
       url = Utils.clean_path("" + result);
+      if (trailing_slash === true) {
+        url = url.replace(/(.*?)[\/]?$/, "$1/");
+      }
       if ((url_params = this.serialize(parameters)).length) {
         url += "?" + url_params;
       }
@@ -260,8 +279,8 @@
       return this._classToTypeCache;
     },
     get_object_type: function(obj) {
-      if (window.jQuery && (window.jQuery.type != null)) {
-        return window.jQuery.type(obj);
+      if (root.jQuery && (root.jQuery.type != null)) {
+        return root.jQuery.type(obj);
       }
       if (obj == null) {
         return "" + obj;
@@ -271,8 +290,13 @@
       } else {
         return typeof obj;
       }
-    },
-    namespace: function(root, namespaceString) {
+    }
+  };
+
+  createGlobalJsRoutesObject = function() {
+    var namespace;
+
+    namespace = function(mainRoot, namespaceString) {
       var current, parts;
 
       parts = (namespaceString ? namespaceString.split(".") : []);
@@ -280,14 +304,11 @@
         return;
       }
       current = parts.shift();
-      root[current] = root[current] || {};
-      return Utils.namespace(root[current], parts.join("."));
-    }
-  };
-
-  Utils.namespace(window, "Routes");
-
-  window.Routes = {
+      mainRoot[current] = mainRoot[current] || {};
+      return namespace(mainRoot[current], parts.join("."));
+    };
+    namespace(root, "Routes");
+    root.Routes = {
 // accept_user_invitation => /invitation/edit(.:format)
   accept_user_invitation_path: function(options) {
   return Utils.build_path([], ["format"], [2,[2,[2,[2,[7,"/",false],[6,"invitation",false]],[7,"/",false]],[6,"edit",false]],[1,[2,[8,".",false],[3,"format",false]],false]], arguments);
@@ -660,14 +681,6 @@
   pre_registrations_path: function(options) {
   return Utils.build_path([], ["format"], [2,[2,[7,"/",false],[6,"pre_registrations",false]],[1,[2,[8,".",false],[3,"format",false]],false]], arguments);
   },
-// rails_info_properties => /rails/info/properties(.:format)
-  rails_info_properties_path: function(options) {
-  return Utils.build_path([], ["format"], [2,[2,[2,[2,[2,[2,[7,"/",false],[6,"rails",false]],[7,"/",false]],[6,"info",false]],[7,"/",false]],[6,"properties",false]],[1,[2,[8,".",false],[3,"format",false]],false]], arguments);
-  },
-// rails_routes => /rails/routes(.:format)
-  rails_routes_path: function(options) {
-  return Utils.build_path([], ["format"], [2,[2,[2,[2,[7,"/",false],[6,"rails",false]],[7,"/",false]],[6,"routes",false]],[1,[2,[8,".",false],[3,"format",false]],false]], arguments);
-  },
 // relationship => /relationships/:id(.:format)
   relationship_path: function(_id, options) {
   return Utils.build_path(["id"], ["format"], [2,[2,[2,[2,[7,"/",false],[6,"relationships",false]],[7,"/",false]],[3,"id",false]],[1,[2,[8,".",false],[3,"format",false]],false]], arguments);
@@ -801,7 +814,16 @@
   return Utils.build_path([], ["format"], [2,[2,[7,"/",false],[6,"users",false]],[1,[2,[8,".",false],[3,"format",false]],false]], arguments);
   }}
 ;
+    root.Routes.options = defaults;
+    return root.Routes;
+  };
 
-  window.Routes.options = defaults;
+  if (typeof define === "function" && define.amd) {
+    define([], function() {
+      return createGlobalJsRoutesObject();
+    });
+  } else {
+    createGlobalJsRoutesObject();
+  }
 
 }).call(this);
