@@ -15,7 +15,7 @@ module Snarpur
     config.assets.precompile << /(^[^_\/]|\/[^_])[^\/]*$/
     config.assets.precompile << ['vendor/assets/javascripts/precomplie']
 
-    config.assets.initialize_on_precompile = false
+    # config.assets.initialize_on_precompile = false
     
     config.assets.enabled = true
     config.assets.paths << Rails.root.join("app", "assets", "fonts")

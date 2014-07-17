@@ -36,14 +36,15 @@ gem 'rb-readline', '~> 0.4.2'
 gem "paperclip", "~> 3.0"
 gem 'oj'
 gem 'gon'
-gem 'js-routes'
 gem 'acts_as_commentable', '3.0.1'
 gem 'yaml_db'
 gem 'fontcustom'
 gem 'ini_file'
+gem 'js-routes'
 
-gem 'rails_12factor', group: :production
-
+group :production, :staging do
+  gem 'rails_12factor'
+end
 # Gem to show the spinner when change the view
 
 
@@ -59,6 +60,7 @@ group :assets do
   gem 'compass_twitter_bootstrap'
   gem 'compass-rails'
   gem 'eco'
+
 end
 
 
@@ -70,7 +72,7 @@ group :development do
   gem 'binding_of_caller', :require => RUBY_PLATFORM.include?('darwin') ? 'binding_of_caller' : false
   gem 'meta_request'
   gem 'xray-rails'
-
+  gem 'mysql2', '~> 0.3.7'
 end
 
 group :development, :test do
