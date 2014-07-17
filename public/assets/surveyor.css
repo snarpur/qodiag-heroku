@@ -1,0 +1,182 @@
+/* Do not change surveyor.sass or the generated
+ * surveyor.css. They will be overwritten by
+ * the surveyor generator. Instead, add
+ * custom styles to custom.sass, which will be
+ * loaded after the surveyor stylesheets */
+/* line 16, ../../../.rvm/gems/ruby-1.9.3-p448/bundler/gems/surveyor-0db586cec143/lib/assets/stylesheets/surveyor.sass */
+body {
+  background-color: #eeeeee;
+}
+
+/* line 18, ../../../.rvm/gems/ruby-1.9.3-p448/bundler/gems/surveyor-0db586cec143/lib/assets/stylesheets/surveyor.sass */
+#surveyor {
+  font-family: "Century Gothic";
+  width: 960px;
+  padding: 20px;
+  margin: 0 auto;
+  text-align: left;
+  font-family: Helvetica;
+  font-size: 100%;
+  background-color: #fffff1;
+  color: #333333;
+}
+/* line 28, ../../../.rvm/gems/ruby-1.9.3-p448/bundler/gems/surveyor-0db586cec143/lib/assets/stylesheets/surveyor.sass */
+#surveyor .surveyor_flash {
+  background-color: #fff1a8;
+  margin: 0 auto;
+  padding: 5px;
+  width: 300px;
+  font-weight: bold;
+  text-align: center;
+}
+/* line 35, ../../../.rvm/gems/ruby-1.9.3-p448/bundler/gems/surveyor-0db586cec143/lib/assets/stylesheets/surveyor.sass */
+#surveyor .survey_title {
+  font-size: 2em;
+  font-weight: bold;
+  padding: 5px 0;
+}
+/* line 39, ../../../.rvm/gems/ruby-1.9.3-p448/bundler/gems/surveyor-0db586cec143/lib/assets/stylesheets/surveyor.sass */
+#surveyor .surveyor_menu {
+  float: right;
+}
+/* line 41, ../../../.rvm/gems/ruby-1.9.3-p448/bundler/gems/surveyor-0db586cec143/lib/assets/stylesheets/surveyor.sass */
+#surveyor .surveyor_menu ul {
+  background-color: #eeeeee;
+  border: 1px solid #cccccc;
+  border-bottom-width: 0;
+  list-style: none;
+}
+/* line 46, ../../../.rvm/gems/ruby-1.9.3-p448/bundler/gems/surveyor-0db586cec143/lib/assets/stylesheets/surveyor.sass */
+#surveyor .surveyor_menu ul li {
+  border: 0 solid #cccccc;
+  border-bottom-width: 1px;
+}
+/* line 49, ../../../.rvm/gems/ruby-1.9.3-p448/bundler/gems/surveyor-0db586cec143/lib/assets/stylesheets/surveyor.sass */
+#surveyor .surveyor_menu ul li.active, #surveyor .surveyor_menu ul li.active input[type="submit"] {
+  background-color: #ebebcc;
+}
+/* line 51, ../../../.rvm/gems/ruby-1.9.3-p448/bundler/gems/surveyor-0db586cec143/lib/assets/stylesheets/surveyor.sass */
+#surveyor .surveyor_language_selection {
+  display: none;
+}
+/* line 54, ../../../.rvm/gems/ruby-1.9.3-p448/bundler/gems/surveyor-0db586cec143/lib/assets/stylesheets/surveyor.sass */
+#surveyor .next_section {
+  float: right;
+}
+/* line 57, ../../../.rvm/gems/ruby-1.9.3-p448/bundler/gems/surveyor-0db586cec143/lib/assets/stylesheets/surveyor.sass */
+#surveyor .survey_section span.title {
+  display: block;
+  padding: 5px 0;
+  font-weight: bold;
+  font-size: 1.5em;
+}
+/* line 64, ../../../.rvm/gems/ruby-1.9.3-p448/bundler/gems/surveyor-0db586cec143/lib/assets/stylesheets/surveyor.sass */
+#surveyor fieldset.g_inline fieldset, #surveyor fieldset.g_inline ol li {
+  display: inline;
+}
+/* line 67, ../../../.rvm/gems/ruby-1.9.3-p448/bundler/gems/surveyor-0db586cec143/lib/assets/stylesheets/surveyor.sass */
+#surveyor fieldset.g_grid table {
+  border-collapse: collapse;
+}
+/* line 69, ../../../.rvm/gems/ruby-1.9.3-p448/bundler/gems/surveyor-0db586cec143/lib/assets/stylesheets/surveyor.sass */
+#surveyor fieldset.g_grid li.surveyor_radio label, #surveyor fieldset.g_grid li.surveyor_check_boxes label {
+  visibility: hidden;
+}
+/* line 71, ../../../.rvm/gems/ruby-1.9.3-p448/bundler/gems/surveyor-0db586cec143/lib/assets/stylesheets/surveyor.sass */
+#surveyor fieldset.g_grid li.surveyor_radio label input, #surveyor fieldset.g_grid li.surveyor_check_boxes label input {
+  visibility: visible;
+}
+/* line 74, ../../../.rvm/gems/ruby-1.9.3-p448/bundler/gems/surveyor-0db586cec143/lib/assets/stylesheets/surveyor.sass */
+#surveyor fieldset.g_repeater ol fieldset {
+  display: inline;
+}
+/* line 76, ../../../.rvm/gems/ruby-1.9.3-p448/bundler/gems/surveyor-0db586cec143/lib/assets/stylesheets/surveyor.sass */
+#surveyor fieldset.g_repeater input[type="submit"].add_row {
+  font-size: 0.7em;
+}
+/* line 80, ../../../.rvm/gems/ruby-1.9.3-p448/bundler/gems/surveyor-0db586cec143/lib/assets/stylesheets/surveyor.sass */
+#surveyor .survey_section > fieldset > ol {
+  padding-left: 1em;
+}
+/* line 82, ../../../.rvm/gems/ruby-1.9.3-p448/bundler/gems/surveyor-0db586cec143/lib/assets/stylesheets/surveyor.sass */
+#surveyor fieldset {
+  padding-top: 5px;
+  margin-bottom: 10px;
+}
+/* line 86, ../../../.rvm/gems/ruby-1.9.3-p448/bundler/gems/surveyor-0db586cec143/lib/assets/stylesheets/surveyor.sass */
+#surveyor fieldset ol fieldset {
+  vertical-align: top;
+}
+/* line 88, ../../../.rvm/gems/ruby-1.9.3-p448/bundler/gems/surveyor-0db586cec143/lib/assets/stylesheets/surveyor.sass */
+#surveyor fieldset ol li {
+  padding: 1px 0;
+}
+/* line 89, ../../../.rvm/gems/ruby-1.9.3-p448/bundler/gems/surveyor-0db586cec143/lib/assets/stylesheets/surveyor.sass */
+#surveyor fieldset ol li label, #surveyor fieldset ol li input {
+  vertical-align: top;
+}
+/* line 92, ../../../.rvm/gems/ruby-1.9.3-p448/bundler/gems/surveyor-0db586cec143/lib/assets/stylesheets/surveyor.sass */
+#surveyor fieldset ol li p.inline-hints {
+  margin: 0;
+  padding: 0;
+  display: inline;
+}
+/* line 96, ../../../.rvm/gems/ruby-1.9.3-p448/bundler/gems/surveyor-0db586cec143/lib/assets/stylesheets/surveyor.sass */
+#surveyor fieldset ol li.inline {
+  display: inline;
+}
+/* line 99, ../../../.rvm/gems/ruby-1.9.3-p448/bundler/gems/surveyor-0db586cec143/lib/assets/stylesheets/surveyor.sass */
+#surveyor fieldset ol li.datetime input, #surveyor fieldset ol li.datetime fieldset, #surveyor fieldset ol li.datetime fieldset ol li, #surveyor fieldset ol li.time input, #surveyor fieldset ol li.time fieldset, #surveyor fieldset ol li.time fieldset ol li {
+  display: inline;
+}
+/* line 101, ../../../.rvm/gems/ruby-1.9.3-p448/bundler/gems/surveyor-0db586cec143/lib/assets/stylesheets/surveyor.sass */
+#surveyor fieldset.q_inline ol li, #surveyor fieldset.q_inline_inline ol li {
+  display: inline;
+}
+/* line 103, ../../../.rvm/gems/ruby-1.9.3-p448/bundler/gems/surveyor-0db586cec143/lib/assets/stylesheets/surveyor.sass */
+#surveyor fieldset input, #surveyor fieldset textarea, #surveyor fieldset select {
+  margin: 0 3px;
+}
+/* line 105, ../../../.rvm/gems/ruby-1.9.3-p448/bundler/gems/surveyor-0db586cec143/lib/assets/stylesheets/surveyor.sass */
+#surveyor fieldset input[type="text"], #surveyor fieldset textarea {
+  font-size: 0.8em;
+}
+/* line 108, ../../../.rvm/gems/ruby-1.9.3-p448/bundler/gems/surveyor-0db586cec143/lib/assets/stylesheets/surveyor.sass */
+#surveyor fieldset.q_hidden, #surveyor fieldset.g_hidden, #surveyor fieldset.g_grid tr.q_hidden {
+  display: none !important;
+}
+/* line 110, ../../../.rvm/gems/ruby-1.9.3-p448/bundler/gems/surveyor-0db586cec143/lib/assets/stylesheets/surveyor.sass */
+#surveyor fieldset.q_dependent, #surveyor fieldset.g_dependent {
+  background-color: #ffffdf;
+}
+/* line 112, ../../../.rvm/gems/ruby-1.9.3-p448/bundler/gems/surveyor-0db586cec143/lib/assets/stylesheets/surveyor.sass */
+#surveyor fieldset.q_dependent legend, #surveyor fieldset.g_dependent legend {
+  background-color: #ffffdf;
+  padding: 3px 3px 3px 0;
+}
+/* line 116, ../../../.rvm/gems/ruby-1.9.3-p448/bundler/gems/surveyor-0db586cec143/lib/assets/stylesheets/surveyor.sass */
+#surveyor fieldset.q_dropdown label, #surveyor fieldset.q_inline_dropdown label, #surveyor fieldset.q_default_dropdown label, #surveyor fieldset.q_slider label, #surveyor fieldset.q_repeater_dropdown label {
+  display: none;
+}
+/* line 118, ../../../.rvm/gems/ruby-1.9.3-p448/bundler/gems/surveyor-0db586cec143/lib/assets/stylesheets/surveyor.sass */
+#surveyor fieldset.q_slider {
+  margin-bottom: 3em;
+}
+/* line 120, ../../../.rvm/gems/ruby-1.9.3-p448/bundler/gems/surveyor-0db586cec143/lib/assets/stylesheets/surveyor.sass */
+#surveyor fieldset.q_slider li.select {
+  width: 50%;
+  font-size: 0.8em;
+}
+/* line 123, ../../../.rvm/gems/ruby-1.9.3-p448/bundler/gems/surveyor-0db586cec143/lib/assets/stylesheets/surveyor.sass */
+#surveyor fieldset.q_slider .ui-slider span.ui-slider-label-show {
+  position: relative;
+  display: inline;
+}
+/* line 128, ../../../.rvm/gems/ruby-1.9.3-p448/bundler/gems/surveyor-0db586cec143/lib/assets/stylesheets/surveyor.sass */
+#surveyor input[type="submit"] {
+  font-size: 1em;
+  border: 1px;
+  padding: 5px;
+  cursor: pointer;
+  background-color: #eeeeee;
+}

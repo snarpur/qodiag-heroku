@@ -1,0 +1,100 @@
+/* line 7, ../../../app/assets/stylesheets/partials/useragentDetection.css.sass */
+#content {
+  padding: 0;
+}
+
+/* line 10, ../../../app/assets/stylesheets/partials/useragentDetection.css.sass */
+.useragent-detection .intro {
+  margin-bottom: 1.4em;
+}
+/* line 12, ../../../app/assets/stylesheets/partials/useragentDetection.css.sass */
+.useragent-detection .intro h1 {
+  font-size: 1.5em;
+  margin: 1em;
+}
+/* line 15, ../../../app/assets/stylesheets/partials/useragentDetection.css.sass */
+.useragent-detection .intro p {
+  font-size: 1.2em;
+  margin-bottom: 0.5em;
+}
+/* line 18, ../../../app/assets/stylesheets/partials/useragentDetection.css.sass */
+.useragent-detection .intro span {
+  display: inline;
+  float: left;
+  margin-right: 10px;
+  width: 110px;
+}
+/* line 147, ../../../../.rvm/gems/ruby-1.9.3-p448/gems/compass-0.12.2/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html .useragent-detection .intro span {
+  overflow-x: hidden;
+}
+/* line 21, ../../../app/assets/stylesheets/partials/useragentDetection.css.sass */
+.useragent-detection .agent-link {
+  font-size: 1.1em;
+  text-decoration: underline;
+}
+/* line 24, ../../../app/assets/stylesheets/partials/useragentDetection.css.sass */
+.useragent-detection .step-num {
+  text-align: center;
+  padding: 0.5em 0;
+}
+/* line 27, ../../../app/assets/stylesheets/partials/useragentDetection.css.sass */
+.useragent-detection .step {
+  position: relative;
+}
+/* line 29, ../../../app/assets/stylesheets/partials/useragentDetection.css.sass */
+.useragent-detection .step-content {
+  background-color: white;
+  border: #e5e5e5 1px dashed;
+  padding: 1em;
+}
+/* line 34, ../../../app/assets/stylesheets/partials/useragentDetection.css.sass */
+.useragent-detection .st-1 {
+  display: inline;
+  float: left;
+  margin-right: 10px;
+  width: 590px;
+}
+/* line 147, ../../../../.rvm/gems/ruby-1.9.3-p448/gems/compass-0.12.2/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html .useragent-detection .st-1 {
+  overflow-x: hidden;
+}
+/* line 36, ../../../app/assets/stylesheets/partials/useragentDetection.css.sass */
+.useragent-detection .st-2 {
+  display: inline;
+  float: left;
+  margin-right: 10px;
+  width: 310px;
+}
+/* line 147, ../../../../.rvm/gems/ruby-1.9.3-p448/gems/compass-0.12.2/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html .useragent-detection .st-2 {
+  overflow-x: hidden;
+}
+/* line 39, ../../../app/assets/stylesheets/partials/useragentDetection.css.sass */
+.useragent-detection ul li {
+  margin-bottom: 1em;
+}
+/* line 41, ../../../app/assets/stylesheets/partials/useragentDetection.css.sass */
+.useragent-detection ul p {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+/* line 45, ../../../app/assets/stylesheets/partials/useragentDetection.css.sass */
+.useragent-detection table td,
+.useragent-detection table th {
+  padding: 10px 30px;
+  text-align: center;
+}
+/* line 49, ../../../app/assets/stylesheets/partials/useragentDetection.css.sass */
+.useragent-detection span.arrow {
+  position: absolute;
+  right: -30px;
+  top: 5px;
+}
+/* line 54, ../../../app/assets/stylesheets/partials/useragentDetection.css.sass */
+.useragent-detection span.clear {
+  float: none;
+  clear: both;
+  visibility: hidden;
+  display: block;
+}
