@@ -44,6 +44,7 @@ gem 'js-routes'
 
 group :production, :staging do
   gem 'rails_12factor'
+  gem 'heroku'
 end
 # Gem to show the spinner when change the view
 
