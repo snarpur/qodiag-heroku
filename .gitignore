@@ -5,7 +5,7 @@ tmp
 /tmp/*
 /tmp/i18n-js.cache
 app/assets/stylesheets/**/*.sass-cache
-/public/system/*
+
 .DS_Store
 .watchr
 .rspec
