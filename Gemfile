@@ -7,6 +7,7 @@ gem "ejs"
 
 # gem 'mysql2', '~> 0.3.7'
 gem 'pg'
+gem 'thin'
 gem 'activerecord-postgresql-adapter'
 gem 'json'
 gem "bcrypt-ruby", "~> 3.1.5"
@@ -67,7 +68,6 @@ end
 
 group :development do
   gem 'quiet_assets'
-  gem 'thin'
   gem 'sextant'
   gem 'better_errors', :require => RUBY_PLATFORM.include?('darwin') ? 'better_errors' : false
   gem 'binding_of_caller', :require => RUBY_PLATFORM.include?('darwin') ? 'binding_of_caller' : false
