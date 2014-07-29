@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "",
+  "sourceRoot": "",
+  "sources": [
+    "/assets/source_maps/app/assets/javascripts/marionette_app/config/javascript.coffee"
+  ],
+  "names": [],
+  "mappings": "AAAA;AAAA,EAAA,KAAK,CAAA,SAAE,CAAA,QAAP,GAAkB,SAAC,KAAD,EAAQ,IAAR,GAAA;AACjB,IAAA,IAAC,CAAA,MAAD,CAAQ,KAAR,EAAe,CAAf,EAAkB,IAAlB,CAAA,CAAA;WACA,KAFiB;EAAA,CAAlB,CAAA;AAAA"
+}

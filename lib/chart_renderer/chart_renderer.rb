@@ -136,7 +136,6 @@ module ChartRenderer
     end
     
     def chart_metrics
-      KK.log @chart[:content][:chart_metrics],:g
       @chart[:content][:chart_metrics]
     end
 

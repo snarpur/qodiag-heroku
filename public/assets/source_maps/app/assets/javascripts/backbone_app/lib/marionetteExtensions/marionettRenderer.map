@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "",
+  "sourceRoot": "",
+  "sources": [
+    "/assets/source_maps/app/assets/javascripts/backbone_app/lib/marionetteExtensions/marionettRenderer.coffee"
+  ],
+  "names": [],
+  "mappings": "AAAA;AAAA,EAAA,QAAQ,CAAC,UAAU,CAAC,QAAQ,CAAC,MAA7B,GAAsC,SAAC,QAAD,EAAW,IAAX,GAAA;AACpC,IAAA,IAAA,CAAA,CAAS,CAAC,UAAF,CAAa,QAAb,EAAsB,WAAtB,CAAR;AACE,MAAA,QAAA,GAAY,YAAA,GAAW,QAAvB,CADF;KAAA;AAEA,IAAA,IAAA,CAAA,GAAoF,CAAC,eAAA,GAAc,QAAf,CAApF;AAAA,YAAM,IAAI,CAAC,CAAL,CAAO,sCAAP,EAA+C;AAAA,QAAA,QAAA,EAAU,QAAV;OAA/C,CAAN,CAAA;KAFA;WAGA,GAAI,CAAC,eAAA,GAAc,QAAf,CAAJ,CAAgC,IAAhC,EAJoC;EAAA,CAAtC,CAAA;AAAA"
+}
