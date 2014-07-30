@@ -6,7 +6,7 @@ attributes :chart_metrics => :chartMetrics,
 
 
 
-# node :charts do |chart| 
-#   partial("responder_items/survey_responses/chart_json", :object => chart.charts)
-# end
+node :charts do |chart| 
+  partial("responder_items/survey_responses/chart_json", :object => chart.charts)
+end
 
