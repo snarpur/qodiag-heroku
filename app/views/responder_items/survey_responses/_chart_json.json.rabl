@@ -1,8 +1,8 @@
 collection @chart
 
 attributes :chart_size => :size, 
-  :question_list_drilldown => :questionListDrilldown,
-  :access_code => :accessCode,
+  # :question_list_drilldown => :questionListDrilldown,
+  # :access_code => :accessCode,
   :chart => :chart,
   :chart_data => :series,
   :plot_options =>  :plotOptions,
@@ -20,6 +20,3 @@ node(:drilldownSeries, :if => lambda { |m| m.drilldown? }) do |m|
   m.drilldown
 end
 
-# node(:drilldown, :if => lambda { |m| m.drilldown? }) do |m|
-#   {:series => []}
-# end
