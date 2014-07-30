@@ -16,9 +16,9 @@ attributes :chart_size => :size,
 
 
 
-node(:drilldownSeries, :if => lambda { |m| m.drilldown? }) do |m|
-  m.drilldown
-end
+# node(:drilldownSeries, :if => lambda { |m| m.drilldown? }) do |m|
+#   m.drilldown
+# end
 
 # node(:drilldown, :if => lambda { |m| m.drilldown? }) do |m|
 #   {:series => []}
