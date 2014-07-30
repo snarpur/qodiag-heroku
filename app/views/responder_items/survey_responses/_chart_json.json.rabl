@@ -2,7 +2,7 @@ collection @chart
 
 attributes :chart_size => :size, 
   :question_list_drilldown => :questionListDrilldown,
-  :access_code => :accessCode,
+  :access_code => :accessCode
   # :chart => :chart,
   # :chart_data => :series,
   # :plot_options =>  :plotOptions,
