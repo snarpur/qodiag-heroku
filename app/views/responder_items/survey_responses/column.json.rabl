@@ -1,5 +1,5 @@
 object @chart
-attributes :chart_metrics => :chartMetrics,
+attributes :chart_metrics => nil,#:chart_metrics => :chartMetrics,
            :chart_filters => :chartFilters,
            :group_title => :groupTitle,
            :completed => :completed
