@@ -1,5 +1,6 @@
 source "http://rubygems.org"
 
+ruby "2.0.0"
 gem "rails", "3.2.11"
 
 gem "sass","~> 3.1.11"
@@ -44,7 +45,6 @@ gem 'ini_file'
 gem 'js-routes'
 
 group :production, :staging do
-  gem 'ruby 2.0.0'
   gem 'rails_12factor'
   gem 'heroku'
 end
