@@ -44,6 +44,7 @@ gem 'ini_file'
 gem 'js-routes'
 
 group :production, :staging do
+  gem 'ruby 2.0.0'
   gem 'rails_12factor'
   gem 'heroku'
 end
