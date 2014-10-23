@@ -9,6 +9,8 @@
 
   class List.Subject extends App.Views.ItemView
     template: "profiles/list/templates/_subject"
+    tagName: 'section'
+    className: 'panel'
 
     triggers:
       'click .edit-item' : 'edit:subject:clicked'
@@ -28,20 +30,18 @@
       else
         "profiles/list/templates/_empty_guardian"
       
-    tagName: "div"
-
-    className: "col-lg-6"
+    tagName: "li"
+    className: "list-group-item"
   
     triggers:
       'click .edit-item' : 'edit:guardian:clicked'
       'click .add-guardian' : 'create:guardian:clicked'
       
   
-
   class List.Guardians extends App.Views.CompositeView
     template: "profiles/list/templates/_guardians"
     itemView: List.Guardian
-    itemViewContainer: "div#foreldrar"
+    itemViewContainer: 'ul.list-group'
 
   
   class List.Empty extends App.Views.ItemView

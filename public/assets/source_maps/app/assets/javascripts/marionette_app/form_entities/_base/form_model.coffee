@@ -8,7 +8,6 @@
       @addValidateListeners()
       @setFieldValue()
       @addFieldValueListeners()
-      
       super
 
     setErrors:()->

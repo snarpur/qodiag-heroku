@@ -24,7 +24,7 @@
         @rootModel.set("_survey_id_options",@surveys)
         @rootModel.set("_respondent_id_options",@respondents)
         @fieldCollection = new App.Entities.FieldCollection(config,{rootModel:@rootModel,controllerModel:@controllerModel})
-
+        
         
         view = @getFieldsView(@fieldCollection)  
 

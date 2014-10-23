@@ -1,11 +1,9 @@
-<aside class="profile-nav alt green-border">
-  <div class="alt green-bg user-heading">
-    <a href="#" class="add-avatar">
-      <img src="/avatars/thumb/male.png">
-    </a>
-    <h1 class="content_title_sub"><%= @t("views.profiles.parent_not_found") %></h1>
-    <p>
-      <button href="#" class="btn btn-primary btn-xs add-guardian"><i class="fa fa-pencil "></i></button>
-    </p>
-  </div> 
-</aside>
+<div class="row">
+  <div class="col-lg-2">
+    <img class="img-thumbnail" src="/avatars/thumb/male.png"/>
+  </div>
+<button type="button" class="btn btn-default btn-lg add-guardian">
+  <i class="fa fa-user"></i>
+  Skrá foreldri
+  </button>
+ </div>  

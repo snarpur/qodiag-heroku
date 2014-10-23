@@ -11,7 +11,8 @@ gem 'pg'
 gem 'thin'
 gem 'activerecord-postgresql-adapter'
 gem 'json'
-gem "bcrypt-ruby", "~> 3.1.5"
+# gem "bcrypt-ruby", "~> 3.1.5"
+gem "bcrypt"
 gem 'devise', '2.2.4'
 gem 'devise_invitable', '1.0.3'
 gem "cancan"
@@ -27,8 +28,8 @@ gem 'rails-dev-tweaks', '~> 0.6.1'
 gem "i18n-js"
 gem "factory_girl_rails", "~> 3.0"
 gem "faker"
-gem 'newrelic_rpm'
-gem 'ey_config'
+# gem 'newrelic_rpm'
+# gem 'ey_config'
 gem 'browsernizer'
 gem 'rabl'
 gem 'active_attr'
@@ -74,7 +75,7 @@ group :development do
   gem 'binding_of_caller', :require => RUBY_PLATFORM.include?('darwin') ? 'binding_of_caller' : false
   gem 'meta_request'
   gem 'xray-rails'
-  gem 'mysql2', '~> 0.3.7'
+  # gem 'mysql2', '~> 0.3.7'
 end
 
 group :development, :test do

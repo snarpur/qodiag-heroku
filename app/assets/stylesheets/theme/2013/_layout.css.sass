@@ -1,7 +1,29 @@
+// @import url(http://fonts.googleapis.com/css?family=Oxygen:400,300)
+// @import url(http://fonts.googleapis.com/css?family=Gudea:400,700,400italic)
+// @import url(http://fonts.googleapis.com/css?family=Monda:400,700)
+// font-family: 'Oxygen', sans-serif
+// font-family: 'Gudea', sans-serif
+// font-family: 'Monda', sans-serif
+@import url(http://fonts.googleapis.com/css?family=Alegreya+Sans+SC:300,400)
+$fl_terqes: rgb(108, 202, 201)
+$fl_terqesdark: rgb(1, 168, 158)
+$fl_darkblue: #797979
+$fl_red: rgb(255, 118, 108)
+$fl_yellow: rgb(248, 211, 71)
+$fl_green: rgb(169, 217, 108)
+$fl_blue: rgb(88, 201, 243)
 header
   .logo
-    @include replace-text("2013/logo.png", 0, 50%)
+    font-family: 'Alegreya Sans SC', sans-serif
+    margin: 0
     width: 150px
+    font-size: 2em
+    font-weight: 300
+
+  a::first-letter
+    color: $fl_red
+    font-size: 1.5em
+    font-weight: 700
 
 body.full-width
   #navigation
@@ -81,7 +103,7 @@ ul.summary-list > li
   .btn-danger
     margin-right: 6px
 
-.profile-nav .user-heading      
+#content-header .profile-nav .user-heading      
   padding: 0px
   h1
     font-size: 15px
@@ -118,17 +140,23 @@ ul.summary-list > li
 .white
   color: white
 
-.vis.timeline .overdue
-  background-color: #EE0000
-  border-color: #EE0000
 
-.vis.timeline .completed
-  background-color: #00AA00
-  border-color: #00AA00
-
-.vis.timeline .pending
-  background-color: #FF9900
-  border-color: #FF9900
 
 p.default-buttons
   margin: 0 15px 25px 0
+
+
+
+
+// Panel extensions -----------------
+.panel-footer-white
+  background-color: #ffffff
+
+// List extensions  -----------------
+ul.summary-list
+  &.text-left li
+    text-align: left
+  &.text-right li
+    text-align: right
+ul.list-align-top li
+  vertical-align: top

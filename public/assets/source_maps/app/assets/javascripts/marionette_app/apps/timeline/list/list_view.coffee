@@ -9,6 +9,10 @@
     triggers:
       "click .add-survey"  : "add:survey:clicked"
 
+  
+
+
+
   class List.Select extends App.Views.ItemView
     template: "timeline/list/templates/menu"
 
@@ -21,9 +25,8 @@
     triggerSelect:(event)->
       @trigger("select:menu:changed",event)
 
-    onRender:->
-
-      @ui.select.val(@options.initialSurveys)
+    onShow:->
+      @ui.select.val(_.extend(@options.initialSurveys,{placeholder: "TRANSLATE ME"}))
       @ui.select.select2
         multiple: true
         initSelection:(element, callback)=>
@@ -49,19 +52,26 @@
           surveysSelected.push model.get("survey_id")
           @ui.select.select2('val',surveysSelected)
     
+  
+
+
+
   class List.Timeline extends App.Views.ItemView
     template: "timeline/list/templates/timeline"
     id: "timeline-visualization"
     timelineOptions:
-      width: "100%"
       align: 'center'
       orientation: "top"                  
-      height: 500
-
+      height:400
+      showCurrentTime: false
+      autoResize: true
+      zoomMax: 31536000000
+      zoomMin: 31536000000 
     
     onShow:()->
       @setTimeline()
       @setOptions()
+      @setItems()
       
       @listenTo @timeline, "select",(selected) =>
         selectedItem = @model.get('items').get(_.first(selected.items))
@@ -80,22 +90,13 @@
 
 
     setTimeline:->
-      @timeline = new vis.Timeline(@el,@model.get('visItems'),{})
+      @timeline = new vis.Timeline(@el,[],{})
       @model.set("timeline",@timeline)
 
-      
-    setOptions:()->
+    setItems:->
+      @timeline.setItems(@model.get('visItems'))
+    
+    setOptions:->
       config = _.extend(@timelineOptions, @startEnd())
       @timeline.setOptions(config)
       
-
-  
-
-
-
-
-
-
-
-  
-  

@@ -1075,7 +1075,7 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
 
 /*timeline*/
 
-.timeline {
+/*.timeline {
     border-collapse: collapse;
     border-spacing: 0;
     display: table;
@@ -1311,7 +1311,7 @@ h3.timeline-title {
 .mbot30 {
     margin-bottom: 30px;
 }
-
+*/
 /*---revenue----*/
 
 .revenue-head {

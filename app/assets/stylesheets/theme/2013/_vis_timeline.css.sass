@@ -1,0 +1,68 @@
+//colors
+$black_3: rgba(0,0,0,.04)
+$color_pink_salmon_approx: #f991a3
+$black: black
+$color_japanese_laurel_approx: green
+$color_granny_smith_apple_approx: lightgreen
+$content_text_color: #666
+$black_10: rgba(0,0,0,.1)
+
+.vis.timeline 
+  &.root
+    border-style: solid
+    border-width: 1px
+    border-color: rgba(0,0,0,0.07)
+    background-color: #fff
+    +box-shadow(1px 1px 3px 0px $black_3 inset,-1px -1px 3px 0px $black_3 inset)
+  
+  .vispanel
+    background-color: transparent
+    border-width: 0
+    &.center
+      border-color: $black_10
+    &.top
+      font-family: 'Alegreya Sans SC', sans-serif
+      .text.major
+        font-size: 2em
+        letter-spacing: .5em
+        margin-left: 1em
+        color: $fl_darkblue
+      .text.minor
+        font-size: 1.5em
+        font-weight: 300
+        margin-left: .3em
+        color: $fl_terqesdark
+  .item 
+    border-color: #333
+    color: $content_text_color
+    border-width: 1px
+    &.line 
+      border-width: 1px
+    &.dot 
+      border-width: 5px
+      +border-radius(5px)
+      &.overdue
+        background-color: $fl_red
+        border-color: $fl_red
+      &.completed
+        background-color: $fl_green
+        border-color: $fl_green
+      &.pending
+        background-color: $fl_yellow
+        border-color: $fl_yellow
+  
+  .timeaxis 
+    .text 
+      padding-top: 5px
+      padding-left: 5px
+      
+    .grid 
+      &.minor 
+        border-width: 0 0 0 1px
+        border-style: dashed
+        border-color: $black_10
+
+      &.major 
+        border-width: 1px
+        border-color: rgba($fl_blue,0.5)
+        border-style: dotted

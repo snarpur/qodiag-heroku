@@ -1,1 +1,6 @@
-<div id="foreldrar" class="row"></div>
+<section class="panel panel-default">
+  <header class="panel-heading"><h4><%= @t("terms.parents")%></h4></header>
+  <ul class="list-group"></ul>
+</section>
+
+

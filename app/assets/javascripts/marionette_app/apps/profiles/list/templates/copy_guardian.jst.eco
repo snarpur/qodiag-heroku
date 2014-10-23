@@ -1,0 +1,68 @@
+<div class="row">
+  <div class="col-lg-2">
+    <a href="#" class="add-avatar">
+      <img class="img-thumbnail" src="<%= @image_url_thumb %>"/>
+    </a>
+  </div>
+
+  <div class="col-lg-10">
+    <h4><%= @firstname + " " + @lastname %></h4>
+    <p> 
+      <abbr title="Kennitala">K:</abbr> <%= @full_cpr %>
+      <button href="#" class="btn btn-primary btn-xs edit-item"><i class="fa fa-pencil "></i></button>
+      <button class="btn btn-info btn-xs destroy" href="#" onclick="$('#avatarUploadModal_<%= @id %>').modal();"><i class="fa fa-   camera-retro"></i></button>
+    </p>
+  </div>
+
+<% if @address?: %>
+ <div class="bio-row">
+          <p>
+            <%= @t('address.street_1') %>: <%= @address.get('street_1') %> <%= @address.get('street_2') %>
+          </p>
+        </div>
+        <div class="bio-row">
+          <p>
+            <%= @t('address.town') %>: <%= @address.get('town') %>
+          </p>
+        </div>
+        <div class="bio-row">
+          <p>
+            <%= @t('address.zip_code') %>: <%= @address.get('zip_code') %>
+          </p>
+        </div>
+        <div class="bio-row">
+          <p>
+            <%= @t('address.phone') %>: <%= @address.get('phone') %>
+          </p>
+        </div>
+        <div class="bio-row">
+          <p>
+            <%= @t('address.home_phone') %>: <%= @address.get('home_phone') %>
+          </p>
+        </div>
+<% end %>
+</div>
+
+<div class="modal" id="avatarUploadModal_<%= @id %>" aria-hidden="false" aria-labelledby="myModalLabel" role="dialog" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">&times;</button>
+        <h4 class="modal-title"><%= @t("views.profiles.upload_image") %></h4>
+      </div>
+      <div class="modal-body">
+          <form action="people/<%= @id %>/image_upload/" id="avatarUploadForm_<%= @id %>" method="post" enctype="multipart/form-data" class="edit_person" accept-charset="UTF-8">
+              <input type="hidden" value="✓" name="utf8">
+              <input type="hidden" value="put" name="_method">
+              <input type="hidden" value="<%= @getCSRFToken() %>" class="authenticity_token" name="authenticity_token">
+              <input type="hidden" value="<%= window.location.href %>" name="redirect_path">
+              <input type="file" name="person[avatar]" id="person_avatar">
+          </form>
+      </div>
+      <div class="modal-footer">
+          <button class="btn btn-default" type="button" data-dismiss="modal"><%= @t("actions.cancel") %></button>
+          <a onclick="document.forms.avatarUploadForm_<%= @id %>.submit();return false;" class="btn btn-success" href="#"><%= @t("actions.send") %></a>
+      </div>
+    </div>
+  </div>
+</div>

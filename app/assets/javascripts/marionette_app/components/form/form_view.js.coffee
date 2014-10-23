@@ -296,16 +296,18 @@
     ui:->
       datepick: "##{@model.get("fieldName")}"
        
-    onRender:->
+    onShow:->  
       if @model.get("fieldType") is "date"
-        @ui.datepick.datepicker
+        opt =
           language: I18n.locale
           autoclose: true
           forceParse: false
           format: "dd/mm/yy"
           startDate: new Date().addDays(1)
           todayHighlight: true
-
+        
+        @ui.datepick.datepicker(opt)
+        
       super
      
      
