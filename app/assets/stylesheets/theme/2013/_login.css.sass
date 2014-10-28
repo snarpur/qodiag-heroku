@@ -109,11 +109,13 @@ h1.logo:first-letter
       
     i
       background: #FAFAFA
-      +border-radius(1.5em)
+      +border-radius(1em)
       display: inline-block
-      font-size: 2.3em
-      height: 2.4em
-      width: 2.5em
+      font-size: 2em
+      height: 2em
+      width: 2em
+      line-height: 1.8em
+      color: #444
     
     @for $i from 1 through 5
       $stripe_label: lightness(nth($active_palette,(6-$i)))*0.4
