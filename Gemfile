@@ -97,7 +97,7 @@ group :development, :test do
   gem "watchr"
   gem "syntax"
   gem 'debugger'
-  gem "rb-fsevent", :group => :test, :require => false if RUBY_PLATFORM =~ /darwin/i
+  # gem "rb-fsevent", :group => :test, :require => false if RUBY_PLATFORM =~ /darwin/i
   gem 'guard-rspec'
   gem "guard-haml"
   gem "guard-livereload"
