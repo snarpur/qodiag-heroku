@@ -38,6 +38,23 @@ Snarpur::Application.configure do
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
 
+  #----------------  !! IMPORTANT  --------------------
+  # Temporary staging mail configuration in production
+  # DELETE in REAL production
+  config.action_mailer.default_url_options = { :host => 'www.qodiag.com' }
+  # Don't care if the mailer can't send
+  
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  ActionMailer::Base.smtp_settings = {
+   :user_name => "zodiac",
+   :password => "a626669318b120ca",
+   :address => "mailtrap.io",
+   :port => 2525,
+   :authentication => :plain,
+  }
+ # ------------------ END ------- temporary staging configuration ----------------------
+
   # Enable threaded mode
   # config.threadsafe!
 
@@ -46,7 +63,7 @@ Snarpur::Application.configure do
   config.i18n.fallbacks = true
   config.assets.enabled = true
   # Compress JavaScripts and CSS
-  config.assets.compress = false
+  config.assets.compress = true
   config.assets.js_compressor = :closure
   config.assets.css_compressor = :yui
   # Don't fallback to assets pipeline if a precompiled asset is missed

@@ -65,15 +65,15 @@ staging:
   # socket: /tmp/mysql.sock
 
 
-# production:
-#  adapter: postgresql
-#  encoding: utf8
-#  reconnect: false
-#  database: dfvd5p79k17ou1
-#  host: ec2-107-20-165-44.compute-1.amazonaws.com
-#  pool: 5
-#  username: ifyccvidmrzuvr
-#  password: L3Oqi3cahNQCyfEKijdrcFhg59
+production:
+ adapter: postgresql
+ encoding: utf8
+ reconnect: false
+ database: dfvd5p79k17ou1
+ host: ec2-107-20-165-44.compute-1.amazonaws.com
+ pool: 5
+ username: ifyccvidmrzuvr
+ password: L3Oqi3cahNQCyfEKijdrcFhg59
   # socket: /tmp/mysql.sock
 
 # production:

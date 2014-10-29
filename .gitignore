@@ -10,7 +10,14 @@ app/assets/stylesheets/**/*.sass-cache
 .rspec
 *.log
 
-public/source_maps/
+public/source_maps
+
+
+
+
+
+
+
 .sass-cache
 yes
 yes.pub
@@ -25,3 +32,4 @@ xiki.notes
 /app/assets/stylesheets/*/config.rb
 /app/assets/stylesheets/config.rb
 /.\#xiki.notes
+
