@@ -1,0 +1,1 @@
+(function(){this.Qapp.module("SubjectNavigationApp",function(c,d,e,f,g,h){var b;b={list:function(a){return(new c.List.Controller).list(a)}};return d.commands.setHandler("show:subject:navigation",function(a){return b.list(a)})})}).call(this);

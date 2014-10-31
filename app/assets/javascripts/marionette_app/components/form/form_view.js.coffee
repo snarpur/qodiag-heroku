@@ -280,23 +280,13 @@
   class Form.DateFieldView extends Form.FieldView
     className: "form-group"
 
-    onShow:->
-      @bindings = {}
-      @bindings["##{@model.get("fieldName")}"] = {
-        observe: "fieldValue",
-        onGet: (value,options) ->
-          unless value?
-            moment(value,"YYYY-MM-DDTHH:mmZ").format("DD/MM/YY")
-        onSet: (value,options) ->
-          moment(value,"DD/MM/YY").format("YY/MM/DD")
 
-      }
-      @.stickit()
 
     ui:->
       datepick: "##{@model.get("fieldName")}"
        
-    onShow:->  
+    onShow:-> 
+      @setBindings()
       if @model.get("fieldType") is "date"
         opt =
           language: I18n.locale
@@ -308,7 +298,20 @@
         
         @ui.datepick.datepicker(opt)
         
-      super
+      
+
+    setBindings:->
+      @bindings = {}
+      @bindings["##{@model.get("fieldName")}"] = {
+        observe: "fieldValue",
+        onGet: (value,options) ->
+          unless value?
+            moment(value,"YYYY-MM-DDTHH:mmZ").format("DD/MM/YY")
+        onSet: (value,options) ->
+          moment(value,"DD/MM/YY").format("YY/MM/DD")
+
+      }
+      @.stickit()
      
      
   class Form.FieldCollectionView extends App.Views.CollectionView

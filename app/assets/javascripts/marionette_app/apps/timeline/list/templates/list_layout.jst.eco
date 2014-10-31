@@ -22,7 +22,7 @@
     <div class="panel-body">
       <div class="row">
         
-        <div id="timeline-region" class="col-lg-offset-1 col-lg-8"></div>
+        <div id="timeline-region" class="col-lg-offset-1 col-lg-10"></div>
       </div>
     </div>
 

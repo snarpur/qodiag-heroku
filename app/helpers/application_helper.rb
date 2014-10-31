@@ -17,4 +17,7 @@ module ApplicationHelper
     @devise_mapping ||= Devise.mappings[:user]
   end
 
+  def i18n_assets(locale)
+    "/assets/i18n/#{locale}.js"
+  end
 end

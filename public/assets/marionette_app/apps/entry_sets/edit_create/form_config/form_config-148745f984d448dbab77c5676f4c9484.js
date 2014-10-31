@@ -1,0 +1,1 @@
+(function(){this.Qapp.module("EntrySetsApp.EditCreate",function(a,b,c,d,e,f){return a.FormConfig=[{fieldType:"text",fieldName:"name",fieldLabel:{i18n:"terms.title"},validations:[{required:!0,msg:function(){return I18n.t("activerecord.errors.messages.blank")}}]},{fieldType:"text_area",fieldName:"description",fieldLabel:{i18n:"entry_set.description"}}]})}).call(this);

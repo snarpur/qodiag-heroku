@@ -1,7 +1,0 @@
-*.js
-*.css
-*.gz
-
-!application*
-!*application
-!*application*
