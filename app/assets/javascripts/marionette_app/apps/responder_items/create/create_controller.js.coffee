@@ -37,7 +37,7 @@
         @listenTo formView, "before:form:submit", =>
           @listenTo @rootModel, "created", (model) =>
             @itemCollection.add model.clone()
-
+  
         view
 
     showResponderItem:->

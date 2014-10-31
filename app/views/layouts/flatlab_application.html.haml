@@ -5,8 +5,15 @@
     %meta{:name => "viewport", :content => "width=device-width, initial-scale=1"}
     =csrf_meta_tag
     %link{:href => "/assets/favicon.ico", :rel => "shortcut icon"}
-    =javascript_include_tag "flatlab_application_initial"
+    / =javascript_include_tag "flatlab_application_initial"
+    =javascript_include_tag "marionette_application"
     =stylesheet_link_tag "flatlab_application"
+    
+    %script{:type => 'text/javascript'}
+      = "I18n.defaultLocale = '#{I18n.default_locale}';"
+      = "I18n.locale = '#{I18n.locale}';"
+
+    = javascript_include_tag i18n_assets(I18n.locale)
     
     %title
       Qodiag - Quality of diagnosis
@@ -42,11 +49,8 @@
         %a{:class=>"go-top", :href=>"#"}
           %i{:class=>"fa fa-angle-up"}
 
-    =javascript_include_tag "flatlab_application"
+    =javascript_include_tag "marionette_flatlab_application"
 
-    %script{:type => 'text/javascript'}
-      ="I18n.defaultLocale = '#{I18n.default_locale}';"
-      ="I18n.locale = '#{I18n.locale}';"
 
     =yield :javascript_initializations
 

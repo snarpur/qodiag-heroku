@@ -1,9 +1,0 @@
-<label><%= I18n.t("surveys.adhd-rating-scale.terms."+name) %>
-<select class="<%= name %>">
-  <% for(var i=0; i<options.length; i++) { %>
-    <option id = "<%= options[i].id %>" <%= options[i].selected %>>
-      <%=options[i].value %>
-    </option>
-  <% } %>
-</select> 
-</label>

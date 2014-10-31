@@ -5,12 +5,15 @@
     %meta{:content => "text/html;charset=UTF-8", "http-equiv" => "content-type"}/
     %title
       Survey: #{controller.action_name}
-    = stylesheet_link_tag "surveys"
+    = stylesheet_link_tag "surveys_application"
     = javascript_include_tag "surveys_application"
 
     %script{:type => 'text/javascript'}
-      ="I18n.defaultLocale = '#{I18n.default_locale}';"
-      ="I18n.locale = '#{I18n.locale}';"
+      = "I18n.defaultLocale = '#{I18n.default_locale}';"
+      = "I18n.locale = '#{I18n.locale}';"
+
+    =javascript_include_tag i18n_assets(I18n.locale)
+
       
   %body{:class=>"full-width"}
     %section{:id => "container"}

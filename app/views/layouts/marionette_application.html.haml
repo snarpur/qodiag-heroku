@@ -11,9 +11,10 @@
     =javascript_include_tag "marionette_application"
 
     %script{:type => 'text/javascript'}
-      ="I18n.defaultLocale = '#{I18n.default_locale}';"
-      ="I18n.locale = '#{I18n.locale}';"
+      = "I18n.defaultLocale = '#{I18n.default_locale}';"
+      = "I18n.locale = '#{I18n.locale}';"
 
+    =javascript_include_tag i18n_assets(I18n.locale)
 
     %style{:type => 'text/css'}
       =yield(:style_header)

@@ -9,8 +9,6 @@
     triggers:
       "click .add-survey"  : "add:survey:clicked"
 
-  
-
 
 
   class List.Select extends App.Views.ItemView

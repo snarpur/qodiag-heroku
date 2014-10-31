@@ -17,4 +17,11 @@ module ApplicationHelper
     @devise_mapping ||= Devise.mappings[:user]
   end
 
+  def i18n_assets(locale)
+    if Rails.env == 'development'
+      "/assets/i18n/#{locale}.js"
+    else
+      "/assets/#{locale}.js"
+    end
+  end
 end
