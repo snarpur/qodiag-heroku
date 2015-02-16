@@ -4,6 +4,15 @@
 		defaults:
 			buttonType: "button"
 		
+
+		initialize: ->
+			super
+			if @get('loader')
+				className = "#{@get('className')} ladda-button"
+				@set('className', className) 
+				@set('dataStyle',"data-style='expand-left'")
+				@set('text',"<span class='ladda-label'>#{@get('text')}</span>")
+
 	class Entities.ButtonsCollection extends Backbone.Collection
 		model: Entities.Button
 
@@ -21,7 +30,7 @@
 		getDefaultButtons: (buttons, model) ->
 			defaultButtons = 
 				buttons:
-					primary: {text: I18n.t("actions.save"), className: "btn btn-success", order: 1, buttonType: 'submit'}
+					primary: {text: I18n.t("actions.save"), className: "btn btn-success", loader: true, order: 1, buttonType: 'submit'}
 					cancel: {text: I18n.t("actions.cancel"), className: "btn btn-default", order: 2, buttonType: "cancel", dataDismiss: "data-dismiss='modal'"} 
 				config:
 					placement: "right"
@@ -35,9 +44,6 @@
 				.compact()
 				.value()
 
-
-			
-			
 
 				
 	

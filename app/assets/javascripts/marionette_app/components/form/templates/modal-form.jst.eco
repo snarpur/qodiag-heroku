@@ -1,4 +1,4 @@
-<div class="modal" aria-hidden="false" aria-labelledby="myModalLabel" role="dialog" tabindex="-1">
+<div class="modal" aria-hidden="false" data-wrapper='' aria-labelledby="myModalLabel" role="dialog" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -17,7 +17,8 @@
       <div class="modal-footer">
         <% if @buttons: %>
           <% for button in @buttons: %>
-              <button type="button" <%= button.dataDismiss %> data-form-button="<%= button.buttonType %>" class="<%= button.className %>"><%= button.text %></button>
+            <button type="button" <%= button.dataDismiss %> data-form-button="<%= button.buttonType %>"
+            class="<%= button.className%>" <%= if button.dataStyle then button.dataStyle %>><%- button.text %></button>
           <% end %>
         <% end %>   
       </div>

@@ -7,6 +7,7 @@
 			@modal = options.config.modal
 			@collection = options.config.collection ? false
 			@formLayout = @getFormLayout options.config
+
 			@listenTo @formLayout, "show", @formContentRegion
 			@listenTo @formLayout, "form:submit", (options)=> 
 				@formSubmit(options)
@@ -17,6 +18,7 @@
 				bindings = _.values @contentView.bindings
 				@previous = @contentView.model.pick(bindings...)
 			
+		
 		formCancel: ->
 			if (@modal)
 				#Set the attribute previous values
@@ -24,8 +26,7 @@
 				@contentView.model.unset("_errors") 
 				App.dialogRegion.closeDialog()
 			else
-				@contentView.triggerMethod "form:cancel"
-		
+				@contentView.triggerMethod "form:cancel"		
 		
 
 		formSubmit: (options={}) ->
@@ -61,26 +62,24 @@
 				@listenTo model, "created updated", ()=>
 					App.dialogRegion.closeDialog()
 
-		
-		onClose: ->
 
 		formContentRegion: ->
 			@region = @formLayout.formContentRegion
 			@show @contentView
 		
 		
-
 		getFormLayout: (options = {}) ->
 			config = @getDefaultConfig _.result(@contentView, "form")
 			_.extend config, options
 			buttons = @getButtons config.buttons
+	
 			new Form.FormWrapper
 				config: config
 				model: @contentView.model
 				buttons: buttons
 				view: @contentView
-		
-		
+
+				
 
 		getDefaultConfig: (config = {}) ->
 			_.defaults config,

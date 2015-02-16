@@ -1,102 +1,114 @@
 @Qapp.module "Components.Form", (Form, App, Backbone, Marionette, $, _) ->
-	
-	class Form.FormWrapper extends App.Views.Layout
-		getTemplate: () ->
-			if @options.config.modal
-				"form/modal-form"
-			else
-				"form/form"
+  
+  class Form.FormWrapper extends App.Views.Layout
+    getTemplate: () ->
+      if @options.config.modal
+        "form/modal-form"
+      else
+        "form/form"
 
-		tagName: 		"form"
-		
-		className: ()->
-			@options.config.formClass
-
-
-		attributes: ->
-			"data-type": @getFormDataType()
-			 
-
-			
-		regions:
-			formContentRegion: "#form-content-region"
-		
-		ui:
-			buttonContainer: "ul.inline-list"
-		
-		events:
-			"click button[data-form-button]" : "formButtonClick"
-			"click button[data-dismiss]" : "closeButtonClick"
-			"keyup" : "keypressed"
-
-		formButtonClick:(event)->
-
-			buttonType = $(event.target).attr('data-form-button')
-			@trigger("form:#{buttonType}",{sourceButton: buttonType})
-			
-		keypressed: (e)->
-			#We sunmit the form when we press Enter and the focus is not in a textarea
-			if e.which is 13 and e.target.type isnt "textarea"
-				#We should maybe include the option collection in the form
-				@trigger("form:submit",{collection:false})
-
-		closeButtonClick:->
-			@trigger("form:cancel")
-
-		modelEvents:
-			# "change:_errors" 	: "changeErrors"
-			"sync:start"			:	"syncStart"
-			"sync:stop"				:	"syncStop"
-		
-		
-
-		initialize:(options)->
-			@addOpacityWrapper(false)
-			@setInstancePropertiesFor "config", "buttons"
-		
-		
-		setFormContentRegion:(region)->
-			@region.formContentRegion = region
+   
+    tagName: "form"
+    
+   
+    className: ()->
+      @options.config.formClass
 
 
+    attributes: ->
+      "data-type": @getFormDataType()
+       
+    
+    regions:
+      formContentRegion: "#form-content-region"
+    
 
-		serializeData: ->
-			footer: @config.footer
-			modal: @config.modal
-			title: @config.title or false
-			buttons: @buttons?.toJSON() ? false
-		
-		
-
-		onShow: ->
-			_.defer =>
-				@focusFirstInput() if @config.focusFirstInput
-				@buttonPlacement() if @buttons
-			
-		
-
-		buttonPlacement: ->
-			@ui.buttonContainer.addClass @buttons.placement
-		
-		
-
-		focusFirstInput: ->
-			@$el.find('input[type=text],textarea,select').filter(':visible:enabled:first').focus()
-		
-
-		getFormDataType: ->
-			if @model.isNew() then "new" else "edit"
-			
-		syncStart: (model) ->
-			@addOpacityWrapper() if @config.syncing
-		
-		
-
-		syncStop: (model) ->
-			@addOpacityWrapper(false) if @config.syncing
+    ui:
+      buttonContainer: "ul.inline-list"
+      submitButton: 'button.ladda-button'    
 
 
-	class Form.FieldView extends App.Views.ItemView
+    events:
+      "click button[data-form-button]" : "formButtonClick"
+      "click button[data-dismiss]" : "closeButtonClick"
+      "keyup" : "keypressed"
+
+
+    modelEvents:
+      # "change:_errors"  : "changeErrors"
+      "sync:start"      : "syncStart"
+      "sync:stop"       : "syncStop"
+    
+    
+    initialize:(options) ->
+      @setInstancePropertiesFor "config", "buttons"
+      # @addOpacityWrapper(false)
+      super
+    
+
+    formButtonClick:(event)->
+      target = $(event.currentTarget)
+      buttonType = target.attr('data-form-button')
+      if buttonType is 'submit' and @isLoadButton(target)
+        @setLoader(target)
+      @trigger("form:#{buttonType}",{sourceButton: buttonType})
+
+      
+
+    keypressed: (e)->
+      #We sunmit the form when we press Enter and the focus is not in a textarea
+      if e.which is 13 and e.target.type isnt "textarea"
+        #We should maybe include the option collection in the form
+        @trigger("form:submit",{collection:false})
+
+
+    closeButtonClick:->
+      @trigger("form:cancel")
+
+    
+    setFormContentRegion:(region)->
+      @region.formContentRegion = region
+
+
+    serializeData: ->
+      footer: @config.footer
+      modal: @config.modal
+      title: @config.title or false
+      buttons: @buttons?.toJSON() ? false
+        
+    
+    isLoadButton:(button)->
+      button.hasClass('ladda-button')
+
+    
+    setLoader:(button)->
+      unless button.attr('data-loader-initialized')?
+        @laddaLoader = Ladda.create(button[0])
+        button.attr('data-loader-initialized',true)
+      
+
+    buttonPlacement: ->
+      @ui.buttonContainer.addClass @buttons.placement
+    
+    
+    focusFirstInput: ->
+      @$el.find('input[type=text],textarea,select').filter(':visible:enabled:first').focus()
+    
+
+    getFormDataType: ->
+      if @model.isNew() then "new" else "edit"
+      
+    
+    syncStart: (model) ->
+      if @laddaLoader
+        @laddaLoader.start()
+    
+
+    syncStop: (model) ->
+      if @laddaLoader
+        @laddaLoader.stop()
+
+  class Form.FieldView extends App.Views.ItemView
 
     initialize:(options)->
       @modelIsNew = options.new
