@@ -21,8 +21,10 @@
     getSectionEntryResponses:->
       entries = new App.Entities.EntryFields([],{})
       entries.url = Routes.entry_set_response_section_path(@get('entrySetResponseId'),@id)
+      
       entries.fetch
         reset: true
+      
       entries
 
     

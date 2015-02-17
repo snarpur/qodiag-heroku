@@ -18,13 +18,10 @@
 			
 		
 		show: (view, options = {}) ->
-			
 			_.defaults options,
 				loading: false
 				region: @region
 				loaderRegion: @loaderRegion
-
-
 
 			@_setMainView view
 			@_manageView view, options

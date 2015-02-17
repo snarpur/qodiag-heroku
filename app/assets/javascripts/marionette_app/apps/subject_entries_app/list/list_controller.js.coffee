@@ -14,21 +14,19 @@
 
     list:(options) ->
       {@personId, entrySetResponseId, sectionId} = options
-
       @showLayout @items     
-
       @items = App.request "get:person:entry:set:responder:items", options
 
       App.execute "when:fetched", @items, =>
         @showEntrySetSelect(@items)
+        
         unless @items.size() is 0
           currentItem = if entrySetResponseId then @items.where(entry_set_response_id: entrySetResponseId)[0] else @items.first()
           @getSections(currentItem,sectionId) unless not currentItem.get("completed")?
         else
 
         @listenTo @getLayout(), "add:item:clicked", => @createItemSetup(collection: @items)
-        
-          
+              
 
     getSections:(currentItem,sectionId)->
       options=
@@ -37,34 +35,28 @@
         currentSectionId: sectionId
 
       sections = App.request "entry:set:sections:entities", options
-
-
       
       App.execute "when:fetched", sections, =>
         @showSections(sections,sections.getCurrentSection().id)
         @getEntries(sections.getCurrentSection())
 
-    
      
     getEntries:(section)->
       entries = section.getSectionEntryResponses()
       entries.comparator = 'display_order'
-      App.execute "when:fetched", entries, =>
-        @showEntryFields(entries)
-        
-    
+      @showEntryFields(entries)
+           
 
     showEntrySetSelect:(items)->
       selectView = new List.SelectItems(collection: items, layout: @getLayout())
 
       @show selectView,
          region: @getEntrySetSelectRegion()
-         loading:false 
+         loading:  false 
 
       @listenTo selectView, "childview:select:response",(view)=>
         @getSections(view.model)
-
-    
+  
 
     showSections:(sections,currentSectionId)->
       sectionsView = new List.Sections
@@ -89,8 +81,6 @@
           region: region 
           entryField: view.model
           entries: entries
-
-      # @getEntrySetValuesRegion().show entriesView 
       
       @show entriesView, 
         loading: true
@@ -100,22 +90,18 @@
     createItemSetup:(options = {})->
       view = App.request "create:responder:item:view", options
 
-
     
     getEntrySetValuesRegion:->
       @getLayout().entrySetValuesRegion
-
     
     
     getEntrySetSelectRegion:->
       @getLayout().entrySetSelectRegion
-    
-    
+        
 
     getSectionRegion:->
       @getLayout().entrySetSectionsRegion
 
-    
     
     showLayout: (items) ->
       App.request("default:region").show @getLayout()

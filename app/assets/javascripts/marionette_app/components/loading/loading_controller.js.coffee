@@ -3,19 +3,17 @@
   class  Loading.LoadingController extends App.Controllers.Base
 
     initialize: (options) ->
-
       { view, config } = options
-
       config = if _.isBoolean(config) then {} else config
 
       _.defaults config,
-        loadingType: "opacity-spinner"
+        loadingType: "spinner"
         debug: false
+        spinnerSize: 'small'
         entities: @getEntities(view)
 
       # Select the active region in the case we have a loader region 
       activeRegion = if options.loaderRegion then options.loaderRegion else @region
-
       switch config.loadingType
         when "opacity-spinner"
           $(activeRegion.el).toggleWrapper({spinner:true})
@@ -29,6 +27,7 @@
 
       @showRealView view, loadingView, config, activeRegion
 
+    
     showRealView: (realView, loadingView, config, activeRegion) ->
       App.execute "when:fetched", config.entities, =>
           ## ...after the entities are fetched, execute this callback
@@ -47,19 +46,24 @@
           when "spinner"
             return realView.close() if activeRegion.currentView isnt loadingView
             
-        if config?.callback
-          config.callback()
+        if config?.callback then config.callback()
         
         @show realView
 
+    
     getEntities: (view) ->
       ## return the entities manually set during configuration, or just pull
       ## off the the model and collection from the view (if they exists)
-      _.chain(view).pick("model","collection").toArray().compact().value()
+      # _.chain(view).pick("model","collection").toArray().compact().value()
+      view.collection || view.model
 
+    
     getLoadingView: (config) ->
-      new Loading.LoadingView
-        model: config.entities
+      new Loading.LoadingView model: new Backbone.Model(config)
+
+
+  
+
 
   App.commands.setHandler "show:loading", (view, options) -> 
     new Loading.LoadingController
