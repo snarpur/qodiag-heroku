@@ -7,18 +7,21 @@
       completeItemsRegion: "#complete-items-region"  
     
 
+  
   class List.Item extends App.Views.ItemView
     template: "responder_items/list/templates/_item"
     tagName: 'tr'
     
+  
+
   class List.NoRequests extends App.Views.ItemView
     template: "responder_items/list/templates/_empty"
-
     templateHelpers: =>
       tableTitle: =>
         I18n.t("responder_item.status.uncompleted")
     
 
+  
   class List.Items extends App.Views.CompositeView
     template: "responder_items/list/templates/items"
     itemView: List.Item
@@ -29,6 +32,7 @@
       wrapper: 'div.table_wrapper'
       table: "table.table"
 
+    
     onShow:()->
       @ui.table.dataTable
         'sDom': "<'row'<'col-sm-6'l><'col-sm-6'f>r>t<'row'<'col-sm-6'i><'col-sm-6'p>>"
@@ -43,6 +47,7 @@
       filter.addClass("form-control"); # modify table search input
       select.addClass("form-control"); # modify table per page dropdown
 
+    
     templateHelpers: =>
       tableTitle: =>
         I18n.t("responder_item.status.#{@options.status}")

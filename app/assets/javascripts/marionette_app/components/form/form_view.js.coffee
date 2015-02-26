@@ -49,10 +49,11 @@
     formButtonClick:(event)->
       target = $(event.currentTarget)
       buttonType = target.attr('data-form-button')
-      if buttonType is 'submit' and @isLoadButton(target)
+      # if buttonType is 'submit' and @isLoadButton(target)
+      if @isLoadButton(target)
         @setLoader(target)
+      
       @trigger("form:#{buttonType}",{sourceButton: buttonType})
-
       
 
     keypressed: (e)->

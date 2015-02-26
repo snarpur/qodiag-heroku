@@ -11,7 +11,7 @@
         debug: false
         spinnerSize: 'small'
         entities: @getEntities(view)
-
+        console.log 'entities',@getEntities(view)
       # Select the active region in the case we have a loader region 
       activeRegion = if options.loaderRegion then options.loaderRegion else @region
       switch config.loadingType
@@ -21,6 +21,7 @@
           $(activeRegion.el).css "opacity", 0.5
         when "spinner"  
           loadingView = @getLoadingView(config)
+          console.log 'is spinner :: ',loadingView
           @show loadingView
         else
           throw new Error I18n.t("marionette.errors.invalid_loading_type")
@@ -29,6 +30,7 @@
 
     
     showRealView: (realView, loadingView, config, activeRegion) ->
+      console.log "showRealView :", arguments
       App.execute "when:fetched", config.entities, =>
           ## ...after the entities are fetched, execute this callback
           ## ================================================================ ##

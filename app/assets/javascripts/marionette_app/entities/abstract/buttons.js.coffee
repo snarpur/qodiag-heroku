@@ -4,7 +4,6 @@
 		defaults:
 			buttonType: "button"
 		
-
 		initialize: ->
 			super
 			if @get('loader')
@@ -13,28 +12,33 @@
 				@set('dataStyle',"data-style='expand-left'")
 				@set('text',"<span class='ladda-label'>#{@get('text')}</span>")
 
+	
+
+
 	class Entities.ButtonsCollection extends Backbone.Collection
 		model: Entities.Button
 
 		comparator:(button)->
 			button.get('order')
 	
+	
+
+
 	API =
 		getFormButtons: (buttons, model) ->		
 			buttons = @getDefaultButtons buttons, model
 			buttonCollection = new Entities.ButtonsCollection buttons
 			buttonCollection.placement = buttons.placement
-
 			buttonCollection
+		
 		
 		getDefaultButtons: (buttons, model) ->
 			defaultButtons = 
 				buttons:
-					primary: {text: I18n.t("actions.save"), className: "btn btn-success", loader: true, order: 1, buttonType: 'submit'}
+					primary: {text: I18n.t("actions.save"), className: "btn btn-success", loader: false, order: 1, buttonType: 'submit'}
 					cancel: {text: I18n.t("actions.cancel"), className: "btn btn-default", order: 2, buttonType: "cancel", dataDismiss: "data-dismiss='modal'"} 
 				config:
 					placement: "right"
-
 
 			_.chain(_.union(_.keys(buttons),_.keys(defaultButtons.buttons)))
 				.map (i) ->

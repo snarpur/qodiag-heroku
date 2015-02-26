@@ -33,15 +33,20 @@
     template: "entry_set_responses/edit/templates/_empty_step"
     tagName: 'li'
 
+  
+
+
   class Edit.FormSteps extends App.Views.CollectionView
     itemView: Edit.FormStep
     emptyView: Edit.EmptyStep
     className: 'nav nav-tabs'
     tagName: 'ul'
-
-    
+ 
     collectionEvents: 
       'change:current:section' : ()-> @render()
+
+
+
 
   class Edit.EntryFieldText extends App.Views.ItemView
     template: "entry_set_responses/edit/templates/_text_entry_field"
@@ -59,6 +64,8 @@
       }
       @stickit()
   
+  
+
   class Edit.EntryFieldString extends App.Views.ItemView
     template: "entry_set_responses/edit/templates/_string_entry_field"
     className: "form-group"
@@ -74,6 +81,8 @@
 
       }
       @stickit()
+
+ 
 
   class Edit.EntryFieldMultiChoice extends App.Views.Layout
     template: "entry_set_responses/edit/templates/_multi_choice_entry_field"

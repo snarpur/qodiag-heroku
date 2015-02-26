@@ -6,13 +6,11 @@
       App.contentRegion.show @getLayout(options)
       @executeSettingsNavigation()
             
-    
 
     edit: (options)->
       @getSections(options)
    
     
-
     getSections:(options)->
       {entrySetResponseId,sectionId} = options
       current_user = App.request "get:current:user"
@@ -29,8 +27,7 @@
         unless @sections.length is 0
           @listenTo @sections, "change:current:section", () =>        
             App.navigate(@sectionUrl(),{replace: true})
-            @getEntries()
-          
+            @getEntries()      
 
           @getEntries()
 
@@ -38,9 +35,9 @@
     getEntries:->
       entries = @entrySetResponse.getSectionResponses()
 
-      App.execute "when:fetched", entries, =>
-        @entrySetResponse.set('entry_fields',entries)
-        @showForm()
+      # App.execute "when:fetched", entries, =>
+      @entrySetResponse.set('entry_fields',entries)
+      @showForm()
 
     
     executeSettingsNavigation:() ->
@@ -56,7 +53,6 @@
          region: @getFormStepsRegion()
          loading: false 
 
-
     
     showForm:->
       editView = @getFormView()
@@ -64,13 +60,10 @@
 
       @show formView,
          region: @getFormWrapperRegion()
-         loading:true 
-      
-
+         loading: true 
 
       @listenTo formView, "form:back", =>
         @sections.trigger("change:current:section",{model: @sections.getPreviousSection()})
-        
       
       @listenTo formView, "form:saveAndContinue", => 
         @saveAndMoveToNextSection(formView)
@@ -83,6 +76,7 @@
       @entrySetResponse.set("entry_values",@entrySetResponse.getEntryValuesForSection())
       @entrySetResponse.set("complete_item",1)
       formView.trigger('form:submit')
+      
       @listenToOnce @entrySetResponse, 'updated', =>
         App.navigate "/items", {trigger: true}
         toastr.success(I18n.t("entry_set.messages.entry_set_saved"))
@@ -91,13 +85,13 @@
     saveAndMoveToNextSection:(formView)->
       @entrySetResponse.set("entry_values",@entrySetResponse.getEntryValuesForSection())
       formView.trigger('form:submit')
+      
       @listenToOnce @entrySetResponse, 'updated', =>
         @sections.trigger("change:current:section",model: @sections.getNextSection())
      
   
     getFormStepsView:(options)->
       new Edit.FormSteps _.extend options
-
 
     
     getFormView:->
@@ -106,36 +100,33 @@
         model: @entrySetResponse 
 
 
-
     getFormStepsRegion:->
       @getLayout().formStepsRegion
-    
     
 
     getFormWrapperRegion:->
       @getLayout().formWrapperRegion
 
+    
     buttonsConfig:->
       options =
         formClass: "form-base form-horizontal"
         buttons: 
-          primary: {text: I18n.t("actions.save_and_continue",model: "") + " >>", className: "btn btn-info", buttonType: 'saveAndContinue', order: 3}
+          # primary: {text: "save ok", className: "btn btn-info", loader: true, buttonType: 'saveAndContinue', order: 3}
+          primary: {text: I18n.t("actions.save_and_continue",model: "") + " >>", loader: true, className: "btn btn-info", buttonType: 'saveAndContinue', order: 3}
           cancel: false
      
       if @sections.isCurrentLast()
         options.buttons.primary = _.extend options.buttons.primary , {text: I18n.t("actions.save_and_complete",model: ""), className: "btn btn-success", buttonType: 'saveAndComplete', order: 3}
       
       unless @sections.isCurrentFirst() 
-        _.extend options.buttons, back: {text: "<< " + I18n.t("terms.go_back"), buttonType: 'back', className: "btn btn-default", order: 1}
-          
+        _.extend options.buttons, back: {text: "<< " + I18n.t("terms.go_back"), buttonType: 'back', className: "btn btn-default", order: 1}      
       
       options
 
     
-    
     getLayout:(options)->
       @layout ?= new Edit.Layout
-
 
 
     sectionUrl:->

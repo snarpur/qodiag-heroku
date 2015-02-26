@@ -1,4 +1,3 @@
 <div class='<%= @spinnerSize %> progress'>
-  <% console.log "VVVVVVV  ",@ %>
 <div>loading...</div>
 </div>

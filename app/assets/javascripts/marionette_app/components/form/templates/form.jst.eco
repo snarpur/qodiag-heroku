@@ -3,7 +3,10 @@
 			<% if @buttons: %>
 				<p class="default-buttons">
 					<% for button in @buttons: %>
-						<button type="button" data-form-button="<%= button.buttonType %>" class="<%= button.className %>"><%= button.text %></button>
+					  <button type="button" <%= button.dataDismiss %> data-form-button="<%= button.buttonType %>" 
+					  	class="<%= button.className %>" <%= if button.dataStyle then button.dataStyle %>>
+							<%- button.text %>
+						</button>
 					<% end %>
 				</p>
 			<% end %>

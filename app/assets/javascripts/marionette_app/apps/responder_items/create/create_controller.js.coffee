@@ -1,22 +1,24 @@
 @Qapp.module "ResponderItemsApp.Create", (Create, App, Backbone, Marionette, $, _) ->
   
   class Create.Controller extends App.Controllers.Base
-    
-    
+
     initialize:(options)->
       @collection = options.collection
       @itemCollection = options.itemCollection
       @respondents = @getSubject().get('respondents')
       @controllerModel = new App.Entities.Model()
 
+    
     create:->
       @entrySets = App.request "entry:sets:entities"
       @showResponderItem()
 
+    
     createSurvey:()->
       @surveys = App.request "get:surveys"
       @showSurveyResponderItem()
 
+    
     showSurveyResponderItem:->
       App.execute "when:fetched", @surveys, =>
         config = @getSurveyFormConfig()
@@ -24,15 +26,9 @@
         @rootModel.set("_survey_id_options",@surveys)
         @rootModel.set("_respondent_id_options",@respondents)
         @fieldCollection = new App.Entities.FieldCollection(config,{rootModel:@rootModel,controllerModel:@controllerModel})
-        
-        
         view = @getFieldsView(@fieldCollection)  
-
-        formView = App.request "form:wrapper", view, @buttonsConfig()
-
+        formView = App.request "form:wrapper", view, @formConfig()
         App.dialogRegion.show formView
-
-
 
         @listenTo formView, "before:form:submit", =>
           @listenTo @rootModel, "created", (model) =>
@@ -40,6 +36,7 @@
   
         view
 
+    
     showResponderItem:->
       App.execute "when:fetched", @entrySets, =>
         config = @getEntrySetFormConfig()
@@ -56,25 +53,26 @@
           @collection.add model
 
         view = @getFieldsView(@fieldCollection)      
-
-        formView = App.request "form:wrapper", view, @buttonsConfig()
+        formView = App.request "form:wrapper", view, @formConfig()
         App.dialogRegion.show formView
-
         @rootModel.set("_respondent_id_options",@respondents)
 
+    
     getEntrySetFormConfig:()->
       Create.EntrySet.FormConfig
 
+    
     getSurveyFormConfig:()->
       Create.Survey.FormConfig
 
+    
     getFieldsView: (collection) =>
       new App.Components.Form.FieldCollectionView 
         collection: collection
         model: @rootModel
 
+    
     getEntrySetItem:=>
-
       @item ?= new App.Entities.FormResponderItemModel
         caretaker_id: App.request("get:current:user").get('person_id')
         subject_id: @getSubject().id
@@ -83,8 +81,8 @@
 
       @item
 
+    
     getSurveyItem:=>
-
       @item ?= new App.Entities.FormResponderItemModel
         caretaker_id: App.request("get:current:user").get('person_id')
         subject_id: @getSubject().id
@@ -95,13 +93,22 @@
 
       @item
 
+    
     getSubject:->
       App.request "get:current:subject"
 
+
     buttonsConfig:->
+      options= 
+        primary: { loader: true }
+        cancel: {}
+    
+
+    formConfig:->
       options =
         errors: false
         modal: true
+        buttons: @buttonsConfig()
         title: I18n.t("views.responder_items.requests.submit")
         formClass: "form-horizontal"
       options

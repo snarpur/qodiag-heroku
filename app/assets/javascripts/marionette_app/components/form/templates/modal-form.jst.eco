@@ -18,7 +18,9 @@
         <% if @buttons: %>
           <% for button in @buttons: %>
             <button type="button" <%= button.dataDismiss %> data-form-button="<%= button.buttonType %>"
-            class="<%= button.className%>" <%= if button.dataStyle then button.dataStyle %>><%- button.text %></button>
+            class="<%= button.className%>" <%= if button.dataStyle then button.dataStyle %> > 
+            <%- button.text %>
+          </button>
           <% end %>
         <% end %>   
       </div>

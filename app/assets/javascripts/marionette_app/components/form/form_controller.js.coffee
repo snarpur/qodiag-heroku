@@ -9,8 +9,10 @@
 			@formLayout = @getFormLayout options.config
 
 			@listenTo @formLayout, "show", @formContentRegion
+			
 			@listenTo @formLayout, "form:submit", (options)=> 
 				@formSubmit(options)
+			
 			@listenTo @formLayout, "form:cancel", @formCancel
 
 			#Save the attributes state when we open the window when whe are using a modal window, just in case we press Cancel Button
@@ -34,8 +36,10 @@
 			model = @contentView.model
 			collection = @getCollection(model)
 			# collection = options.collection ? @contentView.collection
+			
 			@listenToOnce model, "validated:invalid validated:valid", (model,msg)=>
 				@stopListening model, "validated:invalid validated:valid"
+				
 				if _.isEmpty model._errorsWithNested()
 					@formLayout.trigger "before:form:submit"
 					@processFormSubmit model, collection
@@ -78,7 +82,6 @@
 				model: @contentView.model
 				buttons: buttons
 				view: @contentView
-
 				
 
 		getDefaultConfig: (config = {}) ->
