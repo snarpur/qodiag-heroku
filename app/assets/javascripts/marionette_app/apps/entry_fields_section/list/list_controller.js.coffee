@@ -28,7 +28,7 @@
       @show view,
        region: region
        loaderRegion: loaderRegion
-       loading: true
+       loading: false
 
       @listenTo view, "save:clicked", (options)=>
         model.saveEntryFields()

@@ -7,17 +7,13 @@
     list:(options) ->
       @getEntrySet(options)
 
- 
-    
     
     showSidebarOnce:->
-      
-      @getEntryFieldsRegion().on "show", (region)=> 
+      @getEntryFieldsRegion().once "show", (region)=> 
         @executeSidebar 
           droppableCollection: region.model.collection
           droppableElement: region.$itemViewContainer
 
-    
     
     getEntrySet:(options)->
       entrySet = App.request "entry:set:entity", {id: options.entrySetId}
@@ -33,7 +29,6 @@
         @getSections(_.extend(options,{entrySet: entrySet}))
 
 
-
     getSections:(options)->
       sections = App.request "entry:set:sections:entities", options
       
@@ -42,8 +37,7 @@
         @showSectionsNavigation(sections, options.entrySet)
         unless sections.length is 0
           @executeFields(model: sections.getCurrentSection())
-        else
-          
+        else        
     
 
     executeFields:(options)->
@@ -57,7 +51,6 @@
       App.execute "show:settings:sidebar:fields",
         _.extend options, region: @getSidebarRegion()
         
-
 
     showSectionsNavigation: (sections,entrySet) ->
       view = @getNavigationView(sections)
@@ -83,21 +76,21 @@
       view = new List.Title model: section
       @show view,
         region: @getLayout().sectionTitleRegion
-        loading: 
-          loadingType: "opacity"
+        loading: false
 
       @listenTo view, "edit:title",(options) =>
         App.execute "edit:section", 
           section: options.model
           activeView: @getLayout()
 
+    
     showEntrySetTitle:(entrySet)->
       view = new List.Title model: entrySet
 
       @show view,
         region: @getLayout().entrySetTitleRegion
-        loading: false
-      
+        loading: false    
+
       @listenTo view, "edit:title",(options) => 
         App.execute "edit:entry:set",
           model: entrySet
@@ -112,7 +105,6 @@
         App.execute "remove:entry_set", 
           model: entrySet
    
-
     
     executeSettingsNavigation:() ->
       App.execute "show:settings:navigation", 
@@ -125,28 +117,26 @@
         collection: collection
         model: collection.getCurrentSection()
 
-    
    
     getNavigationRegion: ->
       @getLayout().navigationRegion
     
     
-    
     getSectionContentRegion: ->
       @getLayout().sectionContentRegion
-
 
     
     getSidebarRegion: ->
       @getLayout().entryFieldsSidebarRegion    
     
+ 
     getEntryFieldsRegion: ->
       @getLayout().entryFieldsRegion
 
+ 
     getLayout: (entrySet)->
       @layout ?= new List.Layout(model: entrySet)
-
-  
+ 
     
     sectionUrl:(section)->
       params = _.values(section.pick("entry_set_id","id"))
