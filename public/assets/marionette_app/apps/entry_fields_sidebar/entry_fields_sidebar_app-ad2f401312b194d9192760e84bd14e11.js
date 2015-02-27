@@ -1,1 +1,0 @@
-(function(){this.Qapp.module("EntryFieldsSidebarApp",function(a,c,d,e,f,g){var b;b={listEntryFields:function(b){return(new a.List.Controller).list(b)}};return c.commands.setHandler("show:settings:sidebar:fields",function(a){return function(a){return b.listEntryFields(a)}}(this))})}).call(this);

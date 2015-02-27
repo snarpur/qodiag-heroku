@@ -1,1 +1,0 @@
-(function(){(function(a){return a.fn.spinner=function(a,b){return(new Spinner({lines:13,length:7,width:4,radius:10,corners:1,rotate:0,color:"#000",speed:1,trail:60,shadow:!1,hwaccel:!1,className:"spinner",zIndex:2E9,top:"50%",left:"auto"})).spin(this[0])}})($)}).call(this);

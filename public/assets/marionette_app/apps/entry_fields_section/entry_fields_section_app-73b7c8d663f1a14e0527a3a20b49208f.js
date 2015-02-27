@@ -1,1 +1,0 @@
-(function(){this.Qapp.module("EntryFieldsSectionApp",function(a,c,d,e,f,g){var b;b={listFields:function(b){return(new a.List.Controller).list(b)}};return c.commands.setHandler("show:settings:section:fields",function(a){return function(a){return b.listFields(a)}}(this))})}).call(this);

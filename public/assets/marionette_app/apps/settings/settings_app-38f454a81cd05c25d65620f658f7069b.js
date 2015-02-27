@@ -1,1 +1,0 @@
-(function(){this.Qapp.module("SettingsApp",function(c,d,e,f,g,h){var b;b={showSettingsRegion:function(a){return(new c.List.Controller).showHeader(a)}};return d.commands.setHandler("show:settings:navigation",function(a){return b.showSettingsRegion(a)})})}).call(this);

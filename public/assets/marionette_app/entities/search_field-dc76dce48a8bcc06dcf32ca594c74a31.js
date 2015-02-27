@@ -1,2 +1,0 @@
-(function(){var e={}.hasOwnProperty,g=function(b,a){function d(){this.constructor=b}for(var c in a)e.call(a,c)&&(b[c]=a[c]);d.prototype=a.prototype;b.prototype=new d;b.__super__=a.prototype;return b};this.Qapp.module("Entities",function(b,a,d,c,e,h){var f;b.Search=function(b){function a(){return a.__super__.constructor.apply(this,arguments)}g(a,b);a.prototype.schema={search:{type:"Text"}};return a}(b.Model);f={getSearchField:function(a){return new b.Search({search:a})}};return a.reqres.setHandler("get:search:field",
-function(a){return f.getSearchField(a)})})}).call(this);

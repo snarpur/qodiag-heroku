@@ -1,1 +1,0 @@
-(function(){this.Qapp.module("HeaderApp.List",function(b,c,d,e,f,g){return b.Controller={listHeader:function(){var a;a=c.request("header:entities");a=this.getHeaderView(a);return c.headerRegion.show(a)},getHeaderView:function(a){return new b.Headers({collection:a})}}})}).call(this);

@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "",
+  "sourceRoot": "",
+  "sources": [
+    "/assets/source_maps/app/assets/javascripts/marionette_app/components/loading/loading_view.coffee"
+  ],
+  "names": [],
+  "mappings": "AAAA;AAAA,MAAA;mSAAA;;AAAA,EAAA,IAAC,CAAA,IAAI,CAAC,MAAN,CAAa,oBAAb,EAAmC,SAAC,OAAD,EAAU,GAAV,EAAe,QAAf,EAAyB,UAAzB,EAAqC,CAArC,EAAwC,CAAxC,GAAA;WAE3B,OAAO,CAAC;AACZ,oCAAA,CAAA;;;;OAAA;;AAAA,4BAAA,QAAA,GAAU,iBAAV,CAAA;;AAAA,4BACA,SAAA,GAAW,gCADX,CAAA;;yBAAA;;OADgC,GAAG,CAAC,KAAK,CAAC,UAFX;EAAA,CAAnC,CAAA,CAAA;AAAA"
+}
